@@ -12,7 +12,7 @@ import * as Yup from "yup";
 import { signupApi } from "@/config/apis";
 import { fetchData } from "@/config/apiRequests.js";
 
-const SignUp = () => {
+const Signup = () => {
   const [formData, setFormData] = useState({
     user_name: "",
     user_email: "",
@@ -217,4 +217,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default Signup;
