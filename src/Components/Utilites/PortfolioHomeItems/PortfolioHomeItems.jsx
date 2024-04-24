@@ -23,7 +23,7 @@ const PortfolioHomeItems = ({ portfolios, services }) => {
             Our Amazing Portfolio
           </h3>
         </div>
-        <div className="flex flex-col gap-10 justify-center items-center lg:flex-row lg:justify-between py-4 pt-5">
+        <div className="flex flex-col gap-5 md:gap-10 justify-center items-center lg:flex-row lg:justify-between py-4 pt-5">
           <div>
             <h3 className="text-[16px] text-[#666666]">
               Our beautiful work you need to know!
@@ -31,7 +31,7 @@ const PortfolioHomeItems = ({ portfolios, services }) => {
           </div>
           <div className="flex flex-col lg:flex-row gap-3 md:gap-10 text-[#9E9E9E] text-[16px] lg:text-[16px] ">
             <div className="hidden md:block">
-              <div className="flex gap-10">
+              <div className="flex md:gap-10">
                 {services.map((service) => (
                   <button
                     key={service.service_id}
@@ -71,81 +71,54 @@ const PortfolioHomeItems = ({ portfolios, services }) => {
         </div>
         {/* card */}
         <div>
-          {/* 1st row */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10 justify-between pt-10 pb-5">
-            {/* 1st row 1st column card */}
-            {loading ? (
-              <>
-                <ContentLoader
-                  speed={2}
-                  width={1000}
-                  height={500}
-                  viewBox="0 0 700 300"
-                  backgroundColor="#f5f5f5"
-                  foregroundColor="#dbdbdb"
-                >
-                  {/* Your loader SVG */}
-                </ContentLoader>
-                <ContentLoader
-                  speed={2}
-                  width={1000}
-                  height={500}
-                  viewBox="0 0 700 300"
-                  backgroundColor="#f5f5f5"
-                  foregroundColor="#dbdbdb"
-                >
-                  {/* Your loader SVG */}
-                </ContentLoader>
-              </>
-            ) : (
-              <>
-                {portfolios
-                  ?.filter(
-                    (portfolio) =>
-                      selectedServiceId === 0 ||
-                      portfolio.service_id === selectedServiceId
-                  )
-                  .map((portfolio) => (
-                    <Link
-                      key={portfolio.id}
-                      href={`/portfolio/${portfolio.slug}`}
-                    >
-                      <div className="group">
-                        <div className="portfolio-bgHover cursor-pointer flex flex-col xl:flex-row justify-between bg-[#FFFFFF] rounded-xl  ">
-                          <div className="overflow-hidden">
-                            <Image
-                              width={800}
-                              height={262}
-                              className="w-full lg:w-[400px] h-[420px] object-cover rounded-l-lg overflow-hidden border border-r-0 border-[#CBD5E1]"
-                              src={portfolio.image}
-                              alt=""
-                            />
+            <>
+              {portfolios
+                ?.filter(
+                  (portfolio) =>
+                    selectedServiceId === 0 ||
+                    portfolio.service_id === selectedServiceId
+                )
+                .map((portfolio) => (
+                  <Link
+                    key={portfolio.id}
+                    href={`/portfolio/${portfolio.slug}`}
+                  >
+                    <div className="group">
+                      <div className="portfolio-bgHover cursor-pointer flex flex-col xl:flex-row justify-between bg-[#FFFFFF] rounded-xl  ">
+                        <div className="overflow-hidden">
+                          <Image
+                            width={800}
+                            height={262}
+                            className="w-full lg:w-[400px] h-[420px] object-cover rounded-l-lg rounded-r-lg rounded-b-none md:rounded-r-none   md:rounded-l-lg overflow-hidden border border-r-0 border-[#CBD5E1]"
+                            src={portfolio.image}
+                            alt=""
+                          />
+                        </div>
+                        <div className="flex flex-col justify-center items-center p-3 md:py-0 2xl:px-10 border border-[#CBD5E1]   rounded-b-lg md:border-l-0 md:border md:rounded-r-lg md:rounded-l-none">
+                          <div className="text-center">
+                            <h4 className="text-[14px] text-[#999999] pt-3 pb-3 md:pt-0 md:pb-6 portfolio-textHover">
+                              {portfolio.heading}
+                            </h4>
+                            <h3 className="text-[16px] font-bold font-Raleway text-[#333333] portfolio-textHover">
+                              Visuel Agency <br /> Photo Brand
+                            </h3>
+                            <p className="w-[250px] text-[14px] text-[#666666] py-3 portfolio-textHover">
+                              {portfolio.text}
+                            </p>
                           </div>
-                          <div className="flex flex-col justify-center items-center p-3 md:py-0 2xl:px-10 border border-l-0 border-[#CBD5E1] rounded-r-lg">
-                            <div className="text-center">
-                              <h4 className="text-[14px] text-[#999999] pt-3 pb-3 md:pt-0 md:pb-6 portfolio-textHover">
-                                {portfolio.heading}
-                              </h4>
-                              <h3 className="text-[16px] font-bold font-Raleway text-[#333333] portfolio-textHover">
-                                Visuel Agency <br /> Photo Brand
-                              </h3>
-                              <p className="w-[250px] text-[14px] text-[#666666] py-3 portfolio-textHover">
-                                {portfolio.text}
-                              </p>
-                            </div>
-                            <div className="group flex justify-center items-center gap-2 text-[#FF693B] font-bold mt-5 portfolio-textHover pb-6 lg:pb-0">
-                              <button className="text-[14px]">Read More</button>
-                              <span className="w-[19px] font-bold">
-                                <HiArrowSmallRight className="text-xl " />
-                              </span>
-                            </div>
+                          <div className="group flex justify-center items-center gap-2 text-[#FF693B] font-bold mt-5 portfolio-textHover pb-6 lg:pb-0">
+                            <button className="text-[14px]">Read More</button>
+                            <span className="w-[19px] font-bold">
+                              <HiArrowSmallRight className="text-xl " />
+                            </span>
                           </div>
                         </div>
                       </div>
-                    </Link>
-                  ))}
-              </>
-            )}
+                    </div>
+                  </Link>
+                ))}
+            </>
           </div>
         </div>
 

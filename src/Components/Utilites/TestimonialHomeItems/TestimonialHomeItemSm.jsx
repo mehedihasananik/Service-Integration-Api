@@ -6,7 +6,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { HiArrowLeft, HiArrowRight } from "react-icons/hi";
 
-const TestimonialHomeItems = ({ testimonials }) => {
+const TestimonialHomeItemSm = ({ testimonials }) => {
   const [loading, setLoading] = useState(true);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [totalSlides, setTotalSlides] = useState(0);
@@ -18,17 +18,17 @@ const TestimonialHomeItems = ({ testimonials }) => {
 
   const swiperRef = useRef(null);
 
+  // next function
   const goNext = () => {
     if (swiperRef.current && swiperRef.current.swiper) {
       swiperRef.current.swiper.slideNext();
-      setCurrentSlide((prevSlide) => Math.min(prevSlide + 1, totalSlides - 3));
     }
   };
 
+  // prev function
   const goPrev = () => {
     if (swiperRef.current && swiperRef.current.swiper) {
       swiperRef.current.swiper.slidePrev();
-      setCurrentSlide((prevSlide) => Math.max(prevSlide - 1, 0));
     }
   };
 
@@ -61,7 +61,7 @@ const TestimonialHomeItems = ({ testimonials }) => {
 
   return (
     <div id="testimonial" className="overflow-hidden">
-      <div className="hidden md:block max-w-[1680px] mx-auto 4xl:px-[0] 4xl:max-w-[1920px] xl:pl-[8%] 2xl:pl-[13%] 4xl:pl-[14%]">
+      <div className="block md:hidden max-w-[1680px] mx-auto 4xl:px-[0] 4xl:max-w-[1920px] xl:pl-[8%] 2xl:pl-[13%] 4xl:pl-[14%]">
         <div className="py-5 xl:pt-10">
           <div className="flex flex-col lg:flex-row items-center justify-between lg:gap-20 xl:gap-12 py-8">
             <div className="w-full text-center lg:text-left lg:w-[35%]">
@@ -78,9 +78,7 @@ const TestimonialHomeItems = ({ testimonials }) => {
               </div>
               <div className="text-center lg:text-left">
                 <span className="text-[48px] font-Raleway text-[#0A2C8C] font-bold">
-                  {currentSlide === totalSlides
-                    ? totalSlides
-                    : currentSlide + 3}
+                  {currentSlide + 1}
                 </span>
                 <span className="text-[16px] font-bold text-[#94A3B8] font-Raleway">
                   /{totalSlides}
@@ -147,8 +145,8 @@ const TestimonialHomeItems = ({ testimonials }) => {
               <div className="w-full lg:w-[65%]">
                 <Swiper
                   ref={swiperRef}
-                  slidesPerView={3}
-                  slidesPerGroup={3}
+                  slidesPerView={1}
+                  slidesPerGroup={1}
                   spaceBetween={30}
                   breakpoints={breakpoints}
                   className="mySwiper mx-auto"
@@ -167,7 +165,7 @@ const TestimonialHomeItems = ({ testimonials }) => {
                               alt=""
                             />
                           </div>
-                          <div className="pt-14 pb-4">
+                          <div className="pt-14 pb-4 text-center">
                             <h2 className="text-[24px] text-[#333333] group-hover:text-[#fff] font-Raleway font-bold">
                               {testimonial.name}
                             </h2>
@@ -194,4 +192,4 @@ const TestimonialHomeItems = ({ testimonials }) => {
   );
 };
 
-export default TestimonialHomeItems;
+export default TestimonialHomeItemSm;

@@ -5,6 +5,8 @@ const brandsApi = `${apiEndpoint}/home_brand`;
 const servicesApi = `${apiEndpoint}/sevice_items`;
 const about_us_homeApi = `${apiEndpoint}/about_us_home`;
 const sevice_portfolioApi = `${apiEndpoint}/sevice_portfolio`;
+const whyChoose_us = `${apiEndpoint}/home_choose_us`;
+
 const serviceApi = `${apiEndpoint}/service`;
 const testimonials_itemsApi = `${apiEndpoint}/testimonials_items`;
 const faqApi = `${apiEndpoint}/faq`;
@@ -56,6 +58,7 @@ export {
   servicesApi,
   about_us_homeApi,
   sevice_portfolioApi,
+  whyChoose_us,
   serviceApi,
   testimonials_itemsApi,
   faqApi,

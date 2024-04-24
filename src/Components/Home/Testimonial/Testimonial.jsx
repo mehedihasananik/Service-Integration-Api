@@ -1,3 +1,4 @@
+import TestimonialHomeItemSm from "@/Components/Utilites/TestimonialHomeItems/TestimonialHomeItemSm";
 import TestimonialHomeItems from "@/Components/Utilites/TestimonialHomeItems/TestimonialHomeItems";
 import { testimonials_itemsApi } from "@/config/apis";
 import React from "react";
@@ -19,6 +20,7 @@ const Testimonial = async () => {
   return (
     <div>
       <TestimonialHomeItems testimonials={testimonials} />
+      <TestimonialHomeItemSm testimonials={testimonials} />
     </div>
   );
 };
