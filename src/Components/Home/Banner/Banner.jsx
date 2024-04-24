@@ -18,11 +18,11 @@ const Banner = async () => {
   const banner = await getBannerContent();
   return (
     <Container>
-      <div className="flex flex-col  lg:flex-row items-center justify-between gap-11 pt-5 xl:pt-10 pb-10 ">
+      <div className="flex flex-col  lg:flex-row items-center justify-between space-y-3 md:space-y-0 md:gap-11 pt-5 xl:pt-10 pb-10 ">
         {/* left side description */}
         <div className="flex flex-col ">
           {/* title starts*/}
-          <div className="w-full lg:w-[450px] lg:pt-14  px-5 md:px-0">
+          <div className="w-full lg:w-[450px] lg:pt-14 xs:px-3  md:px-0">
             <h3 className="font-Raleway font-bold text-[30px] md:text-[40px] xl:text-[48px] xl:leading-[63.98px]">
               Creative Design <span className="line-break"></span> and{" "}
               <span className="custom-rotate">Development </span> <br />
@@ -31,7 +31,7 @@ const Banner = async () => {
           </div>
           {/* title ends*/}
           {/* description starts */}
-          <div className="w-full lg:w-[450px] pt-4 text-[16px]  px-5 md:px-0">
+          <div className="w-full lg:w-[450px] pt-4 text-[16px]  xs:px-3 md:px-0">
             <p>{banner.details}</p>
           </div>
           {/* description ends */}
