@@ -19,7 +19,6 @@ const Portfolio = async () => {
   const serviceCategories = await fetch(`${search_sevice_categoryAll}`).then(
     (res) => res.json()
   );
-  console.log(serviceCategories);
 
   return (
     <div>

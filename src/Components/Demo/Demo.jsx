@@ -1,13 +1,13 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { isAndroid, isIOS, isWindowsPhone } from "react-device-detect";
+import { isAndroid, isIOS } from "react-device-detect";
 
 const getDeviceType = () => {
   if (isAndroid) {
     return "Android";
   } else if (isIOS) {
     return "iOS";
-  } else if (isWindowsPhone) {
+  } else if (navigator.userAgent.match(/Windows Phone/i)) {
     return "Windows Phone";
   } else if (navigator.userAgent.match(/Windows/i)) {
     return "Windows";
@@ -20,7 +20,6 @@ const getBrowserName = () => {
   const userAgent = navigator.userAgent;
   let browserName;
   const currentPath = window.location.pathname;
-  console.log(currentPath);
 
   if (userAgent.match(/Firefox/i)) {
     browserName = "Mozilla Firefox";

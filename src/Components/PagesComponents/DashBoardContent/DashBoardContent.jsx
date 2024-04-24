@@ -19,7 +19,7 @@ const DashBoardContent = () => {
   useEffect(() => {
     fetchingData();
   }, []);
-  console.log(projects);
+
   return (
     <div className="lg:mx-10 bg-[#FCFCFC]">
       {/* active project */}

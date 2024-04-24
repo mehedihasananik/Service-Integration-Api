@@ -9,7 +9,7 @@ const Accordion = ({ title, answer }) => {
     <div className="py-2 rounded-md ">
       <button
         onClick={() => setAccordionOpen(!accordionOpen)}
-        className="flex justify-between w-full bg-[#F8FAFC] rounded-md py-3 px-4 font-semibold"
+        className="flex justify-between items-center  w-full bg-[#F8FAFC] rounded-md py-3 px-4 font-semibold"
       >
         <div className="flex items-center gap-4 ">
           <span
@@ -58,8 +58,8 @@ const Accordion = ({ title, answer }) => {
             : "grid-rows-[0fr] opacity-0"
         }`}
       >
-        <div className=" overflow-hidden text-[16px] px-4 py-0  bg-[#F8FAFC]">
-          <p className="py-3 pb-8"> {answer}</p>
+        <div className=" overflow-hidden text-center md:text-left text-[16px] px-4 py-0  bg-[#F8FAFC]">
+          <p className="py-3 pb-8 "> {answer}</p>
         </div>
       </div>
     </div>

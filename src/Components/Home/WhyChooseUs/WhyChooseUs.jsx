@@ -16,7 +16,7 @@ async function getWhyChooseContent() {
 
 const WhyChooseUs = async () => {
   const data = await getWhyChooseContent();
-  console.log(data[0]);
+
   return (
     <div className="pb-5 lg:py-5 overflow-hidden">
       <Container>

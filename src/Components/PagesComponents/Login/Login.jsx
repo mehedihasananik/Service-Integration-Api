@@ -51,20 +51,20 @@ const Login = () => {
   function onChange() {}
 
   return (
-    <div className="login_singUp pt-5">
+    <div className="login_singUp overflow-hidden  my-5">
       <Container>
         {loading && <div className="loader">Loading...</div>}
-        <div className="w-full h-fit flex justify-center pt-5">
-          <div className="shadow-md  border rounded-lg py-10 px-10  md:py-10 md:px-12">
-            <div className="text-center pb-10 md:pb-14">
-              <h3 className="text-[32px] md:text-[40px] text-[#333333] font-Raleway font-bold">
+        <div className="w-full h-fit flex justify-center md:pt-5">
+          <div className="shadow-md  border rounded-lg  py-6 px-10  md:py-10 md:px-12">
+            <div className="text-center pb-5 md:pb-14">
+              <h3 className="text-[30px] md:text-[40px] text-[#333333] font-Raleway font-bold">
                 Welcome back!
               </h3>
               <p className="text-[16px]  text-[#032333] font-Raleway font-semibold">
                 Please log in to your account
               </p>
             </div>
-            <div className="flex flex-col md:flex-row gap-10 pb-8 lg:pb-12">
+            <div className="flex flex-col md:flex-row pb-4 gap-y-4 md:gap-10  lg:pb-12">
               <button className="flex justify-center items-center gap-2 font-Raleway border p-2 rounded-md hover:border-[#FF693B] transition-all duration-200">
                 <img src="/assets/gLogo.png" alt="" />{" "}
                 <span className="text-[14px]text-[#032333]">

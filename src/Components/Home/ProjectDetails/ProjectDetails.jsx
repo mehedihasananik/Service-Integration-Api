@@ -108,10 +108,14 @@ const ProjectDetails = () => {
         {/* title & decription */}
         <div className="flex  md:flex-row justify-center items-center pt-6">
           <div>
-            <img src="/assets/projectLogo.svg" alt="" />
+            <img
+              className="w-[50px] md:w-full"
+              src="/assets/projectLogo.svg"
+              alt=""
+            />
           </div>
           <div>
-            <h3 className="text-[26px] md:text-[32px] lg:text-[48px] font-Raleway font-bold">
+            <h3 className="text-[20px] md:text-[32px] lg:text-[48px] font-Raleway font-bold">
               Let&apos;s discuss <span className="project_title"></span> your
               project
             </h3>
@@ -125,7 +129,7 @@ const ProjectDetails = () => {
           </p>
         </div>
         {/* our details */}
-        <div className="w-[100%] flex flex-col justify-center items-center  lg:flex-row lg:items-start lg:justify-between gap-10 pt-14">
+        <div className="w-[100%] flex flex-col justify-center items-center  lg:flex-row lg:items-start lg:justify-between gap-10 md:pt-14">
           <div className="w-full md:w-[80%] lg:w-[40%] flex flex-col gap-10 md:pl-10 2xl:pl-0">
             <div className="flex  items-center gap-6 bg-[#FFFFFF] py-8  rounded-lg pl-5 lg:pl-5 lg:pr-14">
               <div className="bg-[#FFF5F1] p-4 rounded-lg">
@@ -271,7 +275,7 @@ const ProjectDetails = () => {
                 </div>
                 <div className="pt-6">
                   <button
-                    className="text-[16px] bg-[#FF693B] px-8 py-4 text-white rounded-lg border border-[#FF693B]  hover:bg-white hover:text-[#FF693B] transition-all duration-300"
+                    className="text-[16px] bg-[#FF693B] px-8 py-2  md:py-4 text-white rounded-lg border border-[#FF693B]  hover:bg-white hover:text-[#FF693B] transition-all duration-300"
                     type="submit"
                     disabled={!captchaVerified}
                   >

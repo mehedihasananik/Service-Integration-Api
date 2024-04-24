@@ -14,7 +14,6 @@ const RequirementContent = ({ requireMent }) => {
   const handleFileInputChange = () => {
     // Handle file input change here if needed
   };
-  console.log(requireMent);
 
   return (
     <div className="pt-5">

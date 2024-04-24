@@ -17,7 +17,7 @@ const DashBoardSideNav = ({ height }) => {
   };
 
   return (
-    <div className="relative   ">
+    <div className="relative bg-[#8CD3FB1A]  ">
       <div className="  hidden md:block">
         <div className=" lg:flex lg:justify-end h-full  ">
           <HiMenuAlt3

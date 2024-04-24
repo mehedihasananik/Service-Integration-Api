@@ -28,7 +28,7 @@ const Profile = () => {
   }, []);
 
   const backgroundImage = profile?.image ? `url(${profile.image})` : "";
-  console.log(backgroundImage);
+
   return (
     <div>
       <section className="py-10 my-auto dark:bg-gray-900 p-20">

@@ -4,9 +4,8 @@ import Container from "@/Components/Container/Container";
 import React, { useState } from "react";
 import { FiArrowRight, FiEye, FiEyeOff } from "react-icons/fi";
 import { HiMail } from "react-icons/hi";
-import { IoMdLock, IoPersonSharp } from "react-icons/io";
+import { IoPersonSharp } from "react-icons/io";
 import Link from "next/link";
-import axios from "axios";
 import toast from "react-hot-toast";
 import * as Yup from "yup";
 import { signupApi } from "@/config/apis";
@@ -83,19 +82,22 @@ const Signup = () => {
     }));
   };
   return (
-    <div className="login_singUp pt-5">
-      <Container>
-        <div className="w-full h-fit flex justify-center pt-5 ">
-          <div className="shadow-md  border rounded-lg py-5 px-10  md:py-10 md:px-12">
-            <div className="text-center pb-10 md:pb-14">
-              <h3 className="text-[32px] md:text-[40px] text-[#333333] font-Raleway font-bold">
+    <div className="login_singUp overflow-hidden  my-5">
+      <>
+        <div className="w-full h-fit md:flex md:justify-center pt-5 ">
+          <div className="shadow-md  border rounded-lg  py-6 px-10  md:py-10 md:px-12">
+            <div className="text-center pb-5 md:pb-14">
+              <h3
+                style={{ whiteSpace: "nowrap" }}
+                className="text-[#333333] text-[30px] md:text-[40px] font-Raleway font-bold whitespace-nowrap"
+              >
                 Create account
               </h3>
               <p className="text-[16px]  text-[#032333] font-Raleway font-semibold">
                 Let&apos;s create your account
               </p>
             </div>
-            <div className="flex flex-col md:flex-row gap-10 pb-8 lg:pb-12">
+            <div className="flex flex-col md:flex-row pb-4 gap-y-4 md:gap-10  lg:pb-12">
               <button className="flex justify-center items-center gap-2 font-Raleway border p-2 rounded-md hover:border-[#FF693B] transition-all duration-200">
                 <img src="/assets/gLogo.png" alt="" />{" "}
                 <span className="text-[14px]text-[#032333]">
@@ -212,7 +214,7 @@ const Signup = () => {
             </div>
           </div>
         </div>
-      </Container>
+      </>
     </div>
   );
 };

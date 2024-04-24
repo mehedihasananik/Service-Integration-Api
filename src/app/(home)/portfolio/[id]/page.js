@@ -8,7 +8,6 @@ export async function generateMetadata({ params, searchParams }, parent) {
   const service = await fetch(`${singlePortfolio}/${id}`).then((res) =>
     res.json()
   );
-  console.log(service);
 
   // Optionally access and extend (rather than replace) parent metadata
   const previousImages = (await parent).openGraph?.images || [];
@@ -25,7 +24,6 @@ const SinglePage = async ({ params }) => {
   const singlePortfolioItem = await fetch(
     `${singlePortfolio}/${params.id}`
   ).then((res) => res.json());
-  console.log(singlePortfolioItem);
 
   return (
     <div>

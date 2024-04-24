@@ -79,7 +79,7 @@ const PortfolioPage = ({
 
   return (
     <div className="pt-8 lg:pt-10">
-      <div className="text-center lg:text-left text-[#0F172A] text-[32px] lg:text-[48px] font-Raleway font-semibold">
+      <div className="text-center lg:text-left text-[#0F172A] text-[30px] lg:text-[48px] font-Raleway font-semibold">
         <h3>Our Amazing Portfolio</h3>
       </div>
       <div className="grid grid-cols-1 md:space-x-3 lg:space-x-20 space-y-5 md:space-y-0 md:grid-cols-3 mt-10">
