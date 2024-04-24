@@ -49,7 +49,7 @@ const Brands = () => {
             ) : (
               <>
                 {/* brands logo */}
-                <div className="w-[100%]  flex sm:gap-x-3 lsm:gap-x-5 lg:gap-x-10 justify-center items-center lg:justify-end">
+                <div className="w-[100%] flex gap-x-3 sm:gap-x-3 lsm:gap-x-5 lg:gap-x-10 justify-center items-center lg:justify-end">
                   {brands?.map((brand) => {
                     return (
                       <Image

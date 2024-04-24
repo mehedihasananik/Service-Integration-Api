@@ -19,7 +19,7 @@ const PortfolioHomeItems = ({ portfolios, services }) => {
     <div className="md:py-5 lg:pt-20">
       <Container>
         <div className="text-center lg:text-left">
-          <h3 className="text-[32px] text-[#0F172A] xl:text-[48px] font-bold font-Raleway">
+          <h3 className="text-[30px] text-[#0F172A] md:text-[38px] lg:text-[48px] font-bold font-Raleway">
             Our Amazing Portfolio
           </h3>
         </div>

@@ -12,7 +12,7 @@ import Link from "next/link";
 import "../../../app/globals.css";
 import { Autoplay } from "swiper/modules";
 
-const ServicesHomeItems = ({ services: initialServices }) => {
+const ServicesHomeItemSM = ({ services: initialServices }) => {
   // states
   const [loading, setLoading] = useState(true);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -31,10 +31,11 @@ const ServicesHomeItems = ({ services: initialServices }) => {
   const goNext = () => {
     if (swiperRef.current && swiperRef.current.swiper) {
       swiperRef.current.swiper.slideNext();
-      setCurrentSlide((prevSlide) => Math.min(prevSlide + 1, totalSlides - 3));
-      if (currentSlide === 0) {
+      const newSlide = Math.min(currentSlide + 1, totalSlides - 1); // Update current slide
+      setCurrentSlide(newSlide);
+      if (newSlide === 0) {
         setSpaceBetween(50);
-      } else if (currentSlide === 3) {
+      } else if (newSlide === 3) {
         setSpaceBetween(10);
       }
     }
@@ -44,9 +45,11 @@ const ServicesHomeItems = ({ services: initialServices }) => {
   const goPrev = () => {
     if (swiperRef.current && swiperRef.current.swiper) {
       swiperRef.current.swiper.slidePrev();
-      setCurrentSlide((prevSlide) => Math.max(prevSlide - 1, 0));
+      const newSlide = Math.max(currentSlide - 1, 0); // Update current slide
+      setCurrentSlide(newSlide);
     }
   };
+
   useEffect(() => {
     // Log spaceBetween
   }, [spaceBetween]);
@@ -84,8 +87,8 @@ const ServicesHomeItems = ({ services: initialServices }) => {
   };
 
   return (
-    <div className="overflow-hidden">
-      <div className="hidden md:block max-w-[1680px] mx-auto px-[4%] md:px[8%] 4xl:px-[0] 4xl:max-w-[1920px] 3xl:pl-[14%] 4xl:pl-[14%] 6xl:pl-[12%]">
+    <div className="overflow-hidden ">
+      <div className="block md:hidden max-w-[1680px] mx-auto px-[4%] md:px[8%] 4xl:px-[0] 4xl:max-w-[1920px] 3xl:pl-[14%] 4xl:pl-[14%] 6xl:pl-[12%]">
         {/* services */}
         <div className="py-6 xl:pt-10 ">
           <div className="flex flex-col lg:flex-row items-center justify-between lg:gap-20 xl:gap-12 lg:py-8">
@@ -105,9 +108,7 @@ const ServicesHomeItems = ({ services: initialServices }) => {
               </div>
               <div className="text-center lg:text-left">
                 <span className="text-[48px] font-Raleway text-[#0A2C8C] font-bold">
-                  {currentSlide === totalSlides
-                    ? totalSlides
-                    : currentSlide + 3}
+                  {currentSlide + 1}
                 </span>
                 <span className="text-[16px] font-bold text-[#94A3B8] font-Raleway">
                   /{totalSlides}
@@ -147,8 +148,8 @@ const ServicesHomeItems = ({ services: initialServices }) => {
                 {/* cards */}
                 <Swiper
                   ref={swiperRef}
-                  slidesPerView={3}
-                  slidesPerGroup={3}
+                  slidesPerView={1}
+                  slidesPerGroup={1}
                   spaceBetween={200}
                   breakpoints={breakpoints}
                   className="mySwiper space-x-4"
@@ -166,7 +167,7 @@ const ServicesHomeItems = ({ services: initialServices }) => {
                           href={`/services/${service.slug.replace(/\s+/g, "")}`}
                         >
                           <div
-                            className={`w-[300px] xl:w-[350px]  xxl:w-[280px] xll:w-[300px] 4xl:w-[330px] group shadow-lg rounded-md border border-[#E2E8F0]   cursor-pointer ${
+                            className={`w-full xl:w-[350px]  xxl:w-[280px] xll:w-[300px] 4xl:w-[330px] group shadow-lg rounded-md border border-[#E2E8F0]   cursor-pointer ${
                               isThirdSlide && "no-margin"
                             } ${isLastSlide ? "" : "no-margin2"}`}
                           >
@@ -229,4 +230,4 @@ const ServicesHomeItems = ({ services: initialServices }) => {
   );
 };
 
-export default ServicesHomeItems;
+export default ServicesHomeItemSM;
