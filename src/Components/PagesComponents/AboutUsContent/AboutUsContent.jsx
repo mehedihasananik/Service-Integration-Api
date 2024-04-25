@@ -1,30 +1,6 @@
 import Container from "@/Components/Container/Container";
-import { aboutUsApi, aboutUsItemApi } from "@/config/apis";
-import Head from "next/head";
 import Image from "next/image";
 import React from "react";
-
-async function getAboutPage() {
-  const res = await fetch(`${aboutUsApi}`, {
-    next: { revalidate: 10 },
-  });
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch  singleAboutDetails");
-  }
-  return res.json();
-}
-
-async function getAbout_item() {
-  const res = await fetch(`${aboutUsItemApi}`, {
-    next: { revalidate: 10 },
-  });
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch  singleAboutDetails");
-  }
-  return res.json();
-}
 
 const AboutUsContent = async ({ aboutDetails, singleAboutDetails }) => {
   const {
@@ -40,7 +16,7 @@ const AboutUsContent = async ({ aboutDetails, singleAboutDetails }) => {
   } = aboutDetails;
 
   if (!aboutDetails || !singleAboutDetails) {
-    return <div>Loading...</div>; // You can customize your loading indicator here
+    return <div>Loading...</div>;
   }
   return (
     <Container>

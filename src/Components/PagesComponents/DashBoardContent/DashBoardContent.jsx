@@ -21,7 +21,7 @@ const DashBoardContent = () => {
   }, []);
 
   return (
-    <div className="lg:mx-10 bg-[#FCFCFC]">
+    <div className="lg:mx-10 bg-[#FCFCFC] mb-5%">
       {/* active project */}
       <div className="bg-white py-4 rounded-md   mb-5 md:px-7">
         <h3 className="text-[#0F172A] text-[24px] font-[600]">
@@ -44,7 +44,7 @@ const DashBoardContent = () => {
 
               return (
                 <Link key={project.id} href={"#"}>
-                  <div className=" shadow-lg rounded-md border border-[#E2E8F0] pb-5">
+                  <div className=" shadow-lg rounded-md border border-[#E2E8F0] pb-5 mb-5">
                     <div className="flex flex-col">
                       <div className="bg-[#E2E8F0]">
                         <div>

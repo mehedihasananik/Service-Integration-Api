@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Container from "@/Components/Container/Container";
-import API_ROUTES from "@/app/api/confiq";
 import Image from "next/image";
 import Link from "next/link";
 import ServiceLoading from "@/Components/Utilites/Loading/ServiceLoading";

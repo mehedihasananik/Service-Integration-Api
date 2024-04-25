@@ -53,7 +53,6 @@ const Profile = () => {
                         hidden
                         required
                       />
-
                       <label for="upload_profile">
                         <svg
                           data-slot="icon"

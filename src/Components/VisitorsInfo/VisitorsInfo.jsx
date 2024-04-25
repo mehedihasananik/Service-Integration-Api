@@ -1,6 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { isAndroid, isIOS } from "react-device-detect";
+import axios from "axios";
+import ip from "ip";
 
 const getDeviceType = () => {
   if (isAndroid) {
@@ -19,7 +21,6 @@ const getDeviceType = () => {
 const getBrowserName = () => {
   const userAgent = navigator.userAgent;
   let browserName;
-  const currentPath = window.location.pathname;
 
   if (userAgent.match(/Firefox/i)) {
     browserName = "Mozilla Firefox";
@@ -40,20 +41,31 @@ const getBrowserName = () => {
   return browserName;
 };
 
-const Demo = () => {
+const VisitorsInfo = ({ currentPage }) => {
   const [deviceType, setDeviceType] = useState("");
-
-  useEffect(() => {
-    const browserName = getBrowserName();
-    console.log("Your browser:", browserName);
-  }, []);
 
   useEffect(() => {
     const detectedDeviceType = getDeviceType();
     setDeviceType(detectedDeviceType);
-  }, [setDeviceType]);
+  }, []);
+
+  // useEffect(() => {
+  //   const browserName = getBrowserName();
+  //   const postData = {
+  //     hit_log: `page:${currentPage},device:${deviceType},ip:${ip.address()},browser:${browserName}`,
+  //   };
+
+  //   axios
+  //     .post("http://192.168.10.14:8000/api/hit_log", postData)
+  //     .then((response) => {
+  //       console.log("Post request successful:", response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error making post request:", error);
+  //     });
+  // }, [currentPage, deviceType]);
 
   return <></>;
 };
 
-export default Demo;
+export default VisitorsInfo;

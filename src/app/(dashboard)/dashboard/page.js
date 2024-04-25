@@ -2,7 +2,7 @@ import DashBoardContent from "@/Components/PagesComponents/DashBoardContent/Dash
 
 const DashboardPage = () => {
   return (
-    <div className="bg-[#FCFCFC]">
+    <div className="bg-[#FCFCFC] ">
       <DashBoardContent />
     </div>
   );

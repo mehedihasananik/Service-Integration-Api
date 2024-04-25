@@ -4,7 +4,7 @@ import Container from "@/Components/Container/Container";
 import React, { useState } from "react";
 import { FiArrowRight, FiEye, FiEyeOff } from "react-icons/fi";
 import { HiMail } from "react-icons/hi";
-import { IoPersonSharp } from "react-icons/io";
+import { MdPerson } from "react-icons/md";
 import Link from "next/link";
 import toast from "react-hot-toast";
 import * as Yup from "yup";
@@ -134,7 +134,7 @@ const Signup = () => {
                   <TextInput
                     id="name"
                     type="text"
-                    icon={IoPersonSharp}
+                    icon={MdPerson}
                     placeholder="Enter Your Name"
                     name="user_name"
                     value={formData.user_name}

@@ -1,12 +1,10 @@
 "use client";
 
-import { Button, Checkbox, Label, TextInput } from "flowbite-react";
+import { Label, TextInput } from "flowbite-react";
 import Container from "@/Components/Container/Container";
 import React from "react";
-import { FaFacebook } from "react-icons/fa6";
 import { FiArrowRight } from "react-icons/fi";
 import { HiMail } from "react-icons/hi";
-import { IoMdLock } from "react-icons/io";
 import Link from "next/link";
 
 const ForgetPassword = () => {
@@ -59,10 +57,7 @@ const ForgetPassword = () => {
             </div>
             <div className="flex justify-center items-center pt-5  md:pt-8">
               <div className="text-[14px] font-Raleway font-[500] gap-1 ">
-                <span className="text-[#032333]">
-                  {" "}
-                 Have an account?{" "}
-                </span>
+                <span className="text-[#032333]"> Have an account? </span>
                 <Link
                   href={"/login"}
                   className=' text-[#FF693B]  border-b border-[#FF693B] border-["1px solid"] font-[500]'

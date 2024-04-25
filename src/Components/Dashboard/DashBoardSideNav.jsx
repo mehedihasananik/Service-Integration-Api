@@ -75,31 +75,38 @@ const DashBoardSideNav = ({ height }) => {
           </section>
         </div>
       </div>
-      <div className="md:hidden z-50   ">
-        <button className="absolute top-[1.8%] left-[20px]">
+      <div className="absolute top-[24px] md:hidden z-50   ">
+        <button className="absolute  left-[20px]">
           <RiBarChartHorizontalLine
             className="text-[20px]"
             onClick={toggleSidebar}
           />
         </button>
-        <div className=" ">
+        <div className="h-[100vh] ">
           {showSidebar && (
             <Sidebar
               style={{ margin: "0" }}
-              className="pt-[32%]  "
+              className="pt-[15%]  "
               aria-label="Default sidebar example p-0 m-0"
             >
-              <Sidebar.Items className="  ">
-                <Sidebar.ItemGroup>
-                  {dashboardMenus.map((item, index) => {
-                    return (
-                      <Sidebar.Item key={index} href="#" icon={item.icon}>
-                        {item.name}
-                      </Sidebar.Item>
-                    );
-                  })}
-                </Sidebar.ItemGroup>
-              </Sidebar.Items>
+              <div className="w-full">
+                {dashboardMenus?.map((menu, i) => (
+                  <div
+                    key={i}
+                    className={` ${
+                      menu?.margin && "mt-6"
+                    } group flex items-center text-sm  gap-3.5 font-[400] p-2 hover:bg-[#FFFFFF] hover:text-[#FF693B] rounded-md`}
+                  >
+                    <div>{React.createElement(menu?.icon, { size: "20" })}</div>
+                    <Link
+                      href={menu?.link}
+                      className={`whitespace-pre  text-[16px] hover:bg-[#FFFFFF] hover:text-[#FF693B] py-[2%] `}
+                    >
+                      {menu?.name}
+                    </Link>
+                  </div>
+                ))}
+              </div>
             </Sidebar>
           )}
         </div>

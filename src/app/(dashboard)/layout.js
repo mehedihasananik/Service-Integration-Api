@@ -28,7 +28,7 @@ export default function RootLayout({ children }) {
                 <DashBoardSideNav height="100vh" />
                 <div className="w-full ">
                   <DashBoardNav />
-                  <div className="bg-[#fff]">{children}</div>
+                  <div className="bg-[#fff] px-[5%] md:px-0 ">{children}</div>
                 </div>
               </AuthProviders>
             </div>

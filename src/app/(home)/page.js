@@ -1,4 +1,4 @@
-import Demo from "@/Components/Demo/Demo";
+import Demo from "@/Components/VisitorsInfo/VisitorsInfo";
 import HomePage from "@/Components/Home/HomePage";
 var Sniffr = require("sniffr").default;
 import { NextResponse, userAgent } from "next/server";

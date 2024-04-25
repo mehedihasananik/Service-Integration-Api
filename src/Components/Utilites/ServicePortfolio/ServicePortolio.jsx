@@ -6,12 +6,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
-import { HiArrowLeft } from "react-icons/hi";
-import { HiArrowRight } from "react-icons/hi";
 
 // import required modules
-import { Navigation } from "swiper/modules";
-import Container from "@/Components/Container/Container";
 import Image from "next/image";
 import { HiArrowSmallRight } from "react-icons/hi2";
 import Link from "next/link";

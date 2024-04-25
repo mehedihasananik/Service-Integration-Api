@@ -6,11 +6,13 @@ import React, { useContext, useState } from "react";
 import { Navbar } from "flowbite-react";
 import { usePathname } from "next/navigation";
 import { AuthContext } from "@/providers/AuthProviders";
+import VisitorsInfo from "@/Components/VisitorsInfo/VisitorsInfo";
 
 const Header = () => {
   const userData = JSON.parse(sessionStorage.getItem("userData"));
   const [cleared, setCleared] = useState(false);
   const user = useContext(AuthContext);
+  const currentPage = usePathname();
 
   const clearSession = () => {
     // Remove the userData from sessionStorage
@@ -34,6 +36,7 @@ const Header = () => {
       <Container>
         {/* navbar for large devices */}
         <div>
+          {/* <VisitorsInfo currentPage={currentPage} /> */}
           <nav className="hidden  lg:flex justify-between items-center pt-5 ">
             {/* logo */}
             <Link href={"/"}>
