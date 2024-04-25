@@ -3,6 +3,7 @@ import { bannerApi } from "@/config/apis";
 import Image from "next/image";
 import Link from "next/link";
 
+// api fetching from sever side
 async function getBannerContent() {
   const res = await fetch(`${bannerApi}`, {
     next: { revalidate: 10 },
@@ -15,6 +16,7 @@ async function getBannerContent() {
 }
 
 const Banner = async () => {
+  // getting the banner data
   const banner = await getBannerContent();
   return (
     <Container>
@@ -54,8 +56,8 @@ const Banner = async () => {
           </div>
           {/* buttons ends */}
         </div>
+        {/* right side image */}
         <div>
-          {/* right side image */}
           <div>
             <Image
               className="md:w-[742px] md:h-[554px]"

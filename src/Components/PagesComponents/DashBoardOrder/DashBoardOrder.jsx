@@ -78,8 +78,8 @@ const DashBoardOrder = () => {
   return (
     <div>
       <Container>
-        <div className="py-5 md:py-8">
-          <div className="pt-7">
+        <div className="pt-2 md:py-8">
+          <div className="md:pt-7">
             <div className="w-[100%] flex flex-col md:flex-row justify-center gap-x-10 gap-y-4 lg:gap-y-0">
               <div className="w-full md:w-[40%] lg:w-[25%]">
                 <form>

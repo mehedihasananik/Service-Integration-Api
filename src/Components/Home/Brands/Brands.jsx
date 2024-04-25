@@ -6,12 +6,13 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
 const Brands = () => {
+  // loading & data states
   const [brands, setBrands] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // api data fetching
   useEffect(() => {
     const apiUrl = `${brandsApi}`;
-
     fetchData(apiUrl) // Default method is 'GET'
       .then((data) => {
         setBrands(data);
@@ -29,7 +30,7 @@ const Brands = () => {
         <div className="flex flex-col lg:flex-row items-center justify-between gap-2 lg:gap-0 py-5 lg:py-2">
           {/* left side */}
           <div className="w-full text-center lg:text-left lg:w-[40%] font-Montserrat text-[#475569] text-[20px] font-bold">
-            TRUSTED BY GLOBAL BRANDS
+            <h3>TRUSTED BY GLOBAL BRANDS</h3>
           </div>
           {/* right side */}
           <div className=" w-full lg:w-[60%] lg:flex lg:justify-end ">

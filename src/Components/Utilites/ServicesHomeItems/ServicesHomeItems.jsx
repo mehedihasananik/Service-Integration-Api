@@ -13,7 +13,7 @@ import "../../../app/globals.css";
 import { Autoplay } from "swiper/modules";
 
 const ServicesHomeItems = ({ services: initialServices }) => {
-  // states
+  // declaring the loading & slider states states
   const [loading, setLoading] = useState(true);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [totalSlides, setTotalSlides] = useState(0);
@@ -144,7 +144,7 @@ const ServicesHomeItems = ({ services: initialServices }) => {
               </>
             ) : (
               <div className="w-full flex justify-center items-center  lg:w-[70%]  ">
-                {/* cards */}
+                {/* right side sliders cards */}
                 <Swiper
                   ref={swiperRef}
                   slidesPerView={3}
@@ -172,6 +172,7 @@ const ServicesHomeItems = ({ services: initialServices }) => {
                           >
                             <div className="flex flex-col">
                               <div className="bg-[#E2E8F0] group-hover:bg-[#FF693B]">
+                                {/* slider image */}
                                 <div>
                                   <Image
                                     width={700}
@@ -202,11 +203,13 @@ const ServicesHomeItems = ({ services: initialServices }) => {
                                     Start From
                                   </span>
                                 </div>
+                                {/* price */}
                                 <div>
                                   <span className="font-Raleway text-[20px] font-bold text-[#0A2C8C] group-hover:text-[#fff]">
                                     {service.start_price}
                                   </span>
                                 </div>
+                                {/* view more button */}
                                 <div>
                                   <button className="text-[14px] bg-[#FF693B] rounded-md px-8 py-[5px] text-white border border-[#ff693B]  group-hover:bg-white group-hover:text-[#FF693B] transition-all duration-300">
                                     View
