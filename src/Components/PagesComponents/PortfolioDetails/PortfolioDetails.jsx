@@ -14,21 +14,21 @@ const PortfolioDetails = ({ singlePortfolioItem }) => {
             return (
               <div key={portfolio.id}>
                 {/* title */}
-                <div className="text-center pt-7 md:pt-0">
+                <div className="text-center  md:pt-0">
                   <h1 className=" text-[20px] md:text-[30px] lg:text-[54px] font-Raleway font-bold lg:leading-[63.4px] text-[#000000] ">
                     {portfolio?.title}
                   </h1>
                 </div>
                 <div>
-                  <p className="text-[18px] font-Roboto text-[#333333] md:leading-[27px] text-left py-5">
+                  <p className="text-[18px] text-justify font-Roboto text-[#333333] md:leading-[27px] md:text-left py-3 md:pt-0 md:py-5">
                     {portfolio?.details}
                   </p>
                 </div>
                 <div className="w-[100%]">
                   <Image
-                    className="w-full h-[75vh] rounded-md"
-                    width={1000}
-                    height={1000}
+                    className=" md:w-full md:h-[75vh] rounded-md"
+                    width={500}
+                    height={500}
                     src={portfolio?.image}
                     alt="image"
                   />

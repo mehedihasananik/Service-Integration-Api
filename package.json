@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.3",
+    "@tawk.to/tawk-messenger-react": "^2.0.2",
     "axios": "^1.6.8",
     "flowbite": "^2.3.0",
     "flowbite-react": "^0.7.3",

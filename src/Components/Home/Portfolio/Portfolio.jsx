@@ -2,7 +2,9 @@ import PortfolioHomeItems from "@/Components/Utilites/PortfolioHomeItems/Portfol
 import { serviceApi, sevice_portfolioApi } from "@/config/apis";
 import React from "react";
 
-async function getBannerContent() {
+// portfolio all api fetching from server side
+
+async function getPortfolioContent() {
   try {
     const [res1, res2] = await Promise.all([
       fetch(`${sevice_portfolioApi}`, { next: { revalidate: 10 } }),
@@ -24,7 +26,7 @@ async function getBannerContent() {
 }
 
 const Portfolio = async () => {
-  const { data1, data2 } = await getBannerContent();
+  const { data1, data2 } = await getPortfolioContent();
 
   return (
     <div>

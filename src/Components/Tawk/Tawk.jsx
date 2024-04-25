@@ -1,0 +1,45 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import TawkMessengerReact from "@tawk.to/tawk-messenger-react";
+
+const Tawk = () => {
+  const tawkMessengerRef = useRef(null);
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    const handleLoad = () => {
+      console.log("Tawk.to messenger loaded successfully!");
+      setLoaded(true);
+      if (window.Tawk_API) {
+        window.Tawk_API.minimize();
+      }
+    };
+
+    // Check if the Tawk.to script has already been loaded
+    if (window.Tawk_API && window.Tawk_API.onLoad) {
+      handleLoad();
+    } else {
+      // Listen for the Tawk.to script load event
+      window.Tawk_API = window.Tawk_API || {};
+      window.Tawk_API.onLoad = handleLoad;
+    }
+
+    // Cleanup
+    return () => {
+      window.Tawk_API.onLoad = undefined;
+    };
+  }, []);
+
+  return (
+    <div className="bg-red-500">
+      <TawkMessengerReact
+        propertyId="662a19a31ec1082f04e6b451"
+        widgetId="1hsa78a8l"
+        ref={tawkMessengerRef}
+      />
+    </div>
+  );
+};
+
+export default Tawk;

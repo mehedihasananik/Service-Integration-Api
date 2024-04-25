@@ -5,6 +5,7 @@ import ScrollTrigger from "react-scroll-trigger";
 import Link from "next/link";
 
 const AboutUsItems = ({ about }) => {
+  // counter states and about details
   const [counterOn, setCounterOn] = useState(false);
   const { heading, text, experience, project, customers, country } = about;
 

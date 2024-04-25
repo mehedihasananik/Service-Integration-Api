@@ -10,10 +10,12 @@ import {
   WhyChooseUs,
   Testimonial,
 } from "../index";
+import Tawk from "../Tawk/Tawk";
 
 const HomePage = () => {
   return (
     <div className="overflow-hidden">
+      <Tawk />
       <Banner />
       <Brands />
       <Services />

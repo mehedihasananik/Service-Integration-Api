@@ -13,7 +13,7 @@ import "../../../app/globals.css";
 import { Autoplay } from "swiper/modules";
 
 const ServicesHomeItemSM = ({ services: initialServices }) => {
-  // states
+  // loading & slider states
   const [loading, setLoading] = useState(true);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [totalSlides, setTotalSlides] = useState(0);
@@ -106,6 +106,7 @@ const ServicesHomeItemSM = ({ services: initialServices }) => {
                   that you need for your business.
                 </p>
               </div>
+              {/* slide counter & totals */}
               <div className="text-center lg:text-left">
                 <span className="text-[48px] font-Raleway text-[#0A2C8C] font-bold">
                   {currentSlide + 1}
@@ -114,6 +115,7 @@ const ServicesHomeItemSM = ({ services: initialServices }) => {
                   /{totalSlides}
                 </span>
               </div>
+              {/* arrow to slide sliders */}
               <div className="flex justify-center items-center lg:justify-start lg:items-start gap-6 py-4 ">
                 <div className="group text-center" onClick={() => goPrev()}>
                   <button className=" bg-[#FF9F711A]  group-hover:bg-[#FF693B] px-5 py-5 rounded-lg transition-all duration-300">
@@ -145,7 +147,7 @@ const ServicesHomeItemSM = ({ services: initialServices }) => {
               </>
             ) : (
               <div className="w-full flex justify-center items-center  lg:w-[70%]  ">
-                {/* cards */}
+                {/* swiper sliders */}
                 <Swiper
                   ref={swiperRef}
                   slidesPerView={1}
@@ -197,17 +199,20 @@ const ServicesHomeItemSM = ({ services: initialServices }) => {
                                   {service.details}
                                 </p>
                               </div>
+                              {/* start from */}
                               <div className="flex items-center justify-between px-5 py-5 group-hover:bg-[#FF693B] transition-all duration-300">
                                 <div className="font-Raleway">
                                   <span className=" font-bold text-[16px] text-[#1E293B] group-hover:text-[#fff] ">
                                     Start From
                                   </span>
                                 </div>
+                                {/* price */}
                                 <div>
                                   <span className="font-Raleway text-[20px] font-bold text-[#0A2C8C] group-hover:text-[#fff]">
                                     {service.start_price}
                                   </span>
                                 </div>
+                                {/* view more button */}
                                 <div>
                                   <button className="text-[14px] bg-[#FF693B] rounded-md px-8 py-[5px] text-white border border-[#ff693B]  group-hover:bg-white group-hover:text-[#FF693B] transition-all duration-300">
                                     View

@@ -4,7 +4,6 @@ import Container from "@/Components/Container/Container";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
-import ContentLoader from "react-content-loader";
 import { HiArrowSmallRight } from "react-icons/hi2";
 
 const PortfolioHomeItems = ({ portfolios, services }) => {
@@ -14,6 +13,7 @@ const PortfolioHomeItems = ({ portfolios, services }) => {
   useEffect(() => {
     setLoading(false); // Assuming data is already passed as props, set loading to false
   }, []);
+  console.log(portfolios);
 
   return (
     <div className="md:py-5 lg:pt-20">
@@ -98,10 +98,10 @@ const PortfolioHomeItems = ({ portfolios, services }) => {
                         <div className="flex flex-col justify-center items-center p-3 md:py-0 2xl:px-10 border border-[#CBD5E1]   rounded-b-lg md:border-l-0 md:border md:rounded-r-lg md:rounded-l-none">
                           <div className="text-center">
                             <h4 className="text-[14px] text-[#999999] pt-3 pb-3 md:pt-0 md:pb-6 portfolio-textHover">
-                              {portfolio.heading}
+                              {portfolio.service_name[0].service_name}
                             </h4>
                             <h3 className="text-[16px] font-bold font-Raleway text-[#333333] portfolio-textHover">
-                              Visuel Agency <br /> Photo Brand
+                              {portfolio.heading}
                             </h3>
                             <p className="w-[250px] text-[14px] text-[#666666] py-3 portfolio-textHover">
                               {portfolio.text}
