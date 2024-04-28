@@ -1,5 +1,5 @@
 import Container from "@/Components/Container/Container";
-import { footer } from "@/config/apis";
+import { footer, user_contactApi } from "@/config/apis";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -15,8 +15,21 @@ async function getfooterDataContent() {
   return res.json();
 }
 
+// footer contacts
+async function getUserContactContent() {
+  const res = await fetch(`${user_contactApi}`, {
+    next: { revalidate: 10 },
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+  return res.json();
+}
+
 const Footer = async () => {
   const footer = await getfooterDataContent();
+  const userContact = await getUserContactContent();
 
   return (
     <Container>
@@ -46,7 +59,6 @@ const Footer = async () => {
           {/* footer links */}
           {/* 1st col */}
           {footer.menu.map((item) => {
-            console.log(item.sub_menu);
             return (
               <div key={item.id}>
                 <h3 className="text-[18px] font-Raleway text-[#444444] font-bold">
@@ -81,10 +93,10 @@ const Footer = async () => {
                   {" "}
                   <a
                     target="_blank"
-                    href="mailto:support@envobyte.com"
+                    href={`mailto:${userContact.email}`}
                     className="text-[#475569] text-[16px] pt-1"
                   >
-                    support@envobyte.com
+                    {userContact.email}
                   </a>
                 </span>
               </li>
@@ -97,10 +109,10 @@ const Footer = async () => {
                   {" "}
                   <a
                     target="_blank"
-                    href="https://wa.me/8801711377731"
+                    href={`https://wa.me/${userContact?.phone_number}`}
                     className="text-[#475569] text-[16px] pt-1"
                   >
-                    +880 1711-377731
+                    {userContact?.phone_number}
                   </a>
                 </span>
               </li>

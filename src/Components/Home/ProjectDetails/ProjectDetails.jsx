@@ -7,7 +7,7 @@ import * as Yup from "yup"; // Import Yup for validation
 import ReCAPTCHA from "react-google-recaptcha";
 import { user_feedbackApi } from "@/config/apis";
 
-const ProjectDetails = () => {
+const ProjectDetails = ({ userContact }) => {
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
@@ -139,10 +139,10 @@ const ProjectDetails = () => {
                 <h3 className="text-[16px] text-[#94A3B8]">Email us</h3>
                 <a
                   target="_blank"
-                  href="mailto:support@envobyte.com"
+                  href={`mailto:${userContact.email}`}
                   className="text-[#475569] text-[16px] pt-1"
                 >
-                  support@envobyte.com
+                  {userContact.email}
                 </a>
               </div>
             </div>
@@ -155,10 +155,10 @@ const ProjectDetails = () => {
                 <h3 className="text-[16px] text-[#94A3B8]">Whatsapp</h3>
                 <a
                   target="_blank"
-                  href="https://wa.me/8801711377731"
+                  href={`https://wa.me/${userContact?.phone_number}`}
                   className="text-[#475569] text-[16px] pt-1"
                 >
-                  +880 1711-377731
+                  {userContact?.phone_number}
                 </a>
               </div>
             </div>

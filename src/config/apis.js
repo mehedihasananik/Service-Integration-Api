@@ -12,6 +12,7 @@ const serviceApi = `${apiEndpoint}/service`;
 const testimonials_itemsApi = `${apiEndpoint}/testimonials_items`;
 const faqApi = `${apiEndpoint}/faq`;
 const user_feedbackApi = `${apiEndpoint}/user_feedback`;
+const user_contactApi = `${apiEndpoint}/contact`;
 const footer = `${apiEndpoint}/footer`;
 
 // services page
@@ -65,6 +66,7 @@ export {
   serviceApi,
   testimonials_itemsApi,
   faqApi,
+  user_contactApi,
   footer,
   user_feedbackApi,
   serviceListApi,

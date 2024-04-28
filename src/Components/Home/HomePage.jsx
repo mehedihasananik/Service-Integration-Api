@@ -11,8 +11,22 @@ import {
   Testimonial,
 } from "../index";
 import Tawk from "../Tawk/Tawk";
+import { user_contactApi } from "@/config/apis";
 
-const HomePage = () => {
+async function getUserContactContent() {
+  const res = await fetch(`${user_contactApi}`, {
+    next: { revalidate: 10 },
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+  return res.json();
+}
+
+const HomePage = async () => {
+  const userContact = await getUserContactContent();
+
   return (
     <div className="overflow-hidden">
       <Tawk />
@@ -24,7 +38,7 @@ const HomePage = () => {
       <WhyChooseUs />
       <Testimonial />
       <Questions title="Questions Looks Here" />
-      <ProjectDetails />
+      <ProjectDetails userContact={userContact} />
     </div>
   );
 };
