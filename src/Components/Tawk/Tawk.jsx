@@ -11,7 +11,8 @@ const Tawk = () => {
     const handleLoad = () => {
       console.log("Tawk.to messenger loaded successfully!");
       setLoaded(true);
-      if (window.Tawk_API) {
+      if (window.Tawk_API && window.$i18n) {
+        // Check if $i18n is defined
         window.Tawk_API.minimize();
       }
     };

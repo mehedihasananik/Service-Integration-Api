@@ -1,6 +1,5 @@
 "use client";
 import { Label, TextInput } from "flowbite-react";
-import Container from "@/Components/Container/Container";
 import React, { useState } from "react";
 import { FiArrowRight, FiEye, FiEyeOff } from "react-icons/fi";
 import { HiMail } from "react-icons/hi";

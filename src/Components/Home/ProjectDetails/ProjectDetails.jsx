@@ -45,7 +45,7 @@ const ProjectDetails = () => {
       .matches(/^\+?[0-9]{11}$/, "Phone number must be 11 digits"),
     message: Yup.string()
       .required("Message is required")
-      .max(250, "Message must not exceed 250 characters"),
+      .max(2000, "Message must not exceed 2000 characters"),
   });
 
   const handleSubmit = async (event) => {
