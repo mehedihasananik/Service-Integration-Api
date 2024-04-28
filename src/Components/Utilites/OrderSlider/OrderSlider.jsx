@@ -66,20 +66,17 @@ const OrderSlider = ({ sliders }) => {
       const currentImage = images[currentIndex];
 
       if (currentImage) {
-        // Check if currentImage is defined
         const img = new Image();
         img.src = currentImage.original;
 
         img.onload = () => {
-          const naturalWidth = img.naturalWidth;
           const naturalHeight = img.naturalHeight;
 
-          console.log("Natural Width:", naturalWidth);
-          console.log("Natural Height:", naturalHeight);
-
           if (!isFullscreen) {
-            galleryRef.current.fullScreen();
             setIsFullscreen(true);
+            galleryRef.current.fullScreen();
+          } else if (naturalHeight <= 900) {
+            setIsFullscreen(false);
           }
         };
       }
@@ -114,22 +111,22 @@ const OrderSlider = ({ sliders }) => {
         style={{
           height: isFullscreen ? "100vh" : "600px",
           width: isFullscreen ? "100%" : "100%",
-          overflowY:
-            isFullscreen && imageHeight && imageHeight > 900
-              ? "scroll"
-              : "hidden",
+          overflowY: isFullscreen ? "scroll" : "hidden",
         }}
       >
         <div
           style={{
-            maxHeight: isFullscreen && imageHeight > 900 ? "900px" : "none",
+            maxHeight:
+              isFullscreen && imageHeight && imageHeight > 900
+                ? "900px"
+                : "none",
           }}
         >
           <img
             src={item.original}
             alt=""
             style={{
-              width: isFullscreen ? "100%" : "100%",
+              width: "100%",
               height: isFullscreen ? "auto" : "100%",
               objectFit: isFullscreen ? "contain" : "cover",
               objectPosition: "center",
@@ -150,8 +147,8 @@ const OrderSlider = ({ sliders }) => {
           showFullscreenButton={true}
           slideDuration={300}
           slideOnThumbnailOver={true}
-          thumbnailWidth={50}
-          thumbnailHeight={50}
+          thumbnailWidth={100}
+          thumbnailHeight={100}
           renderCustomControls={() => (
             <button
               className="absolute right-[1%] top-[1%] z-[9999]"
