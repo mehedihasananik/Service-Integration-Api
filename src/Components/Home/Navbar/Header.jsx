@@ -2,13 +2,16 @@
 import Container from "@/Components/Container/Container";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Navbar } from "flowbite-react";
 import { usePathname } from "next/navigation";
 import { AuthContext } from "@/providers/AuthProviders";
 import VisitorsInfo from "@/Components/VisitorsInfo/VisitorsInfo";
+import HeaderItems from "@/Components/Utilites/HeaderItems/HeaderItems";
+import { headerApi } from "@/config/apis";
 
 const Header = () => {
+  const [headers, setHeaders] = useState(null);
   const userData = JSON.parse(sessionStorage.getItem("userData"));
   const [cleared, setCleared] = useState(false);
   const user = useContext(AuthContext);
@@ -31,6 +34,28 @@ const Header = () => {
     { name: "About Us", link: "/about-us", activeClassName: "active" },
   ];
 
+  useEffect(() => {
+    const fetchHeaderContent = async () => {
+      try {
+        const res = await fetch(`${headerApi}`, {
+          next: { revalidate: 10 },
+        });
+
+        if (!res.ok) {
+          throw new Error("Failed to fetch data");
+        }
+
+        const data = await res.json();
+        setHeaders(data);
+      } catch (error) {
+        console.error("Error fetching header content:", error);
+      }
+    };
+
+    fetchHeaderContent();
+  }, []);
+  console.log(headers);
+
   return (
     <div>
       <Container>
@@ -41,7 +66,7 @@ const Header = () => {
             {/* logo */}
             <Link href={"/"}>
               <Image
-                src="/assets/logo.png"
+                src={headers?.logo.logo}
                 width={159}
                 height={49}
                 alt="Picture of the logo"
@@ -52,7 +77,7 @@ const Header = () => {
             {/* nav items */}
             <div className="flex items-center gap-10 text-[#1E1E24]">
               <ul className="flex gap-10">
-                {menus.map((item, index) => {
+                {headers?.menu?.map((item, index) => {
                   return (
                     <Link
                       className={
@@ -60,10 +85,10 @@ const Header = () => {
                           ? "text-[16px] text-[#FF0000] font-normal"
                           : "text-[16px] text-[#0F172A] cursor-pointer font-normal hover:text-[#FF693B] transition-colors duration-300"
                       }
-                      href={item.link}
+                      href={item.menu_link}
                       key={index}
                     >
-                      {item.name}
+                      {item.menu_name}
                     </Link>
                   );
                 })}

@@ -1,5 +1,6 @@
 import { apiEndpoint } from "./config";
 // homepage apis
+const headerApi = `${apiEndpoint}/header`;
 const bannerApi = `${apiEndpoint}/home_banner`;
 const brandsApi = `${apiEndpoint}/home_brand`;
 const servicesApi = `${apiEndpoint}/sevice_items`;
@@ -11,6 +12,7 @@ const serviceApi = `${apiEndpoint}/service`;
 const testimonials_itemsApi = `${apiEndpoint}/testimonials_items`;
 const faqApi = `${apiEndpoint}/faq`;
 const user_feedbackApi = `${apiEndpoint}/user_feedback`;
+const footer = `${apiEndpoint}/footer`;
 
 // services page
 const serviceListApi = `${apiEndpoint}/service`;
@@ -53,6 +55,7 @@ const singleRequirement = `${apiEndpoint}/service_requirements`;
 // new apis
 
 export {
+  headerApi,
   bannerApi,
   brandsApi,
   servicesApi,
@@ -62,6 +65,7 @@ export {
   serviceApi,
   testimonials_itemsApi,
   faqApi,
+  footer,
   user_feedbackApi,
   serviceListApi,
   allsServiceItemsApi,

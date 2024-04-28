@@ -1,14 +1,22 @@
 import Container from "@/Components/Container/Container";
+import { footer } from "@/config/apis";
 import Image from "next/image";
 import Link from "next/link";
 
-const Footer = () => {
-  const footer = [
-    { name: "About Us", link: "/about-us" },
-    { name: "Services", link: "/services" },
-    { name: "Portfolio", link: "/portfolio" },
-    { name: "About Us", link: "/about-us" },
-  ];
+// api fetching from sever side
+async function getfooterDataContent() {
+  const res = await fetch(`${footer}`, {
+    next: { revalidate: 10 },
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+  return res.json();
+}
+
+const Footer = async () => {
+  const footer = await getfooterDataContent();
 
   return (
     <Container>
@@ -21,7 +29,7 @@ const Footer = () => {
               className="w-[159px] h-[49px]"
               width={200}
               height={100}
-              src="/assets/footer.png"
+              src={footer?.logo.logo}
               alt=""
             />
           </div>
@@ -37,81 +45,29 @@ const Footer = () => {
         <div className="w-full  lg:w-[70%] grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 lg:gap-0">
           {/* footer links */}
           {/* 1st col */}
-          <div>
-            <h3 className="text-[18px] font-Raleway text-[#444444] font-bold">
-              Company
-            </h3>
-            <ul className="flex flex-col gap-2 pt-5 text-[16px] text-[#444444]  ">
-              <Link
-                href={"/privacy-policy"}
-                className="cursor-pointer hover:text-[#FF693B] transition-all duration-200"
-              >
-                Privacy Policy
-              </Link>
-              <Link
-                href={"/terms-and-conditions"}
-                className="cursor-pointer hover:text-[#FF693B] transition-all duration-200"
-              >
-                Terms And Conditions
-              </Link>
-              <Link
-                href={"/refund-policy"}
-                className="cursor-pointer hover:text-[#FF693B] transition-all duration-200"
-              >
-                Refund Policy
-              </Link>
-            </ul>
-          </div>
-          {/* 2nd col */}
-          <div>
-            <h3 className="text-[18px] font-Raleway text-[#444444] font-bold">
-              Learn More
-            </h3>
-            <ul className="flex flex-col gap-2 pt-5 text-[16px] text-[#444444]  ">
-              <Link
-                href={"#"}
-                className="cursor-pointer hover:text-[#FF693B] transition-all duration-200"
-              >
-                Faq
-              </Link>
-              <Link
-                href={"/order-delivery"}
-                className="cursor-pointer hover:text-[#FF693B] transition-all duration-200"
-              >
-                Order Delivery
-              </Link>
-              <Link
-                href={""}
-                className="cursor-pointer hover:text-[#FF693B] transition-all duration-200"
-              >
-                Demo
-              </Link>
-            </ul>
-          </div>
-          {/* 3rd col */}
-          <div>
-            <h3 className="text-[18px] font-Raleway text-[#444444] font-bold">
-              Support
-            </h3>
-            <ul className="flex flex-col gap-2 pt-5 text-[16px] text-[#444444]  ">
-              <Link
-                href={"/about-us"}
-                className="cursor-pointer hover:text-[#FF693B] transition-all duration-200"
-              >
-                About Us
-              </Link>
-              <Link
-                href={"/services"}
-                className="cursor-pointer hover:text-[#FF693B] transition-all duration-200"
-              >
-                Services
-              </Link>
-              <li className="cursor-pointer hover:text-[#FF693B] transition-all duration-200">
-                Terms & Conditions
-              </li>
-            </ul>
-          </div>
-          {/* 4th col */}
+          {footer.menu.map((item) => {
+            console.log(item.sub_menu);
+            return (
+              <div key={item.id}>
+                <h3 className="text-[18px] font-Raleway text-[#444444] font-bold">
+                  {item.menu_name}
+                </h3>
+                <ul className="flex flex-col gap-2 pt-5 text-[16px] text-[#444444]  ">
+                  {item.sub_menu.map((sub, index) => {
+                    return (
+                      <Link
+                        key={index}
+                        href={sub.menu_sub_link}
+                        className="cursor-pointer hover:text-[#FF693B] transition-all duration-200"
+                      >
+                        {sub.menu_sub_name}
+                      </Link>
+                    );
+                  })}
+                </ul>
+              </div>
+            );
+          })}
           <div>
             <h3 className="text-[18px] font-Raleway text-[#444444] font-bold">
               Get in Touch
@@ -149,42 +105,17 @@ const Footer = () => {
                 </span>
               </li>
               <div className="flex gap-4 pt-4">
-                <Link
-                  href={"https://www.instagram.com/envobyte"}
-                  target="_blank"
-                >
-                  <img
-                    className="transform hover:scale-125 transition-all duration-300"
-                    src="assets/insta.svg"
-                    alt="Instagram Logo"
-                  />
-                </Link>
-
-                <Link
-                  href={"https://www.facebook.com/envobyte"}
-                  target="_blank"
-                >
-                  <img
-                    className="cursor-pointer transform hover:scale-125 transition-all duration-300"
-                    src="assets/facebook.svg"
-                    alt=""
-                  />
-                </Link>
-                <img
-                  className="cursor-pointer transform hover:scale-125 transition-all duration-300"
-                  src="/assets/twitter-color-svgrepo-com 1.svg"
-                  alt=""
-                />
-                <Link
-                  target="_blank"
-                  href={"https://www.linkedin.com/company/envobyte"}
-                >
-                  <img
-                    className="cursor-pointer transform hover:scale-125 transition-all duration-300"
-                    src="/assets/linkedin.svg"
-                    alt=""
-                  />
-                </Link>
+                {footer.social.map((item) => {
+                  return (
+                    <Link key={item.id} href={item.link} target="_blank">
+                      <img
+                        className="transform hover:scale-125 transition-all duration-300"
+                        src={item.social_icon}
+                        alt="Instagram Logo"
+                      />
+                    </Link>
+                  );
+                })}
               </div>
             </ul>
           </div>
