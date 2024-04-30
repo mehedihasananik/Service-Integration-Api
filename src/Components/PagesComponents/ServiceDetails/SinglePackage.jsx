@@ -59,14 +59,14 @@ const SinglePackage = ({ item, openModal, setOpenModal }) => {
             </p>
           </div>
           {/* price */}
-          <div className="py-2">
-            <h2 className="text-[32px] font-semibold font-Raleway">
+          <div className="">
+            <h2 className=" md:my-2 text-[32px] font-semibold font-Raleway">
               {item.package_price}
             </h2>
           </div>
         </div>
         {/* order button */}
-        <div className="py-4 md:pb-8">
+        <div className="py-4 mt-4 md:mt-0 md:pb-8">
           {userData ? (
             <button
               onClick={() => handlePlaceOrder()}
@@ -84,7 +84,7 @@ const SinglePackage = ({ item, openModal, setOpenModal }) => {
           )}
         </div>
         {/* order details */}
-        <div className="space-y-5 h-[150px]">
+        <div className="space-y-5 md:h-[150px]">
           {item?.package_details.map((item) => {
             return (
               <div
@@ -109,7 +109,9 @@ const SinglePackage = ({ item, openModal, setOpenModal }) => {
               <FaRegClock className="w-[24px] h-[24px]" />
             </span>
             <div className="flex items-center gap-2">
-              <span className="text-[16px]">{item.delivery_time}</span>{" "}
+              <span className="text-[12px] md:text-[16px]">
+                {item.delivery_time}
+              </span>{" "}
               <Tooltip content="Tooltip content">
                 <div className="cursor-pointer">
                   <img
@@ -125,7 +127,7 @@ const SinglePackage = ({ item, openModal, setOpenModal }) => {
             <span>
               <BiRevision className="w-[24px] h-[24px]" />
             </span>
-            <span className="text-[16px]"> {item.revision}</span>
+            <span className="text-[12px] md:text-[16px]"> {item.revision}</span>
           </div>
         </div>
       </div>

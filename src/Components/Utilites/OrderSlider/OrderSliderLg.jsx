@@ -3,7 +3,7 @@ import ReactImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 import { IoMdClose } from "react-icons/io";
 
-const OrderSlider = ({ sliders }) => {
+const OrderSliderLg = ({ sliders }) => {
   const galleryRef = useRef();
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [imageHeight, setImageHeight] = useState(null);
@@ -138,7 +138,7 @@ const OrderSlider = ({ sliders }) => {
   };
 
   return (
-    <div className="bg-[#FCFCFC] md:p-8 rounded-[10px]">
+    <div className="hidden md:block bg-[#FCFCFC] md:p-8 rounded-[10px]">
       <div>
         <ReactImageGallery
           ref={galleryRef}
@@ -165,4 +165,4 @@ const OrderSlider = ({ sliders }) => {
   );
 };
 
-export default OrderSlider;
+export default OrderSliderLg;

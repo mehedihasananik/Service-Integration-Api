@@ -1,6 +1,5 @@
 "use client";
 
-import OrderSlider from "@/Components/Utilites/OrderSlider/OrderSlider";
 import RelevantServices from "@/Components/Utilites/RelevantServices/RelevantServices";
 import Questions from "@/Components/Home/Questions/Questions";
 import Container from "@/Components/Container/Container";
@@ -9,6 +8,8 @@ import { useState } from "react";
 import ServiceModal from "@/Components/Utilites/ServiceModal/ServiceModal";
 import SinglePackage from "./SinglePackage";
 import Link from "next/link";
+import OrderSliderLg from "@/Components/Utilites/OrderSlider/OrderSliderLg";
+import OrderSliderSm from "@/Components/Utilites/OrderSlider/OrderSliderSm";
 
 const ServiceDetails = ({ service, sliders, packages }) => {
   const [openModal, setOpenModal] = useState(false);
@@ -28,8 +29,6 @@ const ServiceDetails = ({ service, sliders, packages }) => {
           </div>
           {/* packages */}
           <div className="grid grid-cols-1 gap-y-10 lg:grid-cols-3 gap-x-5 lg:gap-y-0 4xl:px-[10%]">
-            {/* 1st package */}
-
             {packages.map((item) => {
               return (
                 <SinglePackage
@@ -54,7 +53,8 @@ const ServiceDetails = ({ service, sliders, packages }) => {
             </button>
           </div>
           {/* order Slider */}
-          <OrderSlider sliders={sliders} />
+          <OrderSliderLg sliders={sliders} />
+          <OrderSliderSm sliders={sliders} />
           {/* description */}
           <div className="bg-[#FCFCFC] mt-4 p-4 md:p-7 rounded-lg text-justify">
             <h2 className="text-[24px] font-bold font-Raleway text-[#333333]">

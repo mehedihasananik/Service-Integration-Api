@@ -140,12 +140,23 @@ const Header = () => {
               </Link>
             ))}
             {/* login button */}
-            <Link
-              href={"/login"}
-              className=" flex items-center justify-center px-4 py-2 md:py-1 bg-[#FF693B] border border-[#FF693B]  text-white font-medium  rounded-lg hover:bg-white hover:text-[#FF693B] transition-all duration-300"
-            >
-              Login
-            </Link>
+            <div className="mt-3">
+              {userData ? (
+                <Link
+                  href="/dashboard"
+                  className="flex justify-center bg-[#FF693B] border border-[#FF693B] text-white font-medium px-6 py-2 rounded-lg hover:bg-white hover:text-[#FF693B] transition-all duration-300"
+                >
+                  Dashboard
+                </Link>
+              ) : (
+                <Link
+                  href={"/login"}
+                  className="flex justify-center bg-[#FF693B] border border-[#FF693B] text-white font-medium px-12 py-2 rounded-lg hover:bg-white hover:text-[#FF693B] transition-all duration-300"
+                >
+                  Login
+                </Link>
+              )}
+            </div>
           </Navbar.Collapse>
         </Navbar>
       </div>
