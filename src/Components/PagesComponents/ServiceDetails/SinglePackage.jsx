@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Tooltip } from "flowbite-react";
 import { IoCheckmarkSharp } from "react-icons/io5";
 import { FaRegClock } from "react-icons/fa6";
@@ -6,8 +6,11 @@ import { BiRevision } from "react-icons/bi";
 import API_ROUTES from "@/app/api/confiq";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { AuthContext } from "@/providers/AuthProviders";
 
 const SinglePackage = ({ item, openModal, setOpenModal }) => {
+  const { setItemId } = useContext(AuthContext);
   const userData = JSON.parse(sessionStorage.getItem("userData"));
   const router = useRouter();
 
@@ -33,13 +36,16 @@ const SinglePackage = ({ item, openModal, setOpenModal }) => {
       const responseData = await response.json();
       console.log(responseData);
       if (responseData.resultsuccess) {
-        toast.success(responseData.resultsuccess);
-        router.push("/dashboard");
+        router.push("/checkout");
       }
       // Log the response from the API
     } catch (error) {
       console.error("Error:", error);
     }
+  };
+  const handlePassData = () => {
+    setItemId(item.id);
+    sessionStorage.setItem("itemId", item.id);
   };
 
   return (
@@ -66,29 +72,34 @@ const SinglePackage = ({ item, openModal, setOpenModal }) => {
           </div>
         </div>
         {/* order button */}
-        <div className="py-4 mt-4 md:mt-0 md:pb-8">
+        <div className="py-4 mt-4 md:mt-0 md:pb-8 flex justify-center">
           {userData ? (
-            <button
-              onClick={() => handlePlaceOrder()}
-              className="text-[16px] font-medium text-[#FF693B] border border-[#FF693B] px-6 py-2 w-full rounded-md hover:text-white hover:bg-[#FF693B] transition-all duration-300"
-            >
-              Place Order Now
-            </button>
+            <>
+              <Link
+                href={"/checkout"}
+                onClick={handlePassData}
+                className="text-[16px]  w-[100%] text-center font-medium text-[#FF693B] border border-[#FF693B] px-6 py-2 rounded-md hover:text-white hover:bg-[#FF693B] transition-all duration-300"
+              >
+                Place Order Now
+              </Link>
+            </>
           ) : (
-            <button
-              onClick={() => setOpenModal(true)}
-              className="text-[16px] font-medium text-[#FF693B] border border-[#FF693B] px-6 py-2 w-full rounded-md hover:text-white hover:bg-[#FF693B] transition-all duration-300"
-            >
-              Place Order Now
-            </button>
+            <>
+              <button
+                onClick={() => setOpenModal(true)}
+                className="text-[16px] font-medium text-[#FF693B] border border-[#FF693B] px-6 py-2 w-full rounded-md hover:text-white hover:bg-[#FF693B] transition-all duration-300"
+              >
+                Place Order Now
+              </button>
+            </>
           )}
         </div>
         {/* order details */}
         <div className="space-y-5 md:h-[150px]">
-          {item?.package_details.map((item) => {
+          {item?.package_details.map((item, index) => {
             return (
               <div
-                key={item.sevice_package_id}
+                key={index}
                 className="flex justify-start items-center gap-5"
               >
                 <span>

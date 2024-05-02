@@ -7,10 +7,12 @@ import { HiMenuAlt3 } from "react-icons/hi";
 import { Sidebar } from "flowbite-react";
 import { RiBarChartHorizontalLine } from "react-icons/ri";
 import { AuthContext } from "@/providers/AuthProviders";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const DashBoardSideNav = ({ height }) => {
   const pathname = usePathname();
+  const router = useRouter();
+  const [cleared, setCleared] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
   const { dashboardMenus } = useContext(AuthContext);
 
@@ -19,6 +21,13 @@ const DashBoardSideNav = ({ height }) => {
   };
   const closeSidebar = () => {
     setShowSidebar(false);
+  };
+  const clearSession = () => {
+    // Remove the userData from sessionStorage
+    sessionStorage.removeItem("userData");
+    // Set the state to indicate that session has been cleared
+    setCleared(true);
+    router.push("/");
   };
 
   return (
@@ -72,7 +81,10 @@ const DashBoardSideNav = ({ height }) => {
                 </div>
               </div>
               <div>
-                <button className="flex justify-left items-center mb-10 gap-3 text-[16px] text-[#444444] hover:bg-[#FFFFFF] hover:text-[#FF693B] w-full py-2 px-2 ">
+                <button
+                  onClick={clearSession}
+                  className="flex justify-left items-center mb-10 gap-3 text-[16px] text-[#444444] hover:bg-[#FFFFFF] hover:text-[#FF693B] w-full py-2 px-2 "
+                >
                   <span>
                     <LuLogOut />
                   </span>{" "}

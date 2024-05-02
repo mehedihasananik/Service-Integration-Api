@@ -53,7 +53,8 @@ const manageOrderApi = `${apiEndpoint}/manage_order`;
 
 const singleRequirement = `${apiEndpoint}/service_requirements`;
 
-// new apis
+// checkout api
+const checkoutApi = `${apiEndpoint}/checkout`;
 
 export {
   headerApi,
@@ -84,4 +85,5 @@ export {
   dashboardApis,
   manageOrderApi,
   singleRequirement,
+  checkoutApi,
 };

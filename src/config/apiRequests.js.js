@@ -1,20 +1,17 @@
-// data fetch function for all
+import axios from "axios";
+
 const fetchData = async (url, method = "GET", data = null) => {
   try {
-    const options = {
+    const response = await axios({
       method,
+      url,
       headers: {
         "Content-Type": "application/json", // assuming JSON data
       },
-      body: data ? JSON.stringify(data) : null,
-    };
+      data: data ? JSON.stringify(data) : null,
+    });
 
-    const response = await fetch(url, options);
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
-    const responseData = await response.json();
-    return responseData;
+    return response.data;
   } catch (error) {
     console.error("Error fetching data:", error);
     throw error;

@@ -15,7 +15,6 @@ const RelevantServices = () => {
         const data = await response.json();
         setServices(data);
         setLoading(false); // Set loading to false after data is fetched
-        setTotalSlides(data.length);
       } catch (error) {
         console.error("Error fetching banner data:", error);
         setLoading(false); // Set loading to false even if there's an error

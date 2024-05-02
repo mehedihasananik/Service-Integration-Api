@@ -15,9 +15,7 @@ const AboutUsContent = async ({ aboutDetails, singleAboutDetails }) => {
     details4,
   } = aboutDetails;
 
-  if (!aboutDetails || !singleAboutDetails) {
-    return <div>Loading...</div>;
-  }
+  console.log(singleAboutDetails);
   return (
     <Container>
       <div>
@@ -89,98 +87,50 @@ const AboutUsContent = async ({ aboutDetails, singleAboutDetails }) => {
             <p className="text-[#334155] text-[16px]">{details4}</p>
           </div>
         </div>
-        {/* Transparency */}
-        <div className="flex flex-col gap-4 md:gap-8 lg:flex-row  lg:justify-between my-5 lg:py-20">
-          {/* left side */}
-          <div className="lg:w-[50%]  flex flex-col justify-center">
-            <h2 className="text-[#0F172A] text-[30px] md:text-[32px] font-bold font-Raleway text-center lg:text-left">
-              {singleAboutDetails[0].title}
-            </h2>
-            <div className="text-[#334155] text-center lg:text-left text-[18px] space-y-5 pt-5">
-              <p>{singleAboutDetails[0].details.slice(0, 294)}</p>
-              <p>{singleAboutDetails[0].details.slice(294, 600)}</p>
+
+        {singleAboutDetails.map((detail) => (
+          <div
+            key={detail.id}
+            className={`flex flex-col gap-4 md:gap-8 lg:flex-row ${
+              detail.image_positions === "right"
+                ? "lg:justify-between"
+                : "lg:flex-row-reverse lg:justify-between"
+            } my-5 lg:py-20`}
+          >
+            {/* left side */}
+            <div
+              className={`lg:w-[50%] ${
+                detail.image_positions === "right"
+                  ? "text-center"
+                  : "text-center lg:text-left"
+              } flex flex-col justify-center`}
+            >
+              <h2 className="text-[#0F172A] text-[30px] md:text-[32px] font-bold font-Raleway text-center lg:text-left">
+                {detail.title}
+              </h2>
+              <div className="text-[#334155] text-[18px] space-y-5 pt-5 text-left">
+                <p>{detail.details.slice(0, 292)}</p>
+                <p>{detail.details.slice(292, 600)}</p>
+              </div>
+            </div>
+            {/* right side */}
+            <div
+              className={`lg:w-[40%] flex justify-center ${
+                detail.image_positions === "right"
+                  ? "lg:justify-end"
+                  : "lg:justify-start"
+              } gap-x-4`}
+            >
+              <Image
+                className="w-[100%] md:h-[450px] rounded-lg"
+                width={500}
+                height={500}
+                src={detail.image}
+                alt=""
+              />
             </div>
           </div>
-          {/* right side */}
-          <div className="lg:w-[40%] flex justify-center lg:justify-end gap-x-4 ">
-            <Image
-              className="w-[100%] md:h-[450px] rounded-lg"
-              width={500}
-              height={500}
-              src={singleAboutDetails[0].image}
-              alt=""
-            />
-          </div>
-        </div>
-        {/* communication */}
-        <div className="flex flex-col gap-4 md:gap-8 lg:flex-row-reverse  lg:justify-between my-5 lg:py-20">
-          {/* left side */}
-          <div className="lg:w-[50%] text-center lg:text-left flex flex-col justify-center">
-            <h2 className="text-[#0F172A] text-[30px] md:text-[32px] font-bold font-Raleway text-center lg:text-left">
-              {singleAboutDetails[1].title}
-            </h2>
-            <div className="text-[#334155] text-[18px] space-y-5 pt-5">
-              <p>{singleAboutDetails[1].details.slice(0, 292)}</p>
-              <p>{singleAboutDetails[1].details.slice(292, 600)}</p>
-            </div>
-          </div>
-          {/* right side */}
-          <div className="lg:w-[40%] flex justify-center lg:justify-start gap-x-4 ">
-            <Image
-              className="w-[100%] md:h-[450px] rounded-lg"
-              width={1000}
-              height={1000}
-              src={singleAboutDetails[1].image}
-              alt=""
-            />
-          </div>
-        </div>
-        {/* Project Management */}
-        <div className="flex flex-col gap-4 md:gap-8 lg:flex-row  lg:justify-between my-5 lg:py-20">
-          {/* left side */}
-          <div className="lg:w-[50%] flex flex-col justify-center">
-            <h2 className="text-[#0F172A] text-[30px] md:text-[32px] font-bold font-Raleway text-center lg:text-left">
-              {singleAboutDetails[2].title}
-            </h2>
-            <div className="text-[#334155] text-center lg:text-left text-[18px] space-y-5 pt-5">
-              <p>{singleAboutDetails[2].details.slice(0, 294)}</p>
-              <p>{singleAboutDetails[2].details.slice(294, 600)}</p>
-            </div>
-          </div>
-          {/* right side */}
-          <div className="lg:w-[40%] flex justify-center lg:justify-end gap-x-4 ">
-            <Image
-              className="w-[100%] md:h-[450px] rounded-lg"
-              width={1000}
-              height={1000}
-              src={singleAboutDetails[2].image}
-              alt=""
-            />
-          </div>
-        </div>
-        {/* Attention To Details */}
-        <div className="flex flex-col gap-4 md:gap-8 lg:flex-row-reverse  lg:justify-between my-5 lg:py-20">
-          {/* left side */}
-          <div className="lg:w-[50%] flex flex-col justify-center text-center lg:text-left">
-            <h2 className="text-[#0F172A] text-[30px] md:text-[32px] font-bold font-Raleway text-center lg:text-left">
-              {singleAboutDetails[3].title}
-            </h2>
-            <div className="text-[#334155] text-[18px] space-y-5 pt-5">
-              <p>{singleAboutDetails[3].details.slice(0, 294)}</p>
-              <p>{singleAboutDetails[3].details.slice(294, 600)}</p>
-            </div>
-          </div>
-          {/* right side */}
-          <div className="lg:w-[40%] flex justify-center lg:justify-start gap-x-4 ">
-            <Image
-              className="w-[100%] md:h-[450px] rounded-lg"
-              width={1000}
-              height={1000}
-              src={singleAboutDetails[3].image}
-              alt=""
-            />
-          </div>
-        </div>
+        ))}
       </div>
     </Container>
   );

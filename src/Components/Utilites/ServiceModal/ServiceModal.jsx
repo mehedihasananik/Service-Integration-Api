@@ -45,7 +45,7 @@ const ServiceModal = ({ openModal, setOpenModal }) => {
           toast.success("Logged in successfully");
           sessionStorage.setItem("userData", JSON.stringify(data));
           // Navigate to the dashboard
-          router.push("/dashboard");
+          router.push("/checkout");
         }
         if (data.ErrorMessage) {
           // Save user data to sessionStorage

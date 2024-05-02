@@ -52,7 +52,7 @@ const DashBoardContent = () => {
                             width={700}
                             height={700}
                             className="w-full h-[270px]"
-                            src={sevice_items[0].image}
+                            src={`http://192.168.10.14:8000/images/${sevice_items[0].image}`}
                             alt=""
                             onContextMenu={(e) => e.preventDefault()}
                           />

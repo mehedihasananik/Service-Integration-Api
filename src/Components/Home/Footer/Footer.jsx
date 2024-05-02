@@ -120,10 +120,12 @@ const Footer = async () => {
                 {footer.social.map((item) => {
                   return (
                     <Link key={item.id} href={item.link} target="_blank">
-                      <img
+                      <Image
                         className="transform hover:scale-125 transition-all duration-300"
                         src={item.social_icon}
                         alt="Instagram Logo"
+                        width={30}
+                        height={30}
                       />
                     </Link>
                   );
@@ -135,7 +137,7 @@ const Footer = async () => {
       </div>
       <hr />
       <div className="text-center py-3 ">
-        <p className="text-[#444444] text-[14px] font-bold">
+        <p className="text-[#513939] text-[14px] font-bold">
           @2024 - ENVOBYTE, All rights are reserved.
         </p>
       </div>

@@ -19,12 +19,6 @@ const OrderSliderLg = ({ sliders }) => {
   }, [sliders]); // Update images when sliders prop changes
 
   useEffect(() => {
-    console.log("Images:", images); // Log images
-    console.log(
-      "Current Image:",
-      images.length > 0 ? images[0] : "No current image"
-    ); // Log current image if available
-
     const handleFullscreenChange = () => {
       setIsFullscreen(!!document.fullscreenElement);
     };

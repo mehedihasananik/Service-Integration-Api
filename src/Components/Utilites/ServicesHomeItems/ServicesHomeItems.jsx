@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -151,6 +150,8 @@ const ServicesHomeItems = ({ services: initialServices }) => {
                   slidesPerGroup={3}
                   spaceBetween={200}
                   breakpoints={breakpoints}
+                  modules={[Autoplay]}
+                  autoplay={{ delay: 3000, disableOnInteraction: false }}
                   className="mySwiper space-x-4"
                   onSlideChange={(swiper) =>
                     setCurrentSlide(swiper.activeIndex)

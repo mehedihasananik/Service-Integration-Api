@@ -54,7 +54,7 @@ const Header = () => {
 
     fetchHeaderContent();
   }, []);
-  console.log(headers);
+  const logo = headers?.logo?.logo;
 
   return (
     <div>
@@ -65,14 +65,15 @@ const Header = () => {
           <nav className="hidden  lg:flex justify-between items-center pt-5 ">
             {/* logo */}
             <Link href={"/"}>
-              <Image
-                src={headers?.logo.logo}
-                width={159}
-                height={49}
-                alt="Picture of the logo"
-                priority={false}
-                className="relative left-[-8px]"
-              />
+              <div>
+                <Image
+                  src={logo}
+                  width={159}
+                  height={49}
+                  alt="Picture of the logo"
+                  className="relative left-[-8px]"
+                />
+              </div>
             </Link>
             {/* nav items */}
             <div className="flex items-center gap-10 text-[#1E1E24]">
