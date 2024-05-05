@@ -19,12 +19,12 @@ const ServiceModal = ({ openModal, setOpenModal }) => {
     setLoading(true); // Set loading to true when login is initiated
 
     const formData = new FormData(e.target);
-    const user_email = formData.get("user_email");
-    const user_password = formData.get("user_password");
+    const email = formData.get("email");
+    const password = formData.get("password");
 
     const requestData = {
-      user_email,
-      user_password,
+      email,
+      password,
     };
 
     try {
@@ -120,7 +120,7 @@ const ServiceModal = ({ openModal, setOpenModal }) => {
                       />
                     </div>
                     <TextInput
-                      name="user_email"
+                      name="email"
                       id="email1"
                       type="email"
                       icon={HiMail}
@@ -138,7 +138,7 @@ const ServiceModal = ({ openModal, setOpenModal }) => {
                     </div>
                     <TextInput
                       id="password1"
-                      name="user_password"
+                      name="password"
                       type="password"
                       icon={IoMdLock}
                       placeholder="Enter your password"

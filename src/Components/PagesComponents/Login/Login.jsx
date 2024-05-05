@@ -4,7 +4,6 @@ import { Checkbox, Label, TextInput } from "flowbite-react";
 import Container from "@/Components/Container/Container";
 import { FiArrowRight, FiEye, FiEyeOff } from "react-icons/fi"; // Import eye icons
 import { HiMail } from "react-icons/hi";
-import { IoMdLock } from "react-icons/io";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
@@ -22,12 +21,12 @@ const Login = () => {
     setLoading(true);
 
     const formData = new FormData(e.target);
-    const user_email = formData.get("user_email");
-    const user_password = formData.get("user_password");
+    const email = formData.get("email");
+    const password = formData.get("password");
 
     const requestData = {
-      user_email,
-      user_password,
+      email,
+      password,
     };
 
     try {
@@ -35,8 +34,11 @@ const Login = () => {
 
       if (data.success) {
         toast.success("Logged in successfully");
+
         sessionStorage.setItem("userData", JSON.stringify(data));
         router.push("/dashboard");
+      } else {
+        router.push("/");
       }
       if (data.ErrorMessage) {
         toast.error(data.ErrorMessage);
@@ -99,7 +101,7 @@ const Login = () => {
                     />
                   </div>
                   <TextInput
-                    name="user_email"
+                    name="email"
                     id="email1"
                     type="email"
                     icon={HiMail}
@@ -116,7 +118,7 @@ const Login = () => {
                     />
                     <TextInput
                       id="password1"
-                      name="user_password"
+                      name="password"
                       type={showPassword ? "text" : "password"} // Toggle password visibility
                       placeholder="Enter your password"
                       required

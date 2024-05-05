@@ -14,7 +14,7 @@ const PortfolioDetails = ({ singlePortfolioItem }) => {
             return (
               <div key={portfolio.id}>
                 {/* title */}
-                <div className="text-center  md:pt-0">
+                <div className="text-center pb-3 lg:pb-5  md:pt-0">
                   <h1 className=" text-[20px] md:text-[30px] lg:text-[54px] font-Raleway font-bold lg:leading-[63.4px] text-[#000000] ">
                     {portfolio?.title}
                   </h1>

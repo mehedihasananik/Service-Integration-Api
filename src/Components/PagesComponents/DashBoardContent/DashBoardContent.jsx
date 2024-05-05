@@ -20,6 +20,24 @@ const DashBoardContent = () => {
     fetchingData();
   }, []);
 
+  // Check if token has expired
+  const isTokenExpired = () => {
+    const currentTime = new Date().getTime();
+    const tokenExpirationTime = userData.expires_in * 1000; // Convert to milliseconds
+    return currentTime > tokenExpirationTime;
+  };
+
+  // Remove session data if token has expired
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (isTokenExpired()) {
+        sessionStorage.removeItem("userData");
+      }
+    }, 60000); // 60 seconds
+
+    return () => clearTimeout(timeout);
+  }, []);
+
   return (
     <div className="lg:mx-10 bg-[#FCFCFC] mb-5%">
       {/* active project */}

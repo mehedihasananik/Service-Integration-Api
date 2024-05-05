@@ -13,8 +13,8 @@ import { fetchData } from "@/config/apiRequests.js";
 const Signup = () => {
   const [formData, setFormData] = useState({
     user_name: "",
-    user_email: "",
-    user_password: "",
+    email: "",
+    password: "",
   });
   const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
 
@@ -26,14 +26,14 @@ const Signup = () => {
         /^[a-zA-Z][a-zA-Z\s]*$/,
         "Name cannot start with special characters or numbers"
       ),
-    user_email: Yup.string()
+    email: Yup.string()
       .required("Email is required")
       .email("Invalid email")
       .matches(
         /^[^\d].*\.com$/,
         "Email can't start with a number & must end with .com"
       ),
-    user_password: Yup.string()
+    password: Yup.string()
       .required("Password is required")
       .min(6, "Password must be at least 6 characters")
       .matches(
@@ -41,28 +41,36 @@ const Signup = () => {
         "Password must contain at least one uppercase letter, one lowercase letter, and one number"
       ),
   });
-
   const handleSubmit = async (event) => {
-    event.preventDefault();
+    event.preventDefault(); // Prevent default form submission behavior
+
+    console.log("Form submitted"); // Add console log to check if form submission is triggered
 
     try {
       await validationSchema.validate(formData, { abortEarly: false });
 
+      console.log("Validation passed"); // Add console log to check if validation passed
+
       const response = await fetchData(signupApi, "POST", formData); // Using fetchData instead of axios.post
 
-      if (response.resultsuccess) {
+      console.log("API calls", response.msg); // Add console log to check if API call is successful
+      console.log("API calls", response.email[0]); // Add console log to check if API call is successful
+
+      if (response.msg) {
         setFormData({
           user_name: "",
-          user_email: "",
-          user_password: "",
+          email: "",
+          password: "",
         });
-        toast.success(response.resultsuccess);
+        toast.success(response.msg);
       }
-      if (response.resultexist) {
-        toast.error(response.resultexist);
+
+      if (response.email[0] === "validation.unique") {
+        toast.error("User Exits");
       }
     } catch (error) {
       console.error("Error:", error);
+
       if (error.name === "ValidationError") {
         error.inner.forEach((err) => {
           toast.error(err.message);
@@ -154,8 +162,8 @@ const Signup = () => {
                     type="email"
                     icon={HiMail}
                     placeholder="Enter Your Email"
-                    name="user_email"
-                    value={formData.user_email}
+                    name="email"
+                    value={formData.email}
                     onChange={handleChange}
                     required
                   />
@@ -172,8 +180,8 @@ const Signup = () => {
                       type={showPassword ? "text" : "password"} // Toggle password visibility
                       // Show different eye icon based on visibility state
                       placeholder="Enter your password"
-                      name="user_password"
-                      value={formData.user_password}
+                      name="password"
+                      value={formData.password}
                       onChange={handleChange}
                       required
                     />

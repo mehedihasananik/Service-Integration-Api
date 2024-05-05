@@ -82,7 +82,7 @@ const Header = () => {
                   return (
                     <Link
                       className={
-                        pathname === item.link
+                        pathname === item.menu_link
                           ? "text-[16px] text-[#FF0000] font-normal"
                           : "text-[16px] text-[#0F172A] cursor-pointer font-normal hover:text-[#FF693B] transition-colors duration-300"
                       }
