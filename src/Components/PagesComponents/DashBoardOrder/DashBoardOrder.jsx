@@ -29,6 +29,14 @@ const DashBoardOrder = () => {
     }
   };
 
+  const handleServiceChange = (e) => {
+    setSelectedServiceId(e.target.value);
+  };
+
+  const handleSearchInputChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
   useEffect(() => {
     fetchOrderData();
   }, []);
@@ -66,13 +74,6 @@ const DashBoardOrder = () => {
     setServiceItems(uniqueServices);
   }, [selectedServiceId, searchQuery, services]);
 
-  const handleServiceChange = (e) => {
-    setSelectedServiceId(e.target.value);
-  };
-
-  const handleSearchInputChange = (e) => {
-    setSearchQuery(e.target.value);
-  };
   // console.log(serviceItems);
 
   return (

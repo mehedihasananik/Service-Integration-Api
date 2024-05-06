@@ -8,6 +8,46 @@ const Checkout = () => {
   const [scriptLoaded, setScriptLoaded] = useState(false);
   const [productInfo, setProductInfo] = useState([]);
 
+  const doAjaxRequest = (fparams) => {
+    fetch(fparams.formAction, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-Token": getCsrfToken(),
+      },
+      body: JSON.stringify({
+        ess_token: fparams.token,
+      }),
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        console.log("Ajax done result: ", result);
+        if (result.redirect) {
+          window.location.href = result.redirect;
+        } else if (result.success) {
+          alert(result.msg);
+        } else {
+          console.log(result.error);
+        }
+      })
+      .catch((error) => {
+        alert(
+          "Your payment could not be processed. Please refresh the page and try again!"
+        );
+        console.error(error);
+      });
+  };
+
+  const getCsrfToken = () => {
+    // Function to retrieve the CSRF token from the server
+    // You need to implement this function based on your backend framework
+    // For example, if you're using Next.js, you can use next-auth/csrf module
+    // or any other method provided by your backend framework to retrieve the CSRF token
+    // and pass it to the client-side JavaScript.
+    // Example:
+    // return csrfToken;
+  };
+
   useEffect(() => {
     const script = document.createElement("script");
     script.src = "https://2pay-js.2checkout.com/v1/2pay.js";
@@ -56,46 +96,6 @@ const Checkout = () => {
       }
     }
   }, [scriptLoaded]);
-
-  const doAjaxRequest = (fparams) => {
-    fetch(fparams.formAction, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-CSRF-Token": getCsrfToken(),
-      },
-      body: JSON.stringify({
-        ess_token: fparams.token,
-      }),
-    })
-      .then((response) => response.json())
-      .then((result) => {
-        console.log("Ajax done result: ", result);
-        if (result.redirect) {
-          window.location.href = result.redirect;
-        } else if (result.success) {
-          alert(result.msg);
-        } else {
-          console.log(result.error);
-        }
-      })
-      .catch((error) => {
-        alert(
-          "Your payment could not be processed. Please refresh the page and try again!"
-        );
-        console.error(error);
-      });
-  };
-
-  const getCsrfToken = () => {
-    // Function to retrieve the CSRF token from the server
-    // You need to implement this function based on your backend framework
-    // For example, if you're using Next.js, you can use next-auth/csrf module
-    // or any other method provided by your backend framework to retrieve the CSRF token
-    // and pass it to the client-side JavaScript.
-    // Example:
-    // return csrfToken;
-  };
 
   return (
     <Container>

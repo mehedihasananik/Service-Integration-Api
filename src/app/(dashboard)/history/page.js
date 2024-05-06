@@ -1,5 +1,4 @@
 import HistoryContent from "@/Components/PagesComponents/HistoryContent/HistoryContent";
-import React from "react";
 
 const DashboardPage = () => {
   return (

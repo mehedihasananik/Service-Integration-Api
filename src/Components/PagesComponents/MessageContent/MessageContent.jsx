@@ -3,7 +3,6 @@ import { BiRevision } from "react-icons/bi";
 import { MdOutlineAccessTimeFilled } from "react-icons/md";
 import Image from "next/image";
 import React, { useRef, useState } from "react";
-import { BsPlusCircle } from "react-icons/bs";
 import { GoPaperclip } from "react-icons/go";
 import { CiFaceSmile } from "react-icons/ci";
 import { IoMdMore } from "react-icons/io";

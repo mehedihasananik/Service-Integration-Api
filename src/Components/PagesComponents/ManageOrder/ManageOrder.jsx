@@ -1,6 +1,5 @@
 "use client";
 
-import API_ROUTES from "@/app/api/confiq";
 import { fetchData } from "@/config/apiRequests.js";
 import { manageOrderApi } from "@/config/apis";
 import { Pagination, Table } from "flowbite-react";
@@ -10,10 +9,6 @@ const ManageOrder = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [orders, setOrder] = useState(null);
   const [userData, setUserData] = useState();
-
-  useEffect(() => {
-    setUserData(JSON.parse(sessionStorage.getItem("userData")));
-  }, []);
 
   const fetchOrderManageData = async () => {
     try {
@@ -25,12 +20,15 @@ const ManageOrder = () => {
       console.error("Error fetching data:", error);
     }
   };
+  const onPageChange = (page) => setCurrentPage(page);
 
   useEffect(() => {
     fetchOrderManageData();
   }, []);
 
-  const onPageChange = (page) => setCurrentPage(page);
+  useEffect(() => {
+    setUserData(JSON.parse(sessionStorage.getItem("userData")));
+  }, []);
 
   return (
     <div className="px-6">

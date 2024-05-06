@@ -3,16 +3,14 @@ import { fetchData } from "@/config/apiRequests.js";
 import { dashboardApis } from "@/config/apis";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const DashBoardContent = () => {
   const [projects, setProjects] = useState(null);
   const [userData, setUserData] = useState();
 
-  useEffect(() => {
-    setUserData(JSON.parse(sessionStorage.getItem("userData")));
-  }, []);
   // console.log(userData);
+
   const fetchingData = async () => {
     const data = await fetchData(`${dashboardApis}`, "POST", {
       user_id: userData.id,
@@ -22,6 +20,10 @@ const DashBoardContent = () => {
 
   useEffect(() => {
     fetchingData();
+  }, []);
+
+  useEffect(() => {
+    setUserData(JSON.parse(sessionStorage.getItem("userData")));
   }, []);
 
   // // Check if token has expired

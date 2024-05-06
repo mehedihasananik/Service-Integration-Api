@@ -7,6 +7,8 @@ const Profile = () => {
   const [profile, setProfile] = useState(null);
   const [userData, setUserData] = useState();
 
+  const backgroundImage = profile?.image ? `url(${profile.image})` : "";
+
   useEffect(() => {
     setUserData(JSON.parse(sessionStorage.getItem("userData")));
   }, []);
@@ -30,8 +32,6 @@ const Profile = () => {
 
     fetchData();
   }, []);
-
-  const backgroundImage = profile?.image ? `url(${profile.image})` : "";
 
   return (
     <div>
