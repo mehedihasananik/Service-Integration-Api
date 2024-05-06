@@ -19,6 +19,7 @@ const DashBoardContent = () => {
   useEffect(() => {
     fetchingData();
   }, []);
+  console.log(userData);
 
   // Check if token has expired
   const isTokenExpired = () => {
