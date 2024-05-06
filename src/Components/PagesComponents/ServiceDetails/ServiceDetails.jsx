@@ -90,7 +90,7 @@ const ServiceDetails = ({ service, sliders, packages }) => {
             Portfolio&apos;s{" "}
           </h2>
         </div>
-        <div className="md:px-[3%] xxl:px-[0%] xxl:pl-[3%]">
+        <div className="lg:px-[3%] xxl:px-[0%] xxl:pl-[3%]">
           <ServicePortolio />
         </div>
       </div>
@@ -108,7 +108,7 @@ const ServiceDetails = ({ service, sliders, packages }) => {
         <RelevantServices />
       </Container>
 
-      <div>
+      <div className="bg-[#F8FAFC]">
         <Questions
           title="Frequently Asked Questions"
           className="bg-[#F8FAFC]"

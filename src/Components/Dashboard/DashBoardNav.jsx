@@ -11,6 +11,7 @@ const DashBoardNav = () => {
   let pathname = usePathname();
   const [cleared, setCleared] = useState(false);
   pathname = pathname.replace("/", "");
+  const [userData, setUserData] = useState();
 
   const clearSession = () => {
     // Remove the userData from sessionStorage
@@ -19,8 +20,9 @@ const DashBoardNav = () => {
     setCleared(true);
     router.push("/");
   };
-  const userData = JSON.parse(sessionStorage.getItem("userData"));
-  console.log(userData);
+  useEffect(() => {
+    setUserData(JSON.parse(sessionStorage.getItem("userData")));
+  }, []);
 
   return (
     <nav className="flex flex-col justify-center items-center md:flex-row md:justify-between w-[100%] py-4 px-5 lg:pr-12 bg-[#FCFCFC]">

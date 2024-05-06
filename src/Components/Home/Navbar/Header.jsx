@@ -12,17 +12,24 @@ import { headerApi } from "@/config/apis";
 
 const Header = () => {
   const [headers, setHeaders] = useState(null);
-  const userData = JSON.parse(sessionStorage.getItem("userData"));
+  const [userData, setUserData] = useState();
+
   const [cleared, setCleared] = useState(false);
   const user = useContext(AuthContext);
   const currentPage = usePathname();
+  // const userData = JSON.parse(sessionStorage.getItem("userData"));
 
-  const clearSession = () => {
-    // Remove the userData from sessionStorage
-    sessionStorage.removeItem("userData");
-    // Set the state to indicate that session has been cleared
-    setCleared(true);
-  };
+  useEffect(() => {
+    setUserData(JSON.parse(sessionStorage.getItem("userData")));
+  }, []);
+  console.log(userData);
+
+  // const clearSession = () => {
+  //   // Remove the userData from sessionStorage
+  //   sessionStorage.removeItem("userData");
+  //   // Set the state to indicate that session has been cleared
+  //   setCleared(true);
+  // };
 
   const pathname = usePathname();
 

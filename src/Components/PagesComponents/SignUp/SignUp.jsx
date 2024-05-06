@@ -51,23 +51,24 @@ const Signup = () => {
 
       console.log("Validation passed"); // Add console log to check if validation passed
 
-      const response = await fetchData(signupApi, "POST", formData); // Using fetchData instead of axios.post
+      const response = await fetchData(signupApi, "POST", formData); // Using fetchData instead of axios.post // Add console log to check if API call is successful
+      console.log(response.msg); // Add console log to check if API call is successful
 
-      console.log("API calls", response.msg); // Add console log to check if API call is successful
-      console.log("API calls", response.email[0]); // Add console log to check if API call is successful
-
-      if (response.msg) {
+      if (response?.msg) {
         setFormData({
           user_name: "",
           email: "",
           password: "",
         });
-        toast.success(response.msg);
+        toast.success(response?.msg);
+      }
+      if (response?.resultexist) {
+        toast.success(response?.resultexist);
       }
 
-      if (response.email[0] === "validation.unique") {
-        toast.error("User Exits");
-      }
+      // if (response?.email[0] === "validation.unique") {
+      //   toast.error("User Exits");
+      // }
     } catch (error) {
       console.error("Error:", error);
 

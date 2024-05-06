@@ -178,7 +178,7 @@ const PortfolioPage = ({
                         <Image
                           width={800}
                           height={262}
-                          className="w-full lg:w-[400px] h-[420px] object-cover rounded-l"
+                          className="w-full lg:w-[400px] h-[420px] object-cover md:rounded-l"
                           src={portfolio.image}
                           alt=""
                         />

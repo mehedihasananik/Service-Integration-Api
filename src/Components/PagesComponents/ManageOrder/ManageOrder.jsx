@@ -8,9 +8,12 @@ import { useEffect, useState } from "react";
 
 const ManageOrder = () => {
   const [currentPage, setCurrentPage] = useState(1);
-
   const [orders, setOrder] = useState(null);
-  const userData = JSON.parse(sessionStorage.getItem("userData"));
+  const [userData, setUserData] = useState();
+
+  useEffect(() => {
+    setUserData(JSON.parse(sessionStorage.getItem("userData")));
+  }, []);
 
   const fetchOrderManageData = async () => {
     try {

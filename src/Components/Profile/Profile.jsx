@@ -5,7 +5,11 @@ import React, { useEffect, useState } from "react";
 
 const Profile = () => {
   const [profile, setProfile] = useState(null);
-  const userData = JSON.parse(sessionStorage.getItem("userData"));
+  const [userData, setUserData] = useState();
+
+  useEffect(() => {
+    setUserData(JSON.parse(sessionStorage.getItem("userData")));
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {

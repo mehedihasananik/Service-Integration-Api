@@ -7,8 +7,12 @@ import React, { useEffect, useState } from "react";
 
 const DashBoardContent = () => {
   const [projects, setProjects] = useState(null);
-  const userData = JSON.parse(sessionStorage.getItem("userData"));
+  const [userData, setUserData] = useState();
 
+  useEffect(() => {
+    setUserData(JSON.parse(sessionStorage.getItem("userData")));
+  }, []);
+  console.log(userData);
   const fetchingData = async () => {
     const data = await fetchData(`${dashboardApis}`, "POST", {
       user_id: userData.id,
@@ -21,23 +25,23 @@ const DashBoardContent = () => {
   }, []);
   console.log(userData);
 
-  // Check if token has expired
-  const isTokenExpired = () => {
-    const currentTime = new Date().getTime();
-    const tokenExpirationTime = userData.expires_in * 1000; // Convert to milliseconds
-    return currentTime > tokenExpirationTime;
-  };
+  // // Check if token has expired
+  // const isTokenExpired = () => {
+  //   const currentTime = new Date().getTime();
+  //   const tokenExpirationTime = userData.expires_in * 1000; // Convert to milliseconds
+  //   return currentTime > tokenExpirationTime;
+  // };
 
-  // Remove session data if token has expired
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      if (isTokenExpired()) {
-        sessionStorage.removeItem("userData");
-      }
-    }, 60000); // 60 seconds
+  // // Remove session data if token has expired
+  // useEffect(() => {
+  //   const timeout = setTimeout(() => {
+  //     if (isTokenExpired()) {
+  //       sessionStorage.removeItem("userData");
+  //     }
+  //   }, 60000); // 60 seconds
 
-    return () => clearTimeout(timeout);
-  }, []);
+  //   return () => clearTimeout(timeout);
+  // }, []);
 
   return (
     <div className="lg:mx-10 bg-[#FCFCFC] mb-5%">

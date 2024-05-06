@@ -9,6 +9,7 @@ import "swiper/css/navigation";
 import { HiArrowLeft, HiArrowRight } from "react-icons/hi";
 import "../../../app/globals.css";
 import { Autoplay } from "swiper/modules";
+import { allsServiceItemsApi } from "@/config/apis";
 
 const RelevantServices = () => {
   const [services, setServices] = useState([]);
@@ -18,7 +19,7 @@ const RelevantServices = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`${API_ROUTES.route}/sevice_items`);
+        const response = await fetch(`${allsServiceItemsApi}`);
         const data = await response.json();
         setServices(data);
         setTotalSlides(data.length);
@@ -42,11 +43,11 @@ const RelevantServices = () => {
       spaceBetween: 50,
     },
     1336: {
-      slidesPerView: 3,
+      slidesPerView: 4,
       spaceBetween: 50,
     },
     1280: {
-      slidesPerView: 2,
+      slidesPerView: 3,
       spaceBetween: 30,
     },
     1024: {
@@ -72,7 +73,90 @@ const RelevantServices = () => {
       </div>
       <div className="relative">
         {loading ? (
-          <p>Loading...</p>
+          <div
+            aria-label="Loading..."
+            role="status"
+            class="flex justify-center items-center space-x-2"
+          >
+            <svg
+              class="h-24 w-32 animate-spin stroke-gray-500"
+              viewBox="0 0 256 256"
+            >
+              <line
+                x1="128"
+                y1="32"
+                x2="128"
+                y2="64"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="24"
+              ></line>
+              <line
+                x1="195.9"
+                y1="60.1"
+                x2="173.3"
+                y2="82.7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="24"
+              ></line>
+              <line
+                x1="224"
+                y1="128"
+                x2="192"
+                y2="128"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="24"
+              ></line>
+              <line
+                x1="195.9"
+                y1="195.9"
+                x2="173.3"
+                y2="173.3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="24"
+              ></line>
+              <line
+                x1="128"
+                y1="224"
+                x2="128"
+                y2="192"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="24"
+              ></line>
+              <line
+                x1="60.1"
+                y1="195.9"
+                x2="82.7"
+                y2="173.3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="24"
+              ></line>
+              <line
+                x1="32"
+                y1="128"
+                x2="64"
+                y2="128"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="24"
+              ></line>
+              <line
+                x1="60.1"
+                y1="60.1"
+                x2="82.7"
+                y2="82.7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="24"
+              ></line>
+            </svg>
+            <span class="text-4xl font-medium text-gray-500">Loading...</span>
+          </div>
         ) : (
           <Swiper
             ref={swiperRef}
@@ -86,7 +170,7 @@ const RelevantServices = () => {
             {services.map((service) => (
               <SwiperSlide key={service.id}>
                 <Link href={`/services/${service.slug.replace(/\s+/g, "")}`}>
-                  <div className="w-full md:w-[300px] xl:w-[350px]  xxl:w-[280px] xll:w-[300px] 4xl:w-[330px] group shadow-lg rounded-md border border-[#E2E8F0]   cursor-pointer">
+                  <div className="w-full md:w-[340px] xl:w-[350px]  xxl:w-[280px] xll:w-[300px] 4xl:w-[330px] group shadow-lg rounded-md border border-[#E2E8F0]   cursor-pointer">
                     <div className="bg-[#E2E8F0]">
                       <Image
                         width={700}

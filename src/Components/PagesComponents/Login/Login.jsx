@@ -56,7 +56,7 @@ const Login = () => {
     <div className="login_singUp overflow-hidden  my-5">
       <Container>
         {loading && <div className="loader">Loading...</div>}
-        <div className="w-full h-fit flex justify-center md:pt-5">
+        <div className="w-full flex justify-center md:pt-5">
           <div className="shadow-md  border rounded-lg  py-6 px-10  md:py-10 md:px-12">
             <div className="text-center pb-5 md:pb-14">
               <h3 className="text-[30px] md:text-[40px] text-[#333333] font-Raleway font-bold">

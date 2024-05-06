@@ -11,8 +11,8 @@ import "swiper/css/navigation";
 import Image from "next/image";
 import { HiArrowSmallRight } from "react-icons/hi2";
 import Link from "next/link";
-import API_ROUTES from "@/app/api/confiq";
 import { Autoplay } from "swiper/modules";
+import { sevice_portfolioApi } from "@/config/apis";
 
 const ServicePortolio = () => {
   const [portfolios, setPortfolios] = useState([]);
@@ -20,7 +20,7 @@ const ServicePortolio = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch(`${API_ROUTES.route}/sevice_portfolio`);
+      const response = await fetch(`${sevice_portfolioApi}`);
       const data = await response.json();
       setPortfolios(data);
       setLoading(false);
@@ -66,7 +66,7 @@ const ServicePortolio = () => {
     },
   };
   return (
-    <div className="">
+    <div className="px-[5%] md:px-[5%] lg:px-0">
       <Swiper
         ref={swiperRef}
         slidesPerView={3}
@@ -82,9 +82,9 @@ const ServicePortolio = () => {
           return (
             <SwiperSlide key={portfolio.id} className="">
               <Link href={`/portfolio/${portfolio.slug}`}>
-                <div className="  flex flex-col md:flex-row gap-10 justify-between pt-10 pb-5 ">
+                <div className="  flex flex-col md:flex-row gap-10 justify-center pt-10 pb-5 ">
                   {/* 1st row 1st column card */}
-                  <div className="group flex flex-col xl:flex-row justify-between bg-[#FFFFFF] rounded-xl border border-[#CBD5E1] ">
+                  <div className="md:w-[370px] lg:w-full group flex flex-col xl:flex-row justify-between bg-[#FFFFFF] rounded-xl border border-[#CBD5E1] ">
                     <div>
                       <Image
                         width={800}
