@@ -1,6 +1,5 @@
 "use client";
 import DashBoardContent from "@/Components/PagesComponents/DashBoardContent/DashBoardContent";
-import ProtectedRoute from "../../../../ProtectedRoute";
 
 const DashboardPage = () => {
   return (
@@ -10,4 +9,4 @@ const DashboardPage = () => {
   );
 };
 
-export default ProtectedRoute(DashboardPage, "/");
+export default DashboardPage;
