@@ -18,7 +18,7 @@ const CheckoutProductInfo = ({ productInfo, setProductInfo }) => {
     });
     setProductInfo(data);
   };
-  console.log(productInfo);
+  // console.log(productInfo);
   useEffect(() => {
     fetchingItemData();
   }, []);

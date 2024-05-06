@@ -13,7 +13,6 @@ const PortfolioHomeItems = ({ portfolios, services }) => {
   useEffect(() => {
     setLoading(false); // Assuming data is already passed as props, set loading to false
   }, []);
-  console.log(portfolios);
 
   return (
     <div className="md:py-5 lg:pt-20">

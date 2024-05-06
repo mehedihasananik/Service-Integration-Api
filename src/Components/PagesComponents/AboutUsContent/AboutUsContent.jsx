@@ -15,7 +15,7 @@ const AboutUsContent = async ({ aboutDetails, singleAboutDetails }) => {
     details4,
   } = aboutDetails;
 
-  console.log(singleAboutDetails);
+  // console.log(singleAboutDetails);
   return (
     <Container>
       <div>

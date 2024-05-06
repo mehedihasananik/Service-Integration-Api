@@ -9,7 +9,7 @@ const PortfolioDetails = ({ singlePortfolioItem }) => {
       <div className="md:py-10 md:pb-5">
         <Container>
           {singlePortfolioItem.map((portfolio) => {
-            console.log(portfolio);
+            //console.log(portfolio);
             const { title, details, image, caption_text } = portfolio;
             return (
               <div key={portfolio.id}>

@@ -73,7 +73,7 @@ const DashBoardOrder = () => {
   const handleSearchInputChange = (e) => {
     setSearchQuery(e.target.value);
   };
-  console.log(serviceItems);
+  // console.log(serviceItems);
 
   return (
     <div>

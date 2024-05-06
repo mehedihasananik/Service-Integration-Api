@@ -13,7 +13,7 @@ async function getheaderContent() {
 
 const HeaderItems = async () => {
   const header = await getheaderContent();
-  console.log(header);
+  // console.log(header);
 
   return <div>HeaderItems</div>;
 };

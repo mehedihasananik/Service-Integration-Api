@@ -1,7 +1,6 @@
 "use client";
 
 import { Table } from "flowbite-react";
-import { useState } from "react";
 
 const HistoryContent = () => {
   return (

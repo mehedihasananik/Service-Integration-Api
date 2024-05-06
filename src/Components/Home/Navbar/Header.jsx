@@ -22,7 +22,7 @@ const Header = () => {
   useEffect(() => {
     setUserData(JSON.parse(sessionStorage.getItem("userData")));
   }, []);
-  console.log(userData);
+  // console.log(userData);
 
   // const clearSession = () => {
   //   // Remove the userData from sessionStorage

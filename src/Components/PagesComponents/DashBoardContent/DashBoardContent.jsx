@@ -12,7 +12,7 @@ const DashBoardContent = () => {
   useEffect(() => {
     setUserData(JSON.parse(sessionStorage.getItem("userData")));
   }, []);
-  console.log(userData);
+  // console.log(userData);
   const fetchingData = async () => {
     const data = await fetchData(`${dashboardApis}`, "POST", {
       user_id: userData.id,
@@ -23,7 +23,6 @@ const DashBoardContent = () => {
   useEffect(() => {
     fetchingData();
   }, []);
-  console.log(userData);
 
   // // Check if token has expired
   // const isTokenExpired = () => {
