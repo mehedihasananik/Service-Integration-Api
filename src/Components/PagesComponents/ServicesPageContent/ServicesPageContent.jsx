@@ -179,6 +179,15 @@ const ServicesPageContent = ({ serviceCategories, services }) => {
               </>
             )}
           </div>
+          {/* see more button */}
+          <div className="py-8  md:pt-16 text-center ">
+            <Link
+              href={"#"}
+              className=" text-[16px] bg-[#FF693B] px-14 py-4 text-white rounded-lg border border-[#FF693B]  hover:bg-white hover:text-[#FF693B] transition-all duration-300"
+            >
+              See more
+            </Link>
+          </div>
           {serviceItems.length === 0 && !loading && (
             <div className="flex justify-center text-center text-gray-600 mt-0">
               <Image

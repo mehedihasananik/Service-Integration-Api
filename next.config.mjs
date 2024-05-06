@@ -5,7 +5,7 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   images: {
-    domains: ["192.168.10.14"],
+    domains: ["192.168.10.14", "envobyte.com"],
   },
 };
 

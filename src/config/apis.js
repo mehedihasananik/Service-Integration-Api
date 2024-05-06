@@ -1,7 +1,7 @@
 import { apiEndpoint } from "./config";
 // homepage apis
 const headerApi = `${apiEndpoint}/header`;
-const bannerApi = `${apiEndpoint}/home_banner`;
+const bannerApi = `https://envobyte.com/api/home_banner`;
 const brandsApi = `${apiEndpoint}/home_brand`;
 const servicesApi = `${apiEndpoint}/sevice_items`;
 const about_us_homeApi = `${apiEndpoint}/about_us_home`;

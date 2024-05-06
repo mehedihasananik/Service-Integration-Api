@@ -179,10 +179,10 @@ const AboutUsItems = ({ about }) => {
       </div>
 
       {/* Learn More Button */}
-      <div className="py-8 text-center lg:text-left">
+      <div className="py-8  md:pt-16 text-center lg:text-left">
         <Link
           href={"/about-us"}
-          className=" text-[16px] bg-[#FF693B] px-10 py-3 text-white rounded-lg border border-[#FF693B]  hover:bg-white hover:text-[#FF693B] transition-all duration-300"
+          className=" text-[16px] bg-[#FF693B] px-10 py-4 text-white rounded-lg border border-[#FF693B]  hover:bg-white hover:text-[#FF693B] transition-all duration-300"
         >
           Learn more
         </Link>

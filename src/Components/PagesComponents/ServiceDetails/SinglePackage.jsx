@@ -49,27 +49,27 @@ const SinglePackage = ({ item, openModal, setOpenModal }) => {
   };
 
   return (
-    <div>
+    <div className=" md:mx-[10%] lg:mx-0">
       <div
         key={item.id}
         className=" border border-[#CBD5E1]  transition-all duration-300  hover:border-[#FF693B] px-8 py-10 rounded-3xl"
       >
         {/* title */}
-        <div className="h-[150px]">
+        <div className="h-[95px]">
           <div className="space-y-5">
             <h3 className="font-Raleway text-[16px] text-[#1E293B] font-bold">
               {item.package_name}
             </h3>
             <p className="text-[15px] text-[#334155] font-normal">
-              {item.package_text.substring(0, 80)}
+              {item.package_text}
             </p>
           </div>
-          {/* price */}
-          <div className="">
-            <h2 className=" md:my-2 text-[32px] font-semibold font-Raleway">
-              {item.package_price}
-            </h2>
-          </div>
+        </div>
+        {/* price */}
+        <div className="md:h-[50px] xl:h-[60px] xxl:h-[50px]">
+          <h2 className=" md:my-2 text-[32px] font-semibold font-Raleway">
+            {item.package_price}
+          </h2>
         </div>
         {/* order button */}
         <div className="py-4 mt-4 md:mt-0 md:pb-8 flex justify-center">

@@ -12,6 +12,7 @@ import Image from "next/image";
 import { HiArrowSmallRight } from "react-icons/hi2";
 import Link from "next/link";
 import API_ROUTES from "@/app/api/confiq";
+import { Autoplay } from "swiper/modules";
 
 const ServicePortolio = () => {
   const [portfolios, setPortfolios] = useState([]);
@@ -72,6 +73,8 @@ const ServicePortolio = () => {
         spaceBetween={30}
         breakpoints={breakpoints}
         className="mySwiper "
+        modules={[Autoplay]}
+        autoplay={{ delay: 3000, disableOnInteraction: false }}
       >
         {portfolios.map((portfolio) => {
           const { service_name } = portfolio;

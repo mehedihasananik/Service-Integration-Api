@@ -125,7 +125,7 @@ const PortfolioHomeItems = ({ portfolios, services }) => {
         <div className="flex justify-center py-10">
           <Link
             href={"/portfolio"}
-            className="text-[16px] bg-[#FF693B] px-10 py-3 text-white rounded-xl border border-[#FF693B]  hover:bg-white hover:text-[#FF693B] transition-all duration-300"
+            className="text-[16px] bg-[#FF693B] px-10 py-3 text-white rounded-lg border border-[#FF693B]  hover:bg-white hover:text-[#FF693B] transition-all duration-300"
           >
             View All Portfolio
           </Link>

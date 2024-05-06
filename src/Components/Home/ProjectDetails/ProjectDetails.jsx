@@ -23,7 +23,7 @@ const ProjectDetails = ({ userContact }) => {
       .required("Name is required")
       .min(2, "First Name must be at least 2 characters")
       .matches(
-        /^[a-zA-Z][a-zA-Z\s]*$/,
+        /^[a-zA-Z][a-zA-Z\s]*\d*$/,
         "First Name cannot start with special characters or numbers"
       ),
     last_name: Yup.string()

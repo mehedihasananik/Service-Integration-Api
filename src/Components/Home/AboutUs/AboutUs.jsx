@@ -27,10 +27,10 @@ const AboutUs = async () => {
           {/* left side image */}
           <div className="bg-[#DDFFFB]">
             <Image
-              width={1000}
-              height={1000}
+              width={500}
+              height={500}
               className="w-[650px]"
-              src={about.image || "/about.png"}
+              src={about.image}
               alt="about-img"
             />
           </div>
