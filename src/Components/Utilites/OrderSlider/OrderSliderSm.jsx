@@ -103,20 +103,26 @@ const OrderSliderSm = ({ sliders }) => {
       <div
         className="flex justify-center items-center"
         style={{
-          height: isFullscreen ? "" : "",
-          width: isFullscreen ? "100%" : "100%",
+          height: isFullscreen ? "100vh" : "", // Set height to full viewport height in fullscreen
+          width: "100%",
           overflowY: isFullscreen ? "scroll" : "hidden",
         }}
       >
-        <div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100%",
+          }}
+        >
           <img
             src={item.original}
             alt=""
             style={{
-              width: "100%",
-              height: isFullscreen ? "auto" : "100%",
-              objectFit: isFullscreen ? "cover" : "cover",
-              objectPosition: "center",
+              maxWidth: "100%",
+              maxHeight: "100%",
+              objectFit: "contain", // Ensure image fits container without stretching
             }}
           />
         </div>
