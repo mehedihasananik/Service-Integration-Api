@@ -1,4 +1,3 @@
-import CheckoutPayment from "@/Components/Utilites/CheckoutPayment/CheckoutPayment";
 import React from "react";
 
 const Checkout = () => {
