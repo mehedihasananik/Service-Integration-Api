@@ -18,6 +18,7 @@ async function getAboutUsContent() {
 const AboutUs = async () => {
   // getting aboutContent
   const about = await getAboutUsContent();
+  console.log(about);
 
   return (
     <div className="pb-5 md:pb-0 md:py-10 overflow-hidden">
