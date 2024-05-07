@@ -1,3 +1,4 @@
+"use client";
 import { Table } from "flowbite-react";
 
 const HistoryContent = () => {
