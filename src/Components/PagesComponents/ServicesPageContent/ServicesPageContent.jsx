@@ -7,7 +7,7 @@ import ServiceLoading from "@/Components/Utilites/Loading/ServiceLoading";
 
 const ServicesPageContent = ({ serviceCategories, services }) => {
   const [loading, setLoading] = useState(true);
-  const [selectedServiceId, setSelectedServiceId] = useState("");
+  const [selectedCategoryId, setSelectedCategoryId] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [serviceItems, setServiceItems] = useState([]);
 
@@ -19,9 +19,9 @@ const ServicesPageContent = ({ serviceCategories, services }) => {
     const filterServices = () => {
       let filteredServices = services;
 
-      if (selectedServiceId) {
+      if (selectedCategoryId) {
         filteredServices = filteredServices.filter(
-          (item) => item.service_id === parseInt(selectedServiceId)
+          (item) => item.category_id === parseInt(selectedCategoryId)
         );
       }
 
@@ -40,10 +40,10 @@ const ServicesPageContent = ({ serviceCategories, services }) => {
     const uniqueServices = filteredServices;
 
     setServiceItems(uniqueServices);
-  }, [selectedServiceId, searchQuery, services]);
+  }, [selectedCategoryId, searchQuery, services]);
 
-  const handleServiceChange = (e) => {
-    setSelectedServiceId(e.target.value);
+  const handleCategoryChange = (e) => {
+    setSelectedCategoryId(e.target.value);
   };
 
   const handleSearchInputChange = (e) => {
@@ -65,18 +65,18 @@ const ServicesPageContent = ({ serviceCategories, services }) => {
               <div className="w-full md:w-[40%] lg:w-[25%]">
                 <form>
                   <select
-                    onChange={handleServiceChange}
-                    id="logo"
+                    onChange={handleCategoryChange}
+                    id="category"
                     className="cursor-pointer border border-gray-300  text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   >
                     <option value="">Select Category</option>
-                    {serviceCategories.slice(1, 6).map((category) => (
+                    {serviceCategories.map((category) => (
                       <option
-                        key={category.service_id}
-                        value={category.service_id}
+                        key={category.category_id}
+                        value={category.category_id}
                         className="text-[#434348] text-[16px] "
                       >
-                        {category.service_name}
+                        {category.category_name}
                       </option>
                     ))}
                   </select>

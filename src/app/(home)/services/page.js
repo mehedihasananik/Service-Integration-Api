@@ -30,6 +30,7 @@ async function getServices() {
 
 const ServicesPage = async () => {
   const { serviceCategories, services } = await getServices();
+  console.log(services);
 
   return (
     <>

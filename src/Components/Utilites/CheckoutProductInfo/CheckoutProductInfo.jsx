@@ -6,11 +6,7 @@ import { checkoutApi } from "@/config/apis";
 import Image from "next/image";
 
 const CheckoutProductInfo = ({ productInfo, setProductInfo }) => {
-  const [userData, setUserData] = useState();
-
-  useEffect(() => {
-    setUserData(JSON.parse(sessionStorage.getItem("userData")));
-  }, []);
+  const storedItemId = sessionStorage.getItem("itemId");
 
   const fetchingItemData = async () => {
     const data = await fetchData(`${checkoutApi}`, "POST", {
@@ -18,7 +14,7 @@ const CheckoutProductInfo = ({ productInfo, setProductInfo }) => {
     });
     setProductInfo(data);
   };
-  // console.log(productInfo);
+  console.log(productInfo);
   useEffect(() => {
     fetchingItemData();
   }, []);

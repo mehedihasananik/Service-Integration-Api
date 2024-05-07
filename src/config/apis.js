@@ -16,7 +16,7 @@ const user_contactApi = `${apiEndpoint}/contact`;
 const footer = `${apiEndpoint}/footer`;
 
 // services page
-const serviceListApi = `${apiEndpoint}/service`;
+const serviceListApi = `${apiEndpoint}/category`;
 const allsServiceItemsApi = `${apiEndpoint}/sevice_items`;
 
 // single service page
