@@ -62,6 +62,7 @@ const Header = () => {
     fetchHeaderContent();
   }, []);
   const logo = headers?.logo?.logo;
+  console.log(userData);
 
   return (
     <div>
@@ -102,7 +103,7 @@ const Header = () => {
                 })}
               </ul>
               {/* nav button */}
-              {userData ? (
+              {userData?.email ? (
                 <Link
                   href="/dashboard"
                   className=" bg-[#FF693B] border border-[#FF693B] text-white font-medium px-6 py-2 rounded-lg hover:bg-white hover:text-[#FF693B] transition-all duration-300"
