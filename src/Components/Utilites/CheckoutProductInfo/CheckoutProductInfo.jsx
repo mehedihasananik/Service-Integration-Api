@@ -18,6 +18,7 @@ const CheckoutProductInfo = ({ productInfo, setProductInfo }) => {
       fetchingItemData();
     }
   }, [setProductInfo]);
+  console.log(productInfo);
 
   return (
     <div>
