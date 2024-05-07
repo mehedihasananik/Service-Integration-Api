@@ -28,13 +28,16 @@ const ServiceModal = ({ openModal, setOpenModal }) => {
     };
 
     try {
-      const response = await fetch("http://192.168.10.14:8000/api/user_login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(requestData),
-      });
+      const response = await fetch(
+        "https://admin.envobyte.com/api/user_login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(requestData),
+        }
+      );
 
       if (response.ok) {
         const data = await response.json();
