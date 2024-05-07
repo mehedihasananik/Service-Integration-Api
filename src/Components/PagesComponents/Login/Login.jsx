@@ -177,7 +177,7 @@ const Login = () => {
                   Don&apos;t have an account?{" "}
                 </span>
                 <Link
-                  href={"/signup"}
+                  href={"/registration"}
                   className=' text-[#FF693B]  border-b border-[#FF693B] border-["1px solid"] font-[500]'
                 >
                   Create account

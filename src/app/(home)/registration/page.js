@@ -4,7 +4,7 @@ import React from "react";
 const SignupPage = () => {
   return (
     <div>
-      <h3>Hi</h3>
+      <SignUpContent />
     </div>
   );
 };
