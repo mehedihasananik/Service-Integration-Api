@@ -6,7 +6,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { HiArrowLeft, HiArrowRight } from "react-icons/hi";
 
-const TestimonialHomeItems = ({ testimonials }) => {
+const TestimonialHomeItemsMd = ({ testimonials }) => {
   const [loading, setLoading] = useState(true);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [totalSlides, setTotalSlides] = useState(0);
@@ -20,25 +20,37 @@ const TestimonialHomeItems = ({ testimonials }) => {
 
   const goNext = () => {
     if (swiperRef.current && swiperRef.current.swiper) {
-      swiperRef.current.swiper.slideNext();
-      setCurrentSlide((prevSlide) => Math.min(prevSlide + 1, totalSlides - 3));
+      let newSlide = currentSlide + 2; // Increment by 2
+      if (newSlide >= totalSlides - 1) {
+        newSlide = totalSlides - 2; // Set it to the last slide index
+      } else {
+        swiperRef.current.swiper.slideTo(newSlide);
+      }
+      setCurrentSlide(newSlide);
+      if (newSlide === 0) {
+        setSpaceBetween(50);
+      } else if (newSlide === 3) {
+        setSpaceBetween(10);
+      }
     }
   };
 
   const goPrev = () => {
-    if (swiperRef.current && swiperRef.current.swiper) {
-      swiperRef.current.swiper.slidePrev();
-      setCurrentSlide((prevSlide) => Math.max(prevSlide - 1, 0));
+    let newSlide = currentSlide - 2; // Decrease by 2
+    if (newSlide < 0) {
+      newSlide = 0; // Ensure it doesn't go below 0
     }
+    swiperRef.current.swiper.slideTo(newSlide); // Navigate to the new slide
+    setCurrentSlide(newSlide); // Update the current slide state
   };
 
   const breakpoints = {
     1920: {
-      slidesPerView: 3,
+      slidesPerView: 2,
       spaceBetween: 30,
     },
     1336: {
-      slidesPerView: 3,
+      slidesPerView: 2,
       spaceBetween: 10,
     },
     1280: {
@@ -60,8 +72,8 @@ const TestimonialHomeItems = ({ testimonials }) => {
   };
 
   return (
-    <div id="testimonial" className="overflow-hidden">
-      <div className="hidden xxl:block max-w-[1680px] mx-auto 4xl:px-[0] 4xl:max-w-[1920px] xl:pl-[8%] 2xl:pl-[13%] 4xl:pl-[14%]">
+    <div id="testimonial" className="overflow-hidden px-[8%]">
+      <div className="hidden md:block xxl:hidden max-w-[1680px] mx-auto ">
         <div className="py-5 xl:pt-10">
           <div className="flex flex-col lg:flex-row items-center justify-between lg:gap-20 xl:gap-12 py-8">
             <div className="w-full text-center lg:text-left lg:w-[35%]">
@@ -78,9 +90,7 @@ const TestimonialHomeItems = ({ testimonials }) => {
               </div>
               <div className="text-center lg:text-left">
                 <span className="text-[48px] font-Raleway text-[#0A2C8C] font-bold">
-                  {currentSlide === totalSlides
-                    ? totalSlides
-                    : currentSlide + 3}
+                  {Math.min(currentSlide + 2, totalSlides)}
                 </span>
                 <span className="text-[16px] font-bold text-[#94A3B8] font-Raleway">
                   /{totalSlides}
@@ -147,8 +157,8 @@ const TestimonialHomeItems = ({ testimonials }) => {
               <div className="w-full lg:w-[65%]">
                 <Swiper
                   ref={swiperRef}
-                  slidesPerView={3}
-                  slidesPerGroup={3}
+                  slidesPerView={2}
+                  slidesPerGroup={2}
                   spaceBetween={30}
                   breakpoints={breakpoints}
                   className="mySwiper mx-auto"
@@ -194,4 +204,4 @@ const TestimonialHomeItems = ({ testimonials }) => {
   );
 };
 
-export default TestimonialHomeItems;
+export default TestimonialHomeItemsMd;

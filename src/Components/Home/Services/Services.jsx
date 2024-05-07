@@ -2,6 +2,7 @@ import ServicesHomeItems from "@/Components/Utilites/ServicesHomeItems/ServicesH
 import "../../../app/globals.css";
 import { servicesApi } from "@/config/apis";
 import ServicesHomeItemSM from "@/Components/Utilites/ServicesHomeItems/ServicesHomeItemSM";
+import ServicesHomeIteMD from "@/Components/Utilites/ServicesHomeItems/ServicesHomeIteMD";
 
 // data fetching from server side
 async function getServiceItems() {
@@ -23,6 +24,7 @@ const Services = async () => {
     <div className="overflow-hidden">
       <ServicesHomeItems services={serviceItems} />
       <ServicesHomeItemSM services={serviceItems} />
+      <ServicesHomeIteMD services={serviceItems} />
     </div>
   );
 };

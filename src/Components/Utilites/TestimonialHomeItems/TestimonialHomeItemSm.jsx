@@ -60,7 +60,7 @@ const TestimonialHomeItemSm = ({ testimonials }) => {
   };
 
   return (
-    <div id="testimonial" className="overflow-hidden">
+    <div id="testimonial" className="overflow-hidden px-[3%]">
       <div className="block md:hidden max-w-[1680px] mx-auto 4xl:px-[0] 4xl:max-w-[1920px] xl:pl-[8%] 2xl:pl-[13%] 4xl:pl-[14%]">
         <div className="py-5 xl:pt-10">
           <div className="flex flex-col lg:flex-row items-center justify-between lg:gap-20 xl:gap-12 py-8">
@@ -75,26 +75,6 @@ const TestimonialHomeItemSm = ({ testimonials }) => {
                   We aim to provide top-notch quality service and client
                   satisfaction. We are happy to help a lot of companies.
                 </p>
-              </div>
-              <div className="text-center lg:text-left">
-                <span className="text-[48px] font-Raleway text-[#0A2C8C] font-bold">
-                  {currentSlide + 1}
-                </span>
-                <span className="text-[16px] font-bold text-[#94A3B8] font-Raleway">
-                  /{totalSlides}
-                </span>
-              </div>
-              <div className="flex justify-center items-center lg:justify-start lg:items-start gap-6 py-4 ">
-                <div className="group text-center" onClick={() => goPrev()}>
-                  <button className=" bg-[#FF9F711A]  group-hover:bg-[#FF693B] px-5 py-5 rounded-lg transition-all duration-300">
-                    <HiArrowLeft className="text-[#FF693B]  group-hover:text-[#fff] w-[24px] h-[24px]" />
-                  </button>
-                </div>
-                <div className="group" onClick={() => goNext()}>
-                  <button className=" bg-[#FF9F711A]  group-hover:bg-[#FF693B] px-5 py-5 rounded-lg transition-all duration-300">
-                    <HiArrowRight className="text-[#FF693B]  group-hover:text-[#fff] w-[24px] h-[24px]" />
-                  </button>
-                </div>
               </div>
             </div>
             {loading ? (
@@ -185,6 +165,27 @@ const TestimonialHomeItemSm = ({ testimonials }) => {
                 </Swiper>
               </div>
             )}
+            {/* indicators */}
+            <div className="text-center lg:text-left">
+              <span className="text-[48px] font-Raleway text-[#0A2C8C] font-bold">
+                {currentSlide + 1}
+              </span>
+              <span className="text-[16px] font-bold text-[#94A3B8] font-Raleway">
+                /{totalSlides}
+              </span>
+            </div>
+            <div className="flex justify-center items-center lg:justify-start lg:items-start gap-6 py-4 ">
+              <div className="group text-center" onClick={() => goPrev()}>
+                <button className=" bg-[#FF9F711A]  group-hover:bg-[#FF693B] px-5 py-5 rounded-lg transition-all duration-300">
+                  <HiArrowLeft className="text-[#FF693B]  group-hover:text-[#fff] w-[24px] h-[24px]" />
+                </button>
+              </div>
+              <div className="group" onClick={() => goNext()}>
+                <button className=" bg-[#FF9F711A]  group-hover:bg-[#FF693B] px-5 py-5 rounded-lg transition-all duration-300">
+                  <HiArrowRight className="text-[#FF693B]  group-hover:text-[#fff] w-[24px] h-[24px]" />
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>

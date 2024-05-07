@@ -89,12 +89,12 @@ const PortfolioHomeItems = ({ portfolios, services }) => {
                           <Image
                             width={800}
                             height={262}
-                            className="w-full lg:w-[400px] h-[420px] object-cover rounded-l-lg rounded-r-lg rounded-b-none md:rounded-r-none   md:rounded-l-lg overflow-hidden border border-r-0 border-[#CBD5E1]"
+                            className="overflow-hidden w-full lg:w-[400px] h-[350px] md:h-[420px] border-b-0 object-cover   border-[#CBD5E1]  rounded-b-none rounded-r-none rounded-t-lg border lg:rounded-l-lg lg:rounded-r-none lg:rounded-l-0 lg:rounded-t lg:border-r-0 lg:border-b "
                             src={portfolio.image}
                             alt=""
                           />
                         </div>
-                        <div className="flex flex-col justify-center items-center p-3 md:py-0 2xl:px-10 border border-[#CBD5E1]   rounded-b-lg md:border-l-0 md:border md:rounded-r-lg md:rounded-l-none">
+                        <div className="flex flex-col justify-center items-center p-3 md:py-0 2xl:px-10  border border-t-0  border-[#CBD5E1]  md:border md:border-t-0 lg:border-t lg:border-l-0  rounded-b-lg  md:rounded-r-0 md:rounded-l-none lg:rounded-r-lg">
                           <div className="text-center">
                             <h4 className="text-[14px] text-[#999999] pt-3 pb-3 md:pt-0 md:pb-6 portfolio-textHover">
                               {portfolio.service_name[0].service_name}
@@ -106,7 +106,7 @@ const PortfolioHomeItems = ({ portfolios, services }) => {
                               {portfolio.text}
                             </p>
                           </div>
-                          <div className="group flex justify-center items-center gap-2 text-[#FF693B] font-bold mt-5 portfolio-textHover pb-6 lg:pb-0">
+                          <div className="group flex justify-center items-center gap-2 text-[#FF693B] font-bold mt-2 pb-2 md:mt-5 portfolio-textHover md:pb-6 lg:pb-0">
                             <button className="text-[14px]">Read More</button>
                             <span className="w-[19px] font-bold">
                               <HiArrowSmallRight className="text-xl " />
@@ -124,7 +124,7 @@ const PortfolioHomeItems = ({ portfolios, services }) => {
         <div className="flex justify-center py-10">
           <Link
             href={"/portfolio"}
-            className="text-[16px] bg-[#FF693B] px-10 py-3 text-white rounded-lg border border-[#FF693B]  hover:bg-white hover:text-[#FF693B] transition-all duration-300"
+            className="text-[16px] bg-[#FF693B] px-11 py-2.5 md:px-10 md:py-3 text-white rounded-lg border border-[#FF693B]  hover:bg-white hover:text-[#FF693B] transition-all duration-300"
           >
             View All Portfolio
           </Link>

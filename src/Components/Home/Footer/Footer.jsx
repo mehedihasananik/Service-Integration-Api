@@ -87,13 +87,7 @@ const Footer = async () => {
             <ul className="flex flex-col gap-2 pt-5 text-[16px] text-[#444444]  ">
               <li className="flex items-center gap-3">
                 <span>
-                  <Image
-                    width={20}
-                    height={20}
-                    className="w-[28px] h-[20px]"
-                    src="/assets/mail.svg"
-                    alt=""
-                  />
+                  <img src="/assets/Email.png" alt="" />
                 </span>
                 <span className="cursor-pointer hover:text-[#FF693B] transition-all duration-200">
                   {" "}

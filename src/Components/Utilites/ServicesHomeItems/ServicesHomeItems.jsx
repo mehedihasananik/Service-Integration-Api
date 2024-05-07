@@ -84,7 +84,7 @@ const ServicesHomeItems = ({ services: initialServices }) => {
 
   return (
     <div className="overflow-hidden">
-      <div className="hidden md:block max-w-[1680px] mx-auto px-[4%] md:px[8%]  xl:px-[6%]  4xl:px-[0] 4xl:max-w-[1920px] 3xl:pl-[14%] 4xl:pl-[14%] 6xl:pl-[12%]">
+      <div className="hidden xxl:block max-w-[1680px] mx-auto px-[4%] md:px[8%]  xl:px-[6%]  4xl:px-[0] 4xl:max-w-[1920px] 3xl:pl-[14%] 4xl:pl-[14%] 6xl:pl-[12%]">
         {/* services */}
         <div className="py-6 xl:pt-10 ">
           <div className="flex flex-col lg:flex-row items-center justify-between lg:gap-20 xl:gap-12 lg:py-8">

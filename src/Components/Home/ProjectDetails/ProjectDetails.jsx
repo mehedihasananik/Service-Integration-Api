@@ -133,7 +133,7 @@ const ProjectDetails = ({ userContact }) => {
           <div className="w-full md:w-[80%] lg:w-[40%] flex flex-col gap-10 md:pl-10 2xl:pl-0">
             <div className="flex  items-center gap-6 bg-[#FFFFFF] py-8  rounded-lg pl-5 lg:pl-5 lg:pr-14">
               <div className="bg-[#FFF5F1] p-4 rounded-lg">
-                <img src="/assets/mail.svg" alt="" />
+                <img src="/assets/email.png" alt="" />
               </div>
               <div>
                 <h3 className="text-[16px] text-[#94A3B8]">Email us</h3>

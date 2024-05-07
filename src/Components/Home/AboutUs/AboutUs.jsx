@@ -20,7 +20,7 @@ const AboutUs = async () => {
   const about = await getAboutUsContent();
 
   return (
-    <div className="py-10 overflow-hidden">
+    <div className="pb-5 md:pb-0 md:py-10 overflow-hidden">
       <Container>
         {/* about us content */}
         <div className="flex flex-col lg:flex-row   md:gap-[6%] 2xl:gap-[10%]">

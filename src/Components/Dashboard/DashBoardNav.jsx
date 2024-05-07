@@ -3,7 +3,7 @@ import { Dropdown } from "flowbite-react";
 import Link from "next/link";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import Notification from "../Utilites/Notificaiton/Notification";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 
 const DashBoardNav = () => {

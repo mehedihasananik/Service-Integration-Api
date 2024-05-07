@@ -76,10 +76,10 @@ const RelevantServices = () => {
           <div
             aria-label="Loading..."
             role="status"
-            ClassName="flex justify-center items-center space-x-2"
+            className="flex justify-center items-center space-x-2"
           >
             <svg
-              ClassName="h-24 w-32 animate-spin stroke-gray-500"
+              className="h-24 w-32 animate-spin stroke-gray-500"
               viewBox="0 0 256 256"
             >
               <line
@@ -155,7 +155,7 @@ const RelevantServices = () => {
                 strokeWidth="24"
               ></line>
             </svg>
-            <span ClassName="text-4xl font-medium text-gray-500">
+            <span className="text-4xl font-medium text-gray-500">
               Loading...
             </span>
           </div>
