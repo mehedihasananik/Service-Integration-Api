@@ -1,10 +1,10 @@
-import Signup from "@/Components/PagesComponents/SignUp/SignUp";
+import SignUpContent from "@/Components/PagesComponents/SignUpContent/SignUpContent";
 import React from "react";
 
 const SignupPage = () => {
   return (
     <div>
-      <Signup />
+      <SignUpContent />
     </div>
   );
 };
