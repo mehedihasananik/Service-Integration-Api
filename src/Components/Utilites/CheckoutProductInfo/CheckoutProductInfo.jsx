@@ -6,18 +6,18 @@ import { checkoutApi } from "@/config/apis";
 import Image from "next/image";
 
 const CheckoutProductInfo = ({ productInfo, setProductInfo }) => {
-  const storedItemId = sessionStorage.getItem("itemId");
-
-  const fetchingItemData = async () => {
-    const data = await fetchData(`${checkoutApi}`, "POST", {
-      sevice_package_id: storedItemId,
-    });
-    setProductInfo(data);
-  };
-  console.log(productInfo);
   useEffect(() => {
-    fetchingItemData();
-  }, []);
+    const storedItemId = window.sessionStorage.getItem("itemId");
+    if (storedItemId) {
+      const fetchingItemData = async () => {
+        const data = await fetchData(`${checkoutApi}`, "POST", {
+          sevice_package_id: storedItemId,
+        });
+        setProductInfo(data);
+      };
+      fetchingItemData();
+    }
+  }, [setProductInfo]);
 
   return (
     <div>

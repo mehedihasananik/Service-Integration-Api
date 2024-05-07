@@ -20,7 +20,7 @@ const Checkout = () => {
       document.body.removeChild(script);
     };
   }, []);
-  console.log(productInfo);
+  // console.log(productInfo);
 
   useEffect(() => {
     if (scriptLoaded) {
