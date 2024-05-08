@@ -13,6 +13,7 @@ const PortfolioHomeItems = ({ portfolios, services }) => {
   useEffect(() => {
     setLoading(false); // Assuming data is already passed as props, set loading to false
   }, []);
+  console.log(services);
 
   return (
     <div className="md:py-5 lg:pt-20">
@@ -31,37 +32,39 @@ const PortfolioHomeItems = ({ portfolios, services }) => {
           <div className="flex flex-col lg:flex-row gap-3 md:gap-10 text-[#9E9E9E] text-[16px] lg:text-[16px] ">
             <div className="hidden md:block">
               <div className="flex md:gap-10">
+                <button
+                  key={0}
+                  onClick={() => setSelectedServiceId(0)} // Set selectedServiceId to 0 for "All"
+                  className={`text-[#9E9E9E] hover:text-[#FA8D59] font-bold transition-all text-[16px] ${
+                    selectedServiceId === 0 && "text-[#FA8D59]" // Add a class to differentiate the active button
+                  }`}
+                >
+                  All
+                </button>
+
                 {services.map((service) => (
                   <button
-                    key={service.service_id}
-                    onClick={() => setSelectedServiceId(service.service_id)}
-                    className="text-[#9E9E9E] hover:text-[#FA8D59] font-bold  transition-all text-[16px]"
+                    key={service.category_id}
+                    onClick={() => setSelectedServiceId(service.category_id)}
+                    className={`text-[#9E9E9E] hover:text-[#FA8D59] font-bold transition-all text-[16px] ${
+                      selectedServiceId === service.category_id &&
+                      "text-[#FA8D59]" // Add a class to differentiate the active button
+                    }`}
                   >
-                    {service.service_name}
+                    {service.category_name}
                   </button>
                 ))}
               </div>
             </div>
             <div className="block md:hidden ">
               <div className="flex justify-center space-x-4 pb-4">
-                {services.slice(0, 3).map((service) => (
+                {services.map((service) => (
                   <button
-                    key={service.service_id}
-                    onClick={() => setSelectedServiceId(service.service_id)}
-                    className="text-[#9E9E9E] hover:text-[#FA8D59] font-bold  transition-all text-[14px] "
+                    key={service.category_id}
+                    onClick={() => setSelectedServiceId(service.category_id)}
+                    className="text-[#9E9E9E] hover:text-[#FA8D59] font-bold  transition-all text-[16px]"
                   >
-                    {service.service_name}
-                  </button>
-                ))}
-              </div>{" "}
-              <div className="flex justify-center space-x-4">
-                {services.slice(3, 6).map((service) => (
-                  <button
-                    key={service.service_id}
-                    onClick={() => setSelectedServiceId(service.service_id)}
-                    className="text-[#9E9E9E] hover:text-[#FA8D59] font-bold  transition-all text-[14px] "
-                  >
-                    {service.service_name}
+                    {service.category_name}
                   </button>
                 ))}
               </div>{" "}
