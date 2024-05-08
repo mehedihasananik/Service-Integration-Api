@@ -13,7 +13,7 @@ const PortfolioHomeItems = ({ portfolios, services }) => {
   useEffect(() => {
     setLoading(false); // Assuming data is already passed as props, set loading to false
   }, []);
-  console.log(services);
+  // console.log(services);
 
   return (
     <div className="md:py-5 lg:pt-20">
@@ -42,9 +42,9 @@ const PortfolioHomeItems = ({ portfolios, services }) => {
                   All
                 </button>
 
-                {services.map((service) => (
+                {services.map((service, index) => (
                   <button
-                    key={service.category_id}
+                    key={index}
                     onClick={() => setSelectedServiceId(service.category_id)}
                     className={`text-[#9E9E9E] hover:text-[#FA8D59] font-bold transition-all text-[16px] ${
                       selectedServiceId === service.category_id &&
@@ -58,9 +58,9 @@ const PortfolioHomeItems = ({ portfolios, services }) => {
             </div>
             <div className="block md:hidden ">
               <div className="flex justify-center space-x-4 pb-4">
-                {services.map((service) => (
+                {services.map((service, index) => (
                   <button
-                    key={service.category_id}
+                    key={index}
                     onClick={() => setSelectedServiceId(service.category_id)}
                     className="text-[#9E9E9E] hover:text-[#FA8D59] font-bold  transition-all text-[16px]"
                   >

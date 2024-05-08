@@ -62,7 +62,7 @@ const Header = () => {
     fetchHeaderContent();
   }, []);
   const logo = headers?.logo?.logo;
-  console.log(userData);
+  // console.log(userData);
 
   return (
     <div>
