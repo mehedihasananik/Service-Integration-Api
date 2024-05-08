@@ -8,12 +8,14 @@ import { useEffect, useState } from "react";
 const DashBoardContent = () => {
   const [projects, setProjects] = useState(null);
   const [userData, setUserData] = useState();
-
-  // console.log(userData);
+  const sessionData =
+    typeof window !== "undefined"
+      ? JSON.parse(sessionStorage.getItem("userData"))
+      : null;
 
   const fetchingData = async () => {
     const data = await fetchData(`${dashboardApis}`, "POST", {
-      user_id: userData?.id,
+      user_id: sessionData?.id,
     });
     setProjects(data);
   };
@@ -22,10 +24,7 @@ const DashBoardContent = () => {
     fetchingData();
   }, []);
 
-  useEffect(() => {
-    setUserData(JSON.parse(sessionStorage.getItem("userData")));
-  }, []);
-  console.log(userData);
+  console.log(projects);
 
   // // Check if token has expired
   // const isTokenExpired = () => {
@@ -58,7 +57,7 @@ const DashBoardContent = () => {
           {projects
             ?.slice()
             .reverse()
-            .map((project) => {
+            ?.map((project) => {
               const {
                 sevice_items,
                 order_price,

@@ -3,10 +3,10 @@ import { Tooltip } from "flowbite-react";
 import { IoCheckmarkSharp } from "react-icons/io5";
 import { FaRegClock } from "react-icons/fa6";
 import { BiRevision } from "react-icons/bi";
-import API_ROUTES from "@/app/api/confiq";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { AuthContext } from "@/providers/AuthProviders";
+import { serviceOrder } from "@/config/apis";
 
 const SinglePackage = ({ item, openModal, setOpenModal }) => {
   const router = useRouter();
@@ -28,7 +28,7 @@ const SinglePackage = ({ item, openModal, setOpenModal }) => {
     };
 
     try {
-      const response = await fetch(`${API_ROUTES.route}/service_order`, {
+      const response = await fetch(`${serviceOrder}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

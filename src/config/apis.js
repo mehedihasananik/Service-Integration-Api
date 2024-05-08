@@ -55,6 +55,8 @@ const singleRequirement = `${apiEndpoint}/service_requirements`;
 
 // checkout api
 const checkoutApi = `${apiEndpoint}/checkout`;
+// service order
+const serviceOrder = `${apiEndpoint}/service_order`;
 
 export {
   headerApi,
@@ -86,4 +88,5 @@ export {
   manageOrderApi,
   singleRequirement,
   checkoutApi,
+  serviceOrder,
 };
