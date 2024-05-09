@@ -9,6 +9,7 @@ import { IoMdMore } from "react-icons/io";
 
 const MessageContent = () => {
   const fileInputRef = useRef(null);
+  0;
 
   const handleButtonClick = () => {
     if (fileInputRef.current) {
@@ -77,126 +78,9 @@ const MessageContent = () => {
               </div>
             </div>
             {/* 2nd chatting */}
-            <div className="flex space-x-4">
-              <div>
-                <img src="/assets/msgAvater2.png" alt="" />
-              </div>
-              <div>
-                <div className="flex space-x-4">
-                  <h3>Rozey Rayin</h3>{" "}
-                  <span className="text-[#7B7B7B font-Raleway text-[12px]">
-                    Dec 13, 10.40 am
-                  </span>
-                </div>
-                <p className="text-[14px] font-Raleway font-[600] text-[#666666]">
-                  I&apos;d like to design UI for my corporate website, it’s has
-                  the following pages: Homepage, About Us, Product, Terms &
-                  Condition and Contact us.
-                </p>
-              </div>
-            </div>
-            {/* 3rd chatting */}
-            <div className="flex space-x-4">
-              <div>
-                <Image
-                  width={100}
-                  height={100}
-                  className="w-[40px] h-[40px]"
-                  src="/assets/msgAvater.png"
-                  alt=""
-                />
-              </div>
-              <div>
-                <div className="flex space-x-4">
-                  <h3>Rozey Rayin</h3>{" "}
-                  <span className="text-[#7B7B7B font-Raleway text-[12px]">
-                    Dec 13, 10.40 am
-                  </span>
-                </div>
-                <p className="text-[14px] font-Raleway font-[600] text-[#666666]">
-                  Nice to meet you. Please send me your details.
-                </p>
-              </div>
-            </div>
           </div>
           {/* custom order */}
           {/* custom title */}
-          <div className="px-5  lg:px-20 pb-3 bg-[#FFFFFF">
-            <h3 className="text-[14px] font-Raleway font-[600] text-[#0A2C8C]">
-              Here&apos;s your custom offer
-            </h3>
-          </div>
-          {/* custom box */}
-          <div className="border border-[#E2E2E2]   py-5 rounded-md pb-0 bg-[#FFFFFF">
-            <div className="px-5 lg:px-20">
-              {/* title */}
-              <div className="flex justify-between">
-                <div>
-                  <h3 className="text-[16px] font-Raleway font-[600] text-[#333333]">
-                    We will design 5 pages website UI for your corporate
-                    business.
-                  </h3>
-                </div>
-                <div>
-                  <h3 className="text-[text-16px] font-600 text-[#2F83E4]">
-                    $200 USD
-                  </h3>
-                </div>
-              </div>
-              <hr className="my-4" />
-              {/* description */}
-              <div>
-                <p className="text-[#666666] text-[14px] pb-4">
-                  Lorem ipsum dolor sit amet consectetur. Nulla sed eu quam
-                  congue orci enim. Scelerisque molestie aliquam ac mauris ipsum
-                  venenatis egestas. Scelerisque molestie aliquam ac mauris
-                  ipsum venenatis egestas.{" "}
-                </p>
-              </div>
-              {/* delivery details & title */}
-            </div>
-            <div className="flex items-center justify-between w-full bg-[#F1F8FC] lg:px-20 ">
-              <div className="flex gap-8">
-                <div className="bg-[#F1F8FC] flex gap-1 items-center py-4 text-[14px] font-Raleway font-[700]">
-                  <span>
-                    <BiRevision className="text-[20px] text-[#0A2C8C]" />
-                  </span>{" "}
-                  <span>1 Revision</span>
-                </div>
-                <div className="bg-[#F1F8FC] flex items-center py-4 text-[14px] font-Raleway font-[700] gap-1">
-                  <span>
-                    <MdOutlineAccessTimeFilled className="text-[20px] text-[#0A2C8C]" />
-                  </span>{" "}
-                  <span>Day Delivery</span>
-                </div>
-              </div>
-              <div className="space-x-7">
-                <button className="text-[#000] text-[14px] w-[600] bg-[#B0B0B0] hover:shadow-xl  rounded-[4px] px-5 py-1.5 font-[600] transition-all duration-300">
-                  Cancel
-                </button>
-                <button className="text-[#FFF] text-[14px] w-[600] bg-[#FF693B] hover:shadow-xl rounded-[4px] px-5 py-1.5 font-[600]">
-                  Accept
-                </button>
-              </div>
-            </div>
-          </div>
-          {/* ffth batch */}
-          <div className="px-6 mt-4 flex space-x-4">
-            <div>
-              <img src="/assets/msgAvater2.png" alt="" />
-            </div>
-            <div>
-              <div className="flex space-x-4">
-                <h3>Rozey Rayin</h3>{" "}
-                <span className="text-[#7B7B7B font-Raleway text-[12px]">
-                  Dec 13, 10.40 am
-                </span>
-              </div>
-              <p className="text-[14px] font-Raleway font-[600] text-[#666666]">
-                Thank for sending the offer.
-              </p>
-            </div>
-          </div>
         </div>
         {/* sending message input */}
         <div className="bg-[#FFFFFF lg:pt-[10%] pb-8 flex w-full items-center gap-5 px-10 ">
