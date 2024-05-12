@@ -33,6 +33,8 @@ const AboutUs = async () => {
               className="w-[650px]"
               src={about.image}
               alt="about-img"
+              blurDataURL={about.image}
+              placeholder="blur"
             />
           </div>
           {/* right side counters */}
