@@ -66,7 +66,8 @@ const Banner = async () => {
               src={banner.banner}
               quality={100}
               alt="banner image"
-              priority={false}
+              blurDataURL={banner.banner}
+              placeholder="blur"
             />
           </div>
         </div>

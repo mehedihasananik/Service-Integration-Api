@@ -1,13 +1,16 @@
+"use client";
 import React, { useState, useEffect, useRef } from "react";
 import ReactImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 import { IoMdClose } from "react-icons/io";
+import Loading from "../Loading/Loading";
 
 const OrderSliderLg = ({ sliders }) => {
   const galleryRef = useRef();
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [imageHeight, setImageHeight] = useState(null);
   const [images, setImages] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     // Map the slider data to the required format
@@ -27,22 +30,24 @@ const OrderSliderLg = ({ sliders }) => {
     return () => {
       document.removeEventListener("fullscreenchange", handleFullscreenChange);
     };
-  }, [images]);
+  }, []);
 
   useEffect(() => {
     const handleResize = () => {
-      const currentIndex = galleryRef.current.getCurrentIndex();
-      const currentImage = images[currentIndex];
+      if (galleryRef.current) {
+        const currentIndex = galleryRef.current.getCurrentIndex();
+        const currentImage = images[currentIndex];
 
-      if (currentImage) {
-        // Check if currentImage is defined
-        const img = new Image();
-        img.src = currentImage.original;
+        if (currentImage) {
+          // Check if currentImage is defined
+          const img = new Image();
+          img.src = currentImage.original;
 
-        img.onload = () => {
-          const naturalHeight = img.naturalHeight;
-          setImageHeight(naturalHeight);
-        };
+          img.onload = () => {
+            const naturalHeight = img.naturalHeight;
+            setImageHeight(naturalHeight);
+          };
+        }
       }
     };
 
@@ -52,6 +57,25 @@ const OrderSliderLg = ({ sliders }) => {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
+  }, [images]);
+
+  useEffect(() => {
+    // Check if all images are loaded
+    const loadedImages = images.map((image) => {
+      const img = new Image();
+      img.src = image.original;
+      return new Promise((resolve) => {
+        img.onload = resolve;
+      });
+    });
+
+    Promise.all(loadedImages)
+      .then(() => {
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error loading images:", error);
+      });
   }, [images]);
 
   const handleImageClick = () => {
@@ -133,7 +157,9 @@ const OrderSliderLg = ({ sliders }) => {
 
   return (
     <div className="hidden md:block bg-[#FCFCFC] md:p-8 rounded-[10px]">
-      <div>
+      {isLoading ? (
+        <Loading />
+      ) : (
         <ReactImageGallery
           ref={galleryRef}
           items={images}
@@ -154,7 +180,7 @@ const OrderSliderLg = ({ sliders }) => {
           renderItem={(item) => renderItem(item)} // Use a callback function to pass item
           onClick={handleImageClick}
         />
-      </div>
+      )}
     </div>
   );
 };

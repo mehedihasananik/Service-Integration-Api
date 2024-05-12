@@ -1,1 +1,1 @@
-export const apiEndpoint = "https://admin.envobyte.com/api";
+export const apiEndpoint = "http://192.168.10.14:8000/api";

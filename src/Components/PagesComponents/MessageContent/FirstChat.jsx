@@ -6,6 +6,9 @@ import { CiFaceSmile } from "react-icons/ci";
 import Loading from "@/Components/Utilites/Loading/Loading";
 import { IoMdMore } from "react-icons/io";
 import io from "socket.io-client";
+import data from "@emoji-mart/data";
+import Picker from "@emoji-mart/react";
+import Todos from "./Emoji/Todos";
 
 const SOCKET_URL_ONE = "https://admin.envobyte.com/";
 const socket = io(SOCKET_URL_ONE);
@@ -19,6 +22,24 @@ const FirstChat = ({
 }) => {
   const lastMessageRef = useRef(null);
   const [autoScrolled, setAutoScrolled] = useState(false);
+  const [showEmoji, setShowEmoji] = useState(false);
+  const [text, setText] = useState("");
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [showPaperclip, setShowPaperclip] = useState(true);
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    setSelectedFile(file);
+  };
+
+  const addEmoji = (e) => {
+    const sym = e.unified.split("_");
+    const codeArray = [];
+    sym.forEach((el) => codeArray.push("0x" + el));
+    let emoji = String.fromCodePoint(...codeArray);
+    setInputtedMessage(inputtedMessage + emoji); // Update inputtedMessage with the selected emoji
+    setText(inputtedMessage + emoji); // Update text state as well if needed
+  };
 
   useEffect(() => {
     if (!autoScrolled && lastMessageRef.current) {
@@ -47,8 +68,16 @@ const FirstChat = ({
   };
   console.log(messageHistory);
 
+  const handleSendButtonClick = () => {
+    setShowPaperclip(!selectedFile);
+    if (!selectedFile) {
+      sendMessageToAPI(inputtedMessage);
+      setInputtedMessage(""); // Clear the input field after sending the message
+    }
+  };
+
   return (
-    <div className="bg-[#FCFCFC]">
+    <div className="bg-[#FCFCFC] overflow-y-auto h-full relative">
       <div>
         <div className="flex justify-between items-center px-4 bg-[#FFFFFF] my-5  rounded-lg  ">
           <div className="flex gap-x-3 ">
@@ -118,7 +147,7 @@ const FirstChat = ({
                         {formattedDate}
                       </span>
                     </div>
-                    <p className="text-[14px] font-Raleway font-[500] text-[#666666]">
+                    <p className="text-[14px] pr-[4%] text-justify font-Raleway font-[500] text-[#666666]">
                       <span> {msg.message}</span>
                     </p>
                   </div>
@@ -137,7 +166,12 @@ const FirstChat = ({
                   type="text"
                   placeholder="Write a message..."
                   value={inputtedMessage}
-                  onChange={(e) => setInputtedMessage(e.target.value)}
+                  onChange={(e) => {
+                    setInputtedMessage(e.target.value);
+                    // Add your additional onChange functionality here
+                    // For example:
+                    setText(e.target.value);
+                  }}
                   onKeyDown={(e) => {
                     if (e.key === "Enter") {
                       e.preventDefault(); // Prevent default form submission behavior
@@ -148,14 +182,24 @@ const FirstChat = ({
                 />
                 {/* Attachment and Emoji icons */}
                 <div className="flex gap-2 absolute right-3 top-[13px]">
-                  <button>
-                    <GoPaperclip className="text-[20px]" />
-                  </button>
-                  <button>
+                  <label htmlFor="file-upload" className="cursor-pointer">
+                    {selectedFile ? (
+                      <span>{selectedFile.name}</span>
+                    ) : (
+                      <span>
+                        <GoPaperclip className="text-[20px]" />
+                      </span>
+                    )}
+                  </label>
+                  <input
+                    id="file-upload"
+                    type="file"
+                    style={{ display: "none" }}
+                    onChange={handleFileChange}
+                  />
+                  <button onClick={() => setShowEmoji(!showEmoji)}>
                     <CiFaceSmile className="text-[20px]" />
                   </button>
-                  {/* File upload input (hidden) */}
-                  <input type="file" style={{ display: "none" }} />
                 </div>
               </div>
               {/* Send button */}
@@ -163,7 +207,8 @@ const FirstChat = ({
                 <button
                   onClick={() => {
                     sendMessageToAPI(inputtedMessage);
-                    setInputtedMessage(""); // Clear the input field after sending the message
+                    setInputtedMessage("");
+                    setSelectedFile(""); // Clear the input field after sending the message
                   }}
                   className="w-full font-[600] bg-[#FF693B] border border-[#FF693B] text-white hover:text-[#FF693B] hover:bg-[#ffff] transition-all duration-200  text-[16px]  mx-[10%] py-2.5 rounded-[4px]"
                 >
@@ -173,6 +218,17 @@ const FirstChat = ({
             </div>
           )}
         </div>
+        {showEmoji && (
+          <div className="md:px-14">
+            <Picker
+              data={data}
+              emojiSize={20}
+              emojiButtonSize={28}
+              onEmojiSelect={addEmoji}
+              maxFrequentRows={0}
+            />
+          </div>
+        )}
       </div>
     </div>
   );
