@@ -1,4 +1,6 @@
+"use client";
 import DashBoardOrder from "@/Components/PagesComponents/DashBoardOrder/DashBoardOrder";
+import IsAuth from "@/Components/isAuth/isAuth";
 import React from "react";
 
 const DashBoardOrderPage = () => {
@@ -9,4 +11,4 @@ const DashBoardOrderPage = () => {
   );
 };
 
-export default DashBoardOrderPage;
+export default IsAuth(DashBoardOrderPage);

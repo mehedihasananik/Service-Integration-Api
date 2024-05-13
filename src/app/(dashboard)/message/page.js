@@ -1,4 +1,6 @@
+"use client";
 import MessageContent from "@/Components/PagesComponents/MessageContent/MessageContent";
+import IsAuth from "@/Components/isAuth/isAuth";
 import React from "react";
 
 const MessagePage = () => {
@@ -9,4 +11,4 @@ const MessagePage = () => {
   );
 };
 
-export default MessagePage;
+export default IsAuth(MessagePage);

@@ -1,4 +1,6 @@
+"use client";
 import Profile from "@/Components/Profile/Profile";
+import IsAuth from "@/Components/isAuth/isAuth";
 import React from "react";
 
 const ProfilePage = () => {
@@ -9,4 +11,4 @@ const ProfilePage = () => {
   );
 };
 
-export default ProfilePage;
+export default IsAuth(ProfilePage);

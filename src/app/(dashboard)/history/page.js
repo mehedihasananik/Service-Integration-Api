@@ -1,4 +1,6 @@
+"use client";
 import HistoryContent from "@/Components/PagesComponents/HistoryContent/HistoryContent";
+import IsAuth from "@/Components/isAuth/isAuth";
 
 const DashboardPage = () => {
   return (
@@ -8,4 +10,4 @@ const DashboardPage = () => {
   );
 };
 
-export default DashboardPage;
+export default IsAuth(DashboardPage);

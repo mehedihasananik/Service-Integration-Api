@@ -1,4 +1,6 @@
+"use client";
 import ManageOrder from "@/Components/PagesComponents/ManageOrder/ManageOrder";
+import IsAuth from "@/Components/isAuth/isAuth";
 import React from "react";
 
 const ManageOrderPage = () => {
@@ -9,4 +11,4 @@ const ManageOrderPage = () => {
   );
 };
 
-export default ManageOrderPage;
+export default IsAuth(ManageOrderPage);
