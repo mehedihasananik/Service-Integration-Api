@@ -1,24 +1,31 @@
 "use client";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { IoCheckmarkSharp } from "react-icons/io5";
 import { fetchData } from "@/config/apiRequests.js";
 import { checkoutApi } from "@/config/apis";
 import Image from "next/image";
 
 const CheckoutProductInfo = ({ productInfo, setProductInfo }) => {
+  const [userData, setUserData] = useState();
+
   useEffect(() => {
     const storedItemId = window.sessionStorage.getItem("itemId");
     if (storedItemId) {
       const fetchingItemData = async () => {
         const data = await fetchData(`${checkoutApi}`, "POST", {
           sevice_package_id: storedItemId,
+          user_info: storedItemId,
         });
         setProductInfo(data);
+        console.log(data);
       };
       fetchingItemData();
     }
   }, [setProductInfo]);
-  console.log(productInfo);
+
+  useEffect(() => {
+    setUserData(JSON.parse(sessionStorage.getItem("userData")));
+  }, []);
 
   return (
     <div>

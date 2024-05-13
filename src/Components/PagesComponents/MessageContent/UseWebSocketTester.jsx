@@ -11,6 +11,7 @@ const UseSocketIOTester = () => {
   const [messageHistory, setMessageHistory] = useState([]);
   const [inputtedMessage, setInputtedMessage] = useState("");
   const [loading, setLoading] = useState(true);
+  const [selectedFile, setSelectedFile] = useState(null);
 
   useEffect(() => {
     socket.on("message", (data) => {
@@ -35,6 +36,10 @@ const UseSocketIOTester = () => {
       formData.append("sender_id", 1);
       formData.append("receiver_id", 18);
       formData.append("message", message);
+      if (selectedFile) {
+        // Check if selectedFile exists
+        formData.append("attachment", selectedFile); // Append selectedFile
+      }
       const response = await fetch("http://192.168.10.16:8000/api/save/chat", {
         method: "POST",
         body: formData,
@@ -87,6 +92,8 @@ const UseSocketIOTester = () => {
         setInputtedMessage={setInputtedMessage}
         sendMessageToAPI={sendMessageToAPI}
         loading={loading}
+        setSelectedFile={setSelectedFile}
+        selectedFile={selectedFile}
       />
     </div>
   );

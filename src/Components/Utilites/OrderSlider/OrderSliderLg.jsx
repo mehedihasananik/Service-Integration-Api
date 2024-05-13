@@ -165,7 +165,7 @@ const OrderSliderLg = ({ sliders }) => {
           items={images}
           showPlayButton={true}
           showFullscreenButton={true}
-          slideDuration={300}
+          slideDuration={500}
           slideOnThumbnailOver={true}
           thumbnailWidth={100}
           thumbnailHeight={100}

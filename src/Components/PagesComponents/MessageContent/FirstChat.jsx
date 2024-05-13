@@ -19,12 +19,14 @@ const FirstChat = ({
   setInputtedMessage,
   sendMessageToAPI,
   loading,
+  setSelectedFile,
+  selectedFile,
 }) => {
   const lastMessageRef = useRef(null);
   const [autoScrolled, setAutoScrolled] = useState(false);
   const [showEmoji, setShowEmoji] = useState(false);
   const [text, setText] = useState("");
-  const [selectedFile, setSelectedFile] = useState(null);
+
   const [showPaperclip, setShowPaperclip] = useState(true);
 
   const handleFileChange = (event) => {
@@ -75,6 +77,10 @@ const FirstChat = ({
       setInputtedMessage(""); // Clear the input field after sending the message
     }
   };
+  function isImage(fileUrl) {
+    const imageExtensions = [".jpg", ".jpeg", ".png", ".gif"];
+    return imageExtensions.some((ext) => fileUrl.toLowerCase().endsWith(ext));
+  }
 
   return (
     <div className="bg-[#FCFCFC] overflow-y-auto h-full relative">
@@ -150,6 +156,26 @@ const FirstChat = ({
                     <p className="text-[14px] pr-[4%] text-justify font-Raleway font-[500] text-[#666666]">
                       <span> {msg.message}</span>
                     </p>
+                    {msg?.attachment && (
+                      <div className="my-5">
+                        {isImage(msg.attachment) ? (
+                          <Image
+                            width={200}
+                            height={200}
+                            alt=""
+                            src={msg.attachment}
+                          />
+                        ) : (
+                          <a
+                            href={msg.attachment}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            Download Attachment
+                          </a>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -176,7 +202,8 @@ const FirstChat = ({
                     if (e.key === "Enter") {
                       e.preventDefault(); // Prevent default form submission behavior
                       sendMessageToAPI(inputtedMessage); // Send message on Enter key press
-                      setInputtedMessage(""); // Clear input field after sending message
+                      setInputtedMessage("");
+                      setSelectedFile(""); // Clear input field after sending message
                     }
                   }}
                 />
@@ -196,6 +223,7 @@ const FirstChat = ({
                     type="file"
                     style={{ display: "none" }}
                     onChange={handleFileChange}
+                    accept=".jpg, .jpeg, .png, .gif, .pdf, .xlsx, .xls, .txt, .zip, .docx, .rtf, .ppt" // Add accept attribute
                   />
                   <button onClick={() => setShowEmoji(!showEmoji)}>
                     <CiFaceSmile className="text-[20px]" />
@@ -208,6 +236,7 @@ const FirstChat = ({
                   onClick={() => {
                     sendMessageToAPI(inputtedMessage);
                     setInputtedMessage("");
+                    handleSendButtonClick(); // Call handleSendButtonClick function
                     setSelectedFile(""); // Clear the input field after sending the message
                   }}
                   className="w-full font-[600] bg-[#FF693B] border border-[#FF693B] text-white hover:text-[#FF693B] hover:bg-[#ffff] transition-all duration-200  text-[16px]  mx-[10%] py-2.5 rounded-[4px]"
