@@ -54,7 +54,7 @@ const manageOrderApi = `${apiEndpoint}/manage_order`;
 const singleRequirement = `${apiEndpoint}/service_requirements`;
 
 // checkout api
-const checkoutApi = `${apiEndpoint}/checkout`;
+const checkoutApi = `http://192.168.10.16:8000/api/checkout`;
 // service order
 const serviceOrder = `${apiEndpoint}/service_order`;
 

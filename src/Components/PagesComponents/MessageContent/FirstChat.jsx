@@ -9,6 +9,7 @@ import io from "socket.io-client";
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
 import Todos from "./Emoji/Todos";
+import Link from "next/link";
 
 const SOCKET_URL_ONE = "https://admin.envobyte.com/";
 const socket = io(SOCKET_URL_ONE);
@@ -26,6 +27,7 @@ const FirstChat = ({
   const [autoScrolled, setAutoScrolled] = useState(false);
   const [showEmoji, setShowEmoji] = useState(false);
   const [text, setText] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   const [showPaperclip, setShowPaperclip] = useState(true);
 
@@ -41,6 +43,9 @@ const FirstChat = ({
     let emoji = String.fromCodePoint(...codeArray);
     setInputtedMessage(inputtedMessage + emoji); // Update inputtedMessage with the selected emoji
     setText(inputtedMessage + emoji); // Update text state as well if needed
+  };
+  const handleImageLoaded = () => {
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -84,9 +89,9 @@ const FirstChat = ({
 
   return (
     <div className="bg-[#FCFCFC] overflow-y-auto h-full relative">
-      <div>
-        <div className="flex justify-between items-center px-4 bg-[#FFFFFF] my-5  rounded-lg  ">
-          <div className="flex gap-x-3 ">
+      <div className="bg-[#FCFCFC]">
+        <div className="flex justify-between items-center mx-4 bg-[#FFFFFF] my-5  rounded-lg  ">
+          <div className="flex gap-x-3 bg-[#FFFFFF]">
             <div>
               {" "}
               <Image
@@ -112,6 +117,7 @@ const FirstChat = ({
         </div>
         <div className="bg-[#fff] px-4">
           {messageHistory.map((msg, index) => {
+            console.log(msg);
             const senderName = msg.sender_id === 1 ? "User" : "Admin";
             const updatedAt = parseDate(msg.updated_at);
             const formattedDate = new Intl.DateTimeFormat("en-US", {
@@ -158,12 +164,14 @@ const FirstChat = ({
                     </p>
                     {msg?.attachment && (
                       <div className="my-5">
-                        {isImage(msg.attachment) ? (
+                        {isLoading && <p>Loading...</p>}
+                        {isImage(msg?.attachment) ? (
                           <Image
                             width={200}
                             height={200}
                             alt=""
                             src={msg.attachment}
+                            onLoad={handleImageLoaded}
                           />
                         ) : (
                           <a

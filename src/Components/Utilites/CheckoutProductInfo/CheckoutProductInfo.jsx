@@ -9,22 +9,22 @@ const CheckoutProductInfo = ({ productInfo, setProductInfo }) => {
   const [userData, setUserData] = useState();
 
   useEffect(() => {
+    setUserData(JSON.parse(sessionStorage.getItem("userData")));
+  }, []);
+
+  useEffect(() => {
     const storedItemId = window.sessionStorage.getItem("itemId");
     if (storedItemId) {
       const fetchingItemData = async () => {
         const data = await fetchData(`${checkoutApi}`, "POST", {
           sevice_package_id: storedItemId,
-          user_info: storedItemId,
+          user_id: userData?.id,
         });
         setProductInfo(data);
         console.log(data);
       };
       fetchingItemData();
     }
-  }, [setProductInfo]);
-
-  useEffect(() => {
-    setUserData(JSON.parse(sessionStorage.getItem("userData")));
   }, []);
 
   return (
@@ -36,7 +36,7 @@ const CheckoutProductInfo = ({ productInfo, setProductInfo }) => {
             <div className="space-y-5">
               <Image
                 className="w-[100%] h-[200px]"
-                src={`http://192.168.10.14:8000/images/${productInfo?.service_item?.[0]?.image}`}
+                src={`/${productInfo?.service_item?.[0]?.image}`}
                 width={500}
                 height={200}
               />

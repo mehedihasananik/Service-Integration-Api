@@ -5,7 +5,7 @@ import React from "react";
 
 const Chat = () => {
   return (
-    <div className="px-[2%]">
+    <div className="px-[2%] bg-[#FCFCFC]">
       <UseWebSocketTester />
     </div>
   );

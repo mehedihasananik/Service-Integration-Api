@@ -26,12 +26,12 @@ const PortfolioDetails = ({ singlePortfolioItem }) => {
                 </div>
                 <div className="w-[100%]">
                   <Image
-                    className=" md:w-full md:h-[75vh] rounded-md"
+                    className="md:w-full md:h-[75vh] rounded-md"
                     alt="image"
                     width={500}
                     height={500}
                     src={portfolio?.image}
-                    blurDataURL={portfolio?.image}
+                    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8////fwAJwAPutrYTTgAAAABJRU5ErkJggg=="
                     placeholder="blur"
                   />
                 </div>
