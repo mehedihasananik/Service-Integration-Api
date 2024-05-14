@@ -16,12 +16,12 @@ const PortfolioDetails = ({ singlePortfolioItem }) => {
                 {/* title */}
                 <div className="text-center pb-3 lg:pb-5  md:pt-0">
                   <h1 className=" text-[20px] md:text-[30px] lg:text-[54px] font-Raleway font-bold lg:leading-[63.4px] text-[#000000] ">
-                    {portfolio?.title}
+                    {title}
                   </h1>
                 </div>
                 <div>
                   <p className="text-[18px] text-justify font-Roboto text-[#333333] md:leading-[27px] md:text-left py-3 md:pt-0 md:py-5">
-                    {portfolio?.details}
+                    {details}
                   </p>
                 </div>
                 <div className="w-[100%]">
@@ -30,14 +30,14 @@ const PortfolioDetails = ({ singlePortfolioItem }) => {
                     alt="image"
                     width={500}
                     height={500}
-                    src={portfolio?.image}
+                    src={image}
                     blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8////fwAJwAPutrYTTgAAAABJRU5ErkJggg=="
                     placeholder="blur"
                   />
                 </div>
                 <div className="text-center py-4 md:pt-5 md:py-0">
                   <h3 className="text-gray-500 text-[18px] md:text-[20px]  font-Raleway font-semibold">
-                    {portfolio?.caption_text}
+                    {caption_text}
                   </h3>
                 </div>
               </div>
