@@ -5,27 +5,29 @@ import { fetchData } from "@/config/apiRequests.js";
 import { checkoutApi } from "@/config/apis";
 import Image from "next/image";
 
+const userDataString =
+  typeof window !== "undefined"
+    ? window.sessionStorage.getItem("userData")
+    : null;
+const userData = userDataString ? JSON.parse(userDataString) : null;
+
 const CheckoutProductInfo = ({ productInfo, setProductInfo }) => {
-  const [userData, setUserData] = useState();
+  const storedItemId =
+    typeof window !== "undefined"
+      ? window.sessionStorage.getItem("itemId")
+      : null;
 
-  useEffect(() => {
-    setUserData(JSON.parse(sessionStorage.getItem("userData")));
-  }, []);
-
-  useEffect(() => {
-    const storedItemId = window.sessionStorage.getItem("itemId");
-    if (storedItemId) {
-      const fetchingItemData = async () => {
-        const data = await fetchData(`${checkoutApi}`, "POST", {
-          sevice_package_id: storedItemId,
-          user_id: userData?.id,
-        });
-        setProductInfo(data);
-        console.log(data);
-      };
-      fetchingItemData();
-    }
-  }, []);
+  if (storedItemId) {
+    const fetchingItemData = async () => {
+      const data = await fetchData(`${checkoutApi}`, "POST", {
+        sevice_package_id: storedItemId,
+        user_id: userData?.id,
+      });
+      setProductInfo(data);
+      console.log(data);
+    };
+    fetchingItemData();
+  }
 
   return (
     <div>

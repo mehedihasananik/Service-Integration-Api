@@ -8,8 +8,6 @@ import { IoMdMore } from "react-icons/io";
 import io from "socket.io-client";
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
-import Todos from "./Emoji/Todos";
-import Link from "next/link";
 
 const SOCKET_URL_ONE = "https://admin.envobyte.com/";
 const socket = io(SOCKET_URL_ONE);
@@ -88,8 +86,8 @@ const FirstChat = ({
   }
 
   return (
-    <div className="bg-[#FCFCFC] overflow-y-auto h-full relative">
-      <div className="bg-[#FCFCFC]">
+    <div className="bg-[#FCFCFC] h-screen flex flex-col relative">
+      <div className="bg-[#FCFCFC] flex-grow overflow-y-auto">
         <div className="flex justify-between items-center mx-4 bg-[#FFFFFF] my-5  rounded-lg  ">
           <div className="flex gap-x-3 bg-[#FFFFFF]">
             <div>
@@ -116,84 +114,86 @@ const FirstChat = ({
           </div>
         </div>
         <div className="bg-[#fff] px-4">
-          {messageHistory.map((msg, index) => {
-            console.log(msg);
-            const senderName = msg.sender_id === 1 ? "User" : "Admin";
-            const updatedAt = parseDate(msg.updated_at);
-            const formattedDate = new Intl.DateTimeFormat("en-US", {
-              month: "short",
-              day: "2-digit",
-              hour: "numeric",
-              minute: "2-digit",
-              hour12: true,
-            }).format(updatedAt);
+          <div className="mb-[8%]">
+            {messageHistory.map((msg, index) => {
+              console.log(msg);
+              const senderName = msg.sender_id === 1 ? "User" : "Admin";
+              const updatedAt = parseDate(msg.updated_at);
+              const formattedDate = new Intl.DateTimeFormat("en-US", {
+                month: "short",
+                day: "2-digit",
+                hour: "numeric",
+                minute: "2-digit",
+                hour12: true,
+              }).format(updatedAt);
 
-            return (
-              <div
-                key={index}
-                className="flex flex-col"
-                ref={
-                  index === messageHistory.length - 1 ? lastMessageRef : null
-                }
-              >
-                <div className="flex gap-x-3 py-3">
-                  <div className="w-[40px]">
-                    <Image
-                      width={100}
-                      height={100}
-                      className="w-[40px] h-[40px]"
-                      src={
-                        senderName === "Admin"
-                          ? "/assets/msgAvater.png"
-                          : "/assets/msgAvater2.png"
-                      }
-                      alt=""
-                    />
-                  </div>
-                  <div className="w-[100%]">
-                    <div className="flex space-x-4">
-                      <h3 className="text-[14px] font-Raleway font-[600] text-[#333333] ">
-                        <span>{senderName}</span>
-                      </h3>{" "}
-                      <span className="text-[#7B7B7B font-Raleway text-[12px]">
-                        {formattedDate}
-                      </span>
+              return (
+                <div
+                  key={index}
+                  className="flex flex-col"
+                  ref={
+                    index === messageHistory.length - 1 ? lastMessageRef : null
+                  }
+                >
+                  <div className="flex gap-x-3 py-3">
+                    <div className="w-[40px]">
+                      <Image
+                        width={100}
+                        height={100}
+                        className="w-[40px] h-[40px]"
+                        src={
+                          senderName === "Admin"
+                            ? "/assets/msgAvater.png"
+                            : "/assets/msgAvater2.png"
+                        }
+                        alt=""
+                      />
                     </div>
-                    <p className="text-[14px] pr-[4%] text-justify font-Raleway font-[500] text-[#666666]">
-                      <span> {msg.message}</span>
-                    </p>
-                    {msg?.attachment && (
-                      <div className="my-5">
-                        {isLoading && <p>Loading...</p>}
-                        {isImage(msg?.attachment) ? (
-                          <Image
-                            width={200}
-                            height={200}
-                            alt=""
-                            src={msg.attachment}
-                            onLoad={handleImageLoaded}
-                          />
-                        ) : (
-                          <a
-                            href={msg.attachment}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            Download Attachment
-                          </a>
-                        )}
+                    <div className="w-[100%]">
+                      <div className="flex space-x-4">
+                        <h3 className="text-[14px] font-Raleway font-[600] text-[#333333] ">
+                          <span>{senderName}</span>
+                        </h3>{" "}
+                        <span className="text-[#7B7B7B font-Raleway text-[12px]">
+                          {formattedDate}
+                        </span>
                       </div>
-                    )}
+                      <p className="text-[14px] pr-[4%] text-justify font-Raleway font-[500] text-[#666666]">
+                        <span> {msg.message}</span>
+                      </p>
+                      {msg?.attachment && (
+                        <div className="my-5">
+                          {isLoading && <p>Loading...</p>}
+                          {isImage(msg?.attachment) ? (
+                            <Image
+                              width={200}
+                              height={200}
+                              alt=""
+                              src={msg.attachment}
+                              onLoad={handleImageLoaded}
+                            />
+                          ) : (
+                            <a
+                              href={msg.attachment}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              Download Attachment
+                            </a>
+                          )}
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
           {/* Loading indicator */}
           {loading ? (
             <Loading />
           ) : (
-            <div className="bg-[#FFFFFF  pb-8 flex w-full items-center gap-5 px-10 ">
+            <div className="bg-[#FFFFFF  pb-8 flex w-[85%] items-center gap-5 px-10  fixed left-[14%] bottom-0">
               <div className="w-[90%] relative">
                 <input
                   className="w-full border border-[#E2E2E2] rounded-md py-2.5 px-4"
@@ -239,7 +239,7 @@ const FirstChat = ({
                 </div>
               </div>
               {/* Send button */}
-              <div className="w-[10%]">
+              <div className="w-[8%]  ">
                 <button
                   onClick={() => {
                     sendMessageToAPI(inputtedMessage);
