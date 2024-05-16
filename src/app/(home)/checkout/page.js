@@ -46,7 +46,7 @@ const Checkout = () => {
                 const params = {
                   token: response.token,
                   formAction:
-                    "http://192.168.10.16:8000/api/twocheckout/handle-payment",
+                    "https://admin.envobyte.com/api/twocheckout/handle-payment",
                 };
                 doAjaxRequest(params);
               })

@@ -1,5 +1,6 @@
 "use client";
 import Container from "@/Components/Container/Container";
+import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -8,6 +9,7 @@ import { IoIosArrowUp } from "react-icons/io";
 import ScrollToTop from "react-scroll-up";
 
 const FooterItems = ({ footer, userContact }) => {
+  const currentDate = format(new Date(), "yyyy");
   return (
     <Container>
       <div className="flex flex-col py-3 md:py-4 lg:flex-row justify-between items-center lg:pt-4 ">
@@ -139,7 +141,7 @@ const FooterItems = ({ footer, userContact }) => {
       <hr />
       <div className="text-center py-3 ">
         <p className="text-[#513939] text-[14px] font-bold">
-          @2024 - ENVOBYTE, All rights are reserved.
+          @{currentDate} - ENVOBYTE, All rights are reserved.
         </p>
       </div>
     </Container>

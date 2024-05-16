@@ -17,6 +17,7 @@
     "@tawk.to/tawk-messenger-react": "^2.0.2",
     "aws-sdk": "^2.1618.0",
     "axios": "^1.6.8",
+    "date-fns": "^3.6.0",
     "digitalocean": "^1.2.1",
     "emoji-mart": "^5.6.0",
     "flowbite": "^2.3.0",

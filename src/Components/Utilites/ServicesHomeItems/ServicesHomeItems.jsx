@@ -151,7 +151,7 @@ const ServicesHomeItems = ({ services: initialServices }) => {
                   spaceBetween={200}
                   breakpoints={breakpoints}
                   modules={[Autoplay]}
-                  autoplay={{ delay: 3000, disableOnInteraction: false }}
+                  // autoplay={{ delay: 3000, disableOnInteraction: false }}
                   className="mySwiper space-x-4"
                   onSlideChange={(swiper) =>
                     setCurrentSlide(swiper.activeIndex)
@@ -167,7 +167,7 @@ const ServicesHomeItems = ({ services: initialServices }) => {
                           href={`/services/${service.slug.replace(/\s+/g, "")}`}
                         >
                           <div
-                            className={`w-[300px] xl:w-[350px]  xxl:w-[280px] xll:w-[300px] 4xl:w-[330px] group shadow-lg rounded-md border border-[#E2E8F0]   cursor-pointer ${
+                            className={`w-[300px] h-[500px] xl:w-[350px]  xxl:w-[280px] xll:w-[300px] 4xl:w-[330px] group shadow-lg rounded-md border border-[#E2E8F0]   cursor-pointer ${
                               isThirdSlide && "no-margin"
                             } ${isLastSlide ? "" : "no-margin2"}`}
                           >
@@ -190,7 +190,7 @@ const ServicesHomeItems = ({ services: initialServices }) => {
 
                               {/* title & description */}
 
-                              <div className="px-5 group-hover:bg-[#FF693B] transition-all duration-300 ">
+                              <div className="px-5 h-[150px] group-hover:bg-[#FF693B] transition-all duration-300 ">
                                 <h3 className="  text-[24px] font-bold text-[#1E293B] font-Raleway pt-5   group-hover:text-white transition-all duration-300 ">
                                   {service.title}
                                 </h3>

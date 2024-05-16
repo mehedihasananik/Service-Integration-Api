@@ -7,7 +7,7 @@ const SecondChat = () => {
 
   const getMessageFromApi = async () => {
     try {
-      const response = await fetch("http://192.168.10.16:8000/api/chat/list", {
+      const response = await fetch("https://admin.envobyte.com/api/chat/list", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

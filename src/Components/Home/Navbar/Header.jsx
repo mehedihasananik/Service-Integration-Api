@@ -34,12 +34,6 @@ const Header = () => {
   const pathname = usePathname();
 
   // demo nav menus
-  const menus = [
-    { name: "Home", link: "/", activeClassName: "active" },
-    { name: "Services", link: "/services", activeClassName: "active" },
-    { name: "Portfolio", link: "/portfolio", activeClassName: "active" },
-    { name: "About Us", link: "/about-us", activeClassName: "active" },
-  ];
 
   useEffect(() => {
     const fetchHeaderContent = async () => {
@@ -87,6 +81,7 @@ const Header = () => {
             <div className="flex items-center gap-10 text-[#1E1E24]">
               <ul className="flex gap-10">
                 {headers?.menu?.map((item, index) => {
+                  console.log(item);
                   return (
                     <Link
                       className={
@@ -137,17 +132,22 @@ const Header = () => {
           </Navbar.Brand>
           <Navbar.Toggle />
           <Navbar.Collapse className="">
-            {menus.map((item, index) => (
-              <Link
-                key={index}
-                href={item.link}
-                className={
-                  pathname === item.link ? "text-[#FF0000] my-2" : "my-2"
-                }
-              >
-                {item.name}
-              </Link>
-            ))}
+            {headers?.menu?.map((item, index) => {
+              console.log(item);
+              return (
+                <Link
+                  className={
+                    pathname === item.menu_link
+                      ? "text-[16px] text-[#FF0000] font-normal"
+                      : "text-[16px] text-[#0F172A] cursor-pointer font-normal hover:text-[#FF693B] transition-colors duration-300"
+                  }
+                  href={item.menu_link}
+                  key={index}
+                >
+                  {item.menu_name}
+                </Link>
+              );
+            })}
             {/* login button */}
             <div className="mt-3">
               {userData ? (

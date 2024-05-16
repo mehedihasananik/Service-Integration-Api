@@ -31,7 +31,7 @@ const Login = () => {
 
     try {
       const data = await fetchData(
-        `http://192.168.10.16:8000/api/user_login`,
+        `https://admin.envobyte.com/api/user_login`,
         "POST",
         requestData
       );

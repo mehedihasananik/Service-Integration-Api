@@ -106,7 +106,7 @@ const PortfolioHomeItems = ({ portfolios, services }) => {
                               {portfolio.heading}
                             </h3>
                             <p className="w-[250px] text-[14px] text-[#666666] py-3 portfolio-textHover">
-                              {portfolio.text}
+                              {portfolio.text.slice(0, 200)}
                             </p>
                           </div>
                           <div className="group flex justify-center items-center gap-2 text-[#FF693B] font-bold mt-2 pb-2 md:mt-5 portfolio-textHover md:pb-6 lg:pb-0">

@@ -193,7 +193,7 @@ const FirstChat = ({
           {loading ? (
             <Loading />
           ) : (
-            <div className="bg-[#FFFFFF  pb-8 flex w-[85%] items-center gap-5 px-10  fixed left-[14%] bottom-0">
+            <div className="bg-[#FFFFFF  pb-8 flex w-[85%] items-center gap-5 px-10  fixed left-[14%] -bottom-6">
               <div className="w-[90%] relative">
                 <input
                   className="w-full border border-[#E2E2E2] rounded-md py-2.5 px-4"
@@ -239,7 +239,7 @@ const FirstChat = ({
                 </div>
               </div>
               {/* Send button */}
-              <div className="w-[8%]  ">
+              <div className="w-[8%]">
                 <button
                   onClick={() => {
                     sendMessageToAPI(inputtedMessage);
