@@ -14,14 +14,14 @@ const OrderSliderLg = ({ sliders, imgBlurSlider, imgBlurThumb }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Map the slider data to the required format
     const mappedImages = sliders.map((slider, index) => ({
       original: slider.slider_image,
       thumbnail: slider.thum_image,
-      blurDataURL: imgBlurSlider[index], // Added blurDataURL for each image
+      blurDataURL: imgBlurSlider[index],
+      thumbBlurDataURL: imgBlurThumb[index], // Added thumbBlurDataURL
     }));
     setImages(mappedImages);
-  }, [sliders, imgBlurSlider]); // Update images when sliders or imgBlurSlider prop changes
+  }, [sliders, imgBlurSlider, imgBlurThumb]); // Update images when sliders, imgBlurSlider, or imgBlurThumb prop changes
 
   useEffect(() => {
     const handleFullscreenChange = () => {
@@ -41,7 +41,6 @@ const OrderSliderLg = ({ sliders, imgBlurSlider, imgBlurThumb }) => {
         const currentImage = images[currentIndex];
 
         if (currentImage) {
-          // Check if currentImage is defined
           const img = document.createElement("img");
           img.src = currentImage.original;
 
@@ -62,7 +61,6 @@ const OrderSliderLg = ({ sliders, imgBlurSlider, imgBlurThumb }) => {
   }, [images]);
 
   useEffect(() => {
-    // Check if all images are loaded
     const loadedImages = images.map((image) => {
       const img = document.createElement("img");
       img.src = image.original;
@@ -164,26 +162,42 @@ const OrderSliderLg = ({ sliders, imgBlurSlider, imgBlurThumb }) => {
 
   return (
     <div className="hidden md:block bg-[#FCFCFC] md:p-8 rounded-[10px]">
-      <ReactImageGallery
-        ref={galleryRef}
-        items={images}
-        showPlayButton={true}
-        showFullscreenButton={true}
-        slideDuration={500}
-        slideOnThumbnailOver={true}
-        thumbnailWidth={100}
-        thumbnailHeight={100}
-        renderCustomControls={() => (
-          <button
-            className="absolute right-[1%] top-[1%] z-[9999]"
-            onClick={handleFullscreen}
-          >
-            {isFullscreen && <IoMdClose className="cross-btn" />}
-          </button>
-        )}
-        renderItem={(item) => renderItem(item)} // Use a callback function to pass item
-        onClick={handleImageClick}
-      />
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <ReactImageGallery
+          ref={galleryRef}
+          items={images}
+          showPlayButton={true}
+          showFullscreenButton={true}
+          slideDuration={500}
+          slideOnThumbnailOver={true}
+          thumbnailWidth={100}
+          thumbnailHeight={100}
+          renderCustomControls={() => (
+            <button
+              className="absolute right-[1%] top-[1%] z-[9999]"
+              onClick={handleFullscreen}
+            >
+              {isFullscreen && <IoMdClose className="cross-btn" />}
+            </button>
+          )}
+          renderItem={(item) => renderItem(item)}
+          onClick={handleImageClick}
+          renderThumbInner={(item) => (
+            <Image
+              className="blur_thumb"
+              unoptimized={true}
+              src={item.thumbnail}
+              width={100}
+              height={100}
+              alt=""
+              placeholder="blur"
+              blurDataURL={item.thumbBlurDataURL}
+            />
+          )}
+        />
+      )}
     </div>
   );
 };
