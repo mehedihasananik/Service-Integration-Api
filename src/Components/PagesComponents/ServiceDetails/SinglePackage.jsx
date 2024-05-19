@@ -70,8 +70,8 @@ const SinglePackage = ({ item, openModal, setOpenModal }) => {
         </div>
         {/* price */}
         <div className="md:h-[50px] xl:h-[60px] xxl:h-[50px] mt-[20px] md:mt-0">
-          <h2 className=" md:my-2 text-[20px] md:text-[32px] font-semibold font-Raleway">
-            {item.package_price}
+          <h2 className=" md:my-2 text-[20px] md:text-[32px] font-semibold font-Raleway flex items-center">
+            $ <span>{item.package_price}</span>
           </h2>
         </div>
         {/* order button */}

@@ -190,7 +190,7 @@ const ServicesHomeItems = ({ services: initialServices }) => {
 
                               {/* title & description */}
 
-                              <div className="px-5 h-[150px] group-hover:bg-[#FF693B] transition-all duration-300 ">
+                              <div className="px-5 h-[155px] group-hover:bg-[#FF693B] group-hover:h-[155px] transition-all duration-300 ">
                                 <h3 className="  text-[24px] font-bold text-[#1E293B] font-Raleway pt-5   group-hover:text-white transition-all duration-300 ">
                                   {service.title}
                                 </h3>
