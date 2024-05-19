@@ -2,7 +2,11 @@ import Container from "@/Components/Container/Container";
 import Image from "next/image";
 import React from "react";
 
-const AboutUsContent = async ({ aboutDetails, singleAboutDetails }) => {
+const AboutUsContent = async ({
+  aboutDetails,
+  singleAboutDetails,
+  imgBlur,
+}) => {
   const {
     title1,
     details1,
@@ -88,7 +92,7 @@ const AboutUsContent = async ({ aboutDetails, singleAboutDetails }) => {
           </div>
         </div>
 
-        {singleAboutDetails.map((detail) => (
+        {singleAboutDetails.map((detail, index) => (
           <div
             key={detail.id}
             className={`flex flex-col gap-4 md:gap-8 lg:flex-row ${
@@ -127,6 +131,8 @@ const AboutUsContent = async ({ aboutDetails, singleAboutDetails }) => {
                 height={500}
                 src={detail.image}
                 alt=""
+                placeholder="blur"
+                blurDataURL={imgBlur[index]}
               />
             </div>
           </div>

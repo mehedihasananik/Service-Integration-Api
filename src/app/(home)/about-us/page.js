@@ -1,4 +1,5 @@
 import AboutUsContent from "@/Components/PagesComponents/AboutUsContent/AboutUsContent";
+import getBase64 from "@/Components/Utilites/DynamicBlurDataUrl/DynamicBlurDataUrl";
 import { aboutUsApi, aboutUsItemApi } from "@/config/apis";
 import React from "react";
 
@@ -32,11 +33,17 @@ async function getAbout_item() {
 const AboutUsPage = async () => {
   const aboutDetails = await getAboutPage();
   const singleAboutDetails = await getAbout_item();
+  // blur image
+  const imgBlur = await Promise.all(
+    singleAboutDetails.map((url) => getBase64(url.image))
+  );
+
   return (
     <>
       <AboutUsContent
         aboutDetails={aboutDetails}
         singleAboutDetails={singleAboutDetails}
+        imgBlur={imgBlur}
       />
     </>
   );

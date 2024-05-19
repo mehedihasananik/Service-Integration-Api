@@ -207,7 +207,7 @@ const ServicesHomeItems = ({ services: initialServices }) => {
                                 {/* price */}
                                 <div>
                                   <span className="font-Raleway text-[20px] font-bold text-[#0A2C8C] group-hover:text-[#fff]">
-                                    {service.start_price}
+                                    ${service.start_price}
                                   </span>
                                 </div>
                                 {/* view more button */}

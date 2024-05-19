@@ -1,4 +1,5 @@
 import PortfolioDetails from "@/Components/PagesComponents/PortfolioDetails/PortfolioDetails";
+import getBase64 from "@/Components/Utilites/DynamicBlurDataUrl/DynamicBlurDataUrl";
 import { singlePortfolio } from "@/config/apis";
 
 export async function generateMetadata({ params, searchParams }, parent) {
@@ -8,6 +9,7 @@ export async function generateMetadata({ params, searchParams }, parent) {
   const service = await fetch(`${singlePortfolio}/${id}`).then((res) =>
     res.json()
   );
+  console.log(service);
 
   // Optionally access and extend (rather than replace) parent metadata
   const previousImages = (await parent).openGraph?.images || [];
@@ -25,9 +27,16 @@ const SinglePage = async ({ params }) => {
     `${singlePortfolio}/${params.id}`
   ).then((res) => res.json());
 
+  const imgBlur = await Promise.all(
+    singlePortfolioItem.map((url) => getBase64(url.image))
+  );
+
   return (
     <div>
-      <PortfolioDetails singlePortfolioItem={singlePortfolioItem} />
+      <PortfolioDetails
+        singlePortfolioItem={singlePortfolioItem}
+        imgBlur={imgBlur}
+      />
     </div>
   );
 };

@@ -37,7 +37,7 @@ const aboutUsApi = `${apiEndpoint}/aboutus_page`;
 const aboutUsItemApi = `${apiEndpoint}/aboutus_page_item`;
 
 // register page page
-const signupApi = `${apiEndpoint}/sign_up`;
+const signupApi = `http://192.168.10.16:8000/api/sign_up`;
 
 // login
 const loginApi = `${apiEndpoint}/user_login`;

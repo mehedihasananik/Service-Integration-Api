@@ -3,14 +3,15 @@ import RelevantServices from "@/Components/Utilites/RelevantServices/RelevantSer
 import Image from "next/image";
 import React from "react";
 
-const PortfolioDetails = ({ singlePortfolioItem }) => {
+const PortfolioDetails = ({ singlePortfolioItem, imgBlur }) => {
   return (
     <div>
       <div className="md:py-10 md:pb-5">
         <Container>
-          {singlePortfolioItem.map((portfolio) => {
+          {singlePortfolioItem.map((portfolio, index) => {
             //console.log(portfolio);
             const { title, details, image, caption_text } = portfolio;
+            console.log(title);
             return (
               <div key={portfolio.id}>
                 {/* title */}
@@ -31,8 +32,8 @@ const PortfolioDetails = ({ singlePortfolioItem }) => {
                     width={500}
                     height={500}
                     src={image}
-                    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8////fwAJwAPutrYTTgAAAABJRU5ErkJggg=="
                     placeholder="blur"
+                    blurDataURL={imgBlur[index]}
                   />
                 </div>
                 <div className="text-center py-4 md:pt-5 md:py-0">

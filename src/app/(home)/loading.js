@@ -8,7 +8,7 @@ const loading = () => {
       className="flex justify-center items-center space-x-2"
     >
       <svg
-        className="h-24 w-32 animate-spin stroke-gray-500"
+        className="h-24 w-32 animate-spin stroke-[#FF693B]"
         viewBox="0 0 256 256"
       >
         <line
