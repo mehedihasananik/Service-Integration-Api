@@ -33,7 +33,7 @@ const FooterItems = ({ footer, userContact }) => {
             <IoIosArrowUp
               height={20}
               width={20}
-              className="w-[55px] h-[55px] bg-[#FF693B] text-white rounded-full"
+              className="w-[50px] h-[50px] bg-[#FF693B] text-white rounded-full"
             />
           </span>
         </ScrollToTop>

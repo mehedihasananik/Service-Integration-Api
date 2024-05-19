@@ -30,6 +30,7 @@ const SinglePage = async ({ params }) => {
   const imgBlur = await Promise.all(
     singlePortfolioItem.map((url) => getBase64(url.image))
   );
+  console.log(singlePortfolioItem);
 
   return (
     <div>
