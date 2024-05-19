@@ -13,7 +13,7 @@ export async function generateMetadata({ params, searchParams }, parent) {
     res.json()
   );
 
-  // Optionally access and extend (rather than replace) parent metadata
+  // Optionally access and extend (rather than replace)  metadata
   const previousImages = (await parent).openGraph?.images || [];
 
   return {
