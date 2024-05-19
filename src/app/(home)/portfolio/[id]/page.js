@@ -33,10 +33,7 @@ const SinglePage = async ({ params }) => {
 
   return (
     <div>
-      <PortfolioDetails
-        singlePortfolioItem={singlePortfolioItem}
-        imgBlur={imgBlur}
-      />
+      <PortfolioDetails singlePortfolioItem={singlePortfolioItem} />
     </div>
   );
 };

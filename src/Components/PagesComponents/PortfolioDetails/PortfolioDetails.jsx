@@ -3,7 +3,7 @@ import RelevantServices from "@/Components/Utilites/RelevantServices/RelevantSer
 import Image from "next/image";
 import React from "react";
 
-const PortfolioDetails = ({ singlePortfolioItem, imgBlur }) => {
+const PortfolioDetails = ({ singlePortfolioItem }) => {
   return (
     <div>
       <div className="md:py-10 md:pb-5">
@@ -32,8 +32,6 @@ const PortfolioDetails = ({ singlePortfolioItem, imgBlur }) => {
                     width={500}
                     height={500}
                     src={image}
-                    placeholder="blur"
-                    blurDataURL={imgBlur[index]}
                   />
                 </div>
                 <div className="text-center py-4 md:pt-5 md:py-0">
