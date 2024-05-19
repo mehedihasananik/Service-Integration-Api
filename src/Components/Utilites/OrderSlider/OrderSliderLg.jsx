@@ -4,9 +4,8 @@ import ReactImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 import { IoMdClose } from "react-icons/io";
 import Loading from "../Loading/Loading";
-import Image from "next/image";
 
-const OrderSliderLg = ({ sliders, imgBlurSlider, imgBlurThumb }) => {
+const OrderSliderLg = ({ sliders }) => {
   const galleryRef = useRef();
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [imageHeight, setImageHeight] = useState(null);
@@ -14,14 +13,13 @@ const OrderSliderLg = ({ sliders, imgBlurSlider, imgBlurThumb }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const mappedImages = sliders.map((slider, index) => ({
+    // Map the slider data to the required format
+    const mappedImages = sliders.map((slider) => ({
       original: slider.slider_image,
       thumbnail: slider.thum_image,
-      blurDataURL: imgBlurSlider[index],
-      thumbBlurDataURL: imgBlurThumb[index], // Added thumbBlurDataURL
     }));
     setImages(mappedImages);
-  }, [sliders, imgBlurSlider, imgBlurThumb]); // Update images when sliders, imgBlurSlider, or imgBlurThumb prop changes
+  }, [sliders]); // Update images when sliders prop changes
 
   useEffect(() => {
     const handleFullscreenChange = () => {
@@ -41,7 +39,8 @@ const OrderSliderLg = ({ sliders, imgBlurSlider, imgBlurThumb }) => {
         const currentImage = images[currentIndex];
 
         if (currentImage) {
-          const img = document.createElement("img");
+          // Check if currentImage is defined
+          const img = new Image();
           img.src = currentImage.original;
 
           img.onload = () => {
@@ -61,8 +60,9 @@ const OrderSliderLg = ({ sliders, imgBlurSlider, imgBlurThumb }) => {
   }, [images]);
 
   useEffect(() => {
+    // Check if all images are loaded
     const loadedImages = images.map((image) => {
-      const img = document.createElement("img");
+      const img = new Image();
       img.src = image.original;
       return new Promise((resolve) => {
         img.onload = resolve;
@@ -84,7 +84,7 @@ const OrderSliderLg = ({ sliders, imgBlurSlider, imgBlurThumb }) => {
       const currentImage = images[currentIndex];
 
       if (currentImage) {
-        const img = document.createElement("img");
+        const img = new Image();
         img.src = currentImage.original;
 
         img.onload = () => {
@@ -140,14 +140,9 @@ const OrderSliderLg = ({ sliders, imgBlurSlider, imgBlurThumb }) => {
                 : "none",
           }}
         >
-          <Image
-            unoptimized={true}
+          <img
             src={item.original}
-            width={500}
-            height={500}
             alt=""
-            placeholder="blur" // Added placeholder="blur"
-            blurDataURL={item.blurDataURL} // Added blurDataURL={item.blurDataURL}
             style={{
               width: "100%",
               height: isFullscreen ? "auto" : "100%",
@@ -182,20 +177,8 @@ const OrderSliderLg = ({ sliders, imgBlurSlider, imgBlurThumb }) => {
               {isFullscreen && <IoMdClose className="cross-btn" />}
             </button>
           )}
-          renderItem={(item) => renderItem(item)}
+          renderItem={(item) => renderItem(item)} // Use a callback function to pass item
           onClick={handleImageClick}
-          renderThumbInner={(item) => (
-            <Image
-              className="blur_thumb"
-              unoptimized={true}
-              src={item.thumbnail}
-              width={100}
-              height={100}
-              alt=""
-              placeholder="blur"
-              blurDataURL={item.thumbBlurDataURL}
-            />
-          )}
         />
       )}
     </div>
