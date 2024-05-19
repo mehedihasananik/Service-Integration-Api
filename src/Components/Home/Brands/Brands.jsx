@@ -1,28 +1,21 @@
-"use client";
 import Container from "@/Components/Container/Container";
-import { fetchData } from "@/config/apiRequests.js";
+
 import { brandsApi } from "@/config/apis";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
 
-const Brands = () => {
-  // loading & data states
-  const [brands, setBrands] = useState([]);
-  const [loading, setLoading] = useState(true);
+async function brandsContent() {
+  const res = await fetch(`${brandsApi}`, {
+    next: { revalidate: 10 },
+  });
 
-  // api data fetching
-  useEffect(() => {
-    const apiUrl = `${brandsApi}`;
-    fetchData(apiUrl) // Default method is 'GET'
-      .then((data) => {
-        setBrands(data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.log(error);
-        setLoading(false);
-      });
-  }, []);
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+  return res.json();
+}
+
+const Brands = async () => {
+  const brands = await brandsContent();
 
   return (
     <div className="bg-[#F8FAFC] ">
@@ -34,39 +27,20 @@ const Brands = () => {
           </div>
           {/* right side */}
           <div className=" w-full lg:w-[60%] lg:flex lg:justify-end ">
-            {loading ? (
-              <>
-                {/* loading */}
-                <div
-                  role="status"
-                  className="py-[5%]  animate-pulse space-y-0 md:space-x-8 w-[50%] flex gap-x-10 items-center lg:justify-end"
-                >
-                  <div className="w-full ">
-                    <div className="h-3 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[480px] mb-4"></div>
-                    <div className="h-3 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[480px] mb-4"></div>
-                  </div>
-                </div>
-              </>
-            ) : (
-              <>
-                {/* brands logo */}
-                <div className="w-[100%] flex gap-x-3 sm:gap-x-3 lsm:gap-x-5 lg:gap-x-10 justify-center items-center lg:justify-end">
-                  {brands?.map((brand) => {
-                    return (
-                      <Image
-                        key={brand.id}
-                        width={1000}
-                        height={1000}
-                        className="w-[60px] h-[50px] md:w-[101px] md:h-[70px] "
-                        src={brand.logo}
-                        alt=""
-                        onContextMenu={(e) => e.preventDefault()}
-                      />
-                    );
-                  })}
-                </div>
-              </>
-            )}
+            <div className="w-[100%] flex gap-x-3 sm:gap-x-3 lsm:gap-x-5 lg:gap-x-10 justify-center items-center lg:justify-end">
+              {brands?.map((brand) => {
+                return (
+                  <Image
+                    key={brand.id}
+                    width={500}
+                    height={500}
+                    className="w-[60px] h-[50px] md:w-[101px] md:h-[70px] "
+                    src={brand.logo}
+                    alt=""
+                  />
+                );
+              })}
+            </div>
           </div>
         </div>
       </Container>

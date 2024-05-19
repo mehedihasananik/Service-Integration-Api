@@ -1,4 +1,5 @@
 import ServiceDetails from "@/Components/PagesComponents/ServiceDetails/ServiceDetails";
+import getBase64 from "@/Components/Utilites/DynamicBlurDataUrl/DynamicBlurDataUrl";
 import {
   singeServiceDetails,
   singleService_package,
@@ -36,11 +37,23 @@ const SinglePage = async ({ params }) => {
   const packages = await fetch(`${singleService_package}/${params.id}`).then(
     (res) => res.json()
   );
-  console.log(service);
+  const imgBlurSlider = await Promise.all(
+    sliders.map((url) => getBase64(url.slider_image))
+  );
+  const imgBlurThumb = await Promise.all(
+    sliders.map((url) => getBase64(url.thum_image))
+  );
+  console.log(imgBlurSlider);
 
   return (
     <>
-      <ServiceDetails service={service} sliders={sliders} packages={packages} />
+      <ServiceDetails
+        service={service}
+        sliders={sliders}
+        packages={packages}
+        imgBlurSlider={imgBlurSlider}
+        imgBlurThumb={imgBlurThumb}
+      />
     </>
   );
 };

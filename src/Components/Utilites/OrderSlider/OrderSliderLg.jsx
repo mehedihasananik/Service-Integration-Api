@@ -4,8 +4,9 @@ import ReactImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 import { IoMdClose } from "react-icons/io";
 import Loading from "../Loading/Loading";
+import Image from "next/image";
 
-const OrderSliderLg = ({ sliders }) => {
+const OrderSliderLg = ({ sliders, imgBlurSlider, imgBlurThumb }) => {
   const galleryRef = useRef();
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [imageHeight, setImageHeight] = useState(null);
@@ -14,12 +15,13 @@ const OrderSliderLg = ({ sliders }) => {
 
   useEffect(() => {
     // Map the slider data to the required format
-    const mappedImages = sliders.map((slider) => ({
+    const mappedImages = sliders.map((slider, index) => ({
       original: slider.slider_image,
       thumbnail: slider.thum_image,
+      blurDataURL: imgBlurSlider[index], // Added blurDataURL for each image
     }));
     setImages(mappedImages);
-  }, [sliders]); // Update images when sliders prop changes
+  }, [sliders, imgBlurSlider]); // Update images when sliders or imgBlurSlider prop changes
 
   useEffect(() => {
     const handleFullscreenChange = () => {
@@ -40,7 +42,7 @@ const OrderSliderLg = ({ sliders }) => {
 
         if (currentImage) {
           // Check if currentImage is defined
-          const img = new Image();
+          const img = document.createElement("img");
           img.src = currentImage.original;
 
           img.onload = () => {
@@ -62,7 +64,7 @@ const OrderSliderLg = ({ sliders }) => {
   useEffect(() => {
     // Check if all images are loaded
     const loadedImages = images.map((image) => {
-      const img = new Image();
+      const img = document.createElement("img");
       img.src = image.original;
       return new Promise((resolve) => {
         img.onload = resolve;
@@ -84,7 +86,7 @@ const OrderSliderLg = ({ sliders }) => {
       const currentImage = images[currentIndex];
 
       if (currentImage) {
-        const img = new Image();
+        const img = document.createElement("img");
         img.src = currentImage.original;
 
         img.onload = () => {
@@ -140,9 +142,14 @@ const OrderSliderLg = ({ sliders }) => {
                 : "none",
           }}
         >
-          <img
+          <Image
+            unoptimized={true}
             src={item.original}
+            width={500}
+            height={500}
             alt=""
+            placeholder="blur" // Added placeholder="blur"
+            blurDataURL={item.blurDataURL} // Added blurDataURL={item.blurDataURL}
             style={{
               width: "100%",
               height: isFullscreen ? "auto" : "100%",
@@ -157,30 +164,26 @@ const OrderSliderLg = ({ sliders }) => {
 
   return (
     <div className="hidden md:block bg-[#FCFCFC] md:p-8 rounded-[10px]">
-      {isLoading ? (
-        <Loading />
-      ) : (
-        <ReactImageGallery
-          ref={galleryRef}
-          items={images}
-          showPlayButton={true}
-          showFullscreenButton={true}
-          slideDuration={500}
-          slideOnThumbnailOver={true}
-          thumbnailWidth={100}
-          thumbnailHeight={100}
-          renderCustomControls={() => (
-            <button
-              className="absolute right-[1%] top-[1%] z-[9999]"
-              onClick={handleFullscreen}
-            >
-              {isFullscreen && <IoMdClose className="cross-btn" />}
-            </button>
-          )}
-          renderItem={(item) => renderItem(item)} // Use a callback function to pass item
-          onClick={handleImageClick}
-        />
-      )}
+      <ReactImageGallery
+        ref={galleryRef}
+        items={images}
+        showPlayButton={true}
+        showFullscreenButton={true}
+        slideDuration={500}
+        slideOnThumbnailOver={true}
+        thumbnailWidth={100}
+        thumbnailHeight={100}
+        renderCustomControls={() => (
+          <button
+            className="absolute right-[1%] top-[1%] z-[9999]"
+            onClick={handleFullscreen}
+          >
+            {isFullscreen && <IoMdClose className="cross-btn" />}
+          </button>
+        )}
+        renderItem={(item) => renderItem(item)} // Use a callback function to pass item
+        onClick={handleImageClick}
+      />
     </div>
   );
 };

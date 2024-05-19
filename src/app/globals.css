@@ -237,6 +237,12 @@
 .image-gallery-right-nav .image-gallery-svg {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
+.image-gallery-thumbnail .image-gallery-thumbnail-image {
+  vertical-align: middle;
+  width: 100%;
+  line-height: 0;
+  height: 60px !important;
+}
 
 @media only screen and (max-width: 2500px) {
   .image-gallery-left-nav .image-gallery-svg,

@@ -11,7 +11,13 @@ import Link from "next/link";
 import OrderSliderLg from "@/Components/Utilites/OrderSlider/OrderSliderLg";
 import OrderSliderSm from "@/Components/Utilites/OrderSlider/OrderSliderSm";
 
-const ServiceDetails = ({ service, sliders, packages }) => {
+const ServiceDetails = ({
+  service,
+  sliders,
+  packages,
+  imgBlurSlider,
+  imgBlurThumb,
+}) => {
   const [openModal, setOpenModal] = useState(false);
 
   return (
@@ -53,7 +59,11 @@ const ServiceDetails = ({ service, sliders, packages }) => {
             </button>
           </div>
           {/* order Slider */}
-          <OrderSliderLg sliders={sliders} />
+          <OrderSliderLg
+            sliders={sliders}
+            imgBlurSlider={imgBlurSlider}
+            imgBlurThumb={imgBlurThumb}
+          />
           <OrderSliderSm sliders={sliders} />
           {/* description */}
           <div className="bg-[#FCFCFC] mt-4 p-4 md:p-7 rounded-lg text-justify">

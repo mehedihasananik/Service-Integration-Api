@@ -1,19 +1,12 @@
-"use client";
 import Container from "@/Components/Container/Container";
 import { Navbar } from "flowbite-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 const HeaderItems = ({ headers }) => {
   const pathname = usePathname();
-  const [userData, setUserData] = useState();
-
-  useEffect(() => {
-    setUserData(JSON.parse(sessionStorage.getItem("userData")));
-  }, []);
-
   return (
     <div>
       <Container>
@@ -25,7 +18,7 @@ const HeaderItems = ({ headers }) => {
             <Link href={"/"}>
               <div>
                 <Image
-                  src={headers?.logo?.logo}
+                  src={`https://admin.envobyte.com/home/1714376088.webp`}
                   width={159}
                   height={49}
                   alt="Picture of the logo"
