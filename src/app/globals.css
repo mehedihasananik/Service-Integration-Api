@@ -239,7 +239,6 @@
 }
 .image-gallery-thumbnail .image-gallery-thumbnail-image,
 .blur_thumb {
-  vertical-align: middle;
   width: 100%;
   line-height: 0;
   height: 60px !important;
