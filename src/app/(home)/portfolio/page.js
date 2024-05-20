@@ -3,6 +3,7 @@ import PortfolioPage from "@/Components/PagesComponents/PortfolioPage/PortfolioP
 import {
   search_sevice_categoryAll,
   serviceApi,
+  serviceListApi,
   sevice_portfolioApi,
 } from "@/config/apis";
 export const metadata = {
@@ -20,8 +21,8 @@ async function portfolioCategory() {
   }
   return res.json();
 }
-async function servicesApi() {
-  const res = await fetch(`${serviceApi}`, {
+async function portfoliosCategoriesApi() {
+  const res = await fetch(`${serviceListApi}`, {
     next: { revalidate: 10 },
   });
 
@@ -30,10 +31,13 @@ async function servicesApi() {
   }
   return res.json();
 }
-async function serviceCategoriesApi() {
-  const res = await fetch(`${serviceApi}`, {
-    next: { revalidate: 10 },
-  });
+async function servicesApi() {
+  const res = await fetch(
+    `http://192.168.10.14:8000/api/search_sevice_category/all`,
+    {
+      next: { revalidate: 10 },
+    }
+  );
 
   if (!res.ok) {
     throw new Error("Failed to fetch data");
@@ -44,17 +48,18 @@ async function serviceCategoriesApi() {
 const Portfolio = async () => {
   // Fetch data for the page
 
-  const portfolioCategories = await portfolioCategory();
+  const portfolios = await portfolioCategory();
+  const portfoliosCategories = await portfoliosCategoriesApi();
   const services = await servicesApi();
-  const serviceCategories = await serviceCategoriesApi();
+  console.log(services);
 
   return (
     <div>
       <Container>
         <PortfolioPage
-          portfolioCategories={portfolioCategories}
+          portfolios={portfolios}
+          portfoliosCategories={portfoliosCategories}
           services={services}
-          serviceCategories={serviceCategories}
         />
       </Container>
     </div>

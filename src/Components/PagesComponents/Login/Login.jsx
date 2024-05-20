@@ -56,6 +56,12 @@ const Login = () => {
   };
   function onChange() {}
 
+  const handleLoginSocial = (provider) => async () => {
+    const url = `http://192.168.10.14:8000/api/auth/${provider}`;
+    const response = await axios.get(url);
+    window.location.href = response.data.redirectUrl;
+  };
+
   return (
     <div className="login_singUp overflow-hidden  my-5">
       <Container>
@@ -71,14 +77,20 @@ const Login = () => {
               </p>
             </div>
             <div className="flex flex-col md:flex-row pb-4 gap-y-4 md:gap-10  lg:pb-12">
-              <button className="flex justify-center items-center gap-2 font-Raleway border p-2 rounded-md hover:border-[#FF693B] transition-all duration-200">
-                <img src="/assets/gLogo.png" alt="" />{" "}
+              <button
+                onClick={() => handleLoginSocial("google")}
+                className="flex justify-center items-center gap-2 font-Raleway border p-2 rounded-md hover:border-[#FF693B] transition-all duration-200"
+              >
+                <img src="/assets/gLogo.png" alt="" />
                 <span className="text-[14px]text-[#032333]">
                   Continue with Google
                 </span>
               </button>
-              <button className="flex justify-center items-center gap-2 font-Raleway border p-2 rounded-md hover:border-[#FF693B] transition-all duration-200">
-                <img src="/assets/fLogo.png" alt="" />{" "}
+              <button
+                onClick={() => handleLoginSocial("facebook")}
+                className="flex justify-center items-center gap-2 font-Raleway border p-2 rounded-md hover:border-[#FF693B] transition-all duration-200"
+              >
+                <img src="/assets/fLogo.png" alt="" />
                 <span className="text-[14px]text-[#032333]">
                   Continue with Facebook
                 </span>
