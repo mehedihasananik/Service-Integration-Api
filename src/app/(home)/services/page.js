@@ -23,7 +23,7 @@ async function getServices() {
 
     return { serviceCategories, services };
   } catch (error) {
-    console.error("Error fetching data:", error);
+    console.error("Error fetching datas:", error);
     throw error;
   }
 }
