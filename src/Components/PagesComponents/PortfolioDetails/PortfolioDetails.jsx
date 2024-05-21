@@ -11,7 +11,7 @@ const PortfolioDetails = ({ singlePortfolioItem }) => {
           {singlePortfolioItem.map((portfolio, index) => {
             //console.log(portfolio);
             const { title, details, image, caption_text } = portfolio;
-            console.log(title);
+            // console.log(title);
             return (
               <div key={portfolio.id}>
                 {/* title */}

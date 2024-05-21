@@ -35,7 +35,7 @@ const SecondChat = () => {
     // Call getMessageFromApi when the component mounts
     getMessageFromApi();
   }, []);
-  console.log(messageHistory);
+  // console.log(messageHistory);
 
   return (
     <div>

@@ -24,7 +24,7 @@ const DashBoardContent = () => {
     fetchingData();
   }, []);
 
-  console.log(projects);
+  // console.log(projects);
 
   // // Check if token has expired
   // const isTokenExpired = () => {

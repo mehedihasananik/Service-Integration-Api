@@ -29,7 +29,7 @@ const HeaderItems = ({ headers }) => {
             {/* nav items */}
             <div className="flex items-center gap-10 text-[#1E1E24]">
               {headers?.menu?.map((item, index) => {
-                console.log(item);
+                // console.log(item);
                 return (
                   <Link
                     className={
@@ -81,7 +81,7 @@ const HeaderItems = ({ headers }) => {
           <Navbar.Toggle />
           <Navbar.Collapse className="">
             {headers?.menu?.map((item, index) => {
-              console.log(item);
+              // console.log(item);
               return (
                 <Link
                   className={

@@ -71,7 +71,7 @@ const FirstChat = ({
     }
     return date;
   };
-  console.log(messageHistory);
+  // console.log(messageHistory);
 
   const handleSendButtonClick = () => {
     setShowPaperclip(!selectedFile);
