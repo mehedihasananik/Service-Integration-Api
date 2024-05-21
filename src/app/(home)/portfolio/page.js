@@ -31,27 +31,28 @@ async function portfoliosCategoriesApi() {
   }
   return res.json();
 }
-async function servicesApi() {
-  const res = await fetch(
-    `http://192.168.10.14:8000/api/search_sevice_category/all`,
-    {
-      next: { revalidate: 10 },
-    }
-  );
+// async function servicesApi() {
+//   const res = await fetch(
+//     `http://192.168.10.14:8000/api/search_sevice_category/all`,
+//     {
+//       next: { revalidate: 10 },
+//     }
+//   );
 
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
-  return res.json();
-}
+//   if (!res.ok) {
+//     throw new Error("Failed to fetch data");
+//   }
+//   return res.json();
+// }
 
 const Portfolio = async () => {
   // Fetch data for the page
 
   const portfolios = await portfolioCategory();
   const portfoliosCategories = await portfoliosCategoriesApi();
-  const services = await servicesApi();
+  // const services = await servicesApi();
   console.log(services);
+  const services = [3, 3, 4];
 
   return (
     <div>
