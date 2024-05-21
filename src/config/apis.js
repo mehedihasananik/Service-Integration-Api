@@ -44,7 +44,7 @@ const loginApi = `${apiEndpoint}/user_login`;
 
 // dashboard apis
 
-const dashboardApis = `${apiEndpoint}/service_order_dashboard`;
+const dashboardApis = `http://192.168.10.16:8000/service_order_dashboard`;
 
 // manage order
 const manageOrderApi = `${apiEndpoint}/manage_order`;
@@ -56,7 +56,7 @@ const singleRequirement = `${apiEndpoint}/service_requirements`;
 // checkout api
 const checkoutApi = `${apiEndpoint}/checkout`;
 // service order
-const serviceOrder = `${apiEndpoint}/service_order`;
+const serviceOrder = `http://192.168.10.16:8000/service_order`;
 
 export {
   headerApi,

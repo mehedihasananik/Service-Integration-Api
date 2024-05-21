@@ -11,11 +11,16 @@ import { serviceOrder } from "@/config/apis";
 const SinglePackage = ({ item, openModal, setOpenModal }) => {
   const router = useRouter();
   const { setItemId } = useContext(AuthContext);
-  const [userData, setUserData] = useState();
 
-  useEffect(() => {
-    setUserData(JSON.parse(sessionStorage.getItem("userData")));
-  }, []);
+  const userData =
+    typeof window !== "undefined"
+      ? JSON.parse(sessionStorage.getItem("userData"))
+      : null;
+
+  console.log(userData.id);
+  console.log(item.id);
+  console.log(item.sevice_items_id);
+  console.log(item.package_price);
 
   const handlePlaceOrder = async () => {
     const data = {
@@ -28,13 +33,16 @@ const SinglePackage = ({ item, openModal, setOpenModal }) => {
     };
 
     try {
-      const response = await fetch(`${serviceOrder}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+      const response = await fetch(
+        `http://192.168.10.14:8000/api/service_order`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
 
       const responseData = await response.json();
       console.log(responseData);
@@ -79,8 +87,8 @@ const SinglePackage = ({ item, openModal, setOpenModal }) => {
           {userData ? (
             <>
               <Link
-                href={"/checkout"}
-                onClick={handlePassData}
+                href={"#"}
+                onClick={handlePlaceOrder}
                 className="text-[16px]  w-[100%] text-center font-medium text-[#FF693B] border border-[#FF693B] px-6 py-2 rounded-md hover:text-white hover:bg-[#FF693B] transition-all duration-300"
               >
                 Place Order Now

@@ -14,9 +14,13 @@ const DashBoardContent = () => {
       : null;
 
   const fetchingData = async () => {
-    const data = await fetchData(`${dashboardApis}`, "POST", {
-      user_id: sessionData?.id,
-    });
+    const data = await fetchData(
+      `http://192.168.10.14:8000/api/service_order_dashboard`,
+      "POST",
+      {
+        user_id: sessionData?.id,
+      }
+    );
     setProjects(data);
   };
 
@@ -24,7 +28,7 @@ const DashBoardContent = () => {
     fetchingData();
   }, []);
 
-  // console.log(projects);
+  console.log(projects);
 
   // // Check if token has expired
   // const isTokenExpired = () => {
@@ -76,7 +80,7 @@ const DashBoardContent = () => {
                             width={700}
                             height={700}
                             className="w-full h-[270px]"
-                            src={`http://192.168.10.14:8000/images/${sevice_items[0].image}`}
+                            src={`${sevice_items.image}`}
                             alt=""
                             onContextMenu={(e) => e.preventDefault()}
                           />
@@ -87,7 +91,7 @@ const DashBoardContent = () => {
 
                       <div className="px-5">
                         <h3 className="text-[24px] font-bold text-[#1E293B] font-Raleway pt-5 pb-2">
-                          {sevice_items[0].title}
+                          {sevice_items.title}
                         </h3>
                         <span className="flex w-[100%] h-[1px] border border-[#E2E2E2]"></span>
                       </div>
