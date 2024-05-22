@@ -1,37 +1,89 @@
 "use client";
 
-import API_ROUTES from "@/app/api/confiq";
 import React, { useEffect, useState } from "react";
 
 const Profile = () => {
   const [profile, setProfile] = useState(null);
-  const [userData, setUserData] = useState();
+  const [selectedFile, setSelectedFile] = useState(null);
 
-  const backgroundImage = profile?.image ? `url(${profile.image})` : "";
+  const userData =
+    typeof window !== "undefined"
+      ? JSON.parse(sessionStorage.getItem("userData"))
+      : null;
 
-  useEffect(() => {
-    setUserData(JSON.parse(sessionStorage.getItem("userData")));
-  }, []);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(`${API_ROUTES.route}/user_profile`, {
+  const fetchData = async () => {
+    try {
+      const response = await fetch(
+        `http://192.168.10.14:8000/api/user_profile`,
+        {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ user_id: userData.id }),
-        });
-        const data = await response.json();
-        setProfile(data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
+        }
+      );
+      const data = await response.json();
+      setProfile(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
+  const updateProfile = async (event) => {
+    event.preventDefault(); // Prevent form from refreshing the page
+    try {
+      const formData = new FormData();
+      formData.append("user_id", userData.id);
+      formData.append("first_name", profile.first_name);
+      formData.append("last_name", profile.last_name);
+      formData.append("phone_number", profile.phone_number);
+      formData.append("gender", profile.gender);
+      formData.append("date_birth", profile.date_birth);
+      formData.append("country", profile.country);
+      formData.append("city", profile.city);
+      formData.append("state", profile.state);
+      formData.append("zip", profile.zip);
+      formData.append("address", profile.address);
+      formData.append("country_code", profile.country_code);
+      if (selectedFile) {
+        formData.append("user_avatar", selectedFile);
+      }
+
+      const response = await fetch(
+        "http://192.168.10.14:8000/api/user_profile_update",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to update profile");
+      }
+    } catch (error) {
+      console.error("Error updating profile:", error);
+    }
+  };
+
+  useEffect(() => {
     fetchData();
   }, []);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setProfile((prevProfile) => ({
+      ...prevProfile,
+      [name]: value,
+    }));
+  };
+
+  const handleFileChange = (e) => {
+    setSelectedFile(e.target.files[0]);
+  };
+
+  const backgroundImage = profile?.avatar ? `url(${profile.avatar})` : "";
+  console.log(profile);
 
   return (
     <div>
@@ -43,21 +95,21 @@ const Profile = () => {
                 Profile
               </h1>
 
-              <form>
-                <div className="w-full   py-4 items-center rounded-md">
+              <form onSubmit={updateProfile}>
+                <div className="w-full py-4 items-center rounded-md">
                   <div
                     style={{ backgroundImage }}
-                    className={`mx-auto flex justify-center w-[141px] h-[141px] rounded-full  bg-cover bg-center bg-no-repeat`}
+                    className={`mx-auto flex justify-center w-[141px] h-[141px] rounded-full bg-cover bg-center bg-no-repeat`}
                   >
                     <div className="bg-white/90 rounded-full w-6 h-6 text-center ml-28 mt-4">
                       <input
                         type="file"
-                        name="profile"
+                        name="user_avatar"
                         id="upload_profile"
                         hidden
-                        required
+                        onChange={handleFileChange}
                       />
-                      <label for="upload_profile">
+                      <label htmlFor="upload_profile">
                         <svg
                           data-slot="icon"
                           className="w-6 h-5 text-blue-700"
@@ -84,53 +136,70 @@ const Profile = () => {
                   </div>
                 </div>
                 <h3 className="text-center mt-3 font-semibold dark:text-gray-300 capitalize">
-                  {profile?.name}
+                  {profile?.first_name}
                 </h3>
                 <h2 className="text-center mt-3 font-semibold dark:text-gray-300">
                   Upload Profile and Name.
                 </h2>
                 <div className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full">
-                  <div className="w-full  mb-4 mt-6">
-                    <label for="" className="mb-2 dark:text-gray-300">
+                  <div className="w-full mb-4 mt-6">
+                    <label
+                      htmlFor="first_name"
+                      className="mb-2 dark:text-gray-300"
+                    >
                       First Name
                     </label>
                     <input
                       type="text"
+                      name="first_name"
                       className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
-                      placeholder={profile?.first_name}
+                      placeholder="First Name"
+                      defaultValue={profile?.first_name}
+                      onChange={handleInputChange}
                     />
                   </div>
-                  <div className="w-full  mb-4 lg:mt-6">
-                    <label for="" className=" dark:text-gray-300">
+                  <div className="w-full mb-4 lg:mt-6">
+                    <label htmlFor="last_name" className="dark:text-gray-300">
                       Last Name
                     </label>
                     <input
                       type="text"
+                      name="last_name"
                       className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
-                      placeholder={profile?.last_name}
+                      placeholder="Last Name"
+                      defaultValue={profile?.last_name}
+                      onChange={handleInputChange}
                     />
                   </div>
                 </div>
                 <div className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full">
-                  <div className="w-full  mb-4 mt-6">
-                    <label for="" className="mb-2 dark:text-gray-300">
+                  <div className="w-full mb-4 mt-6">
+                    <label htmlFor="email" className="mb-2 dark:text-gray-300">
                       Email
                     </label>
                     <input
-                      type="text"
+                      type="email"
+                      name="email"
                       className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
-                      placeholder={profile?.email}
+                      placeholder="Email"
+                      defaultValue={profile?.email}
                       readOnly
                     />
                   </div>
-                  <div className="w-full  mb-4 lg:mt-6">
-                    <label for="" className=" dark:text-gray-300">
+                  <div className="w-full mb-4 lg:mt-6">
+                    <label
+                      htmlFor="phone_number"
+                      className="dark:text-gray-300"
+                    >
                       Phone Number
                     </label>
                     <input
                       type="text"
+                      name="phone_number"
                       className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
-                      placeholder={profile?.phone_number}
+                      placeholder="Phone Number"
+                      defaultValue={profile?.phone_number}
+                      onChange={handleInputChange}
                     />
                   </div>
                 </div>
@@ -138,7 +207,12 @@ const Profile = () => {
                 <div className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full">
                   <div className="w-full">
                     <h3 className="dark:text-gray-300 mb-2">Gender</h3>
-                    <select className="w-full text-grey border-2 rounded-lg p-4 pl-2 pr-2 cursor-pointer dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800">
+                    <select
+                      name="gender"
+                      className="w-full text-grey border-2 rounded-lg p-4 pl-2 pr-2 cursor-pointer dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                      defaultValue={profile?.gender}
+                      onChange={handleInputChange}
+                    >
                       <option disabled value="">
                         Select Gender
                       </option>
@@ -150,34 +224,105 @@ const Profile = () => {
                     <h3 className="dark:text-gray-300 mb-2">Date Of Birth</h3>
                     <input
                       type="date"
+                      name="date_birth"
                       className="text-grey p-4 py-[13px] w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800 cursor-pointer"
+                      defaultValue={profile?.date_of_birth}
+                      onChange={handleInputChange}
                     />
                   </div>
                 </div>
                 <div className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full">
-                  <div className="w-full  mb-4 mt-6">
-                    <label for="" className="mb-2 dark:text-gray-300">
+                  <div className="w-full mb-4 mt-6">
+                    <label htmlFor="city" className="mb-2 dark:text-gray-300">
+                      City
+                    </label>
+                    <input
+                      type="text"
+                      name="city"
+                      className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                      placeholder="Enter Your City"
+                      defaultValue={profile?.city}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  <div className="w-full mb-4 lg:mt-6">
+                    <label htmlFor="state" className="dark:text-gray-300">
+                      State
+                    </label>
+                    <input
+                      type="text"
+                      name="state"
+                      className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                      placeholder="Enter Your State"
+                      defaultValue={profile?.state}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                </div>
+                <div className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full">
+                  <div className="w-full mb-4 mt-6">
+                    <label htmlFor="zip" className="mb-2 dark:text-gray-300">
+                      Zip
+                    </label>
+                    <input
+                      type="number"
+                      name="zip"
+                      className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                      placeholder="Enter Your zip code"
+                      defaultValue={profile?.zip}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  <div className="w-full mb-4 lg:mt-6">
+                    <label
+                      htmlFor="country_code"
+                      className="dark:text-gray-300"
+                    >
+                      Country Code
+                    </label>
+                    <input
+                      type="text"
+                      name="country_code"
+                      className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                      placeholder="Enter Your Country Code"
+                      defaultValue={profile?.country_code}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                </div>
+                <div className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full">
+                  <div className="w-full mb-4 mt-6">
+                    <label
+                      htmlFor="country"
+                      className="mb-2 dark:text-gray-300"
+                    >
                       Country
                     </label>
                     <input
                       type="text"
+                      name="country"
                       className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
-                      placeholder="Enter Your Phone Country"
+                      placeholder="Enter Your Country"
+                      defaultValue={profile?.country}
+                      onChange={handleInputChange}
                     />
                   </div>
-                  <div className="w-full  mb-4 lg:mt-6">
-                    <label for="" className=" dark:text-gray-300">
+                  <div className="w-full mb-4 lg:mt-6">
+                    <label htmlFor="address" className="dark:text-gray-300">
                       Address
                     </label>
                     <input
                       type="text"
+                      name="address"
                       className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
                       placeholder="Enter Your Address"
+                      defaultValue={profile?.address}
+                      onChange={handleInputChange}
                     />
                   </div>
                 </div>
 
-                <div className="w-full rounded-lg bg-blue-500 hover:bg-[#FF693B] transition-all duration-300 lg:mt-8 text-white text-lg font-semibold ">
+                <div className="w-full rounded-lg bg-blue-500 hover:bg-[#FF693B] transition-all duration-300 lg:mt-8 text-white text-lg font-semibold">
                   <button type="submit" className="w-full py-3">
                     Update
                   </button>

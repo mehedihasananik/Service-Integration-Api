@@ -160,45 +160,48 @@ const PortfolioPage = ({
           ) : (
             <>
               {filteredPortfolio &&
-                filteredPortfolio.map((portfolio) => (
-                  <Link
-                    key={portfolio.id}
-                    href={`/portfolio/${portfolio.slug}`}
-                  >
-                    <div className="group">
-                      <div className="portfolio-bgHover cursor-pointer flex flex-col xl:flex-row justify-between bg-[#FFFFFF] rounded-xl border border-[#CBD5E1]">
-                        <div>
-                          <Image
-                            width={800}
-                            height={262}
-                            className="w-full lg:w-[400px] h-[420px] object-cover md:rounded-l"
-                            src={portfolio.image}
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex flex-col justify-center items-center p-3 md:py-0 2xl:px-10">
-                          <div className="text-center">
-                            <h4 className="text-[14px] text-[#999999] pt-3 pb-3 md:pt-0 md:pb-6 portfolio-textHover">
-                              {portfolio.service_name[0].service_name}
-                            </h4>
-                            <h3 className="text-[16px] font-bold font-Raleway text-[#333333] portfolio-textHover">
-                              {portfolio.heading}
-                            </h3>
-                            <p className="w-[250px] text-[14px] text-[#666666] py-3 portfolio-textHover">
-                              {portfolio.text}
-                            </p>
+                filteredPortfolio.map((portfolio) => {
+                  // console.log(portfolio);
+                  return (
+                    <Link
+                      key={portfolio.id}
+                      href={`/portfolio/${portfolio.slug}`}
+                    >
+                      <div className="group">
+                        <div className="portfolio-bgHover cursor-pointer flex flex-col xl:flex-row justify-between bg-[#FFFFFF] rounded-xl border border-[#CBD5E1]">
+                          <div>
+                            <Image
+                              width={800}
+                              height={262}
+                              className="w-full lg:w-[400px] h-[420px] object-cover md:rounded-l"
+                              src={portfolio.image}
+                              alt=""
+                            />
                           </div>
-                          <div className="group flex justify-center items-center gap-2 text-[#FF693B] font-bold mt-5 portfolio-textHover pb-6 lg:pb-0">
-                            <button className="text-[14px]">Read More</button>
-                            <span className="w-[19px] font-bold">
-                              <HiArrowSmallRight className="text-xl" />
-                            </span>
+                          <div className="flex flex-col justify-center items-center p-3 md:py-0 2xl:px-10">
+                            <div className="text-center">
+                              <h4 className="text-[14px] text-[#999999] pt-3 pb-3 md:pt-0 md:pb-6 portfolio-textHover">
+                                {portfolio.service_name[0].service_name}
+                              </h4>
+                              <h3 className="text-[16px] font-bold font-Raleway text-[#333333] portfolio-textHover">
+                                {portfolio.heading}
+                              </h3>
+                              <p className="w-[250px] text-[14px] text-[#666666] py-3 portfolio-textHover">
+                                {portfolio.text}
+                              </p>
+                            </div>
+                            <div className="group flex justify-center items-center gap-2 text-[#FF693B] font-bold mt-5 portfolio-textHover pb-6 lg:pb-0">
+                              <button className="text-[14px]">Read More</button>
+                              <span className="w-[19px] font-bold">
+                                <HiArrowSmallRight className="text-xl" />
+                              </span>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </Link>
-                ))}
+                    </Link>
+                  );
+                })}
             </>
           )}
         </div>

@@ -1,20 +1,27 @@
 "use client";
 
 import { fetchData } from "@/config/apiRequests.js";
-import { manageOrderApi } from "@/config/apis";
 import { Pagination, Table } from "flowbite-react";
 import { useEffect, useState } from "react";
 
 const ManageOrder = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [orders, setOrder] = useState(null);
-  const [userData, setUserData] = useState();
+
+  const user =
+    typeof window !== "undefined"
+      ? JSON.parse(sessionStorage.getItem("userData"))
+      : null;
 
   const fetchOrderManageData = async () => {
     try {
-      const data = await fetchData(`${manageOrderApi}`, "POST", {
-        user_id: userData.id,
-      });
+      const data = await fetchData(
+        `http://192.168.10.14:8000/api/manage_order`,
+        "POST",
+        {
+          user_id: user.id,
+        }
+      );
       setOrder(data);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -26,10 +33,7 @@ const ManageOrder = () => {
     fetchOrderManageData();
   }, []);
 
-  useEffect(() => {
-    setUserData(JSON.parse(sessionStorage.getItem("userData")));
-  }, []);
-
+  console.log(orders);
   return (
     <div className="px-6">
       {/* table */}
@@ -61,7 +65,7 @@ const ManageOrder = () => {
                     className="text-[#555] text-[14px] font-Raleway 
                 font-[500]"
                   >
-                    {sevice_items[0].title}
+                    {sevice_items?.title}
                   </Table.Cell>
                   <Table.Cell
                     className="text-[#555] text-[14px] font-Raleway 
@@ -73,7 +77,7 @@ const ManageOrder = () => {
                     className="text-[#3371F2] text-[16px] font-Roboto 
                 font-[600] "
                   >
-                    {order.order_price}
+                    ${order.order_price}
                   </Table.Cell>
                   <Table.Cell>
                     <button className="bg-[#FF8F5A] text-[14px] text-[#fff] font-[600] px-4 py-2 rounded-md">

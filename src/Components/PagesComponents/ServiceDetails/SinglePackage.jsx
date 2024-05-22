@@ -17,11 +17,6 @@ const SinglePackage = ({ item, openModal, setOpenModal }) => {
       ? JSON.parse(sessionStorage.getItem("userData"))
       : null;
 
-  console.log(userData.id);
-  console.log(item.id);
-  console.log(item.sevice_items_id);
-  console.log(item.package_price);
-
   const handlePlaceOrder = async () => {
     const data = {
       user_id: userData.id,

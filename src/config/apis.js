@@ -30,7 +30,7 @@ const searchServiceApi = `${apiEndpoint}/search_sevice_category`;
 const search_sevice_categoryAll = `http://192.168.10.14:8000/api/search_sevice_category/all`;
 
 // single Portfolio page
-const singlePortfolio = `${apiEndpoint}/portfolio_details`;
+const singlePortfolio = `http://192.168.10.14:8000/api/portfolio_details`;
 
 // about page
 const aboutUsApi = `${apiEndpoint}/aboutus_page`;

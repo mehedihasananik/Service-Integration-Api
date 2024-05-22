@@ -40,7 +40,7 @@ const UseSocketIOTester = () => {
         // Check if selectedFile exists
         formData.append("attachment", selectedFile); // Append selectedFile
       }
-      const response = await fetch("https://admin.envobyte.com/api/save/chat", {
+      const response = await fetch("http://192.168.10.14:8000/api/save/chat", {
         method: "POST",
         body: formData,
       });
@@ -60,7 +60,7 @@ const UseSocketIOTester = () => {
 
   const getMessageFromApi = async () => {
     try {
-      const response = await fetch("https://admin.envobyte.com/api/chat/list", {
+      const response = await fetch("http://192.168.10.14:8000/api/chat/list", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

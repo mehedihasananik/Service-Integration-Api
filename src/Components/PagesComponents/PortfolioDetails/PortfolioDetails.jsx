@@ -1,30 +1,35 @@
 import Container from "@/Components/Container/Container";
+import RelevantPortfolio from "@/Components/Utilites/RelevantServices/RelevantPortfolio";
 import RelevantServices from "@/Components/Utilites/RelevantServices/RelevantServices";
 import Image from "next/image";
 import React from "react";
 
 const PortfolioDetails = ({ singlePortfolioItem }) => {
+  const { basic, details, relevant } = singlePortfolioItem;
+
   return (
     <div>
       <div className="md:py-10 md:pb-5">
         <Container>
-          {singlePortfolioItem.map((portfolio, index) => {
+          <div className="text-center pb-3 lg:pb-5  md:pt-0">
+            <h1 className=" text-[20px] md:text-[30px] lg:text-[54px] font-Raleway font-bold lg:leading-[63.4px] text-[#000000] ">
+              {basic.title}
+            </h1>
+          </div>
+          <div>
+            <p className="text-[18px] text-justify font-Roboto text-[#333333] md:leading-[27px] md:text-left py-3 md:pt-0 md:py-5">
+              {basic.details}
+            </p>
+          </div>
+
+          {details.map((portfolio, index) => {
             //console.log(portfolio);
             const { title, details, image, caption_text } = portfolio;
             // console.log(title);
             return (
               <div key={portfolio.id}>
                 {/* title */}
-                <div className="text-center pb-3 lg:pb-5  md:pt-0">
-                  <h1 className=" text-[20px] md:text-[30px] lg:text-[54px] font-Raleway font-bold lg:leading-[63.4px] text-[#000000] ">
-                    {title}
-                  </h1>
-                </div>
-                <div>
-                  <p className="text-[18px] text-justify font-Roboto text-[#333333] md:leading-[27px] md:text-left py-3 md:pt-0 md:py-5">
-                    {details}
-                  </p>
-                </div>
+
                 <div className="w-[100%]">
                   <Image
                     className="md:w-full md:h-[75vh] rounded-md"
@@ -34,7 +39,7 @@ const PortfolioDetails = ({ singlePortfolioItem }) => {
                     src={image}
                   />
                 </div>
-                <div className="text-center py-4 md:pt-5 md:py-0">
+                <div className="text-center py-4  md:py-5">
                   <h3 className="text-gray-500 text-[18px] md:text-[20px]  font-Raleway font-semibold">
                     {caption_text}
                   </h3>
@@ -54,7 +59,7 @@ const PortfolioDetails = ({ singlePortfolioItem }) => {
       </div>
       <div className="bg-[#F8FAFC] py-5 md:py-10">
         <Container>
-          <RelevantServices />
+          <RelevantPortfolio singlePortfolioItem={singlePortfolioItem} />
         </Container>
       </div>
     </div>
