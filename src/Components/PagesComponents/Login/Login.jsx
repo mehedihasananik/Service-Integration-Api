@@ -10,6 +10,7 @@ import toast from "react-hot-toast";
 import ReCAPTCHA from "react-google-recaptcha";
 import { fetchData } from "@/config/apiRequests.js";
 import { loginApi } from "@/config/apis";
+import axios from "axios";
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
@@ -57,9 +58,10 @@ const Login = () => {
   function onChange() {}
 
   const handleLoginSocial = (provider) => async () => {
-    const url = `http://192.168.10.14:8000/api/auth/${provider}`;
+    const url = `http://127.0.0.1:8000/api/auth/${provider}`;
     const response = await axios.get(url);
     window.location.href = response.data.redirectUrl;
+    console.log(response);
   };
 
   return (
@@ -78,21 +80,24 @@ const Login = () => {
             </div>
             <div className="flex flex-col md:flex-row pb-4 gap-y-4 md:gap-10  lg:pb-12">
               <button
-                onClick={() => handleLoginSocial("google")}
+                type="button"
+                onClick={handleLoginSocial("facebook")}
+                className="flex justify-center items-center gap-2 font-Raleway border p-2 rounded-md hover:border-[#FF693B] transition-all duration-200"
+              >
+                <img src="/assets/fLogo.png" alt="" />
+
+                <span className="text-[14px]text-[#032333]">
+                  Continue with Facebook
+                </span>
+              </button>
+              <button
+                type="button"
+                onClick={handleLoginSocial("google")}
                 className="flex justify-center items-center gap-2 font-Raleway border p-2 rounded-md hover:border-[#FF693B] transition-all duration-200"
               >
                 <img src="/assets/gLogo.png" alt="" />
                 <span className="text-[14px]text-[#032333]">
                   Continue with Google
-                </span>
-              </button>
-              <button
-                onClick={() => handleLoginSocial("facebook")}
-                className="flex justify-center items-center gap-2 font-Raleway border p-2 rounded-md hover:border-[#FF693B] transition-all duration-200"
-              >
-                <img src="/assets/fLogo.png" alt="" />
-                <span className="text-[14px]text-[#032333]">
-                  Continue with Facebook
                 </span>
               </button>
             </div>
