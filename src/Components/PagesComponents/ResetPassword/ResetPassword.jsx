@@ -41,11 +41,11 @@ const ResetPassword = () => {
     }
     try {
       const response = await axios.post(
-        "http://192.168.10.16:8000/api/new-password",
+        "http://192.168.5.239:8000/api/new-password",
         {
           email,
           password,
-          confirmPassword,
+          confirm_password: confirmPassword,
           token,
         }
       );

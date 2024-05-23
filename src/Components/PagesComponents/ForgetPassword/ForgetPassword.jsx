@@ -13,7 +13,7 @@ const ForgetPassword = () => {
     e.preventDefault();
 
     const response = await fetch(
-      "http://192.168.10.16:8000/api/reset_password",
+      "http://192.168.5.239:8000/api/reset_password",
       {
         method: "POST",
         headers: {

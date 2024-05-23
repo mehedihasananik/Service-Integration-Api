@@ -1,11 +1,13 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import io from "socket.io-client";
+import React, { useState, useLayoutEffect } from "react";
+import {
+  sendMessage,
+  fetchMessages,
+  disconnectSocket,
+  setMessageHandler,
+} from "./socketManager";
 import FirstChat from "./FirstChat";
-
-const SOCKET_URL_ONE = "https://admin.envobyte.com";
-const socket = io(SOCKET_URL_ONE);
 
 const UseSocketIOTester = () => {
   const [messageHistory, setMessageHistory] = useState([]);
@@ -13,74 +15,39 @@ const UseSocketIOTester = () => {
   const [loading, setLoading] = useState(true);
   const [selectedFile, setSelectedFile] = useState(null);
 
-  useEffect(() => {
-    socket.on("message", (data) => {
-      setMessageHistory((prevMessages) => [...prevMessages, data]);
-    });
+  useLayoutEffect(() => {
+    const fetchInitialMessages = async () => {
+      const messages = await fetchMessages();
+      setMessageHistory(messages);
+      setLoading(false);
+    };
 
-    getMessageFromApi();
+    fetchInitialMessages();
+
+    const handleMessage = (data) => {
+      setMessageHistory((prevMessages) => [...prevMessages, data]);
+    };
+
+    setMessageHandler(handleMessage);
 
     const interval = setInterval(() => {
-      getMessageFromApi();
+      fetchMessages().then(setMessageHistory).catch(console.error);
     }, 3000);
 
     return () => {
       clearInterval(interval);
-      socket.disconnect();
+      disconnectSocket();
     };
   }, []);
 
-  const sendMessageToAPI = async (message) => {
+  const handleSendMessage = async () => {
     try {
-      const formData = new FormData();
-      formData.append("sender_id", 1);
-      formData.append("receiver_id", 18);
-      formData.append("message", message);
-      if (selectedFile) {
-        // Check if selectedFile exists
-        formData.append("attachment", selectedFile); // Append selectedFile
-      }
-      const response = await fetch("http://192.168.10.14:8000/api/save/chat", {
-        method: "POST",
-        body: formData,
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to send message");
-      }
-
-      setMessageHistory((prevMessages) => [
-        ...prevMessages,
-        { sender_id: 1, message: message },
-      ]);
+      const newMessage = await sendMessage(inputtedMessage, selectedFile);
+      setMessageHistory((prevMessages) => [...prevMessages, newMessage]);
+      setInputtedMessage("");
+      setSelectedFile(null);
     } catch (error) {
       console.error("Error sending message:", error);
-    }
-  };
-
-  const getMessageFromApi = async () => {
-    try {
-      const response = await fetch("http://192.168.10.14:8000/api/chat/list", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          sender_id: 18,
-          receiver_id: 1,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to fetch messages");
-      }
-
-      const data = await response.json();
-
-      setMessageHistory(data);
-      setLoading(false);
-    } catch (error) {
-      console.error("Error fetching messages:", error);
     }
   };
 
@@ -90,7 +57,7 @@ const UseSocketIOTester = () => {
         messageHistory={messageHistory}
         inputtedMessage={inputtedMessage}
         setInputtedMessage={setInputtedMessage}
-        sendMessageToAPI={sendMessageToAPI}
+        sendMessageToAPI={handleSendMessage}
         loading={loading}
         setSelectedFile={setSelectedFile}
         selectedFile={selectedFile}

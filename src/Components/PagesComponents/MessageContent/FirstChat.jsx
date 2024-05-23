@@ -9,7 +9,7 @@ import io from "socket.io-client";
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
 
-const SOCKET_URL_ONE = "https://admin.envobyte.com/";
+const SOCKET_URL_ONE = "http://localhost:3000";
 const socket = io(SOCKET_URL_ONE);
 
 const FirstChat = ({
