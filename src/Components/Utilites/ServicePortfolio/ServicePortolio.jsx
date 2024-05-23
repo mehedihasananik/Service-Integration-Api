@@ -77,7 +77,7 @@ const ServicePortolio = () => {
         autoplay={{ delay: 3000, disableOnInteraction: false }}
       >
         {portfolios.map((portfolio) => {
-          console.log(portfolio);
+          // console.log(portfolio);
           return (
             <SwiperSlide key={portfolio.id} className="">
               <Link href={`/portfolio/${portfolio.slug}`}>

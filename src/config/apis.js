@@ -21,7 +21,7 @@ const allsServiceItemsApi = `${apiEndpoint}/sevice_items`;
 
 // single service page
 
-const singeServiceDetails = `${apiEndpoint}/sevice_items_details`;
+const singeServiceDetails = `http://192.168.10.14:8000/api/sevice_items_details`;
 const singleSliderPageDetails = `${apiEndpoint}/service_items_slider`;
 const singleService_package = `${apiEndpoint}/service_package`;
 

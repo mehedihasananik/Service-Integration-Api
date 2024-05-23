@@ -10,6 +10,7 @@ import SinglePackage from "./SinglePackage";
 import Link from "next/link";
 import OrderSliderLg from "@/Components/Utilites/OrderSlider/OrderSliderLg";
 import OrderSliderSm from "@/Components/Utilites/OrderSlider/OrderSliderSm";
+import QuestionService from "@/Components/Home/Questions/QuestionService";
 
 const ServiceDetails = ({
   service,
@@ -27,7 +28,7 @@ const ServiceDetails = ({
           {/* title */}
           <div className="text-center font-Raleway pb-10">
             <h1 className="text-[#10F172A] text-[32px] md:text-[48px] font-bold capitalize">
-              {service.sevice_items_name}
+              {service.service_details[0].sevice_items_name}
             </h1>
             <h3 className="text-[18px] font-medium">
               Discover <span className="text-[#FF693B]">The Perfect Plan</span>
@@ -115,11 +116,12 @@ const ServiceDetails = ({
       </div>
       <Container>
         {/* relevant services */}
-        <RelevantServices />
+        <RelevantServices service={service} />
       </Container>
 
       <div className="bg-[#F8FAFC]">
-        <Questions
+        <QuestionService
+          service={service}
           title="Frequently Asked Questions"
           className="bg-[#F8FAFC]"
         />

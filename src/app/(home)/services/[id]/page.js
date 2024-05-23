@@ -17,7 +17,7 @@ export async function generateMetadata({ params, searchParams }, parent) {
   const previousImages = (await parent).openGraph?.images || [];
 
   return {
-    title: `${service.sevice_items_name} || Envobyte`,
+    title: `${service.service_details[0].sevice_items_name} || Envobyte`,
     description: service.description,
     openGraph: {
       images: ["/some-specific-page-image.jpg", ...previousImages],

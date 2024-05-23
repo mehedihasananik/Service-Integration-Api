@@ -5,6 +5,7 @@ import Container from "@/Components/Container/Container";
 import { FiArrowRight } from "react-icons/fi";
 import { HiMail } from "react-icons/hi";
 import Link from "next/link";
+
 const ForgetPassword = () => {
   const [email, setEmail] = useState("");
 
@@ -12,7 +13,7 @@ const ForgetPassword = () => {
     e.preventDefault();
 
     const response = await fetch(
-      "http://192.168.10.14:8000/api/reset_password",
+      "http://192.168.10.16:8000/api/reset_password",
       {
         method: "POST",
         headers: {
@@ -25,6 +26,8 @@ const ForgetPassword = () => {
     if (response.ok) {
       // Handle successful response
       console.log("Password reset email sent successfully");
+      // Save email to session storage
+      localStorage.setItem("email", email);
     } else {
       // Handle error response
       console.log("Failed to send password reset email");

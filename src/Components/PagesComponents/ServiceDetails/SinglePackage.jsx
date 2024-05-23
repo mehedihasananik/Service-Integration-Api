@@ -127,7 +127,8 @@ const SinglePackage = ({ item, openModal, setOpenModal }) => {
             </span>
             <div className="flex items-center gap-2">
               <span className="text-[12px] md:text-[16px]">
-                {item.delivery_time}
+                {item.delivery_time}{" "}
+                {item.delivery_time === "1" ? "Day Delivery" : "Days Delivery"}
               </span>{" "}
               <Tooltip content="Tooltip content">
                 <div className="cursor-pointer">
@@ -144,7 +145,10 @@ const SinglePackage = ({ item, openModal, setOpenModal }) => {
             <span>
               <BiRevision className="w-[24px] h-[24px]" />
             </span>
-            <span className="text-[12px] md:text-[16px]"> {item.revision}</span>
+            <span className="text-[12px] md:text-[16px]">
+              {" "}
+              {item.revision} {item.revision === "1" ? "Revision" : "Revisions"}
+            </span>
           </div>
         </div>
       </div>
