@@ -29,7 +29,7 @@ const ServiceModal = ({ openModal, setOpenModal }) => {
 
     try {
       const response = await fetch(
-        "https://admin.envobyte.com/api/user_login",
+        "https://admin.softpixe.com/api/user_login",
         {
           method: "POST",
           headers: {

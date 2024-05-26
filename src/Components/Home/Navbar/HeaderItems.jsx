@@ -18,7 +18,7 @@ const HeaderItems = ({ headers }) => {
             <Link href={"/"}>
               <div>
                 <Image
-                  src={`https://admin.envobyte.com/home/1714376088.webp`}
+                  src={`https://admin.softpixe.com/home/1714376088.webp`}
                   width={159}
                   height={49}
                   alt="Picture of the logo"
