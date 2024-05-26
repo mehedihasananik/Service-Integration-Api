@@ -1,5 +1,6 @@
 import RequirementContent from "@/Components/PagesComponents/RequirementContent/RequirementContent";
 import { singleRequirement } from "@/config/apis";
+
 import React from "react";
 
 async function getRequireContent(id) {
@@ -16,9 +17,14 @@ async function getRequireContent(id) {
 const SingleRequireMent = async ({ params }) => {
   const requireMent = await getRequireContent(params.id);
 
+  const requirementId = params.id;
+
   return (
     <div>
-      <RequirementContent requireMent={requireMent} />
+      <RequirementContent
+        requireMent={requireMent}
+        requirementId={requirementId}
+      />
     </div>
   );
 };

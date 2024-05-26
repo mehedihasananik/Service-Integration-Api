@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { Label, TextInput } from "flowbite-react";
+import { Label, Spinner, TextInput } from "flowbite-react";
 import Container from "@/Components/Container/Container";
 import { FiArrowRight } from "react-icons/fi";
 import { HiMail } from "react-icons/hi";
@@ -10,9 +10,11 @@ import toast from "react-hot-toast";
 
 const ForgetPassword = () => {
   const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true); // Set loading to true while data is being fetched
 
     try {
       const response = await axios.post(
@@ -24,6 +26,10 @@ const ForgetPassword = () => {
       toast.success(response.data.msg);
     } catch (error) {
       console.log(error);
+      toast.error("An error occurred. Please try again.");
+    } finally {
+      setLoading(false); // Set loading back to false after response or error
+      setEmail(""); // Clear the input field
     }
   };
 
@@ -68,8 +74,18 @@ const ForgetPassword = () => {
                 <button
                   className="bg-[#FF693B] text-[16px] font-semibold font-Raleway md:mt-6 py-2 hover:bg-[#fff] hover:text-[#FF693B] flex justify-center items-center rounded-md text-white border border-[#FF693B] transition-all duration-300"
                   type="submit"
+                  disabled={loading} // Disable button while loading
                 >
-                  Reset Password
+                  {loading ? (
+                    <>
+                      {" "}
+                      <Spinner aria-label="Default status example" />{" "}
+                      <h3 className="mx-3">Sending mail</h3>{" "}
+                    </>
+                  ) : (
+                    "Reset Password"
+                  )}{" "}
+                  {/* Show "Loading..." text while loading */}
                   <span>
                     <FiArrowRight className="text-[20px] mx-1" />
                   </span>

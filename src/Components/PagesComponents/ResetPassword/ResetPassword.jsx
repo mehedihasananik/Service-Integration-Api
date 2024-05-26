@@ -8,6 +8,7 @@ import Link from "next/link";
 import { FiArrowRight, FiEye, FiEyeOff } from "react-icons/fi";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 const ResetPassword = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -49,12 +50,16 @@ const ResetPassword = () => {
           token,
         }
       );
+      console.log(response);
       if (response.status === 200) {
-        alert("Password reset successfully");
+        toast.success(response.data.success);
+
+        setShowPassword("");
+        setConfirmPassword("");
       }
     } catch (error) {
       console.error("There was an error resetting the password!", error);
-      alert("Failed to reset password.");
+      toast.error(error);
     }
   };
 

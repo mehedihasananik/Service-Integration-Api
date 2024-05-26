@@ -12,6 +12,7 @@ import {
 } from "../index";
 import Tawk from "../Tawk/Tawk";
 import { user_contactApi } from "@/config/apis";
+import Extrea from "./Extra/Extrea";
 
 async function getUserContactContent() {
   const res = await fetch(`${user_contactApi}`, {
@@ -30,7 +31,7 @@ const HomePage = async () => {
   return (
     <div className="overflow-hidden">
       <Tawk />
-
+      <Extrea />
       <Banner />
       <Brands />
       <Services />

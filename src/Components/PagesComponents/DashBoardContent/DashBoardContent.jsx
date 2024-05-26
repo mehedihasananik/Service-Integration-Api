@@ -71,7 +71,10 @@ const DashBoardContent = () => {
               } = project;
 
               return (
-                <Link key={project.id} href={"#"}>
+                <Link
+                  key={project.id}
+                  href={`/requirement-page/${service_order_id}`}
+                >
                   <div className=" shadow-lg rounded-md border border-[#E2E8F0] pb-5 mb-5">
                     <div className="flex flex-col">
                       <div className="bg-[#E2E8F0]">
@@ -127,12 +130,9 @@ const DashBoardContent = () => {
                             </h3>
                           </div>
                           <div>
-                            <Link
-                              href={`/requirement-page/${service_order_id}`}
-                              className="text-[14px] text-[#505050] font-[500]"
-                            >
+                            <button className="text-[14px] text-[#505050] font-[500]">
                               {order_status}
-                            </Link>
+                            </button>
                           </div>
                         </div>
                       </div>
