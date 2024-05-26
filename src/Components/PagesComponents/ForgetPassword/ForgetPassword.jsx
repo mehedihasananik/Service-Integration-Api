@@ -5,32 +5,25 @@ import Container from "@/Components/Container/Container";
 import { FiArrowRight } from "react-icons/fi";
 import { HiMail } from "react-icons/hi";
 import Link from "next/link";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const ForgetPassword = () => {
   const [email, setEmail] = useState("");
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-    const response = await fetch(
-      "http://192.168.5.239:8000/api/reset_password",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email }),
-      }
-    );
-
-    if (response.ok) {
-      // Handle successful response
-      console.log("Password reset email sent successfully");
-      // Save email to session storage
-      localStorage.setItem("email", email);
-    } else {
-      // Handle error response
-      console.log("Failed to send password reset email");
+    try {
+      const response = await axios.post(
+        "http://192.168.5.239:8000/api/reset_password",
+        {
+          email,
+        }
+      );
+      toast.success(response.data.msg);
+    } catch (error) {
+      console.log(error);
     }
   };
 

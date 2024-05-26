@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Checkbox, Label, TextInput } from "flowbite-react";
 import Container from "@/Components/Container/Container";
 import { FiArrowRight, FiEye, FiEyeOff } from "react-icons/fi"; // Import eye icons
@@ -36,6 +36,7 @@ const Login = () => {
         "POST",
         requestData
       );
+      console.log(data);
 
       if (data.success) {
         toast.success("Logged in successfully");
@@ -57,12 +58,27 @@ const Login = () => {
   };
   function onChange() {}
 
-  const handleLoginSocial = (provider) => async () => {
-    const url = `http://127.0.0.1:8000/api/auth/${provider}`;
+  const handleSocialLogin = async (provider) => {
+    const url = `http://localhost:8000/api/auth/${provider}`;
     const response = await axios.get(url);
-    window.location.href = response.data.redirectUrl;
-    console.log(response);
+    // window.location.href = response.data.redirectUrl;
+    window.open(
+      response.data.redirectUrl,
+      "_blank",
+      "width=600,height=800,left=100,top=100"
+    );
   };
+
+  useEffect(() => {
+    // Event listener for the 'message' event
+    const handleMessage = (event) => {
+      // Check the event.origin for security if needed
+      console.log("Received data from child window:", event.data.message);
+    };
+    window.addEventListener("message", handleMessage);
+    // Clean up the event listener on component unmount
+    return () => window.removeEventListener("message", handleMessage);
+  }, []);
 
   return (
     <div className="login_singUp overflow-hidden  my-5">
@@ -81,7 +97,7 @@ const Login = () => {
             <div className="flex flex-col md:flex-row pb-4 gap-y-4 md:gap-10  lg:pb-12">
               <button
                 type="button"
-                onClick={handleLoginSocial("facebook")}
+                onClick={() => handleSocialLogin("facebook")}
                 className="flex justify-center items-center gap-2 font-Raleway border p-2 rounded-md hover:border-[#FF693B] transition-all duration-200"
               >
                 <img src="/assets/fLogo.png" alt="" />
@@ -92,7 +108,7 @@ const Login = () => {
               </button>
               <button
                 type="button"
-                onClick={handleLoginSocial("google")}
+                onClick={() => handleSocialLogin("google")}
                 className="flex justify-center items-center gap-2 font-Raleway border p-2 rounded-md hover:border-[#FF693B] transition-all duration-200"
               >
                 <img src="/assets/gLogo.png" alt="" />

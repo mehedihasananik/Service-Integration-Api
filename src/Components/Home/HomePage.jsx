@@ -30,6 +30,7 @@ const HomePage = async () => {
   return (
     <div className="overflow-hidden">
       <Tawk />
+
       <Banner />
       <Brands />
       <Services />
