@@ -25,7 +25,7 @@ export const sendMessage = async (message, selectedFile) => {
     if (selectedFile) {
       formData.append("attachment", selectedFile);
     }
-    const response = await fetch("https://admin.softpixe.com/api/save/chat", {
+    const response = await fetch("http://192.168.10.16:8000/api/save/chat", {
       method: "POST",
       body: formData,
     });
@@ -43,7 +43,7 @@ export const sendMessage = async (message, selectedFile) => {
 
 export const fetchMessages = async () => {
   try {
-    const response = await fetch("https://admin.softpixe.com/api/chat/list", {
+    const response = await fetch("http://192.168.10.16:8000/api/chat/list", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

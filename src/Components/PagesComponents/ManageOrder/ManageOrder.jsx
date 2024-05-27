@@ -2,6 +2,7 @@
 
 import { fetchData } from "@/config/apiRequests.js";
 import { Pagination, Table } from "flowbite-react";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const ManageOrder = () => {
@@ -48,7 +49,8 @@ const ManageOrder = () => {
           </Table.Head>
           <Table.Body className="divide-y">
             {orders?.map((order) => {
-              const { sevice_items } = order;
+              const { sevice_items, order_status } = order;
+              console.log(order);
 
               return (
                 <Table.Row
@@ -80,9 +82,16 @@ const ManageOrder = () => {
                     ${order.order_price}
                   </Table.Cell>
                   <Table.Cell>
-                    <button className="bg-[#FF8F5A] text-[14px] text-[#fff] font-[600] px-4 py-2 rounded-md">
-                      {order.order_status}
-                    </button>
+                    <Link
+                      href={
+                        order_status === "Requirement Needed"
+                          ? `requirement-page/${sevice_items.service_id}`
+                          : `/order-delivery`
+                      }
+                      className="bg-[#FF8F5A] text-[14px] text-[#fff] font-[600] px-4 py-2 rounded-md"
+                    >
+                      {order_status}
+                    </Link>
                   </Table.Cell>
                 </Table.Row>
               );

@@ -32,7 +32,7 @@ const Login = () => {
 
     try {
       const data = await fetchData(
-        `https://admin.softpixe.com/api/user_login`,
+        `https://admin.envobyte.com/api/user_login`,
         "POST",
         requestData
       );

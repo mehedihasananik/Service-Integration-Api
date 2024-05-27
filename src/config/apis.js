@@ -21,42 +21,42 @@ const allsServiceItemsApi = `${apiEndpoint}/sevice_items`;
 
 // single service page
 
-const singeServiceDetails = `https://admin.softpixe.com/api/sevice_items_details`;
+const singeServiceDetails = `http://192.168.10.14:8000/api/sevice_items_details`;
 const singleSliderPageDetails = `${apiEndpoint}/service_items_slider`;
 const singleService_package = `${apiEndpoint}/service_package`;
 
 // portfolio page
 const searchServiceApi = `${apiEndpoint}/search_sevice_category`;
-const search_sevice_categoryAll = `https://admin.softpixe.com/api/search_sevice_category/all`;
+const search_sevice_categoryAll = `http://192.168.10.14:8000/api/search_sevice_category/all`;
 
 // single Portfolio page
-const singlePortfolio = `https://admin.softpixe.com/api/portfolio_details`;
+const singlePortfolio = `http://192.168.10.14:8000/api/portfolio_details`;
 
 // about page
 const aboutUsApi = `${apiEndpoint}/aboutus_page`;
 const aboutUsItemApi = `${apiEndpoint}/aboutus_page_item`;
 
 // register page page
-const signupApi = `https://admin.softpixe.com/api/api/sign_up`;
+const signupApi = `http://192.168.10.16:8000/api/sign_up`;
 
 // login
 const loginApi = `${apiEndpoint}/user_login`;
 
 // dashboard apis
 
-const dashboardApis = `https://admin.softpixe.com/api/service_order_dashboard`;
+const dashboardApis = `http://192.168.10.16:8000/service_order_dashboard`;
 
 // manage order
 const manageOrderApi = `${apiEndpoint}/manage_order`;
 
 // singeRequirement
 
-const singleRequirement = `https://admin.softpixe.com/api/service_requirements`;
+const singleRequirement = `http://192.168.10.14:8000/api/service_requirements`;
 
 // checkout api
 const checkoutApi = `${apiEndpoint}/checkout`;
 // service order
-const serviceOrder = `https://admin.softpixe.com/api/service_order`;
+const serviceOrder = `http://192.168.10.16:8000/service_order`;
 
 export {
   headerApi,
