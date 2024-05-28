@@ -256,7 +256,7 @@ const FirstChat = ({
           )}
         </div>
         {showEmoji && (
-          <div className="md:px-14">
+          <div className="absolute bottom-[7%] right-[10px]">
             <Picker
               data={data}
               emojiSize={20}
