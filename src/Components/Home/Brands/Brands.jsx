@@ -1,7 +1,7 @@
 import Container from "@/Components/Container/Container";
+import BrandCarousel from "@/Components/Utilites/BrandCarousel/BrandCarousel";
 
 import { brandsApi } from "@/config/apis";
-import Image from "next/image";
 
 async function brandsContent() {
   const res = await fetch(`${brandsApi}`, {
@@ -26,20 +26,9 @@ const Brands = async () => {
             <h3>TRUSTED BY GLOBAL BRANDS</h3>
           </div>
           {/* right side */}
-          <div className=" w-full lg:w-[60%] lg:flex lg:justify-end ">
-            <div className="w-[100%] flex gap-x-3 sm:gap-x-3 lsm:gap-x-5 lg:gap-x-10 justify-center items-center lg:justify-end">
-              {brands?.map((brand) => {
-                return (
-                  <Image
-                    key={brand.id}
-                    width={500}
-                    height={500}
-                    className="w-[60px] h-[50px] md:w-[101px] md:h-[70px] "
-                    src={brand.logo}
-                    alt=""
-                  />
-                );
-              })}
+          <div className=" w-full lg:w-[45%] lg:flex lg:justify-end ">
+            <div className="w-[100%] flex  justify-end">
+              <BrandCarousel brands={brands} />
             </div>
           </div>
         </div>

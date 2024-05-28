@@ -16,9 +16,13 @@ const ManageOrder = () => {
 
   const fetchOrderManageData = async () => {
     try {
-      const data = await fetchData(`${apiEndpoint}/manage_order`, "POST", {
-        user_id: user.id,
-      });
+      const data = await fetchData(
+        `http://192.168.10.14:8000/api/manage_order`,
+        "POST",
+        {
+          user_id: user.id,
+        }
+      );
       setOrder(data);
     } catch (error) {
       console.error("Error fetching data:", error);

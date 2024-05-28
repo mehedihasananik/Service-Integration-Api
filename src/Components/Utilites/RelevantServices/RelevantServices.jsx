@@ -1,15 +1,14 @@
 "use client";
 import React, { useEffect, useState, useRef } from "react";
-import API_ROUTES from "@/app/api/confiq";
+
 import Image from "next/image";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
-import { HiArrowLeft, HiArrowRight } from "react-icons/hi";
+
 import "../../../app/globals.css";
 import { Autoplay } from "swiper/modules";
-import { allsServiceItemsApi } from "@/config/apis";
 
 const RelevantServices = ({ service }) => {
   const [services, setServices] = useState([]);
