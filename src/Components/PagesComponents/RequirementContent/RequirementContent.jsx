@@ -11,6 +11,7 @@ const RequirementContent = ({ requireMent, requirementId }) => {
   const [attachmentNames, setAttachmentNames] = useState(
     Array(requireMent.length).fill("")
   );
+  console.log(requireMent);
 
   const userData =
     typeof window !== "undefined"

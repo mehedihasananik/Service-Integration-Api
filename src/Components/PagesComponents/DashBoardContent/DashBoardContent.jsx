@@ -55,7 +55,7 @@ const DashBoardContent = () => {
                     key={project.id}
                     href={
                       order_status === "Requirement Needed"
-                        ? `/requirement-page/${service_order_id}`
+                        ? `requirement-page/${service_order_id}`
                         : order_status === "Inprogress"
                         ? `/order-delivery`
                         : "/"
