@@ -61,13 +61,10 @@ const RequirementContent = ({ requireMent, requirementId }) => {
     formData.append("service_order_id", requirementId);
 
     try {
-      const response = await fetch(
-        "http://192.168.10.14:8000/api/requirements_store",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      const response = await fetch("${apiEndpoint}/requirements_store", {
+        method: "POST",
+        body: formData,
+      });
       console.log("Response:", response); // Log response from the server
       // Handle response
       console.log("Form submitted successfully", response);

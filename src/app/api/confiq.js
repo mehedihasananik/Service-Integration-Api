@@ -1,6 +1,6 @@
 // config.js
 const API_ROUTES = {
-  route: "http://192.168.10.14:8000/api",
+  route: "${apiEndpoint}",
   // Add more API routes here if needed
 };
 

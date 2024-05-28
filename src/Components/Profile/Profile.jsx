@@ -13,16 +13,13 @@ const Profile = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch(
-        `http://192.168.10.14:8000/api/user_profile`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ user_id: userData.id }),
-        }
-      );
+      const response = await fetch(`${apiEndpoint}/user_profile`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ user_id: userData.id }),
+      });
       const data = await response.json();
       setProfile(data);
     } catch (error) {
@@ -50,13 +47,10 @@ const Profile = () => {
         formData.append("user_avatar", selectedFile);
       }
 
-      const response = await fetch(
-        "http://192.168.10.14:8000/api/user_profile_update",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      const response = await fetch("${apiEndpoint}/user_profile_update", {
+        method: "POST",
+        body: formData,
+      });
 
       if (!response.ok) {
         throw new Error("Failed to update profile");
