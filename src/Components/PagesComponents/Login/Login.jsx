@@ -32,7 +32,7 @@ const Login = () => {
 
     try {
       const data = await fetchData(
-        `https://admin.envobyte.com/api/user_login`,
+        `https://admin.softpixe.com/api/user_login`,
         "POST",
         requestData
       );
@@ -41,7 +41,7 @@ const Login = () => {
       if (data.success) {
         toast.success("Logged in successfully");
 
-        sessionStorage.setItem("userData", JSON.stringify(data));
+        localStorage.setItem("userData", JSON.stringify(data));
         router.push("/dashboard");
       } else {
         router.push("/");
@@ -59,7 +59,7 @@ const Login = () => {
   function onChange() {}
 
   const handleSocialLogin = async (provider) => {
-    const url = `http://localhost:8000/api/auth/${provider}`;
+    const url = `https://admin.softpixe.com/api/auth/${provider}`;
     const response = await axios.get(url);
     // window.location.href = response.data.redirectUrl;
     window.open(

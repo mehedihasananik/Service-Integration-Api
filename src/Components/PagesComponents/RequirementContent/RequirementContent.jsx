@@ -14,7 +14,7 @@ const RequirementContent = ({ requireMent, requirementId }) => {
 
   const userData =
     typeof window !== "undefined"
-      ? JSON.parse(sessionStorage.getItem("userData"))
+      ? JSON.parse(localStorage.getItem("userData"))
       : null;
 
   const handleButtonClick = (index) => {

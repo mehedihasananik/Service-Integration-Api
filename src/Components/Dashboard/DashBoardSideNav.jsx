@@ -23,8 +23,8 @@ const DashBoardSideNav = ({ height }) => {
     setShowSidebar(false);
   };
   const clearSession = () => {
-    // Remove the userData from sessionStorage
-    sessionStorage.removeItem("userData");
+    // Remove the userData from localStorage
+    localStorage.removeItem("userData");
     // Set the state to indicate that session has been cleared
     setCleared(true);
     router.push("/");

@@ -11,7 +11,7 @@ const HeaderItems = ({ headers }) => {
   const [userData, setUserData] = useState();
 
   useEffect(() => {
-    setUserData(JSON.parse(sessionStorage.getItem("userData")));
+    setUserData(JSON.parse(localStorage.getItem("userData")));
   }, []);
 
   return (

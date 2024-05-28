@@ -6,7 +6,7 @@ const ProtectedRoute = (WrappedComponent, redirectTo = "/") => {
     const router = useRouter();
 
     useEffect(() => {
-      const userData = sessionStorage.getItem("userData");
+      const userData = localStorage.getItem("userData");
 
       // If userData doesn't exist, redirect to the specified path
       if (!userData && router.pathname !== redirectTo) {
@@ -15,7 +15,7 @@ const ProtectedRoute = (WrappedComponent, redirectTo = "/") => {
     }, []);
 
     // Render the wrapped component only if userData exists
-    return sessionStorage.getItem("userData") ? (
+    return localStorage.getItem("userData") ? (
       <WrappedComponent {...props} />
     ) : null;
   };

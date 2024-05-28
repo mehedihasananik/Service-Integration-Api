@@ -34,16 +34,12 @@ const AboutUsPage = async () => {
   const aboutDetails = await getAboutPage();
   const singleAboutDetails = await getAbout_item();
   // blur image
-  const imgBlur = await Promise.all(
-    singleAboutDetails.map((url) => getBase64(url.image))
-  );
 
   return (
     <>
       <AboutUsContent
         aboutDetails={aboutDetails}
         singleAboutDetails={singleAboutDetails}
-        imgBlur={imgBlur}
       />
     </>
   );

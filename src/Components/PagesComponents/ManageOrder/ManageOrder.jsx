@@ -11,7 +11,7 @@ const ManageOrder = () => {
 
   const user =
     typeof window !== "undefined"
-      ? JSON.parse(sessionStorage.getItem("userData"))
+      ? JSON.parse(localStorage.getItem("userData"))
       : null;
 
   const fetchOrderManageData = async () => {

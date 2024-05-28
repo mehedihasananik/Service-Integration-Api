@@ -33,7 +33,8 @@ const OrderDelivery = () => {
                 UI/UX Design
               </h2>
               <p className="text-[#666] text-[14px] font-[400] ">
-                Order No. #F06CE0914A11
+                {/* Order No. #F06CE0914A11  */}
+                Expected Delivery: 3 days
               </p>
             </div>
             <div>
