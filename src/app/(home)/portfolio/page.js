@@ -2,7 +2,6 @@ import Container from "@/Components/Container/Container";
 import PortfolioPage from "@/Components/PagesComponents/PortfolioPage/PortfolioPage";
 import {
   search_sevice_categoryAll,
-  serviceApi,
   serviceListApi,
   sevice_portfolioApi,
 } from "@/config/apis";
@@ -32,12 +31,9 @@ async function portfoliosCategoriesApi() {
   return res.json();
 }
 async function servicesApi() {
-  const res = await fetch(
-    `http://192.168.10.14:8000/api/search_sevice_category/all`,
-    {
-      next: { revalidate: 10 },
-    }
-  );
+  const res = await fetch(`${search_sevice_categoryAll}`, {
+    next: { revalidate: 10 },
+  });
 
   if (!res.ok) {
     throw new Error("Failed to fetch data");
