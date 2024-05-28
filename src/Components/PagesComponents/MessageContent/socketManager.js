@@ -1,4 +1,5 @@
 // socketManager.js
+import { chatGetApi, chatPostApi } from "@/config/apis";
 import io from "socket.io-client";
 
 const SOCKET_URL_ONE = "http://localhost:3000";
@@ -25,7 +26,7 @@ export const sendMessage = async (message, selectedFile) => {
     if (selectedFile) {
       formData.append("attachment", selectedFile);
     }
-    const response = await fetch("http://192.168.10.16:8000/api/save/chat", {
+    const response = await fetch(`${chatPostApi}`, {
       method: "POST",
       body: formData,
     });
@@ -43,7 +44,7 @@ export const sendMessage = async (message, selectedFile) => {
 
 export const fetchMessages = async () => {
   try {
-    const response = await fetch("http://192.168.10.16:8000/api/chat/list", {
+    const response = await fetch(`${chatGetApi}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

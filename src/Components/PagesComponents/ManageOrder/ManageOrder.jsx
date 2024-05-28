@@ -17,7 +17,7 @@ const ManageOrder = () => {
   const fetchOrderManageData = async () => {
     try {
       const data = await fetchData(
-        `http://192.168.10.14:8000/api/manage_order`,
+        `https://admin.envobyte.com/api/manage_order`,
         "POST",
         {
           user_id: user.id,

@@ -33,7 +33,7 @@ async function portfoliosCategoriesApi() {
 }
 async function servicesApi() {
   const res = await fetch(
-    `http://192.168.10.14:8000/api/search_sevice_category/all`,
+    `https://admin.envobyte.com/api/search_sevice_category/all`,
     {
       next: { revalidate: 10 },
     }

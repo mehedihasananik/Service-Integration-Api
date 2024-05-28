@@ -63,7 +63,7 @@ const RequirementContent = ({ requireMent, requirementId }) => {
 
     try {
       const response = await fetch(
-        "http://192.168.10.14:8000/api/requirements_store",
+        "https://admin.envobyte.com/api/requirements_store",
         {
           method: "POST",
           body: formData,
