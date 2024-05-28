@@ -54,9 +54,9 @@ const manageOrderApi = `${apiEndpoint}/manage_order`;
 const singleRequirement = `https://admin.softpixe.com/api/api/service_requirements`;
 
 // checkout api
-const checkoutApi = `${apiEndpoint}/checkout`;
+const checkoutApi = `https://admin.softpixe.com/api/checkout`;
 // service order
-const serviceOrder = `https://admin.softpixe.com/api/service_order`;
+const serviceOrder = `https://admin.envobyte.com/api/service_order`;
 
 export {
   headerApi,
