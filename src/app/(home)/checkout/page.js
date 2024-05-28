@@ -103,10 +103,10 @@ const Checkout = () => {
       <div className="mx-auto max-w-lg"></div>
       <div>
         <div className="flex justify-center space-x-16 my-20 px-32">
-          <CheckoutProductInfo
+          {/* <CheckoutProductInfo
             productInfo={productInfo}
             setProductInfo={setProductInfo}
-          />
+          /> */}
 
           {/* payment details */}
           {scriptLoaded && (
