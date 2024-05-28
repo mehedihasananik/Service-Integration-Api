@@ -1,5 +1,5 @@
 import PortfolioDetails from "@/Components/PagesComponents/PortfolioDetails/PortfolioDetails";
-import getBase64 from "@/Components/Utilites/DynamicBlurDataUrl/DynamicBlurDataUrl";
+
 import { singlePortfolio } from "@/config/apis";
 
 export async function generateMetadata({ params, searchParams }, parent) {
