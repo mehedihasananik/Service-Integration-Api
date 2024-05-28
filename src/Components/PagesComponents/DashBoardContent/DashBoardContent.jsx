@@ -8,7 +8,7 @@ const DashBoardContent = () => {
   const [projects, setProjects] = useState(null);
   const sessionData =
     typeof window !== "undefined"
-      ? JSON.parse(localStorage.getItem("userData"))
+      ? JSON.parse(sessionStorage.getItem("userData"))
       : null;
 
   const fetchingData = async () => {
@@ -130,20 +130,9 @@ const DashBoardContent = () => {
           </div>
         ) : (
           <div className="text-center">
-            <div>
-              {" "}
-              <h3 className="text-[20px] text-[#FF693B] md:text-[32px] lg:text-[48px] font-Raleway font-bold pt-10">
-                No Order Yet ! <br /> Please Place An Order.
-              </h3>
-            </div>
-            <div className="pt-10">
-              <Link
-                href={"/services"}
-                className="text-[16px] bg-[#FF693B] px-11 py-2.5 md:px-10 md:py-3 text-white rounded-lg border border-[#FF693B]  hover:bg-white hover:text-[#FF693B] transition-all duration-300"
-              >
-                View All Services
-              </Link>
-            </div>
+            <h3 className="text-[20px] text-[#FF693B] md:text-[32px] lg:text-[48px] font-Raleway font-bold pt-10">
+              No Order Yet ! <br /> Please Place An Order.
+            </h3>
           </div>
         )}
       </div>

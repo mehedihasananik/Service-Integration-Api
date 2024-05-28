@@ -10,11 +10,11 @@ function IsAuth(Component) {
     const [userData, setUserData] = useState();
 
     useEffect(() => {
-      setUserData(JSON.parse(localStorage.getItem("userData")));
+      setUserData(JSON.parse(sessionStorage.getItem("userData")));
     }, []);
 
     useEffect(() => {
-      const storedUserData = JSON.parse(localStorage.getItem("userData"));
+      const storedUserData = JSON.parse(sessionStorage.getItem("userData"));
       if (!storedUserData) {
         // If userData is not available, redirect to home page
         router.push("/");

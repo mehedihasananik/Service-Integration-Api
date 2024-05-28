@@ -7,14 +7,14 @@ import Image from "next/image";
 
 const userDataString =
   typeof window !== "undefined"
-    ? window.localStorage.getItem("userData")
+    ? window.sessionStorage.getItem("userData")
     : null;
 const userData = userDataString ? JSON.parse(userDataString) : null;
 
 const CheckoutProductInfo = ({ productInfo, setProductInfo }) => {
   const storedItemId =
     typeof window !== "undefined"
-      ? window.localStorage.getItem("itemId")
+      ? window.sessionStorage.getItem("itemId")
       : null;
 
   if (storedItemId) {

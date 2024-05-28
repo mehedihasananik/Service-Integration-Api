@@ -14,14 +14,14 @@ const DashBoardNav = () => {
   const [userData, setUserData] = useState();
 
   const clearSession = () => {
-    // Remove the userData from localStorage
-    localStorage.removeItem("userData");
+    // Remove the userData from sessionStorage
+    sessionStorage.removeItem("userData");
     // Set the state to indicate that session has been cleared
     setCleared(true);
     router.push("/");
   };
   useEffect(() => {
-    setUserData(JSON.parse(localStorage.getItem("userData")));
+    setUserData(JSON.parse(sessionStorage.getItem("userData")));
   }, []);
 
   return (

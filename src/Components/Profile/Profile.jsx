@@ -8,7 +8,7 @@ const Profile = () => {
 
   const userData =
     typeof window !== "undefined"
-      ? JSON.parse(localStorage.getItem("userData"))
+      ? JSON.parse(sessionStorage.getItem("userData"))
       : null;
 
   const fetchData = async () => {
