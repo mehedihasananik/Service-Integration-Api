@@ -2,7 +2,7 @@
 import React, { useRef, useState } from "react";
 import toast from "react-hot-toast";
 
-const RequirementContent = ({ requireMent, requirementId }) => {
+const RequirementContent = ({ requireMent, requirementId, service_title }) => {
   const fileInputRefs = useRef([]);
   const [answers, setAnswers] = useState(Array(requireMent.length).fill(""));
   const [attachments, setAttachments] = useState(
@@ -89,7 +89,7 @@ const RequirementContent = ({ requireMent, requirementId }) => {
         <div className="bg-[#F4F4F4] p-5 md:px-10 md:py-7 rounded-md">
           <div>
             <h3 className="text-[36px] font-Raleway font-[600] text-[#333333] px-4">
-              Requirements
+              Requirements || {service_title}
             </h3>
           </div>
           <div className="pt-5">

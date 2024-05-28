@@ -15,15 +15,16 @@ async function getRequireContent(id) {
 }
 
 const SingleRequireMent = async ({ params }) => {
-  const requireMent = await getRequireContent(params.id);
+  const { requirements, service_title } = await getRequireContent(params.id);
 
   const requirementId = params.id;
 
   return (
     <div>
       <RequirementContent
-        requireMent={requireMent}
+        requireMent={requirements}
         requirementId={requirementId}
+        service_title={service_title}
       />
     </div>
   );
