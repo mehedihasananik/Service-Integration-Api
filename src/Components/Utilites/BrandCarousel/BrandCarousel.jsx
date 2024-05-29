@@ -9,22 +9,24 @@ import { Autoplay } from "swiper/modules";
 const BrandCarousel = ({ brands }) => {
   // declaring the loading & slider states states
 
+  const duplicatedBrands = [...brands, ...brands];
+
   // slider breakpoints
   const breakpoints = {
     2500: {
-      slidesPerView: 4,
+      slidesPerView: 5,
       spaceBetween: 50,
     },
     1920: {
-      slidesPerView: 4,
+      slidesPerView: 5,
       spaceBetween: 50,
     },
     1336: {
-      slidesPerView: 4,
+      slidesPerView: 5,
       spaceBetween: 50,
     },
     1280: {
-      slidesPerView: 4,
+      slidesPerView: 5,
       spaceBetween: 30,
     },
     1024: {
@@ -46,7 +48,7 @@ const BrandCarousel = ({ brands }) => {
       <div className="">
         {/* right side sliders images */}
         <Swiper
-          slidesPerView={4}
+          slidesPerView={5}
           slidesPerGroup={1}
           spaceBetween={200}
           breakpoints={breakpoints}
@@ -54,9 +56,10 @@ const BrandCarousel = ({ brands }) => {
           autoplay={{ delay: 2000, disableOnInteraction: false }}
           className="mySwiper space-x-4"
         >
-          {brands.map((brand) => {
+          {duplicatedBrands.map((brand, index) => {
+            console.log(brand);
             return (
-              <SwiperSlide key={brand.id} className="flex justify-end">
+              <SwiperSlide key={index} className="flex justify-end">
                 <Image
                   key={brand.id}
                   width={500}

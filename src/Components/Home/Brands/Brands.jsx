@@ -26,7 +26,7 @@ const Brands = async () => {
             <h3>TRUSTED BY GLOBAL BRANDS</h3>
           </div>
           {/* right side */}
-          <div className=" w-full lg:w-[45%] lg:flex lg:justify-end ">
+          <div className=" w-full lg:w-[60%] lg:flex lg:justify-end ">
             <div className="w-[100%] flex  justify-end">
               <BrandCarousel brands={brands} />
             </div>
