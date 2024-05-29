@@ -89,7 +89,7 @@ const RequirementContent = ({ requireMent, requirementId, service_title }) => {
         <div className="bg-[#F4F4F4] p-5 md:px-10 md:py-7 rounded-md">
           <div>
             <h3 className="text-[36px] font-Raleway font-[600] text-[#333333] px-4">
-              Requirements || {service_title}
+              Requirements | {service_title}
             </h3>
           </div>
           <div className="pt-5">
@@ -166,7 +166,7 @@ const RequirementContent = ({ requireMent, requirementId, service_title }) => {
           </div>
           <div className="flex flex-col justify-center items-center px-5 pb-5 md:flex-row md:justify-start md:items-start md:px-12 bg-[#FFFFFF] py-5 md:pb-20 text-[#484848] font-Raleway text-[12px] gap-x-1 italic rounded-b-md">
             <span className="font-[600]">Note:</span>
-            <span>
+            <span className="text-[13px] text-[#484848] font-Raleway italic">
               Please submit the complete requirements of the project. Change
               requirements in the middle of the project may be subject to extra
               charges.

@@ -12,7 +12,13 @@ import OrderSliderLg from "@/Components/Utilites/OrderSlider/OrderSliderLg";
 import OrderSliderSm from "@/Components/Utilites/OrderSlider/OrderSliderSm";
 import QuestionService from "@/Components/Home/Questions/QuestionService";
 
-const ServiceDetails = ({ service, sliders, packages }) => {
+const ServiceDetails = ({
+  service,
+  sliders,
+  packages,
+  imgBlurSlider,
+  imgBlurThumb,
+}) => {
   const [openModal, setOpenModal] = useState(false);
 
   return (
@@ -54,8 +60,12 @@ const ServiceDetails = ({ service, sliders, packages }) => {
             </button>
           </div>
           {/* order Slider */}
-          <OrderSliderLg sliders={sliders} />
-
+          <OrderSliderLg
+            sliders={sliders}
+            imgBlurSlider={imgBlurSlider}
+            imgBlurThumb={imgBlurThumb}
+          />
+          <OrderSliderSm sliders={sliders} />
           {/* description */}
           <div className="bg-[#FCFCFC] mt-4 p-4 md:p-7 rounded-lg text-justify">
             <h2 className="text-[24px] font-bold font-Raleway text-[#333333]">

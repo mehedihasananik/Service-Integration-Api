@@ -13,7 +13,7 @@ const DashBoardContent = () => {
 
   const fetchingData = async () => {
     const data = await fetchData(
-      `https://admin.envobyte.com/api/service_order_dashboard`,
+      `http://192.168.10.14:8000/api/service_order_dashboard`,
       "POST",
       {
         user_id: sessionData?.id,
@@ -47,6 +47,7 @@ const DashBoardContent = () => {
                   order_status,
                   order_date,
                   service_order_id,
+                  order_id,
                 } = project;
                 console.log(order_status);
 
@@ -85,6 +86,18 @@ const DashBoardContent = () => {
                           <span className="flex w-[100%] h-[1px] border border-[#E2E2E2]"></span>
                         </div>
                         <div className="pt-5 space-y-3">
+                          <div className="flex justify-between px-5">
+                            <div>
+                              <h3 className="text-[14px] text-[#505050] font-[500]">
+                                Order Id
+                              </h3>
+                            </div>
+                            <div>
+                              <h2 className="text-[14px] text-[#505050]">
+                                #{order_id}
+                              </h2>
+                            </div>
+                          </div>
                           <div className="flex justify-between px-5">
                             <div>
                               <h3 className="text-[14px] text-[#505050] font-[500]">

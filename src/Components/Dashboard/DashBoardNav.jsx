@@ -11,7 +11,12 @@ const DashBoardNav = () => {
   let pathname = usePathname();
   const [cleared, setCleared] = useState(false);
   pathname = pathname.replace("/", "");
-  const [userData, setUserData] = useState();
+
+  const userDataString =
+    typeof window !== "undefined"
+      ? window.localStorage.getItem("userData")
+      : null;
+  const userData = userDataString ? JSON.parse(userDataString) : null;
 
   const clearSession = () => {
     // Remove the userData from localStorage
@@ -20,9 +25,6 @@ const DashBoardNav = () => {
     setCleared(true);
     router.push("/");
   };
-  useEffect(() => {
-    setUserData(JSON.parse(localStorage.getItem("userData")));
-  }, []);
 
   return (
     <nav className="flex flex-col justify-center items-center md:flex-row md:justify-between w-[100%] py-4 px-5 lg:pr-12 bg-[#FCFCFC]">

@@ -7,19 +7,16 @@ function IsAuth(Component) {
   return function IsAuthenticatedComponent(props) {
     const router = useRouter();
 
-    const [userData, setUserData] = useState();
+    const userDataString =
+      typeof window !== "undefined"
+        ? window.localStorage.getItem("userData")
+        : null;
+    const userData = userDataString ? JSON.parse(userDataString) : null;
 
-    useEffect(() => {
-      setUserData(JSON.parse(localStorage.getItem("userData")));
-    }, []);
-
-    useEffect(() => {
-      const storedUserData = JSON.parse(localStorage.getItem("userData"));
-      if (!storedUserData) {
-        // If userData is not available, redirect to home page
-        router.push("/");
-      }
-    }, [router]);
+    if (!userData) {
+      // If userData is not available, redirect to home page
+      router.push("/");
+    }
 
     // If userData is available, render the component
     if (userData) {

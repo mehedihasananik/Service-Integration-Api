@@ -4,6 +4,7 @@ import { Footer } from "@/Components";
 import Header from "@/Components/Home/Navbar/Header";
 import { Toaster } from "react-hot-toast";
 import AuthProviders, { ThemeProvider } from "@/providers/AuthProviders";
+import { usePathname } from "next/navigation";
 
 const inter = Inter({ subsets: ["latin"] });
 
