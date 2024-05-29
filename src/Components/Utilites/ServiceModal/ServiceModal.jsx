@@ -44,14 +44,14 @@ const ServiceModal = ({ openModal, setOpenModal }) => {
         // Assuming data contains the response from the server
         console.log(data);
         if (data.success) {
-          // Save user data to sessionStorage
+          // Save user data to localStorage
           toast.success("Logged in successfully");
-          sessionStorage.setItem("userData", JSON.stringify(data));
+          localStorage.setItem("userData", JSON.stringify(data));
           // Navigate to the dashboard
           router.push("/checkout");
         }
         if (data.ErrorMessage) {
-          // Save user data to sessionStorage
+          // Save user data to localStorage
           toast.error(data.ErrorMessage);
         }
         console.log(data);

@@ -8,7 +8,7 @@ const DashBoardContent = () => {
   const [projects, setProjects] = useState(null);
   const sessionData =
     typeof window !== "undefined"
-      ? JSON.parse(sessionStorage.getItem("userData"))
+      ? JSON.parse(localStorage.getItem("userData"))
       : null;
 
   const fetchingData = async () => {
@@ -105,7 +105,7 @@ const DashBoardContent = () => {
                             </div>
                             <div>
                               <h2 className="text-[14px] text-[#3371F2] font-[500]">
-                                {order_price}
+                                ${order_price}
                               </h2>
                             </div>
                           </div>

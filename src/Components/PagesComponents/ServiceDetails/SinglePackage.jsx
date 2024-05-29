@@ -14,7 +14,7 @@ const SinglePackage = ({ item, openModal, setOpenModal }) => {
 
   const userData =
     typeof window !== "undefined"
-      ? JSON.parse(sessionStorage.getItem("userData"))
+      ? JSON.parse(localStorage.getItem("userData"))
       : null;
 
   const handlePlaceOrder = async () => {
@@ -51,7 +51,7 @@ const SinglePackage = ({ item, openModal, setOpenModal }) => {
   };
   const handlePassData = () => {
     setItemId(item.id);
-    sessionStorage.setItem("itemId", item.id);
+    localStorage.setItem("itemId", item.id);
   };
 
   return (

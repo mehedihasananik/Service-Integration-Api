@@ -41,7 +41,7 @@ const Login = () => {
       if (data.success) {
         toast.success("Logged in successfully");
 
-        sessionStorage.setItem("userData", JSON.stringify(data));
+        localStorage.setItem("userData", JSON.stringify(data));
         router.push("/dashboard");
       } else {
         router.push("/");
