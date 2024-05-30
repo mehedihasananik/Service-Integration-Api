@@ -34,12 +34,14 @@ const FirstChat = ({
     setSelectedFile(file);
   };
 
-  const addEmoji = (event) => {
-    const emojiData = event.emoji || event.native || event.unified; // Access based on your library's structure
-    setInputtedMessage(inputtedMessage + emojiData);
+  const addEmoji = (e) => {
+    const sym = e.unified.split("_");
+    const codeArray = [];
+    sym.forEach((el) => codeArray.push("0x" + el));
+    let emoji = String.fromCodePoint(...codeArray);
+    setInputtedMessage(inputtedMessage + emoji); // Update inputtedMessage with the selected emoji
+    setText(inputtedMessage + emoji); // Update text state as well if needed
   };
-  const inputRef = useRef(null);
-
   const handleImageLoaded = () => {
     setIsLoading(false);
   };
@@ -194,25 +196,25 @@ const FirstChat = ({
             <div className="bg-[#FFFFFF  pb-8 flex w-[85%] items-center gap-5 px-10  fixed left-[14%] -bottom-6">
               <div className="w-[90%] relative">
                 <input
-                  ref={inputRef}
                   className="w-full border border-[#E2E2E2] rounded-md py-2.5 px-4"
                   type="text"
                   placeholder="Write a message..."
                   value={inputtedMessage}
                   onChange={(e) => {
                     setInputtedMessage(e.target.value);
+                    // Add your additional onChange functionality here
+                    // For example:
                     setText(e.target.value);
                   }}
                   onKeyDown={(e) => {
                     if (e.key === "Enter") {
-                      e.preventDefault();
-                      sendMessageToAPI(inputtedMessage);
+                      e.preventDefault(); // Prevent default form submission behavior
+                      sendMessageToAPI(inputtedMessage); // Send message on Enter key press
                       setInputtedMessage("");
-                      setSelectedFile("");
+                      setSelectedFile(""); // Clear input field after sending message
                     }
                   }}
                 />
-
                 {/* Attachment and Emoji icons */}
                 <div className="flex gap-2 absolute right-3 top-[13px]">
                   <label htmlFor="file-upload" className="cursor-pointer">
@@ -259,12 +261,7 @@ const FirstChat = ({
               data={data}
               emojiSize={20}
               emojiButtonSize={28}
-              onEmojiSelect={(e) => {
-                if (typeof e.preventDefault === "function") {
-                  e.preventDefault(); // Call only if it exists
-                }
-                addEmoji(e); // Access emoji data from the event object (if necessary)
-              }}
+              onEmojiSelect={addEmoji}
               maxFrequentRows={0}
             />
           </div>

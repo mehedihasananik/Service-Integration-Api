@@ -47,7 +47,6 @@ const DashBoardContent = () => {
                   order_status,
                   order_date,
                   service_order_id,
-                  order_id,
                 } = project;
                 console.log(order_status);
 
@@ -89,18 +88,6 @@ const DashBoardContent = () => {
                           <div className="flex justify-between px-5">
                             <div>
                               <h3 className="text-[14px] text-[#505050] font-[500]">
-                                Order Id
-                              </h3>
-                            </div>
-                            <div>
-                              <h2 className="text-[14px] text-[#505050]">
-                                #{order_id}
-                              </h2>
-                            </div>
-                          </div>
-                          <div className="flex justify-between px-5">
-                            <div>
-                              <h3 className="text-[14px] text-[#505050] font-[500]">
                                 Order Place Date
                               </h3>
                             </div>
@@ -118,7 +105,7 @@ const DashBoardContent = () => {
                             </div>
                             <div>
                               <h2 className="text-[14px] text-[#3371F2] font-[500]">
-                                ${order_price}
+                                {order_price}
                               </h2>
                             </div>
                           </div>
