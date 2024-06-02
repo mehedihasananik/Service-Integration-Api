@@ -8,10 +8,9 @@ import { IoMdMore } from "react-icons/io";
 import io from "socket.io-client";
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
-import { useDropzone } from "react-dropzone";
-import { FaTimes } from "react-icons/fa";
 import { BiRevision } from "react-icons/bi";
 import { MdOutlineAccessTimeFilled } from "react-icons/md";
+import axios from "axios";
 
 const SOCKET_URL_ONE = "http://localhost:3000";
 const socket = io(SOCKET_URL_ONE);
@@ -24,8 +23,6 @@ const OrderChat = ({
   loading,
   setSelectedFile,
   selectedFile,
-  images,
-  setImages,
 }) => {
   const lastMessageRef = useRef(null);
   const [autoScrolled, setAutoScrolled] = useState(false);
@@ -33,19 +30,18 @@ const OrderChat = ({
   const [text, setText] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
+  const [showPaperclip, setShowPaperclip] = useState(true);
+
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     setSelectedFile(file);
   };
 
-  const addEmoji = (e) => {
-    const sym = e.unified.split("_");
-    const codeArray = [];
-    sym.forEach((el) => codeArray.push("0x" + el));
-    let emoji = String.fromCodePoint(...codeArray);
-    setInputtedMessage(inputtedMessage + emoji);
-    setText(inputtedMessage + emoji);
+  const addEmoji = (event) => {
+    const emojiData = event.emoji || event.native || event.unified; // Access based on your library's structure
+    setInputtedMessage(inputtedMessage + emojiData);
   };
+  const inputRef = useRef(null);
 
   const handleImageLoaded = () => {
     setIsLoading(false);
@@ -76,38 +72,58 @@ const OrderChat = ({
     }
     return date;
   };
+  // console.log(messageHistory);
 
+  const handleSendButtonClick = () => {
+    setShowPaperclip(!selectedFile);
+    if (!selectedFile) {
+      sendMessageToAPI(inputtedMessage);
+      setInputtedMessage(""); // Clear the input field after sending the message
+    }
+  };
   function isImage(fileUrl) {
     const imageExtensions = [".jpg", ".jpeg", ".png", ".gif"];
     return imageExtensions.some((ext) => fileUrl.toLowerCase().endsWith(ext));
   }
 
-  const onDrop = (acceptedFiles) => {
-    const newImages = acceptedFiles.map((file) =>
-      Object.assign(file, {
-        preview: URL.createObjectURL(file),
-      })
-    );
-    setImages((prevImages) => [...prevImages, ...newImages]);
+  const handleCancelClick = async (orderId) => {
+    try {
+      const formData = new FormData();
+      formData.append("status", "cancel");
 
-    setSelectedFile(acceptedFiles[0]);
+      await axios.put(
+        `http://192.168.10.16:8000/api/update/chat/order/${orderId}`,
+        formData
+      );
+
+      // Handle success
+    } catch (error) {
+      console.error("Error cancelling order:", error);
+      // Handle error
+    }
   };
 
-  const removeImage = (indexToRemove) => {
-    setImages((prevImages) =>
-      prevImages.filter((_, index) => index !== indexToRemove)
-    );
-  };
+  const handleAcceptClick = async (orderId) => {
+    try {
+      const formData = new FormData();
+      formData.append("status", "accept");
 
-  const { getRootProps, getInputProps } = useDropzone({
-    onDrop,
-    accept: "image/*",
-  });
+      await axios.put(
+        `http://192.168.10.16:8000/api/update/chat/order/${orderId}`,
+        formData
+      );
+
+      // Handle success
+    } catch (error) {
+      console.error("Error accepting order:", error);
+      // Handle error
+    }
+  };
 
   return (
-    <div className="bg-[#FCFCFC] h-screen flex flex-col relative">
-      <div className="bg-[#FCFCFC] flex-grow overflow-y-auto">
-        <div className="flex justify-between items-center mx-4 bg-[#FFFFFF] my-5 rounded-lg  ">
+    <div className="bg-[#FFFFFF] h-screen flex flex-col relative">
+      <div className="bg-[#FFFFFF] flex-grow overflow-y-auto">
+        <div className="flex justify-between items-center mx-4 bg-[#FFFFFF] my-5  rounded-lg  ">
           <div className="flex gap-x-3 bg-[#FFFFFF]">
             <div>
               {" "}
@@ -135,8 +151,8 @@ const OrderChat = ({
         <div className="bg-[#fff] px-4">
           <div className="mb-[8%]">
             {messageHistory.map((msg, index) => {
-              console.log(msg);
-              const senderName = msg.sender_id === 1 ? "User" : "Admin";
+              console.log(msg.order);
+              const senderName = msg.sender_id === 1 ? "User" : "Envobyte";
               const updatedAt = parseDate(msg.updated_at);
               const formattedDate = new Intl.DateTimeFormat("en-US", {
                 month: "short",
@@ -205,6 +221,7 @@ const OrderChat = ({
                       )}
                     </div>
                   </div>
+
                   {order && (
                     <div className="lg:mx-20 ">
                       <div className="pb-3">
@@ -280,11 +297,13 @@ const OrderChat = ({
             })}
           </div>
           {/* Loading indicator */}
-          {loading && !autoScrolled && <Loading />}
-          {!loading && (
-            <div className="bg-[#FFFFFF pb-8 flex w-[85%] items-center gap-5 px-10 fixed left-[14%] -bottom-6">
+          {loading ? (
+            <Loading />
+          ) : (
+            <div className="bg-[#FFFFFF  pb-8 flex w-[85%] items-center gap-5 px-10  fixed left-[14%] -bottom-6">
               <div className="w-[90%] relative">
                 <input
+                  ref={inputRef}
                   className="w-full border border-[#E2E2E2] rounded-md py-2.5 px-4"
                   type="text"
                   placeholder="Write a message..."
@@ -302,51 +321,38 @@ const OrderChat = ({
                     }
                   }}
                 />
+
+                {/* Attachment and Emoji icons */}
                 <div className="flex gap-2 absolute right-3 top-[13px]">
                   <label htmlFor="file-upload" className="cursor-pointer">
-                    <div className="flex relative top-[-150px]">
-                      {images.map((file, index) => (
-                        <div key={index} className="relative mr-[10px]">
-                          <img
-                            src={file.preview}
-                            alt={`Preview ${index}`}
-                            className="w-[100px] h-[100px]"
-                          />
-                          <FaTimes
-                            className="absolute top-[5px] right-[5px] cursor-pointer"
-                            onClick={(e) => {
-                              e.preventDefault();
-                              removeImage(index);
-                            }}
-                          />
-                        </div>
-                      ))}
-                    </div>
+                    {selectedFile ? (
+                      <span>{selectedFile.name}</span>
+                    ) : (
+                      <span>
+                        <GoPaperclip className="text-[20px]" />
+                      </span>
+                    )}
                   </label>
-                  <div className="rounded-sm cursor-pointer flex gap-0">
-                    <input
-                      {...getInputProps()}
-                      id="file-upload"
-                      className="hidden"
-                    />
-                    <label htmlFor="file-upload">
-                      <GoPaperclip />
-                    </label>
-                  </div>
-                  <span
-                    onClick={() => setShowEmoji(!showEmoji)}
-                    className="cursor-pointer"
-                  >
-                    <CiFaceSmile className="text-[20px] " />
-                  </span>
+                  <input
+                    id="file-upload"
+                    type="file"
+                    style={{ display: "none" }}
+                    onChange={handleFileChange}
+                    accept=".jpg, .jpeg, .png, .gif, .pdf, .xlsx, .xls, .txt, .zip, .docx, .rtf, .ppt" // Add accept attribute
+                  />
+                  <button onClick={() => setShowEmoji(!showEmoji)}>
+                    <CiFaceSmile className="text-[20px]" />
+                  </button>
                 </div>
               </div>
+              {/* Send button */}
               <div className="w-[8%]">
                 <button
                   onClick={() => {
                     sendMessageToAPI(inputtedMessage);
                     setInputtedMessage("");
-                    setSelectedFile("");
+                    handleSendButtonClick(); // Call handleSendButtonClick function
+                    setSelectedFile(""); // Clear the input field after sending the message
                   }}
                   className="w-full font-[600] bg-[#FF693B] border border-[#FF693B] text-white hover:text-[#FF693B] hover:bg-[#ffff] transition-all duration-200  text-[16px]  mx-[10%] py-2.5 rounded-[4px]"
                 >
@@ -362,7 +368,12 @@ const OrderChat = ({
               data={data}
               emojiSize={20}
               emojiButtonSize={28}
-              onEmojiSelect={addEmoji}
+              onEmojiSelect={(e) => {
+                if (typeof e.preventDefault === "function") {
+                  e.preventDefault(); // Call only if it exists
+                }
+                addEmoji(e); // Access emoji data from the event object (if necessary)
+              }}
               maxFrequentRows={0}
             />
           </div>
