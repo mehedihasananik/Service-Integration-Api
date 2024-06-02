@@ -22,9 +22,12 @@ export const sendMessageToServer = async (message, selectedFile) => {
     formData.append("sender_id", 1);
     formData.append("receiver_id", 18);
     formData.append("message", message);
+
+    // Append selected file if available
     if (selectedFile) {
       formData.append("attachment", selectedFile);
     }
+
     const response = await fetch(
       "http://192.168.10.16:8000/api/save/chat/order",
       {

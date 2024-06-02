@@ -285,3 +285,6 @@
 .filepond--credits {
   display: none !important;
 }
+.filepond--drop-label {
+  background: #fff!;
+}

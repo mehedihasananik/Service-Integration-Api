@@ -15,6 +15,7 @@ const OrderWebSocket = () => {
   const [inputtedMessage, setInputtedMessage] = useState("");
   const [loading, setLoading] = useState(true);
   const [selectedFile, setSelectedFile] = useState(null);
+  const [images, setImages] = useState([]);
 
   useLayoutEffect(() => {
     const fetchInitialMessages = async () => {
@@ -43,13 +44,18 @@ const OrderWebSocket = () => {
 
   const handleSendMessage = async () => {
     try {
-      const newMessage = await sendMessageToServer(
-        inputtedMessage,
-        selectedFile
-      );
-      setMessageHistory((prevMessages) => [...prevMessages, newMessage]);
-      setInputtedMessage("");
-      setSelectedFile(null);
+      if (inputtedMessage.trim() || selectedFile) {
+        const newMessage = await sendMessageToServer(
+          inputtedMessage,
+          selectedFile
+        );
+        setMessageHistory((prevMessages) => [...prevMessages, newMessage]);
+        setInputtedMessage("");
+        setSelectedFile(null);
+        setImages([]);
+      } else {
+        // Handle empty message or file selection here
+      }
     } catch (error) {
       console.error("Error sending message:", error);
     }
@@ -65,6 +71,8 @@ const OrderWebSocket = () => {
         loading={loading}
         setSelectedFile={setSelectedFile}
         selectedFile={selectedFile}
+        images={images}
+        setImages={setImages}
       />
     </div>
   );

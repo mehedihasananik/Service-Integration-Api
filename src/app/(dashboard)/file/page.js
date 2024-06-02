@@ -1,4 +1,4 @@
-import FilePondComponent from "@/Components/Utilites/FilePondComponet/FilePondComponet";
+import FilePondComponent from "@/Components/Utilites/FilePondComponent/FilePondComponent";
 import React from "react";
 
 const FilePondPage = () => {
