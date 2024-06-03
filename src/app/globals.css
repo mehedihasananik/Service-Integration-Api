@@ -276,6 +276,7 @@
     right: -3vw !important;
   } */
 }
+
 .disabled {
   pointer-events: none;
 }
@@ -286,5 +287,5 @@
   display: none !important;
 }
 .filepond--drop-label {
-  background: #fff!;
+  background: #fff !important;
 }

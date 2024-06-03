@@ -1,55 +1,28 @@
 "use client";
-import React, { useState } from "react";
-import { useDropzone } from "react-dropzone";
-import { FaTimes } from "react-icons/fa"; // Import the cross icon
-import { GoPaperclip } from "react-icons/go";
+import { useState } from "react";
+import { FilePond, registerPlugin } from "react-filepond";
+import "filepond/dist/filepond.min.css";
+import FilePondPluginImagePreview from "filepond-plugin-image-preview";
+import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
+
+registerPlugin(FilePondPluginImagePreview);
 
 const FilePondComponent = () => {
-  const [images, setImages] = useState([]);
-
-  const onDrop = (acceptedFiles) => {
-    const newImages = acceptedFiles.map((file) =>
-      Object.assign(file, {
-        preview: URL.createObjectURL(file),
-      })
-    );
-    setImages((prevImages) => [...prevImages, ...newImages]);
-  };
-
-  const removeImage = (indexToRemove) => {
-    setImages((prevImages) =>
-      prevImages.filter((_, index) => index !== indexToRemove)
-    );
-  };
-
-  const { getRootProps, getInputProps } = useDropzone({
-    onDrop,
-    accept: "image/*",
-  });
+  const [files, setFiles] = useState([]);
 
   return (
-    <div>
-      <div {...getRootProps()} className="rounded-sm cursor-pointer">
-        <input {...getInputProps()} />
-        <span>
-          <GoPaperclip />
-        </span>
-      </div>
-      <div className="flex relative top-[-150px]">
-        {images.map((file, index) => (
-          <div key={index} className="relative mr-[10px]">
-            <img
-              src={file.preview}
-              alt={`Preview ${index}`}
-              className="w-[100px] h-[100px]"
-            />
-            <FaTimes
-              className="absolute top-[5px] right-[5px] cursor-pointer"
-              onClick={() => removeImage(index)}
-            />
-          </div>
-        ))}
-      </div>
+    <div style={{ background: "#f0f0f0" }}>
+      {" "}
+      {/* Change background color here */}
+      <FilePond
+        files={files}
+        onupdatefiles={setFiles}
+        allowMultiple={true}
+        maxFiles={8}
+        server="/api" // Replace "/api" with your actual server endpoint for handling file uploads
+        name="files"
+        labelIdle='Drag & Drop your files or <span class="filepond--label-action">Browse</span>'
+      />
     </div>
   );
 };

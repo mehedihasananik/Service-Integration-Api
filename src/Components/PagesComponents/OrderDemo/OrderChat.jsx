@@ -284,24 +284,16 @@ const OrderChat = ({
           {!loading && (
             <div className="bg-[#FFFFFF pb-8 flex w-[85%] items-center gap-5 px-10 fixed left-[14%] -bottom-6">
               <div className="w-[90%] relative">
-                <input
-                  className="w-full border border-[#E2E2E2] rounded-md py-2.5 px-4"
-                  type="text"
+                <textarea
+                  className="w-full border border-[#E2E2E2] rounded-md py-2.5 px-4 resize-none"
                   placeholder="Write a message..."
                   value={inputtedMessage}
                   onChange={(e) => {
                     setInputtedMessage(e.target.value);
                     setText(e.target.value);
                   }}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") {
-                      e.preventDefault();
-                      sendMessageToAPI(inputtedMessage);
-                      setInputtedMessage("");
-                      setSelectedFile("");
-                    }
-                  }}
                 />
+
                 <div className="flex gap-2 absolute right-3 top-[13px]">
                   <label htmlFor="file-upload" className="cursor-pointer">
                     <div className="flex relative top-[-150px]">
@@ -323,23 +315,23 @@ const OrderChat = ({
                       ))}
                     </div>
                   </label>
-                  <div className="rounded-sm cursor-pointer flex gap-0">
-                    <input
-                      {...getInputProps()}
-                      id="file-upload"
-                      className="hidden"
-                    />
-                    <label htmlFor="file-upload">
-                      <GoPaperclip />
-                    </label>
-                  </div>
-                  <span
-                    onClick={() => setShowEmoji(!showEmoji)}
-                    className="cursor-pointer"
-                  >
-                    <CiFaceSmile className="text-[20px] " />
-                  </span>
                 </div>
+                <div className="rounded-sm cursor-pointer flex gap-0">
+                  <input
+                    {...getInputProps()}
+                    id="file-upload"
+                    className="hidden "
+                  />
+                  <label htmlFor="file-upload">
+                    <GoPaperclip className="cursor-pointer absolute right-[45px] bottom-[30px]" />
+                  </label>
+                </div>
+                <span
+                  onClick={() => setShowEmoji(!showEmoji)}
+                  className="cursor-pointer absolute right-[15px] bottom-[30px]"
+                >
+                  <CiFaceSmile className="text-[20px] " />
+                </span>
               </div>
               <div className="w-[8%]">
                 <button
