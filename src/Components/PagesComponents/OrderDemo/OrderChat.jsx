@@ -294,6 +294,7 @@ const OrderChat = ({
             })}
           </div>
           {/* Loading indicator */}
+          {loading && <Loading />}
 
           {!loading && (
             <div className="bg-[#FFFFFF pb-8 flex w-[85%] items-center gap-5 px-10 fixed left-[14%] -bottom-6">
