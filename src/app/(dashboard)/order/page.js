@@ -6,7 +6,7 @@ import React from "react";
 
 const OrderDeliveryPage = () => {
   return (
-    <div className="bg-[#FCFCFC]">
+    <div className="bg-[#FCFCFC] overflow-hidden">
       <OrderWebSocket />
     </div>
   );
