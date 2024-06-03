@@ -28,10 +28,11 @@ const OrderChat = ({
   setImages,
 }) => {
   const lastMessageRef = useRef(null);
-  const [autoScrolled, setAutoScrolled] = useState(false);
+  const chatContainerRef = useRef(null);
   const [showEmoji, setShowEmoji] = useState(false);
   const [text, setText] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [userScrolledUp, setUserScrolledUp] = useState(false);
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -50,13 +51,6 @@ const OrderChat = ({
   const handleImageLoaded = () => {
     setIsLoading(false);
   };
-
-  useEffect(() => {
-    if (!autoScrolled && lastMessageRef.current) {
-      lastMessageRef.current.scrollIntoView({ behavior: "smooth" });
-      setAutoScrolled(true);
-    }
-  }, [autoScrolled, messageHistory]);
 
   useEffect(() => {
     socket.on("message", (newMessage) => {
@@ -103,10 +97,30 @@ const OrderChat = ({
     onDrop,
     accept: "image/*",
   });
+  useEffect(() => {
+    // Scroll to the bottom of the chat container only if user is already at the bottom
+    if (chatContainerRef.current && !userScrolledUp) {
+      const { scrollHeight, clientHeight } = chatContainerRef.current;
+      chatContainerRef.current.scrollTop = scrollHeight - clientHeight;
+    }
+  }, [messageHistory, userScrolledUp]);
+
+  const handleScroll = () => {
+    if (chatContainerRef.current) {
+      const { scrollTop, scrollHeight, clientHeight } =
+        chatContainerRef.current;
+      const isAtBottom = scrollTop + clientHeight >= scrollHeight - 10; // Adjust threshold as needed
+      setUserScrolledUp(!isAtBottom);
+    }
+  };
 
   return (
-    <div className="bg-[#FCFCFC] h-screen flex flex-col relative">
-      <div className="bg-[#FCFCFC] flex-grow overflow-y-auto">
+    <div className="bg-[#FCFCFC] h-[90vh] flex flex-col relative">
+      <div
+        ref={chatContainerRef}
+        onScroll={handleScroll}
+        className="bg-[#FCFCFC] flex-grow overflow-y-auto"
+      >
         <div className="flex justify-between items-center mx-4 bg-[#FFFFFF] my-5 rounded-lg  ">
           <div className="flex gap-x-3 bg-[#FFFFFF]">
             <div>
@@ -280,7 +294,7 @@ const OrderChat = ({
             })}
           </div>
           {/* Loading indicator */}
-          {loading && !autoScrolled && <Loading />}
+
           {!loading && (
             <div className="bg-[#FFFFFF pb-8 flex w-[85%] items-center gap-5 px-10 fixed left-[14%] -bottom-6">
               <div className="w-[90%] relative">

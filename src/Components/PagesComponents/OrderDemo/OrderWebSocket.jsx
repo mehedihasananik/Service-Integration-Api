@@ -73,6 +73,7 @@ const OrderWebSocket = () => {
         selectedFile={selectedFile}
         images={images}
         setImages={setImages}
+        setMessageHistory={setMessageHistory}
       />
     </div>
   );
