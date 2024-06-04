@@ -151,7 +151,7 @@ const OrderChat = ({
         <div className="bg-[#fff] px-4">
           <div className="mb-[8%]">
             {messageHistory.map((msg, index) => {
-              const senderName = msg.sender_id === 1 ? "User" : "Admin";
+              const senderName = msg.sender_id === 1 ? "Anik" : "Envobyte";
               const updatedAt = parseDate(msg.updated_at);
               const formattedDate = new Intl.DateTimeFormat("en-US", {
                 month: "short",
@@ -178,7 +178,7 @@ const OrderChat = ({
                         height={100}
                         className="w-[40px] h-[40px]"
                         src={
-                          senderName === "Admin"
+                          senderName === "Envobyte"
                             ? "/assets/msgAvater.png"
                             : "/assets/msgAvater2.png"
                         }
@@ -194,8 +194,8 @@ const OrderChat = ({
                           {formattedDate}
                         </span>
                       </div>
-                      <p className="text-[14px] pr-[4%] text-justify font-Raleway font-[400] text-[#666666]">
-                        <span> {msg.message}</span>
+                      <p className="text-[14px] pr-[4%] text-justify font-Roboto font-[400] text-[#666666]">
+                        {msg.message}
                       </p>
                       {msg?.attachment && (
                         <div className="my-5">
@@ -234,13 +234,14 @@ const OrderChat = ({
             <div className="bg-[#FFFFFF pb-8 flex w-[85%] items-center gap-5 px-10 fixed left-[14%] -bottom-6">
               <div className="w-[90%] relative">
                 <textarea
-                  className="w-full border border-[#E2E2E2] rounded-md py-2.5 px-4 resize-none"
+                  className="w-full border border-[#E2E2E2] rounded-md py-4 px-4 resize-none pr-20 text-justify"
                   placeholder="Write a message..."
                   value={inputtedMessage}
                   onChange={(e) => {
                     setInputtedMessage(e.target.value);
                     setText(e.target.value);
                   }}
+                  maxLength={2000} // Limit to 500 characters
                 />
 
                 <div className="flex gap-2 absolute right-3 top-[13px]">
@@ -272,12 +273,12 @@ const OrderChat = ({
                     className="hidden "
                   />
                   <label htmlFor="file-upload">
-                    <GoPaperclip className="cursor-pointer absolute right-[45px] bottom-[30px]" />
+                    <GoPaperclip className="cursor-pointer absolute right-[45px] bottom-[40px]" />
                   </label>
                 </div>
                 <span
                   onClick={() => setShowEmoji(!showEmoji)}
-                  className="cursor-pointer absolute right-[15px] bottom-[30px]"
+                  className="cursor-pointer absolute right-[15px] bottom-[40px]"
                 >
                   <CiFaceSmile className="text-[20px] " />
                 </span>

@@ -29,6 +29,7 @@ module.exports = {
       fontFamily: {
         Roboto: ["Roboto", "sans-serif"],
         Raleway: ["Raleway", "sans-serif"],
+        OpenSans: ["Open Sans", "sans-serif"],
       },
     },
   },

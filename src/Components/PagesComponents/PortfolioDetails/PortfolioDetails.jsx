@@ -2,6 +2,7 @@ import Container from "@/Components/Container/Container";
 import RelevantPortfolio from "@/Components/Utilites/RelevantServices/RelevantPortfolio";
 
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const PortfolioDetails = ({ singlePortfolioItem }) => {
@@ -40,7 +41,7 @@ const PortfolioDetails = ({ singlePortfolioItem }) => {
                   />
                 </div>
                 <div className="text-center py-4  md:py-5">
-                  <h3 className="text-gray-500 text-[18px] md:text-[20px]  font-Raleway font-semibold">
+                  <h3 className="text-gray-500 text-[18px] md:text-[20px]  font-Raleway font-semibold  md:pb-8">
                     {caption_text}
                   </h3>
                 </div>
@@ -53,9 +54,12 @@ const PortfolioDetails = ({ singlePortfolioItem }) => {
         <h3 className="text-[20px] md:text-[32px] lg:text-[54px] text-[#111111] lg:leading-[101px] font-semibold">
           Let&apos;s Choose Us for Your Next Project
         </h3>
-        <button className="bg-[#FF693B] border border-[#FF693B] text-[18px] font-Poppins text-white px-5 py-2 md:px-10 md:py-3 rounded-lg mt-3 transition-all duration-300 hover:bg-[#fff] hover:text-[#FF693B]">
+        <Link
+          href={"/#projectDetails"}
+          className="bg-[#FF693B] border border-[#FF693B] text-[18px] font-Poppins text-white px-5 py-2 md:px-10 md:py-3 rounded-lg mt-3 transition-all duration-300 hover:bg-[#fff] hover:text-[#FF693B]"
+        >
           Contact Us
-        </button>
+        </Link>
       </div>
       <div className="bg-[#F8FAFC] py-5 md:py-10">
         <Container>
