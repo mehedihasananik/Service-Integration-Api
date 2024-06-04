@@ -47,15 +47,17 @@ const DeliveryPackage = ({ delivery }) => {
                 Attachments
               </h3>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-x-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {media_urls.map((item, index) => {
                 return (
                   <div key={index}>
-                    <img
-                      className="w-[100px] py-2 rounded-lg"
-                      src={item}
-                      alt=""
-                    />
+                    <div className="h-[150px] flex items-center justify-center bg-[#F3F6F9] rounded-lg">
+                      <img
+                        className=" max-h-[120px] py-3 rounded-lg "
+                        src={item}
+                        alt=""
+                      />
+                    </div>
                   </div>
                 );
               })}

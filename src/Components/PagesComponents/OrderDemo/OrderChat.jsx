@@ -14,6 +14,7 @@ import { BiRevision } from "react-icons/bi";
 import { MdOutlineAccessTimeFilled } from "react-icons/md";
 import CustomOffer from "./CustomOffer/CustomOffer";
 import DeliveryPackage from "./DeliveryPackage/DeliveryPackage";
+import OrderRequirements from "@/Components/Utilites/OrderRequirements/OrderRequirements";
 
 const SOCKET_URL_ONE = "http://localhost:3000";
 const socket = io(SOCKET_URL_ONE);
@@ -117,12 +118,13 @@ const OrderChat = ({
   };
 
   return (
-    <div className="bg-[#FCFCFC] h-[90vh] flex flex-col relative ">
+    <div className="bg-[#FCFCFC] h-[88vh] flex flex-col relative ">
       <div
         ref={chatContainerRef}
         onScroll={handleScroll}
         className="bg-[#FCFCFC] flex-grow overflow-y-auto"
       >
+        <OrderRequirements />
         <div className="flex justify-between items-center mx-4 bg-[#FFFFFF] my-5 rounded-lg  ">
           <div className="flex gap-x-3 bg-[#FFFFFF]">
             <div>

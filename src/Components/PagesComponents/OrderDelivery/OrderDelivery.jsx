@@ -251,7 +251,7 @@ const OrderDelivery = () => {
 
         {/* delivery */}
 
-        <div className="border border-[#E2E2E2] rounded-md mt-4  px-3 lg:ml-4 lg:mr-20 py-5">
+        <div className="border border-[#E2E2E2] rounded-md mt-4  px-3 lg:ml-4 lg:mr-20 py-5 pb-20">
           {/* delivery title */}
           <div className="pb-5">
             <h3 className="text-[#333] font-Raleway text-[24px] font-[700]">

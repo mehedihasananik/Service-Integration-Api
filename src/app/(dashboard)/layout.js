@@ -21,14 +21,16 @@ export default function RootLayout({ children }) {
         sizes="any"
       />
       <body className={inter.className}>
-        <div className="bg-[#8CD3FB1A]">
+        <div className="bg-[#8CD3FB1A] fixed w-full">
           <div>
             <div className="w-full flex bg-[#fff]">
               <AuthProviders>
                 <DashBoardSideNav height="100vh" />
                 <div className="w-full ">
                   <DashBoardNav />
-                  <div className="bg-[#fff] px-[5%] md:px-0 ">{children}</div>
+                  <div className="bg-[#fff] px-[5%] md:px-0 w-full">
+                    {children}
+                  </div>
                 </div>
               </AuthProviders>
             </div>

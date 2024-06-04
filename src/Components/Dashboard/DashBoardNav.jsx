@@ -23,6 +23,7 @@ const DashBoardNav = () => {
   useEffect(() => {
     setUserData(JSON.parse(localStorage.getItem("userData")));
   }, []);
+  console.log(userData);
 
   return (
     <nav className="flex flex-col justify-center items-center md:flex-row md:justify-between w-[100%] py-4 px-5 lg:pr-12 bg-[#FCFCFC]">

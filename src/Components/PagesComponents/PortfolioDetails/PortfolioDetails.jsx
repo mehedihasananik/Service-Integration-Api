@@ -35,8 +35,8 @@ const PortfolioDetails = ({ singlePortfolioItem }) => {
                   <Image
                     className="md:w-full md:h-[75vh] rounded-md"
                     alt="image"
-                    width={500}
-                    height={500}
+                    width={1000}
+                    height={1000}
                     src={image}
                   />
                 </div>
