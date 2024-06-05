@@ -1,5 +1,6 @@
 "use client";
 
+import { apiEndpoint } from "@/config/config";
 import React, { useEffect, useState } from "react";
 
 const Profile = () => {
@@ -13,16 +14,13 @@ const Profile = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch(
-        `http://192.168.10.14:8000/api/user_profile`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ user_id: userData.id }),
-        }
-      );
+      const response = await fetch(`${apiEndpoint}/user_profile`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ user_id: userData.id }),
+      });
       const data = await response.json();
       setProfile(data);
     } catch (error) {
@@ -50,13 +48,10 @@ const Profile = () => {
         formData.append("user_avatar", selectedFile);
       }
 
-      const response = await fetch(
-        "http://192.168.10.14:8000/api/user_profile_update",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      const response = await fetch(`${apiEndpoint}/user_profile_update`, {
+        method: "POST",
+        body: formData,
+      });
 
       if (!response.ok) {
         throw new Error("Failed to update profile");
@@ -86,8 +81,11 @@ const Profile = () => {
   console.log(profile);
 
   return (
-    <div>
-      <section className="py-10 my-auto dark:bg-gray-900 p-20">
+    <div
+      className="scroll-y"
+      style={{ maxHeight: "calc(100vh - 20px)", overflowY: "auto" }}
+    >
+      <section className="py-10 my-auto dark:bg-gray-900 p-20 md:pb-[10%]">
         <div className="lg:w-[80%] md:w-[90%] xs:w-[96%] mx-auto flex gap-4">
           <div className="lg:w-[88%] md:w-[80%] sm:w-[88%] xs:w-full mx-auto shadow-2xl px-[5%] py-[5%] rounded-xl h-fit self-center dark:bg-gray-800/40">
             <div className="">

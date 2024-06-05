@@ -56,7 +56,7 @@ const VisitorsInfo = ({ currentPage }) => {
   //   };
 
   //   axios
-  //     .post("http://192.168.10.14:8000/api/hit_log", postData)
+  //     .post("${apiEndpoint}/hit_log", postData)
   //     .then((response) => {
   //       console.log("Post request successful:", response.data);
   //     })

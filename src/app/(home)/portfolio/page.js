@@ -32,12 +32,9 @@ async function portfoliosCategoriesApi() {
   return res.json();
 }
 async function servicesApi() {
-  const res = await fetch(
-    `http://192.168.10.14:8000/api/search_sevice_category/all`,
-    {
-      next: { revalidate: 10 },
-    }
-  );
+  const res = await fetch(`${apiEndpoint}/search_sevice_category/all`, {
+    next: { revalidate: 10 },
+  });
 
   if (!res.ok) {
     throw new Error("Failed to fetch data");

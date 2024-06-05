@@ -60,18 +60,18 @@ const DashBoardSideNav = ({ height }) => {
                         key={i}
                         className={`${
                           menu?.margin && "mt-6"
-                        } group flex items-center text-sm gap-3.5 font-[400] p-2  rounded-md ${
+                        } group flex items-center text-sm gap-3.5 font-[400] p-2  rounded-md hover:text-[#FF693B] transition-all duration-200 ${
                           pathname === menu.link
-                            ? "bg-[#FFFFFF] text-[#FF693B]"
+                            ? "bg-[#FFFFFF] text-[#FF693B] "
                             : "" // Highlight active link based on pathname
                         }`}
                       >
-                        <div>
+                        <div className="hover:text-[#FF693B] ">
                           {React.createElement(menu?.icon, { size: "20" })}
                         </div>
                         <Link
                           href={menu?.link}
-                          className={`whitespace-pre text-[16px]  py-[2%]`}
+                          className={`whitespace-pre text-[16px]  py-[2%]  `}
                         >
                           {menu?.name}
                         </Link>

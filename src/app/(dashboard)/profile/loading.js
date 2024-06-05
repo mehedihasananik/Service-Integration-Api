@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 
 const Loading = () => {
-  const [loading, setLoading] = useState([]);
   return (
     <div
       aria-label="Loading..."
@@ -9,7 +8,7 @@ const Loading = () => {
       className="flex justify-center items-center space-x-2"
     >
       <svg
-        className="h-24 w-32 animate-spin stroke-[#0A2C8C]"
+        className="h-24 w-32 animate-spin stroke-[#0C2D8D]"
         viewBox="0 0 256 256"
       >
         <line

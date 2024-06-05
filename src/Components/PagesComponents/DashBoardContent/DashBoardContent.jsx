@@ -1,5 +1,6 @@
 "use client";
 import { fetchData } from "@/config/apiRequests.js";
+import { apiEndpoint } from "@/config/config";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -13,10 +14,10 @@ const DashBoardContent = () => {
 
   const fetchingData = async () => {
     const data = await fetchData(
-      `http://192.168.10.14:8000/api/service_order_dashboard`,
+      `${apiEndpoint}/service_order_dashboard`,
       "POST",
       {
-        user_id: sessionData?.id,
+        user_id: sessionData?.id || sessionData?.user_id,
       }
     );
     setProjects(data);
@@ -25,6 +26,8 @@ const DashBoardContent = () => {
   useEffect(() => {
     fetchingData();
   }, []);
+
+  console.log(sessionData?.id);
 
   return (
     <div className="lg:mx-10 bg-[#FCFCFC] mb-5%">

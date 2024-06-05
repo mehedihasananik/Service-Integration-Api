@@ -11,7 +11,7 @@ const DashBoardNav = () => {
   let pathname = usePathname();
   const [cleared, setCleared] = useState(false);
   pathname = pathname.replace("/", "");
-  const [userData, setUserData] = useState();
+  const [userData, setUserData] = useState(null);
 
   const clearSession = () => {
     // Remove the userData from localStorage
@@ -51,24 +51,28 @@ const DashBoardNav = () => {
 
           <button className="flex gap-3 items-center">
             <Link href={"/profile"}>
-              <div className="flex items-center justify-center">
-                {" "}
-                <img
-                  className="w-[40px] h-[40px] rounded-lg"
-                  src={userData?.image}
-                  alt=""
-                />
-              </div>
+              {userData?.image ? (
+                <div className="flex items-center justify-center">
+                  {" "}
+                  <img
+                    className="w-[40px] h-[40px] rounded-lg"
+                    src={userData?.image}
+                    alt=""
+                  />
+                </div>
+              ) : (
+                ""
+              )}
             </Link>
             <Dropdown
-              label={userData?.name}
+              label={userData?.name || userData?.user_name}
               dismissOnClick={false}
               renderTrigger={() => (
                 <span>
                   {
                     <div className="flex gap-x-2 items-center">
                       <span className="flex items-center gap-x-4 text-[16px] hover:text-[#FF693B] transition-all duration-200">
-                        {userData ? `${userData?.name}` : "No User"}
+                        {userData ? `${userData?.name}` : "Loading"}
                       </span>
                       <MdKeyboardArrowDown className="text-[24px] cursor-pointer" />
                     </div>

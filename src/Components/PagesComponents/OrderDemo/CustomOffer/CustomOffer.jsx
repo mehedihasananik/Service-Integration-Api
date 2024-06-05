@@ -3,6 +3,7 @@ import { BiRevision } from "react-icons/bi";
 import { MdOutlineAccessTimeFilled } from "react-icons/md";
 
 const CustomOffer = ({ order }) => {
+  console.log(order);
   return (
     <div className="lg:mx-20 ">
       <div className="pb-3">
@@ -53,20 +54,26 @@ const CustomOffer = ({ order }) => {
               </span>
             </div>
           </div>
-          <div className="space-x-7">
-            <button
-              onClick={() => handleCancelClick(order.id)}
-              className="text-[#000] text-[14px] w-[600] bg-[#B0B0B0] hover:shadow-xl  rounded-[4px] px-5 py-1.5 font-[600] transition-all duration-300"
-            >
-              Cancel
-            </button>
-            <button
-              onClick={() => handleAcceptClick(order.id)}
-              className="text-[#FFF] text-[14px] w-[600] bg-[#FF693B] hover:shadow-xl  rounded-[4px] px-5 py-1.5 font-[600] transition-all duration-300"
-            >
-              Accept
-            </button>
-          </div>
+          {order.status === "cancel" ? (
+            <h3 className="text-lg font-bold">
+              The order request has been removed
+            </h3>
+          ) : (
+            <div className="space-x-7">
+              <button
+                onClick={() => handleCancelClick(order.id)}
+                className="text-[#000] text-[14px] w-[600] bg-[#B0B0B0] hover:shadow-xl  rounded-[4px] px-5 py-1.5 font-[600] transition-all duration-300"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={() => handleAcceptClick(order.id)}
+                className="text-[#FFF] text-[14px] w-[600] bg-[#FF693B] hover:shadow-xl  rounded-[4px] px-5 py-1.5 font-[600] transition-all duration-300"
+              >
+                Accept
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>

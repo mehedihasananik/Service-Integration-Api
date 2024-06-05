@@ -14,7 +14,7 @@ const DeliveryPackage = ({ delivery }) => {
   return (
     <div>
       {" "}
-      <div className="border border-[#E2E2E2] rounded-md mt-4  px-3 lg:ml-4 lg:mr-20 py-5">
+      <div className="bg-[#FDFDFD] border-2 border-[#E2E2E2] rounded-[8px] mt-4  px-3 lg:ml-4 lg:mr-20 py-5 w-[70%]">
         {/* delivery title */}
         <div className="pb-5">
           <h3 className="text-[#333] font-Raleway text-[24px] font-[700]">

@@ -11,6 +11,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 import { fetchData } from "@/config/apiRequests.js";
 import { loginApi } from "@/config/apis";
 import axios from "axios";
+import GoogleSocialLogin from "@/Components/Utilites/GoogleSocialLogin/GoogleSocialLogin";
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
@@ -58,8 +59,24 @@ const Login = () => {
   };
   function onChange() {}
 
+  const handleMessage = (event) => {
+    // Check the event.origin for security if needed
+    console.log("Received data from child window:", event.data.message);
+    const data = event.data.message;
+
+    if (data) {
+      toast.success("Logged in successfully");
+
+      localStorage.setItem("userData", JSON.stringify(data));
+      router.push("/dashboard");
+    }
+  };
+  window.addEventListener("message", handleMessage);
+
+  // Event listener for the 'message' event
+
   const handleSocialLogin = async (provider) => {
-    const url = `http://localhost:8000/api/auth/${provider}`;
+    const url = `https://admin.envobyte.com/api/auth/${provider}`;
     const response = await axios.get(url);
     // window.location.href = response.data.redirectUrl;
     window.open(
@@ -69,20 +86,10 @@ const Login = () => {
     );
   };
 
-  useEffect(() => {
-    // Event listener for the 'message' event
-    const handleMessage = (event) => {
-      // Check the event.origin for security if needed
-      console.log("Received data from child window:", event.data.message);
-    };
-    window.addEventListener("message", handleMessage);
-    // Clean up the event listener on component unmount
-    return () => window.removeEventListener("message", handleMessage);
-  }, []);
-
   return (
     <div className="login_singUp overflow-hidden  my-5">
       <Container>
+        <GoogleSocialLogin />
         {loading && <div className="loader">Loading..</div>}
         <div className="w-full flex justify-center md:pt-5">
           <div className="shadow-md  border rounded-lg  py-6 px-10  md:py-10 md:px-12">

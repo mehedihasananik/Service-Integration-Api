@@ -23,6 +23,7 @@ const ServiceDetails = ({
 
   return (
     <>
+      {" "}
       <Container>
         <div className="pt-3 pb-8">
           {/* title */}
@@ -105,7 +106,6 @@ const ServiceDetails = ({
           <ServicePortolio />
         </div>
       </div>
-
       <div className="flex justify-center py-10">
         <Link
           href={"/portfolio"}
@@ -118,7 +118,6 @@ const ServiceDetails = ({
         {/* relevant services */}
         <RelevantServices service={service} />
       </Container>
-
       <div className="bg-[#F8FAFC]">
         <QuestionService
           service={service}

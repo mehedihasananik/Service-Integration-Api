@@ -163,7 +163,7 @@ const OrderChat = ({
                 hour12: true,
               }).format(updatedAt);
               const { order, delivery } = msg;
-              console.log(delivery);
+              // console.log(delivery);
 
               return (
                 <div
