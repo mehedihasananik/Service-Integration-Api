@@ -42,7 +42,7 @@ const Checkout = () => {
             jsPaymentClient.tokens
               .generate(component, billingDetails)
               .then((response) => {
-                console.log(response.token);
+                // console.log(response.token);
                 const params = {
                   token: response.token,
                   formAction:
@@ -71,7 +71,7 @@ const Checkout = () => {
     })
       .then((response) => response.json())
       .then((result) => {
-        console.log("Ajax done result: ", result);
+        // console.log("Ajax done result: ", result);
         if (result.redirect) {
           window.location.href = result.redirect;
         } else if (result.success) {

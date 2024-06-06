@@ -44,15 +44,15 @@ const SignUpContent = () => {
   const handleSubmit = async (event) => {
     event.preventDefault(); // Prevent default form submission behavior
 
-    console.log("Form submitted"); // Add console log to check if form submission is triggered
+    // console.log("Form submitted"); // Add console log to check if form submission is triggered
 
     try {
       await validationSchema.validate(formData, { abortEarly: false });
 
-      console.log("Validation passed"); // Add console log to check if validation passed
+      // console.log("Validation passed"); // Add console log to check if validation passed
 
       const response = await fetchData(signupApi, "POST", formData); // Using fetchData instead of axios.post // Add console log to check if API call is successful
-      console.log(response.msg); // Add console log to check if API call is successful
+      // console.log(response.msg); // Add console log to check if API call is successful
 
       if (response?.msg) {
         setFormData({

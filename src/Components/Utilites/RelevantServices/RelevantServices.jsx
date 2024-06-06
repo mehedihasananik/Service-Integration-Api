@@ -16,7 +16,7 @@ const RelevantServices = ({ service }) => {
   const swiperRef = useRef(null);
 
   const { relevant_services } = service;
-  console.log(relevant_services);
+  // console.log(relevant_services);
 
   const breakpoints = {
     2500: {

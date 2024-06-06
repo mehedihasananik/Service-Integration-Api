@@ -44,7 +44,7 @@ const RelevantPortfolio = ({ singlePortfolioItem }) => {
     },
   };
   const { relevant } = singlePortfolioItem;
-  console.log(singlePortfolioItem.relevant);
+  // console.log(singlePortfolioItem.relevant);
 
   return (
     <div className="pt-5 pb-10 md:pt-3 md:pb-8">
@@ -64,7 +64,7 @@ const RelevantPortfolio = ({ singlePortfolioItem }) => {
           className="mySwiper"
         >
           {singlePortfolioItem.relevant.map((service) => {
-            console.log(service);
+            // console.log(service);
             return (
               <SwiperSlide key={service.id}>
                 <Link href={`/services/${service.slug.replace(/\s+/g, "")}`}>

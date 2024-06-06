@@ -24,7 +24,7 @@ const CheckoutProductInfo = ({ productInfo, setProductInfo }) => {
         user_id: userData?.id,
       });
       setProductInfo(data);
-      console.log(data);
+      // console.log(data);
     };
     fetchingItemData();
   }

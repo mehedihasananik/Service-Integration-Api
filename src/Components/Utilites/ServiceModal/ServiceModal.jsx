@@ -42,7 +42,7 @@ const ServiceModal = ({ openModal, setOpenModal }) => {
       if (response.ok) {
         const data = await response.json();
         // Assuming data contains the response from the server
-        console.log(data);
+        // console.log(data);
         if (data.success) {
           // Save user data to localStorage
           toast.success("Logged in successfully");
@@ -54,12 +54,12 @@ const ServiceModal = ({ openModal, setOpenModal }) => {
           // Save user data to localStorage
           toast.error(data.ErrorMessage);
         }
-        console.log(data);
+        // console.log(data);
         // Here you can handle the successful login response, e.g., redirect the user or store user data in the state
       } else {
         // Handle error response
         // toast.error(data.success);
-        console.log(data);
+        // console.log(data);
       }
     } catch (error) {
       console.error("Error:", error);

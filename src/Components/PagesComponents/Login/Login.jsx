@@ -11,6 +11,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 import { fetchData } from "@/config/apiRequests.js";
 import { loginApi } from "@/config/apis";
 import axios from "axios";
+import UserLoading from "@/Components/Utilites/UserLoading/UserLoading";
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
@@ -36,7 +37,7 @@ const Login = () => {
         "POST",
         requestData
       );
-      console.log(data);
+      // console.log(data);
 
       if (data.success) {
         toast.success("Logged in successfully");
@@ -58,37 +59,14 @@ const Login = () => {
   };
   function onChange() {}
 
-  const handleMessage = (event) => {
-    // Check the event.origin for security if needed
-    console.log("Received data from child window:", event.data.message);
-    const data = event.data.message;
-
-    if (data) {
-      toast.success("Logged in successfully");
-
-      localStorage.setItem("userData", JSON.stringify(data));
-      router.push("/dashboard");
-    }
-  };
-  window.addEventListener("message", handleMessage);
-
-  // Event listener for the 'message' event
-
-  const handleSocialLogin = async (provider) => {
-    const url = `https://admin.envobyte.com/api/auth/${provider}`;
-    const response = await axios.get(url);
-    // window.location.href = response.data.redirectUrl;
-    window.open(
-      response.data.redirectUrl,
-      "_blank",
-      "width=600,height=800,left=100,top=100"
-    );
-  };
-
   return (
     <div className="login_singUp overflow-hidden  my-5">
       <Container>
-        {loading && <div className="loader">Loading..</div>}
+        {loading && (
+          <div className="text-center">
+            <UserLoading />{" "}
+          </div>
+        )}
         <div className="w-full flex justify-center md:pt-5">
           <div className="shadow-md  border rounded-lg  py-6 px-10  md:py-10 md:px-12">
             <div className="text-center pb-5 md:pb-14">
@@ -102,7 +80,6 @@ const Login = () => {
             <div className="flex flex-col md:flex-row pb-4 gap-y-4 md:gap-10  lg:pb-12">
               <button
                 type="button"
-                onClick={() => handleSocialLogin("facebook")}
                 className="flex justify-center items-center gap-2 font-Raleway border p-2 rounded-md hover:border-[#FF693B] transition-all duration-200"
               >
                 <img src="/assets/fLogo.png" alt="" />
@@ -113,7 +90,6 @@ const Login = () => {
               </button>
               <button
                 type="button"
-                onClick={() => handleSocialLogin("google")}
                 className="flex justify-center items-center gap-2 font-Raleway border p-2 rounded-md hover:border-[#FF693B] transition-all duration-200"
               >
                 <img src="/assets/gLogo.png" alt="" />

@@ -60,7 +60,7 @@ const ProjectDetails = ({ userContact }) => {
       await validationSchema.validate(formData, { abortEarly: false });
       const response = await axios.post(user_feedbackApi, formData);
 
-      console.log("Response:", response.data);
+      // console.log("Response:", response.data);
 
       // Check the response structure
       if (response.data) {

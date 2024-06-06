@@ -124,7 +124,6 @@ const OrderChat = ({
         onScroll={handleScroll}
         className="bg-[#FCFCFC] flex-grow overflow-y-auto"
       >
-        <OrderRequirements />
         <div className="flex justify-between items-center mx-4 bg-[#FFFFFF] my-5 rounded-lg  ">
           <div className="flex gap-x-3 bg-[#FFFFFF]">
             <div>
@@ -153,7 +152,7 @@ const OrderChat = ({
         <div className="bg-[#fff] px-4">
           <div className="mb-[8%]">
             {messageHistory.map((msg, index) => {
-              const senderName = msg.sender_id === 1 ? "Anik" : "Envobyte";
+              const senderName = msg.sender_id === 19 ? "Anik" : "Envobyte";
               const updatedAt = parseDate(msg.updated_at);
               const formattedDate = new Intl.DateTimeFormat("en-US", {
                 month: "short",
@@ -170,7 +169,7 @@ const OrderChat = ({
                   key={index}
                   className="flex flex-col"
                   ref={
-                    index === messageHistory.length - 1 ? lastMessageRef : null
+                    index === messageHistory.length - 19 ? lastMessageRef : null
                   }
                 >
                   <div className="flex gap-x-3 py-3">
@@ -233,8 +232,8 @@ const OrderChat = ({
           {loading && <Loading />}
 
           {!loading && (
-            <div className="bg-[#FFFFFF pb-8 flex w-[85%] items-center gap-5 px-10 fixed left-[14%] -bottom-6">
-              <div className="w-[90%] relative">
+            <div className="bg-[#FFFFFF pb-8 flex w-[80%] items-center gap-5 px-10 fixed left-[14%] -bottom-6">
+              <div className="w-[70%] relative">
                 <textarea
                   className="w-full border border-[#E2E2E2] rounded-md py-4 px-4 resize-none pr-20 text-justify"
                   placeholder="Write a message..."

@@ -36,7 +36,10 @@ const DashBoardContent = () => {
   };
 
   return (
-    <div className="lg:mx-10 bg-[#FCFCFC] mb-5%">
+    <div
+      style={{ maxHeight: "calc(100vh - 20px)", overflowY: "auto" }}
+      className="lg:mx-10 bg-[#FCFCFC] mb-5% scroll-y"
+    >
       {/* active project */}
       <div className="bg-white py-4 rounded-md   mb-5 md:px-7">
         <h3 className="text-[#0F172A] text-[24px] font-[600]">

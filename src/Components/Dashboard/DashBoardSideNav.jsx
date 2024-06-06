@@ -56,26 +56,28 @@ const DashBoardSideNav = ({ height }) => {
                   </div>
                   <div className="w-full">
                     {dashboardMenus?.map((menu, i) => (
-                      <div
-                        key={i}
-                        className={`${
-                          menu?.margin && "mt-6"
-                        } group flex items-center text-sm gap-3.5 font-[400] p-2  rounded-md transition-all duration-200 ${
-                          pathname === menu.link
-                            ? "bg-[#FFFFFF] text-[#FF693B] "
-                            : "" // Highlight active link based on pathname
-                        }`}
-                      >
-                        <div className="hover:text-[#FF693B] ">
-                          {React.createElement(menu?.icon, { size: "20" })}
-                        </div>
-                        <Link
-                          href={menu?.link}
-                          className={`whitespace-pre text-[16px]  py-[2%]  hover:text-[#FF693B] `}
+                      <Link key={i} href={menu?.link}>
+                        <div
+                          className={`${
+                            menu?.margin && "mt-6"
+                          } group flex items-center text-sm gap-3.5 font-[400] p-2  rounded-md transition-all duration-200 group ${
+                            pathname === menu.link
+                              ? "bg-[#FFFFFF] text-[#FF693B] "
+                              : "" // Highlight active link based on pathname
+                          }`}
                         >
-                          {menu?.name}
-                        </Link>
-                      </div>
+                          <div className="group-hover:text-[#FF693B] ">
+                            {React.createElement(menu?.icon, { size: "20" })}
+                          </div>
+
+                          <span
+                            className={`whitespace-pre text-[16px]  py-[2%] group-hover:text-[#FF693B] `}
+                          >
+                            {" "}
+                            {menu?.name}
+                          </span>
+                        </div>
+                      </Link>
                     ))}
                   </div>
                 </div>
@@ -123,11 +125,13 @@ const DashBoardSideNav = ({ height }) => {
                         : "" // Highlight active link based on pathname
                     }`}
                   >
-                    <div>{React.createElement(menu?.icon, { size: "20" })}</div>
+                    <div className="">
+                      {React.createElement(menu?.icon, { size: "20" })}
+                    </div>
                     <Link
                       href={menu?.link}
                       onClick={closeSidebar}
-                      className={`whitespace-pre text-[16px] py-[2%] `}
+                      className={`whitespace-pre text-[16px] py-[2%] group-hover:text-[#FF693B] `}
                     >
                       {menu?.name}
                     </Link>

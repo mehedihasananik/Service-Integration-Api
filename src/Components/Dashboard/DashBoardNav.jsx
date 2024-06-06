@@ -5,6 +5,7 @@ import { MdKeyboardArrowDown } from "react-icons/md";
 import Notification from "../Utilites/Notificaiton/Notification";
 import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
+import UserLoading from "../Utilites/UserLoading/UserLoading";
 
 const DashBoardNav = () => {
   const router = useRouter();
@@ -23,7 +24,7 @@ const DashBoardNav = () => {
   useEffect(() => {
     setUserData(JSON.parse(localStorage.getItem("userData")));
   }, []);
-  console.log(userData);
+  // console.log(userData);
 
   return (
     <nav className="flex flex-col justify-center items-center md:flex-row md:justify-between w-[100%] py-4 px-5 lg:pr-12 bg-[#FCFCFC]">
@@ -72,7 +73,7 @@ const DashBoardNav = () => {
                   {
                     <div className="flex gap-x-2 items-center">
                       <span className="flex items-center gap-x-4 text-[16px] hover:text-[#FF693B] transition-all duration-200">
-                        {userData ? `${userData?.name}` : "Loading"}
+                        {userData ? `${userData?.name}` : <UserLoading />}
                       </span>
                       <MdKeyboardArrowDown className="text-[24px] cursor-pointer" />
                     </div>

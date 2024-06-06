@@ -40,7 +40,7 @@ export const sendMessageToServer = async (message, selectedFile) => {
       throw new Error("Failed to send message");
     }
 
-    return { sender_id: 1, message: message };
+    return { sender_id: 19, message: message };
   } catch (error) {
     console.error("Error sending message:", error);
     throw error;

@@ -43,9 +43,9 @@ const OrderRequirements = () => {
   const user_requirements = deliveryDetails?.user_requirements;
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 px-4 md:pt-5 md:pb-3">
+    <div className="grid grid-cols-1 md:grid-cols-1   h-[50vh] px-4 md:pt-5 md:pb-3">
       {/* 1st */}
-      <div className="max-w-[330px] flex  items-start gap-x-3  border border-[#E2E2E2] bg-[#FDFDFD] rounded-md p-3">
+      <div className="max-w-[330px] h-[80px] flex  items-start gap-x-3  border border-[#E2E2E2] bg-[#FDFDFD] rounded-md p-3">
         <div>
           <img src="/assets/ui.png" alt="ui ux design" />
         </div>
@@ -64,7 +64,7 @@ const OrderRequirements = () => {
         </div>
       </div>
       {/* 2nd */}
-      <div className="max-w-[330px] flex items-start gap-x-3  border border-[#E2E2E2] bg-[#FDFDFD] rounded-md p-3">
+      <div className="max-w-[330px] h-[80px] flex items-start gap-x-3  border border-[#E2E2E2] bg-[#FDFDFD] rounded-md p-3">
         <div>
           <img src="/assets/date.png" alt="ui ux design" />
         </div>
@@ -78,7 +78,7 @@ const OrderRequirements = () => {
         </div>
       </div>
       {/* 3rd */}
-      <div className="max-w-[400px] flex items-center gap-x-5  border border-[#E2E2E2] bg-[#FDFDFD] rounded-md p-3">
+      <div className="max-w-[330px] h-[80px] flex items-center gap-x-5  border border-[#E2E2E2] bg-[#FDFDFD] rounded-md p-3">
         <div>
           <img src="/assets/pin.png" alt="ui ux design" />
         </div>

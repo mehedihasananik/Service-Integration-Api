@@ -9,6 +9,7 @@ import {
   setMessageHandler,
 } from "./orderSocketManager";
 import OrderChat from "./OrderChat";
+import OrderRequirements from "@/Components/Utilites/OrderRequirements/OrderRequirements";
 
 const OrderWebSocket = () => {
   const [messageHistory, setMessageHistory] = useState([]);
@@ -62,19 +63,21 @@ const OrderWebSocket = () => {
   };
 
   return (
-    <div className="h-90vh overflow-hidden relative">
-      <OrderChat
-        messageHistory={messageHistory}
-        inputtedMessage={inputtedMessage}
-        setInputtedMessage={setInputtedMessage}
-        sendMessageToAPI={handleSendMessage}
-        loading={loading}
-        setSelectedFile={setSelectedFile}
-        selectedFile={selectedFile}
-        images={images}
-        setImages={setImages}
-        setMessageHistory={setMessageHistory}
-      />
+    <div className="h-90vh overflow-hidden relative ">
+      <div>
+        <OrderChat
+          messageHistory={messageHistory}
+          inputtedMessage={inputtedMessage}
+          setInputtedMessage={setInputtedMessage}
+          sendMessageToAPI={handleSendMessage}
+          loading={loading}
+          setSelectedFile={setSelectedFile}
+          selectedFile={selectedFile}
+          images={images}
+          setImages={setImages}
+          setMessageHistory={setMessageHistory}
+        />
+      </div>
     </div>
   );
 };

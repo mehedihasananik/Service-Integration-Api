@@ -116,7 +116,7 @@ const FirstChat = ({
         <div className="bg-[#fff] px-4">
           <div className="mb-[8%]">
             {messageHistory.map((msg, index) => {
-              console.log(msg);
+              // console.log(msg);
               const senderName = msg.sender_id === 1 ? "User" : "Admin";
               const updatedAt = parseDate(msg.updated_at);
               const formattedDate = new Intl.DateTimeFormat("en-US", {

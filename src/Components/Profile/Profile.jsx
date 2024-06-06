@@ -78,7 +78,7 @@ const Profile = () => {
   };
 
   const backgroundImage = profile?.avatar ? `url(${profile.avatar})` : "";
-  console.log(profile);
+  // console.log(profile);
 
   return (
     <div

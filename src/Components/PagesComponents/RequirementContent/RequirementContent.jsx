@@ -1,6 +1,5 @@
 "use client";
-import { apiEndpoint } from "@/config/config";
-import Router from "next/navigation";
+
 import React, { useRef, useState } from "react";
 import toast from "react-hot-toast";
 
@@ -70,11 +69,10 @@ const RequirementContent = ({ requireMent, requirementId, service_title }) => {
           body: formData,
         }
       );
-      console.log("Response:", response); // Log response from the server
+      // console.log("Response:", response); // Log response from the server
 
       if (response.resultsuccess) {
         toast.success("Requirements submitted successfully");
-        Router.push("/dashboard");
       }
 
       // Clear input fields

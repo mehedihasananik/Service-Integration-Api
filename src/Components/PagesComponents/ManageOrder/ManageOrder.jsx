@@ -31,7 +31,7 @@ const ManageOrder = () => {
     fetchOrderManageData();
   }, []);
 
-  console.log(orders);
+  // console.log(orders);
   return (
     <div className="px-6">
       {/* table */}
@@ -47,7 +47,7 @@ const ManageOrder = () => {
           <Table.Body className="divide-y">
             {orders?.map((order) => {
               const { sevice_items, order_status } = order;
-              console.log(order);
+              // console.log(order);
 
               return (
                 <Table.Row

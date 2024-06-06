@@ -52,7 +52,7 @@ const PortfolioPage = ({
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    console.log("Search Query:", searchQuery);
+    // console.log("Search Query:", searchQuery);
   };
 
   const handleSearchInputChange = (e) => {

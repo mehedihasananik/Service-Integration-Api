@@ -44,7 +44,7 @@ const SinglePackage = ({ item, setOpenModal }) => {
       );
 
       const responseData = await response.json();
-      console.log(responseData);
+      // console.log(responseData);
       if (responseData.resultsuccess) {
         router.push("/checkout");
       }
