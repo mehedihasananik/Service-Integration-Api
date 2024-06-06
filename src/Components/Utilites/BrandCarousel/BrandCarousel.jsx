@@ -57,7 +57,6 @@ const BrandCarousel = ({ brands }) => {
           className="mySwiper space-x-4"
         >
           {duplicatedBrands.map((brand, index) => {
-            console.log(brand);
             return (
               <SwiperSlide key={index} className="flex justify-end">
                 <Image

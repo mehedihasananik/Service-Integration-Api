@@ -1,45 +1,53 @@
 "use client";
+import { useState, useEffect } from "react";
 import { fetchData } from "@/config/apiRequests.js";
 import { apiEndpoint } from "@/config/config";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import Loading from "@/Components/Utilites/Loading/Loading";
 
 const DashBoardContent = () => {
   const [projects, setProjects] = useState(null);
+  const [loading, setLoading] = useState(true);
   const sessionData =
     typeof window !== "undefined"
       ? JSON.parse(localStorage.getItem("userData"))
       : null;
 
   const fetchingData = async () => {
+    setLoading(true);
     const data = await fetchData(
-      `${apiEndpoint}/service_order_dashboard`,
+      `http://192.168.10.14:8000/api/service_order_dashboard`,
       "POST",
       {
-        user_id: sessionData?.id || sessionData?.user_id,
+        user_id: sessionData?.id,
       }
     );
     setProjects(data);
+    setLoading(false);
   };
 
   useEffect(() => {
     fetchingData();
   }, []);
 
-  console.log(sessionData?.id);
+  const handlePassData = (order_id) => {
+    localStorage.setItem("orderID", order_id);
+  };
 
   return (
     <div className="lg:mx-10 bg-[#FCFCFC] mb-5%">
       {/* active project */}
       <div className="bg-white py-4 rounded-md   mb-5 md:px-7">
         <h3 className="text-[#0F172A] text-[24px] font-[600]">
-          Active Projects ({projects?.length})
+          Active Projects ({projects?.length || 0})
         </h3>
       </div>
       <div className="bg-white pt-5 lg:pb-[10%] w-full">
-        {projects?.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:px-7 ">
+        {loading ? (
+          <Loading />
+        ) : projects?.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:px-7">
             {projects
               ?.reverse()
               .slice(0, 4)
@@ -50,11 +58,12 @@ const DashBoardContent = () => {
                   order_status,
                   order_date,
                   service_order_id,
+                  order_id,
                 } = project;
-                console.log(order_status);
 
                 return (
                   <Link
+                    onClick={() => handlePassData(order_id)}
                     key={project.id}
                     href={
                       order_status === "Requirement Needed"
@@ -136,6 +145,14 @@ const DashBoardContent = () => {
             <h3 className="text-[20px] text-[#FF693B] md:text-[32px] lg:text-[48px] font-Raleway font-bold pt-10">
               No Order Yet ! <br /> Please Place An Order.
             </h3>
+            <div className="py-8 pt-10 md:pt-16 text-center">
+              <Link
+                href={"/services"}
+                className=" text-[16px] bg-[#FF693B]  px-12 py-2  md:px-14 md:py-4 text-white rounded-lg border border-[#FF693B]  hover:bg-white hover:text-[#FF693B] transition-all duration-300"
+              >
+                Order Now
+              </Link>
+            </div>
           </div>
         )}
       </div>

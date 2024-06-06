@@ -3,7 +3,6 @@ import { BiRevision } from "react-icons/bi";
 import { MdOutlineAccessTimeFilled } from "react-icons/md";
 
 const CustomOffer = ({ order }) => {
-  console.log(order);
   return (
     <div className="lg:mx-20 ">
       <div className="pb-3">

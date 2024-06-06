@@ -1,4 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
+"use client";
+import React, { useContext, useLayoutEffect, useState } from "react";
 import { Tooltip } from "flowbite-react";
 import { IoCheckmarkSharp } from "react-icons/io5";
 import { FaRegClock } from "react-icons/fa6";
@@ -6,16 +7,19 @@ import { BiRevision } from "react-icons/bi";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { AuthContext } from "@/providers/AuthProviders";
-import { serviceOrder } from "@/config/apis";
 
-const SinglePackage = ({ item, openModal, setOpenModal }) => {
+const SinglePackage = ({ item, setOpenModal }) => {
   const router = useRouter();
   const { setItemId } = useContext(AuthContext);
 
-  const userData =
-    typeof window !== "undefined"
-      ? JSON.parse(localStorage.getItem("userData"))
-      : null;
+  const [userData, setUserData] = useState(null);
+
+  useLayoutEffect(() => {
+    if (typeof window !== "undefined") {
+      const data = JSON.parse(localStorage.getItem("userData"));
+      setUserData(data);
+    }
+  }, []);
 
   const handlePlaceOrder = async () => {
     const data = {
@@ -28,13 +32,16 @@ const SinglePackage = ({ item, openModal, setOpenModal }) => {
     };
 
     try {
-      const response = await fetch(`${apiEndpoint}/service_order`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+      const response = await fetch(
+        `http://192.168.10.14:8000/api/service_order`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
 
       const responseData = await response.json();
       console.log(responseData);
@@ -77,15 +84,13 @@ const SinglePackage = ({ item, openModal, setOpenModal }) => {
         {/* order button */}
         <div className="py-4 mt-4 md:mt-0 md:pb-8 flex justify-center">
           {userData ? (
-            <>
-              <Link
-                href={"/checkout"}
-                onClick={handlePlaceOrder}
-                className="text-[16px]  w-[100%] text-center font-medium text-[#FF693B] border border-[#FF693B] px-6 py-2 rounded-md hover:text-white hover:bg-[#FF693B] transition-all duration-300"
-              >
-                Place Order Now
-              </Link>
-            </>
+            <Link
+              href={"/checkout"}
+              onClick={handlePlaceOrder}
+              className="text-[16px]  w-[100%] text-center font-medium text-[#FF693B] border border-[#FF693B] px-6 py-2 rounded-md hover:text-white hover:bg-[#FF693B] transition-all duration-300"
+            >
+              Place Order Now
+            </Link>
           ) : (
             <>
               <button

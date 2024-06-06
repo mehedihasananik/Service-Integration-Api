@@ -11,6 +11,7 @@ import Link from "next/link";
 import OrderSliderLg from "@/Components/Utilites/OrderSlider/OrderSliderLg";
 import OrderSliderSm from "@/Components/Utilites/OrderSlider/OrderSliderSm";
 import QuestionService from "@/Components/Home/Questions/QuestionService";
+import GoogleCallbackPage from "@/Components/Utilites/GoogleSocialLogin/GoogleCallbackPage";
 
 const ServiceDetails = ({
   service,
@@ -26,6 +27,7 @@ const ServiceDetails = ({
       {" "}
       <Container>
         <div className="pt-3 pb-8">
+          <GoogleCallbackPage />
           {/* title */}
           <div className="text-center font-Raleway pb-10">
             <h1 className="text-[#10F172A] text-[32px] md:text-[48px] font-bold capitalize">

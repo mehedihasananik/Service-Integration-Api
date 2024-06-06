@@ -11,7 +11,6 @@ import ReCAPTCHA from "react-google-recaptcha";
 import { fetchData } from "@/config/apiRequests.js";
 import { loginApi } from "@/config/apis";
 import axios from "axios";
-import GoogleSocialLogin from "@/Components/Utilites/GoogleSocialLogin/GoogleSocialLogin";
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
@@ -89,7 +88,6 @@ const Login = () => {
   return (
     <div className="login_singUp overflow-hidden  my-5">
       <Container>
-        <GoogleSocialLogin />
         {loading && <div className="loader">Loading..</div>}
         <div className="w-full flex justify-center md:pt-5">
           <div className="shadow-md  border rounded-lg  py-6 px-10  md:py-10 md:px-12">

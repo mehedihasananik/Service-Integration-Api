@@ -1,6 +1,7 @@
 "use client";
 
 import { fetchData } from "@/config/apiRequests.js";
+import { apiEndpoint } from "@/config/config";
 import { Pagination, Table } from "flowbite-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";

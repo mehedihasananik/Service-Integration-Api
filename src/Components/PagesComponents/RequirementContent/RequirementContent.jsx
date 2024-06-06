@@ -1,4 +1,6 @@
 "use client";
+import { apiEndpoint } from "@/config/config";
+import Router from "next/navigation";
 import React, { useRef, useState } from "react";
 import toast from "react-hot-toast";
 
@@ -11,7 +13,6 @@ const RequirementContent = ({ requireMent, requirementId, service_title }) => {
   const [attachmentNames, setAttachmentNames] = useState(
     Array(requireMent.length).fill("")
   );
-  console.log(requireMent);
 
   const userData =
     typeof window !== "undefined"
@@ -63,16 +64,19 @@ const RequirementContent = ({ requireMent, requirementId, service_title }) => {
 
     try {
       const response = await fetch(
-        "https://admin.envobyte.com/api/requirements_store",
+        `http://192.168.10.14:8000/api/requirements_store`,
         {
           method: "POST",
           body: formData,
         }
       );
       console.log("Response:", response); // Log response from the server
-      // Handle response
-      console.log("Form submitted successfully", response);
-      toast.success("Requirements submitted successfully");
+
+      if (response.resultsuccess) {
+        toast.success("Requirements submitted successfully");
+        Router.push("/dashboard");
+      }
+
       // Clear input fields
       setAnswers(Array(requireMent.length).fill(""));
       setAttachments(Array(requireMent.length).fill(null));

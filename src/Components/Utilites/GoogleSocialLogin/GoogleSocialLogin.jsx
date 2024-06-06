@@ -7,7 +7,7 @@ const GoogleSocialLogin = () => {
     onSuccess: (response) => {
       // console.log(response);
       axios
-        .post("http://localhost:8000/api/auth/google-onetap", {
+        .post("https://admin.envobyte.com/api/auth/google-onetap", {
           userData: response,
         })
         .then((res) => {

@@ -19,7 +19,7 @@ export const setMessageHandler = (handler) => {
 export const sendMessageToServer = async (message, selectedFile) => {
   try {
     const formData = new FormData();
-    formData.append("sender_id", 1);
+    formData.append("sender_id", 19);
     formData.append("receiver_id", 18);
     formData.append("message", message);
 
@@ -57,7 +57,7 @@ export const fetchMessagesFromServer = async () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          sender_id: 1,
+          sender_id: 19,
           receiver_id: 18,
         }),
       }

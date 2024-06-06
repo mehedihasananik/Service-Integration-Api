@@ -1,12 +1,13 @@
 "use client";
-import OrderDelivery from "@/Components/PagesComponents/OrderDelivery/OrderDelivery";
+
+import OrderWebSocket from "@/Components/PagesComponents/OrderDemo/OrderWebSocket";
 import IsAuth from "@/Components/isAuth/isAuth";
 import React from "react";
 
 const OrderDeliveryPage = () => {
   return (
-    <div className="bg-[#FCFCFC]">
-      <OrderDelivery />
+    <div className="bg-[#FCFCFC] overflow-hidden">
+      <OrderWebSocket />
     </div>
   );
 };
