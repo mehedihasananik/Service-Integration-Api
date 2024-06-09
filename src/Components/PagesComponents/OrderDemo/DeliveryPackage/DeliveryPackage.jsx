@@ -3,7 +3,7 @@ import React from "react";
 import { MdDownload } from "react-icons/md";
 
 const DeliveryPackage = ({ delivery }) => {
-  const { description, media_urls, id } = delivery;
+  const { description, media_urls, id, status } = delivery;
 
   const handleImageClick = (url) => {
     window.open(url, "_blank");
@@ -27,8 +27,33 @@ const DeliveryPackage = ({ delivery }) => {
     }
   };
 
+  const handleStatusUpdate = async (status) => {
+    const formData = new FormData();
+    formData.append("status", status);
+
+    try {
+      const response = await fetch(
+        `http://192.168.10.16:8000/api/chat/delivery/update/${id}`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to update status");
+      }
+
+      const data = await response.json();
+      console.log("Status updated:", data?.delivery?.status);
+      // Optionally, you can update the state here to reflect the new status
+    } catch (error) {
+      console.error("Error updating status:", error);
+    }
+  };
+
   return (
-    <div className="bg-[#FDFDFD] border-2 border-[#E2E2E2] rounded-[8px] mt-4  px-3 lg:ml-4 lg:mr-20 py-5 w-[70%]">
+    <div className="bg-[#FDFDFD] border-2 border-[#E2E2E2] rounded-[8px]  px-3 lg:ml-[40px]  py-5 mb-3 w-[80%] ">
       {/* delivery title */}
       <div className="pb-5">
         <h3 className="text-[#333] font-Raleway text-[24px] font-[700]">
@@ -86,17 +111,38 @@ const DeliveryPackage = ({ delivery }) => {
             ))}
           </div>
           <div className="space-x-4 pt-3">
-            <button className="text-[16px] font-[600] text-[#fff] bg-[#FF693B] px-4 py-2 rounded-md hover:shadow-xl transition-all duration-200">
-              Approve
-            </button>
-            <button className="text-[16px] font-[600] text-[#B0B0B0] bg-[#F3F3F3] px-4 py-2 rounded-md hover:shadow-xl  transition-all duration-200">
-              Send a Revision
-            </button>
+            {status === "approved" ? (
+              <p className="text-[16px] font-[600] text-[#333]">
+                The order has been approved.
+              </p>
+            ) : status === "revision" ? (
+              <p className="text-[16px] font-[600] text-[#333]">
+                The order has been sent for revision.
+              </p>
+            ) : (
+              <>
+                <button
+                  onClick={() => handleStatusUpdate("approved")}
+                  className="text-[16px] font-[600] text-[#fff] bg-[#FF693B] px-4 py-2 rounded-md hover:shadow-xl transition-all duration-200"
+                >
+                  Approve
+                </button>
+                <button
+                  onClick={() => handleStatusUpdate("revision")}
+                  className="text-[16px] font-[600] text-[#B0B0B0] bg-[#F3F3F3] px-4 py-2 rounded-md hover:shadow-xl transition-all duration-200"
+                >
+                  Send a Revision
+                </button>
+              </>
+            )}
           </div>
           <div className="py-3">
             <p className="text-[#666] text-[14px] font-[400]">
-              You have until Dec 18, 11:42 to approve or request a revision.
-              Otherwise, the order will mark as complete.
+              {status === "approved"
+                ? "The order has been approved."
+                : status === "revision"
+                ? "The order has been sent for revision."
+                : "You have until Dec 18, 11:42 to approve or request a revision. Otherwise, the order will mark as complete."}
             </p>
           </div>
         </div>

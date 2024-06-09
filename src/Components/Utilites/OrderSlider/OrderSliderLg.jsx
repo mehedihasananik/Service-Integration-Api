@@ -148,6 +148,7 @@ const OrderSliderLg = ({ sliders }) => {
               height: isFullscreen ? "auto" : "100%",
               objectFit: isFullscreen ? "contain" : "cover",
               objectPosition: "center",
+              borderRadius: "10px",
             }}
           />
         </div>

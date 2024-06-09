@@ -269,7 +269,7 @@ const ProjectDetails = ({ userContact }) => {
                 </div>
                 <div>
                   <ReCAPTCHA
-                    sitekey="6LcqZLopAAAAACmhsdtqnY3m0QHY6ELWc2QoAlVO"
+                    sitekey="6LeHdPIpAAAAAJoof-1ewzeYES0jvTrJ9_g09hBQ"
                     onChange={handleCaptchaChange}
                   />
                 </div>

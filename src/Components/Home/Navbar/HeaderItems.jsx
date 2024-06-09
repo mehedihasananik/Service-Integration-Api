@@ -66,55 +66,6 @@ const HeaderItems = ({ headers }) => {
       </Container>
 
       {/*navbar for small devices */}
-      <div className=" lg:hidden">
-        <Navbar>
-          <Navbar.Brand as={Link} href="/">
-            <Image
-              src="/assets/logo.png"
-              width={100}
-              height={49}
-              alt="Picture of the logo"
-              priority={false}
-            />
-          </Navbar.Brand>
-          <Navbar.Toggle />
-          <Navbar.Collapse className="">
-            {headers?.menu?.map((item, index) => {
-              return (
-                <Link
-                  className={
-                    pathname === item.menu_link
-                      ? "text-[16px] text-[#FF0000] font-normal"
-                      : "text-[16px] text-[#0F172A] cursor-pointer font-normal hover:text-[#FF693B] transition-colors duration-300"
-                  }
-                  href={item.menu_link}
-                  key={index}
-                >
-                  {item.menu_name}
-                </Link>
-              );
-            })}
-            {/* login button */}
-            <div className="mt-3">
-              {userData ? (
-                <Link
-                  href="/dashboard"
-                  className="flex justify-center bg-[#FF693B] border border-[#FF693B] text-white font-medium px-6 py-2 rounded-lg hover:bg-white hover:text-[#FF693B] transition-all duration-300"
-                >
-                  Dashboard
-                </Link>
-              ) : (
-                <Link
-                  href={"/login"}
-                  className="flex justify-center bg-[#FF693B] border border-[#FF693B] text-white font-medium px-12 py-2 rounded-lg hover:bg-white hover:text-[#FF693B] transition-all duration-300"
-                >
-                  Login
-                </Link>
-              )}
-            </div>
-          </Navbar.Collapse>
-        </Navbar>
-      </div>
     </div>
   );
 };

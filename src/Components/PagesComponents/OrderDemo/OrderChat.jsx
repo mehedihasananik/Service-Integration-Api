@@ -11,7 +11,7 @@ import Picker from "@emoji-mart/react";
 import { useDropzone } from "react-dropzone";
 import { FaTimes } from "react-icons/fa";
 import { BiRevision } from "react-icons/bi";
-import { MdOutlineAccessTimeFilled } from "react-icons/md";
+import { MdDownload, MdOutlineAccessTimeFilled } from "react-icons/md";
 import CustomOffer from "./CustomOffer/CustomOffer";
 import DeliveryPackage from "./DeliveryPackage/DeliveryPackage";
 import OrderRequirements from "@/Components/Utilites/OrderRequirements/OrderRequirements";
@@ -117,6 +117,27 @@ const OrderChat = ({
     }
   };
 
+  const handleDownloadClick = async (url) => {
+    try {
+      const response = await fetch(url, {
+        mode: "cors",
+      });
+      const blob = await response.blob();
+      const urlObject = window.URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = urlObject;
+      link.setAttribute("download", url.split("/").pop());
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (error) {
+      console.error("Error downloading the image:", error);
+    }
+  };
+  const handleImageClick = (url) => {
+    window.open(url, "_blank");
+  };
+
   return (
     <div className="bg-[#FCFCFC] h-[88vh] flex flex-col relative ">
       <div
@@ -152,6 +173,7 @@ const OrderChat = ({
         <div className="bg-[#fff] px-4">
           <div className="mb-[8%]">
             {messageHistory.map((msg, index) => {
+              // console.log(msg);
               const senderName = msg.sender_id === 19 ? "Anik" : "Envobyte";
               const updatedAt = parseDate(msg.updated_at);
               const formattedDate = new Intl.DateTimeFormat("en-US", {
@@ -202,13 +224,27 @@ const OrderChat = ({
                         <div className="my-5">
                           {isLoading && <p>Loading...</p>}
                           {isImage(msg?.attachment) ? (
-                            <Image
-                              width={200}
-                              height={200}
-                              alt=""
-                              src={msg.attachment}
-                              onLoad={handleImageLoaded}
-                            />
+                            <div className="group relative">
+                              <Image
+                                onClick={() => handleImageClick(msg.attachment)}
+                                className="group-hover:brightness-75 cursor-pointer rounded-md"
+                                width={300}
+                                height={200}
+                                alt=""
+                                src={msg.attachment}
+                                onLoad={handleImageLoaded}
+                              />
+                              <div className="absolute bottom-[10px] left-[23%] hidden group-hover:flex justify-end">
+                                <button
+                                  className="bg-[#FF693B] py-1.5 px-2 rounded-sm shadow-md text-white"
+                                  onClick={() =>
+                                    handleDownloadClick(msg.attachment)
+                                  }
+                                >
+                                  <MdDownload />
+                                </button>
+                              </div>
+                            </div>
                           ) : (
                             <a
                               href={msg.attachment}

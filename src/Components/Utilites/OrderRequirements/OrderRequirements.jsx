@@ -3,6 +3,7 @@ import { fetchData } from "@/config/apiRequests.js";
 import React, { useEffect, useState } from "react";
 import { Button, Modal } from "flowbite-react";
 import Loading from "../Loading/Loading";
+import UserLoading from "../UserLoading/UserLoading";
 
 const OrderRequirements = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -125,7 +126,7 @@ const OrderRequirements = () => {
                         <p>- {requirement.answer}</p>
                       </div>
                       <div className="flex justify-end w-[30%]">
-                        {!imageLoaded && <Loading />}{" "}
+                        {!imageLoaded && <UserLoading />}{" "}
                         {/* Show loading indicator if image is not loaded */}
                         <img
                           className={`w-32 ${imageLoaded ? "" : "hidden"}`} // Hide image until loaded
