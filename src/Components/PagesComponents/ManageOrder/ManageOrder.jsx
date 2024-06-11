@@ -59,7 +59,7 @@ const ManageOrder = () => {
               <Table.Body className="divide-y">
                 {orders?.map((order) => {
                   const { sevice_items, order_status } = order;
-                  console.log(order);
+                  // console.log(order);
 
                   return (
                     <Table.Row

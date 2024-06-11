@@ -3,9 +3,10 @@ import { Dropdown } from "flowbite-react";
 import Link from "next/link";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import Notification from "../Utilites/Notificaiton/Notification";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import UserLoading from "../Utilites/UserLoading/UserLoading";
+import { AuthContext } from "@/providers/AuthProviders";
 
 const DashBoardNav = () => {
   const router = useRouter();
@@ -13,6 +14,7 @@ const DashBoardNav = () => {
   const [cleared, setCleared] = useState(false);
   pathname = pathname.replace("/", "");
   const [userData, setUserData] = useState(null);
+  const { deliveryDetails } = useContext(AuthContext);
 
   const clearSession = () => {
     // Remove the userData from localStorage
@@ -25,12 +27,15 @@ const DashBoardNav = () => {
     setUserData(JSON.parse(localStorage.getItem("userData")));
   }, []);
   // console.log(userData);
+  console.log(pathname);
 
   return (
     <nav className="flex flex-col justify-center items-center md:flex-row md:justify-between w-[100%] py-4 px-5 lg:pr-12 bg-[#FCFCFC]">
       <div>
         <h3 className="text-[#333] text-[28px] md:text-[30px] font-[600] capitalize px-5 py-3">
-          {pathname}
+          {pathname === "order-delivery"
+            ? `${pathname} #${deliveryDetails?.order_basic.order_id}`
+            : pathname}
         </h3>
       </div>
       <div>

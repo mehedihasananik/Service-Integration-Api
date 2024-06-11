@@ -283,11 +283,22 @@
   pointer-events: none;
 }
 .filepond--item {
-  width: calc(10% - 0.5em);
+  width: calc(30% - 0.5em);
 }
+.filepond--image-preview-wrapper {
+  height: 200px !important;
+}
+.upload__image-wrapper {
+  display: flex !important;
+  gap: 10px !important;
+}
+/* .filepond--panel-center f.ilepond--panel-root {
+  background: #fff !important;
+}
+
 .filepond--credits {
   display: none !important;
 }
 .filepond--drop-label {
   background: #fff !important;
-}
+}  */

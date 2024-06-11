@@ -2,6 +2,7 @@
 import React, { createContext, useEffect, useState } from "react";
 import { dashboardMenus } from "./dashboardMenus";
 import { usePathname, useRouter } from "next/navigation";
+import OrderRequirementDetails from "./OrderRequirementDetails/OrderRequirementDetails";
 
 export const AuthContext = createContext();
 
@@ -12,18 +13,30 @@ export function useItem() {
 const AuthProviders = ({ children }) => {
   const router = useRouter();
   const [currentPage, setCurrentPage] = useState("");
+  const [deliveryDetails, setDeliveryDetails] = useState(null);
   const [itemId, setItemId] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  const user = { displayName: "Mehedi Anik" };
+  const orderID =
+    typeof window !== "undefined"
+      ? window.localStorage.getItem("orderID")
+      : null;
+
   const pathname = usePathname();
+
+  useEffect(() => {
+    // Replace with your actual order ID
+    OrderRequirementDetails(orderID, setDeliveryDetails, setLoading);
+  }, []);
+  console.log(deliveryDetails);
 
   const itemValues = {
     dashboardMenus,
-    user,
     pathname,
     currentPage,
     itemId,
     setItemId,
+    deliveryDetails,
   };
 
   return (

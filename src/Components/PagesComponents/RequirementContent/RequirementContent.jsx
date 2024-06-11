@@ -71,6 +71,7 @@ const RequirementContent = ({ requireMent, requirementId, service_title }) => {
       );
       // console.log("Response:", response); // Log response from the server
 
+      console.log(response.resultsuccess);
       if (response.resultsuccess) {
         toast.success("Requirements submitted successfully");
       }

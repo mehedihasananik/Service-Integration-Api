@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 const Profile = () => {
   const [profile, setProfile] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
+  const [backgroundImage, setBackgroundImage] = useState("");
 
   const userData =
     typeof window !== "undefined"
@@ -23,6 +24,7 @@ const Profile = () => {
       });
       const data = await response.json();
       setProfile(data);
+      setBackgroundImage(data.avatar ? `url(${data.avatar})` : "");
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -74,12 +76,18 @@ const Profile = () => {
   };
 
   const handleFileChange = (e) => {
-    setSelectedFile(e.target.files[0]);
+    const file = e.target.files[0];
+    setSelectedFile(file);
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setBackgroundImage(`url(${reader.result})`);
+    };
+    if (file) {
+      reader.readAsDataURL(file);
+    }
   };
-
-  const backgroundImage = profile?.avatar ? `url(${profile.avatar})` : "";
-  // console.log(profile);
-
+  console.log(backgroundImage);
   return (
     <div
       className="scroll-y"
@@ -110,7 +118,7 @@ const Profile = () => {
                       <label htmlFor="upload_profile">
                         <svg
                           data-slot="icon"
-                          className="w-6 h-5 text-blue-700"
+                          className="w-6 h-5 text-blue-700 cursor-pointer"
                           fill="none"
                           strokeWidth="1.5"
                           stroke="currentColor"
@@ -201,30 +209,63 @@ const Profile = () => {
                     />
                   </div>
                 </div>
-
                 <div className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full">
-                  <div className="w-full">
-                    <h3 className="dark:text-gray-300 mb-2">Gender</h3>
+                  <div className="w-full mb-4 mt-6">
+                    <label htmlFor="gender" className="mb-2 dark:text-gray-300">
+                      Gender
+                    </label>
                     <select
                       name="gender"
-                      className="w-full text-grey border-2 rounded-lg p-4 pl-2 pr-2 cursor-pointer dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
-                      defaultValue={profile?.gender}
+                      className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                      value={profile?.gender}
                       onChange={handleInputChange}
                     >
-                      <option disabled value="">
-                        Select Gender
-                      </option>
-                      <option value="Male">Male</option>
-                      <option value="Female">Female</option>
+                      <option value="">Select Gender</option>
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
                     </select>
                   </div>
-                  <div className="w-full">
-                    <h3 className="dark:text-gray-300 mb-2">Date Of Birth</h3>
+                  <div className="w-full mb-4 lg:mt-6">
+                    <label htmlFor="date_birth" className="dark:text-gray-300">
+                      Date of Birth
+                    </label>
                     <input
                       type="date"
                       name="date_birth"
-                      className="text-grey p-4 py-[13px] w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800 cursor-pointer"
-                      defaultValue={profile?.date_of_birth}
+                      className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                      placeholder="Date of Birth"
+                      defaultValue={profile?.date_birth}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                </div>
+                <div className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full">
+                  <div className="w-full mb-4 mt-6">
+                    <label
+                      htmlFor="country_code"
+                      className="mb-2 dark:text-gray-300"
+                    >
+                      Country Code
+                    </label>
+                    <input
+                      type="text"
+                      name="country_code"
+                      className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                      placeholder="Country Code"
+                      defaultValue={profile?.country_code}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  <div className="w-full mb-4 lg:mt-6">
+                    <label htmlFor="country" className="dark:text-gray-300">
+                      Country
+                    </label>
+                    <input
+                      type="text"
+                      name="country"
+                      className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                      placeholder="Country"
+                      defaultValue={profile?.country}
                       onChange={handleInputChange}
                     />
                   </div>
@@ -238,7 +279,7 @@ const Profile = () => {
                       type="text"
                       name="city"
                       className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
-                      placeholder="Enter Your City"
+                      placeholder="City"
                       defaultValue={profile?.city}
                       onChange={handleInputChange}
                     />
@@ -251,7 +292,7 @@ const Profile = () => {
                       type="text"
                       name="state"
                       className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
-                      placeholder="Enter Your State"
+                      placeholder="State"
                       defaultValue={profile?.state}
                       onChange={handleInputChange}
                     />
@@ -260,48 +301,14 @@ const Profile = () => {
                 <div className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full">
                   <div className="w-full mb-4 mt-6">
                     <label htmlFor="zip" className="mb-2 dark:text-gray-300">
-                      Zip
+                      ZIP
                     </label>
                     <input
-                      type="number"
+                      type="text"
                       name="zip"
                       className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
-                      placeholder="Enter Your zip code"
+                      placeholder="ZIP"
                       defaultValue={profile?.zip}
-                      onChange={handleInputChange}
-                    />
-                  </div>
-                  <div className="w-full mb-4 lg:mt-6">
-                    <label
-                      htmlFor="country_code"
-                      className="dark:text-gray-300"
-                    >
-                      Country Code
-                    </label>
-                    <input
-                      type="text"
-                      name="country_code"
-                      className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
-                      placeholder="Enter Your Country Code"
-                      defaultValue={profile?.country_code}
-                      onChange={handleInputChange}
-                    />
-                  </div>
-                </div>
-                <div className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full">
-                  <div className="w-full mb-4 mt-6">
-                    <label
-                      htmlFor="country"
-                      className="mb-2 dark:text-gray-300"
-                    >
-                      Country
-                    </label>
-                    <input
-                      type="text"
-                      name="country"
-                      className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
-                      placeholder="Enter Your Country"
-                      defaultValue={profile?.country}
                       onChange={handleInputChange}
                     />
                   </div>
@@ -313,16 +320,18 @@ const Profile = () => {
                       type="text"
                       name="address"
                       className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
-                      placeholder="Enter Your Address"
+                      placeholder="Address"
                       defaultValue={profile?.address}
                       onChange={handleInputChange}
                     />
                   </div>
                 </div>
-
-                <div className="w-full rounded-lg bg-blue-500 hover:bg-[#FF693B] transition-all duration-300 lg:mt-8 text-white text-lg font-semibold">
-                  <button type="submit" className="w-full py-3">
-                    Update
+                <div className="flex justify-center">
+                  <button
+                    type="submit"
+                    className="px-6 py-3 mt-4 text-lg text-white transition bg-blue-600 rounded shadow-md hover:bg-blue-700 focus:outline-none focus:shadow-outline"
+                  >
+                    Save Profile
                   </button>
                 </div>
               </form>

@@ -100,8 +100,8 @@ const HeaderItems = ({ headers }) => {
               <Link
                 className={
                   pathname === item.menu_link
-                    ? "text-[16px] text-[#FF0000] font-normal"
-                    : "text-[16px] text-[#0F172A] cursor-pointer font-normal hover:text-[#FF693B] transition-colors duration-300"
+                    ? "text-[16px] text-[#FF0000] font-normal pb-1 transition delay-700  duration-300 ease-in-out"
+                    : "text-[16px] text-[#0F172A] cursor-pointer font-normal hover:text-[#FF693B] transition-colors duration-300 pb-1 transition delay-700  duration-300 ease-in-out"
                 }
                 href={item.menu_link}
                 key={index}

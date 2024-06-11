@@ -13,8 +13,6 @@ const CustomOffer = ({ order }) => {
     status,
   } = order;
 
-  console.log(status);
-
   const handleStatusUpdate = async (status) => {
     const formData = new FormData();
     formData.append("status", status);
@@ -33,7 +31,7 @@ const CustomOffer = ({ order }) => {
       }
 
       const data = await response.json();
-      console.log("Status updated:", data?.delivery?.status);
+      // console.log("Status updated:", data?.delivery?.status);
       // Optionally, you can update the state here to reflect the new status
     } catch (error) {
       console.error("Error updating status:", error);

@@ -137,9 +137,10 @@ const OrderChat = ({
   const handleImageClick = (url) => {
     window.open(url, "_blank");
   };
+  // console.log(messageHistory);
 
   return (
-    <div className="bg-[#FCFCFC] h-[88vh] flex flex-col relative ">
+    <div className="bg-[#FCFCFC] h-[88vh] flex flex-col relative px-8">
       <div
         ref={chatContainerRef}
         onScroll={handleScroll}
@@ -268,7 +269,7 @@ const OrderChat = ({
           {loading && <Loading />}
 
           {!loading && (
-            <div className="bg-[#FFFFFF pb-8 flex w-[80%] items-center gap-5 px-10 fixed left-[14%] -bottom-6">
+            <div className="bg-[#FFFFFF pb-8 flex w-[78%] items-center gap-5 px-10 fixed left-[14.5%] -bottom-6">
               <div className="w-[70%] relative">
                 <textarea
                   className="w-full border border-[#E2E2E2] rounded-md py-4 px-4 resize-none pr-20 text-justify"

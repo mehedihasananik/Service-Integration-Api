@@ -1,8 +1,17 @@
+"use client";
 import Image from "next/image";
 import React from "react";
 import { MdDownload } from "react-icons/md";
+import { Button, Modal } from "flowbite-react";
+import { useState } from "react";
+import { GoPaperclip } from "react-icons/go";
+import Revision from "@/Components/Utilites/Revision/Revision";
+import DeliveryRevision from "./DeliveryRevision";
 
 const DeliveryPackage = ({ delivery }) => {
+  const [openModal, setOpenModal] = useState(false);
+  const [modalSize, setModalSize] = useState("4xl");
+
   const { description, media_urls, id, status } = delivery;
 
   const handleImageClick = (url) => {
@@ -45,7 +54,7 @@ const DeliveryPackage = ({ delivery }) => {
       }
 
       const data = await response.json();
-      console.log("Status updated:", data?.delivery?.status);
+      // console.log("Status updated:", data?.delivery?.status);
       // Optionally, you can update the state here to reflect the new status
     } catch (error) {
       console.error("Error updating status:", error);
@@ -93,13 +102,9 @@ const DeliveryPackage = ({ delivery }) => {
                   className="h-[150px] flex items-center justify-center bg-[#F3F6F9] rounded-lg group-hover:brightness-75 cursor-pointer"
                   onClick={() => handleImageClick(item)}
                 >
-                  <img
-                    className="max-h-[120px] py-3 rounded-lg"
-                    src={item}
-                    alt=""
-                  />
+                  <img className="max-h-[120px] py-3 " src={item} alt="" />
                 </div>
-                <div className="absolute bottom-[10px] left-0 right-4 hidden group-hover:flex justify-end">
+                <div className="absolute bottom-[10px] left-0 right-4 flex justify-end">
                   <button
                     className="bg-[#FF693B] py-1.5 px-2 rounded-sm shadow-md text-white"
                     onClick={() => handleDownloadClick(item)}
@@ -122,14 +127,14 @@ const DeliveryPackage = ({ delivery }) => {
             ) : (
               <>
                 <button
-                  onClick={() => handleStatusUpdate("approved")}
+                  // onClick={() => handleStatusUpdate("approved")}
                   className="text-[16px] font-[600] text-[#fff] bg-[#FF693B] px-4 py-2 rounded-md hover:shadow-xl transition-all duration-200"
                 >
                   Approve
                 </button>
                 <button
-                  onClick={() => handleStatusUpdate("revision")}
-                  className="text-[16px] font-[600] text-[#B0B0B0] bg-[#F3F3F3] px-4 py-2 rounded-md hover:shadow-xl transition-all duration-200"
+                  onClick={() => setOpenModal(true)}
+                  className="text-[16px] font-[600] text-[#6a6a6a] bg-[#ddd] px-4 py-2 rounded-md hover:shadow-xl transition-all duration-200"
                 >
                   Send a Revision
                 </button>
@@ -147,6 +152,14 @@ const DeliveryPackage = ({ delivery }) => {
           </div>
         </div>
       </div>
+      <>
+        <DeliveryRevision
+          openModal={openModal}
+          setOpenModal={setOpenModal}
+          modalSize={modalSize}
+          delivery={delivery}
+        />
+      </>
     </div>
   );
 };

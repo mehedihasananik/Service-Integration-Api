@@ -1,7 +1,7 @@
 "use client";
 import { fetchData } from "@/config/apiRequests.js";
 import React, { useEffect, useState } from "react";
-import { Button, Modal } from "flowbite-react";
+import { Button, Card, Modal } from "flowbite-react";
 import Loading from "../Loading/Loading";
 import UserLoading from "../UserLoading/UserLoading";
 
@@ -42,64 +42,105 @@ const OrderRequirements = () => {
 
   const order_basic = deliveryDetails?.order_basic;
   const user_requirements = deliveryDetails?.user_requirements;
+  // console.log(deliveryDetails);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-1   h-[50vh] px-4 md:pt-5 md:pb-3">
+    <div className="grid gap-y-5 grid-cols-1 md:grid-cols-1   h-[50vh] px-4 md:pt-5 md:pb-3">
       {/* 1st */}
-      <div className="max-w-[330px] h-[80px] flex  items-start gap-x-3  border border-[#E2E2E2] bg-[#FDFDFD] rounded-md p-3">
-        <div>
-          <img src="/assets/ui.png" alt="ui ux design" />
-        </div>
-        <div>
-          <h2 className="text-[#444] font-Raleway text-[16px] font-[600]">
-            {order_basic?.service}
-          </h2>
-          <p className="text-[#666] text-[14px] font-[400] ">
-            Order No. #{order_basic?.order_id}
-          </p>
-        </div>
-        <div>
-          <h3 className="text-[#3371F2] text-[20px] font-[600] ">
-            ${order_basic?.order_price}
-          </h3>
-        </div>
+      <div className="flex justify-center">
+        <Card className="w-[90%] ">
+          <div>
+            <div className="flex justify-center">
+              <img className="w-20 h-20" src="/assets/giphy.gif" alt="" />
+            </div>
+            <div className="text-center border border-[#E2E2E2] py-4 rounded-lg">
+              <h2 className="text-[#444] font-Raleway text-[16px] font-[600]">
+                {order_basic?.service} | Basic Package
+              </h2>
+              <p className="text-[#666] text-[14px] font-[400] ">
+                Order No. #{order_basic?.order_id}
+              </p>
+              <p class="text-muted mb-0 flex justify-center items-center gap-x-2 mt-1 ">
+                Status :{" "}
+                <span class="text-[14px] font-[600] font-Roboto text-[#FFF] bg-[#FF8F5A] px-2 py-[2px] rounded-sm">
+                  {order_basic?.order_status}
+                </span>
+              </p>
+            </div>
+          </div>
+        </Card>
       </div>
-      {/* 2nd */}
-      <div className="max-w-[330px] h-[80px] flex items-start gap-x-3  border border-[#E2E2E2] bg-[#FDFDFD] rounded-md p-3">
-        <div>
-          <img src="/assets/date.png" alt="ui ux design" />
-        </div>
-        <div>
-          <h2 className="text-[#444] font-Raleway text-[16px] font-[600]">
-            Order Placed
-          </h2>
-          <p className="text-[#666] text-[14px] font-[400] ">
-            {order_basic?.order_placed}
-          </p>
-        </div>
+      <div className="flex justify-center">
+        <Card className="w-[90%] ">
+          <div className="max-w-[330px] h-[80px] flex  items-start gap-x-3   border border-[#E2E2E2]    bg-[#FDFDFD] rounded-md p-3">
+            <div>
+              <img
+                className="w-[40px] h-full"
+                src="/assets/ui.png"
+                alt="ui ux design"
+              />
+            </div>
+            <div>
+              <h2 className="text-[#444] font-Raleway text-[16px] font-[600]">
+                Total Amount
+              </h2>
+              <p className="text-[#666] text-[14px] font-[400] whitespace-nowrap ">
+                User: Anik
+              </p>
+            </div>
+            <div>
+              <h3 className="text-[#3371F2] text-[20px] font-[600] m-0 p-0 ">
+                ${order_basic?.order_price}
+              </h3>
+            </div>
+          </div>
+          {/* 2nd */}
+          <div className="max-w-[330px] h-[80px] flex items-start gap-x-3  border border-[#E2E2E2] bg-[#FDFDFD] rounded-md p-3">
+            <div>
+              <img
+                className="w-[40px] h-full"
+                src="/assets/date.png"
+                alt="ui ux design"
+              />
+            </div>
+            <div>
+              <h2 className="text-[#444] font-Raleway text-[16px] font-[600]">
+                Order Placed
+              </h2>
+              <p className="text-[#666] text-[14px] font-[400] ">
+                {order_basic?.order_placed}
+              </p>
+            </div>
+          </div>
+          {/* 3rd */}
+          <div className="max-w-[330px] h-[90px] flex justify-between items-center gap-x-3  border border-[#E2E2E2] bg-[#FDFDFD] rounded-md p-3">
+            <div>
+              <img
+                className="w-[50px] h-full"
+                src="/assets/pin.png"
+                alt="ui ux design"
+              />
+            </div>
+            <div>
+              <h2 className="text-[#444] font-Raleway text-[14px] font-[600] ">
+                Requirement Submitted
+              </h2>
+              <p className="text-[#666] text-[14px] font-[400] ">
+                {order_basic?.requirement_submitted}
+              </p>
+            </div>
+            <div>
+              <button
+                onClick={() => setOpenModal(true)}
+                className="bg-[#FF693B] text-[14px] font-[600] border border-[#FF693B] text-white px-4 py-1 rounded-md hover:text-[#FF693B] hover:bg-[#fff] transition-all duration-200"
+              >
+                View
+              </button>
+            </div>
+          </div>
+        </Card>
       </div>
-      {/* 3rd */}
-      <div className="max-w-[330px] h-[80px] flex items-center gap-x-5  border border-[#E2E2E2] bg-[#FDFDFD] rounded-md p-3">
-        <div>
-          <img src="/assets/pin.png" alt="ui ux design" />
-        </div>
-        <div>
-          <h2 className="text-[#444] font-Raleway text-[14px] font-[600] whitespace-nowrap">
-            Requirement Submitted
-          </h2>
-          <p className="text-[#666] text-[14px] font-[400] ">
-            {order_basic?.requirement_submitted}
-          </p>
-        </div>
-        <div>
-          <button
-            onClick={() => setOpenModal(true)}
-            className="bg-[#FF693B] text-[14px] font-[600] border border-[#FF693B] text-white px-4 py-1 rounded-md hover:text-[#FF693B] hover:bg-[#fff] transition-all duration-200"
-          >
-            View
-          </button>
-        </div>
-      </div>
+
       <div className="px-20">
         <Modal
           size={modalSize}
