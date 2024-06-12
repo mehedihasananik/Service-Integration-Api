@@ -6,11 +6,20 @@ import { Button, Modal } from "flowbite-react";
 
 const DeliveryRevision = ({ openModal, setOpenModal, modalSize, delivery }) => {
   const [text, setText] = useState(""); // State to hold the textarea value
+  const [selectedFiles, setSelectedFiles] = useState([]); // State to hold selected files
+
+  const handleFileChange = (e) => {
+    setSelectedFiles(e.target.files);
+  };
 
   const handleSendRevisionRequest = async () => {
     const formData = new FormData();
-    formData.append("deliveri_id", delivery.id); // Assuming 1 is the delivery ID
+    formData.append("delivery_id", delivery.id); // Assuming delivery.id is the delivery ID
     formData.append("description", text);
+
+    for (let i = 0; i < selectedFiles.length; i++) {
+      formData.append("filepond", selectedFiles[i]);
+    }
 
     try {
       const response = await axios.post(
@@ -44,7 +53,7 @@ const DeliveryRevision = ({ openModal, setOpenModal, modalSize, delivery }) => {
         <Modal.Body>
           <div className="space-y-6">
             <p className="text-base leading-relaxed text-bold">
-              What kind of revisions you like to make?
+              What kind of revisions would you like to make?
             </p>
             <div>
               <textarea
@@ -57,6 +66,14 @@ const DeliveryRevision = ({ openModal, setOpenModal, modalSize, delivery }) => {
                 required
                 value={text}
                 onChange={(e) => setText(e.target.value)}
+              />
+            </div>
+            <div>
+              <input
+                type="file"
+                multiple
+                onChange={handleFileChange}
+                className="w-full lg:w-[100%] py-2 border border-[#CBD5E1] px-4 shadow-sm"
               />
             </div>
           </div>

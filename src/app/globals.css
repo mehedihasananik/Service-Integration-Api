@@ -102,7 +102,7 @@
     height: 100vh;
   }
   select:not([size]) {
-    color: #c1c1c1;
+    color: #000;
     padding: 13px 10px;
   }
   input::placeholder {

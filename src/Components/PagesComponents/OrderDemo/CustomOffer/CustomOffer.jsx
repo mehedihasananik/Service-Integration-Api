@@ -11,7 +11,9 @@ const CustomOffer = ({ order }) => {
     id,
     revision,
     status,
+    message,
   } = order;
+  console.log(order);
 
   const handleStatusUpdate = async (status) => {
     const formData = new FormData();
@@ -39,7 +41,12 @@ const CustomOffer = ({ order }) => {
   };
 
   return (
-    <div className="lg:mx-10 w-[80%] py-4">
+    <div className="lg:mx-12 w-[80%] pb-4">
+      <div>
+        <h3 className="text-[16px] pb-[2%] text-justify font-Roboto font-[600] text-[#000000]">
+          {message}
+        </h3>
+      </div>
       <div className="pb-3">
         <h3 className="text-[14px] font-Raleway font-[600] text-[#0A2C8C]">
           Here&apos;s your custom offer

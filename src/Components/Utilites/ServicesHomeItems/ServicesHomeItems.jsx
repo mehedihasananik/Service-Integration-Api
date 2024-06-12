@@ -19,6 +19,14 @@ const ServicesHomeItems = ({ services: initialServices }) => {
   const [spaceBetween, setSpaceBetween] = useState(100); // Initial value for spaceBetween
   const [services, setServices] = useState(initialServices);
 
+  const truncateText = (text, maxWords) => {
+    const words = text.split(" ");
+    if (words.length > maxWords) {
+      return words.slice(0, maxWords).join(" ") + "...";
+    }
+    return text;
+  };
+
   useEffect(() => {
     setLoading(false); // Set loading to false after data is passed via props
     setTotalSlides(initialServices.length);
@@ -183,7 +191,6 @@ const ServicesHomeItems = ({ services: initialServices }) => {
                                       service.image || "/assets/service1.jpeg"
                                     }
                                     alt=""
-                                    onContextMenu={(e) => e.preventDefault()}
                                   />
                                 </div>
                               </div>
@@ -195,7 +202,7 @@ const ServicesHomeItems = ({ services: initialServices }) => {
                                   {service.title}
                                 </h3>
                                 <p className="text-[14px] text-[#475569] group-hover:text-white transition-all duration-300">
-                                  {service.details.slice(0, 100)}
+                                  {truncateText(service.details, 33)}
                                 </p>
                               </div>
                               <div className="flex items-center justify-between px-5 py-5 group-hover:bg-[#FF693B] transition-all duration-300 group-hover:rounded-b-md">

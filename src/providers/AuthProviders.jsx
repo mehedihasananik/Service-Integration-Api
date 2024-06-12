@@ -21,14 +21,18 @@ const AuthProviders = ({ children }) => {
     typeof window !== "undefined"
       ? window.localStorage.getItem("orderID")
       : null;
-
+  const userData =
+    typeof window !== "undefined"
+      ? JSON.parse(localStorage.getItem("userData"))
+      : null;
+  // console.log(userData);
   const pathname = usePathname();
 
   useEffect(() => {
     // Replace with your actual order ID
     OrderRequirementDetails(orderID, setDeliveryDetails, setLoading);
   }, []);
-  console.log(deliveryDetails);
+  // console.log(deliveryDetails);
 
   const itemValues = {
     dashboardMenus,
@@ -37,6 +41,7 @@ const AuthProviders = ({ children }) => {
     itemId,
     setItemId,
     deliveryDetails,
+    userData,
   };
 
   return (

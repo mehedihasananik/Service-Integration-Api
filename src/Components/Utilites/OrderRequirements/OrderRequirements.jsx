@@ -42,7 +42,7 @@ const OrderRequirements = () => {
 
   const order_basic = deliveryDetails?.order_basic;
   const user_requirements = deliveryDetails?.user_requirements;
-  // console.log(deliveryDetails);
+  console.log(deliveryDetails);
 
   return (
     <div className="grid gap-y-5 grid-cols-1 md:grid-cols-1   h-[50vh] px-4 md:pt-5 md:pb-3">
@@ -55,13 +55,19 @@ const OrderRequirements = () => {
             </div>
             <div className="text-center border border-[#E2E2E2] py-4 rounded-lg">
               <h2 className="text-[#444] font-Raleway text-[16px] font-[600]">
-                {order_basic?.service} | Basic Package
+                {order_basic?.service} | {order_basic?.package_name}
               </h2>
-              <p className="text-[#666] text-[14px] font-[400] ">
-                Order No. #{order_basic?.order_id}
+              <p className="text-[#444] font-Raleway text-[16px] font-[600] py-1">
+                Order No.{" "}
+                <span className="font-bold text-[#FF693B]">
+                  #{order_basic?.order_id}
+                </span>
               </p>
               <p class="text-muted mb-0 flex justify-center items-center gap-x-2 mt-1 ">
-                Status :{" "}
+                <span className="text-[#444] font-Raleway text-[16px] font-[600]">
+                  {" "}
+                  Status :{" "}
+                </span>
                 <span class="text-[14px] font-[600] font-Roboto text-[#FFF] bg-[#FF8F5A] px-2 py-[2px] rounded-sm">
                   {order_basic?.order_status}
                 </span>
@@ -113,6 +119,24 @@ const OrderRequirements = () => {
             </div>
           </div>
           {/* 3rd */}
+          <div className="max-w-[330px] h-[80px] flex items-start gap-x-3  border border-[#E2E2E2] bg-[#FDFDFD] rounded-md p-3">
+            <div>
+              <img
+                className="w-[40px] h-full"
+                src="/assets/date.png"
+                alt="ui ux design"
+              />
+            </div>
+            <div>
+              <h2 className="text-[#444] font-Raleway text-[16px] font-[600]">
+                Expected Delivery
+              </h2>
+              <p className="text-[#666] text-[14px] font-[400] ">
+                {order_basic?.order_placed}
+              </p>
+            </div>
+          </div>
+          {/* 4th */}
           <div className="max-w-[330px] h-[90px] flex justify-between items-center gap-x-3  border border-[#E2E2E2] bg-[#FDFDFD] rounded-md p-3">
             <div>
               <img
@@ -157,16 +181,16 @@ const OrderRequirements = () => {
                 {user_requirements?.map((requirement, index) => {
                   return (
                     <div
-                      className="w-full flex justify-center items-center"
+                      className="w-full flex flex-col space-y-4 justify-center items-start"
                       key={index}
                     >
                       <div className="w-[70%]">
                         <h3>
                           {index + 1}. {requirement.questions}
                         </h3>
-                        <p>- {requirement.answer}</p>
+                        <p className="ml-1">- {requirement.answer}</p>
                       </div>
-                      <div className="flex justify-end w-[30%]">
+                      <div className=" w-[30%]">
                         {!imageLoaded && <UserLoading />}{" "}
                         {/* Show loading indicator if image is not loaded */}
                         <img

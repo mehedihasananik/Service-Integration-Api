@@ -50,14 +50,15 @@ const Revision = () => {
           }) => (
             // Write your building UI
             <div className="flex flex-col">
-              <div className="text-center py-4 font-bold text-[18px]">
+              <div className="text-center py-4 font-bold text-[16px] border-[2px] border-dashed rounded-md ">
                 <button
                   type="button"
                   style={isDragging ? { color: "red" } : undefined}
                   onClick={onImageUpload}
                   {...dragProps}
+                  className="w-full py-3 text-[##212529]"
                 >
-                  Click or Drop here
+                  Drag & Drop your files or Browse
                 </button>
               </div>
               {isUploading && <div className="text-center">Uploading...</div>}{" "}

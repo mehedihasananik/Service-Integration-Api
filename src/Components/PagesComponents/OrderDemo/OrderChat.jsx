@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { GoPaperclip } from "react-icons/go";
 import { CiFaceSmile } from "react-icons/ci";
@@ -15,6 +15,9 @@ import { MdDownload, MdOutlineAccessTimeFilled } from "react-icons/md";
 import CustomOffer from "./CustomOffer/CustomOffer";
 import DeliveryPackage from "./DeliveryPackage/DeliveryPackage";
 import OrderRequirements from "@/Components/Utilites/OrderRequirements/OrderRequirements";
+import Media_Urls from "@/Components/Utilites/Media_Urls/Media_Urls";
+import { AuthContext } from "@/providers/AuthProviders";
+import Link from "next/link";
 
 const SOCKET_URL_ONE = "http://localhost:3000";
 const socket = io(SOCKET_URL_ONE);
@@ -36,6 +39,8 @@ const OrderChat = ({
   const [text, setText] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [userScrolledUp, setUserScrolledUp] = useState(false);
+  const { userData } = useContext(AuthContext);
+  // console.log(userData);
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -184,8 +189,7 @@ const OrderChat = ({
                 minute: "2-digit",
                 hour12: true,
               }).format(updatedAt);
-              const { order, delivery } = msg;
-              // console.log(delivery);
+              const { order, delivery, media_urls } = msg;
 
               return (
                 <div
@@ -197,17 +201,34 @@ const OrderChat = ({
                 >
                   <div className="flex gap-x-3 py-3">
                     <div className="w-[40px]">
-                      <Image
-                        width={100}
-                        height={100}
-                        className="w-[40px] h-[40px]"
-                        src={
-                          senderName === "Envobyte"
-                            ? "/assets/msgAvater.png"
-                            : "/assets/msgAvater2.png"
-                        }
-                        alt=""
-                      />
+                      {senderName === "Envobyte" && (
+                        <Image
+                          width={100}
+                          height={100}
+                          className="w-[40px] h-[40px] rounded-lg"
+                          src={
+                            senderName === "Envobyte"
+                              ? "/assets/msgAvater.png"
+                              : ` ${userData.image}`
+                          }
+                          alt=""
+                        />
+                      )}
+                      {senderName === "Anik" && (
+                        <Link href={"/profile"}>
+                          <Image
+                            width={100}
+                            height={100}
+                            className="w-[40px] h-[40px] rounded-lg"
+                            src={
+                              senderName === "Envobyte"
+                                ? "/assets/msgAvater.png"
+                                : ` ${userData.image}`
+                            }
+                            alt=""
+                          />
+                        </Link>
+                      )}
                     </div>
                     <div className="w-[100%]">
                       <div className="flex space-x-4">
@@ -261,6 +282,8 @@ const OrderChat = ({
                   </div>
                   {order && <CustomOffer order={order} />}
                   {delivery && <DeliveryPackage delivery={delivery} />}
+
+                  {media_urls && <Media_Urls media_urls={media_urls} />}
                 </div>
               );
             })}
@@ -293,7 +316,7 @@ const OrderChat = ({
                             className="w-[100px] h-[100px]"
                           />
                           <FaTimes
-                            className="absolute top-[5px] right-[5px] cursor-pointer"
+                            className="absolute top-[5px] right-[5px] cursor-pointer text-red-700"
                             onClick={(e) => {
                               e.preventDefault();
                               removeImage(index);
