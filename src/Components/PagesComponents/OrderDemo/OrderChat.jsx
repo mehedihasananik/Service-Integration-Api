@@ -31,8 +31,8 @@ const OrderChat = ({
   loading,
   setSelectedFile,
   selectedFile,
-  images,
-  setImages,
+  attachments,
+  setAttachments,
 }) => {
   const lastMessageRef = useRef(null);
   const chatContainerRef = useRef(null);
@@ -86,19 +86,22 @@ const OrderChat = ({
   }
 
   const onDrop = (acceptedFiles) => {
-    const newImages = acceptedFiles.map((file) =>
+    const newattachments = acceptedFiles.map((file) =>
       Object.assign(file, {
         preview: URL.createObjectURL(file),
       })
     );
-    setImages((prevImages) => [...prevImages, ...newImages]);
+    setAttachments((prevattachments) => [
+      ...prevattachments,
+      ...newattachments,
+    ]);
 
     setSelectedFile(acceptedFiles[0]);
   };
 
   const removeImage = (indexToRemove) => {
-    setImages((prevImages) =>
-      prevImages.filter((_, index) => index !== indexToRemove)
+    setAttachments((prevattachments) =>
+      prevattachments.filter((_, index) => index !== indexToRemove)
     );
   };
 
@@ -312,13 +315,68 @@ const OrderChat = ({
                 <div className="flex gap-2 absolute right-3 top-[13px]">
                   <label htmlFor="file-upload" className="cursor-pointer">
                     <div className="flex relative top-[-150px]">
-                      {images.map((file, index) => (
+                      {attachments.map((file, index) => (
                         <div key={index} className="relative mr-[10px]">
-                          <img
-                            src={file.preview}
-                            alt={`Preview ${index}`}
-                            className="w-[100px] h-[100px]"
-                          />
+                          {file.type.startsWith("image/") ? (
+                            <img
+                              src={file.preview}
+                              alt={`Preview ${index}`}
+                              className="w-[100px] h-[100px]"
+                            />
+                          ) : file.type === "application/pdf" ? (
+                            <img
+                              src="https://cdn3.iconfinder.com/data/icons/muksis/128/pdf-512.png"
+                              alt={`PDF Preview ${index}`}
+                              className="w-[100px] h-[100px]"
+                            />
+                          ) : file.type === "image/vnd.adobe.photoshop" ? (
+                            <img
+                              src="https://cdn3.iconfinder.com/data/icons/muksis/128/psd-512.png"
+                              alt={`PSD Preview ${index}`}
+                              className="w-[100px] h-[100px]"
+                            />
+                          ) : file.type === "application/vnd.adobe.xd" ? (
+                            <img
+                              src="http://192.168.10.16:8000/js/icons/xd.png"
+                              alt={`XD Preview ${index}`}
+                              className="w-[100px] h-[100px]"
+                            />
+                          ) : file.type === "application/msword" ||
+                            file.type ===
+                              "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ? (
+                            <img
+                              src="http://192.168.10.16:8000/js/icons/doc.png"
+                              alt={`Word Preview ${index}`}
+                              className="w-[100px] h-[100px]"
+                            />
+                          ) : file.type === "application/vnd.ms-excel" ||
+                            file.type ===
+                              "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ? (
+                            <img
+                              src="http://192.168.10.16:8000/js/icons/excel.png"
+                              alt={`Excel Preview ${index}`}
+                              className="w-[100px] h-[100px]"
+                            />
+                          ) : file.type === "text/plain" ? (
+                            <img
+                              src="http://192.168.10.16:8000/js/icons/txt.png"
+                              alt={`Text Preview ${index}`}
+                              className="w-[100px] h-[100px]"
+                            />
+                          ) : file.type === "application/zip" ||
+                            file.type === "application/x-zip-compressed" ? (
+                            <img
+                              src="http://192.168.10.16:8000/js/icons/zip.png"
+                              alt={`Zip Preview ${index}`}
+                              className="w-[100px] h-[100px]"
+                            />
+                          ) : (
+                            <img
+                              src="https://cdn-icons-png.flaticon.com/512/1388/1388902.png"
+                              alt={`Unsupported Preview ${index}`}
+                              className="w-[100px] h-[100px]"
+                            />
+                          )}
                           <FaTimes
                             className="absolute top-[5px] right-[5px] cursor-pointer text-red-700"
                             onClick={(e) => {
@@ -351,9 +409,9 @@ const OrderChat = ({
               <div className="w-[8%]">
                 <button
                   onClick={() => {
-                    handleSendMessage(inputtedMessage, images);
+                    handleSendMessage(inputtedMessage, attachments);
                     setInputtedMessage("");
-                    setImages([]);
+                    setAttachments([]);
                   }}
                   className="w-full font-[600] bg-[#FF693B] border border-[#FF693B] text-white hover:text-[#FF693B] hover:bg-[#ffff] transition-all duration-200  text-[16px]  mx-[10%] py-2.5 rounded-[4px]"
                 >

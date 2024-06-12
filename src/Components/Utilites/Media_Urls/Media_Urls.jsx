@@ -9,12 +9,18 @@ const handleImageClick = (url) => {
 // Function to handle download click
 const handleDownloadClick = (url, event) => {
   event.stopPropagation(); // Prevent the button click from propagating to the image click handler
-  const link = document.createElement("a");
-  link.href = url;
-  link.setAttribute("download", url.split("/").pop());
-  document.body.appendChild(link); // Append the link to the body
-  link.click();
-  document.body.removeChild(link); // Remove the link after clicking
+
+  fetch(url)
+    .then((response) => response.blob())
+    .then((blob) => {
+      const link = document.createElement("a");
+      link.href = window.URL.createObjectURL(blob);
+      link.download = url.split("/").pop(); // Set the suggested download file name
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    })
+    .catch((error) => console.error("Error downloading the file:", error));
 };
 
 // Function to determine the file type
@@ -33,8 +39,10 @@ const fileTypeIcons = {
   xlsx: "https://cdn3.iconfinder.com/data/icons/muksis/128/xlsx-128.png",
   docx: "https://cdn3.iconfinder.com/data/icons/muksis/128/docx-128.png",
   webp: "https://cdn3.iconfinder.com/data/icons/muksis/128/webp-128.png",
-  // Add more file types as needed
 };
+
+const fallbackIconUrl =
+  "https://cdn-icons-png.flaticon.com/512/1388/1388902.png";
 
 const Media_Urls = ({ media_urls }) => {
   return (
@@ -48,7 +56,7 @@ const Media_Urls = ({ media_urls }) => {
             .split(".")[0]
             .slice(0, 10); // Take the part before the first period
           const fileType = getFileType(item);
-          const iconSrc = fileTypeIcons[fileType] || ""; // Get the icon URL for the file type
+          const iconSrc = fileTypeIcons[fileType] || fallbackIconUrl; // Get the icon URL for the file type, or use fallback
           const fileExtension = item.split(".").pop(); // Extract file extension from URL
           return (
             <div key={index} className="group relative text-center">
@@ -58,18 +66,12 @@ const Media_Urls = ({ media_urls }) => {
               >
                 {fileType === "jpg" || fileType === "png" ? (
                   <img className="max-h-[120px] py-3" src={item} alt="" />
-                ) : fileType === "txt" ||
-                  fileType === "pdf" ||
-                  fileType === "docx" ||
-                  fileType === "webp" ||
-                  fileType === "xlsx" ? (
+                ) : (
                   <img
                     className="max-h-[120px] py-3"
                     src={iconSrc}
-                    alt={`${fileType.toUpperCase()} File Thumbnail`}
+                    alt={`File Thumbnail`}
                   />
-                ) : (
-                  <div className="text-sm">Unsupported file type</div>
                 )}
               </div>
               <div className="text-sm mt-2 text-center w-[250px]">{`${fileName}.${fileExtension}`}</div>{" "}

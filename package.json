@@ -13,6 +13,7 @@
     "@emoji-mart/data": "^1.2.1",
     "@emoji-mart/react": "^1.1.1",
     "@plaiceholder/next": "^3.0.0",
+    "@react-pdf-viewer/toolbar": "^3.12.0",
     "@tawk.to/tawk-messenger-react": "^2.0.2",
     "@virtuoso.dev/message-list": "^1.7.1",
     "axios": "^1.6.8",
