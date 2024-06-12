@@ -43,13 +43,10 @@ const OrderWebSocket = () => {
     };
   }, []);
 
-  const handleSendMessage = async () => {
+  const handleSendMessage = async (message, files) => {
     try {
-      if (inputtedMessage.trim() || selectedFile) {
-        const newMessage = await sendMessageToServer(
-          inputtedMessage,
-          selectedFile
-        );
+      if (message.trim() || files.length > 0) {
+        const newMessage = await sendMessageToServer(message, files);
         setMessageHistory((prevMessages) => [...prevMessages, newMessage]);
         setInputtedMessage("");
         setSelectedFile(null);
@@ -69,7 +66,7 @@ const OrderWebSocket = () => {
           messageHistory={messageHistory}
           inputtedMessage={inputtedMessage}
           setInputtedMessage={setInputtedMessage}
-          sendMessageToAPI={handleSendMessage}
+          handleSendMessage={handleSendMessage}
           loading={loading}
           setSelectedFile={setSelectedFile}
           selectedFile={selectedFile}

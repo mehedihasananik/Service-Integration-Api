@@ -17,18 +17,23 @@ const CheckoutProductInfo = ({ productInfo, setProductInfo }) => {
       ? window.localStorage.getItem("itemId")
       : null;
 
-  if (storedItemId) {
-    const fetchingItemData = async () => {
-      const data = await fetchData(`${checkoutApi}`, "POST", {
-        sevice_package_id: storedItemId,
-        user_id: userData?.id,
-      });
-      setProductInfo(data);
-      // console.log(data);
-    };
-    fetchingItemData();
-  }
-
+  useEffect(() => {
+    if (storedItemId) {
+      const fetchingItemData = async () => {
+        try {
+          const data = await fetchData(`${checkoutApi}`, "POST", {
+            sevice_package_id: storedItemId,
+            user_id: userData?.id,
+          });
+          setProductInfo(data);
+        } catch (error) {
+          console.error("Error fetching item data:", error);
+        }
+      };
+      fetchingItemData();
+    }
+  }, [storedItemId]); // Only re-run the effect if storedItemId changes
+  console.log(productInfo?.service_item?.image);
   return (
     <div>
       <div className="">
@@ -36,11 +41,12 @@ const CheckoutProductInfo = ({ productInfo, setProductInfo }) => {
           {/* title */}
           <div className="">
             <div className="space-y-5">
-              <Image
+              <img
                 className="w-[100%] h-[200px]"
-                src={`/${productInfo?.service_item?.[0]?.image}`}
+                src={`${productInfo?.service_item?.image}`}
                 width={500}
                 height={200}
+                alt=""
               />
               <h3 className="font-Raleway text-[25px] text-[#1E293B] font-bold">
                 {productInfo?.service_item?.[0]?.title}

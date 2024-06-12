@@ -86,7 +86,7 @@ const SinglePackage = ({ item, setOpenModal }) => {
           {userData ? (
             <Link
               href={"/checkout"}
-              onClick={handlePlaceOrder}
+              onClick={handlePassData}
               className="text-[16px]  w-[100%] text-center font-medium text-[#FF693B] border border-[#FF693B] px-6 py-2 rounded-md hover:text-white hover:bg-[#FF693B] transition-all duration-300"
             >
               Place Order Now

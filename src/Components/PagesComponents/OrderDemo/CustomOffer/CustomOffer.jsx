@@ -13,7 +13,6 @@ const CustomOffer = ({ order }) => {
     status,
     message,
   } = order;
-  console.log(order);
 
   const handleStatusUpdate = async (status) => {
     const formData = new FormData();

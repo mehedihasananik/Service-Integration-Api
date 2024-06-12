@@ -16,10 +16,6 @@ const QuestionService = ({ className, title, service }) => {
               <h3 className="text-[#0F172A] text-[30px] md:text-[48px] font-bold font-Raleway pb-5">
                 {title}
               </h3>
-              <p className="text-[#0F172A] text-[16px]">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. <br /> Lorem Ipsum has been the
-              </p>
             </div>
             <div className="py-5 md:py-10">
               <div className="md:p-4 rounded-lg">

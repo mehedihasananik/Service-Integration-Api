@@ -1,7 +1,7 @@
 "use client";
-
 import React, { useState } from "react";
 import axios from "axios";
+import Revision from "@/Components/Utilites/Revision/Revision";
 import { Button, Modal } from "flowbite-react";
 
 const DeliveryRevision = ({ openModal, setOpenModal, modalSize, delivery }) => {
@@ -14,11 +14,11 @@ const DeliveryRevision = ({ openModal, setOpenModal, modalSize, delivery }) => {
 
   const handleSendRevisionRequest = async () => {
     const formData = new FormData();
-    formData.append("order", 1716267536); // Assuming delivery.id is the delivery ID
+    formData.append("delivery_id", delivery.id); // Assuming delivery.id is the delivery ID
     formData.append("description", text);
 
     for (let i = 0; i < selectedFiles.length; i++) {
-      formData.append("attachments[]", selectedFiles[i]);
+      formData.append("attachment", selectedFiles[i]);
     }
 
     try {
@@ -79,6 +79,9 @@ const DeliveryRevision = ({ openModal, setOpenModal, modalSize, delivery }) => {
           </div>
         </Modal.Body>
         <div className="mx-6 space-y-5 pb-5">
+          <div className="w-full">
+            <Revision />
+          </div>
           <div>
             <Button
               className="bg-[#FF693B]"

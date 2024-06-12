@@ -18,6 +18,7 @@ import OrderRequirements from "@/Components/Utilites/OrderRequirements/OrderRequ
 import Media_Urls from "@/Components/Utilites/Media_Urls/Media_Urls";
 import { AuthContext } from "@/providers/AuthProviders";
 import Link from "next/link";
+import ServiceOrderRevisions from "@/Components/Utilites/ServiceOrderRevisions/ServiceOrderRevisions";
 
 const SOCKET_URL_ONE = "http://localhost:3000";
 const socket = io(SOCKET_URL_ONE);
@@ -26,7 +27,7 @@ const OrderChat = ({
   messageHistory,
   inputtedMessage,
   setInputtedMessage,
-  sendMessageToAPI,
+  handleSendMessage,
   loading,
   setSelectedFile,
   selectedFile,
@@ -190,6 +191,7 @@ const OrderChat = ({
                 hour12: true,
               }).format(updatedAt);
               const { order, delivery, media_urls } = msg;
+              console.log(msg);
 
               return (
                 <div
@@ -282,8 +284,10 @@ const OrderChat = ({
                   </div>
                   {order && <CustomOffer order={order} />}
                   {delivery && <DeliveryPackage delivery={delivery} />}
-
                   {media_urls && <Media_Urls media_urls={media_urls} />}
+                  {delivery?.service_order_revisions && (
+                    <ServiceOrderRevisions delivery={delivery} />
+                  )}
                 </div>
               );
             })}
@@ -347,9 +351,9 @@ const OrderChat = ({
               <div className="w-[8%]">
                 <button
                   onClick={() => {
-                    sendMessageToAPI(inputtedMessage);
+                    handleSendMessage(inputtedMessage, images);
                     setInputtedMessage("");
-                    setSelectedFile("");
+                    setImages([]);
                   }}
                   className="w-full font-[600] bg-[#FF693B] border border-[#FF693B] text-white hover:text-[#FF693B] hover:bg-[#ffff] transition-all duration-200  text-[16px]  mx-[10%] py-2.5 rounded-[4px]"
                 >

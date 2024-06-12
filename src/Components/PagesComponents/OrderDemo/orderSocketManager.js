@@ -16,17 +16,20 @@ export const setMessageHandler = (handler) => {
   messageHandler = handler;
 };
 
-export const sendMessageToServer = async (message, selectedFile) => {
+export const sendMessageToServer = async (message, files) => {
   try {
     const formData = new FormData();
     formData.append("sender_id", 19);
     formData.append("receiver_id", 18);
     formData.append("message", message);
 
-    // Append selected file if available
-    if (selectedFile) {
-      formData.append("attachment", selectedFile);
+    // Append selected files if available
+    if (files && files.length > 0) {
+      for (const file of files) {
+        formData.append("attachment[]", file);
+      }
     }
+    console.log(files);
 
     const response = await fetch(
       "http://192.168.10.16:8000/api/save/chat/order",
