@@ -2,14 +2,14 @@
 "use client";
 
 import React, { useState, useLayoutEffect } from "react";
+
+import MessageChat from "./MessageChat";
 import {
-  sendMessageToServer,
-  fetchMessagesFromServer,
+  fetchChatFromServer,
+  sendChatToServer,
   disconnectSocket,
-  setMessageHandler,
-} from "./orderSocketManager";
-import OrderChat from "./OrderChat";
-import OrderRequirements from "@/Components/Utilites/OrderRequirements/OrderRequirements";
+  setChatHandler,
+} from "./MessageSoketManager";
 
 const MessageWebSocket = () => {
   const [messageHistory, setMessageHistory] = useState([]);
@@ -20,7 +20,7 @@ const MessageWebSocket = () => {
 
   useLayoutEffect(() => {
     const fetchInitialMessages = async () => {
-      const messages = await fetchMessagesFromServer();
+      const messages = await fetchChatFromServer();
       setMessageHistory(messages);
       setLoading(false);
     };
@@ -31,10 +31,10 @@ const MessageWebSocket = () => {
       setMessageHistory((prevMessages) => [...prevMessages, data]);
     };
 
-    setMessageHandler(handleMessage);
+    setChatHandler(handleMessage);
 
     const interval = setInterval(() => {
-      fetchMessagesFromServer().then(setMessageHistory).catch(console.error);
+      fetchChatFromServer().then(setMessageHistory).catch(console.error);
     }, 3000);
 
     return () => {
@@ -46,7 +46,7 @@ const MessageWebSocket = () => {
   const handleSendMessage = async (message, files) => {
     try {
       if (message.trim() || files.length > 0) {
-        const newMessage = await sendMessageToServer(message, files);
+        const newMessage = await sendChatToServer(message, files);
         setMessageHistory((prevMessages) => [...prevMessages, newMessage]);
         setInputtedMessage("");
         setSelectedFile(null);
@@ -62,7 +62,7 @@ const MessageWebSocket = () => {
   return (
     <div className="h-90vh overflow-hidden relative ">
       <div>
-        <OrderChat
+        <MessageChat
           messageHistory={messageHistory}
           inputtedMessage={inputtedMessage}
           setInputtedMessage={setInputtedMessage}

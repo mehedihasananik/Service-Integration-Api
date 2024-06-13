@@ -19,7 +19,7 @@ const Profile = () => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        `http://192.168.10.16:8000/api/user_profile`,
+        `http://192.168.10.14:8000/api/user_profile`,
         {
           method: "POST",
           headers: {
