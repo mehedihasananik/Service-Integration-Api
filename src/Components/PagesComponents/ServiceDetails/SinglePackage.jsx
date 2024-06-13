@@ -62,7 +62,7 @@ const SinglePackage = ({ item, setOpenModal }) => {
     <div className=" md:mx-[10%] lg:mx-0">
       <div
         key={item.id}
-        className=" border border-[#CBD5E1]  transition-all duration-300  hover:border-[#FF693B] px-8 py-10 rounded-3xl"
+        className=" border border-[#CBD5E1]  transition-all duration-300  hover:border-[#FF693B] px-8 py-10 rounded-3xl 6xl:w-[400px] 6xl:gap-x-20"
       >
         {/* title */}
         <div className="h-[95px]">

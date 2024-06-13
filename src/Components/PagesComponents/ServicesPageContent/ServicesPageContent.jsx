@@ -152,7 +152,7 @@ const ServicesPageContent = ({ serviceCategories, services }) => {
                         <h3 className="text-[20px] md:text-[20px] font-bold  font-Raleway pt-5 pb-2 whitespace-nowrap">
                           {service.title}
                         </h3>
-                        <p className="text-[14px] text-[#475569] text-justify group-hover:text-white transition-all duration-200">
+                        <p className="text-[14px] text-[#475569]  group-hover:text-white transition-all duration-200">
                           {truncateText(service.details, 33)}
                         </p>
                       </div>

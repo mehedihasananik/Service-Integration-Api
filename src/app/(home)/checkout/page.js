@@ -143,14 +143,14 @@ const Checkout = () => {
                         </p>
                         <p className="font-semibold text-gray-900">
                           {" "}
-                          {productInfo.package_price}
+                          ${productInfo.package_price}
                         </p>
                       </div>
                     </div>
                     <div className="mt-6 flex items-center justify-between">
                       <p className="text-sm font-medium text-gray-900">Total</p>
                       <p className="text-2xl font-semibold text-gray-900">
-                        {productInfo.package_price}
+                        ${productInfo.package_price}
                       </p>
                     </div>
 

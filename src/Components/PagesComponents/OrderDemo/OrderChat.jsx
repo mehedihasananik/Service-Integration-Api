@@ -194,7 +194,7 @@ const OrderChat = ({
                 hour12: true,
               }).format(updatedAt);
               const { order, delivery, media_urls } = msg;
-              console.log(msg);
+              // console.log(msg);
 
               return (
                 <div
@@ -378,7 +378,7 @@ const OrderChat = ({
                             />
                           )}
                           <FaTimes
-                            className="absolute top-[5px] right-[5px] cursor-pointer text-red-700"
+                            className="absolute top-[5px] right-[5px] cursor-pointer text-[15px] text-white  bg-[#95AFC0] rounded-sm"
                             onClick={(e) => {
                               e.preventDefault();
                               removeImage(index);

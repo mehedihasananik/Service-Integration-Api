@@ -11,11 +11,11 @@ const DeliveryRevision = ({ openModal, setOpenModal, modalSize, delivery }) => {
   const handleFileChange = (e) => {
     setSelectedFiles(e.target.files);
   };
-
   const handleSendRevisionRequest = async () => {
+    console.log(delivery.service_order_id);
     const formData = new FormData();
-    formData.append("delivery_id", delivery.id); // Assuming delivery.id is the delivery ID
-    formData.append("description", text);
+    formData.append("order", delivery.service_order_id); // Assuming delivery.id is the delivery ID
+    formData.append("description", text); // Append the text state correctly
 
     for (let i = 0; i < selectedFiles.length; i++) {
       formData.append("attachment", selectedFiles[i]);
@@ -39,7 +39,6 @@ const DeliveryRevision = ({ openModal, setOpenModal, modalSize, delivery }) => {
       // Handle error (e.g., show an error message)
     }
   };
-
   return (
     <div>
       <Modal
@@ -79,9 +78,9 @@ const DeliveryRevision = ({ openModal, setOpenModal, modalSize, delivery }) => {
           </div>
         </Modal.Body>
         <div className="mx-6 space-y-5 pb-5">
-          <div className="w-full">
+          {/* <div className="w-full">
             <Revision />
-          </div>
+          </div> */}
           <div>
             <Button
               className="bg-[#FF693B]"

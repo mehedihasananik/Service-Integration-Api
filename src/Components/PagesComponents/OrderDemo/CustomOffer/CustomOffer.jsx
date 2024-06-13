@@ -48,7 +48,7 @@ const CustomOffer = ({ order }) => {
       </div>
       <div className="pb-3">
         <h3 className="text-[14px] font-Raleway font-[600] text-[#0A2C8C]">
-          Here&apos;s your custom offer
+          Here&apos;s your Additional offer
         </h3>
       </div>
       <div className=" border border-[#E2E2E2]   py-5 rounded-md pb-0">

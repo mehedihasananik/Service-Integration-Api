@@ -34,11 +34,11 @@ const fileTypeIcons = {
   jpg: "image/jpeg",
   jpeg: "image/jpeg",
   png: "image/png",
+  webp: "image/webp",
   txt: "https://cdn3.iconfinder.com/data/icons/muksis/128/txt-128.png",
   pdf: "https://cdn3.iconfinder.com/data/icons/muksis/128/pdf-128.png",
   xlsx: "https://cdn3.iconfinder.com/data/icons/muksis/128/xlsx-128.png",
   docx: "https://cdn3.iconfinder.com/data/icons/muksis/128/docx-128.png",
-  webp: "https://cdn3.iconfinder.com/data/icons/muksis/128/webp-128.png",
 };
 
 const fallbackIconUrl =
@@ -59,12 +59,15 @@ const Media_Urls = ({ media_urls }) => {
           const iconSrc = fileTypeIcons[fileType] || fallbackIconUrl; // Get the icon URL for the file type, or use fallback
           const fileExtension = item.split(".").pop(); // Extract file extension from URL
           return (
-            <div key={index} className="group relative text-center">
+            <div key={index} className="group  ">
               <div
-                className="h-[150px] w-[250px] flex items-center justify-center bg-[#F3F6F9] rounded-lg group-hover:brightness-75 cursor-pointer"
+                className="relative h-[150px] w-[250px] flex items-center justify-center bg-[#F3F6F9] rounded-lg group-hover:brightness-75 cursor-pointer"
                 onClick={() => handleImageClick(item)}
               >
-                {fileType === "jpg" || fileType === "png" ? (
+                {fileType === "jpg" ||
+                fileType === "jpeg" ||
+                fileType === "png" ||
+                fileType === "webp" ? (
                   <img className="max-h-[120px] py-3" src={item} alt="" />
                 ) : (
                   <img
@@ -73,17 +76,17 @@ const Media_Urls = ({ media_urls }) => {
                     alt={`File Thumbnail`}
                   />
                 )}
+                <div className="absolute bottom-[20px] right-3 flex justify-start ">
+                  <button
+                    className="bg-[#FF693B] py-1.5 px-2 rounded-sm shadow-md text-white "
+                    onClick={(event) => handleDownloadClick(item, event)}
+                  >
+                    <MdDownload />
+                  </button>
+                </div>
               </div>
               <div className="text-sm mt-2 text-center w-[250px]">{`${fileName}.${fileExtension}`}</div>{" "}
               {/* Display file name with extension */}
-              <div className="absolute bottom-[33px] left-0 right-28 flex justify-end">
-                <button
-                  className="bg-[#FF693B] py-1.5 px-2 rounded-sm shadow-md text-white"
-                  onClick={(event) => handleDownloadClick(item, event)}
-                >
-                  <MdDownload />
-                </button>
-              </div>
             </div>
           );
         })}

@@ -38,7 +38,7 @@ const ServiceDetails = ({
             </h3>
           </div>
           {/* packages */}
-          <div className="grid grid-cols-1 gap-y-10 lg:grid-cols-3 gap-x-5 lg:gap-y-0 4xl:px-[10%]">
+          <div className="grid grid-cols-1 gap-y-10 lg:grid-cols-3 gap-x-5 lg:gap-y-0 4xl:px-[10%] 6xl:px-[0%]">
             {packages.map((item) => {
               return (
                 <SinglePackage
