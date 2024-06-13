@@ -47,7 +47,7 @@ const fallbackIconUrl =
 const Media_Urls = ({ media_urls }) => {
   return (
     <div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pb-2">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 pb-2">
         {media_urls.map((item, index) => {
           const fileName = item
             .split("/")

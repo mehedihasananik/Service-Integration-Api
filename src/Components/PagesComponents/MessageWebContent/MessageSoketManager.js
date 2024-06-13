@@ -31,13 +31,10 @@ export const sendChatToServer = async (message, files) => {
     }
     console.log(files);
 
-    const response = await fetch(
-      "http://192.168.10.14:8000/api/save/chat/order",
-      {
-        method: "POST",
-        body: formData,
-      }
-    );
+    const response = await fetch("http://192.168.10.16:8000/api/save/chat", {
+      method: "POST",
+      body: formData,
+    });
 
     if (!response.ok) {
       throw new Error("Failed to send message");
@@ -52,19 +49,16 @@ export const sendChatToServer = async (message, files) => {
 
 export const fetchChatFromServer = async () => {
   try {
-    const response = await fetch(
-      "http://192.168.10.14:8000/api/save/chat/list",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          sender_id: 19,
-          receiver_id: 18,
-        }),
-      }
-    );
+    const response = await fetch("http://192.168.10.16:8000/api/chat/list", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        sender_id: 19,
+        receiver_id: 18,
+      }),
+    });
 
     if (!response.ok) {
       throw new Error("Failed to fetch messages");

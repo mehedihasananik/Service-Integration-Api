@@ -1,7 +1,6 @@
 "use client";
 
 import MessageWebSocket from "@/Components/PagesComponents/MessageWebContent/MessageWebSocket";
-import OrderRequirements from "@/Components/Utilites/OrderRequirements/OrderRequirements";
 import IsAuth from "@/Components/isAuth/isAuth";
 import React from "react";
 

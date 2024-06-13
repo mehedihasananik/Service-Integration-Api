@@ -13,6 +13,7 @@ import { FaTimes } from "react-icons/fa";
 import { MdDownload } from "react-icons/md";
 import { AuthContext } from "@/providers/AuthProviders";
 import Link from "next/link";
+import Media_Urls from "@/Components/Utilites/Media_Urls/Media_Urls";
 
 const SOCKET_URL_ONE = "http://localhost:3000";
 const socket = io(SOCKET_URL_ONE);
@@ -187,7 +188,7 @@ const MessageChat = ({
                 minute: "2-digit",
                 hour12: true,
               }).format(updatedAt);
-              const { order } = msg;
+              const { media_urls } = msg;
               // console.log(msg);
 
               return (
@@ -277,6 +278,7 @@ const MessageChat = ({
                           )}
                         </div>
                       )}
+                      {media_urls && <Media_Urls media_urls={media_urls} />}
                     </div>
                   </div>
                 </div>
@@ -288,7 +290,7 @@ const MessageChat = ({
 
           {!loading && (
             <div className="bg-[#FFFFFF pb-8 flex w-[78%] items-center gap-5 px-10 fixed left-[14.5%] -bottom-6">
-              <div className="w-[70%] relative">
+              <div className="w-[100%] relative">
                 <textarea
                   className="w-full border border-[#E2E2E2] rounded-md py-4 px-4 resize-none pr-20 text-justify"
                   placeholder="Write a message..."
@@ -394,7 +396,7 @@ const MessageChat = ({
                   <CiFaceSmile className="text-[20px] " />
                 </span>
               </div>
-              <div className="w-[8%]">
+              <div className="w-[10%]">
                 <button
                   onClick={() => {
                     handleSendMessage(inputtedMessage, attachments);
