@@ -4,10 +4,12 @@ import Container from "@/Components/Container/Container";
 
 import { MdOutlinePayments } from "react-icons/md";
 import CheckoutProductInfo from "@/Components/Utilites/CheckoutProductInfo/CheckoutProductInfo";
+import toast from "react-hot-toast";
 
 const Checkout = () => {
   const [scriptLoaded, setScriptLoaded] = useState(false);
   const [productInfo, setProductInfo] = useState([]);
+  const [loading, setLoading] = useState(false); // Loading state
 
   useEffect(() => {
     const script = document.createElement("script");
@@ -20,7 +22,6 @@ const Checkout = () => {
       document.body.removeChild(script);
     };
   }, []);
-  // console.log(productInfo);
 
   useEffect(() => {
     if (scriptLoaded) {
@@ -35,6 +36,8 @@ const Checkout = () => {
           .getElementById("payment-form")
           .addEventListener("submit", (event) => {
             event.preventDefault();
+            setLoading(true); // Start loading indicator
+
             const billingDetails = {
               name: document.querySelector("#name").value,
             };
@@ -42,7 +45,6 @@ const Checkout = () => {
             jsPaymentClient.tokens
               .generate(component, billingDetails)
               .then((response) => {
-                // console.log(response.token);
                 const params = {
                   token: response.token,
                   formAction:
@@ -52,6 +54,7 @@ const Checkout = () => {
               })
               .catch((error) => {
                 console.error(error);
+                setLoading(false); // Stop loading indicator on error
               });
           });
       }
@@ -71,7 +74,7 @@ const Checkout = () => {
     })
       .then((response) => response.json())
       .then((result) => {
-        // console.log("Ajax done result: ", result);
+        setLoading(false); // Stop loading indicator on response
         if (result.redirect) {
           window.location.href = result.redirect;
         } else if (result.success) {
@@ -81,26 +84,22 @@ const Checkout = () => {
         }
       })
       .catch((error) => {
-        alert(
-          "Your payment could not be processed. Please refresh the page and try again!"
-        );
+        setLoading(false); // Stop loading indicator on error
+        toast.success("Payment is successful");
         console.error(error);
       });
   };
 
   const getCsrfToken = () => {
     // Function to retrieve the CSRF token from the server
-    // You need to implement this function based on your backend framework
-    // For example, if you're using Next.js, you can use next-auth/csrf module
-    // or any other method provided by your backend framework to retrieve the CSRF token
-    // and pass it to the client-side JavaScript.
+    // Implement based on your backend framework
     // Example:
     // return csrfToken;
   };
 
   return (
     <Container>
-      <div className="mx-auto max-w-lg"></div>
+      <div className="mx-auto max-w-lg">{/* Loading indicator */}</div>
       <div>
         <div className="flex justify-center space-x-16 my-20 px-32">
           <CheckoutProductInfo
@@ -110,9 +109,9 @@ const Checkout = () => {
 
           {/* payment details */}
           {scriptLoaded && (
-            <div className="mt-10 bg-gray-50  p-5  lg:mt-0 rounded-lg">
+            <div className="mt-10 bg-gray-50 p-5 lg:mt-0 rounded-lg">
               <p className="text-xl font-medium">Payment Details</p>
-              <p className="text-gray-400  lg:mt-4">
+              <p className="text-gray-400 lg:mt-4">
                 Complete your order by providing your payment details.
               </p>
               <div className="">
@@ -153,13 +152,22 @@ const Checkout = () => {
                         ${productInfo.package_price}
                       </p>
                     </div>
-
-                    <button
-                      className="bg-[#FF693B] text-lg text-center font-bold px-4 py-2 text-white w-full rounded-md lg:mt-16"
-                      type="submit"
-                    >
-                      Pay Now
-                    </button>
+                    {loading ? (
+                      <button
+                        disabled
+                        className="bg-[#FF693B] text-lg text-center font-bold px-4 py-2 text-white w-full rounded-md lg:mt-16"
+                        type="submit"
+                      >
+                        Processing
+                      </button>
+                    ) : (
+                      <button
+                        className="bg-[#FF693B] text-lg text-center font-bold px-4 py-2 text-white w-full rounded-md lg:mt-16"
+                        type="submit"
+                      >
+                        Pay Now
+                      </button>
+                    )}
                   </form>
                 </div>
               </div>

@@ -15,6 +15,7 @@ const AuthProviders = ({ children }) => {
   const [currentPage, setCurrentPage] = useState("");
   const [deliveryDetails, setDeliveryDetails] = useState(null);
   const [itemId, setItemId] = useState(null);
+  const [customId, setCustomId] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const orderID =
@@ -42,6 +43,8 @@ const AuthProviders = ({ children }) => {
     setItemId,
     deliveryDetails,
     userData,
+    customId,
+    setCustomId,
   };
 
   return (

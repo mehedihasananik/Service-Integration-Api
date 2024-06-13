@@ -19,19 +19,20 @@ export const setChatHandler = (handler) => {
 export const sendChatToServer = async (message, files) => {
   try {
     const formData = new FormData();
-    formData.append("sender_id", 19);
+    formData.append("sender_id", 1);
     formData.append("receiver_id", 18);
     formData.append("message", message);
 
-    // Append selected files if available
+    // Append selected files if available, but limit to 6
     if (files && files.length > 0) {
-      for (const file of files) {
-        formData.append("attachment[]", file);
+      const maxAttachments = 6;
+      for (let i = 0; i < Math.min(files.length, maxAttachments); i++) {
+        formData.append("attachment[]", files[i]);
       }
     }
     console.log(files);
 
-    const response = await fetch("http://192.168.10.16:8000/api/save/chat", {
+    const response = await fetch("http://192.168.10.14:8000/api/save/chat", {
       method: "POST",
       body: formData,
     });
@@ -49,13 +50,13 @@ export const sendChatToServer = async (message, files) => {
 
 export const fetchChatFromServer = async () => {
   try {
-    const response = await fetch("http://192.168.10.16:8000/api/chat/list", {
+    const response = await fetch("http://192.168.10.14:8000/api/chat/list", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        sender_id: 19,
+        sender_id: 1,
         receiver_id: 18,
       }),
     });

@@ -1,6 +1,6 @@
 import React from "react";
 import { BiRevision } from "react-icons/bi";
-import { MdOutlineAccessTimeFilled } from "react-icons/md";
+import { MdDownload, MdOutlineAccessTimeFilled } from "react-icons/md";
 
 const ServiceOrderRevisions = ({ delivery }) => {
   const { service_order_revisions } = delivery;
@@ -8,6 +8,7 @@ const ServiceOrderRevisions = ({ delivery }) => {
   return (
     <div className="lg:mx-12 w-[80%] pb-4">
       {service_order_revisions.map((item, index) => {
+        console.log(item);
         return (
           <div key={index}>
             <div>
@@ -30,6 +31,32 @@ const ServiceOrderRevisions = ({ delivery }) => {
                   </p>
                 </div>
                 {/* delivery details & title */}
+                <div className="grid grid-cols-3">
+                  {item.media_urls?.map((item, index) => {
+                    return (
+                      <div
+                        key={index}
+                        className="relative h-[150px] w-[250px] flex items-center justify-center bg-[#F3F6F9] rounded-lg group-hover:brightness-75 cursor-pointer pointer-events-none"
+                      >
+                        <img
+                          className="max-h-[120px] py-3 pointer-events-auto"
+                          src={item}
+                          alt=""
+                        />
+                        <div className="absolute bottom-[20px] right-3 flex justify-start pointer-events-auto group-hover:brightness-100">
+                          <button
+                            className="bg-[#FF693B] py-1.5 px-2 rounded-sm shadow-md text-white"
+                            onClick={(event) =>
+                              handleDownloadClick(item, event)
+                            }
+                          >
+                            <MdDownload />
+                          </button>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
             </div>
           </div>

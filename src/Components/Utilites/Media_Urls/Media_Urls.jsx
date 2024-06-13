@@ -59,26 +59,30 @@ const Media_Urls = ({ media_urls }) => {
           const iconSrc = fileTypeIcons[fileType] || fallbackIconUrl; // Get the icon URL for the file type, or use fallback
           const fileExtension = item.split(".").pop(); // Extract file extension from URL
           return (
-            <div key={index} className="group  ">
+            <div key={index} className="group">
               <div
-                className="relative h-[150px] w-[250px] flex items-center justify-center bg-[#F3F6F9] rounded-lg group-hover:brightness-75 cursor-pointer"
+                className="relative h-[150px] w-[250px] flex items-center justify-center bg-[#F3F6F9] rounded-lg group-hover:brightness-75 cursor-pointer pointer-events-none"
                 onClick={() => handleImageClick(item)}
               >
                 {fileType === "jpg" ||
                 fileType === "jpeg" ||
                 fileType === "png" ||
                 fileType === "webp" ? (
-                  <img className="max-h-[120px] py-3" src={item} alt="" />
+                  <img
+                    className="max-h-[120px] py-3 pointer-events-auto"
+                    src={item}
+                    alt=""
+                  />
                 ) : (
                   <img
-                    className="max-h-[120px] py-3"
+                    className="max-h-[120px] py-3 pointer-events-auto"
                     src={iconSrc}
                     alt={`File Thumbnail`}
                   />
                 )}
-                <div className="absolute bottom-[20px] right-3 flex justify-start ">
+                <div className="absolute bottom-[20px] right-3 flex justify-start pointer-events-auto group-hover:brightness-100">
                   <button
-                    className="bg-[#FF693B] py-1.5 px-2 rounded-sm shadow-md text-white "
+                    className="bg-[#FF693B] py-1.5 px-2 rounded-sm shadow-md text-white"
                     onClick={(event) => handleDownloadClick(item, event)}
                   >
                     <MdDownload />

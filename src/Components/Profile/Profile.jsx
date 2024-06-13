@@ -3,13 +3,14 @@
 import { apiEndpoint } from "@/config/config";
 import React, { useEffect, useState } from "react";
 import UserLoading from "../Utilites/UserLoading/UserLoading";
+import dayjs from "dayjs";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const Profile = () => {
   const [profile, setProfile] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
   const [backgroundImage, setBackgroundImage] = useState("");
-
-  console.log(profile);
 
   const userData =
     typeof window !== "undefined"
@@ -38,14 +39,16 @@ const Profile = () => {
 
   const updateProfile = async (event) => {
     event.preventDefault(); // Prevent form from refreshing the page
+
     try {
       const formData = new FormData();
       formData.append("user_id", userData.id);
       formData.append("first_name", profile.first_name);
       formData.append("last_name", profile.last_name);
+      formData.append("email", profile.email);
       formData.append("phone_number", profile.phone_number);
       formData.append("gender", profile.gender);
-      formData.append("date_birth", profile.date_birth);
+      formData.append("date_birth", event.target.date_birth.value);
       formData.append("country", profile.country);
       formData.append("city", profile.city);
       formData.append("state", profile.state);
@@ -56,12 +59,29 @@ const Profile = () => {
         formData.append("user_avatar", selectedFile);
       }
 
-      const response = await fetch(`${apiEndpoint}/user_profile_update`, {
-        method: "POST",
-        body: formData,
-      });
+      axios({
+        method: "post",
+        url: "http://192.168.10.14:8000/api/user_profile_update",
+        data: formData,
+        headers: { "Content-Type": "multipart/form-data" },
+      })
+        .then(function (response) {
+          if (response.data.resultsuccess) {
+            const newUserData = JSON.parse(localStorage.getItem("userData"));
+            newUserData.image = response.data.userphoto;
+            localStorage.setItem("userData", JSON.stringify(newUserData));
+            console.log(newUserData);
+            toast.success("Successfully updated profile");
+          } else {
+            toast.error("Profile updated faild");
+          }
+        })
+        .catch(function (response) {
+          //handle error
+          console.log(response);
+        });
 
-      if (!response.ok) {
+      if (!response?.ok) {
         throw new Error("Failed to update profile");
       }
     } catch (error) {
@@ -240,21 +260,18 @@ const Profile = () => {
                     </select>
                   </div>
                   <div className="w-full mb-4 lg:mt-6">
-                    <label htmlFor="date_birth" className="dark:text-gray-300">
+                    <label htmlFor="birthday" className="dark:text-gray-300">
                       Date of Birth
                     </label>
-                    <input
-                      type="date"
-                      name="date_birth"
-                      className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
-                      placeholder="Date of Birth"
-                      defaultValue={
-                        profile?.date_birth
-                          ? formatDate(profile.date_birth)
-                          : "YYYY-MM-DD" // Provide your desired default date format here
-                      }
-                      onChange={handleInputChange}
-                    />
+                    <div>
+                      <input
+                        type="date"
+                        style={{ border: "2px solid #333" }}
+                        name="date_birth"
+                        className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800 w-full"
+                        defaultValue={profile?.birthday}
+                      />
+                    </div>
                   </div>
                 </div>
                 <div className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full">

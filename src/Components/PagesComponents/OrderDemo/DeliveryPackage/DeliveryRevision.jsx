@@ -8,17 +8,22 @@ const DeliveryRevision = ({ openModal, setOpenModal, modalSize, delivery }) => {
   const [text, setText] = useState(""); // State to hold the textarea value
   const [selectedFiles, setSelectedFiles] = useState([]); // State to hold selected files
 
-  const handleFileChange = (e) => {
-    setSelectedFiles(e.target.files);
+  const handleFileChange = (files) => {
+    setSelectedFiles(files);
   };
+
   const handleSendRevisionRequest = async () => {
     console.log(delivery.service_order_id);
     const formData = new FormData();
     formData.append("order", delivery.service_order_id); // Assuming delivery.id is the delivery ID
     formData.append("description", text); // Append the text state correctly
 
-    for (let i = 0; i < selectedFiles.length; i++) {
-      formData.append("attachment", selectedFiles[i]);
+    // Append selected files if available
+    if (selectedFiles && selectedFiles.length > 0) {
+      for (let i = 0; i < selectedFiles.length; i++) {
+        const file = selectedFiles[i].file;
+        formData.append("attachment[]", file);
+      }
     }
 
     try {
@@ -39,6 +44,7 @@ const DeliveryRevision = ({ openModal, setOpenModal, modalSize, delivery }) => {
       // Handle error (e.g., show an error message)
     }
   };
+
   return (
     <div>
       <Modal
@@ -68,19 +74,11 @@ const DeliveryRevision = ({ openModal, setOpenModal, modalSize, delivery }) => {
               />
             </div>
             <div>
-              <input
-                type="file"
-                multiple
-                onChange={handleFileChange}
-                className="w-full lg:w-[100%] py-2 border border-[#CBD5E1] px-4 shadow-sm"
-              />
+              <Revision onFileChange={handleFileChange} />
             </div>
           </div>
         </Modal.Body>
         <div className="mx-6 space-y-5 pb-5">
-          {/* <div className="w-full">
-            <Revision />
-          </div> */}
           <div>
             <Button
               className="bg-[#FF693B]"

@@ -132,7 +132,13 @@ const SinglePackage = ({ item, setOpenModal }) => {
                 {item.delivery_time}{" "}
                 {item.delivery_time === "1" ? "Day Delivery" : "Days Delivery"}
               </span>{" "}
-              <Tooltip content="Tooltip content">
+              <Tooltip
+                content={
+                  <div style={{ fontSize: "12px" }}>
+                    Tooltip content <br /> tooltip content
+                  </div>
+                }
+              >
                 <div className="cursor-pointer">
                   <img
                     className="w-[14px] h-[14px]"

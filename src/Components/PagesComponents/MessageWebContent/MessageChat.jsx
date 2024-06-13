@@ -14,6 +14,8 @@ import { MdDownload } from "react-icons/md";
 import { AuthContext } from "@/providers/AuthProviders";
 import Link from "next/link";
 import Media_Urls from "@/Components/Utilites/Media_Urls/Media_Urls";
+import { FcUpload } from "react-icons/fc";
+import CustomMessageOffer from "@/Components/Utilites/CustomMessageOffer/CustomMessageOffer";
 
 const SOCKET_URL_ONE = "http://localhost:3000";
 const socket = io(SOCKET_URL_ONE);
@@ -28,6 +30,7 @@ const MessageChat = ({
   selectedFile,
   attachments,
   setAttachments,
+  isMediaLoading,
 }) => {
   const lastMessageRef = useRef(null);
   const chatContainerRef = useRef(null);
@@ -179,7 +182,7 @@ const MessageChat = ({
           <div className="mb-[8%]">
             {messageHistory.map((msg, index) => {
               // console.log(msg);
-              const senderName = msg.sender_id === 19 ? "Anik" : "Envobyte";
+              const senderName = msg.sender_id === 1 ? "Anik" : "Envobyte";
               const updatedAt = parseDate(msg.updated_at);
               const formattedDate = new Intl.DateTimeFormat("en-US", {
                 month: "short",
@@ -188,8 +191,7 @@ const MessageChat = ({
                 minute: "2-digit",
                 hour12: true,
               }).format(updatedAt);
-              const { media_urls } = msg;
-              // console.log(msg);
+              const { media_urls, customoffer } = msg;
 
               return (
                 <div
@@ -278,7 +280,15 @@ const MessageChat = ({
                           )}
                         </div>
                       )}
-                      {media_urls && <Media_Urls media_urls={media_urls} />}
+                      {customoffer && (
+                        <CustomMessageOffer customoffer={customoffer} />
+                      )}
+                      {media_urls && (
+                        <Media_Urls
+                          media_urls={media_urls}
+                          isMediaLoading={isMediaLoading}
+                        />
+                      )}
                     </div>
                   </div>
                 </div>
@@ -305,7 +315,7 @@ const MessageChat = ({
                 <div className="flex gap-2 absolute right-3 top-[13px]">
                   <label htmlFor="file-upload" className="cursor-pointer">
                     <div className="flex relative top-[-150px]">
-                      {attachments.map((file, index) => (
+                      {attachments.slice(0, 6).map((file, index) => (
                         <div key={index} className="relative mr-[10px]">
                           {file.type.startsWith("image/") ? (
                             <img
@@ -368,7 +378,7 @@ const MessageChat = ({
                             />
                           )}
                           <FaTimes
-                            className="absolute top-[5px] right-[5px] cursor-pointer text-[15px] text-white  bg-[#95AFC0] rounded-sm"
+                            className="absolute top-[5px] right-[5px] cursor-pointer text-[15px] text-white bg-[#95AFC0] rounded-sm"
                             onClick={(e) => {
                               e.preventDefault();
                               removeImage(index);
