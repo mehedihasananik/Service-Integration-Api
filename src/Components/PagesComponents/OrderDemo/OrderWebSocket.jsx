@@ -17,6 +17,7 @@ const OrderWebSocket = () => {
   const [loading, setLoading] = useState(true);
   const [selectedFile, setSelectedFile] = useState(null);
   const [attachments, setAttachments] = useState([]);
+  const [isImageSending, setIsImageSending] = useState(false);
 
   useLayoutEffect(() => {
     const fetchInitialMessages = async () => {
@@ -45,6 +46,10 @@ const OrderWebSocket = () => {
 
   const handleSendMessage = async (message, files) => {
     try {
+      if (files.length > 0) {
+        setIsImageSending(true); // Set isImageSending to true when there are files to send
+      }
+
       if (message.trim() || files.length > 0) {
         const newMessage = await sendMessageToServer(message, files);
         setMessageHistory((prevMessages) => [...prevMessages, newMessage]);
@@ -56,6 +61,10 @@ const OrderWebSocket = () => {
       }
     } catch (error) {
       console.error("Error sending message:", error);
+    } finally {
+      if (files.length > 0) {
+        setIsImageSending(false); // Set isImageSending to false after sending the message
+      }
     }
   };
 
@@ -73,6 +82,7 @@ const OrderWebSocket = () => {
           attachments={attachments}
           setAttachments={setAttachments}
           setMessageHistory={setMessageHistory}
+          isImageSending={isImageSending}
         />
       </div>
     </div>

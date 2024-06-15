@@ -33,6 +33,7 @@ const OrderChat = ({
   selectedFile,
   attachments,
   setAttachments,
+  isImageSending,
 }) => {
   const lastMessageRef = useRef(null);
   const chatContainerRef = useRef(null);
@@ -337,7 +338,7 @@ const OrderChat = ({
                             />
                           ) : file.type === "application/vnd.adobe.xd" ? (
                             <img
-                              src="http://192.168.10.16:8000/js/icons/xd.png"
+                              src="http://192.168.0.103:8000/js/icons/xd.png"
                               alt={`XD Preview ${index}`}
                               className="w-[100px] h-[100px]"
                             />
@@ -345,7 +346,7 @@ const OrderChat = ({
                             file.type ===
                               "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ? (
                             <img
-                              src="http://192.168.10.16:8000/js/icons/doc.png"
+                              src="http://192.168.0.103:8000/js/icons/doc.png"
                               alt={`Word Preview ${index}`}
                               className="w-[100px] h-[100px]"
                             />
@@ -353,20 +354,20 @@ const OrderChat = ({
                             file.type ===
                               "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ? (
                             <img
-                              src="http://192.168.10.16:8000/js/icons/excel.png"
+                              src="http://192.168.0.103:8000/js/icons/excel.png"
                               alt={`Excel Preview ${index}`}
                               className="w-[100px] h-[100px]"
                             />
                           ) : file.type === "text/plain" ? (
                             <img
-                              src="http://192.168.10.16:8000/js/icons/txt.png"
+                              src="http://192.168.0.103:8000/js/icons/txt.png"
                               alt={`Text Preview ${index}`}
                               className="w-[100px] h-[100px]"
                             />
                           ) : file.type === "application/zip" ||
                             file.type === "application/x-zip-compressed" ? (
                             <img
-                              src="http://192.168.10.16:8000/js/icons/zip.png"
+                              src="http://192.168.0.103:8000/js/icons/zip.png"
                               alt={`Zip Preview ${index}`}
                               className="w-[100px] h-[100px]"
                             />
@@ -406,18 +407,34 @@ const OrderChat = ({
                   <CiFaceSmile className="text-[20px] " />
                 </span>
               </div>
-              <div className="w-[8%]">
-                <button
-                  onClick={() => {
-                    handleSendMessage(inputtedMessage, attachments);
-                    setInputtedMessage("");
-                    setAttachments([]);
-                  }}
-                  className="w-full font-[600] bg-[#FF693B] border border-[#FF693B] text-white hover:text-[#FF693B] hover:bg-[#ffff] transition-all duration-200  text-[16px]  mx-[10%] py-2.5 rounded-[4px]"
-                >
-                  Send
-                </button>
-              </div>
+              {isImageSending ? (
+                <div className="w-[8%]">
+                  <button
+                    disabled
+                    onClick={() => {
+                      handleSendMessage(inputtedMessage, attachments);
+                      setInputtedMessage("");
+                      setAttachments([]);
+                    }}
+                    className="w-full font-[600] bg-[#FF693B] border border-[#FF693B] text-white hover:text-[#FF693B] hover:bg-[#ffff] transition-all duration-200  text-[16px]  mx-[10%] py-2.5 rounded-[4px]"
+                  >
+                    Uploading ...
+                  </button>
+                </div>
+              ) : (
+                <div className="w-[8%]">
+                  <button
+                    onClick={() => {
+                      handleSendMessage(inputtedMessage, attachments);
+                      setInputtedMessage("");
+                      setAttachments([]);
+                    }}
+                    className="w-full font-[600] bg-[#FF693B] border border-[#FF693B] text-white hover:text-[#FF693B] hover:bg-[#ffff] transition-all duration-200  text-[16px]  mx-[10%] py-2.5 rounded-[4px]"
+                  >
+                    Send
+                  </button>
+                </div>
+              )}
             </div>
           )}
         </div>

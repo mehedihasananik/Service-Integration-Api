@@ -42,7 +42,7 @@ const DeliveryPackage = ({ delivery }) => {
 
     try {
       const response = await fetch(
-        `http://192.168.10.16:8000/api/chat/delivery/update/${id}`,
+        `http://192.168.0.103:8000/api/chat/delivery/update/${id}`,
         {
           method: "POST",
           body: formData,

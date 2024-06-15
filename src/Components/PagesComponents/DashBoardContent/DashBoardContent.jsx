@@ -17,7 +17,7 @@ const DashBoardContent = () => {
   const fetchingData = async () => {
     setLoading(true);
     const data = await fetchData(
-      `http://192.168.10.14:8000/api/service_order_dashboard`,
+      `https://admin.envobyte.com/api/service_order_dashboard`,
       "POST",
       {
         user_id: sessionData?.id,

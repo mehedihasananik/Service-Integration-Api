@@ -21,7 +21,7 @@ const OrderRequirements = () => {
     setLoading(true);
     try {
       const data = await fetchData(
-        `http://192.168.10.14:8000/api/order_delivery`,
+        `https://admin.envobyte.com/api/order_delivery`,
         "POST",
         {
           order_id: orderID,

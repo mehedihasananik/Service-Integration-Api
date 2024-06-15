@@ -15,6 +15,7 @@ const nextConfig = {
       "envobyte.nyc3.digitaloceanspaces.com",
       "images.pexels.com",
       "admin.softpixe.com",
+      "192.168.0.103",
     ],
   },
 };

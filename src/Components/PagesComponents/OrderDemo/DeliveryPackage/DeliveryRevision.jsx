@@ -28,7 +28,7 @@ const DeliveryRevision = ({ openModal, setOpenModal, modalSize, delivery }) => {
 
     try {
       const response = await axios.post(
-        "http://192.168.10.16:8000/api/order/revision/store",
+        "http://192.168.0.103:8000/api/order/revision/store",
         formData,
         {
           headers: {
