@@ -62,7 +62,7 @@ const Media_Urls = ({ media_urls }) => {
           return (
             <div key={index} className="group">
               <div
-                className="relative h-[150px] w-[250px] flex items-center justify-center bg-[#F3F6F9] rounded-lg group-hover:brightness-75 cursor-pointer pointer-events-none"
+                className="relative   flex items-center justify-center bg-[#F3F6F9] rounded-lg group-hover:brightness-75 cursor-pointer pointer-events-none"
                 onClick={() => handleImageClick(item)}
               >
                 {fileType === "jpg" ||
@@ -70,13 +70,13 @@ const Media_Urls = ({ media_urls }) => {
                 fileType === "png" ||
                 fileType === "webp" ? (
                   <img
-                    className="max-h-[120px] py-3 pointer-events-auto"
+                    className=" max-h-[200px]  pointer-events-auto "
                     src={item}
                     alt=""
                   />
                 ) : (
                   <img
-                    className="max-h-[120px] py-3 pointer-events-auto"
+                    className="max-h-[200px]  py-2 pointer-events-auto"
                     src={iconSrc}
                     alt={`File Thumbnail`}
                   />

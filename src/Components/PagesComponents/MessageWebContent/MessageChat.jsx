@@ -16,6 +16,7 @@ import Link from "next/link";
 import Media_Urls from "@/Components/Utilites/Media_Urls/Media_Urls";
 import { FcUpload } from "react-icons/fc";
 import CustomMessageOffer from "@/Components/Utilites/CustomMessageOffer/CustomMessageOffer";
+import { Spinner } from "flowbite-react";
 
 const SOCKET_URL_ONE = "http://localhost:3000";
 const socket = io(SOCKET_URL_ONE);
@@ -413,9 +414,11 @@ const MessageChat = ({
                     setInputtedMessage("");
                     setAttachments([]);
                   }}
+                  disabled={isMediaLoading}
                   className="w-full font-[600] bg-[#FF693B] border border-[#FF693B] text-white hover:text-[#FF693B] hover:bg-[#ffff] transition-all duration-200  text-[16px]  mx-[10%] py-2.5 rounded-[4px]"
                 >
-                  Send
+                  {isMediaLoading && <Spinner size="sm" className="mr-2" />}
+                  {isMediaLoading ? "Sending..." : "Send"}
                 </button>
               </div>
             </div>

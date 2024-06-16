@@ -1,18 +1,30 @@
 import React from "react";
 import { MdDownload } from "react-icons/md";
 
+// Function to handle image click
+const handleImageClick = (url) => {
+  window.open(url, "_blank");
+};
+
+// Function to handle download click
+const handleDownloadClick = (url, event) => {
+  event.stopPropagation(); // Prevent the button click from propagating to the image click handler
+
+  fetch(url)
+    .then((response) => response.blob())
+    .then((blob) => {
+      const link = document.createElement("a");
+      link.href = window.URL.createObjectURL(blob);
+      link.download = url.split("/").pop(); // Set the suggested download file name
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    })
+    .catch((error) => console.error("Error downloading the file:", error));
+};
+
 const ServiceOrderRevisions = ({ delivery }) => {
   const { service_order_revisions } = delivery;
-
-  const handleDownloadClick = (url, event) => {
-    event.preventDefault();
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = url.substring(url.lastIndexOf("/") + 1);
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
 
   return (
     <div className="lg:mx-12 w-[80%] pb-4">
@@ -35,7 +47,7 @@ const ServiceOrderRevisions = ({ delivery }) => {
                 </p>
               </div>
               <div className="grid grid-cols-3 gap-4">
-                {item.media_urls?.map((fileUrl, index) => {
+                {item.media_urls?.map((fileUrl, fileIndex) => {
                   const fileType = fileUrl.split(".").pop();
 
                   let preview;
@@ -64,15 +76,16 @@ const ServiceOrderRevisions = ({ delivery }) => {
 
                   return (
                     <div
-                      key={index}
-                      className="relative h-[150px] w-[250px] flex items-center justify-center bg-[#F3F6F9] rounded-lg group-hover:brightness-75 cursor-pointer pointer-events-none"
+                      key={fileIndex}
+                      className="relative h-[150px] w-[250px] flex items-center justify-center bg-[#F3F6F9] rounded-lg cursor-pointer"
+                      onClick={() => handleImageClick(fileUrl)}
                     >
                       <img
-                        className="max-h-[120px] py-3 pointer-events-auto"
+                        className="max-h-[120px] py-3"
                         src={preview}
                         alt=""
                       />
-                      <div className="absolute bottom-[20px] right-3 flex justify-start pointer-events-auto group-hover:brightness-100">
+                      <div className="absolute bottom-[20px] right-3 flex justify-start group-hover:brightness-100">
                         <button
                           className="bg-[#FF693B] py-1.5 px-2 rounded-sm shadow-md text-white"
                           onClick={(event) =>

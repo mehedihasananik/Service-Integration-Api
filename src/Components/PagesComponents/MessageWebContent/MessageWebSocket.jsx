@@ -17,6 +17,7 @@ const MessageWebSocket = () => {
   const [loading, setLoading] = useState(true);
   const [selectedFile, setSelectedFile] = useState(null);
   const [attachments, setAttachments] = useState([]);
+  const [isMediaLoading, setIsMediaLoading] = useState(false);
 
   useLayoutEffect(() => {
     const fetchInitialMessages = async () => {
@@ -46,16 +47,19 @@ const MessageWebSocket = () => {
   const handleSendMessage = async (message, files) => {
     try {
       if (message.trim() || files.length > 0) {
+        setIsMediaLoading(true); // Set loading state to true before sending message
         const newMessage = await sendChatToServer(message, files);
         setMessageHistory((prevMessages) => [...prevMessages, newMessage]);
         setInputtedMessage("");
         setSelectedFile(null);
         setAttachments([]);
+        setIsMediaLoading(false); // Set loading state to false after message is sent
       } else {
         // Handle empty message or file selection here
       }
     } catch (error) {
       console.error("Error sending message:", error);
+      setIsMediaLoading(false); // Set loading state to false if an error occurs
     }
   };
 
@@ -73,6 +77,7 @@ const MessageWebSocket = () => {
           attachments={attachments}
           setAttachments={setAttachments}
           setMessageHistory={setMessageHistory}
+          isMediaLoading={isMediaLoading}
         />
       </div>
     </div>

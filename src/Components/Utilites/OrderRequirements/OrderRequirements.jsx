@@ -1,9 +1,32 @@
 "use client";
-import { fetchData } from "@/config/apiRequests.js";
 import React, { useEffect, useState } from "react";
 import { Button, Card, Modal } from "flowbite-react";
+import { MdDownload } from "react-icons/md";
 import Loading from "../Loading/Loading";
 import UserLoading from "../UserLoading/UserLoading";
+import { fetchData } from "@/config/apiRequests.js";
+
+// Function to handle image click
+const handleImageClick = (url) => {
+  window.open(url, "_blank");
+};
+
+// Function to handle download click
+const handleDownloadClick = (url, event) => {
+  event.stopPropagation(); // Prevent the button click from propagating to the image click handler
+
+  fetch(url)
+    .then((response) => response.blob())
+    .then((blob) => {
+      const link = document.createElement("a");
+      link.href = window.URL.createObjectURL(blob);
+      link.download = url.split("/").pop(); // Set the suggested download file name
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    })
+    .catch((error) => console.error("Error downloading the file:", error));
+};
 
 const OrderRequirements = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -45,7 +68,7 @@ const OrderRequirements = () => {
   console.log(deliveryDetails);
 
   return (
-    <div className="grid gap-y-5 grid-cols-1 md:grid-cols-1   h-[50vh] px-4 md:pt-5 md:pb-3">
+    <div className="grid gap-y-5 grid-cols-1 md:grid-cols-1 h-[50vh] px-4 md:pt-5 md:pb-3">
       {/* 1st */}
       <div className="flex justify-center">
         <Card className="w-[90%] ">
@@ -63,12 +86,12 @@ const OrderRequirements = () => {
                   #{order_basic?.order_id}
                 </span>
               </p>
-              <p class="text-muted mb-0 flex justify-center items-center gap-x-2 mt-1 ">
+              <p className="text-muted mb-0 flex justify-center items-center gap-x-2 mt-1 ">
                 <span className="text-[#444] font-Raleway text-[16px] font-[600]">
                   {" "}
                   Status :{" "}
                 </span>
-                <span class="text-[14px] font-[600] font-Roboto text-[#FFF] bg-[#FF8F5A] px-2 py-[2px] rounded-sm">
+                <span className="text-[14px] font-[600] font-Roboto text-[#FFF] bg-[#FF8F5A] px-2 py-[2px] rounded-sm">
                   {order_basic?.order_status}
                 </span>
               </p>
@@ -78,7 +101,7 @@ const OrderRequirements = () => {
       </div>
       <div className="flex justify-center">
         <Card className="w-[90%] ">
-          <div className="max-w-[330px] h-[80px] flex  items-start gap-x-3   border border-[#E2E2E2]    bg-[#FDFDFD] rounded-md p-3">
+          <div className="max-w-[330px] h-[80px] flex  items-start gap-x-3 border border-[#E2E2E2] bg-[#FDFDFD] rounded-md p-3">
             <div>
               <img
                 className="w-[40px] h-full"
@@ -101,7 +124,7 @@ const OrderRequirements = () => {
             </div>
           </div>
           {/* 2nd */}
-          <div className="max-w-[330px] h-[80px] flex items-start gap-x-3  border border-[#E2E2E2] bg-[#FDFDFD] rounded-md p-3">
+          <div className="max-w-[330px] h-[80px] flex items-start gap-x-3 border border-[#E2E2E2] bg-[#FDFDFD] rounded-md p-3">
             <div>
               <img
                 className="w-[40px] h-full"
@@ -119,7 +142,7 @@ const OrderRequirements = () => {
             </div>
           </div>
           {/* 3rd */}
-          <div className="max-w-[330px] h-[80px] flex items-start gap-x-3  border border-[#E2E2E2] bg-[#FDFDFD] rounded-md p-3">
+          <div className="max-w-[330px] h-[80px] flex items-start gap-x-3 border border-[#E2E2E2] bg-[#FDFDFD] rounded-md p-3">
             <div>
               <img
                 className="w-[40px] h-full"
@@ -137,7 +160,7 @@ const OrderRequirements = () => {
             </div>
           </div>
           {/* 4th */}
-          <div className="max-w-[330px] h-[90px] flex justify-between items-center gap-x-3  border border-[#E2E2E2] bg-[#FDFDFD] rounded-md p-3">
+          <div className="max-w-[330px] h-[90px] flex justify-between items-center gap-x-3 border border-[#E2E2E2] bg-[#FDFDFD] rounded-md p-3">
             <div>
               <img
                 className="w-[50px] h-full"
@@ -190,15 +213,30 @@ const OrderRequirements = () => {
                         </h3>
                         <p className="ml-1">- {requirement.answer}</p>
                       </div>
-                      <div className=" w-[30%]">
+                      <div className="relative w-[30%]">
                         {!imageLoaded && <UserLoading />}{" "}
                         {/* Show loading indicator if image is not loaded */}
                         <img
-                          className={`w-32 ${imageLoaded ? "" : "hidden"}`} // Hide image until loaded
+                          className={`w-full max-h-[200px] rounded-md cursor-pointer ${
+                            imageLoaded ? "" : "hidden"
+                          }`} // Hide image until loaded
                           src={requirement.attachment}
                           alt=""
                           onLoad={() => setImageLoaded(true)} // Set imageLoaded state to true when image loads
+                          onClick={() =>
+                            handleImageClick(requirement.attachment)
+                          } // Open image in new tab
                         />
+                        <div className="absolute bottom-2 right-2">
+                          <button
+                            className="bg-[#FF693B] py-1.5 px-2 rounded-sm shadow-md text-white"
+                            onClick={(event) =>
+                              handleDownloadClick(requirement.attachment, event)
+                            }
+                          >
+                            <MdDownload />
+                          </button>
+                        </div>
                       </div>
                     </div>
                   );
