@@ -19,6 +19,7 @@ import Media_Urls from "@/Components/Utilites/Media_Urls/Media_Urls";
 import { AuthContext } from "@/providers/AuthProviders";
 import Link from "next/link";
 import ServiceOrderRevisions from "@/Components/Utilites/ServiceOrderRevisions/ServiceOrderRevisions";
+import { Spinner } from "flowbite-react";
 
 const SOCKET_URL_ONE = "http://localhost:3000";
 const socket = io(SOCKET_URL_ONE);
@@ -407,34 +408,21 @@ const OrderChat = ({
                   <CiFaceSmile className="text-[20px] " />
                 </span>
               </div>
-              {isImageSending ? (
-                <div className="w-[8%]">
-                  <button
-                    disabled
-                    onClick={() => {
-                      handleSendMessage(inputtedMessage, attachments);
-                      setInputtedMessage("");
-                      setAttachments([]);
-                    }}
-                    className="w-full font-[600] bg-[#FF693B] border border-[#FF693B] text-white hover:text-[#FF693B] hover:bg-[#ffff] transition-all duration-200  text-[16px]  mx-[10%] py-2.5 rounded-[4px]"
-                  >
-                    Uploading ...
-                  </button>
-                </div>
-              ) : (
-                <div className="w-[8%]">
-                  <button
-                    onClick={() => {
-                      handleSendMessage(inputtedMessage, attachments);
-                      setInputtedMessage("");
-                      setAttachments([]);
-                    }}
-                    className="w-full font-[600] bg-[#FF693B] border border-[#FF693B] text-white hover:text-[#FF693B] hover:bg-[#ffff] transition-all duration-200  text-[16px]  mx-[10%] py-2.5 rounded-[4px]"
-                  >
-                    Send
-                  </button>
-                </div>
-              )}
+
+              <div className="w-[8%]">
+                <button
+                  onClick={() => {
+                    handleSendMessage(inputtedMessage, attachments);
+                    setInputtedMessage("");
+                    setAttachments([]);
+                  }}
+                  disabled={isImageSending} // Disable button while loading
+                  className="w-full font-[600] bg-[#FF693B] border border-[#FF693B] text-white hover:text-[#FF693B] hover:bg-[#ffff] transition-all duration-200  text-[16px]  mx-[10%] py-2.5 rounded-[4px]"
+                >
+                  {isImageSending && <Spinner size="sm" className="mr-2" />}
+                  {isImageSending ? "Sending..." : "Send"}
+                </button>
+              </div>
             </div>
           )}
         </div>

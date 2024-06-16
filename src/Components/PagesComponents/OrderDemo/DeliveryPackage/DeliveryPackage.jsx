@@ -5,14 +5,14 @@ import { MdDownload } from "react-icons/md";
 import { Button, Modal } from "flowbite-react";
 import { useState } from "react";
 import { GoPaperclip } from "react-icons/go";
-import Revision from "@/Components/Utilites/Revision/Revision";
 import DeliveryRevision from "./DeliveryRevision";
 
 const DeliveryPackage = ({ delivery }) => {
   const [openModal, setOpenModal] = useState(false);
   const [modalSize, setModalSize] = useState("4xl");
 
-  const { description, media_urls, id, status } = delivery;
+  const { description, media_urls, id, status, updated_at } = delivery;
+  console.log(delivery);
 
   const handleImageClick = (url) => {
     window.open(url, "_blank");
@@ -127,7 +127,7 @@ const DeliveryPackage = ({ delivery }) => {
             ) : (
               <>
                 <button
-                  // onClick={() => handleStatusUpdate("approved")}
+                  onClick={() => handleStatusUpdate("approved")}
                   className="text-[16px] font-[600] text-[#fff] bg-[#FF693B] px-4 py-2 rounded-md hover:shadow-xl transition-all duration-200"
                 >
                   Approve
@@ -147,7 +147,10 @@ const DeliveryPackage = ({ delivery }) => {
                 ? "The order has been approved."
                 : status === "revision"
                 ? "The order has been sent for revision."
-                : "You have until Dec 18, 11:42 to approve or request a revision. Otherwise, the order will mark as complete."}
+                : `You have until ${updated_at.slice(
+                    0,
+                    11
+                  )}  to approve or request a revision. Otherwise, the order will mark as complete.`}
             </p>
           </div>
         </div>

@@ -32,7 +32,7 @@ export const sendChatToServer = async (message, files) => {
     }
     console.log(files);
 
-    const response = await fetch("http://192.168.10.14:8000/api/save/chat", {
+    const response = await fetch("http://192.168.0.103:8000/api/save/chat", {
       method: "POST",
       body: formData,
     });
@@ -50,7 +50,7 @@ export const sendChatToServer = async (message, files) => {
 
 export const fetchChatFromServer = async () => {
   try {
-    const response = await fetch("http://192.168.10.14:8000/api/chat/list", {
+    const response = await fetch("http://192.168.0.103:8000/api/chat/list", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

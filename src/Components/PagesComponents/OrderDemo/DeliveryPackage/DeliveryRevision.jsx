@@ -1,19 +1,31 @@
 "use client";
 import React, { useState } from "react";
 import axios from "axios";
-import Revision from "@/Components/Utilites/Revision/Revision";
-import { Button, Modal } from "flowbite-react";
+import { Button, Modal, Spinner } from "flowbite-react";
+import { FaTimes } from "react-icons/fa";
 
 const DeliveryRevision = ({ openModal, setOpenModal, modalSize, delivery }) => {
   const [text, setText] = useState(""); // State to hold the textarea value
   const [selectedFiles, setSelectedFiles] = useState([]); // State to hold selected files
+  const [filePreviews, setFilePreviews] = useState([]); // State to hold file previews
+  const [isLoading, setIsLoading] = useState(false); // State to manage loading
 
-  const handleFileChange = (files) => {
+  const handleFileChange = (event) => {
+    const files = Array.from(event.target.files);
     setSelectedFiles(files);
+
+    const previews = files.map((file) => {
+      return {
+        url: URL.createObjectURL(file),
+        type: file.type,
+        name: file.name,
+      };
+    });
+    setFilePreviews(previews);
   };
 
   const handleSendRevisionRequest = async () => {
-    console.log(delivery.service_order_id);
+    setIsLoading(true); // Set loading to true when the request starts
     const formData = new FormData();
     formData.append("order", delivery.service_order_id); // Assuming delivery.id is the delivery ID
     formData.append("description", text); // Append the text state correctly
@@ -21,7 +33,7 @@ const DeliveryRevision = ({ openModal, setOpenModal, modalSize, delivery }) => {
     // Append selected files if available
     if (selectedFiles && selectedFiles.length > 0) {
       for (let i = 0; i < selectedFiles.length; i++) {
-        const file = selectedFiles[i].file;
+        const file = selectedFiles[i];
         formData.append("attachment[]", file);
       }
     }
@@ -38,11 +50,22 @@ const DeliveryRevision = ({ openModal, setOpenModal, modalSize, delivery }) => {
       );
       console.log(response.data);
       // Handle success (e.g., show a success message, close modal, etc.)
+      // Reset the states to clear the inputs
+      setText("");
+      setSelectedFiles([]);
+      setFilePreviews([]);
       setOpenModal(false);
     } catch (error) {
       console.error("Error sending revision request:", error);
       // Handle error (e.g., show an error message)
+    } finally {
+      setIsLoading(false); // Set loading to false when the request ends
     }
+  };
+
+  const removeImage = (index) => {
+    setSelectedFiles((prev) => prev.filter((_, i) => i !== index));
+    setFilePreviews((prev) => prev.filter((_, i) => i !== index));
   };
 
   return (
@@ -72,19 +95,107 @@ const DeliveryRevision = ({ openModal, setOpenModal, modalSize, delivery }) => {
                 value={text}
                 onChange={(e) => setText(e.target.value)}
               />
+              <input
+                type="file"
+                id="fileInput"
+                multiple
+                onChange={handleFileChange}
+                className="hidden"
+              />
+              <div className="w-full flex justify-center text-[16px] font-bold  border-[2px] border-dashed py-5 mt-3">
+                <label
+                  htmlFor="fileInput"
+                  className=" text-black py-2 px-4 rounded cursor-pointer "
+                >
+                  Drag or Drop Your files
+                </label>
+              </div>
             </div>
-            <div>
-              <Revision onFileChange={handleFileChange} />
+
+            <div className="flex flex-wrap gap-2">
+              {filePreviews.map((file, index) => (
+                <div key={index} className="relative mr-[10px]">
+                  {file.type.startsWith("image/") ? (
+                    <img
+                      src={file.url}
+                      alt={`Preview ${index}`}
+                      className="w-[100px] h-[100px]"
+                    />
+                  ) : file.type === "application/pdf" ? (
+                    <img
+                      src="https://cdn3.iconfinder.com/data/icons/muksis/128/pdf-512.png"
+                      alt={`PDF Preview ${index}`}
+                      className="w-[100px] h-[100px]"
+                    />
+                  ) : file.type === "image/vnd.adobe.photoshop" ? (
+                    <img
+                      src="https://cdn3.iconfinder.com/data/icons/muksis/128/psd-512.png"
+                      alt={`PSD Preview ${index}`}
+                      className="w-[100px] h-[100px]"
+                    />
+                  ) : file.type === "application/vnd.adobe.xd" ? (
+                    <img
+                      src="http://192.168.0.103:8000/js/icons/xd.png"
+                      alt={`XD Preview ${index}`}
+                      className="w-[100px] h-[100px]"
+                    />
+                  ) : file.type === "application/msword" ||
+                    file.type ===
+                      "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ? (
+                    <img
+                      src="http://192.168.0.103:8000/js/icons/doc.png"
+                      alt={`Word Preview ${index}`}
+                      className="w-[100px] h-[100px]"
+                    />
+                  ) : file.type === "application/vnd.ms-excel" ||
+                    file.type ===
+                      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ? (
+                    <img
+                      src="http://192.168.0.103:8000/js/icons/excel.png"
+                      alt={`Excel Preview ${index}`}
+                      className="w-[100px] h-[100px]"
+                    />
+                  ) : file.type === "text/plain" ? (
+                    <img
+                      src="http://192.168.0.103:8000/js/icons/txt.png"
+                      alt={`Text Preview ${index}`}
+                      className="w-[100px] h-[100px]"
+                    />
+                  ) : file.type === "application/zip" ||
+                    file.type === "application/x-zip-compressed" ? (
+                    <img
+                      src="http://192.168.0.103:8000/js/icons/zip.png"
+                      alt={`Zip Preview ${index}`}
+                      className="w-[100px] h-[100px]"
+                    />
+                  ) : (
+                    <img
+                      src="https://cdn-icons-png.flaticon.com/512/1388/1388902.png"
+                      alt={`Unsupported Preview ${index}`}
+                      className="w-[100px] h-[100px]"
+                    />
+                  )}
+                  <FaTimes
+                    className="absolute top-[5px] right-[5px] cursor-pointer text-[15px] text-white bg-[#95AFC0] rounded-sm"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      removeImage(index);
+                    }}
+                  />
+                </div>
+              ))}
             </div>
           </div>
         </Modal.Body>
         <div className="mx-6 space-y-5 pb-5">
           <div>
             <Button
-              className="bg-[#FF693B]"
+              className="bg-[#FF693B] flex items-center"
               onClick={handleSendRevisionRequest}
+              disabled={isLoading} // Disable button while loading
             >
-              Send Revision Request
+              {isLoading && <Spinner size="sm" className="mr-2" />}
+              {isLoading ? "Sending..." : "Send Revision Request"}
             </Button>
           </div>
         </div>
