@@ -23,12 +23,16 @@ export const sendMessageToServer = async (message, files) => {
     formData.append("receiver_id", 18);
     formData.append("message", message);
 
-    // Append selected files if available
-    if (files && files.length > 0) {
+    // Append selected files if available and not exceeding the maximum limit
+    if (files && files.length > 0 && files.length <= 6) {
       for (const file of files) {
         formData.append("attachment[]", file);
       }
+    } else if (files && files.length > 6) {
+      // Show an error message or handle the case when the maximum number of attachments is exceeded
+      console.log("Maximum number of attachments (6) exceeded.");
     }
+
     console.log(files);
     // http://192.168.0.103:8000
     const response = await fetch(
@@ -49,7 +53,6 @@ export const sendMessageToServer = async (message, files) => {
     throw error;
   }
 };
-
 export const fetchMessagesFromServer = async () => {
   try {
     const response = await fetch(

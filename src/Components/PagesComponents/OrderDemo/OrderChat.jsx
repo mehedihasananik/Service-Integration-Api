@@ -20,6 +20,7 @@ import { AuthContext } from "@/providers/AuthProviders";
 import Link from "next/link";
 import ServiceOrderRevisions from "@/Components/Utilites/ServiceOrderRevisions/ServiceOrderRevisions";
 import { Spinner } from "flowbite-react";
+import toast from "react-hot-toast";
 
 const SOCKET_URL_ONE = "http://localhost:3000";
 const socket = io(SOCKET_URL_ONE);
@@ -88,17 +89,21 @@ const OrderChat = ({
   }
 
   const onDrop = (acceptedFiles) => {
-    const newattachments = acceptedFiles.map((file) =>
-      Object.assign(file, {
-        preview: URL.createObjectURL(file),
-      })
-    );
-    setAttachments((prevattachments) => [
-      ...prevattachments,
-      ...newattachments,
-    ]);
+    if (attachments.length + acceptedFiles.length <= 6) {
+      const newattachments = acceptedFiles.map((file) =>
+        Object.assign(file, {
+          preview: URL.createObjectURL(file),
+        })
+      );
+      setAttachments((prevattachments) => [
+        ...prevattachments,
+        ...newattachments,
+      ]);
 
-    setSelectedFile(acceptedFiles[0]);
+      setSelectedFile(acceptedFiles[0]);
+    } else {
+      toast.error("You cannot add more than 6 attachments.");
+    }
   };
 
   const removeImage = (indexToRemove) => {
@@ -314,16 +319,16 @@ const OrderChat = ({
                   maxLength={2000} // Limit to 500 characters
                 />
 
-                <div className="flex gap-2 absolute right-3 top-[13px]">
+                <div className="flex h-[0px] gap-2 absolute right-0 top-[0px]">
                   <label htmlFor="file-upload" className="cursor-pointer">
-                    <div className="flex relative top-[-150px]">
+                    <div className="flex relative top-[-108px]">
                       {attachments.map((file, index) => (
                         <div key={index} className="relative mr-[10px]">
                           {file.type.startsWith("image/") ? (
                             <img
                               src={file.preview}
                               alt={`Preview ${index}`}
-                              className="w-[100px] h-[100px]"
+                              className="w-[100px] h-[100px] object-cover"
                             />
                           ) : file.type === "application/pdf" ? (
                             <img
