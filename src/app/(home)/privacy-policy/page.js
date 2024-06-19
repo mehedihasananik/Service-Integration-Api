@@ -1,4 +1,5 @@
 import Container from "@/Components/Container/Container";
+import Link from "next/link";
 import React from "react";
 
 export const metadata = {
@@ -19,26 +20,42 @@ const PrivacyPolicy = () => {
 
           <p className="mb-4">
             Envobyte collects and uses information through our website
-            https://www.envobyte.com/ or our online communications (such as
-            email lists) for the purposes set forth within this policy.
-            Information collected includes personal information provided in
-            contact enquiries, purchases, or when an individual subscribes to
-            our email list. We require your e-mail address at a minimum,
-            however, in some cases we also ask for additional information to
-            help us better service you and fulfil your request. We do not
-            collect any personal information that you do not expressly provide.
-            We value your privacy, and want to give you more control over how we
-            collect your personal data. We will not sell, rent, or share your
-            personal information to any third party for marketing purposes
-            without your consent. Envobyte complies with the Data Protection
-            Laws of the World, US and EU guidelines when dealing with personal
-            information. Personal information is information about an
-            identifiable individual (a natural person). This policy sets out how
-            we will collect, use, disclose and protect your personal
+            <Link
+              target="_blank"
+              className="text-[#FF693B]"
+              href={"https://www.envobyte.com"}
+            >
+              {" "}
+              https://www.envobyte.com
+            </Link>{" "}
+            or our online communications (such as email lists) for the purposes
+            set forth within this policy. Information collected includes
+            personal information provided in contact enquiries, purchases, or
+            when an individual subscribes to our email list. We require your
+            e-mail address at a minimum, however, in some cases we also ask for
+            additional information to help us better service you and fulfil your
+            request. We do not collect any personal information that you do not
+            expressly provide. We value your privacy, and want to give you more
+            control over how we collect your personal data. We will not sell,
+            rent, or share your personal information to any third party for
+            marketing purposes without your consent. Envobyte complies with the
+            Data Protection Laws of the World, US and EU guidelines when dealing
+            with personal information. Personal information is information about
+            an identifiable individual (a natural person). This policy sets out
+            how we will collect, use, disclose and protect your personal
             information. This policy does not limit or exclude any of your
             rights. If you wish to seek further information on the Data
             Protection Laws of the World, see
-            https://iapp.org/media/pdf/resource_center/Data-Protection-Full.pdf
+            <Link
+              target="_blank"
+              className="text-[#FF693B]"
+              href={
+                " https://iapp.org/media/pdf/resource_center/Data-Protection-Full.pdf"
+              }
+            >
+              {" "}
+              https://iapp.org/media/pdf/resource_center/Data-Protection-Full.pdf
+            </Link>
           </p>
 
           <h2 className="text-2xl font-bold mb-2">

@@ -9,13 +9,20 @@ import toast from "react-hot-toast";
 
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/bootstrap.css";
+import { FaCamera } from "react-icons/fa";
 
 const Profile = () => {
   const [profile, setProfile] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
   const [backgroundImage, setBackgroundImage] = useState("");
 
-  const [phone, setPhone] = useState(profile?.phone_number);
+  const [phone, setPhone] = useState("");
+  const [countryCodeShow, setCountryCodeShow] = useState();
+
+  const handleOnChangeCountryCode = (value, country) => {
+    setPhone(value);
+    setCountryCodeShow("+" + country.dialCode);
+  };
 
   const userData =
     typeof window !== "undefined"
@@ -36,6 +43,7 @@ const Profile = () => {
       );
       const data = await response.json();
       setProfile(data);
+      setCountryCodeShow(data.country_code);
       setBackgroundImage(data.avatar ? `url(${data.avatar})` : "");
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -63,7 +71,7 @@ const Profile = () => {
       formData.append("state", profile.state);
       formData.append("zip", profile.zip);
       formData.append("address", profile.address);
-      formData.append("country_code", profile.country_code);
+      formData.append("country_code", countryCodeShow);
       if (selectedFile) {
         formData.append("user_avatar", selectedFile);
       }
@@ -78,6 +86,7 @@ const Profile = () => {
           if (response.data.resultsuccess) {
             const newUserData = JSON.parse(localStorage.getItem("userData"));
             newUserData.image = response.data.userphoto;
+            newUserData.name = profile.first_name;
             localStorage.setItem("userData", JSON.stringify(newUserData));
             window.dispatchEvent(new Event("storage"));
             console.log(newUserData);
@@ -156,7 +165,7 @@ const Profile = () => {
                     style={{ backgroundImage }}
                     className={`mx-auto flex justify-center w-[141px] h-[141px] rounded-full bg-cover bg-center bg-no-repeat`}
                   >
-                    <div className="bg-white/90 rounded-full w-4 h-4 text-center ml-28 mt-4">
+                    <div className="bg-white/90 rounded-full w-0 h-0 text-center ml-28 mt-4">
                       <input
                         type="file"
                         name="user_avatar"
@@ -165,33 +174,16 @@ const Profile = () => {
                         onChange={handleFileChange}
                       />
                       <label htmlFor="upload_profile">
-                        <svg
-                          data-slot="icon"
-                          className="w-6 h-5 text-blue-700 cursor-pointer"
-                          fill="none"
-                          strokeWidth="1.5"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                          aria-hidden="true"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M6.827 6.175A2.31 2.31 0 0 1 5.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 0 0-1.134-.175 2.31 2.31 0 0 1-1.64-1.055l-.822-1.316a2.192 2.192 0 0 0-1.736-1.039 48.774 48.774 0 0 0-5.232 0 2.192 2.192 0 0 0-1.736 1.039l-.821 1.316Z"
-                          ></path>
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M16.5 12.75a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0ZM18.75 10.5h.008v.008h-.008V10.5Z"
-                          ></path>
-                        </svg>
+                        <FaCamera
+                          style={{ color: "FF693B", width: "17px" }}
+                          className="w-6 h-6 text-blue-700 cursor-pointer"
+                        />
                       </label>
                     </div>
                   </div>
                 </div>
                 <h3 className="text-center mt-3 font-semibold dark:text-gray-300 capitalize">
-                  {profile?.first_name}
+                  {profile?.first_name} {profile?.last_name}
                 </h3>
                 <h2 className="text-center mt-3 font-semibold dark:text-gray-300">
                   Upload Profile and Name.
@@ -252,10 +244,10 @@ const Profile = () => {
                       country={"us"}
                       enableSearch={true}
                       type="text"
-                      className="mt-2 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                      className="mt-1 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
                       placeholder="Country Code"
                       value={profile?.phone_number}
-                      onChange={(phone) => setPhone(phone)}
+                      onChange={handleOnChangeCountryCode}
                     />
 
                     <input
@@ -312,7 +304,7 @@ const Profile = () => {
                       name="country_code"
                       className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
                       placeholder="Country Code"
-                      defaultValue={profile?.country_code}
+                      defaultValue={countryCodeShow}
                       onChange={handleInputChange}
                     />
                   </div>
