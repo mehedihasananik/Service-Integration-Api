@@ -45,7 +45,7 @@ const SinglePage = ({ params }) => {
   return (
     <div className="flex justify-center space-x-16 my-20 px-32">
       <ServiceProductInfo productInfo={services} />
-      <PaymentInfo services={services} />
+      <PaymentInfo productInfo={services} />
     </div>
   );
 };

@@ -1,9 +1,11 @@
-import React, { useContext } from "react";
+"use client";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { BiRevision } from "react-icons/bi";
 import { MdOutlineAccessTimeFilled } from "react-icons/md";
 import Link from "next/link";
 import { AuthContext } from "@/providers/AuthProviders";
+import { useRouter } from "next/navigation";
 
 const CustomMessageOffer = ({ customoffer }) => {
   const { setCustomId } = useContext(AuthContext);
@@ -20,6 +22,8 @@ const CustomMessageOffer = ({ customoffer }) => {
     revision,
     service_items_id,
   } = customoffer;
+  const router = useRouter();
+  const [orderId, setOrderId] = useState(null);
 
   const handleStatusUpdate = async (status) => {
     try {
@@ -33,6 +37,7 @@ const CustomMessageOffer = ({ customoffer }) => {
 
       if (response.status === 200) {
         console.log("Order status updated:", response.data);
+        setOrderId(response.data.order_id);
         // You can add any additional logic here, like updating the UI or showing a success message.
       } else {
         console.error("Failed to update order status");
@@ -42,11 +47,17 @@ const CustomMessageOffer = ({ customoffer }) => {
     }
   };
 
+  useEffect(() => {
+    if (orderId) {
+      router.push(`/checkout/${orderId}`);
+    }
+  }, [orderId, router]);
+
   const handlePassData = () => {
-    console.log(id);
     setCustomId(id);
     localStorage.setItem("customId", id);
   };
+  console.log(orderId);
 
   return (
     <div className="lg:mx-0 w-[80%] pb-4">
@@ -101,36 +112,20 @@ const CustomMessageOffer = ({ customoffer }) => {
               </span>
             </div>
           </div>
-          {order_status === "cancel" ? (
-            <h3 className="text-lg font-bold">
-              The order request has been removed
-            </h3>
-          ) : order_status === "Approved" ? (
-            <>
-              <h3 className="text-lg font-bold">
-                The order request has been approved
-              </h3>
-            </>
-          ) : (
-            <div className="space-x-7">
-              <button
-                onClick={() => handleStatusUpdate("cancel")}
-                className="text-[#000] text-[14px] w-[600] bg-[#B0B0B0] hover:shadow-xl rounded-[4px] px-5 py-1.5 font-[600] transition-all duration-300"
-              >
-                Cancel
-              </button>
-              <Link
-                href={"/checkout"}
-                onClick={() => {
-                  handlePassData();
-                  handleStatusUpdate("Approved");
-                }}
-                className="text-[#FFF] text-[14px] w-[600] bg-[#FF693B] hover:shadow-xl rounded-[4px] px-5 py-1.5 font-[600] transition-all duration-300"
-              >
-                Accept
-              </Link>
-            </div>
-          )}
+          <div className="space-x-7">
+            <button
+              onClick={() => handleStatusUpdate("cancel")}
+              className="text-[#000] text-[14px] w-[600] bg-[#B0B0B0] hover:shadow-xl rounded-[4px] px-5 py-1.5 font-[600] transition-all duration-300"
+            >
+              Cancel
+            </button>
+            <button
+              onClick={() => handleStatusUpdate("Approved")}
+              className="text-[#FFF] text-[14px] w-[600] bg-[#FF693B] hover:shadow-xl rounded-[4px] px-5 py-1.5 font-[600] transition-all duration-300"
+            >
+              Accept
+            </button>
+          </div>
         </div>
       </div>
     </div>

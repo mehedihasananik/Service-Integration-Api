@@ -302,3 +302,14 @@
 .filepond--drop-label {
   background: #fff !important;
 }  */
+.react-tel-input .form-control {
+  font-size: 16px;
+  background: #ffffff;
+  border: 1px solid #000000 !important;
+  border-radius: 5px;
+  width: 378px !important;
+  outline: none;
+  padding: 18.5px 14px 18.5px 60px;
+  transition: box-shadow ease 0.25s, border-color ease 0.25s;
+  color: #495057;
+}

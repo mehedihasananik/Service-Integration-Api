@@ -54,7 +54,7 @@ const DashBoardContent = () => {
             {projects
               ?.reverse()
               .slice(0, 4)
-              .map((project) => {
+              .map((project, index) => {
                 const {
                   sevice_items,
                   order_price,
@@ -67,7 +67,7 @@ const DashBoardContent = () => {
                 return (
                   <Link
                     onClick={() => handlePassData(order_id)}
-                    key={project.id}
+                    key={index}
                     href={
                       order_status === "Requirement Needed"
                         ? `requirement-page/${service_order_id}`
