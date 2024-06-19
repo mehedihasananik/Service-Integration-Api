@@ -58,15 +58,15 @@ const ServiceOrderRevisions = ({ delivery }) => {
                     preview =
                       "https://cdn3.iconfinder.com/data/icons/muksis/128/psd-512.png";
                   } else if (fileType === "xd") {
-                    preview = "http://192.168.0.103:8000/js/icons/xd.png";
+                    preview = "http://192.168.10.15:8000/js/icons/xd.png";
                   } else if (fileType === "doc" || fileType === "docx") {
-                    preview = "http://192.168.0.103:8000/js/icons/doc.png";
+                    preview = "http://192.168.10.15:8000/js/icons/doc.png";
                   } else if (fileType === "xls" || fileType === "xlsx") {
-                    preview = "http://192.168.0.103:8000/js/icons/excel.png";
+                    preview = "http://192.168.10.15:8000/js/icons/excel.png";
                   } else if (fileType === "txt") {
-                    preview = "http://192.168.0.103:8000/js/icons/txt.png";
+                    preview = "http://192.168.10.15:8000/js/icons/txt.png";
                   } else if (fileType === "zip") {
-                    preview = "http://192.168.0.103:8000/js/icons/zip.png";
+                    preview = "http://192.168.10.15:8000/js/icons/zip.png";
                   } else if (["jpg", "jpeg", "png", "gif"].includes(fileType)) {
                     preview = fileUrl;
                   } else {
