@@ -77,14 +77,16 @@ const ServiceOrderRevisions = ({ delivery }) => {
                   return (
                     <div
                       key={fileIndex}
-                      className="relative h-[150px] w-[250px] flex items-center justify-center bg-[#F3F6F9] rounded-lg cursor-pointer"
+                      className="relative group h-[180px] w-[250px] flex items-center justify-center bg-[#F3F6F9] rounded-lg cursor-pointer mb-3"
                       onClick={() => handleImageClick(fileUrl)}
                     >
-                      <img
-                        className="max-h-[120px] py-3"
-                        src={preview}
-                        alt=""
-                      />
+                      <div className="group-hover:brightness-75 cursor-pointer pointer-events-none">
+                        <img
+                          className=" h-[150px]  pointer-events-auto "
+                          src={preview}
+                          alt=""
+                        />
+                      </div>
                       <div className="absolute bottom-[20px] right-3 flex justify-start group-hover:brightness-100">
                         <button
                           className="bg-[#FF693B] py-1.5 px-2 rounded-sm shadow-md text-white"

@@ -35,8 +35,8 @@ const Tawk = () => {
   return (
     <div className="bg-red-500">
       <TawkMessengerReact
-        propertyId="662a19a31ec1082f04e6b451"
-        widgetId="1hsa78a8l"
+        propertyId="666acd2c9a809f19fb3d3235"
+        widgetId="1i08j2u6t"
         ref={tawkMessengerRef}
       />
     </div>

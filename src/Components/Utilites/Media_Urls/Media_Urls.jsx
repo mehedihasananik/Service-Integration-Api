@@ -60,9 +60,9 @@ const Media_Urls = ({ media_urls }) => {
           const iconSrc = fileTypeIcons[fileType] || fallbackIconUrl; // Get the icon URL for the file type, or use fallback
           const fileExtension = item.split(".").pop(); // Extract file extension from URL
           return (
-            <div key={index} className="group">
+            <div key={index} className="group relative">
               <div
-                className="relative   flex items-center justify-center bg-[#F3F6F9] rounded-lg group-hover:brightness-75 cursor-pointer pointer-events-none"
+                className="  h-[180px]  flex items-center justify-center bg-[#F3F6F9] rounded-lg group-hover:brightness-75 cursor-pointer pointer-events-none"
                 onClick={() => handleImageClick(item)}
               >
                 {fileType === "jpg" ||
@@ -70,25 +70,25 @@ const Media_Urls = ({ media_urls }) => {
                 fileType === "png" ||
                 fileType === "webp" ? (
                   <img
-                    className=" max-h-[200px]  pointer-events-auto "
+                    className=" h-[180px]  pointer-events-auto "
                     src={item}
                     alt=""
                   />
                 ) : (
                   <img
-                    className="max-h-[200px]  py-2 pointer-events-auto"
+                    className="h-[120px]  pointer-events-auto"
                     src={iconSrc}
                     alt={`File Thumbnail`}
                   />
                 )}
-                <div className="absolute bottom-[20px] right-3 flex justify-start pointer-events-auto group-hover:brightness-100">
-                  <button
-                    className="bg-[#FF693B] py-1.5 px-2 rounded-sm shadow-md text-white"
-                    onClick={(event) => handleDownloadClick(item, event)}
-                  >
-                    <MdDownload />
-                  </button>
-                </div>
+              </div>
+              <div className="absolute bottom-[40px] right-3 flex justify-start pointer-events-auto ">
+                <button
+                  className="bg-[#FF693B] py-1.5 px-2 rounded-sm shadow-md text-white"
+                  onClick={(event) => handleDownloadClick(item, event)}
+                >
+                  <MdDownload />
+                </button>
               </div>
               <div className="text-sm mt-2 text-center w-[250px]">{`${fileName}.${fileExtension}`}</div>{" "}
               {/* Display file name with extension */}

@@ -6,10 +6,11 @@ import { MdOutlinePayments } from "react-icons/md";
 import CheckoutProductInfo from "@/Components/Utilites/CheckoutProductInfo/CheckoutProductInfo";
 import toast from "react-hot-toast";
 
-const Checkout = () => {
+const PaymentInfo = ({ productInfo }) => {
   const [scriptLoaded, setScriptLoaded] = useState(false);
-  const [productInfo, setProductInfo] = useState([]);
+
   const [loading, setLoading] = useState(false); // Loading state
+  console.log(productInfo);
 
   useEffect(() => {
     const script = document.createElement("script");
@@ -101,12 +102,7 @@ const Checkout = () => {
     <Container>
       <div className="mx-auto max-w-lg">{/* Loading indicator */}</div>
       <div>
-        <div className="flex justify-center space-x-16 my-20 px-32">
-          <CheckoutProductInfo
-            productInfo={productInfo}
-            setProductInfo={setProductInfo}
-          />
-
+        <div>
           {/* payment details */}
           {scriptLoaded && (
             <div className="mt-10 bg-gray-50 p-5 lg:mt-0 rounded-lg">
@@ -142,14 +138,14 @@ const Checkout = () => {
                         </p>
                         <p className="font-semibold text-gray-900">
                           {" "}
-                          ${productInfo.package_price}
+                          ${productInfo?.package_price}
                         </p>
                       </div>
                     </div>
                     <div className="mt-6 flex items-center justify-between">
                       <p className="text-sm font-medium text-gray-900">Total</p>
                       <p className="text-2xl font-semibold text-gray-900">
-                        ${productInfo.package_price}
+                        ${productInfo?.package_price}
                       </p>
                     </div>
                     {loading ? (
@@ -179,4 +175,4 @@ const Checkout = () => {
   );
 };
 
-export default Checkout;
+export default PaymentInfo;

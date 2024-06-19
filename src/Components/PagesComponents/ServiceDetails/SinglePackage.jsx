@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useLayoutEffect, useState } from "react";
+import React, { useContext, useLayoutEffect, useState, useEffect } from "react";
 import { Tooltip } from "flowbite-react";
 import { IoCheckmarkSharp } from "react-icons/io5";
 import { FaRegClock } from "react-icons/fa6";
@@ -13,6 +13,7 @@ const SinglePackage = ({ item, setOpenModal }) => {
   const { setItemId } = useContext(AuthContext);
 
   const [userData, setUserData] = useState(null);
+  const [orderId, setOrderId] = useState(null);
 
   useLayoutEffect(() => {
     if (typeof window !== "undefined") {
@@ -21,13 +22,19 @@ const SinglePackage = ({ item, setOpenModal }) => {
     }
   }, []);
 
+  useEffect(() => {
+    if (orderId) {
+      router.push(`/checkout/${orderId}`);
+    }
+  }, [orderId, router]);
+
   const handlePlaceOrder = async () => {
     const data = {
       user_id: userData.id,
       service_package: item.id,
       sevice_items_id: item.sevice_items_id,
       package_price: item.package_price,
-      payment_status: "done",
+      payment_status: "pending",
       order_status: "Requirement Needed",
     };
 
@@ -44,25 +51,25 @@ const SinglePackage = ({ item, setOpenModal }) => {
       );
 
       const responseData = await response.json();
-      // console.log(responseData);
-      if (responseData.resultsuccess) {
-        router.push("/checkout");
+
+      if (responseData.order_id) {
+        setOrderId(responseData.order_id);
       }
-      // Log the response from the API
     } catch (error) {
       console.error("Error:", error);
     }
   };
+
   const handlePassData = () => {
     setItemId(item.id);
     localStorage.setItem("itemId", item.id);
   };
 
   return (
-    <div className=" md:mx-[10%] lg:mx-0">
+    <div className="md:mx-[10%] lg:mx-0">
       <div
         key={item.id}
-        className=" border border-[#CBD5E1]  transition-all duration-300  hover:border-[#FF693B] px-8 py-10 rounded-3xl 6xl:w-[400px] 6xl:gap-x-20"
+        className="border border-[#CBD5E1] transition-all duration-300 hover:border-[#FF693B] px-8 py-10 rounded-3xl 6xl:w-[400px] 6xl:gap-x-20"
       >
         {/* title */}
         <div className="h-[95px]">
@@ -77,53 +84,45 @@ const SinglePackage = ({ item, setOpenModal }) => {
         </div>
         {/* price */}
         <div className="md:h-[50px] xl:h-[60px] xxl:h-[50px] mt-[20px] md:mt-0">
-          <h2 className=" md:my-2 text-[20px] md:text-[32px] font-semibold font-Raleway flex items-center">
+          <h2 className="md:my-2 text-[20px] md:text-[32px] font-semibold font-Raleway flex items-center">
             $ <span>{item.package_price}</span>
           </h2>
         </div>
         {/* order button */}
         <div className="py-4 mt-4 md:mt-0 md:pb-8 flex justify-center">
           {userData ? (
-            <Link
-              href={"/checkout"}
-              onClick={handlePassData}
-              className="text-[16px]  w-[100%] text-center font-medium text-[#FF693B] border border-[#FF693B] px-6 py-2 rounded-md hover:text-white hover:bg-[#FF693B] transition-all duration-300"
+            <button
+              onClick={handlePlaceOrder}
+              className="text-[16px] w-[100%] text-center font-medium text-[#FF693B] border border-[#FF693B] px-6 py-2 rounded-md hover:text-white hover:bg-[#FF693B] transition-all duration-300"
             >
               Place Order Now
-            </Link>
+            </button>
           ) : (
-            <>
-              <button
-                onClick={() => setOpenModal(true)}
-                className="text-[16px] font-medium text-[#FF693B] border border-[#FF693B] px-6 py-2 w-full rounded-md hover:text-white hover:bg-[#FF693B] transition-all duration-300"
-              >
-                Place Order Now
-              </button>
-            </>
+            <button
+              onClick={() => setOpenModal(true)}
+              className="text-[16px] font-medium text-[#FF693B] border border-[#FF693B] px-6 py-2 w-full rounded-md hover:text-white hover:bg-[#FF693B] transition-all duration-300"
+            >
+              Place Order Now
+            </button>
           )}
         </div>
         {/* order details */}
         <div className="space-y-5 md:h-[150px]">
-          {item?.package_details.map((item, index) => {
-            return (
-              <div
-                key={index}
-                className="flex justify-start items-center gap-5"
-              >
-                <span>
-                  <IoCheckmarkSharp className="text-[#FF8F5A] w-[16px] h-[16px]" />
-                </span>
-                <span className="text-[#646464] text-[16px] font-Roboto">
-                  {item.package_item}
-                </span>
-              </div>
-            );
-          })}
+          {item?.package_details.map((item, index) => (
+            <div key={index} className="flex justify-start items-center gap-5">
+              <span>
+                <IoCheckmarkSharp className="text-[#FF8F5A] w-[16px] h-[16px]" />
+              </span>
+              <span className="text-[#646464] text-[16px] font-Roboto">
+                {item.package_item}
+              </span>
+            </div>
+          ))}
         </div>
         {/* delivery date */}
         <div className="flex pt-14 lg:pt-28 items-center justify-between">
           {/* 1st */}
-          <div className="flex items-center gap-1.5 font-Raleway  font-semibold">
+          <div className="flex items-center gap-1.5 font-Raleway font-semibold">
             <span>
               <FaRegClock className="w-[24px] h-[24px]" />
             </span>
@@ -149,12 +148,11 @@ const SinglePackage = ({ item, setOpenModal }) => {
               </Tooltip>
             </div>
           </div>
-          <div className="flex gap-1 items-center justify-center font-Raleway  font-semibold">
+          <div className="flex gap-1 items-center justify-center font-Raleway font-semibold">
             <span>
               <BiRevision className="w-[24px] h-[24px]" />
             </span>
             <span className="text-[12px] md:text-[16px]">
-              {" "}
               {item.revision} {item.revision === "1" ? "Revision" : "Revisions"}
             </span>
           </div>

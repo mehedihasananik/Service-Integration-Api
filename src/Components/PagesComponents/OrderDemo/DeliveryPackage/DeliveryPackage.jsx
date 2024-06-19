@@ -74,9 +74,10 @@ const DeliveryPackage = ({ delivery }) => {
       <div className="flex flex-col md:flex-row md:gap-x-4">
         <div>
           <Image
+            className="w-[40px] h-[40px] rounded-lg"
             width={50}
             height={50}
-            src="/assets/msgAvater.png"
+            src="/assets/icon_for_favicon.png"
             alt="icon"
           />
         </div>
@@ -99,10 +100,10 @@ const DeliveryPackage = ({ delivery }) => {
             {media_urls.map((item, index) => (
               <div key={index} className="group relative text-center">
                 <div
-                  className="h-[150px] flex items-center justify-center bg-[#F3F6F9] rounded-lg group-hover:brightness-75 cursor-pointer"
+                  className="h-[180px] flex items-center justify-center bg-[#F3F6F9] rounded-lg group-hover:brightness-75 cursor-pointer"
                   onClick={() => handleImageClick(item)}
                 >
-                  <img className="max-h-[120px] py-3 " src={item} alt="" />
+                  <img className="h-[150px] py-3 " src={item} alt="" />
                 </div>
                 <div className="absolute bottom-[10px] left-0 right-4 flex justify-end">
                   <button

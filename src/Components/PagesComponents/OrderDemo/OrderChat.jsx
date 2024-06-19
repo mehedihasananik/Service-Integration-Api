@@ -163,7 +163,7 @@ const OrderChat = ({
         className="bg-[#FCFCFC] flex-grow overflow-y-auto"
       >
         <div className="flex justify-between items-center mx-4 bg-[#FFFFFF] my-5 rounded-lg  ">
-          <div className="flex gap-x-3 bg-[#FFFFFF]">
+          {/* <div className="flex gap-x-3 bg-[#FFFFFF]">
             <div>
               {" "}
               <Image
@@ -180,12 +180,13 @@ const OrderChat = ({
               </span>
               <span className="text-[#777777] font-Raleway">Online</span>
             </div>
-          </div>
+          </div> 
           <div>
             <button>
               <IoMdMore className="text-[25px]" />
             </button>
           </div>
+          */}
         </div>
         <div className="bg-[#fff] px-4">
           <div className="mb-[8%]">
@@ -220,7 +221,7 @@ const OrderChat = ({
                           className="w-[40px] h-[40px] rounded-lg"
                           src={
                             senderName === "Envobyte"
-                              ? "/assets/msgAvater.png"
+                              ? "/assets/icon_for_favicon.png"
                               : ` ${userData.image}`
                           }
                           alt=""

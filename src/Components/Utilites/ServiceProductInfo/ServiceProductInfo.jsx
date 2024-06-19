@@ -7,7 +7,7 @@ const ServiceProductInfo = ({ productInfo }) => {
     <div>
       <div>
         {productInfo ? (
-          <div className=" h-[640px] border border-[#CBD5E1]  transition-all duration-300  hover:border-[#FF693B] px-8 py-10 rounded-lg">
+          <div className="  border border-[#CBD5E1]  transition-all duration-300  hover:border-[#FF693B] px-8 py-10 rounded-lg">
             {/* title */}
             <div className="">
               <div className="space-y-5">
