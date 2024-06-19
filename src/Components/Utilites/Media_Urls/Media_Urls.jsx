@@ -48,7 +48,7 @@ const fallbackIconUrl =
 const Media_Urls = ({ media_urls }) => {
   return (
     <div>
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 pb-2">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 pb-2 pt-3">
         {media_urls.map((item, index) => {
           const fileName = item
             .split("/")
@@ -82,7 +82,7 @@ const Media_Urls = ({ media_urls }) => {
                   />
                 )}
               </div>
-              <div className="absolute bottom-[40px] right-3 flex justify-start pointer-events-auto ">
+              <div className="absolute bottom-[0px] 6xl:bottom-10 right-3 flex justify-start pointer-events-auto ">
                 <button
                   className="bg-[#FF693B] py-1.5 px-2 rounded-sm shadow-md text-white"
                   onClick={(event) => handleDownloadClick(item, event)}
@@ -90,7 +90,9 @@ const Media_Urls = ({ media_urls }) => {
                   <MdDownload />
                 </button>
               </div>
-              <div className="text-sm mt-2 text-center w-[250px]">{`${fileName}.${fileExtension}`}</div>{" "}
+              <div className="text-sm mt-2 text-center w-[250px]">
+                {`${fileName}..${fileExtension}`}
+              </div>{" "}
               {/* Display file name with extension */}
             </div>
           );

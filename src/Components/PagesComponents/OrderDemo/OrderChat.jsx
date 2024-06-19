@@ -307,8 +307,8 @@ const OrderChat = ({
           {loading && <Loading />}
 
           {!loading && (
-            <div className="bg-[#FFFFFF pb-8 flex w-[78%] items-center gap-5 px-10 fixed left-[14.5%] -bottom-6">
-              <div className="w-[70%] relative">
+            <div className="bg-[#FFFFFF pb-8 flex w-[78%] items-center gap-5 px-10 fixed left-[14.5%] 6xl:left-[11%] -bottom-6">
+              <div className="w-[70%] 6xl:w-[75%] relative">
                 <textarea
                   className="w-full border border-[#E2E2E2] rounded-md py-4 px-4 resize-none pr-20 text-justify"
                   placeholder="Write a message..."

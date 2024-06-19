@@ -1,6 +1,5 @@
 import React from "react";
 import { IoCheckmarkSharp } from "react-icons/io5";
-import UserLoading from "../UserLoading/UserLoading";
 
 const ServiceProductInfo = ({ productInfo }) => {
   return (
@@ -29,9 +28,9 @@ const ServiceProductInfo = ({ productInfo }) => {
         </div>
         {/* price */}
         <div className="">
-          <h2 className=" md:my-2 text-[32px] font-semibold font-Raleway">
-            $ {productInfo?.package_price}
-          </h2>
+          <div className=" md:my-2 text-[32px] font-semibold font-Raleway flex items-center gap-x-1">
+            <span>$ </span> <span>{productInfo?.package_price}</span>
+          </div>
         </div>
       </div>
 

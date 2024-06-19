@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Container from "@/Components/Container/Container";
 
 import { MdOutlinePayments } from "react-icons/md";
-import CheckoutProductInfo from "@/Components/Utilites/CheckoutProductInfo/CheckoutProductInfo";
+
 import toast from "react-hot-toast";
 
 const PaymentInfo = ({ productInfo }) => {

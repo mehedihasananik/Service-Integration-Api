@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Button, Modal, Spinner } from "flowbite-react";
 import { FaTimes } from "react-icons/fa";
+import { toast } from "react-hot-toast";
 
 const DeliveryRevision = ({ openModal, setOpenModal, modalSize, delivery }) => {
   const [text, setText] = useState(""); // State to hold the textarea value
@@ -12,7 +13,16 @@ const DeliveryRevision = ({ openModal, setOpenModal, modalSize, delivery }) => {
 
   const handleFileChange = (event) => {
     const files = Array.from(event.target.files);
-    setSelectedFiles(files);
+    handleFiles(files);
+  };
+
+  const handleFiles = (files) => {
+    if (files.length + selectedFiles.length > 6) {
+      toast.error("You can only upload up to 6 files.");
+      return;
+    }
+
+    setSelectedFiles((prev) => [...prev, ...files]);
 
     const previews = files.map((file) => {
       return {
@@ -21,7 +31,17 @@ const DeliveryRevision = ({ openModal, setOpenModal, modalSize, delivery }) => {
         name: file.name,
       };
     });
-    setFilePreviews(previews);
+    setFilePreviews((prev) => [...prev, ...previews]);
+  };
+
+  const handleDrop = (event) => {
+    event.preventDefault();
+    const files = Array.from(event.dataTransfer.files);
+    handleFiles(files);
+  };
+
+  const handleDragOver = (event) => {
+    event.preventDefault();
   };
 
   const handleSendRevisionRequest = async () => {
@@ -102,7 +122,11 @@ const DeliveryRevision = ({ openModal, setOpenModal, modalSize, delivery }) => {
                 onChange={handleFileChange}
                 className="hidden"
               />
-              <div className="w-full flex justify-center text-[16px] font-bold  border-[2px] border-dashed py-5 mt-3">
+              <div
+                className="w-full flex justify-center text-[16px] font-bold  border-[2px] border-dashed py-5 mt-3"
+                onDrop={handleDrop}
+                onDragOver={handleDragOver}
+              >
                 <label
                   htmlFor="fileInput"
                   className=" text-black py-2 px-4 rounded cursor-pointer "
@@ -112,32 +136,32 @@ const DeliveryRevision = ({ openModal, setOpenModal, modalSize, delivery }) => {
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-2">
+            <div className="flex justify-center flex-wrap gap-2">
               {filePreviews.map((file, index) => (
                 <div key={index} className="relative mr-[10px]">
                   {file.type.startsWith("image/") ? (
                     <img
                       src={file.url}
                       alt={`Preview ${index}`}
-                      className="w-[100px] h-[100px]"
+                      className="w-[100px] h-[100px] object-cover"
                     />
                   ) : file.type === "application/pdf" ? (
                     <img
                       src="https://cdn3.iconfinder.com/data/icons/muksis/128/pdf-512.png"
                       alt={`PDF Preview ${index}`}
-                      className="w-[100px] h-[100px]"
+                      className="w-[100px] h-[100px] object-cover"
                     />
                   ) : file.type === "image/vnd.adobe.photoshop" ? (
                     <img
                       src="https://cdn3.iconfinder.com/data/icons/muksis/128/psd-512.png"
                       alt={`PSD Preview ${index}`}
-                      className="w-[100px] h-[100px]"
+                      className="w-[100px] h-[100px] object-cover"
                     />
                   ) : file.type === "application/vnd.adobe.xd" ? (
                     <img
                       src="http://192.168.10.15:8000/js/icons/xd.png"
                       alt={`XD Preview ${index}`}
-                      className="w-[100px] h-[100px]"
+                      className="w-[100px] h-[100px] object-cover"
                     />
                   ) : file.type === "application/msword" ||
                     file.type ===
@@ -145,7 +169,7 @@ const DeliveryRevision = ({ openModal, setOpenModal, modalSize, delivery }) => {
                     <img
                       src="http://192.168.10.15:8000/js/icons/doc.png"
                       alt={`Word Preview ${index}`}
-                      className="w-[100px] h-[100px]"
+                      className="w-[100px] h-[100px] object-cover"
                     />
                   ) : file.type === "application/vnd.ms-excel" ||
                     file.type ===
@@ -153,26 +177,26 @@ const DeliveryRevision = ({ openModal, setOpenModal, modalSize, delivery }) => {
                     <img
                       src="http://192.168.10.15:8000/js/icons/excel.png"
                       alt={`Excel Preview ${index}`}
-                      className="w-[100px] h-[100px]"
+                      className="w-[100px] h-[100px] object-cover"
                     />
                   ) : file.type === "text/plain" ? (
                     <img
                       src="http://192.168.10.15:8000/js/icons/txt.png"
                       alt={`Text Preview ${index}`}
-                      className="w-[100px] h-[100px]"
+                      className="w-[100px] h-[100px] object-cover"
                     />
                   ) : file.type === "application/zip" ||
                     file.type === "application/x-zip-compressed" ? (
                     <img
                       src="http://192.168.10.15:8000/js/icons/zip.png"
                       alt={`Zip Preview ${index}`}
-                      className="w-[100px] h-[100px]"
+                      className="w-[100px] h-[100px] object-cover"
                     />
                   ) : (
                     <img
                       src="https://cdn-icons-png.flaticon.com/512/1388/1388902.png"
                       alt={`Unsupported Preview ${index}`}
-                      className="w-[100px] h-[100px]"
+                      className="w-[100px] h-[100px] object-cover"
                     />
                   )}
                   <FaTimes

@@ -307,7 +307,7 @@
   background: #ffffff;
   border: 1px solid #000000 !important;
   border-radius: 5px;
-  width: 378px !important;
+  width: 100% !important;
   outline: none;
   padding: 18.5px 14px 18.5px 60px;
   transition: box-shadow ease 0.25s, border-color ease 0.25s;

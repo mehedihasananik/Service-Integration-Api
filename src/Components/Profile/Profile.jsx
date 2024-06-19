@@ -7,10 +7,15 @@ import dayjs from "dayjs";
 import axios from "axios";
 import toast from "react-hot-toast";
 
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/bootstrap.css";
+
 const Profile = () => {
   const [profile, setProfile] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
   const [backgroundImage, setBackgroundImage] = useState("");
+
+  const [phone, setPhone] = useState(profile?.phone_number);
 
   const userData =
     typeof window !== "undefined"
@@ -40,13 +45,17 @@ const Profile = () => {
   const updateProfile = async (event) => {
     event.preventDefault(); // Prevent form from refreshing the page
 
+    console.log(event.target.date_birth.value);
     try {
       const formData = new FormData();
       formData.append("user_id", userData.id);
       formData.append("first_name", profile.first_name);
       formData.append("last_name", profile.last_name);
       formData.append("email", profile.email);
-      formData.append("phone_number", profile.phone_number);
+      formData.append(
+        "phone_number",
+        phone ? phone : event.target.phone_number.value
+      );
       formData.append("gender", profile.gender);
       formData.append("date_birth", event.target.date_birth.value);
       formData.append("country", profile.country);
@@ -70,6 +79,7 @@ const Profile = () => {
             const newUserData = JSON.parse(localStorage.getItem("userData"));
             newUserData.image = response.data.userphoto;
             localStorage.setItem("userData", JSON.stringify(newUserData));
+            window.dispatchEvent(new Event("storage"));
             console.log(newUserData);
             toast.success("Successfully updated profile");
           } else {
@@ -80,10 +90,6 @@ const Profile = () => {
           //handle error
           console.log(response);
         });
-
-      if (!response?.ok) {
-        throw new Error("Failed to update profile");
-      }
     } catch (error) {
       console.error("Error updating profile:", error);
     }
@@ -122,6 +128,15 @@ const Profile = () => {
     return `${year}-${month}-${day}`;
   };
 
+  function setDefaultDate() {
+    let dateField = document.getElementById("dateofbirth");
+
+    if (!dateField.value) {
+      console.log("done");
+      dateField.value = "1995-01-01"; // Default value
+    }
+  }
+
   return (
     <div
       className="scroll-y"
@@ -141,7 +156,7 @@ const Profile = () => {
                     style={{ backgroundImage }}
                     className={`mx-auto flex justify-center w-[141px] h-[141px] rounded-full bg-cover bg-center bg-no-repeat`}
                   >
-                    <div className="bg-white/90 rounded-full w-6 h-6 text-center ml-28 mt-4">
+                    <div className="bg-white/90 rounded-full w-4 h-4 text-center ml-28 mt-4">
                       <input
                         type="file"
                         name="user_avatar"
@@ -233,13 +248,20 @@ const Profile = () => {
                     >
                       Phone Number
                     </label>
-                    <input
+                    <PhoneInput
+                      country={"us"}
+                      enableSearch={true}
                       type="text"
-                      name="phone_number"
-                      className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
-                      placeholder="Phone Number"
+                      className="mt-2 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                      placeholder="Country Code"
+                      value={profile?.phone_number}
+                      onChange={(phone) => setPhone(phone)}
+                    />
+
+                    <input
+                      type="hidden"
                       defaultValue={profile?.phone_number}
-                      onChange={handleInputChange}
+                      name="phone_number"
                     />
                   </div>
                 </div>
@@ -267,7 +289,9 @@ const Profile = () => {
                       <input
                         type="date"
                         style={{ border: "2px solid #333" }}
+                        id="dateofbirth"
                         name="date_birth"
+                        onChange={setDefaultDate}
                         className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800 w-full"
                         defaultValue={profile?.birthday}
                       />
@@ -282,6 +306,7 @@ const Profile = () => {
                     >
                       Country Code
                     </label>
+
                     <input
                       type="text"
                       name="country_code"

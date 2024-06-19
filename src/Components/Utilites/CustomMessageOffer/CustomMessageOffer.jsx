@@ -112,20 +112,33 @@ const CustomMessageOffer = ({ customoffer }) => {
               </span>
             </div>
           </div>
-          <div className="space-x-7">
-            <button
-              onClick={() => handleStatusUpdate("cancel")}
-              className="text-[#000] text-[14px] w-[600] bg-[#B0B0B0] hover:shadow-xl rounded-[4px] px-5 py-1.5 font-[600] transition-all duration-300"
-            >
-              Cancel
-            </button>
-            <button
-              onClick={() => handleStatusUpdate("Approved")}
-              className="text-[#FFF] text-[14px] w-[600] bg-[#FF693B] hover:shadow-xl rounded-[4px] px-5 py-1.5 font-[600] transition-all duration-300"
-            >
-              Accept
-            </button>
-          </div>
+
+          {order_status === "cancel" ? (
+            <h3 className="text-lg font-bold">
+              The order request has been removed
+            </h3>
+          ) : order_status === "Approved" ? (
+            <>
+              <h3 className="text-lg font-bold">
+                The order request has been approved
+              </h3>
+            </>
+          ) : (
+            <div className="space-x-7">
+              <button
+                onClick={() => handleStatusUpdate("cancel")}
+                className="text-[#000] text-[14px] w-[600] bg-[#B0B0B0] hover:shadow-xl rounded-[4px] px-5 py-1.5 font-[600] transition-all duration-300"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={() => handleStatusUpdate("Approved")}
+                className="text-[#FFF] text-[14px] w-[600] bg-[#FF693B] hover:shadow-xl rounded-[4px] px-5 py-1.5 font-[600] transition-all duration-300"
+              >
+                Accept
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>

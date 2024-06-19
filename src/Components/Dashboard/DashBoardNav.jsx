@@ -16,6 +16,12 @@ const DashBoardNav = () => {
   const [userData, setUserData] = useState(null);
   const { deliveryDetails } = useContext(AuthContext);
 
+  if (typeof window !== "undefined") {
+    window.addEventListener("storage", () => {
+      setUserData(JSON.parse(localStorage.getItem("userData")));
+    });
+  }
+
   const clearSession = () => {
     // Remove the userData from localStorage
     localStorage.removeItem("userData");

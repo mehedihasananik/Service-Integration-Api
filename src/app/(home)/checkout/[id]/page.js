@@ -3,10 +3,12 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ServiceProductInfo from "@/Components/Utilites/ServiceProductInfo/ServiceProductInfo";
 import PaymentInfo from "@/Components/Utilites/PaymentInfo/PaymentInfo";
+import UserLoading from "@/Components/Utilites/UserLoading/UserLoading";
 
 const SinglePage = ({ params }) => {
   const [services, setServices] = useState(null);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const userDataString =
     typeof window !== "undefined"
@@ -24,9 +26,11 @@ const SinglePage = ({ params }) => {
         }
       );
       setServices(result.data);
+      setLoading(false); // Set loading to false once data is fetched
       console.log(result.data);
     } catch (err) {
       setError(err.message);
+      setLoading(false); // Set loading to false if there's an error
     }
   };
 
@@ -35,8 +39,13 @@ const SinglePage = ({ params }) => {
       handleCheckout();
     } else {
       setError("User data or params.id is missing.");
+      setLoading(false); // Set loading to false if there's missing data
     }
   }, []);
+
+  if (loading) {
+    return <UserLoading />; // Show loading message while fetching data
+  }
 
   if (error) {
     return <div>Error: {error}</div>;

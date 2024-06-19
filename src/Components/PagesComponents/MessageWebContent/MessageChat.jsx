@@ -17,6 +17,7 @@ import Media_Urls from "@/Components/Utilites/Media_Urls/Media_Urls";
 import { FcUpload } from "react-icons/fc";
 import CustomMessageOffer from "@/Components/Utilites/CustomMessageOffer/CustomMessageOffer";
 import { Spinner } from "flowbite-react";
+import toast from "react-hot-toast";
 
 const SOCKET_URL_ONE = "http://localhost:3000";
 const socket = io(SOCKET_URL_ONE);
@@ -85,6 +86,11 @@ const MessageChat = ({
   }
 
   const onDrop = (acceptedFiles) => {
+    if (acceptedFiles.length > 6) {
+      toast.error("You can only upload up to 6 files.");
+      return;
+    }
+
     const newattachments = acceptedFiles.map((file) =>
       Object.assign(file, {
         preview: URL.createObjectURL(file),
@@ -259,7 +265,7 @@ const MessageChat = ({
                                 src={msg.attachment}
                                 onLoad={handleImageLoaded}
                               />
-                              <div className="absolute bottom-[10px] left-[23%] hidden group-hover:flex justify-end">
+                              <div className="absolute bottom-[10px] left-[18%] 6xl:left-[12.5%]  flex justify-end">
                                 <button
                                   className="bg-[#FF693B] py-1.5 px-2 rounded-sm shadow-md text-white"
                                   onClick={() =>
@@ -300,7 +306,7 @@ const MessageChat = ({
           {loading && <Loading />}
 
           {!loading && (
-            <div className="bg-[#FFFFFF pb-8 flex w-[78%] items-center gap-5 px-10 fixed left-[14.5%] -bottom-6">
+            <div className="bg-[#FFFFFF pb-8 flex w-[78%] items-center gap-5 px-10 fixed left-[14.5%] -bottom-6 6xl:w-[80%] 6xl:left-[11.2%]">
               <div className="w-[100%] relative">
                 <textarea
                   className="w-full border border-[#E2E2E2] rounded-md py-4 px-4 resize-none pr-20 text-justify"
@@ -322,7 +328,7 @@ const MessageChat = ({
                             <img
                               src={file.preview}
                               alt={`Preview ${index}`}
-                              className="w-[100px] h-[100px]"
+                              className="w-[100px] h-[100px] object-cover"
                             />
                           ) : file.type === "application/pdf" ? (
                             <img
