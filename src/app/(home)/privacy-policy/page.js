@@ -174,6 +174,46 @@ const PrivacyPolicy = () => {
             from loss, unauthorised activity, or other misuse.
           </p>
 
+          <h2
+            className="text-2xl font-bold mb-2 mt-4"
+            name="facebookdatadeletioninstructions"
+          >
+            Facebook Data Deletion Instructions
+          </h2>
+
+          <p>
+            Motion View Login is your gateway to the world of seamless Facebook
+            login experiences. We want you to know that your privacy is our top
+            priority, and we take great care to ensure that none of your
+            personal data is ever saved on our servers. In alignment with
+            Facebookapos;s stringent policies, we are committed to providing you
+            with the utmost control over your data. To enhance your peace of
+            mind, we offer a User Data Deletion Callback URL and Data Deletion
+            Instructions URL, ensuring that you have the power to manage your
+            information effortlessly and in compliance with your preferences.
+            Your data security and convenience are at the forefront of our
+            mission, and we&apos;re here to make your online experience as
+            smooth and secure as possible. If you wish to erase your activity
+            history within the Motion View Login App, you can effortlessly
+            delete your information by adhering to these easy-to-follow steps:
+          </p>
+
+          <ul>
+            <li>Step 1: Go to your Facebook Account’s “Settings & Privacy”</li>
+            <li>Step 2: Click “Settings”</li>
+            <li>
+              {" "}
+              Step 4: Look for “Apps and Websites” and you will see all of the
+              apps and websites you have linked with your Facebook account.
+            </li>
+            <li>
+              {" "}
+              Step 5: Search and Click “Office Holidays Login” in the search
+              bar.
+            </li>
+            <li> Step 6: Scroll and click “Remove”</li>
+          </ul>
+
           <h2 className="text-2xl font-bold mb-2 mt-4">
             ACCESSING, CORRECTING OR DELETING YOUR PERSONAL INFORMATION
           </h2>

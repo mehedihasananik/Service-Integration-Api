@@ -136,7 +136,7 @@ const SignUpContent = () => {
                     <Label
                       className="text-[16px] font-Raleway text-[#032333] font-[500] "
                       htmlFor="name"
-                      value="Name"
+                      value="Full Name"
                     />
                   </div>
                   <TextInput

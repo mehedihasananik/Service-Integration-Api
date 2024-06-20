@@ -248,7 +248,7 @@ const OrderChat = ({
                         <h3 className="text-[14px] font-Raleway font-[600] text-[#333333] ">
                           <span>{senderName}</span>
                         </h3>{" "}
-                        <span className="text-[#7B7B7B font-Raleway text-[12px] font-bold flex items-center">
+                        <span className="text-[#7B7B7B font-Roboto text-[12px]  flex items-center">
                           {formattedDate}
                         </span>
                       </div>
