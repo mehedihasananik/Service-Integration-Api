@@ -16,6 +16,9 @@ const PortfolioPage = ({
   const [selectedCategoryId, setSelectedCategoryId] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
   const [services, setServices] = useState([]);
+  console.log(portfolios);
+  console.log(portfoliosCategories);
+  console.log(services);
 
   useEffect(() => {
     setLoading(false);
@@ -23,6 +26,7 @@ const PortfolioPage = ({
   }, [initialServices]);
 
   const fetchServices = async (categoryId) => {
+    console.log(categoryId);
     try {
       const response = await fetch(`${searchServiceApi}/${categoryId}`);
       if (!response.ok) {
@@ -64,6 +68,7 @@ const PortfolioPage = ({
     portfolios.filter(
       (item) =>
         (selectedCategoryId === 0 || item.category_id === selectedCategoryId) &&
+        (selectedServiceId === 0 || item.service_id === selectedServiceId) &&
         item.heading.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
@@ -195,7 +200,7 @@ const PortfolioPage = ({
                                 {portfolio.heading}
                               </h3>
                               <p className="w-[250px] text-[14px] text-[#666666] py-3 portfolio-textHover">
-                                {truncateText(portfolio.text, 40)} ...
+                                {truncateText(portfolio.text, 40)}...
                               </p>
                             </div>
                             <div className="group flex justify-center items-center gap-2 text-[#FF693B] font-bold mt-5 portfolio-textHover pb-6 lg:pb-0">

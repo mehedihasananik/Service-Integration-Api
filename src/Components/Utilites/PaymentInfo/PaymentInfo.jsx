@@ -99,8 +99,7 @@ const PaymentInfo = ({ productInfo }) => {
   };
 
   return (
-    <Container>
-      <div className="mx-auto max-w-lg">{/* Loading indicator */}</div>
+    <>
       <div className="">
         <div>
           {/* payment details */}
@@ -171,7 +170,7 @@ const PaymentInfo = ({ productInfo }) => {
           )}
         </div>
       </div>
-    </Container>
+    </>
   );
 };
 

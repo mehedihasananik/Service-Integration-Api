@@ -11,13 +11,14 @@ import Link from "next/link";
 import "../../../app/globals.css";
 import { Autoplay } from "swiper/modules";
 
-const ServicesHomeItems = ({ services: initialServices }) => {
+const ServicesHomeItems = ({ services }) => {
   // declaring the loading & slider states states
   const [loading, setLoading] = useState(true);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [totalSlides, setTotalSlides] = useState(0);
   const [spaceBetween, setSpaceBetween] = useState(100); // Initial value for spaceBetween
-  const [services, setServices] = useState(initialServices);
+
+  const swiperRef = useRef(null);
 
   const truncateText = (text, maxWords) => {
     const words = text.split(" ");
@@ -28,49 +29,40 @@ const ServicesHomeItems = ({ services: initialServices }) => {
   };
 
   useEffect(() => {
-    setLoading(false); // Set loading to false after data is passed via props
-    setTotalSlides(initialServices.length);
-  }, [initialServices]);
-
-  const swiperRef = useRef(null);
+    setTotalSlides(services.length);
+    setLoading(false);
+  }, [services]);
 
   // next function
-  const goNext = () => {
-    if (swiperRef.current && swiperRef.current.swiper) {
-      swiperRef.current.swiper.slideNext();
-      setCurrentSlide((prevSlide) => Math.min(prevSlide + 1, totalSlides - 3));
-      if (currentSlide === 0) {
-        setSpaceBetween(50);
-      } else if (currentSlide === 3) {
-        setSpaceBetween(10);
-      }
+  const handlePrevSlide = () => {
+    if (swiperRef.current) {
+      swiperRef.current.swiper.slidePrev();
     }
   };
 
-  // prev function
-  const goPrev = () => {
-    if (swiperRef.current && swiperRef.current.swiper) {
-      swiperRef.current.swiper.slidePrev();
-      setCurrentSlide((prevSlide) => Math.max(prevSlide - 1, 0));
+  const handleNextSlide = () => {
+    if (swiperRef.current) {
+      swiperRef.current.swiper.slideNext();
     }
   };
+
+  const handleSlideChange = (swiper) => {
+    setCurrentSlide(swiper.realIndex);
+  };
+
   useEffect(() => {
     // Log spaceBetween
   }, [spaceBetween]);
 
   // slider breakpoints
   const breakpoints = {
-    2500: {
-      slidesPerView: 3,
-      spaceBetween: 50,
-    },
     1920: {
       slidesPerView: 3,
-      spaceBetween: 50,
+      spaceBetween: 30,
     },
     1336: {
       slidesPerView: 3,
-      spaceBetween: 50,
+      spaceBetween: 10,
     },
     1280: {
       slidesPerView: 2,
@@ -78,7 +70,7 @@ const ServicesHomeItems = ({ services: initialServices }) => {
     },
     1024: {
       slidesPerView: 2,
-      spaceBetween: 10,
+      spaceBetween: 30,
     },
     768: {
       slidesPerView: 2,
@@ -110,24 +102,28 @@ const ServicesHomeItems = ({ services: initialServices }) => {
                   that you need for your business.
                 </p>
               </div>
-              <div className="text-center lg:text-left">
+              <div className="text-center lg:text-left hidden xll:block ">
                 <span className="text-[48px] font-Raleway text-[#0A2C8C] font-bold">
-                  {currentSlide === totalSlides
-                    ? totalSlides
-                    : currentSlide + 3}
+                  {currentSlide + 3}
                 </span>
                 <span className="text-[16px] font-bold text-[#94A3B8] font-Raleway">
                   /{totalSlides}
                 </span>
               </div>
               <div className="flex justify-center items-center lg:justify-start lg:items-start gap-6 py-4 ">
-                <div className="group text-center" onClick={() => goPrev()}>
-                  <button className=" bg-[#FF9F711A]  group-hover:bg-[#FF693B] px-5 py-5 rounded-lg transition-all duration-300">
+                <div className="group text-center">
+                  <button
+                    onClick={handlePrevSlide}
+                    className=" bg-[#FF9F711A]  group-hover:bg-[#FF693B] px-5 py-5 rounded-lg transition-all duration-300"
+                  >
                     <HiArrowLeft className="text-[#FF693B]  group-hover:text-[#fff] w-[24px] h-[24px]" />
                   </button>
                 </div>
-                <div className="group" onClick={() => goNext()}>
-                  <button className=" bg-[#FF9F711A]  group-hover:bg-[#FF693B] px-5 py-5 rounded-lg transition-all duration-300">
+                <div className="group">
+                  <button
+                    onClick={handleNextSlide}
+                    className=" bg-[#FF9F711A]  group-hover:bg-[#FF693B] px-5 py-5 rounded-lg transition-all duration-300"
+                  >
                     <HiArrowRight className="text-[#FF693B]  group-hover:text-[#fff] w-[24px] h-[24px]" />
                   </button>
                 </div>
