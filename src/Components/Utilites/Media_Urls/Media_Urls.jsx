@@ -70,13 +70,13 @@ const Media_Urls = ({ media_urls }) => {
                 fileType === "png" ||
                 fileType === "webp" ? (
                   <img
-                    className=" h-[180px]  pointer-events-auto "
+                    className="h-[180px] w-full object-contain object-position-center pointer-events-auto rounded-lg"
                     src={item}
                     alt=""
                   />
                 ) : (
                   <img
-                    className="h-[120px]  pointer-events-auto"
+                    className="h-[120px]  pointer-events-auto rounded-lg"
                     src={iconSrc}
                     alt={`File Thumbnail`}
                   />

@@ -103,7 +103,11 @@ const DeliveryPackage = ({ delivery }) => {
                   className="h-[180px] flex items-center justify-center bg-[#F3F6F9] rounded-lg group-hover:brightness-75 cursor-pointer"
                   onClick={() => handleImageClick(item)}
                 >
-                  <img className="h-[150px] py-3 " src={item} alt="" />
+                  <img
+                    className="h-[180px] w-full object-contain object-position-center pointer-events-auto rounded-lg"
+                    src={item}
+                    alt=""
+                  />
                 </div>
                 <div className="absolute bottom-[10px] left-0 right-4 flex justify-end">
                   <button
