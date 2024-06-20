@@ -82,7 +82,7 @@ const Media_Urls = ({ media_urls }) => {
                   />
                 )}
               </div>
-              <div className="absolute bottom-[0px] 6xl:bottom-10 right-3 flex justify-start pointer-events-auto ">
+              <div className="absolute bottom-[40px] 6xl:bottom-10 right-3 flex justify-start pointer-events-auto ">
                 <button
                   className="bg-[#FF693B] py-1.5 px-2 rounded-sm shadow-md text-white"
                   onClick={(event) => handleDownloadClick(item, event)}

@@ -1,16 +1,20 @@
 "use client";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import { MdDownload } from "react-icons/md";
 import { Button, Modal } from "flowbite-react";
-import { useState } from "react";
 import { GoPaperclip } from "react-icons/go";
 import DeliveryRevision from "./DeliveryRevision";
+import Confetti from "react-confetti";
+import useWindowSize from "@/Components/Utilites/WindowSize/useWindowSize";
 
 const DeliveryPackage = ({ delivery }) => {
   const [openModal, setOpenModal] = useState(false);
   const [modalSize, setModalSize] = useState("4xl");
+  const [showConfetti, setShowConfetti] = useState(false);
+  const [showCongratulations, setShowCongratulations] = useState(false);
 
+  const { width, height } = useWindowSize();
   const { description, media_urls, id, status, updated_at } = delivery;
   console.log(delivery);
 
@@ -56,13 +60,32 @@ const DeliveryPackage = ({ delivery }) => {
       const data = await response.json();
       // console.log("Status updated:", data?.delivery?.status);
       // Optionally, you can update the state here to reflect the new status
+
+      if (status === "approved") {
+        setShowConfetti(true);
+        setShowCongratulations(true);
+        setTimeout(() => {
+          setShowConfetti(false);
+          setShowCongratulations(false);
+        }, 5000);
+      }
     } catch (error) {
       console.error("Error updating status:", error);
     }
   };
 
   return (
-    <div className="bg-[#FDFDFD] border-2 border-[#E2E2E2] rounded-[8px]  px-3 lg:ml-[40px]  py-5 mb-3 w-[80%] ">
+    <div className="bg-[#FDFDFD] border-2 border-[#E2E2E2] rounded-[8px]  px-3 lg:ml-[40px]  py-5 mb-3 w-[80%] relative">
+      {showConfetti && <Confetti width={width} height={height} />}
+      {showCongratulations && (
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="bg-white p-6 rounded-md shadow-lg">
+            <h1 className="text-[32px] font-[700] text-[#FF693B]">
+              Congratulations!
+            </h1>
+          </div>
+        </div>
+      )}
       {/* delivery title */}
       <div className="pb-5">
         <h3 className="text-[#333] font-Raleway text-[24px] font-[700]">
@@ -73,10 +96,8 @@ const DeliveryPackage = ({ delivery }) => {
       {/* delivery details */}
       <div className="flex flex-col md:flex-row md:gap-x-4">
         <div>
-          <Image
-            className="w-[40px] h-[40px] rounded-lg"
-            width={50}
-            height={50}
+          <img
+            className="w-[100px] h-[30px] rounded-lg"
             src="/assets/icon_for_favicon.png"
             alt="icon"
           />
@@ -149,17 +170,18 @@ const DeliveryPackage = ({ delivery }) => {
           <div className="py-3">
             <p className="text-[#666] text-[14px] font-[400]">
               {status === "approved"
-                ? "The order has been approved."
+                ? ""
                 : status === "revision"
                 ? "The order has been sent for revision."
-                : `You have until ${updated_at.slice(
+                : `Note: You have until  ${updated_at.slice(
                     0,
                     11
-                  )}  to approve or request a revision. Otherwise, the order will mark as complete.`}
+                  )}  to approve the delivery or request a revision. Otherwise, the order will be marked as complete.`}
             </p>
           </div>
         </div>
       </div>
+
       <>
         <DeliveryRevision
           openModal={openModal}
