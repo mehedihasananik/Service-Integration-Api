@@ -41,18 +41,29 @@ const CustomOffer = ({ order }) => {
       }
 
       const data = await response.json();
-      // console.log("Status updated:", data?.delivery?.status);
-      // Optionally, you can update the state here to reflect the new status
+      console.log("Status updated:", data?.delivery?.status);
+
+      // Make additional request if status is accept
+      if (status === "accept") {
+        const additionalResponse = await fetch(
+          `http://192.168.10.16:8000/api/additional-order/information/${id}`
+        );
+
+        if (!additionalResponse.ok) {
+          throw new Error("Failed to fetch additional order information");
+        }
+
+        const additionalData = await additionalResponse.json();
+        console.log("Additional order information:", additionalData);
+
+        if (orderId) {
+          router.push(`/checkout/${orderId}`);
+        }
+      }
     } catch (error) {
       console.error("Error updating status:", error);
     }
   };
-
-  useEffect(() => {
-    if (orderId) {
-      router.push(`/checkout/${orderId}`);
-    }
-  }, [orderId, router]);
 
   return (
     <div className="lg:mx-12 w-[80%] pb-4">
@@ -66,7 +77,7 @@ const CustomOffer = ({ order }) => {
           Here&apos;s your Additional offer
         </h3>
       </div>
-      <div className=" border border-[#E2E2E2]   py-5 rounded-md pb-0">
+      <div className="border border-[#E2E2E2] py-5 rounded-md pb-0">
         <div className="px-5 lg:px-4">
           {/* title */}
           <div className="flex justify-between">

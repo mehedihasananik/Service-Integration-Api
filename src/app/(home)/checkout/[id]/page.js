@@ -13,20 +13,30 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/bootstrap.css";
 import { FaCamera } from "react-icons/fa";
 
+import { useMemo } from "react";
+import Select from "react-select";
+import countryList from "react-select-country-list";
+import toast from "react-hot-toast";
+
 const SinglePage = ({ params }) => {
   const [services, setServices] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const [phone, setPhone] = useState("");
-  const [countryCodeShow, setCountryCodeShow] = useState();
 
   const tabsRef = useRef(null);
   const [activeTab, setActiveTab] = useState(0);
+  const [btnActive, setActiveBtn] = useState(0);
+  const [checkoutActive, setcheckoutActive] = useState(0);
 
-  const handleOnChangeCountryCode = (value, country) => {
-    setPhone(value);
-    setCountryCodeShow("+" + country.dialCode);
+  const [value, setValue] = useState("");
+  const [country, setCountry] = useState("");
+  const options = useMemo(() => countryList().getData(), []);
+
+  const changeCountryHandler = (value) => {
+    setValue(value);
+    setCountry(value.label);
   };
 
   const userDataString =
@@ -38,7 +48,47 @@ const SinglePage = ({ params }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    tabsRef.current?.setActiveTab(1);
+    const firstName = event.target.first_name.value;
+    const lastName = event.target.last_name.value;
+    const state = event.target.state.value;
+    const city = event.target.city.value;
+    const zip = event.target.zip.value;
+    const address = event.target.address.value;
+
+    const newUserData = JSON.parse(localStorage.getItem("userData"));
+    try {
+      const formData = new FormData();
+      formData.append("firstName", firstName);
+      formData.append("lastName", lastName);
+      formData.append("country", country);
+      formData.append("state", state);
+      formData.append("city", city);
+      formData.append("zip", zip);
+      formData.append("address", address);
+      formData.append("user_id", newUserData.id);
+
+      axios({
+        method: "post",
+        url: "http://192.168.5.240:8000/api/billing-address",
+        data: formData,
+        headers: { "Content-Type": "multipart/form-data" },
+      })
+        .then(function (response) {
+          if (response.data.success == true) {
+            tabsRef.current?.setActiveTab(1);
+            setActiveBtn(true);
+            setcheckoutActive(true);
+            toast.success("Billing Address Submited");
+          } else {
+            toast.error("Billing address faild submited");
+          }
+        })
+        .catch(function (response) {
+          console.log(response);
+        });
+    } catch (error) {
+      console.error("Error updating profile:", error);
+    }
   };
 
   const handleCheckout = async () => {
@@ -80,174 +130,220 @@ const SinglePage = ({ params }) => {
     <div className="w-full  my-0">
       {/*  */}
       <div>
-        <Tabs className="flex justify-center border-none" ref={tabsRef}>
-          <Tabs.Item
-            className="border-none"
-            icon={FaRegCircleCheck}
-            active
-            title="Billing Address"
-          >
-            <>
-              <div className="flex justify-center">
-                <section class="bg-white p-10 antialiased dark:bg-gray-900 w-[50%]">
-                  <form
-                    class="mx-auto max-w-screen-xl px-4 2xl:px-0"
-                    onSubmit={handleSubmit}
-                  >
-                    <div class="mt-6 sm:mt-8 lg:flex lg:items-start lg:gap-12 xl:gap-16">
-                      <div class="min-w-0 flex-1 space-y-8">
-                        <div class="space-y-4">
-                          <h2 class="text-xl font-semibold text-gray-900 dark:text-white text-center">
-                            Billing Details
-                          </h2>
+        <div className="billing-button">
+          <h2 className="text-xl font-semibold text-gray-900 dark:text-white text-center">
+            Billing Details
+          </h2>
 
-                          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                            {/* start first name and last name */}
-                            <div>
-                              <label
-                                for="your_name"
-                                class="block py-4 text-sm font-medium text-gray-900 dark:text-white"
-                              >
-                                First Name
-                              </label>
-                              <input
-                                type="text"
-                                id="first_name"
-                                className="py-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
-                                placeholder="Enter Your First Name"
-                                required
-                              />
-                            </div>
+          <div className="button-container">
+            <Button.Group className="d-flex gap-5">
+              <Button
+                color="gray"
+                className={`${
+                  btnActive ? "billing_btn disabled" : ""
+                } common_btn`}
+                onClick={() => tabsRef.current?.setActiveTab(0)}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  className="bi bi-check-circle-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                </svg>{" "}
+                <span className="ml-2">Billing Info</span>
+              </Button>
+              <div className="btn_prograess"></div>
+              <Button
+                color="gray"
+                className={`${
+                  checkoutActive ? "checkout_btn" : ""
+                } common_btn disabled`}
+                onClick={() => tabsRef.current?.setActiveTab(1)}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  className="bi bi-check-circle-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                </svg>{" "}
+                <span className="ml-2">Checkout Info</span>
+              </Button>
+            </Button.Group>
+          </div>
+        </div>
 
-                            <div>
-                              <label
-                                for="your_name"
-                                class="block py-4 text-sm font-medium text-gray-900 dark:text-white"
-                              >
-                                Last Name
-                              </label>
-                              <input
-                                type="text"
-                                id="last_name"
-                                className="py-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
-                                placeholder="Enter Your Last Name"
-                                required
-                              />
-                            </div>
-
-                            <div>
-                              <label
-                                htmlFor="country_code"
-                                className="dark:text-gray-300"
-                              >
-                                Country
-                              </label>
-
-                              <input
-                                type="text"
-                                name="country"
-                                className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
-                                placeholder="Enter Your Country"
-                              />
-                            </div>
-
-                            <div>
-                              <label
-                                for="your_name"
-                                class="block py-2 text-sm font-medium text-gray-900 dark:text-white"
-                              >
-                                State
-                              </label>
-                              <input
-                                type="text"
-                                id="state"
-                                className="py-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
-                                placeholder="State"
-                              />
-                            </div>
-
-                            {/* done */}
-
-                            <div>
-                              <label
-                                for="your_name"
-                                class="block text-sm font-medium text-gray-900 dark:text-white mt-3"
-                              >
-                                City
-                              </label>
-                              <input
-                                type="text"
-                                id="city"
-                                name="city"
-                                className="py-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
-                                placeholder="City"
-                                required
-                              />
-                            </div>
-
-                            <div>
-                              <label
-                                for="zip"
-                                class="block text-sm font-medium text-gray-900 dark:text-white"
-                              >
-                                Zip
-                              </label>
-                              <input
-                                type="text"
-                                id="zip"
-                                name="zip"
-                                className="mt-3 py-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
-                                placeholder="Zip Code"
-                                required
-                              />
-                            </div>
-                            <div class="sm:col-span-2 pt-4">
+        <div className="billing-tab">
+          <Tabs className="flex justify-center border-none" ref={tabsRef}>
+            <Tabs.Item
+              className="border-none"
+              icon={FaRegCircleCheck}
+              active
+              title="Billing Address"
+            >
+              <>
+                <div className="flex justify-center">
+                  <section className="bg-white antialiased dark:bg-gray-900 w-[50%]">
+                    <form
+                      className="mx-auto max-w-screen-xl px-4 2xl:px-0"
+                      onSubmit={handleSubmit}
+                    >
+                      <div className=" lg:flex lg:items-start lg:gap-12 xl:gap-16">
+                        <div className="min-w-0 flex-1 space-y-8">
+                          <div className="space-y-4">
+                            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                              {/* start first name and last name */}
                               <div>
                                 <label
-                                  for="address"
-                                  class="block text-sm font-medium text-gray-900 dark:text-white mt-2"
+                                  for="your_name"
+                                  className="block py-4 text-sm font-medium text-gray-900 dark:text-white"
                                 >
-                                  Address
+                                  First Name
                                 </label>
                                 <input
                                   type="text"
-                                  id="address"
-                                  name="address"
+                                  id="first_name"
+                                  name="first_name"
                                   className="py-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
-                                  placeholder="Enter Your Address"
+                                  placeholder="Enter Your First Name"
                                   required
                                 />
                               </div>
-                            </div>
 
-                            <div class="sm:col-span-2 pt-4">
-                              <button
-                                type="submit"
-                                class="bg-[#FF693B] text-white hover:text-[#FF693B] flex w-[30%] py-4 items-center justify-center gap-2 rounded-lg border border-gray-200 px-5 py-2.5 text-sm font-medium text-gray-900 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600  dark:hover:text-white dark:focus:ring-gray-700 hover:bg-white mx-auto"
-                              >
-                                Continue
-                              </button>
+                              <div>
+                                <label
+                                  for="your_name"
+                                  className="block py-4 text-sm font-medium text-gray-900 dark:text-white"
+                                >
+                                  Last Name
+                                </label>
+                                <input
+                                  type="text"
+                                  id="last_name"
+                                  name="last_name"
+                                  className="py-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                                  placeholder="Enter Your Last Name"
+                                  required
+                                />
+                              </div>
+                              <div className="w-full">
+                                <label
+                                  htmlFor="country"
+                                  className="dark:text-gray-300"
+                                >
+                                  Country
+                                </label>
+                                <Select
+                                  options={options}
+                                  value={value}
+                                  onChange={changeCountryHandler}
+                                />
+                              </div>
+
+                              <div>
+                                <label
+                                  for="your_name"
+                                  className="block py-2 text-sm font-medium text-gray-900 dark:text-white"
+                                >
+                                  State
+                                </label>
+                                <input
+                                  type="text"
+                                  id="state"
+                                  name="state"
+                                  className="py-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                                  placeholder="State"
+                                  required
+                                />
+                              </div>
+
+                              {/* done */}
+
+                              <div>
+                                <label
+                                  for="your_name"
+                                  className="block text-sm font-medium text-gray-900 dark:text-white mt-3"
+                                >
+                                  City
+                                </label>
+                                <input
+                                  type="text"
+                                  id="city"
+                                  name="city"
+                                  className="py-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                                  placeholder="Bonnie Green"
+                                  required
+                                />
+                              </div>
+
+                              <div>
+                                <label
+                                  for="zip"
+                                  className="block text-sm font-medium text-gray-900 dark:text-white"
+                                >
+                                  Zip
+                                </label>
+                                <input
+                                  type="text"
+                                  id="zip"
+                                  name="zip"
+                                  className="mt-3 py-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                                  placeholder="Bonnie Green"
+                                  required
+                                />
+                              </div>
+                              <div className="sm:col-span-2 pt-4">
+                                <div>
+                                  <label
+                                    for="address"
+                                    className="block text-sm font-medium text-gray-900 dark:text-white mt-2"
+                                  >
+                                    Address
+                                  </label>
+                                  <input
+                                    type="text"
+                                    id="address"
+                                    name="address"
+                                    className="py-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                                    placeholder="Bonnie Green"
+                                    required
+                                  />
+                                </div>
+                              </div>
+
+                              <div className="sm:col-span-2 pt-4">
+                                <button
+                                  type="submit"
+                                  className="bg-[#FF693B] text-white hover:text-[#FF693B] flex w-[30%] py-4 items-center justify-center gap-2 rounded-lg border border-gray-200 px-5 py-2.5 text-sm font-medium text-gray-900 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600  dark:hover:text-white dark:focus:ring-gray-700 hover:bg-white mx-auto"
+                                >
+                                  Continue
+                                </button>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </form>
-                </section>
-              </div>
-            </>
-          </Tabs.Item>
+                    </form>
+                  </section>
+                </div>
+              </>
+            </Tabs.Item>
 
-          <Tabs.Item icon={FaRegCircleCheck} title="Checkout">
-            <div className="flex justify-center gap-x-10 ">
-              <ServiceProductInfo productInfo={services} />
-              <PaymentInfo
-                productInfo={services}
-                onClick={() => manageClick()}
-              />
-            </div>
-          </Tabs.Item>
-        </Tabs>
+            <Tabs.Item icon={FaRegCircleCheck} title="Checkout">
+              <div className="flex justify-center gap-x-10 ">
+                <ServiceProductInfo productInfo={services} />
+                <PaymentInfo productInfo={services} toChild />
+              </div>
+            </Tabs.Item>
+          </Tabs>
+        </div>
       </div>
     </div>
   );

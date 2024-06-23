@@ -11,6 +11,10 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/bootstrap.css";
 import { FaCamera } from "react-icons/fa";
 
+import { useMemo } from "react";
+import Select from "react-select";
+import countryList from "react-select-country-list";
+
 const Profile = () => {
   const [profile, setProfile] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
@@ -18,6 +22,14 @@ const Profile = () => {
 
   const [phone, setPhone] = useState("");
 
+  const [value, setValue] = useState("");
+  const options = useMemo(() => countryList().getData(), []);
+
+  const changeCountryHandler = (value) => {
+    setValue(value);
+    profile.country = value.label;
+    setProfile(profile);
+  };
 
   const userData =
     typeof window !== "undefined"
@@ -38,7 +50,6 @@ const Profile = () => {
       );
       const data = await response.json();
       setProfile(data);
-      setCountryCodeShow(data.country_code);
       setBackgroundImage(data.avatar ? `url(${data.avatar})` : "");
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -83,7 +94,6 @@ const Profile = () => {
             newUserData.name = profile.first_name;
             localStorage.setItem("userData", JSON.stringify(newUserData));
             window.dispatchEvent(new Event("storage"));
-            console.log(newUserData);
             toast.success("Successfully updated profile");
           } else {
             toast.error("Profile updated faild");
@@ -101,6 +111,14 @@ const Profile = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  useEffect(() => {
+    options.map((item) => {
+      if (item.label == profile?.country) {
+        setValue(item);
+      }
+    });
+  }, [profile]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -155,26 +173,27 @@ const Profile = () => {
 
               <form onSubmit={updateProfile}>
                 <div className="w-full py-4 items-center rounded-md">
-                  <div
-                    style={{ backgroundImage }}
-                    className={`mx-auto flex justify-center w-[141px] h-[141px] rounded-full bg-cover bg-center bg-no-repeat`}
-                  >
-                    <div className="bg-white/90 rounded-full w-0 h-0 text-center ml-28 mt-4">
-                      <input
-                        type="file"
-                        name="user_avatar"
-                        id="upload_profile"
-                        hidden
-                        onChange={handleFileChange}
-                      />
-                      <label htmlFor="upload_profile">
+                  <label htmlFor="upload_profile">
+                    <div
+                      style={{ backgroundImage }}
+                      className={`mx-auto cursor-pointer flex justify-center w-[141px] h-[141px] rounded-full bg-cover bg-center bg-no-repeat`}
+                    >
+                      <div className="bg-white/90 rounded-full w-0 h-0 text-center ml-28 mt-4">
+                        <input
+                          type="file"
+                          name="user_avatar"
+                          id="upload_profile"
+                          hidden
+                          onChange={handleFileChange}
+                        />
+
                         <FaCamera
                           style={{ color: "FF693B", width: "17px" }}
                           className="w-6 h-6 text-blue-700 cursor-pointer"
                         />
-                      </label>
+                      </div>
                     </div>
-                  </div>
+                  </label>
                 </div>
                 <h3 className="text-center mt-3 font-semibold dark:text-gray-300 capitalize">
                   {profile?.first_name} {profile?.last_name}
@@ -284,18 +303,14 @@ const Profile = () => {
                   </div>
                 </div>
                 <div className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full">
-              
                   <div className="w-full mb-4 lg:mt-6">
                     <label htmlFor="country" className="dark:text-gray-300">
                       Country
                     </label>
-                    <input
-                      type="text"
-                      name="country"
-                      className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
-                      placeholder="Country"
-                      defaultValue={profile?.country}
-                      onChange={handleInputChange}
+                    <Select
+                      options={options}
+                      value={value}
+                      onChange={changeCountryHandler}
                     />
                   </div>
 
@@ -314,7 +329,6 @@ const Profile = () => {
                   </div>
                 </div>
                 <div className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full">
-                 
                   <div className="w-full mb-4 lg:mt-6">
                     <label htmlFor="address" className="dark:text-gray-300">
                       Address
@@ -329,7 +343,7 @@ const Profile = () => {
                     />
                   </div>
                 </div>
-               
+
                 <div className="flex justify-center">
                   <button
                     type="submit"
