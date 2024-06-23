@@ -64,7 +64,6 @@ const Login = () => {
   const handleSocialLogin = async (provider) => {
     const url = `https://admin.envobyte.com/api/auth/${provider}`;
     const response = await axios.get(url);
-    console.log(response);
 
     if (typeof window !== "undefined") {
       window.open(
@@ -81,8 +80,16 @@ const Login = () => {
       // Check the event.origin for security if needed
       console.log("Received data from child window:", event.data.message);
       console.log(event.data.message?.token);
+
+      // Save the received data to local storage
+      if (event.data.message) {
+        localStorage.setItem("userData", JSON.stringify(event.data.message));
+        router.push("/dashboard");
+      }
     };
+
     window.addEventListener("message", handleMessage);
+
     // Clean up the event listener on component unmount
     return () => window.removeEventListener("message", handleMessage);
   }, []);

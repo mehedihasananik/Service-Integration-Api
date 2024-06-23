@@ -17,12 +17,7 @@ const Profile = () => {
   const [backgroundImage, setBackgroundImage] = useState("");
 
   const [phone, setPhone] = useState("");
-  const [countryCodeShow, setCountryCodeShow] = useState();
 
-  const handleOnChangeCountryCode = (value, country) => {
-    setPhone(value);
-    setCountryCodeShow("+" + country.dialCode);
-  };
 
   const userData =
     typeof window !== "undefined"
@@ -71,7 +66,6 @@ const Profile = () => {
       formData.append("state", profile.state);
       formData.append("zip", profile.zip);
       formData.append("address", profile.address);
-      formData.append("country_code", countryCodeShow);
       if (selectedFile) {
         formData.append("user_avatar", selectedFile);
       }
@@ -247,7 +241,6 @@ const Profile = () => {
                       className="mt-1 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
                       placeholder="Country Code"
                       value={profile?.phone_number}
-                      onChange={handleOnChangeCountryCode}
                     />
 
                     <input
@@ -291,23 +284,7 @@ const Profile = () => {
                   </div>
                 </div>
                 <div className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full">
-                  <div className="w-full mb-4 mt-6">
-                    <label
-                      htmlFor="country_code"
-                      className="mb-2 dark:text-gray-300"
-                    >
-                      Country Code
-                    </label>
-
-                    <input
-                      type="text"
-                      name="country_code"
-                      className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
-                      placeholder="Country Code"
-                      defaultValue={countryCodeShow}
-                      onChange={handleInputChange}
-                    />
-                  </div>
+              
                   <div className="w-full mb-4 lg:mt-6">
                     <label htmlFor="country" className="dark:text-gray-300">
                       Country
@@ -321,8 +298,7 @@ const Profile = () => {
                       onChange={handleInputChange}
                     />
                   </div>
-                </div>
-                <div className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full">
+
                   <div className="w-full mb-4 mt-6">
                     <label htmlFor="city" className="mb-2 dark:text-gray-300">
                       City
@@ -336,34 +312,9 @@ const Profile = () => {
                       onChange={handleInputChange}
                     />
                   </div>
-                  <div className="w-full mb-4 lg:mt-6">
-                    <label htmlFor="state" className="dark:text-gray-300">
-                      State
-                    </label>
-                    <input
-                      type="text"
-                      name="state"
-                      className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
-                      placeholder="State"
-                      defaultValue={profile?.state}
-                      onChange={handleInputChange}
-                    />
-                  </div>
                 </div>
                 <div className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full">
-                  <div className="w-full mb-4 mt-6">
-                    <label htmlFor="zip" className="mb-2 dark:text-gray-300">
-                      ZIP
-                    </label>
-                    <input
-                      type="text"
-                      name="zip"
-                      className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
-                      placeholder="ZIP"
-                      defaultValue={profile?.zip}
-                      onChange={handleInputChange}
-                    />
-                  </div>
+                 
                   <div className="w-full mb-4 lg:mt-6">
                     <label htmlFor="address" className="dark:text-gray-300">
                       Address
@@ -378,6 +329,7 @@ const Profile = () => {
                     />
                   </div>
                 </div>
+               
                 <div className="flex justify-center">
                   <button
                     type="submit"

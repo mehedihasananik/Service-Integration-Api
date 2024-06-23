@@ -10,41 +10,42 @@ import { AuthContext } from "@/providers/AuthProviders";
 
 const DashBoardNav = () => {
   const router = useRouter();
-  let pathname = usePathname();
+  const pathname = usePathname().replace("/", "");
   const [cleared, setCleared] = useState(false);
-  pathname = pathname.replace("/", "");
   const [userData, setUserData] = useState(null);
-  const { deliveryDetails } = useContext(AuthContext);
+  const [isClient, setIsClient] = useState(false);
+  const { deliveryDetails, orderID } = useContext(AuthContext);
 
-  if (typeof window !== "undefined") {
-    window.addEventListener("storage", () => {
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setIsClient(true);
       setUserData(JSON.parse(localStorage.getItem("userData")));
-    });
-  }
+      window.addEventListener("storage", () => {
+        setUserData(JSON.parse(localStorage.getItem("userData")));
+      });
+    }
+  }, []);
 
   const clearSession = () => {
-    // Remove the userData from localStorage
     localStorage.removeItem("userData");
-    // Set the state to indicate that session has been cleared
     setCleared(true);
     router.push("/");
   };
-  useEffect(() => {
-    setUserData(JSON.parse(localStorage.getItem("userData")));
-  }, []);
-  // console.log(userData);
-  // console.log(pathname);
 
   return (
     <nav className="flex flex-col justify-center items-center md:flex-row md:justify-between w-[100%] py-4 px-5 lg:pr-12 bg-[#FCFCFC]">
       <div>
-        <h3 className="text-[#333] text-[28px] md:text-[30px] font-[600] capitalize px-5 py-3">
-          {pathname === "order-delivery"
-            ? deliveryDetails?.order_basic.order_id
-              ? `${pathname} #${deliveryDetails.order_basic.order_id}`
+        <div className="text-[#333] text-[28px] md:text-[30px] font-[600] capitalize px-5 py-3">
+          {isClient
+            ? pathname === "order-delivery"
+              ? orderID
+                ? `${pathname} #${orderID}`
+                : "Loading..."
+              : pathname
+              ? pathname
               : "Loading..."
-            : pathname}
-        </h3>
+            : "Loading..."}
+        </div>
       </div>
       <div>
         <ul className="flex items-center gap-x-7 pt-4">
@@ -65,33 +66,26 @@ const DashBoardNav = () => {
 
           <button className="flex gap-3 items-center">
             <Link href={"/profile"}>
-              {userData?.image ? (
+              {userData?.image && (
                 <div className="flex items-center justify-center">
-                  {" "}
                   <img
                     className="w-[40px] h-[40px] rounded-lg"
-                    src={userData?.image}
-                    alt=""
+                    src={userData.image}
+                    alt="User"
                   />
                 </div>
-              ) : (
-                ""
               )}
             </Link>
             <Dropdown
               label={userData?.name || userData?.user_name}
               dismissOnClick={false}
               renderTrigger={() => (
-                <span>
-                  {
-                    <div className="flex gap-x-2 items-center">
-                      <span className="flex items-center gap-x-4 text-[16px] hover:text-[#FF693B] transition-all duration-200">
-                        {userData ? `${userData?.name}` : <UserLoading />}
-                      </span>
-                      <MdKeyboardArrowDown className="text-[24px] cursor-pointer" />
-                    </div>
-                  }
-                </span>
+                <div className="flex gap-x-2 items-center">
+                  <span className="flex items-center gap-x-4 text-[16px] hover:text-[#FF693B] transition-all duration-200">
+                    {userData ? userData.name : <UserLoading />}
+                  </span>
+                  <MdKeyboardArrowDown className="text-[24px] cursor-pointer" />
+                </div>
               )}
             >
               <Dropdown.Item>
@@ -99,6 +93,9 @@ const DashBoardNav = () => {
               </Dropdown.Item>
               <Dropdown.Item>
                 <Link href={"/history"}>History</Link>
+              </Dropdown.Item>
+              <Dropdown.Item>
+                <Link href={"/billing"}>Billing</Link>
               </Dropdown.Item>
               <Dropdown.Item onClick={clearSession}>Sign out</Dropdown.Item>
             </Dropdown>

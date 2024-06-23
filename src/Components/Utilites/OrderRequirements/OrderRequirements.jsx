@@ -44,7 +44,7 @@ const OrderRequirements = () => {
     setLoading(true);
     try {
       const data = await fetchData(
-        `https://admin.envobyte.com/api/order_delivery`,
+        `http://192.168.10.14:8000/api/order_delivery`,
         "POST",
         {
           order_id: orderID,
@@ -65,7 +65,6 @@ const OrderRequirements = () => {
 
   const order_basic = deliveryDetails?.order_basic;
   const user_requirements = deliveryDetails?.user_requirements;
-  console.log(deliveryDetails);
 
   return (
     <div className="grid gap-y-5 grid-cols-1 md:grid-cols-1 h-[50vh] px-4 md:pt-5 md:pb-3">

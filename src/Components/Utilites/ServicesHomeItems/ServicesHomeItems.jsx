@@ -1,24 +1,21 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/navigation";
-import { HiArrowLeft } from "react-icons/hi";
-import { HiArrowRight } from "react-icons/hi";
-import Image from "next/image";
-import ServiceLoading from "@/Components/Utilites/Loading/ServiceLoading";
+import "swiper/swiper-bundle.css";
+import { HiArrowLeft, HiArrowRight } from "react-icons/hi";
 import Link from "next/link";
-import "../../../app/globals.css";
-import { Autoplay } from "swiper/modules";
+import Image from "next/image";
 
-const ServicesHomeItems = ({ services }) => {
-  // declaring the loading & slider states states
+const DemoServices = ({ services }) => {
   const [loading, setLoading] = useState(true);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [totalSlides, setTotalSlides] = useState(0);
-  const [spaceBetween, setSpaceBetween] = useState(100); // Initial value for spaceBetween
-
   const swiperRef = useRef(null);
+
+  useEffect(() => {
+    setTotalSlides(services?.length);
+    setLoading(false);
+  }, [services]);
 
   const truncateText = (text, maxWords) => {
     const words = text.split(" ");
@@ -28,12 +25,6 @@ const ServicesHomeItems = ({ services }) => {
     return text;
   };
 
-  useEffect(() => {
-    setTotalSlides(services.length);
-    setLoading(false);
-  }, [services]);
-
-  // next function
   const handlePrevSlide = () => {
     if (swiperRef.current) {
       swiperRef.current.swiper.slidePrev();
@@ -50,11 +41,6 @@ const ServicesHomeItems = ({ services }) => {
     setCurrentSlide(swiper.realIndex);
   };
 
-  useEffect(() => {
-    // Log spaceBetween
-  }, [spaceBetween]);
-
-  // slider breakpoints
   const breakpoints = {
     1920: {
       slidesPerView: 3,
@@ -83,26 +69,24 @@ const ServicesHomeItems = ({ services }) => {
   };
 
   return (
-    <div className="overflow-hidden">
-      <div className=" max-w-[1680px] mx-auto px-[4%] md:px[8%]  xl:px-[6%]  4xl:px-[0] 4xl:max-w-[1920px] 3xl:pl-[14%] 4xl:pl-[14%] 6xl:pl-[12%]">
-        {/* services */}
-        <div className="py-6 xl:pt-10 ">
-          <div className="flex flex-col lg:flex-row items-center justify-between lg:gap-20 xl:gap-12 lg:py-8">
-            {/* left heading & description starts*/}
-            <div className="w-full lg:w-[30%]">
-              <div className="w-full lg:w-[400px]">
-                <h3 className="text-center lg:text-left text-[30px] md:text-[48px] font-bold font-Raleway text-[#0F172A]">
+    <div id="testimonial" className="overflow-hidden">
+      <div className=" max-w-[1680px] mx-auto 4xl:px-[0] 4xl:max-w-[1920px] xl:pl-[8%] 2xl:pl-[13%] 4xl:pl-[14%]">
+        <div className="py-5 xl:pt-10">
+          <div className="flex flex-col lg:flex-row items-center justify-between lg:gap-20 xl:gap-12 py-8">
+            <div className="w-full text-center lg:text-left lg:w-[35%]">
+              <div className="lg:w-[400px]">
+                <h3 className="text-[30px] md:text-[42px] lg:text-[48px] font-bold font-Raleway text-[#0F172A]">
                   Kick Start With Our Services{" "}
                 </h3>
               </div>
-              <div className="pt-4 w-full text-center lg:text-left lg:w-[380px] ">
+              <div className="pt-4 lg:w-[380px]">
                 <p className="text-[16px] text-[#666666] font-normal">
                   We help businesses to bring their products to life, improve
                   growth and reach ultimate success. We provide all services
                   that you need for your business.
                 </p>
               </div>
-              <div className="text-center lg:text-left hidden xll:block ">
+              <div className="text-center lg:text-left   ">
                 <span className="text-[48px] font-Raleway text-[#0A2C8C] font-bold">
                   {currentSlide + 3}
                 </span>
@@ -110,19 +94,19 @@ const ServicesHomeItems = ({ services }) => {
                   /{totalSlides}
                 </span>
               </div>
-              <div className="flex justify-center items-center lg:justify-start lg:items-start gap-6 py-4 ">
+              <div className="flex justify-center items-center lg:justify-start lg:items-start gap-6 py-4">
                 <div className="group text-center">
                   <button
-                    onClick={handlePrevSlide}
                     className=" bg-[#FF9F711A]  group-hover:bg-[#FF693B] px-5 py-5 rounded-lg transition-all duration-300"
+                    onClick={handlePrevSlide}
                   >
                     <HiArrowLeft className="text-[#FF693B]  group-hover:text-[#fff] w-[24px] h-[24px]" />
                   </button>
                 </div>
                 <div className="group">
                   <button
-                    onClick={handleNextSlide}
                     className=" bg-[#FF9F711A]  group-hover:bg-[#FF693B] px-5 py-5 rounded-lg transition-all duration-300"
+                    onClick={handleNextSlide}
                   >
                     <HiArrowRight className="text-[#FF693B]  group-hover:text-[#fff] w-[24px] h-[24px]" />
                   </button>
@@ -137,29 +121,27 @@ const ServicesHomeItems = ({ services }) => {
                 </Link>
               </div>
             </div>
-            {/* right swiper */}
-
-            {loading ? (
-              <>
-                <ServiceLoading />
-                <ServiceLoading />
-                <ServiceLoading />
-              </>
-            ) : (
-              <div className="w-full flex justify-center items-center  lg:w-[70%]  ">
-                {/* right side sliders cards */}
+            <div className="w-full lg:w-[65%]">
+              {loading ? (
+                <div className="flex flex-wrap justify-center">
+                  {[...Array(3)].map((_, index) => (
+                    <div
+                      key={index}
+                      className="max-w-sm p-4 border border-gray-200 rounded shadow animate-pulse md:p-6 dark:border-gray-700 mx-4 my-2"
+                    >
+                      {/* Placeholder content for loading state */}
+                    </div>
+                  ))}
+                </div>
+              ) : (
                 <Swiper
                   ref={swiperRef}
                   slidesPerView={3}
-                  slidesPerGroup={3}
-                  spaceBetween={200}
+                  slidesPerGroup={1}
+                  spaceBetween={30}
                   breakpoints={breakpoints}
-                  modules={[Autoplay]}
-                  // autoplay={{ delay: 3000, disableOnInteraction: false }}
-                  className="mySwiper space-x-4"
-                  onSlideChange={(swiper) =>
-                    setCurrentSlide(swiper.activeIndex)
-                  }
+                  className="mySwiper mx-auto"
+                  onSlideChange={handleSlideChange}
                 >
                   {services.map((service, index) => {
                     const isLastSlide = index === services.length - 1;
@@ -227,8 +209,8 @@ const ServicesHomeItems = ({ services }) => {
                     );
                   })}
                 </Swiper>
-              </div>
-            )}
+              )}
+            </div>
           </div>
         </div>
       </div>
@@ -236,4 +218,4 @@ const ServicesHomeItems = ({ services }) => {
   );
 };
 
-export default ServicesHomeItems;
+export default DemoServices;

@@ -76,14 +76,14 @@ const PrivacyPolicy = () => {
             <li>
               When you visit this website we collect anonymous information such
               as your IP address or domain name to analyze site traffic for
-              “visits” but this information is not tied to a given user’s
+              “visits” but this information is not tied to a given user&apos;s
               personal information. This information is collected and stored via
               Google Analytics.
             </li>
             <li>
               When you visit this website we collect anonymous information such
               as your IP address or domain name to analyze site traffic for
-              “visits” but this information is not tied to a given user’s
+              “visits” but this information is not tied to a given user&apos;s
               personal information. This information is collected and stored via
               Google Analytics.
             </li>
@@ -173,46 +173,72 @@ const PrivacyPolicy = () => {
             We will take reasonable steps to keep your personal information safe
             from loss, unauthorised activity, or other misuse.
           </p>
+          <div id="datadeletioninstructions">
+            <h2
+              className="text-2xl font-bold mb-2 mt-4"
+              name="datadeletioninstructions"
+            >
+              Data Deletion Instructions
+            </h2>
 
-          <h2
-            className="text-2xl font-bold mb-2 mt-4"
-            name="facebookdatadeletioninstructions"
-          >
-            Facebook Data Deletion Instructions
-          </h2>
+            <p>
+              At Envobyte, we value your privacy and are committed to ensuring
+              the security of your personal information. If you wish to delete
+              your data from our systems, please follow the instructions below:
+            </p>
 
-          <p>
-            Motion View Login is your gateway to the world of seamless Facebook
-            login experiences. We want you to know that your privacy is our top
-            priority, and we take great care to ensure that none of your
-            personal data is ever saved on our servers. In alignment with
-            Facebookapos;s stringent policies, we are committed to providing you
-            with the utmost control over your data. To enhance your peace of
-            mind, we offer a User Data Deletion Callback URL and Data Deletion
-            Instructions URL, ensuring that you have the power to manage your
-            information effortlessly and in compliance with your preferences.
-            Your data security and convenience are at the forefront of our
-            mission, and we&apos;re here to make your online experience as
-            smooth and secure as possible. If you wish to erase your activity
-            history within the Motion View Login App, you can effortlessly
-            delete your information by adhering to these easy-to-follow steps:
-          </p>
-
-          <ul>
-            <li>Step 1: Go to your Facebook Account’s “Settings & Privacy”</li>
-            <li>Step 2: Click “Settings”</li>
-            <li>
-              {" "}
-              Step 4: Look for “Apps and Websites” and you will see all of the
-              apps and websites you have linked with your Facebook account.
-            </li>
-            <li>
-              {" "}
-              Step 5: Search and Click “Office Holidays Login” in the search
-              bar.
-            </li>
-            <li> Step 6: Scroll and click “Remove”</li>
-          </ul>
+            <div style={{ listStyle: "none" }}>
+              <li>
+                1. Email Us: Send an email to our support team at
+                <Link
+                  target="_blank"
+                  className="text-[#FF693B] pl-1"
+                  href={"https://www.envobyte.com"}
+                >
+                  support@envobyte.com.
+                </Link>
+              </li>
+              <li>
+                2. Subject Line: Include &apos;&apos;Data Deletion
+                Request&apos;&apos; in the subject line of your email.
+              </li>
+              <li>
+                {" "}
+                3. Account Information: In the body of the email, provide the
+                following information to help us process your request
+                efficiently:
+              </li>
+              <ul style={{ listStyle: "circle" }} className="px-[35px]">
+                {" "}
+                <li> Your full name</li>
+                <li> Your email address associated with the account</li>
+                <li> Any relevant account details (e.g., username, user ID)</li>
+              </ul>
+              <li>
+                4. Verification: Our support team may contact you to verify your
+                identity and confirm your request.
+              </li>
+              <li>
+                {" "}
+                5. Confirmation: Once your request is verified, we will delete
+                your data from our systems and send you a confirmation email.
+              </li>
+            </div>
+            <div className="pt-3">
+              Please note that data deletion is a permanent action and cannot be
+              undone. Ensure you have backed up any important information before
+              requesting deletion. If you have any questions or need further
+              assistance, feel free to contact us at{" "}
+              <Link
+                target="_blank"
+                className="text-[#FF693B] pl-1"
+                href={"https://www.envobyte.com"}
+              >
+                support@envobyte.com.
+              </Link>
+              Thank you for choosing Envobyte. We are here to support you.
+            </div>
+          </div>
 
           <h2 className="text-2xl font-bold mb-2 mt-4">
             ACCESSING, CORRECTING OR DELETING YOUR PERSONAL INFORMATION
@@ -230,17 +256,32 @@ const PrivacyPolicy = () => {
             correction. If we do not make the correction, we will take
             reasonable steps to note on the personal information that you
             requested the correction. If you want to exercise either of the
-            above rights, email us at support@envobyte.com. Your email should
-            provide evidence of who you are and set out the details of your
-            request (e.g. the personal information, or the correction, that you
-            are requesting). We may charge you our reasonable costs of providing
-            to you copies of your personal information or correcting that
-            information.
+            above rights, email us at
+            <Link
+              target="_blank"
+              className="text-[#FF693B] pl-1"
+              href={"https://www.envobyte.com"}
+            >
+              support@envobyte.com.
+            </Link>{" "}
+            Your email should provide evidence of who you are and set out the
+            details of your request (e.g. the personal information, or the
+            correction, that you are requesting). We may charge you our
+            reasonable costs of providing to you copies of your personal
+            information or correcting that information.
           </p>
 
           <p>
             The way they can delete their accounts by sending a deleting request
-            email to support@envobyte.comwhere we handle these requests.
+            email to
+            <Link
+              target="_blank"
+              className="text-[#FF693B] pl-1"
+              href={"https://www.envobyte.com"}
+            >
+              support@envobyte.com
+            </Link>{" "}
+            where we handle these requests.
           </p>
 
           <h2 className="text-2xl font-bold mb-2 mt-4">INTERNET USE</h2>
@@ -253,21 +294,21 @@ const PrivacyPolicy = () => {
 
           <ul className="list-disc list-inside mb-4">
             <li>
-              If you post your personal information on the website’s blog posts,
-              message board or chat room, you acknowledge and agree that the
-              information you post is publicly available.
+              If you post your personal information on the website&apos;s blog
+              posts, message board or chat room, you acknowledge and agree that
+              the information you post is publicly available.
             </li>
             <li>
               If you follow a link on our website to another site, the owner of
               that site will have its own privacy policy relating to your
-              personal information. We suggest you review that site’s privacy
-              policy before you provide personal information.
+              personal information. We suggest you review that site&apos;s
+              privacy policy before you provide personal information.
             </li>
           </ul>
 
           <p>
             We use cookies (an alphanumeric identifier that we transfer to your
-            computer’s hard drive so that we can recognise your browser) to
+            computer&apos;s hard drive so that we can recognise your browser) to
             monitor your use of the website.
           </p>
           <p>

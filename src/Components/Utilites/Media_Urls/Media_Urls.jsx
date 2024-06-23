@@ -40,6 +40,9 @@ const fileTypeIcons = {
   pdf: "https://cdn3.iconfinder.com/data/icons/muksis/128/pdf-128.png",
   xlsx: "https://cdn3.iconfinder.com/data/icons/muksis/128/xlsx-128.png",
   docx: "https://cdn3.iconfinder.com/data/icons/muksis/128/docx-128.png",
+  mp4: "video/mp4",
+  webm: "video/webm",
+  ogg: "video/ogg",
 };
 
 const fallbackIconUrl =
@@ -62,7 +65,7 @@ const Media_Urls = ({ media_urls }) => {
           return (
             <div key={index} className="group relative">
               <div
-                className="  h-[180px]  flex items-center justify-center bg-[#F3F6F9] rounded-lg group-hover:brightness-75 cursor-pointer pointer-events-none"
+                className="h-[180px] flex items-center justify-center bg-[#F3F6F9] rounded-lg group-hover:brightness-75 cursor-pointer pointer-events-none"
                 onClick={() => handleImageClick(item)}
               >
                 {fileType === "jpg" ||
@@ -74,22 +77,36 @@ const Media_Urls = ({ media_urls }) => {
                     src={item}
                     alt=""
                   />
+                ) : fileType === "mp4" ||
+                  fileType === "webm" ||
+                  fileType === "ogg" ? (
+                  <video
+                    className="h-[180px] w-full object-contain object-position-center pointer-events-auto rounded-lg"
+                    controls
+                  >
+                    <source src={item} type={iconSrc} />
+                    Your browser does not support the video tag.
+                  </video>
                 ) : (
                   <img
-                    className="h-[120px]  pointer-events-auto rounded-lg"
+                    className="h-[120px] pointer-events-auto rounded-lg"
                     src={iconSrc}
                     alt={`File Thumbnail`}
                   />
                 )}
               </div>
-              <div className="absolute bottom-[40px] 6xl:bottom-10 right-3 flex justify-start pointer-events-auto ">
-                <button
-                  className="bg-[#FF693B] py-1.5 px-2 rounded-sm shadow-md text-white"
-                  onClick={(event) => handleDownloadClick(item, event)}
-                >
-                  <MdDownload />
-                </button>
-              </div>
+              {fileType !== "mp4" &&
+                fileType !== "webm" &&
+                fileType !== "ogg" && (
+                  <div className="absolute bottom-[40px] 6xl:bottom-10 right-3 flex justify-start pointer-events-auto">
+                    <button
+                      className="bg-[#FF693B] py-1.5 px-2 rounded-sm shadow-md text-white"
+                      onClick={(event) => handleDownloadClick(item, event)}
+                    >
+                      <MdDownload />
+                    </button>
+                  </div>
+                )}
               <div className="text-sm mt-2 text-center w-[250px]">
                 {`${fileName}..${fileExtension}`}
               </div>{" "}

@@ -17,7 +17,7 @@ const DashBoardContent = () => {
   const fetchingData = async () => {
     setLoading(true);
     const data = await fetchData(
-      `https://admin.envobyte.com/api/service_order_dashboard`,
+      `http://192.168.10.14:8000/api/service_order_dashboard`,
       "POST",
       {
         user_id: sessionData?.id,
@@ -34,6 +34,7 @@ const DashBoardContent = () => {
   const handlePassData = (order_id) => {
     localStorage.setItem("orderID", order_id);
   };
+  console.log(projects);
 
   return (
     <div

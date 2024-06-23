@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+import { useRouter } from "next/navigation";
+import React, { useEffect } from "react";
 import { BiRevision } from "react-icons/bi";
 import { MdOutlineAccessTimeFilled } from "react-icons/md";
 
@@ -13,6 +15,13 @@ const CustomOffer = ({ order }) => {
     status,
     message,
   } = order;
+  const router = useRouter();
+
+  const orderId =
+    typeof window !== "undefined"
+      ? JSON.parse(localStorage.getItem("orderID"))
+      : null;
+  console.log(orderId);
 
   const handleStatusUpdate = async (status) => {
     const formData = new FormData();
@@ -20,7 +29,7 @@ const CustomOffer = ({ order }) => {
 
     try {
       const response = await fetch(
-        `http://192.168.10.15:8000/api/chat/order/update/${id}`,
+        `http://192.168.10.16:8000/api/chat/order/update/${id}`,
         {
           method: "POST",
           body: formData,
@@ -38,6 +47,12 @@ const CustomOffer = ({ order }) => {
       console.error("Error updating status:", error);
     }
   };
+
+  useEffect(() => {
+    if (orderId) {
+      router.push(`/checkout/${orderId}`);
+    }
+  }, [orderId, router]);
 
   return (
     <div className="lg:mx-12 w-[80%] pb-4">

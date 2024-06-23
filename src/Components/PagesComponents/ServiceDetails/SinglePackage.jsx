@@ -34,7 +34,7 @@ const SinglePackage = ({ item, setOpenModal }) => {
       service_package: item.id,
       sevice_items_id: item.sevice_items_id,
       package_price: item.package_price,
-      payment_status: "pending",
+      payment_status: "done",
       order_status: "Requirement Needed",
     };
 
