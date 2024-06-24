@@ -6,22 +6,6 @@ const handleImageClick = (url) => {
   window.open(url, "_blank");
 };
 
-const handleDownloadClick = (url, event) => {
-  event.stopPropagation();
-
-  fetch(url)
-    .then((response) => response.blob())
-    .then((blob) => {
-      const link = document.createElement("a");
-      link.href = window.URL.createObjectURL(blob);
-      link.download = url.split("/").pop();
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    })
-    .catch((error) => console.error("Error downloading the file:", error));
-};
-
 const getFileType = (url) => {
   const extension = url.split(".").pop().split("_")[0];
   return extension.toLowerCase();
@@ -57,6 +41,7 @@ const formatFileName = (fileName, extension) => {
 
 const Media_Urls = ({ media_urls }) => {
   const [thumbnails, setThumbnails] = useState({});
+  const [downloading, setDownloading] = useState({});
 
   useEffect(() => {
     generateVideoThumbnails();
@@ -88,6 +73,27 @@ const Media_Urls = ({ media_urls }) => {
       const thumbnailUrl = canvas.toDataURL();
       setThumbnails((prev) => ({ ...prev, [videoUrl]: thumbnailUrl }));
     });
+  };
+
+  const handleDownloadClick = (url, event) => {
+    event.stopPropagation();
+    setDownloading((prev) => ({ ...prev, [url]: true }));
+
+    fetch(url)
+      .then((response) => response.blob())
+      .then((blob) => {
+        const link = document.createElement("a");
+        link.href = window.URL.createObjectURL(blob);
+        link.download = url.split("/").pop();
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        setDownloading((prev) => ({ ...prev, [url]: false }));
+      })
+      .catch((error) => {
+        console.error("Error downloading the file:", error);
+        setDownloading((prev) => ({ ...prev, [url]: false }));
+      });
   };
 
   return (
@@ -150,7 +156,11 @@ const Media_Urls = ({ media_urls }) => {
                   className="bg-[#FF693B] py-1.5 px-2 rounded-sm shadow-md text-white"
                   onClick={(event) => handleDownloadClick(item, event)}
                 >
-                  <MdDownload />
+                  {downloading[item] ? (
+                    <span>Downloading...</span>
+                  ) : (
+                    <MdDownload />
+                  )}
                 </button>
               </div>
               <div className="text-sm mt-2 text-center w-[250px]">
