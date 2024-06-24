@@ -59,10 +59,6 @@ const OrderChat = ({
     setInputtedMessage(inputtedMessage + emoji);
     setText(inputtedMessage + emoji);
   };
-  const checkFileSize = (file) => {
-    const maxSize = 60 * 1024 * 1024; // 60MB in bytes
-    return file.size <= maxSize;
-  };
 
   const handleImageLoaded = () => {
     setIsLoading(false);
