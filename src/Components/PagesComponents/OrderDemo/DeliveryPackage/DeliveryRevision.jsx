@@ -45,6 +45,13 @@ const DeliveryRevision = ({ openModal, setOpenModal, modalSize, delivery }) => {
   };
 
   const handleSendRevisionRequest = async () => {
+    if (!text.trim()) {
+      toast.error(
+        "Please enter a message before sending the revision request."
+      );
+      return;
+    }
+
     setIsLoading(true); // Set loading to true when the request starts
     const formData = new FormData();
     formData.append("order", delivery.service_order_id); // Assuming delivery.id is the delivery ID
@@ -60,7 +67,7 @@ const DeliveryRevision = ({ openModal, setOpenModal, modalSize, delivery }) => {
 
     try {
       const response = await axios.post(
-        "http://192.168.10.15:8000/api/order/revision/store",
+        "http://192.168.10.16:8000/api/order/revision/store",
         formData,
         {
           headers: {
@@ -159,7 +166,7 @@ const DeliveryRevision = ({ openModal, setOpenModal, modalSize, delivery }) => {
                     />
                   ) : file.type === "application/vnd.adobe.xd" ? (
                     <img
-                      src="http://192.168.10.15:8000/js/icons/xd.png"
+                      src="http://192.168.10.16:8000/js/icons/xd.png"
                       alt={`XD Preview ${index}`}
                       className="w-[100px] h-[100px] object-cover"
                     />
@@ -167,7 +174,7 @@ const DeliveryRevision = ({ openModal, setOpenModal, modalSize, delivery }) => {
                     file.type ===
                       "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ? (
                     <img
-                      src="http://192.168.10.15:8000/js/icons/doc.png"
+                      src="http://192.168.10.16:8000/js/icons/doc.png"
                       alt={`Word Preview ${index}`}
                       className="w-[100px] h-[100px] object-cover"
                     />
@@ -175,21 +182,27 @@ const DeliveryRevision = ({ openModal, setOpenModal, modalSize, delivery }) => {
                     file.type ===
                       "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ? (
                     <img
-                      src="http://192.168.10.15:8000/js/icons/excel.png"
+                      src="http://192.168.10.16:8000/js/icons/excel.png"
                       alt={`Excel Preview ${index}`}
                       className="w-[100px] h-[100px] object-cover"
                     />
                   ) : file.type === "text/plain" ? (
                     <img
-                      src="http://192.168.10.15:8000/js/icons/txt.png"
+                      src="http://192.168.10.16:8000/js/icons/txt.png"
                       alt={`Text Preview ${index}`}
                       className="w-[100px] h-[100px] object-cover"
                     />
                   ) : file.type === "application/zip" ||
                     file.type === "application/x-zip-compressed" ? (
                     <img
-                      src="http://192.168.10.15:8000/js/icons/zip.png"
+                      src="/assets/zipFile.jpg"
                       alt={`Zip Preview ${index}`}
+                      className="w-[100px] h-[100px] object-cover"
+                    />
+                  ) : file.type.startsWith("video/") ? (
+                    <img
+                      src="http://192.168.10.16:8000/js/icons/video.png"
+                      alt={`Video Preview ${index}`}
                       className="w-[100px] h-[100px] object-cover"
                     />
                   ) : (

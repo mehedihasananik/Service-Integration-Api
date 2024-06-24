@@ -41,24 +41,11 @@ const CustomOffer = ({ order }) => {
       }
 
       const data = await response.json();
-      console.log("Status updated:", data?.delivery?.status);
+      // console.log("Status updated:", data?.delivery?.status);
+      // Optionally, you can update the state here to reflect the new status
 
-      // Make additional request if status is accept
-      if (status === "accept") {
-        const additionalResponse = await fetch(
-          `http://192.168.10.16:8000/api/additional-order/information/${id}`
-        );
-
-        if (!additionalResponse.ok) {
-          throw new Error("Failed to fetch additional order information");
-        }
-
-        const additionalData = await additionalResponse.json();
-        console.log("Additional order information:", additionalData);
-
-        if (orderId) {
-          router.push(`/checkout/${orderId}`);
-        }
+      if (status === "accept" && orderId) {
+        router.push(`/checkout/${orderId}`);
       }
     } catch (error) {
       console.error("Error updating status:", error);

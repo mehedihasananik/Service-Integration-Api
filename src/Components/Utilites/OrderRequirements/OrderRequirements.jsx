@@ -65,6 +65,7 @@ const OrderRequirements = () => {
 
   const order_basic = deliveryDetails?.order_basic;
   const user_requirements = deliveryDetails?.user_requirements;
+  const additional_offer = deliveryDetails?.additional_offer;
 
   return (
     <div className="grid gap-y-5 grid-cols-1 md:grid-cols-1 h-[50vh] px-4 md:pt-5 md:pb-3">
@@ -108,18 +109,23 @@ const OrderRequirements = () => {
                 alt="ui ux design"
               />
             </div>
-            <div>
-              <h2 className="text-[#444] font-Raleway text-[16px] font-[600]">
-                Total Amount
-              </h2>
-              <p className="text-[#666] text-[14px] font-[400] whitespace-nowrap ">
-                User: Anik
-              </p>
-            </div>
-            <div>
-              <h3 className="text-[#3371F2] text-[20px] font-[600] m-0 p-0 ">
-                ${order_basic?.order_price}
-              </h3>
+            <div className="flex space-x-10">
+              <div>
+                <h2 className="text-[#444] font-Raleway text-[16px] font-[600]">
+                  Total Amount
+                </h2>
+                <p className="text-[#666] text-[14px] font-[400] whitespace-nowrap ">
+                  User: Anik
+                </p>
+              </div>
+              <div>
+                <h3
+                  style={{ padding: "0", margin: "0" }}
+                  className="text-[#3371F2] text-[20px] font-[600] m-0 p-0 "
+                >
+                  ${order_basic?.order_price}
+                </h3>
+              </div>
             </div>
           </div>
           {/* 2nd */}
@@ -155,6 +161,29 @@ const OrderRequirements = () => {
               </h2>
               <p className="text-[#666] text-[14px] font-[400] ">
                 {order_basic?.order_placed}
+              </p>
+            </div>
+          </div>
+          {/* additional offer */}
+          <div className="max-w-[330px] h-[80px] flex items-start gap-x-3 border border-[#E2E2E2] bg-[#FDFDFD] rounded-md p-3">
+            <div>
+              <img
+                className="w-[40px] h-full"
+                src="/assets/date.png"
+                alt="ui ux design"
+              />
+            </div>
+            <div className="space-y-1">
+              <div className="flex justify-between gap-x-10 ">
+                <h2 className="text-[#444] font-Raleway text-[16px] font-[600]">
+                  Additional Offer
+                </h2>
+                <p className="text-[#3371F2] text-[20px] font-[600] m-0 p-0 ">
+                  $22
+                </p>
+              </div>
+              <p className="text-[#666] text-[14px] font-[400] ">
+                Exp.Delivery: Jun 23, 4:14 PM
               </p>
             </div>
           </div>

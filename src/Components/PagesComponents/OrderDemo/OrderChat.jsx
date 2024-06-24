@@ -59,6 +59,10 @@ const OrderChat = ({
     setInputtedMessage(inputtedMessage + emoji);
     setText(inputtedMessage + emoji);
   };
+  const checkFileSize = (file) => {
+    const maxSize = 60 * 1024 * 1024; // 60MB in bytes
+    return file.size <= maxSize;
+  };
 
   const handleImageLoaded = () => {
     setIsLoading(false);
@@ -201,7 +205,12 @@ const OrderChat = ({
                 minute: "2-digit",
                 hour12: true,
               }).format(updatedAt);
-              const { order, delivery, media_urls } = msg;
+              const {
+                order,
+                delivery,
+                media_urls,
+                human_readable_delivery_time,
+              } = msg;
 
               return (
                 <div
@@ -293,7 +302,14 @@ const OrderChat = ({
                     </div>
                   </div>
                   {order && <CustomOffer order={order} />}
-                  {delivery && <DeliveryPackage delivery={delivery} />}
+                  {delivery && (
+                    <DeliveryPackage
+                      delivery={delivery}
+                      human_readable_delivery_time={
+                        human_readable_delivery_time
+                      }
+                    />
+                  )}
                   {media_urls && <Media_Urls media_urls={media_urls} />}
                   {delivery?.service_order_revisions && (
                     <ServiceOrderRevisions delivery={delivery} />
@@ -344,7 +360,7 @@ const OrderChat = ({
                             />
                           ) : file.type === "application/vnd.adobe.xd" ? (
                             <img
-                              src="http://192.168.10.15:8000/js/icons/xd.png"
+                              src="http://192.168.10.16:8000/js/icons/xd.png"
                               alt={`XD Preview ${index}`}
                               className="w-[100px] h-[100px]"
                             />
@@ -352,7 +368,7 @@ const OrderChat = ({
                             file.type ===
                               "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ? (
                             <img
-                              src="http://192.168.10.15:8000/js/icons/doc.png"
+                              src="https://cdn3.iconfinder.com/data/icons/muksis/128/docx-128.png"
                               alt={`Word Preview ${index}`}
                               className="w-[100px] h-[100px]"
                             />
@@ -360,26 +376,32 @@ const OrderChat = ({
                             file.type ===
                               "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ? (
                             <img
-                              src="http://192.168.10.15:8000/js/icons/excel.png"
+                              src="http://192.168.10.16:8000/js/icons/excel.png"
                               alt={`Excel Preview ${index}`}
                               className="w-[100px] h-[100px]"
                             />
                           ) : file.type === "text/plain" ? (
                             <img
-                              src="http://192.168.10.15:8000/js/icons/txt.png"
+                              src="http://192.168.10.16:8000/js/icons/txt.png"
                               alt={`Text Preview ${index}`}
                               className="w-[100px] h-[100px]"
                             />
                           ) : file.type === "application/zip" ||
                             file.type === "application/x-zip-compressed" ? (
                             <img
-                              src="http://192.168.10.15:8000/js/icons/zip.png"
+                              src="https://cdn3.iconfinder.com/data/icons/muksis/128/zip-128.png"
                               alt={`Zip Preview ${index}`}
+                              className="w-[100px] h-[100px]"
+                            />
+                          ) : file.type.startsWith("video/") ? (
+                            <img
+                              src="http://192.168.10.16:8000/js/icons/video.png"
+                              alt={`Video Preview ${index}`}
                               className="w-[100px] h-[100px]"
                             />
                           ) : (
                             <img
-                              src="https://cdn-icons-png.flaticon.com/512/1388/1388902.png"
+                              src="/assets/file-1453.png"
                               alt={`Unsupported Preview ${index}`}
                               className="w-[100px] h-[100px]"
                             />

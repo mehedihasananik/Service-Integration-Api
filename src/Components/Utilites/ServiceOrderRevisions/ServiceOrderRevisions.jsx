@@ -51,38 +51,50 @@ const ServiceOrderRevisions = ({ delivery }) => {
                   const fileType = fileUrl.split(".").pop();
 
                   let preview;
+                  let isPadded = false;
                   if (fileType === "pdf") {
                     preview =
                       "https://cdn3.iconfinder.com/data/icons/muksis/128/pdf-512.png";
+                    isPadded = true;
                   } else if (fileType === "psd") {
                     preview =
                       "https://cdn3.iconfinder.com/data/icons/muksis/128/psd-512.png";
+                    isPadded = true;
                   } else if (fileType === "xd") {
-                    preview = "http://192.168.10.15:8000/js/icons/xd.png";
+                    preview = "http://192.168.10.16:8000/js/icons/xd.png";
+                    isPadded = true;
                   } else if (fileType === "doc" || fileType === "docx") {
-                    preview = "http://192.168.10.15:8000/js/icons/doc.png";
+                    preview =
+                      "https://cdn3.iconfinder.com/data/icons/muksis/128/docx-128.png";
+                    isPadded = true;
                   } else if (fileType === "xls" || fileType === "xlsx") {
-                    preview = "http://192.168.10.15:8000/js/icons/excel.png";
+                    preview = "http://192.168.10.16:8000/js/icons/excel.png";
+                    isPadded = true;
                   } else if (fileType === "txt") {
-                    preview = "http://192.168.10.15:8000/js/icons/txt.png";
+                    preview = "http://192.168.10.16:8000/js/icons/txt.png";
+                    isPadded = true;
                   } else if (fileType === "zip") {
-                    preview = "http://192.168.10.15:8000/js/icons/zip.png";
+                    preview =
+                      "https://cdn3.iconfinder.com/data/icons/muksis/128/zip-128.png";
+                    isPadded = true;
                   } else if (["jpg", "jpeg", "png", "gif"].includes(fileType)) {
                     preview = fileUrl;
                   } else {
-                    preview =
-                      "https://cdn-icons-png.flaticon.com/512/1388/1388902.png";
+                    preview = "/assets/file-1453.png";
+                    isPadded = true;
                   }
 
                   return (
                     <div className="group" key={fileIndex}>
                       <div
-                        className="relative  h-[180px] w-[250px] flex items-center justify-center group-hover:brightness-75  bg-[#F3F6F9] rounded-lg cursor-pointer mb-3"
+                        className="relative h-[180px] w-[250px] flex items-center justify-center group-hover:brightness-75 bg-[#F3F6F9] rounded-lg cursor-pointer mb-3"
                         onClick={() => handleImageClick(fileUrl)}
                       >
-                        <div className=" cursor-pointer pointer-events-none">
+                        <div className="cursor-pointer pointer-events-none">
                           <img
-                            className=" h-[180px] w-full object-contain object-position-center   pointer-events-auto "
+                            className={`h-[180px] w-full object-contain object-position-center pointer-events-auto ${
+                              isPadded ? "p-4" : ""
+                            }`}
                             src={preview}
                             alt=""
                           />

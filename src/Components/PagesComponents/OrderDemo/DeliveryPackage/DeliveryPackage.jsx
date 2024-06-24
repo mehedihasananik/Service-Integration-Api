@@ -9,7 +9,7 @@ import Confetti from "react-confetti";
 import useWindowSize from "@/Components/Utilites/WindowSize/useWindowSize";
 import CongratsModal from "@/Components/Utilites/CongratsModal/CongratsModal";
 
-const DeliveryPackage = ({ delivery }) => {
+const DeliveryPackage = ({ delivery, human_readable_delivery_time }) => {
   const [openModal, setOpenModal] = useState(false);
   const [modalSize, setModalSize] = useState("4xl");
   const [showConfetti, setShowConfetti] = useState(false);
@@ -17,14 +17,7 @@ const DeliveryPackage = ({ delivery }) => {
   const [openCongratsModal, setOpenCongratsModal] = useState(false);
 
   const { width, height } = useWindowSize();
-  const {
-    description,
-    media_urls,
-    id,
-    status,
-    updated_at,
-    human_readable_delivery_time,
-  } = delivery;
+  const { description, media_urls, id, status, updated_at } = delivery;
 
   const handleImageClick = (url) => {
     window.open(url, "_blank");
@@ -183,10 +176,7 @@ const DeliveryPackage = ({ delivery }) => {
                   ? ""
                   : status === "revision"
                   ? "The order has been sent for revision."
-                  : `Note: You have until ${updated_at.slice(
-                      0,
-                      11
-                    )} to approve the delivery or request a revision. Otherwise, the order will be marked as complete.`}
+                  : `Note: You have until ${human_readable_delivery_time} to approve the delivery or request a revision. Otherwise, the order will be marked as complete.`}
               </p>
             </div>
           </div>

@@ -1,22 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { MdDownload } from "react-icons/md";
 import UserLoading from "../UserLoading/UserLoading";
 
-// Function to handle image click
 const handleImageClick = (url) => {
   window.open(url, "_blank");
 };
 
-// Function to handle download click
 const handleDownloadClick = (url, event) => {
-  event.stopPropagation(); // Prevent the button click from propagating to the image click handler
+  event.stopPropagation();
 
   fetch(url)
     .then((response) => response.blob())
     .then((blob) => {
       const link = document.createElement("a");
       link.href = window.URL.createObjectURL(blob);
-      link.download = url.split("/").pop(); // Set the suggested download file name
+      link.download = url.split("/").pop();
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -24,13 +22,11 @@ const handleDownloadClick = (url, event) => {
     .catch((error) => console.error("Error downloading the file:", error));
 };
 
-// Function to determine the file type
 const getFileType = (url) => {
   const extension = url.split(".").pop().split("_")[0];
   return extension.toLowerCase();
 };
 
-// Map file types to icon URLs
 const fileTypeIcons = {
   jpg: "image/jpeg",
   jpeg: "image/jpeg",
@@ -43,25 +39,72 @@ const fileTypeIcons = {
   mp4: "video/mp4",
   webm: "video/webm",
   ogg: "video/ogg",
+  zip: "https://cdn3.iconfinder.com/data/icons/muksis/128/zip-128.png",
 };
 
-const fallbackIconUrl =
-  "https://cdn-icons-png.flaticon.com/512/1388/1388902.png";
+const fallbackIconUrl = "/assets/file-1453.png";
+const videoIconUrl =
+  "https://freepngimg.com/download/video_icon/30448-6-video-icon.png";
+
+const formatFileName = (fileName, extension) => {
+  if (fileName.length <= 20) {
+    return `${fileName}.${extension}`;
+  }
+  const firstPart = fileName.slice(0, 4);
+  const lastPart = fileName.slice(-4);
+  return `${firstPart}....${lastPart}.${extension}`;
+};
 
 const Media_Urls = ({ media_urls }) => {
+  const [thumbnails, setThumbnails] = useState({});
+
+  useEffect(() => {
+    generateVideoThumbnails();
+  }, [media_urls]);
+
+  const generateVideoThumbnails = () => {
+    media_urls.forEach((url) => {
+      const fileType = getFileType(url);
+      if (fileType === "mp4" || fileType === "webm" || fileType === "ogg") {
+        generateThumbnail(url);
+      }
+    });
+  };
+
+  const generateThumbnail = (videoUrl) => {
+    const video = document.createElement("video");
+    video.src = videoUrl;
+    video.crossOrigin = "anonymous";
+    video.addEventListener("loadeddata", () => {
+      video.currentTime = 1;
+    });
+    video.addEventListener("seeked", () => {
+      const canvas = document.createElement("canvas");
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      canvas
+        .getContext("2d")
+        .drawImage(video, 0, 0, canvas.width, canvas.height);
+      const thumbnailUrl = canvas.toDataURL();
+      setThumbnails((prev) => ({ ...prev, [videoUrl]: thumbnailUrl }));
+    });
+  };
+
   return (
     <div>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 pb-2 pt-3">
         {media_urls.map((item, index) => {
-          const fileName = item
-            .split("/")
-            .pop() // Get the last part of the URL
-            .split("_")[0] // Take the part before the first underscore, if any
-            .split(".")[0]
-            .slice(0, 10); // Take the part before the first period
+          const fullFileName = item.split("/").pop();
+          const fileNameWithoutExtension = fullFileName.split(".")[0];
+          const fileExtension = fullFileName.split(".").pop();
+          const formattedFileName = formatFileName(
+            fileNameWithoutExtension,
+            fileExtension
+          );
+
           const fileType = getFileType(item);
-          const iconSrc = fileTypeIcons[fileType] || fallbackIconUrl; // Get the icon URL for the file type, or use fallback
-          const fileExtension = item.split(".").pop(); // Extract file extension from URL
+          const iconSrc = fileTypeIcons[fileType] || fallbackIconUrl;
+
           return (
             <div key={index} className="group relative">
               <div
@@ -80,13 +123,20 @@ const Media_Urls = ({ media_urls }) => {
                 ) : fileType === "mp4" ||
                   fileType === "webm" ||
                   fileType === "ogg" ? (
-                  <video
-                    className="h-[180px] w-full object-contain object-position-center pointer-events-auto rounded-lg"
-                    controls
-                  >
-                    <source src={item} type={iconSrc} />
-                    Your browser does not support the video tag.
-                  </video>
+                  <div className="relative w-full h-full">
+                    <img
+                      className="h-[180px] w-full object-cover object-position-center pointer-events-auto rounded-lg"
+                      src={thumbnails[item] || iconSrc}
+                      alt="Video Thumbnail"
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <img
+                        src={videoIconUrl}
+                        alt="Video Icon"
+                        className="w-12 h-12"
+                      />
+                    </div>
+                  </div>
                 ) : (
                   <img
                     className="h-[120px] pointer-events-auto rounded-lg"
@@ -95,22 +145,17 @@ const Media_Urls = ({ media_urls }) => {
                   />
                 )}
               </div>
-              {fileType !== "mp4" &&
-                fileType !== "webm" &&
-                fileType !== "ogg" && (
-                  <div className="absolute bottom-[40px] 6xl:bottom-10 right-3 flex justify-start pointer-events-auto">
-                    <button
-                      className="bg-[#FF693B] py-1.5 px-2 rounded-sm shadow-md text-white"
-                      onClick={(event) => handleDownloadClick(item, event)}
-                    >
-                      <MdDownload />
-                    </button>
-                  </div>
-                )}
+              <div className="absolute bottom-[40px] 6xl:bottom-10 right-3 flex justify-start pointer-events-auto">
+                <button
+                  className="bg-[#FF693B] py-1.5 px-2 rounded-sm shadow-md text-white"
+                  onClick={(event) => handleDownloadClick(item, event)}
+                >
+                  <MdDownload />
+                </button>
+              </div>
               <div className="text-sm mt-2 text-center w-[250px]">
-                {`${fileName}..${fileExtension}`}
-              </div>{" "}
-              {/* Display file name with extension */}
+                {formattedFileName}
+              </div>
             </div>
           );
         })}

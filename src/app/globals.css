@@ -402,3 +402,9 @@
   color: green;
   background-color: none !important;
 }
+.billing_checkout_digit {
+  background-color: gray;
+  padding: 0px 6px;
+  border-radius: 20px;
+  color: #fff;
+}

@@ -77,8 +77,6 @@ const SinglePage = ({ params }) => {
           if (response.data.success == true) {
             tabsRef.current?.setActiveTab(1);
             setActiveBtn(true);
-            setcheckoutActive(true);
-            toast.success("Billing Address Submited");
           } else {
             toast.error("Billing address faild submited");
           }
@@ -131,51 +129,78 @@ const SinglePage = ({ params }) => {
       {/*  */}
       <div>
         <div className="billing-button">
-          <h2 className="text-xl font-semibold text-gray-900 dark:text-white text-center">
+          <h2 className="text-xl font-semibold text-gray-900 dark:text-white text-center pt-4">
             Billing Details
           </h2>
 
           <div className="button-container">
             <Button.Group className="d-flex gap-5">
-              <Button
-                color="gray"
-                className={`${
-                  btnActive ? "billing_btn disabled" : ""
-                } common_btn`}
-                onClick={() => tabsRef.current?.setActiveTab(0)}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  className="bi bi-check-circle-fill"
-                  viewBox="0 0 16 16"
+              {btnActive ? (
+                <Button
+                  color="gray"
+                  className={`${
+                    btnActive ? "billing_btn disabled" : ""
+                  } common_btn`}
+                  onClick={() => tabsRef.current?.setActiveTab(0)}
                 >
-                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
-                </svg>{" "}
-                <span className="ml-2">Billing Info</span>
-              </Button>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    fill="currentColor"
+                    className="bi bi-check-circle-fill"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                  </svg>{" "}
+                  <span className="ml-2">Billing Info</span>
+                </Button>
+              ) : (
+                <Button
+                  color="gray"
+                  className={`${
+                    checkoutActive ? "checkout_btn" : ""
+                  } common_btn disabled`}
+                  onClick={() => tabsRef.current?.setActiveTab(0)}
+                >
+                  <span className="billing_checkout_digit">1</span>
+                  <span className="ml-2 hover:none">Billing Info</span>
+                </Button>
+              )}
+
               <div className="btn_prograess"></div>
-              <Button
-                color="gray"
-                className={`${
-                  checkoutActive ? "checkout_btn" : ""
-                } common_btn disabled`}
-                onClick={() => tabsRef.current?.setActiveTab(1)}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  className="bi bi-check-circle-fill"
-                  viewBox="0 0 16 16"
+              {checkoutActive ? (
+                <Button
+                  color="gray"
+                  className={`${
+                    checkoutActive ? "checkout_btn" : ""
+                  } common_btn disabled`}
+                  onClick={() => tabsRef.current?.setActiveTab(1)}
                 >
-                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
-                </svg>{" "}
-                <span className="ml-2">Checkout Info</span>
-              </Button>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    fill="currentColor"
+                    className="bi bi-check-circle-fill"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                  </svg>{" "}
+                  <span className="ml-2">Checkout Info</span>
+                </Button>
+              ) : (
+                <Button
+                  color="gray"
+                  className={`${
+                    checkoutActive ? "checkout_btn" : ""
+                  } common_btn disabled`}
+                  onClick={() => tabsRef.current?.setActiveTab(1)}
+                >
+                  <span className="billing_checkout_digit">2</span>
+                  <span className="ml-2">Checkout Info</span>
+                </Button>
+              )}
             </Button.Group>
           </div>
         </div>
@@ -320,8 +345,9 @@ const SinglePage = ({ params }) => {
 
                               <div className="sm:col-span-2 pt-4">
                                 <button
+                                  style={{ fontSize: "16px" }}
                                   type="submit"
-                                  className="bg-[#FF693B] text-white hover:text-[#FF693B] flex w-[30%] py-4 items-center justify-center gap-2 rounded-lg border border-gray-200 px-5 py-2.5 text-sm font-medium text-gray-900 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600  dark:hover:text-white dark:focus:ring-gray-700 hover:bg-white mx-auto"
+                                  className="bg-[#FF693B]  text-white hover:text-[#FF693B] flex w-[30%] py-4 items-center justify-center gap-2 rounded-lg border border-gray-200 px-5 py-2.5 text-sm font-medium text-gray-900 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600  dark:hover:text-white dark:focus:ring-gray-700 hover:bg-white mx-auto"
                                 >
                                   Continue
                                 </button>

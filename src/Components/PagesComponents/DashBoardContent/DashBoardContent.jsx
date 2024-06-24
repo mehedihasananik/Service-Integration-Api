@@ -34,7 +34,6 @@ const DashBoardContent = () => {
   const handlePassData = (order_id) => {
     localStorage.setItem("orderID", order_id);
   };
-  console.log(projects);
 
   return (
     <div
