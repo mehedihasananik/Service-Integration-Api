@@ -23,16 +23,15 @@ const handleDownloadClick = (url, event) => {
     .catch((error) => console.error("Error downloading the file:", error));
 };
 
-const ServiceOrderRevisions = ({ delivery }) => {
-  const { service_order_revisions } = delivery;
+const ServiceOrderRevisions = ({ msg }) => {
+  const { revision } = msg;
+  console.log(revision.description);
+  console.log(revision);
 
   return (
-    <div className="lg:mx-12 w-[80%] pb-4">
-      {service_order_revisions.map((item, index) => (
-        <div key={index}>
-          <div>
-            <h3 className="text-[16px] pb-[2%] text-justify font-Roboto font-[600] text-[#000000]"></h3>
-          </div>
+    <>
+      <div className="lg:mx-12 w-[80%] pb-4">
+        <div>
           <div className="pb-3">
             <h3 className="text-[14px] font-Raleway font-[600] text-[#0A2C8C]">
               Here&apos;s your order Revision
@@ -43,11 +42,12 @@ const ServiceOrderRevisions = ({ delivery }) => {
               <hr className="my-4" />
               <div>
                 <p className="text-[#666666] text-[14px] pb-4">
-                  {item.description}
+                  {revision.description}
                 </p>
               </div>
+
               <div className="grid grid-cols-3 gap-4">
-                {item.media_urls?.map((fileUrl, fileIndex) => {
+                {revision.media_urls?.map((fileUrl, fileIndex) => {
                   const fileType = fileUrl.split(".").pop();
 
                   let preview;
@@ -117,8 +117,8 @@ const ServiceOrderRevisions = ({ delivery }) => {
             </div>
           </div>
         </div>
-      ))}
-    </div>
+      </div>
+    </>
   );
 };
 

@@ -56,7 +56,8 @@ const DeliveryRevision = ({ openModal, setOpenModal, modalSize, delivery }) => {
     const formData = new FormData();
     formData.append("order", delivery.service_order_id); // Assuming delivery.id is the delivery ID
     formData.append("description", text); // Append the text state correctly
-
+    formData.append("sender_id", 19);
+    formData.append("receiver_id", 18);
     // Append selected files if available
     if (selectedFiles && selectedFiles.length > 0) {
       for (let i = 0; i < selectedFiles.length; i++) {

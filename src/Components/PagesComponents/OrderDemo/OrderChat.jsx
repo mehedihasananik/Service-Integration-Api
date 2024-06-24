@@ -307,9 +307,7 @@ const OrderChat = ({
                     />
                   )}
                   {media_urls && <Media_Urls media_urls={media_urls} />}
-                  {delivery?.service_order_revisions && (
-                    <ServiceOrderRevisions delivery={delivery} />
-                  )}
+                  {msg?.revision && <ServiceOrderRevisions msg={msg} />}
                 </div>
               );
             })}

@@ -408,3 +408,10 @@
   border-radius: 20px;
   color: #fff;
 }
+input::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  width: 8%;
+  position: relative;
+  right: -0px;
+  padding-left: 62%;
+}

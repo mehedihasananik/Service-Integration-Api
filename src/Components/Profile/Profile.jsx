@@ -14,6 +14,7 @@ import { FaCamera } from "react-icons/fa";
 import { useMemo } from "react";
 import Select from "react-select";
 import countryList from "react-select-country-list";
+import { Button, Modal } from "flowbite-react";
 
 const Profile = () => {
   const [profile, setProfile] = useState(null);
@@ -24,6 +25,7 @@ const Profile = () => {
 
   const [value, setValue] = useState("");
   const options = useMemo(() => countryList().getData(), []);
+  const [openModal, setOpenModal] = useState(false);
 
   const changeCountryHandler = (value) => {
     setValue(value);
@@ -50,6 +52,7 @@ const Profile = () => {
       );
       const data = await response.json();
       setProfile(data);
+      setPhone(data.phone_number);
       setBackgroundImage(data.avatar ? `url(${data.avatar})` : "");
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -95,6 +98,7 @@ const Profile = () => {
             localStorage.setItem("userData", JSON.stringify(newUserData));
             window.dispatchEvent(new Event("storage"));
             toast.success("Successfully updated profile");
+            setOpenModal(false);
           } else {
             toast.error("Profile updated faild");
           }
@@ -141,13 +145,13 @@ const Profile = () => {
     }
   };
 
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    const year = date.getFullYear();
-    const month = (date.getMonth() + 1).toString().padStart(2, "0");
-    const day = date.getDate().toString().padStart(2, "0");
-    return `${year}-${month}-${day}`;
-  };
+  // const formatDate = (dateString) => {
+  //   const date = new Date(dateString);
+  //   const year = date.getFullYear();
+  //   const month = (date.getMonth() + 1).toString().padStart(2, "0");
+  //   const day = date.getDate().toString().padStart(2, "0");
+  //   return `${year}-${month}-${day}`;
+  // };
 
   function setDefaultDate() {
     let dateField = document.getElementById("dateofbirth");
@@ -158,9 +162,13 @@ const Profile = () => {
     }
   }
 
+  const handlePhoneOnChange = (value, data) => {
+    setPhone(value);
+  };
+
   return (
     <div
-      className="scroll-y"
+      className="scroll-y profile"
       style={{ maxHeight: "calc(100vh - 20px)", overflowY: "auto" }}
     >
       <section className="py-10 my-auto dark:bg-gray-900 p-20 md:pb-[10%]">
@@ -173,20 +181,12 @@ const Profile = () => {
 
               <form onSubmit={updateProfile}>
                 <div className="w-full py-4 items-center rounded-md">
-                  <label htmlFor="upload_profile">
+                  <label>
                     <div
                       style={{ backgroundImage }}
                       className={`mx-auto cursor-pointer flex justify-center w-[141px] h-[141px] rounded-full bg-cover bg-center bg-no-repeat`}
                     >
                       <div className="bg-white/90 rounded-full w-0 h-0 text-center ml-28 mt-4">
-                        <input
-                          type="file"
-                          name="user_avatar"
-                          id="upload_profile"
-                          hidden
-                          onChange={handleFileChange}
-                        />
-
                         <FaCamera
                           style={{ color: "FF693B", width: "17px" }}
                           className="w-6 h-6 text-blue-700 cursor-pointer"
@@ -212,6 +212,7 @@ const Profile = () => {
                     <input
                       type="text"
                       name="first_name"
+                      readOnly
                       className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
                       placeholder="First Name"
                       defaultValue={profile?.first_name}
@@ -225,6 +226,7 @@ const Profile = () => {
                     <input
                       type="text"
                       name="last_name"
+                      readOnly
                       className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
                       placeholder="Last Name"
                       defaultValue={profile?.last_name}
@@ -240,10 +242,11 @@ const Profile = () => {
                     <input
                       type="email"
                       name="email"
+                      readOnly
                       className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
                       placeholder="Email"
                       defaultValue={profile?.email}
-                      readOnly
+                      onChange={handleInputChange}
                     />
                   </div>
                   <div className="w-full mb-4 lg:mt-6">
@@ -253,13 +256,13 @@ const Profile = () => {
                     >
                       Phone Number
                     </label>
-                    <PhoneInput
-                      country={"us"}
-                      enableSearch={true}
+
+                    <input
                       type="text"
-                      className="mt-1 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
-                      placeholder="Country Code"
-                      value={profile?.phone_number}
+                      name="phone_number"
+                      readOnly
+                      className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                      value={`+${phone}`}
                     />
 
                     <input
@@ -274,16 +277,17 @@ const Profile = () => {
                     <label htmlFor="gender" className="mb-2 dark:text-gray-300">
                       Gender
                     </label>
-                    <select
+
+                    <input
+                      type="text"
+                      style={{ border: "2px solid #333" }}
+                      id="dateofbirth"
                       name="gender"
-                      className="mt-2 p-4 w-full border-2 rounded-lg text-red-600"
+                      readOnly
+                      className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800 w-full"
                       value={profile?.gender}
                       onChange={handleInputChange}
-                    >
-                      <option value="">Select Gender</option>
-                      <option value="male">Male</option>
-                      <option value="female">Female</option>
-                    </select>
+                    />
                   </div>
                   <div className="w-full mb-4 lg:mt-6">
                     <label htmlFor="birthday" className="dark:text-gray-300">
@@ -295,9 +299,10 @@ const Profile = () => {
                         style={{ border: "2px solid #333" }}
                         id="dateofbirth"
                         name="date_birth"
-                        onChange={setDefaultDate}
+                        readOnly
                         className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800 w-full"
-                        defaultValue={profile?.birthday}
+                        value={profile?.birthday}
+                        onChange={handleInputChange}
                       />
                     </div>
                   </div>
@@ -307,10 +312,15 @@ const Profile = () => {
                     <label htmlFor="country" className="dark:text-gray-300">
                       Country
                     </label>
-                    <Select
-                      options={options}
-                      value={value}
-                      onChange={changeCountryHandler}
+                    <input
+                      type="text"
+                      style={{ border: "2px solid #333" }}
+                      id="dateofbirth"
+                      name="country"
+                      readOnly
+                      className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800 w-full"
+                      value={profile?.country}
+                      onChange={handleInputChange}
                     />
                   </div>
 
@@ -321,9 +331,10 @@ const Profile = () => {
                     <input
                       type="text"
                       name="city"
+                      readOnly
                       className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
                       placeholder="City"
-                      defaultValue={profile?.city}
+                      value={profile?.city}
                       onChange={handleInputChange}
                     />
                   </div>
@@ -336,6 +347,7 @@ const Profile = () => {
                     <input
                       type="text"
                       name="address"
+                      readOnly
                       className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
                       placeholder="Address"
                       defaultValue={profile?.address}
@@ -346,10 +358,11 @@ const Profile = () => {
 
                 <div className="flex justify-center">
                   <button
-                    type="submit"
+                    type="button"
+                    onClick={() => setOpenModal(true)}
                     className="px-6 py-3 mt-4 text-lg text-white transition bg-blue-600 rounded shadow-md hover:bg-blue-700 focus:outline-none focus:shadow-outline"
                   >
-                    Save Profile
+                    Edit Profile
                   </button>
                 </div>
               </form>
@@ -357,6 +370,202 @@ const Profile = () => {
           </div>
         </div>
       </section>
+      <Modal show={openModal} onClose={() => setOpenModal(false)} size="5xl">
+        <Modal.Header>Profile Update</Modal.Header>
+        <Modal.Body>
+          <div className="p-8 h-full">
+            <form onSubmit={updateProfile}>
+              <div className="w-full py-4 items-center rounded-md">
+                <label htmlFor="upload_profile">
+                  <div
+                    style={{ backgroundImage }}
+                    className={`mx-auto cursor-pointer flex justify-center w-[141px] h-[141px] rounded-full bg-cover bg-center bg-no-repeat`}
+                  >
+                    <div className="bg-white/90 rounded-full w-0 h-0 text-center ml-28 mt-4">
+                      <input
+                        type="file"
+                        name="user_avatar"
+                        id="upload_profile"
+                        hidden
+                        onChange={handleFileChange}
+                      />
+
+                      <FaCamera
+                        style={{ color: "FF693B", width: "17px" }}
+                        className="w-6 h-6 text-blue-700 cursor-pointer"
+                      />
+                    </div>
+                  </div>
+                </label>
+              </div>
+              <h3 className="text-center mt-3 font-semibold dark:text-gray-300 capitalize">
+                {profile?.first_name} {profile?.last_name}
+              </h3>
+              <h2 className="text-center mt-3 font-semibold dark:text-gray-300">
+                Upload Profile and Name.
+              </h2>
+              <div className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full">
+                <div className="w-full mb-4 mt-6">
+                  <label
+                    htmlFor="first_name"
+                    className="mb-2 dark:text-gray-300"
+                  >
+                    First Name
+                  </label>
+                  <input
+                    type="text"
+                    name="first_name"
+                    className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                    placeholder="First Name"
+                    defaultValue={profile?.first_name}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div className="w-full mb-4 lg:mt-6">
+                  <label htmlFor="last_name" className="dark:text-gray-300">
+                    Last Name
+                  </label>
+                  <input
+                    type="text"
+                    name="last_name"
+                    className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                    placeholder="Last Name"
+                    defaultValue={profile?.last_name}
+                    onChange={handleInputChange}
+                  />
+                </div>
+              </div>
+              <div className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full">
+                <div className="w-full mb-4 mt-6">
+                  <label htmlFor="email" className="mb-2 dark:text-gray-300">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                    placeholder="Email"
+                    defaultValue={profile?.email}
+                    readOnly
+                  />
+                </div>
+                <div className="w-full mb-4 lg:mt-6">
+                  <label htmlFor="phone_number" className="dark:text-gray-300">
+                    Phone Number
+                  </label>
+                  <PhoneInput
+                    country={"us"}
+                    enableSearch={true}
+                    type="phone"
+                    // className="mt-1 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                    placeholder="Country Code"
+                    value={phone ? phone : profile?.phone_number}
+                    onChange={handlePhoneOnChange}
+                  />
+
+                  <input
+                    type="hidden"
+                    defaultValue={profile?.phone_number}
+                    name="phone_number"
+                  />
+                </div>
+              </div>
+              <div className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full">
+                <div className="w-full mb-4 mt-6">
+                  <label htmlFor="gender" className="mb-2 dark:text-gray-300">
+                    Gender
+                  </label>
+                  <select
+                    name="gender"
+                    className="mt-2 p-4 w-full border-2 rounded-lg text-red-600"
+                    value={profile?.gender}
+                    onChange={handleInputChange}
+                  >
+                    <option value="">Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                  </select>
+                </div>
+                <div className="w-full mb-4 lg:mt-6">
+                  <label htmlFor="birthday" className="dark:text-gray-300">
+                    Date of Birth
+                  </label>
+                  <div>
+                    <input
+                      type="date"
+                      style={{ border: "2px solid #333" }}
+                      id="dateofbirth"
+                      name="date_birth"
+                      onChange={setDefaultDate}
+                      className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800 w-full"
+                      defaultValue={profile?.birthday}
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full">
+                <div className="w-full mb-4 lg:mt-6">
+                  <label htmlFor="country" className="dark:text-gray-300">
+                    Country
+                  </label>
+                  <Select
+                    options={options}
+                    value={value}
+                    onChange={changeCountryHandler}
+                  />
+                </div>
+
+                <div className="w-full mb-4 mt-6">
+                  <label htmlFor="city" className="mb-2 dark:text-gray-300">
+                    City
+                  </label>
+                  <input
+                    type="text"
+                    name="city"
+                    className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                    placeholder="City"
+                    defaultValue={profile?.city}
+                    onChange={handleInputChange}
+                  />
+                </div>
+              </div>
+              <div className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full">
+                <div className="w-full mb-4 lg:mt-6">
+                  <label htmlFor="address" className="dark:text-gray-300">
+                    Address
+                  </label>
+                  <input
+                    type="text"
+                    name="address"
+                    className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                    placeholder="Address"
+                    defaultValue={profile?.address}
+                    onChange={handleInputChange}
+                  />
+                </div>
+              </div>
+
+              <div className="flex justify-center">
+                <button
+                  type="submit"
+                  className="px-6 py-3 mt-4 text-lg text-white transition bg-blue-600 rounded shadow-md hover:bg-blue-700 focus:outline-none focus:shadow-outline"
+                >
+                  Save Profile
+                </button>
+              </div>
+            </form>
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button
+            className="ms-auto"
+            color="gray"
+            onClick={() => setOpenModal(false)}
+          >
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };
