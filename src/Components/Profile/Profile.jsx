@@ -360,7 +360,7 @@ const Profile = () => {
                   <button
                     type="button"
                     onClick={() => setOpenModal(true)}
-                    className="px-6 py-3 mt-4 text-lg text-white transition bg-blue-600 rounded shadow-md hover:bg-blue-700 focus:outline-none focus:shadow-outline"
+                    className="px-6 py-3 mt-4 text-lg text-white transition bg-[#FF693B] rounded shadow-md hover:bg-blue-700 focus:outline-none focus:shadow-outline"
                   >
                     Edit Profile
                   </button>

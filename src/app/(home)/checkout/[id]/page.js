@@ -34,6 +34,8 @@ const SinglePage = ({ params }) => {
   const [country, setCountry] = useState("");
   const options = useMemo(() => countryList().getData(), []);
 
+  const [billingAddress, SetBillingAddress] = useState({});
+
   const changeCountryHandler = (value) => {
     setValue(value);
     setCountry(value.label);
@@ -44,6 +46,31 @@ const SinglePage = ({ params }) => {
       ? window.localStorage.getItem("userData")
       : null;
   const userData = userDataString ? JSON.parse(userDataString) : null;
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch(
+        `http://192.168.10.14:8000/api/user_profile`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ user_id: userData.id }),
+        }
+      );
+      const data = await response.json();
+
+      SetBillingAddress(data);
+      setCountry(data.country);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -58,8 +85,8 @@ const SinglePage = ({ params }) => {
     const newUserData = JSON.parse(localStorage.getItem("userData"));
     try {
       const formData = new FormData();
-      formData.append("firstName", firstName);
-      formData.append("lastName", lastName);
+      formData.append("first_name", firstName);
+      formData.append("last_name", lastName);
       formData.append("country", country);
       formData.append("state", state);
       formData.append("city", city);
@@ -69,7 +96,7 @@ const SinglePage = ({ params }) => {
 
       axios({
         method: "post",
-        url: "http://192.168.5.240:8000/api/billing-address",
+        url: "http://192.168.10.14:8000/api/billing-address",
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
       })
@@ -77,6 +104,7 @@ const SinglePage = ({ params }) => {
           if (response.data.success == true) {
             tabsRef.current?.setActiveTab(1);
             setActiveBtn(true);
+            toast.success("Billing Address Submited");
           } else {
             toast.error("Billing address faild submited");
           }
@@ -115,6 +143,14 @@ const SinglePage = ({ params }) => {
       setLoading(false); // Set loading to false if there's missing data
     }
   }, []);
+
+  useEffect(() => {
+    options.map((item) => {
+      if (item.label == billingAddress?.country) {
+        setValue(item);
+      }
+    });
+  }, [billingAddress]);
 
   if (loading) {
     return <UserLoading />; // Show loading message while fetching data
@@ -159,12 +195,12 @@ const SinglePage = ({ params }) => {
                 <Button
                   color="gray"
                   className={`${
-                    checkoutActive ? "checkout_btn" : ""
-                  } common_btn disabled`}
+                    btnActive ? "billing_btn disabled" : ""
+                  } common_btn`}
                   onClick={() => tabsRef.current?.setActiveTab(0)}
                 >
                   <span className="billing_checkout_digit">1</span>
-                  <span className="ml-2 hover:none">Billing Info</span>
+                  <span className="ml-2">Billing Info</span>
                 </Button>
               )}
 
@@ -239,6 +275,7 @@ const SinglePage = ({ params }) => {
                                   className="py-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
                                   placeholder="Enter Your First Name"
                                   required
+                                  defaultValue={billingAddress.first_name}
                                 />
                               </div>
 
@@ -256,6 +293,7 @@ const SinglePage = ({ params }) => {
                                   className="py-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
                                   placeholder="Enter Your Last Name"
                                   required
+                                  defaultValue={billingAddress.last_name}
                                 />
                               </div>
                               <div className="w-full">
@@ -268,6 +306,7 @@ const SinglePage = ({ params }) => {
                                 <Select
                                   options={options}
                                   value={value}
+                                  name="country"
                                   onChange={changeCountryHandler}
                                 />
                               </div>
@@ -286,6 +325,7 @@ const SinglePage = ({ params }) => {
                                   className="py-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
                                   placeholder="State"
                                   required
+                                  defaultValue={billingAddress.state}
                                 />
                               </div>
 
@@ -305,6 +345,7 @@ const SinglePage = ({ params }) => {
                                   className="py-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
                                   placeholder="Bonnie Green"
                                   required
+                                  defaultValue={billingAddress.city}
                                 />
                               </div>
 
@@ -322,6 +363,7 @@ const SinglePage = ({ params }) => {
                                   className="mt-3 py-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
                                   placeholder="Bonnie Green"
                                   required
+                                  defaultValue={billingAddress.zip}
                                 />
                               </div>
                               <div className="sm:col-span-2 pt-4">
@@ -339,15 +381,15 @@ const SinglePage = ({ params }) => {
                                     className="py-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
                                     placeholder="Bonnie Green"
                                     required
+                                    defaultValue={billingAddress.address}
                                   />
                                 </div>
                               </div>
 
                               <div className="sm:col-span-2 pt-4">
                                 <button
-                                  style={{ fontSize: "16px" }}
                                   type="submit"
-                                  className="bg-[#FF693B]  text-white hover:text-[#FF693B] flex w-[30%] py-4 items-center justify-center gap-2 rounded-lg border border-gray-200 px-5 py-2.5 text-sm font-medium text-gray-900 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600  dark:hover:text-white dark:focus:ring-gray-700 hover:bg-white mx-auto"
+                                  className="bg-[#FF693B] text-white hover:text-[#FF693B] flex w-[30%] py-4 items-center justify-center gap-2 rounded-lg border border-gray-200 px-5 py-2.5 text-sm font-medium text-gray-900 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600  dark:hover:text-white dark:focus:ring-gray-700 hover:bg-white mx-auto"
                                 >
                                   Continue
                                 </button>
