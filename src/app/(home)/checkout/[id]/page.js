@@ -161,13 +161,19 @@ const SinglePage = ({ params }) => {
   }
 
   return (
-    <div className="w-full  my-0">
+    <div className="w-full  my-0" id="cehckoutpage">
       {/*  */}
       <div>
         <div className="billing-button">
-          <h2 className="text-xl font-semibold text-gray-900 dark:text-white text-center pt-4">
-            Billing Details
-          </h2>
+          {!btnActive ? (
+            <h2 className="text-[25px] font-semibold text-gray-900 dark:text-white text-center pt-4">
+              Billing Details
+            </h2>
+          ) : (
+            <h2 className="text-[25px] font-semibold text-gray-900 dark:text-white text-center pt-4">
+              Checkout Details
+            </h2>
+          )}
 
           <div className="button-container">
             <Button.Group className="d-flex gap-5">
@@ -175,9 +181,13 @@ const SinglePage = ({ params }) => {
                 <Button
                   color="gray"
                   className={`${
-                    btnActive ? "billing_btn disabled" : ""
-                  } common_btn`}
-                  onClick={() => tabsRef.current?.setActiveTab(0)}
+                    btnActive ? "billing_btn" : ""
+                  } billing_btn border-0`}
+                  onClick={() => {
+                    tabsRef.current?.setActiveTab(0);
+                    setcheckoutActive(false);
+                    setActiveBtn(false);
+                  }}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -189,17 +199,22 @@ const SinglePage = ({ params }) => {
                   >
                     <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
                   </svg>{" "}
-                  <span className="ml-2">Billing Info</span>
+                  <span className="ml-2 billing_info">Billing Info</span>
                 </Button>
               ) : (
                 <Button
                   color="gray"
                   className={`${
-                    btnActive ? "billing_btn disabled" : ""
+                    btnActive ? "billing_btn disabled" : "billing_btn"
                   } common_btn`}
                   onClick={() => tabsRef.current?.setActiveTab(0)}
                 >
-                  <span className="billing_checkout_digit">1</span>
+                  <span
+                    className="billing_checkout_digit"
+                    style={{ backgroundColor: "green" }}
+                  >
+                    1
+                  </span>
                   <span className="ml-2">Billing Info</span>
                 </Button>
               )}
@@ -230,10 +245,15 @@ const SinglePage = ({ params }) => {
                   color="gray"
                   className={`${
                     checkoutActive ? "checkout_btn" : ""
-                  } common_btn disabled`}
+                  } common_btn disabled ${btnActive ? "checkout_btn" : ""}`}
                   onClick={() => tabsRef.current?.setActiveTab(1)}
                 >
-                  <span className="billing_checkout_digit">2</span>
+                  <span
+                    className="billing_checkout_digit"
+                    style={{ backgroundColor: btnActive ? "green" : "" }}
+                  >
+                    2
+                  </span>
                   <span className="ml-2">Checkout Info</span>
                 </Button>
               )}
@@ -357,7 +377,7 @@ const SinglePage = ({ params }) => {
                                   Zip
                                 </label>
                                 <input
-                                  type="text"
+                                  type="number"
                                   id="zip"
                                   name="zip"
                                   className="mt-3 py-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"

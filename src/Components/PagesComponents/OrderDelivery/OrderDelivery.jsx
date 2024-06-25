@@ -4,11 +4,11 @@ import OrderRequirements from "@/Components/Utilites/OrderRequirements/OrderRequ
 
 const OrderDelivery = () => {
   return (
-    <div className="bg-[#FCFCFC] overflow-hidden flex justify-between">
-      <div className="w-[75%]">
+    <div className="bg-[#FCFCFC] overflow-hidden flex flex-col-reverse md:flex-row justify-between">
+      <div className=" md:w-[75%]">
         <OrderWebSocket />
       </div>
-      <div className="w-[25%]">
+      <div className="hidden md:block md:w-[25%]">
         <OrderRequirements />
       </div>
     </div>

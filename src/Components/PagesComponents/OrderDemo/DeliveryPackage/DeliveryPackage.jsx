@@ -1,4 +1,5 @@
 "use client";
+
 import Image from "next/image";
 import React, { useState } from "react";
 import { MdDownload } from "react-icons/md";
@@ -9,7 +10,31 @@ import Confetti from "react-confetti";
 import useWindowSize from "@/Components/Utilites/WindowSize/useWindowSize";
 import CongratsModal from "@/Components/Utilites/CongratsModal/CongratsModal";
 
+const fileTypeIcons = {
+  jpg: "image/jpeg",
+  jpeg: "image/jpeg",
+  png: "image/png",
+  webp: "image/webp",
+  txt: "https://cdn3.iconfinder.com/data/icons/muksis/128/txt-128.png",
+  pdf: "https://cdn3.iconfinder.com/data/icons/muksis/128/pdf-128.png",
+  xlsx: "https://cdn3.iconfinder.com/data/icons/muksis/128/xlsx-128.png",
+  docx: "https://cdn3.iconfinder.com/data/icons/muksis/128/docx-128.png",
+  mp4: "video/mp4",
+  webm: "video/webm",
+  ogg: "video/ogg",
+  zip: "https://cdn3.iconfinder.com/data/icons/muksis/128/zip-128.png",
+};
+
+const fallbackIconUrl = "/assets/file-1453.png";
+const videoIconUrl = "/assets/play-button.png";
+
+const getFileType = (url) => {
+  const extension = url.split(".").pop().split("_")[0];
+  return extension.toLowerCase();
+};
+
 const DeliveryPackage = ({ delivery, human_readable_delivery_time }) => {
+  const [downloading, setDownloading] = useState({});
   const [openModal, setOpenModal] = useState(false);
   const [modalSize, setModalSize] = useState("4xl");
   const [showConfetti, setShowConfetti] = useState(false);
@@ -24,10 +49,9 @@ const DeliveryPackage = ({ delivery, human_readable_delivery_time }) => {
   };
 
   const handleDownloadClick = async (url) => {
+    setDownloading((prev) => ({ ...prev, [url]: true }));
     try {
-      const response = await fetch(url, {
-        mode: "cors",
-      });
+      const response = await fetch(url, { mode: "cors" });
       const blob = await response.blob();
       const urlObject = window.URL.createObjectURL(blob);
       const link = document.createElement("a");
@@ -37,7 +61,9 @@ const DeliveryPackage = ({ delivery, human_readable_delivery_time }) => {
       link.click();
       document.body.removeChild(link);
     } catch (error) {
-      console.error("Error downloading the image:", error);
+      console.error("Error downloading the file:", error);
+    } finally {
+      setDownloading((prev) => ({ ...prev, [url]: false }));
     }
   };
 
@@ -74,7 +100,7 @@ const DeliveryPackage = ({ delivery, human_readable_delivery_time }) => {
   };
 
   return (
-    <div className="relative bg-[#FDFDFD] border-2 border-[#E2E2E2] rounded-[8px] px-3 lg:ml-[40px] py-5 mb-3 w-[80%]">
+    <div className="relative bg-[#FDFDFD] border-2 border-[#E2E2E2] rounded-[8px] px-3 lg:ml-[40px] py-5 mb-3 md:w-[90%]">
       {showConfetti && (
         <div className="fixed inset-0 flex items-center justify-center z-50">
           <Confetti width={width} height={height} />
@@ -97,9 +123,8 @@ const DeliveryPackage = ({ delivery, human_readable_delivery_time }) => {
       </div>
       <div className="flex space-x-5">
         <div>
-          {" "}
           <img
-            className="w-[50px]  rounded-lg"
+            className="w-[50px] rounded-lg"
             src="/assets/icon_for_favicon.png"
             alt="icon"
           />
@@ -121,28 +146,63 @@ const DeliveryPackage = ({ delivery, human_readable_delivery_time }) => {
               </h3>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {media_urls.map((item, index) => (
-                <div key={index} className="group relative text-center">
-                  <div
-                    className="h-[180px] flex items-center justify-center bg-[#F3F6F9] rounded-lg group-hover:brightness-75 cursor-pointer"
-                    onClick={() => handleImageClick(item)}
-                  >
-                    <img
-                      className="h-[180px] w-full object-contain object-position-center pointer-events-auto rounded-lg"
-                      src={item}
-                      alt=""
-                    />
-                  </div>
-                  <div className="absolute bottom-[10px] left-0 right-4 flex justify-end">
-                    <button
-                      className="bg-[#FF693B] py-1.5 px-2 rounded-sm shadow-md text-white"
-                      onClick={() => handleDownloadClick(item)}
+              {media_urls.map((item, index) => {
+                const fileType = getFileType(item);
+                const iconSrc = fileTypeIcons[fileType] || fallbackIconUrl;
+
+                return (
+                  <div key={index} className="group relative text-center">
+                    <div
+                      className="h-[180px] flex items-center justify-center bg-[#F3F6F9] rounded-lg group-hover:brightness-75 cursor-pointer"
+                      onClick={() => handleImageClick(item)}
                     >
-                      <MdDownload />
-                    </button>
+                      {fileType === "jpg" ||
+                      fileType === "jpeg" ||
+                      fileType === "png" ||
+                      fileType === "webp" ? (
+                        <img
+                          className="h-[180px] w-full object-contain object-position-center pointer-events-auto rounded-lg"
+                          src={item}
+                          alt=""
+                        />
+                      ) : fileType === "mp4" ||
+                        fileType === "webm" ||
+                        fileType === "ogg" ? (
+                        <div className="relative w-full flex justify-center">
+                          <img
+                            className="h-[180px] w-[180px] pt-3  cursor-pointer  pointer-events-auto"
+                            src={videoIconUrl}
+                            alt="Video Thumbnail"
+                          />
+                        </div>
+                      ) : (
+                        <img
+                          className="h-[120px] pointer-events-auto rounded-lg"
+                          src={iconSrc}
+                          alt="File Thumbnail"
+                        />
+                      )}
+                    </div>
+                    <div className="absolute bottom-[10px] left-0 right-4 flex justify-end">
+                      {downloading[item] ? (
+                        <button
+                          className="bg-[#FF693B] py-1.5 px-2 rounded-sm shadow-md text-white"
+                          disabled
+                        >
+                          Downloading...
+                        </button>
+                      ) : (
+                        <button
+                          className="bg-[#FF693B] py-1.5 px-2 rounded-sm shadow-md text-white"
+                          onClick={() => handleDownloadClick(item)}
+                        >
+                          <MdDownload />
+                        </button>
+                      )}
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
             <div className="space-x-4 pt-3">
               {status === "approved" ? (

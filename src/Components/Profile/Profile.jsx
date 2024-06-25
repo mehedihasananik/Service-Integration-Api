@@ -7,8 +7,8 @@ import dayjs from "dayjs";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-import PhoneInput from "react-phone-input-2";
-import "react-phone-input-2/lib/bootstrap.css";
+import { PhoneInput } from "react-international-phone";
+import "react-international-phone/style.css";
 import { FaCamera } from "react-icons/fa";
 
 import { useMemo } from "react";
@@ -164,17 +164,29 @@ const Profile = () => {
 
   const handlePhoneOnChange = (value, data) => {
     setPhone(value);
+    console.log(value);
   };
 
   return (
     <div
       className="scroll-y profile"
+      id="profilepage"
       style={{ maxHeight: "calc(100vh - 20px)", overflowY: "auto" }}
     >
       <section className="py-10 my-auto dark:bg-gray-900 p-20 md:pb-[10%]">
+        <div className="flex justify-center"></div>
         <div className="lg:w-[80%] md:w-[90%] xs:w-[96%] mx-auto flex gap-4">
           <div className="lg:w-[88%] md:w-[80%] sm:w-[88%] xs:w-full mx-auto shadow-2xl px-[5%] py-[5%] rounded-xl h-fit self-center dark:bg-gray-800/40">
             <div className="">
+              <div className="text-end">
+                <button
+                  type="button"
+                  onClick={() => setOpenModal(true)}
+                  className="text-[16px] whitespace-nowrap text-white bg-[#FF693B]  border border-[#FF693B] px-6 py-2 md:px-10 md:py-4 font-[600] rounded-lg  hover:bg-[#fff] hover:text-[#FF693B] transition-all duration-300"
+                >
+                  Edit Profile
+                </button>
+              </div>
               <h1 className="text-center lg:text-3xl md:text-2xl sm:text-xl xs:text-xl font-serif font-extrabold mb-2 dark:text-white">
                 Profile
               </h1>
@@ -184,23 +196,16 @@ const Profile = () => {
                   <label>
                     <div
                       style={{ backgroundImage }}
-                      className={`mx-auto cursor-pointer flex justify-center w-[141px] h-[141px] rounded-full bg-cover bg-center bg-no-repeat`}
+                      className={`mx-auto flex justify-center w-[141px] h-[141px] rounded-full bg-cover bg-center bg-no-repeat`}
                     >
-                      <div className="bg-white/90 rounded-full w-0 h-0 text-center ml-28 mt-4">
-                        <FaCamera
-                          style={{ color: "FF693B", width: "17px" }}
-                          className="w-6 h-6 text-blue-700 cursor-pointer"
-                        />
-                      </div>
+                      <div className="bg-white/90 rounded-full w-0 h-0 text-center ml-28 mt-4"></div>
                     </div>
                   </label>
                 </div>
                 <h3 className="text-center mt-3 font-semibold dark:text-gray-300 capitalize">
                   {profile?.first_name} {profile?.last_name}
                 </h3>
-                <h2 className="text-center mt-3 font-semibold dark:text-gray-300">
-                  Upload Profile and Name.
-                </h2>
+
                 <div className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full">
                   <div className="w-full mb-4 mt-6">
                     <label
@@ -262,7 +267,7 @@ const Profile = () => {
                       name="phone_number"
                       readOnly
                       className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
-                      value={`+${phone}`}
+                      value={`${phone}`}
                     />
 
                     <input
@@ -277,11 +282,8 @@ const Profile = () => {
                     <label htmlFor="gender" className="mb-2 dark:text-gray-300">
                       Gender
                     </label>
-
                     <input
                       type="text"
-                      style={{ border: "2px solid #333" }}
-                      id="dateofbirth"
                       name="gender"
                       readOnly
                       className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800 w-full"
@@ -296,8 +298,6 @@ const Profile = () => {
                     <div>
                       <input
                         type="date"
-                        style={{ border: "2px solid #333" }}
-                        id="dateofbirth"
                         name="date_birth"
                         readOnly
                         className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800 w-full"
@@ -314,8 +314,7 @@ const Profile = () => {
                     </label>
                     <input
                       type="text"
-                      style={{ border: "2px solid #333" }}
-                      id="dateofbirth"
+                      id="country"
                       name="country"
                       readOnly
                       className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800 w-full"
@@ -354,16 +353,6 @@ const Profile = () => {
                       onChange={handleInputChange}
                     />
                   </div>
-                </div>
-
-                <div className="flex justify-center">
-                  <button
-                    type="button"
-                    onClick={() => setOpenModal(true)}
-                    className="px-6 py-3 mt-4 text-lg text-white transition bg-[#FF693B] rounded shadow-md hover:bg-blue-700 focus:outline-none focus:shadow-outline"
-                  >
-                    Edit Profile
-                  </button>
                 </div>
               </form>
             </div>
@@ -454,13 +443,10 @@ const Profile = () => {
                     Phone Number
                   </label>
                   <PhoneInput
-                    country={"us"}
-                    enableSearch={true}
-                    type="phone"
-                    // className="mt-1 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
-                    placeholder="Country Code"
-                    value={phone ? phone : profile?.phone_number}
+                    defaultCountry="ua"
+                    value={phone}
                     onChange={handlePhoneOnChange}
+                    searchPlaceholder="Search country"
                   />
 
                   <input
@@ -486,14 +472,13 @@ const Profile = () => {
                     <option value="Female">Female</option>
                   </select>
                 </div>
-                <div className="w-full mb-4 lg:mt-6">
+                <div className="w-full mb-4 lg:mt-6 input-container">
                   <label htmlFor="birthday" className="dark:text-gray-300">
                     Date of Birth
                   </label>
                   <div>
                     <input
                       type="date"
-                      style={{ border: "2px solid #333" }}
                       id="dateofbirth"
                       name="date_birth"
                       onChange={setDefaultDate}
@@ -548,23 +533,15 @@ const Profile = () => {
               <div className="flex justify-center">
                 <button
                   type="submit"
-                  className="px-6 py-3 mt-4 text-lg text-white transition bg-blue-600 rounded shadow-md hover:bg-blue-700 focus:outline-none focus:shadow-outline"
+                  className="text-[16px] whitespace-nowrap text-white bg-[#FF693B]  border border-[#FF693B] px-6 py-2 md:px-10 md:py-4 font-[600] rounded-lg  hover:bg-[#fff] hover:text-[#FF693B] transition-all duration-300"
                 >
-                  Save Profile
+                  Update Profile
                 </button>
               </div>
             </form>
           </div>
         </Modal.Body>
-        <Modal.Footer>
-          <Button
-            className="ms-auto"
-            color="gray"
-            onClick={() => setOpenModal(false)}
-          >
-            Close
-          </Button>
-        </Modal.Footer>
+        <Modal.Footer></Modal.Footer>
       </Modal>
     </div>
   );

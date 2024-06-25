@@ -18,6 +18,7 @@ import { FcUpload } from "react-icons/fc";
 import CustomMessageOffer from "@/Components/Utilites/CustomMessageOffer/CustomMessageOffer";
 import { Spinner } from "flowbite-react";
 import toast from "react-hot-toast";
+import MsgMedia_Urls from "@/Components/Utilites/Media_Urls/MsgMedia_Urls";
 
 const SOCKET_URL_ONE = "http://localhost:3000";
 const socket = io(SOCKET_URL_ONE);
@@ -160,31 +161,6 @@ const MessageChat = ({
         onScroll={handleScroll}
         className="bg-[#FCFCFC] flex-grow overflow-y-auto"
       >
-        <div className="flex justify-between items-center mx-4 bg-[#FFFFFF] my-5 rounded-lg  ">
-          <div className="flex gap-x-3 bg-[#FFFFFF]">
-            <div>
-              {" "}
-              <Image
-                className="w-[54px] h-54px]"
-                src="/assets/msgAvater.png"
-                width={100}
-                height={100}
-                alt="avater"
-              />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-[20px] font-Raleway font-[600]">
-                Envobyte
-              </span>
-              <span className="text-[#777777] font-Raleway">Online</span>
-            </div>
-          </div>
-          <div>
-            <button>
-              <IoMdMore className="text-[25px]" />
-            </button>
-          </div>
-        </div>
         <div className="bg-[#fff] px-4">
           <div className="mb-[8%]">
             {messageHistory.map((msg, index) => {
@@ -251,48 +227,13 @@ const MessageChat = ({
                       <p className="text-[14px] pr-[4%] text-justify font-Roboto font-[400] text-[#666666]">
                         {msg.message}
                       </p>
-                      {msg?.attachment && (
-                        <div className="my-5">
-                          {isLoading && <p>Loading...</p>}
-                          {isImage(msg?.attachment) ? (
-                            <div className="group relative">
-                              <Image
-                                onClick={() => handleImageClick(msg.attachment)}
-                                className="group-hover:brightness-75 cursor-pointer rounded-md"
-                                width={300}
-                                height={200}
-                                alt=""
-                                src={msg.attachment}
-                                onLoad={handleImageLoaded}
-                              />
-                              <div className="absolute bottom-[10px] left-[18%] 6xl:left-[12.5%]  flex justify-end">
-                                <button
-                                  className="bg-[#FF693B] py-1.5 px-2 rounded-sm shadow-md text-white"
-                                  onClick={() =>
-                                    handleDownloadClick(msg.attachment)
-                                  }
-                                >
-                                  <MdDownload />
-                                </button>
-                              </div>
-                            </div>
-                          ) : (
-                            <a
-                              href={msg.attachment}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              Download Attachment
-                            </a>
-                          )}
-                        </div>
-                      )}
+
                       {customoffer && (
                         <CustomMessageOffer customoffer={customoffer} />
                       )}
-                      {media_urls && (
-                        <Media_Urls
-                          media_urls={media_urls}
+                      {msg?.attachment && (
+                        <MsgMedia_Urls
+                          attachment={msg?.attachment}
                           isMediaLoading={isMediaLoading}
                         />
                       )}

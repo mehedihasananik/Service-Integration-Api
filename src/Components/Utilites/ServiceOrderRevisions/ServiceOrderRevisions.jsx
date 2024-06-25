@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { MdDownload } from "react-icons/md";
 
 const handleImageClick = (url) => {
@@ -26,45 +26,10 @@ const fileTypeIcons = {
 };
 
 const fallbackIconUrl = "/assets/file-1453.png";
-const videoIconUrl =
-  "https://freepngimg.com/download/video_icon/30448-6-video-icon.png";
-
+const videoIconUrl = "/assets/play-button.png";
 const ServiceOrderRevisions = ({ msg }) => {
   const { revision } = msg;
-  const [thumbnails, setThumbnails] = useState({});
   const [downloading, setDownloading] = useState({});
-
-  useEffect(() => {
-    generateVideoThumbnails();
-  }, [revision.media_urls]);
-
-  const generateVideoThumbnails = () => {
-    revision.media_urls.forEach((url) => {
-      const fileType = getFileType(url);
-      if (fileType === "mp4" || fileType === "webm" || fileType === "ogg") {
-        generateThumbnail(url);
-      }
-    });
-  };
-
-  const generateThumbnail = (videoUrl) => {
-    const video = document.createElement("video");
-    video.src = videoUrl;
-    video.crossOrigin = "anonymous";
-    video.addEventListener("loadeddata", () => {
-      video.currentTime = 1;
-    });
-    video.addEventListener("seeked", () => {
-      const canvas = document.createElement("canvas");
-      canvas.width = video.videoWidth;
-      canvas.height = video.videoHeight;
-      canvas
-        .getContext("2d")
-        .drawImage(video, 0, 0, canvas.width, canvas.height);
-      const thumbnailUrl = canvas.toDataURL();
-      setThumbnails((prev) => ({ ...prev, [videoUrl]: thumbnailUrl }));
-    });
-  };
 
   const handleDownloadClick = (url, event) => {
     event.stopPropagation();
@@ -86,6 +51,7 @@ const ServiceOrderRevisions = ({ msg }) => {
         setDownloading((prev) => ({ ...prev, [url]: false }));
       });
   };
+  console.log(revision);
 
   return (
     <div className="lg:mx-12 w-[80%] pb-4">
@@ -133,19 +99,12 @@ const ServiceOrderRevisions = ({ msg }) => {
                           alt=""
                         />
                       ) : isVideo ? (
-                        <div className="relative w-full h-full">
+                        <div className="relative w-full flex justify-center">
                           <img
-                            className="h-[180px] w-full object-cover object-position-center pointer-events-auto rounded-lg"
-                            src={thumbnails[fileUrl] || iconSrc}
+                            className="h-[180px] w-[180px] pt-3  cursor-pointer  pointer-events-auto"
+                            src={videoIconUrl}
                             alt="Video Thumbnail"
                           />
-                          <div className="absolute inset-0 flex items-center justify-center">
-                            <img
-                              src={videoIconUrl}
-                              alt="Video Icon"
-                              className="w-12 h-12"
-                            />
-                          </div>
                         </div>
                       ) : (
                         <div className="cursor-pointer pointer-events-none">

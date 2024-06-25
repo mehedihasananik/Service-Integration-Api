@@ -105,7 +105,7 @@ const BillingContent = () => {
   };
 
   return (
-    <div>
+    <div id="billingpage">
       <h1 className="text-center py-9 lg:text-3xl md:text-2xl sm:text-xl xs:text-xl font-serif font-extrabold mb-2 dark:text-white">
         Update Billing Information
       </h1>
@@ -211,7 +211,7 @@ const BillingContent = () => {
                         Zip
                       </label>
                       <input
-                        type="text"
+                        type="number"
                         id="zip"
                         name="zip"
                         className="mt-3 py-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"

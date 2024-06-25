@@ -156,7 +156,7 @@ const OrderChat = ({
   // console.log(messageHistory);
 
   return (
-    <div className="bg-[#FCFCFC] h-[88vh] flex flex-col relative px-8">
+    <div className="bg-[#FCFCFC] h-[88vh] flex flex-col relative md:px-8">
       <div
         ref={chatContainerRef}
         onScroll={handleScroll}
@@ -259,42 +259,9 @@ const OrderChat = ({
                       <p className="text-[14px] pr-[4%] text-justify font-Roboto font-[400] text-[#666666]">
                         {msg.message}
                       </p>
-                      {msg?.attachment && (
-                        <div className="my-5">
-                          {isLoading && <p>Loading...</p>}
-                          {isImage(msg?.attachment) ? (
-                            <div className="group relative">
-                              <Image
-                                onClick={() => handleImageClick(msg.attachment)}
-                                className="group-hover:brightness-75 cursor-pointer rounded-md"
-                                width={300}
-                                height={200}
-                                alt=""
-                                src={msg.attachment}
-                                onLoad={handleImageLoaded}
-                              />
-                              <div className="absolute bottom-[10px] left-[23%] hidden group-hover:flex justify-end">
-                                <button
-                                  className="bg-[#FF693B] py-1.5 px-2 rounded-sm shadow-md text-white"
-                                  onClick={() =>
-                                    handleDownloadClick(msg.attachment)
-                                  }
-                                >
-                                  <MdDownload />
-                                </button>
-                              </div>
-                            </div>
-                          ) : (
-                            <a
-                              href={msg.attachment}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              Download Attachment
-                            </a>
-                          )}
-                        </div>
-                      )}
+                      <div className="pt-4">
+                        {media_urls && <Media_Urls media_urls={media_urls} />}
+                      </div>
                     </div>
                   </div>
                   {order && <CustomOffer order={order} />}
@@ -306,7 +273,7 @@ const OrderChat = ({
                       }
                     />
                   )}
-                  {media_urls && <Media_Urls media_urls={media_urls} />}
+
                   {msg?.revision && <ServiceOrderRevisions msg={msg} />}
                 </div>
               );
@@ -316,7 +283,7 @@ const OrderChat = ({
           {loading && <Loading />}
 
           {!loading && (
-            <div className="bg-[#FFFFFF pb-8 flex w-[78%] items-center gap-5 px-10 fixed left-[14.5%] 6xl:left-[11%] -bottom-6">
+            <div className="bg-[#FFFFFF pb-8 flex w-[78%] items-center gap-3 px-10 fixed left-[14.5%] 6xl:left-[11%] -bottom-6">
               <div className="w-[70%] 6xl:w-[75%] relative">
                 <textarea
                   className="w-full border border-[#E2E2E2] rounded-md py-4 px-4 resize-none pr-20 text-justify"
@@ -430,7 +397,7 @@ const OrderChat = ({
                 </span>
               </div>
 
-              <div className="w-[8%]">
+              <div className="w-[9%]">
                 <button
                   onClick={() => {
                     handleSendMessage(inputtedMessage, attachments);
@@ -438,7 +405,7 @@ const OrderChat = ({
                     setAttachments([]);
                   }}
                   disabled={isImageSending} // Disable button while loading
-                  className="w-full font-[600] bg-[#FF693B] border border-[#FF693B] text-white hover:text-[#FF693B] hover:bg-[#ffff] transition-all duration-200  text-[16px]  mx-[10%] py-2.5 rounded-[4px]"
+                  className="w-full font-[600]  bg-[#FF693B] border border-[#FF693B] text-white hover:text-[#FF693B] hover:bg-[#ffff] transition-all duration-200  text-[16px]  py-2.5 rounded-[4px]"
                 >
                   {isImageSending && <Spinner size="sm" className="mr-2" />}
                   {isImageSending ? "Sending..." : "Send"}

@@ -239,7 +239,9 @@ const OrderRequirements = () => {
                         <h3>
                           {index + 1}. {requirement.questions}
                         </h3>
-                        <p className="ml-1">- {requirement.answer}</p>
+                        <p className="ml-1 pt-2">
+                          Answer: {requirement.answer}
+                        </p>
                       </div>
                       <div className="relative w-[30%]">
                         {!imageLoaded && <UserLoading />}{" "}

@@ -314,6 +314,7 @@
   color: #495057;
 }
 /* kakon css */
+/* kakon css */
 .react-tel-input .form-control {
   font-size: 16px;
   background: #ffffff;
@@ -339,6 +340,8 @@
   padding: 10px !important;
   margin-top: 10px !important;
   border-radius: 8px !important;
+  box-shadow: none !important;
+  border: 3px solid #1c64f2 !important;
 }
 
 .css-t3ipsp-control [type="text"]:focus {
@@ -394,24 +397,102 @@
 }
 
 .billing_btn {
-  color: green;
+  color: green !important;
   background-color: none !important;
+}
+
+.billing_info:hover {
+  color: green !important;
 }
 
 .checkout_btn {
   color: green;
   background-color: none !important;
 }
+
 .billing_checkout_digit {
   background-color: gray;
   padding: 0px 6px;
   border-radius: 20px;
   color: #fff;
 }
+
 input::-webkit-calendar-picker-indicator {
   cursor: pointer;
   width: 8%;
   position: relative;
   right: -0px;
   padding-left: 62%;
+}
+
+/* react phone input */
+.react-international-phone-input-container
+  .react-international-phone-country-selector-button {
+  height: 60px !important;
+  border: 2px solid #6e6c6c !important;
+  border-right: none !important;
+  width: 50px;
+}
+
+.react-international-phone-input-container .react-international-phone-input {
+  height: var(--react-international-phone-height, 60px) !important;
+  width: 100% !important;
+  border: 2px solid #636262 !important;
+  font-size: 17px !important;
+}
+
+.react-international-phone-input-container {
+  display: flex;
+  margin-top: 8px !important;
+}
+
+.react-international-phone-country-selector-dropdown {
+  margin-top: 18px !important;
+  width: 425px !important;
+}
+
+[type="text"]:focus,
+[type="email"]:focus,
+[type="url"]:focus,
+[type="password"]:focus,
+[type="number"]:focus,
+[type="date"]:focus,
+[type="datetime-local"]:focus,
+[type="month"]:focus,
+[type="search"]:focus,
+[type="tel"]:focus,
+[type="time"]:focus,
+[type="week"]:focus,
+[multiple]:focus,
+textarea:focus,
+select:focus {
+  box-shadow: none;
+  border: 2px solid #787777 !important;
+}
+
+[type="tel"]:focus {
+  box-shadow: none;
+}
+
+[type="date"]:focus {
+  cursor: pointer;
+}
+
+select {
+  cursor: pointer;
+}
+
+.css-13cymwt-control {
+  cursor: pointer !important;
+}
+.css-t3ipsp-control:hover {
+  border-color: none !important;
+  box-shadow: none !important;
+}
+
+.css-t3ipsp-control {
+  border: 2px solid #4b4b4b !important;
+}
+.example::-webkit-scrollbar {
+  display: none;
 }
