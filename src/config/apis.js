@@ -37,7 +37,7 @@ const aboutUsApi = `${apiEndpoint}/aboutus_page`;
 const aboutUsItemApi = `${apiEndpoint}/aboutus_page_item`;
 
 // register page page
-const signupApi = `http://192.168.10.14:8000/api/sign_up`;
+const signupApi = `${apiEndpoint}/sign_up`;
 
 // login
 const loginApi = `${apiEndpoint}/user_login`;
@@ -51,10 +51,10 @@ const manageOrderApi = `${apiEndpoint}/manage_order`;
 
 // singeRequirement
 
-const singleRequirement = `http://192.168.10.14:8000/api/service_requirements`;
+const singleRequirement = `${apiEndpoint}/service_requirements`;
 
 // checkout api
-const checkoutApi = `http://192.168.10.14:8000/api/checkout`;
+const checkoutApi = `${apiEndpoint}/checkout`;
 // service order
 const serviceOrder = `${apiEndpoint}/service_order`;
 

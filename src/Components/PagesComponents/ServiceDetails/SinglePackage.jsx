@@ -27,7 +27,7 @@ const SinglePackage = ({ item, setOpenModal }) => {
 
     try {
       const response = await fetch(
-        `http://192.168.10.14:8000/api/service_order`,
+        `https://admin.envobyte.com/api/service_order`,
         {
           method: "POST",
           headers: {

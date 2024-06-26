@@ -41,7 +41,7 @@ const Profile = () => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        `http://192.168.10.14:8000/api/user_profile`,
+        `https://admin.envobyte.com/api/user_profile`,
         {
           method: "POST",
           headers: {
@@ -86,7 +86,7 @@ const Profile = () => {
 
       axios({
         method: "post",
-        url: "http://192.168.10.14:8000/api/user_profile_update",
+        url: "https://admin.envobyte.com/api/user_profile_update",
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
       })

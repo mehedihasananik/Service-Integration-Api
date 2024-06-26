@@ -28,7 +28,7 @@ const BillingContent = () => {
 
     try {
       const response = await fetch(
-        `http://192.168.10.14:8000/api/user_profile`,
+        `https://admin.envobyte.com/api/user_profile`,
         {
           method: "POST",
           headers: {
@@ -84,7 +84,7 @@ const BillingContent = () => {
     try {
       axios({
         method: "post",
-        url: "http://192.168.10.14:8000/api/billing-address",
+        url: "https://admin.envobyte.com/api/billing-address",
         data: allData,
       })
         .then(function (response) {

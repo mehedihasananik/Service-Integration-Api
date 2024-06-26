@@ -50,6 +50,7 @@ const ServiceModal = ({ openModal, setOpenModal }) => {
           localStorage.setItem("userData", JSON.stringify(data));
 
           const item = JSON.parse(localStorage.getItem("item"));
+          window.dispatchEvent(new Event("storage"));
 
           //  Kakon Ray
           const handlePlaceOrder = async () => {
@@ -64,7 +65,7 @@ const ServiceModal = ({ openModal, setOpenModal }) => {
 
             try {
               const response = await fetch(
-                `http://192.168.10.14:8000/api/service_order`,
+                `https://admin.envobyte.com/api/service_order`,
                 {
                   method: "POST",
                   headers: {

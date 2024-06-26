@@ -3,8 +3,8 @@ import io from "socket.io-client";
 
 const SOCKET_URL_ONE = "http://localhost:3000";
 const socket = io(SOCKET_URL_ONE);
-const senderId = localStorage.getItem("senderId");
-const receiverId = localStorage.getItem("receiverId");
+// const senderId = localStorage.getItem("senderId");
+// const receiverId = localStorage.getItem("receiverId");
 
 let messageHandler = null;
 
@@ -21,8 +21,8 @@ export const setChatHandler = (handler) => {
 export const sendChatToServer = async (message, files) => {
   try {
     const formData = new FormData();
-    formData.append("sender_id", senderId);
-    formData.append("receiver_id", receiverId);
+    formData.append("sender_id", 19);
+    formData.append("receiver_id", 18);
     formData.append("message", message);
 
     // Append selected files if available, but limit to 6
@@ -33,7 +33,7 @@ export const sendChatToServer = async (message, files) => {
       }
     }
 
-    const response = await fetch("http://192.168.10.14:8000/api/save/chat", {
+    const response = await fetch("https://admin.envobyte.com/api/save/chat", {
       method: "POST",
       body: formData,
     });
@@ -42,7 +42,7 @@ export const sendChatToServer = async (message, files) => {
       throw new Error("Failed to send message");
     }
 
-    return { sender_id: senderId, message: message };
+    return { sender_id: 19, message: message };
   } catch (error) {
     console.error("Error sending message:", error);
     throw error;
@@ -51,14 +51,14 @@ export const sendChatToServer = async (message, files) => {
 
 export const fetchChatFromServer = async () => {
   try {
-    const response = await fetch("http://192.168.10.14:8000/api/chat/list", {
+    const response = await fetch("https://admin.envobyte.com/api/chat/list", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        sender_id: senderId,
-        receiver_id: receiverId,
+        sender_id: 19,
+        receiver_id: 18,
       }),
     });
 

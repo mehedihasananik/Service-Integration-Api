@@ -28,7 +28,7 @@ const CustomMessageOffer = ({ customoffer }) => {
   const handleStatusUpdate = async (status) => {
     try {
       const response = await axios.post(
-        "http://192.168.10.14:8000/api/order-cancel/client",
+        "https://admin.envobyte.com/api/order-cancel/client",
         {
           order_status: status,
           custome_offer_id: id,

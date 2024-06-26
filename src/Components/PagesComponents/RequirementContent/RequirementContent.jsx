@@ -63,14 +63,14 @@ const RequirementContent = ({ requireMent, requirementId, service_title }) => {
 
     try {
       const response = await fetch(
-        `http://192.168.10.14:8000/api/requirements_store`,
+        `https://admin.envobyte.com/api/requirements_store`,
         {
           method: "POST",
           body: formData,
         }
       );
       // console.log("Response:", response); // Log response from the server
-
+      console.log(response);
       console.log(response.resultsuccess);
       if (response.resultsuccess) {
         toast.success("Requirements submitted successfully");

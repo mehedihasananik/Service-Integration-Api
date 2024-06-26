@@ -20,6 +20,15 @@ const HeaderItems = ({ headers }) => {
     setLoading(false);
   }, []);
 
+  if (typeof window !== "undefined") {
+    window.addEventListener("storage", () => {
+      const storedUserData = localStorage.getItem("userData");
+      if (storedUserData) {
+        setUserData(JSON.parse(storedUserData));
+      }
+    });
+  }
+
   const { logo, menu } = headers || {};
 
   const NavButton = () => {

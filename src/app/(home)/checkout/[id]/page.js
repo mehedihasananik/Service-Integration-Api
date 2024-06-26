@@ -50,7 +50,7 @@ const SinglePage = ({ params }) => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        `http://192.168.10.14:8000/api/user_profile`,
+        `https://admin.envobyte.com/api/user_profile`,
         {
           method: "POST",
           headers: {
@@ -96,7 +96,7 @@ const SinglePage = ({ params }) => {
 
       axios({
         method: "post",
-        url: "http://192.168.10.14:8000/api/billing-address",
+        url: "https://admin.envobyte.com/api/billing-address",
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
       })
@@ -120,7 +120,7 @@ const SinglePage = ({ params }) => {
   const handleCheckout = async () => {
     try {
       const result = await axios.post(
-        "http://192.168.10.14:8000/api/checkout",
+        "https://admin.envobyte.com/api/checkout",
         {
           user_id: userData?.id,
           order_id: params.id,

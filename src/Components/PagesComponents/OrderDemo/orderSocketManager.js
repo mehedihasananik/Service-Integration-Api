@@ -3,8 +3,8 @@ import io from "socket.io-client";
 
 const SOCKET_URL_ONE = "http://localhost:3000";
 const socket = io(SOCKET_URL_ONE);
-const senderId = localStorage.getItem("senderId");
-const receiverId = localStorage.getItem("receiverId");
+// const senderId = localStorage.getItem("senderId");
+// const receiverId = localStorage.getItem("receiverId");
 
 let messageHandler = null;
 
@@ -21,7 +21,7 @@ export const setMessageHandler = (handler) => {
 export const sendMessageToServer = async (message, files) => {
   try {
     const formData = new FormData();
-    formData.append("sender_id", senderId);
+    formData.append("sender_id", 19);
     formData.append("receiver_id", 18);
     formData.append("message", message);
 
@@ -49,7 +49,7 @@ export const sendMessageToServer = async (message, files) => {
       throw new Error("Failed to send message");
     }
 
-    return { sender_id: senderId, message: message };
+    return { sender_id: 19, message: message };
   } catch (error) {
     console.error("Error sending message:", error);
     throw error;
@@ -65,7 +65,7 @@ export const fetchMessagesFromServer = async () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          sender_id: senderId,
+          sender_id: 19,
           receiver_id: 18,
         }),
       }
