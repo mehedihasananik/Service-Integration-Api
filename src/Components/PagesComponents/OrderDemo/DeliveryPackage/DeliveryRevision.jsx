@@ -5,7 +5,13 @@ import { Button, Modal, Spinner } from "flowbite-react";
 import { FaTimes } from "react-icons/fa";
 import { toast } from "react-hot-toast";
 
-const DeliveryRevision = ({ openModal, setOpenModal, modalSize, delivery }) => {
+const DeliveryRevision = ({
+  openModal,
+  setOpenModal,
+  modalSize,
+  delivery,
+  handleStatusUpdate,
+}) => {
   const [text, setText] = useState(""); // State to hold the textarea value
   const [selectedFiles, setSelectedFiles] = useState([]); // State to hold selected files
   const [filePreviews, setFilePreviews] = useState([]); // State to hold file previews
@@ -17,7 +23,7 @@ const DeliveryRevision = ({ openModal, setOpenModal, modalSize, delivery }) => {
   };
 
   const handleFiles = (files) => {
-    if (files.length + selectedFiles.length > 6) {
+    if (files.length + selectedFiles.length > 10) {
       toast.error("You can only upload up to 6 files.");
       return;
     }
@@ -94,6 +100,10 @@ const DeliveryRevision = ({ openModal, setOpenModal, modalSize, delivery }) => {
   const removeImage = (index) => {
     setSelectedFiles((prev) => prev.filter((_, i) => i !== index));
     setFilePreviews((prev) => prev.filter((_, i) => i !== index));
+  };
+  const handleCombinedClick = () => {
+    handleSendRevisionRequest();
+    handleStatusUpdate("revision");
   };
 
   return (
@@ -229,7 +239,7 @@ const DeliveryRevision = ({ openModal, setOpenModal, modalSize, delivery }) => {
           <div>
             <Button
               className="bg-[#FF693B] flex items-center"
-              onClick={handleSendRevisionRequest}
+              onClick={handleCombinedClick}
               disabled={isLoading} // Disable button while loading
             >
               {isLoading && <Spinner size="sm" className="mr-2" />}

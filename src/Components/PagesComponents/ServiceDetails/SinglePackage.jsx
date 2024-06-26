@@ -15,19 +15,6 @@ const SinglePackage = ({ item, setOpenModal }) => {
   const [userData, setUserData] = useState(null);
   const [orderId, setOrderId] = useState(null);
 
-  useLayoutEffect(() => {
-    if (typeof window !== "undefined") {
-      const data = JSON.parse(localStorage.getItem("userData"));
-      setUserData(data);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (orderId) {
-      router.push(`/checkout/${orderId}`);
-    }
-  }, [orderId, router]);
-
   const handlePlaceOrder = async () => {
     const data = {
       user_id: userData.id,
@@ -54,6 +41,7 @@ const SinglePackage = ({ item, setOpenModal }) => {
 
       if (responseData.order_id) {
         setOrderId(responseData.order_id);
+        router.push(`/checkout/${orderId}`);
       }
     } catch (error) {
       console.error("Error:", error);
@@ -64,6 +52,19 @@ const SinglePackage = ({ item, setOpenModal }) => {
     setItemId(item.id);
     localStorage.setItem("itemId", item.id);
   };
+
+  useLayoutEffect(() => {
+    if (typeof window !== "undefined") {
+      const data = JSON.parse(localStorage.getItem("userData"));
+      setUserData(data);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (orderId) {
+      router.push(`/checkout/${orderId}`);
+    }
+  }, [orderId, router]);
 
   return (
     <div className="md:mx-[10%] lg:mx-0">

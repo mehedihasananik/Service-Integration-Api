@@ -51,26 +51,34 @@ const ServiceOrderRevisions = ({ msg }) => {
         setDownloading((prev) => ({ ...prev, [url]: false }));
       });
   };
-  console.log(revision);
+  // console.log(revision);
 
   return (
     <div className="lg:mx-12 w-[80%] pb-4">
       <div>
         <div className="pb-3">
           <h3 className="text-[14px] font-Raleway font-[600] text-[#0A2C8C]">
-            Here&apos;s your order Revision
+            Here&apos;s your order Revision :
           </h3>
         </div>
         <div className="border border-[#E2E2E2] py-5 rounded-md pb-0">
           <div className="px-5 lg:px-4">
+            <h3 className="text-[#333] font-Roboto text-[24px] font-[700]">
+              Revision #{revision.revision_number}
+            </h3>
+
             <hr className="my-4" />
             <div>
               <p className="text-[#666666] text-[14px] pb-4">
                 {revision.description}
               </p>
             </div>
-
-            <div className="grid grid-cols-3 gap-4">
+            <div>
+              <h3 className="text-[#333] font-Raleway text-[16px] font-[600] ">
+                Attachments
+              </h3>
+            </div>
+            <div className="grid grid-cols-3 gap-4 py-3">
               {revision.media_urls?.map((fileUrl, fileIndex) => {
                 const fileType = getFileType(fileUrl);
                 const isImage =
@@ -107,9 +115,9 @@ const ServiceOrderRevisions = ({ msg }) => {
                           />
                         </div>
                       ) : (
-                        <div className="cursor-pointer pointer-events-none">
+                        <div className=" cursor-pointer pointer-events-none py-3">
                           <img
-                            className={`h-[180px] w-full object-contain object-position-center pointer-events-auto`}
+                            className={`h-[150px] w-full object-contain object-position-center pointer-events-auto`}
                             src={iconSrc}
                             alt=""
                           />

@@ -7,7 +7,12 @@ import * as Yup from "yup"; // Import Yup for validation
 import ReCAPTCHA from "react-google-recaptcha";
 import { user_feedbackApi } from "@/config/apis";
 
+import { PhoneInput } from "react-international-phone";
+import "react-international-phone/style.css";
+
 const ProjectDetails = ({ userContact }) => {
+  const [phone, setPhone] = useState("");
+
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
@@ -40,9 +45,9 @@ const ProjectDetails = ({ userContact }) => {
         /^[^\d].*\.com$/,
         "Email can't start with a number & must end with .com"
       ),
-    user_phone: Yup.string()
-      .required("Phone number is required")
-      .matches(/^\+?[0-9]{11}$/, "Phone number must be 11 digits"),
+    // user_phone: Yup.string()
+    //   .required("Phone number is required")
+    //   .matches(/[0-9]{15}$/, "Phone number must be 11 digits"),
     message: Yup.string()
       .required("Message is required")
       .max(2000, "Message must not exceed 2000 characters"),
@@ -96,6 +101,14 @@ const ProjectDetails = ({ userContact }) => {
   const handleCaptchaChange = (value) => {
     // This function will be called when ReCAPTCHA status changes
     setCaptchaVerified(true); // Set captcha verification status to true
+  };
+
+  const handlePhoneOnChange = (value, data) => {
+    setPhone(value);
+    setFormData((prevData) => ({
+      ...prevData,
+      user_phone: phone,
+    }));
   };
 
   return (
@@ -164,7 +177,7 @@ const ProjectDetails = ({ userContact }) => {
             </div>
           </div>
 
-          <div className="w-full md:w-[68%] lg:w-[60%]">
+          <div className="w-full md:w-[68%] lg:w-[60%] contact">
             <form onSubmit={handleSubmit} action="">
               {/* first name & last name */}
               <div className="flex flex-col gap-5">
@@ -215,7 +228,7 @@ const ProjectDetails = ({ userContact }) => {
                         Your Email:
                       </label>
                       <input
-                        className="w-full lg:w-[80%] py-4 border border-[#CBD5E1] px-4 rounded-md shadow-sm"
+                        className="w-full lg:w-[80%] py-4 border border-[#CBD5E1] px-4 rounded-md shadow-sm focus:border-blue-500"
                         type="text"
                         id="user_email"
                         name="user_email"
@@ -234,7 +247,7 @@ const ProjectDetails = ({ userContact }) => {
                       >
                         Your Phone Number:
                       </label>
-                      <input
+                      {/* <input
                         className="w-full l lg:w-[80%] py-4 border border-[#CBD5E1] px-4 rounded-md shadow-sm"
                         type="number"
                         id="user_phone"
@@ -243,6 +256,13 @@ const ProjectDetails = ({ userContact }) => {
                         value={formData.user_phone}
                         onChange={handleChange}
                         required
+                      /> */}
+
+                      <PhoneInput
+                        defaultCountry="ua"
+                        value={phone}
+                        onChange={handlePhoneOnChange}
+                        searchPlaceholder="Search country"
                       />
                     </div>
                   </div>

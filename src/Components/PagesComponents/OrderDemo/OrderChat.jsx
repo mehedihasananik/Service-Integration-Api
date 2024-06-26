@@ -216,7 +216,7 @@ const OrderChat = ({
                     index === messageHistory.length - 19 ? lastMessageRef : null
                   }
                 >
-                  <div className="flex gap-x-3 py-3">
+                  <div className="flex gap-x-3 pt-4">
                     <div className="w-[40px]">
                       {senderName === "Envobyte" && (
                         <Image
@@ -259,9 +259,12 @@ const OrderChat = ({
                       <p className="text-[14px] pr-[4%] text-justify font-Roboto font-[400] text-[#666666]">
                         {msg.message}
                       </p>
-                      <div className="pt-4">
-                        {media_urls && <Media_Urls media_urls={media_urls} />}
-                      </div>
+
+                      {media_urls && (
+                        <div>
+                          <Media_Urls media_urls={media_urls} />
+                        </div>
+                      )}
                     </div>
                   </div>
                   {order && <CustomOffer order={order} />}

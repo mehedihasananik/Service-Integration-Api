@@ -20,7 +20,7 @@ const CongratsModal = ({ openCongratsModal, setOpenCongratsModal }) => {
           Congratulations and thank you for your recent order with us! <br />{" "}
           You can download delivery files from the delivery section. If you
           encounter any issues or have any questions, please contact us on the
-          Message page. Have a good day.
+          Message page. Have a good day!
         </div>
       </Modal.Body>
     </Modal>

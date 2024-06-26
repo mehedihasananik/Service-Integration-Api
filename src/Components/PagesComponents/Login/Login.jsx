@@ -20,6 +20,8 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
   const router = useRouter();
 
+  const [captchaVerified, setCaptchaVerified] = useState(false); // State to track ReCAPTCHA verification
+
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -59,7 +61,6 @@ const Login = () => {
 
     setLoading(false);
   };
-  function onChange() {}
 
   const handleSocialLogin = async (provider) => {
     const url = `https://admin.envobyte.com/api/auth/${provider}`;
@@ -93,6 +94,11 @@ const Login = () => {
     // Clean up the event listener on component unmount
     return () => window.removeEventListener("message", handleMessage);
   }, []);
+
+  const handleCaptchaChange = (value) => {
+    // This function will be called when ReCAPTCHA status changes
+    setCaptchaVerified(true); // Set captcha verification status to true
+  };
 
   return (
     <div className="login_singUp overflow-hidden  my-5">
@@ -189,8 +195,8 @@ const Login = () => {
                 </div>
                 <div>
                   <ReCAPTCHA
-                    sitekey="6LcqZLopAAAAACmhsdtqnY3m0QHY6ELWc2QoAlVO"
-                    onChange={onChange}
+                    sitekey="6LeHdPIpAAAAAJoof-1ewzeYES0jvTrJ9_g09hBQ"
+                    onChange={handleCaptchaChange}
                   />
                 </div>
                 <div className="flex items-center justify-between gap-2">
@@ -217,6 +223,7 @@ const Login = () => {
                 <button
                   className="bg-[#FF693B] text-[16px] font-semibold font-Raleway md:mt-6 py-2 hover:bg-[#fff] hover:text-[#FF693B] flex justify-center items-center rounded-md text-white border border-[#FF693B] transition-all duration-300"
                   type="submit"
+                  disabled={!captchaVerified}
                 >
                   Login{" "}
                   <span>

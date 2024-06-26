@@ -224,9 +224,11 @@ const MessageChat = ({
                           {formattedDate}
                         </span>
                       </div>
-                      <p className="text-[14px] pr-[4%] text-justify font-Roboto font-[400] text-[#666666]">
-                        {msg.message}
-                      </p>
+                      {msg.message && (
+                        <p className="text-[14px] pr-[4%] text-justify font-Roboto font-[400] text-[#666666]">
+                          {msg.message}
+                        </p>
+                      )}
 
                       {customoffer && (
                         <CustomMessageOffer customoffer={customoffer} />
@@ -285,7 +287,7 @@ const MessageChat = ({
                             />
                           ) : file.type === "application/vnd.adobe.xd" ? (
                             <img
-                              src="http://192.168.10.15:8000/js/icons/xd.png"
+                              src="http://192.168.10.16:8000/js/icons/xd.png"
                               alt={`XD Preview ${index}`}
                               className="w-[100px] h-[100px]"
                             />
@@ -293,7 +295,7 @@ const MessageChat = ({
                             file.type ===
                               "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ? (
                             <img
-                              src="http://192.168.10.15:8000/js/icons/doc.png"
+                              src="https://cdn3.iconfinder.com/data/icons/muksis/128/docx-128.png"
                               alt={`Word Preview ${index}`}
                               className="w-[100px] h-[100px]"
                             />
@@ -301,20 +303,20 @@ const MessageChat = ({
                             file.type ===
                               "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ? (
                             <img
-                              src="http://192.168.10.15:8000/js/icons/excel.png"
+                              src="http://192.168.10.16:8000/js/icons/excel.png"
                               alt={`Excel Preview ${index}`}
                               className="w-[100px] h-[100px]"
                             />
                           ) : file.type === "text/plain" ? (
                             <img
-                              src="http://192.168.10.15:8000/js/icons/txt.png"
+                              src="http://192.168.10.16:8000/js/icons/txt.png"
                               alt={`Text Preview ${index}`}
                               className="w-[100px] h-[100px]"
                             />
                           ) : file.type === "application/zip" ||
                             file.type === "application/x-zip-compressed" ? (
                             <img
-                              src="http://192.168.10.15:8000/js/icons/zip.png"
+                              src="https://cdn3.iconfinder.com/data/icons/muksis/128/zip-128.png"
                               alt={`Zip Preview ${index}`}
                               className="w-[100px] h-[100px]"
                             />

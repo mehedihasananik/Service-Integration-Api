@@ -292,28 +292,7 @@
   display: flex !important;
   gap: 10px !important;
 }
-/* .filepond--panel-center f.ilepond--panel-root {
-  background: #fff !important;
-}
 
-.filepond--credits {
-  display: none !important;
-}
-.filepond--drop-label {
-  background: #fff !important;
-}  */
-.react-tel-input .form-control {
-  font-size: 16px;
-  background: #ffffff;
-  border: 1px solid #000000 !important;
-  border-radius: 5px;
-  width: 100% !important;
-  outline: none;
-  padding: 18.5px 14px 18.5px 60px;
-  transition: box-shadow ease 0.25s, border-color ease 0.25s;
-  color: #495057;
-}
-/* kakon css */
 /* kakon css */
 .react-tel-input .form-control {
   font-size: 16px;
@@ -495,4 +474,36 @@ select {
 }
 .example::-webkit-scrollbar {
   display: none;
+}
+/* project details component */
+
+#projectDetails
+  .react-international-phone-input-container
+  .react-international-phone-input {
+  border: 2px solid #dedcdc !important;
+}
+
+#projectDetails
+  .react-international-phone-input-container
+  .react-international-phone-country-selector-button {
+  height: 60px !important;
+  border: 2px solid #dedcdc !important;
+  border-right: none !important;
+  width: 50px;
+}
+
+#projectDetails
+  .react-international-phone-input-container
+  .react-international-phone-input {
+  width: 69% !important;
+}
+
+#projectDetails .react-international-phone-input-container {
+  margin-top: 8px !important;
+}
+
+#projectDetails [type="text"]:focus,
+[type="email"]:focus,
+[type="password"]:focus {
+  border: 2px solid #dedcdc !important;
 }
