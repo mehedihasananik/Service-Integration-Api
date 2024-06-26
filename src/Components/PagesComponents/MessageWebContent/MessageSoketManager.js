@@ -3,6 +3,8 @@ import io from "socket.io-client";
 
 const SOCKET_URL_ONE = "http://localhost:3000";
 const socket = io(SOCKET_URL_ONE);
+const senderId = localStorage.getItem("senderId");
+const receiverId = localStorage.getItem("receiverId");
 
 let messageHandler = null;
 
@@ -19,8 +21,8 @@ export const setChatHandler = (handler) => {
 export const sendChatToServer = async (message, files) => {
   try {
     const formData = new FormData();
-    formData.append("sender_id", 1);
-    formData.append("receiver_id", 18);
+    formData.append("sender_id", senderId);
+    formData.append("receiver_id", receiverId);
     formData.append("message", message);
 
     // Append selected files if available, but limit to 6
@@ -40,7 +42,7 @@ export const sendChatToServer = async (message, files) => {
       throw new Error("Failed to send message");
     }
 
-    return { sender_id: 1, message: message };
+    return { sender_id: senderId, message: message };
   } catch (error) {
     console.error("Error sending message:", error);
     throw error;
@@ -55,8 +57,8 @@ export const fetchChatFromServer = async () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        sender_id: 1,
-        receiver_id: 18,
+        sender_id: senderId,
+        receiver_id: receiverId,
       }),
     });
 

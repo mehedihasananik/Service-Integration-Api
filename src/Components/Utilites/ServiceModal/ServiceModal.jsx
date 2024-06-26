@@ -17,7 +17,6 @@ const ServiceModal = ({ openModal, setOpenModal }) => {
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true); // Set loading to true when login is initiated
-
     const formData = new FormData(e.target);
     const email = formData.get("email");
     const password = formData.get("password");
@@ -45,10 +44,51 @@ const ServiceModal = ({ openModal, setOpenModal }) => {
         // console.log(data);
         if (data.success) {
           // Save user data to localStorage
-          toast.success("Logged in successfully");
+
+          toast.success("Logged in & Redirecting to checkout Page");
+
           localStorage.setItem("userData", JSON.stringify(data));
-          // Navigate to the dashboard
-          router.push("/checkout");
+
+          const item = JSON.parse(localStorage.getItem("item"));
+
+          //  Kakon Ray
+          const handlePlaceOrder = async () => {
+            const orderdata = {
+              user_id: data?.id,
+              service_package: item.id,
+              sevice_items_id: item.sevice_items_id,
+              package_price: item.package_price,
+              payment_status: "done",
+              order_status: "Requirement Needed",
+            };
+
+            try {
+              const response = await fetch(
+                `http://192.168.10.14:8000/api/service_order`,
+                {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify(orderdata),
+                }
+              );
+
+              const responseData = await response.json();
+
+              if (responseData.order_id) {
+                console.log(responseData.order_id);
+                router.push(`/checkout/${responseData.order_id}`);
+                localStorage.removeItem("item");
+              }
+            } catch (error) {
+              console.error("Error:", error);
+            }
+          };
+
+          handlePlaceOrder();
+
+          //  Kakon Ray End
         }
         if (data.ErrorMessage) {
           // Save user data to localStorage

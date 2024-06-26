@@ -99,7 +99,7 @@ const DeliveryPackage = ({ delivery, human_readable_delivery_time }) => {
       console.error("Error updating status:", error);
     }
   };
-  console.log(delivery);
+  // console.log(delivery);
   return (
     <div>
       <div className=" bg-[#FDFDFD]  rounded-[8px] px-1 lg:ml-[40px] mb-3 md:w-[90%]">

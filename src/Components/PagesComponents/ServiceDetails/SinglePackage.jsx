@@ -53,6 +53,12 @@ const SinglePackage = ({ item, setOpenModal }) => {
     localStorage.setItem("itemId", item.id);
   };
 
+  // kakon
+  const orderWithLogin = () => {
+    localStorage.setItem("item", JSON.stringify(item));
+    setOpenModal(true);
+  };
+
   useLayoutEffect(() => {
     if (typeof window !== "undefined") {
       const data = JSON.parse(localStorage.getItem("userData"));
@@ -100,7 +106,7 @@ const SinglePackage = ({ item, setOpenModal }) => {
             </button>
           ) : (
             <button
-              onClick={() => setOpenModal(true)}
+              onClick={orderWithLogin}
               className="text-[16px] font-medium text-[#FF693B] border border-[#FF693B] px-6 py-2 w-full rounded-md hover:text-white hover:bg-[#FF693B] transition-all duration-300"
             >
               Place Order Now

@@ -165,7 +165,8 @@ const MessageChat = ({
           <div className="mb-[8%]">
             {messageHistory.map((msg, index) => {
               // console.log(msg);
-              const senderName = msg.sender_id === 1 ? "Anik" : "Envobyte";
+              const senderName =
+                msg.receiver_id === 18 ? `${userData.name}` : "Envobyte";
               const updatedAt = parseDate(msg.updated_at);
               const formattedDate = new Intl.DateTimeFormat("en-US", {
                 month: "short",
@@ -193,13 +194,13 @@ const MessageChat = ({
                           className="w-[40px] h-[40px] rounded-lg"
                           src={
                             senderName === "Envobyte"
-                              ? "/assets/msgAvater.png"
+                              ? "/assets/icon_for_favicon.png"
                               : ` ${userData.image}`
                           }
                           alt=""
                         />
                       )}
-                      {senderName === "Anik" && (
+                      {msg.receiver_id === 18 && (
                         <Link href={"/profile"}>
                           <Image
                             width={100}
@@ -207,7 +208,7 @@ const MessageChat = ({
                             className="w-[40px] h-[40px] rounded-lg"
                             src={
                               senderName === "Envobyte"
-                                ? "/assets/msgAvater.png"
+                                ? "/assets/icon_for_favicon.png"
                                 : ` ${userData.image}`
                             }
                             alt=""

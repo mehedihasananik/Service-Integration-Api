@@ -14,6 +14,25 @@ const DashBoardContent = () => {
       ? JSON.parse(localStorage.getItem("userData"))
       : null;
 
+  // Function to fetch sender and receiver IDs and save to local storage
+  const fetchSenderReceiver = async () => {
+    try {
+      const response = await fetchData(
+        `http://192.168.10.14:8000/api/sender_recever`,
+        "POST",
+        {
+          user_id: sessionData?.id,
+        }
+      );
+      if (response?.sender_id && response?.receiver_id) {
+        localStorage.setItem("senderId", response.sender_id);
+        localStorage.setItem("receiverId", response.receiver_id);
+      }
+    } catch (error) {
+      console.error("Failed to fetch sender and receiver IDs", error);
+    }
+  };
+
   const fetchingData = async () => {
     setLoading(true);
     const data = await fetchData(
@@ -28,7 +47,8 @@ const DashBoardContent = () => {
   };
 
   useEffect(() => {
-    fetchingData();
+    fetchSenderReceiver(); // Fetch sender and receiver IDs
+    fetchingData(); // Fetch dashboard data
   }, []);
 
   const handlePassData = (order_id) => {
@@ -41,7 +61,7 @@ const DashBoardContent = () => {
       className="lg:mx-10 bg-[#FCFCFC] mb-5% scroll-y"
     >
       {/* active project */}
-      <div className="bg-white py-4 rounded-md   mb-5 md:px-7">
+      <div className="bg-white py-4 rounded-md mb-5 md:px-7">
         <h3 className="text-[#0F172A] text-[24px] font-[600]">
           Active Projects ({projects?.length || 0})
         </h3>
@@ -76,7 +96,7 @@ const DashBoardContent = () => {
                         : "/"
                     }
                   >
-                    <div className=" shadow-lg rounded-md border border-[#E2E8F0] pb-5 mb-5">
+                    <div className="shadow-lg rounded-md border border-[#E2E8F0] pb-5 mb-5">
                       <div className="flex flex-col">
                         <div className="bg-[#E2E8F0]">
                           <div>
@@ -151,7 +171,7 @@ const DashBoardContent = () => {
             <div className="py-8 pt-10 md:pt-16 text-center">
               <Link
                 href={"/services"}
-                className=" text-[16px] bg-[#FF693B]  px-12 py-2  md:px-14 md:py-4 text-white rounded-lg border border-[#FF693B]  hover:bg-white hover:text-[#FF693B] transition-all duration-300"
+                className="text-[16px] bg-[#FF693B] px-12 py-2 md:px-14 md:py-4 text-white rounded-lg border border-[#FF693B] hover:bg-white hover:text-[#FF693B] transition-all duration-300"
               >
                 Order Now
               </Link>

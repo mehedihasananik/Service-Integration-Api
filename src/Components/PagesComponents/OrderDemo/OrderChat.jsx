@@ -191,8 +191,9 @@ const OrderChat = ({
         <div className="bg-[#fff] px-4">
           <div className="mb-[8%]">
             {messageHistory.map((msg, index) => {
-              // console.log(msg);
-              const senderName = msg.sender_id === 19 ? "Anik" : "Envobyte";
+              console.log(msg);
+              const senderName =
+                msg.receiver_id === 18 ? `${userData.name}` : "Envobyte";
               const updatedAt = parseDate(msg.updated_at);
               const formattedDate = new Intl.DateTimeFormat("en-US", {
                 month: "short",
@@ -216,7 +217,7 @@ const OrderChat = ({
                     index === messageHistory.length - 19 ? lastMessageRef : null
                   }
                 >
-                  <div className="flex gap-x-3 pt-4">
+                  <div className="flex gap-x-3 py-3">
                     <div className="w-[40px]">
                       {senderName === "Envobyte" && (
                         <Image
@@ -231,7 +232,7 @@ const OrderChat = ({
                           alt=""
                         />
                       )}
-                      {senderName === "Anik" && (
+                      {msg.receiver_id === 18 && (
                         <Link href={"/profile"}>
                           <Image
                             width={100}

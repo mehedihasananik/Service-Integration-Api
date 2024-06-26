@@ -28,6 +28,9 @@ const DashBoardNav = () => {
 
   const clearSession = () => {
     localStorage.removeItem("userData");
+    localStorage.removeItem("orderID");
+    localStorage.removeItem("senderId");
+    localStorage.removeItem("receiverId");
     setCleared(true);
     router.push("/");
   };

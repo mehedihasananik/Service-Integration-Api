@@ -223,7 +223,6 @@ const Login = () => {
                 <button
                   className="bg-[#FF693B] text-[16px] font-semibold font-Raleway md:mt-6 py-2 hover:bg-[#fff] hover:text-[#FF693B] flex justify-center items-center rounded-md text-white border border-[#FF693B] transition-all duration-300"
                   type="submit"
-                  disabled={!captchaVerified}
                 >
                   Login{" "}
                   <span>
