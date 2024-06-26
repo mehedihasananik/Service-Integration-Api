@@ -24,7 +24,7 @@ const DeliveryRevision = ({
 
   const handleFiles = (files) => {
     if (files.length + selectedFiles.length > 10) {
-      toast.error("You can only upload up to 6 files.");
+      toast.error("You can only upload up to 10 files.");
       return;
     }
 

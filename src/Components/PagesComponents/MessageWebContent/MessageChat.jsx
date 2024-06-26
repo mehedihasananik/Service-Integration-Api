@@ -165,8 +165,9 @@ const MessageChat = ({
           <div className="mb-[8%]">
             {messageHistory.map((msg, index) => {
               // console.log(msg);
-              const senderName =
-                msg.receiver_id === 18 ? `${userData.name}` : "Envobyte";
+              const senderName = msg.receiver_id
+                ? `${userData.name}`
+                : "Envobyte";
               const updatedAt = parseDate(msg.updated_at);
               const formattedDate = new Intl.DateTimeFormat("en-US", {
                 month: "short",

@@ -65,8 +65,8 @@ export const fetchMessagesFromServer = async () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          sender_id: 18,
-          receiver_id: senderId,
+          sender_id: senderId,
+          receiver_id: 18,
         }),
       }
     );

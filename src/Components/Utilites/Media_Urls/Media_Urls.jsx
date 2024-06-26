@@ -77,7 +77,7 @@ const Media_Urls = ({ media_urls }) => {
           const iconSrc = fileTypeIcons[fileType] || fallbackIconUrl;
 
           return (
-            <div key={index} className="group relative">
+            <div key={index} className="group relative pt-3">
               <div
                 className="h-[180px] flex items-center justify-center bg-[#F3F6F9] rounded-lg group-hover:brightness-75 cursor-pointer pointer-events-none"
                 onClick={() => handleImageClick(item)}
