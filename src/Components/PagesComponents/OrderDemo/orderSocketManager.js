@@ -1,7 +1,7 @@
 // orderSocketManager.js
 import io from "socket.io-client";
 
-const SOCKET_URL_ONE = "http://localhost:3000";
+const SOCKET_URL_ONE = "https://envobyte.com";
 const socket = io(SOCKET_URL_ONE);
 // const senderId = localStorage.getItem("senderId");
 // const receiverId = localStorage.getItem("receiverId");
