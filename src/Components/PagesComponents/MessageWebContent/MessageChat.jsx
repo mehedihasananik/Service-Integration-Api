@@ -42,6 +42,7 @@ const MessageChat = ({
   const [isLoading, setIsLoading] = useState(true);
   const [userScrolledUp, setUserScrolledUp] = useState(false);
   const { userData } = useContext(AuthContext);
+  const [user, setUser] = useState("Anik");
   // console.log(userData);
 
   const handleFileChange = (event) => {
@@ -164,10 +165,9 @@ const MessageChat = ({
         <div className="bg-[#fff] px-4">
           <div className="mb-[8%]">
             {messageHistory.map((msg, index) => {
-              console.log(msg);
+              console.log(msg.sender_id);
               // console.log(msg);
-              const senderName =
-                msg.receiver_id == 18 ? `${userData.name}` : "Envobyte";
+              const senderName = msg?.sender_id == 18 ? `Envobyte` : "Anik";
               const updatedAt = parseDate(msg.updated_at);
               const formattedDate = new Intl.DateTimeFormat("en-US", {
                 month: "short",

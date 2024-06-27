@@ -44,7 +44,9 @@ const OrderChat = ({
   const [isLoading, setIsLoading] = useState(true);
   const [userScrolledUp, setUserScrolledUp] = useState(false);
   const { userData } = useContext(AuthContext);
-  // console.log(userData);
+  const senderId = localStorage.getItem("senderId");
+  const receiverId = localStorage.getItem("receiverId");
+  console.log(senderId);
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -116,8 +118,8 @@ const OrderChat = ({
     onDrop,
     accept: "image/*",
   });
+
   useEffect(() => {
-    // Scroll to the bottom of the chat container only if user is already at the bottom
     if (chatContainerRef.current && !userScrolledUp) {
       const { scrollHeight, clientHeight } = chatContainerRef.current;
       chatContainerRef.current.scrollTop = scrollHeight - clientHeight;
@@ -128,7 +130,7 @@ const OrderChat = ({
     if (chatContainerRef.current) {
       const { scrollTop, scrollHeight, clientHeight } =
         chatContainerRef.current;
-      const isAtBottom = scrollTop + clientHeight >= scrollHeight - 10; // Adjust threshold as needed
+      const isAtBottom = scrollTop + clientHeight >= scrollHeight - 10;
       setUserScrolledUp(!isAtBottom);
     }
   };
@@ -150,10 +152,10 @@ const OrderChat = ({
       console.error("Error downloading the image:", error);
     }
   };
+
   const handleImageClick = (url) => {
     window.open(url, "_blank");
   };
-  // console.log(messageHistory);
 
   return (
     <div className="bg-[#FCFCFC] h-[88vh] flex flex-col relative md:px-8">
@@ -163,37 +165,14 @@ const OrderChat = ({
         className="bg-[#FCFCFC] flex-grow overflow-y-auto"
       >
         <div className="flex justify-between items-center mx-4 bg-[#FFFFFF] my-5 rounded-lg  ">
-          {/* <div className="flex gap-x-3 bg-[#FFFFFF]">
-            <div>
-              {" "}
-              <Image
-                className="w-[54px] h-54px]"
-                src="/assets/msgAvater.png"
-                width={100}
-                height={100}
-                alt="avater"
-              />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-[20px] font-Raleway font-[600]">
-                Envobyte
-              </span>
-              <span className="text-[#777777] font-Raleway">Online</span>
-            </div>
-          </div> 
-          <div>
-            <button>
-              <IoMdMore className="text-[25px]" />
-            </button>
-          </div>
-          */}
+          {/* Header content */}
         </div>
         <div className="bg-[#fff] px-4">
           <div className="mb-[8%]">
             {messageHistory.map((msg, index) => {
               console.log(msg);
               const senderName =
-                msg.receiver_id === 18 ? `${userData.name}` : "Envobyte";
+                msg.sender_id == senderId ? `${userData.name}` : "Envobyte";
               const updatedAt = parseDate(msg.updated_at);
               const formattedDate = new Intl.DateTimeFormat("en-US", {
                 month: "short",
@@ -224,25 +203,17 @@ const OrderChat = ({
                           width={100}
                           height={100}
                           className="w-[40px] h-[40px] rounded-lg"
-                          src={
-                            senderName === "Envobyte"
-                              ? "/assets/icon_for_favicon.png"
-                              : ` ${userData.image}`
-                          }
+                          src="/assets/icon_for_favicon.png"
                           alt=""
                         />
                       )}
-                      {msg.receiver_id === 18 && (
+                      {senderName === `${userData.name}` && (
                         <Link href={"/profile"}>
                           <Image
                             width={100}
                             height={100}
                             className="w-[40px] h-[40px] rounded-lg"
-                            src={
-                              senderName === "Envobyte"
-                                ? "/assets/msgAvater.png"
-                                : ` ${userData.image}`
-                            }
+                            src={userData.image}
                             alt=""
                           />
                         </Link>
@@ -297,7 +268,7 @@ const OrderChat = ({
                     setInputtedMessage(e.target.value);
                     setText(e.target.value);
                   }}
-                  maxLength={2000} // Limit to 500 characters
+                  maxLength={2000}
                 />
 
                 <div className="flex h-[0px] gap-2 absolute right-0 top-[0px]">
@@ -399,8 +370,7 @@ const OrderChat = ({
                 >
                   <CiFaceSmile className="text-[20px] " />
                 </span>
-              </div>
-
+              </div>{" "}
               <div className="w-[9%]">
                 <button
                   onClick={() => {
@@ -408,8 +378,8 @@ const OrderChat = ({
                     setInputtedMessage("");
                     setAttachments([]);
                   }}
-                  disabled={isImageSending} // Disable button while loading
-                  className="w-full font-[600]  bg-[#FF693B] border border-[#FF693B] text-white hover:text-[#FF693B] hover:bg-[#ffff] transition-all duration-200  text-[16px]  py-2.5 rounded-[4px]"
+                  disabled={isImageSending}
+                  className="w-full font-[600] bg-[#FF693B] border border-[#FF693B] text-white hover:text-[#FF693B] hover:bg-[#ffff] transition-all duration-200 text-[16px] py-2.5 rounded-[4px]"
                 >
                   {isImageSending && <Spinner size="sm" className="mr-2" />}
                   {isImageSending ? "Sending..." : "Send"}

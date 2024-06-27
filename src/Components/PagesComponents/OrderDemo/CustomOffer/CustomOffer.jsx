@@ -21,7 +21,6 @@ const CustomOffer = ({ order }) => {
     typeof window !== "undefined"
       ? JSON.parse(localStorage.getItem("orderID"))
       : null;
-  console.log(orderId);
 
   const handleStatusUpdate = async (status) => {
     const formData = new FormData();

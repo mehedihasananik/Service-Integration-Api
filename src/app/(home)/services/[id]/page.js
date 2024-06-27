@@ -26,6 +26,7 @@ export async function generateMetadata({ params, searchParams }, parent) {
 }
 
 const SinglePage = async ({ params }) => {
+  console.log(params.id);
   // Fetch data for the page
   const service = await fetch(`${singeServiceDetails}/${params.id}`).then(
     (res) => res.json()

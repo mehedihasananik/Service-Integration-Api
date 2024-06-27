@@ -57,7 +57,6 @@ const CustomMessageOffer = ({ customoffer }) => {
     setCustomId(id);
     localStorage.setItem("customId", id);
   };
-  console.log(orderId);
 
   return (
     <div className="lg:mx-0 w-[80%] pb-4">

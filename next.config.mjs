@@ -17,6 +17,7 @@ const nextConfig = {
       "admin.softpixe.com",
       "192.168.10.15",
       "lh3.googleusercontent.com",
+      "envobyte.com",
     ],
   },
 };
