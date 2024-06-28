@@ -3,7 +3,7 @@
 import { apiEndpoint } from "@/config/config";
 import React, { useEffect, useState } from "react";
 import UserLoading from "../Utilites/UserLoading/UserLoading";
-import dayjs from "dayjs";
+
 import axios from "axios";
 import toast from "react-hot-toast";
 
