@@ -2,7 +2,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import { dashboardMenus } from "./dashboardMenus";
 import { usePathname, useRouter } from "next/navigation";
-import OrderRequirementDetails from "./OrderRequirementDetails/OrderRequirementDetails";
 
 export const AuthContext = createContext();
 
@@ -29,10 +28,6 @@ const AuthProviders = ({ children }) => {
   // console.log(userData);
   const pathname = usePathname();
 
-  useEffect(() => {
-    // Replace with your actual order ID
-    OrderRequirementDetails(orderID, setDeliveryDetails, setLoading);
-  }, []);
   // console.log(deliveryDetails);
 
   const itemValues = {

@@ -194,13 +194,13 @@ const PortfolioPage = ({
                           <div className="flex flex-col justify-center items-center p-3 md:py-0 2xl:px-10">
                             <div className="text-center">
                               <h4 className="text-[14px] text-[#999999] pt-3 pb-3 md:pt-0 md:pb-6 portfolio-textHover">
-                                {portfolio?.service_name[0]?.service_name}
+                                {portfolio.service_name[0]?.service_name}
                               </h4>
                               <h3 className="text-[16px] font-bold font-Raleway text-[#333333] portfolio-textHover">
-                                {portfolio?.heading}
+                                {portfolio.heading}
                               </h3>
                               <p className="w-[250px] text-[14px] text-[#666666] py-3 portfolio-textHover">
-                                {truncateText(portfolios?.text, 40)}...
+                                {truncateText(portfolio.text, 40)}...
                               </p>
                             </div>
                             <div className="group flex justify-center items-center gap-2 text-[#FF693B] font-bold mt-5 portfolio-textHover pb-6 lg:pb-0">
