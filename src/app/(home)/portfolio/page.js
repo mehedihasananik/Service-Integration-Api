@@ -1,11 +1,6 @@
 import Container from "@/Components/Container/Container";
 import PortfolioPage from "@/Components/PagesComponents/PortfolioPage/PortfolioPage";
-import {
-  search_sevice_categoryAll,
-  serviceApi,
-  serviceListApi,
-  sevice_portfolioApi,
-} from "@/config/apis";
+import { serviceListApi, sevice_portfolioApi } from "@/config/apis";
 import { apiEndpoint } from "@/config/config";
 export const metadata = {
   title: "Envobyte || Portfolio ",

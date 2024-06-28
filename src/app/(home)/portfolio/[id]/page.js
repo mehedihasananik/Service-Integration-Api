@@ -2,7 +2,7 @@ import PortfolioDetails from "@/Components/PagesComponents/PortfolioDetails/Port
 import { singlePortfolio } from "@/config/apis";
 
 export async function generateMetadata({ params, searchParams }, parent) {
-  const id = params.id;
+  const id = params?.id;
 
   // Fetch data for generating metadata
   const service = await fetch(`${singlePortfolio}/${id}`).then((res) =>
@@ -13,8 +13,8 @@ export async function generateMetadata({ params, searchParams }, parent) {
   const previousImages = (await parent).openGraph?.images || [];
 
   return {
-    title: `${service.basic.title} || Envobyte`,
-    description: service.description,
+    title: `${service?.basic?.title} || Envobyte`,
+    description: service?.description,
     openGraph: {
       images: ["/some-specific-page-image.jpg", ...previousImages],
     },
@@ -22,8 +22,8 @@ export async function generateMetadata({ params, searchParams }, parent) {
 }
 const SinglePage = async ({ params }) => {
   const singlePortfolioItem = await fetch(
-    `${singlePortfolio}/${params.id}`
-  ).then((res) => res.json());
+    `${singlePortfolio}/${params?.id}`
+  ).then((res) => res?.json());
 
   return (
     <div>

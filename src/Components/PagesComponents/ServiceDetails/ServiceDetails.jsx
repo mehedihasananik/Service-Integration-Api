@@ -31,7 +31,7 @@ const ServiceDetails = ({
           {/* title */}
           <div className="text-center font-Raleway pb-10">
             <h1 className="text-[#10F172A] text-[32px] md:text-[48px] font-bold capitalize">
-              {service.service_details[0].sevice_items_name}
+              {service?.service_details[0]?.sevice_items_name}
             </h1>
             <h3 className="text-[18px] font-medium">
               Discover <span className="text-[#FF693B]">The Perfect Plan</span>
@@ -42,7 +42,7 @@ const ServiceDetails = ({
             {packages.map((item) => {
               return (
                 <SinglePackage
-                  key={item.id}
+                  key={item?.id}
                   item={item}
                   openModal={openModal}
                   setOpenModal={setOpenModal}

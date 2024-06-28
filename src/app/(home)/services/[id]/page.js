@@ -6,19 +6,19 @@ import {
 } from "@/config/apis";
 
 export async function generateMetadata({ params, searchParams }, parent) {
-  const id = params.id;
+  const id = params?.id;
 
   // Fetch data for generating metadata
   const service = await fetch(`${singeServiceDetails}/${id}`).then((res) =>
-    res.json()
+    res?.json()
   );
 
   // Optionally access and extend (rather than replace)  metadata
   const previousImages = (await parent).openGraph?.images || [];
 
   return {
-    title: `${service.service_details[0].sevice_items_name} || Envobyte`,
-    description: service.description,
+    title: `${service?.service_details[0]?.sevice_items_name} || Envobyte`,
+    description: service?.description,
     openGraph: {
       images: ["/some-specific-page-image.jpg", ...previousImages],
     },
@@ -26,16 +26,16 @@ export async function generateMetadata({ params, searchParams }, parent) {
 }
 
 const SinglePage = async ({ params }) => {
-  console.log(params.id);
+  // console.log(params.id);
   // Fetch data for the page
-  const service = await fetch(`${singeServiceDetails}/${params.id}`).then(
-    (res) => res.json()
+  const service = await fetch(`${singeServiceDetails}/${params?.id}`).then(
+    (res) => res?.json()
   );
-  const sliders = await fetch(`${singleSliderPageDetails}/${params.id}`).then(
-    (res) => res.json()
+  const sliders = await fetch(`${singleSliderPageDetails}/${params?.id}`).then(
+    (res) => res?.json()
   );
-  const packages = await fetch(`${singleService_package}/${params.id}`).then(
-    (res) => res.json()
+  const packages = await fetch(`${singleService_package}/${params?.id}`).then(
+    (res) => res?.json()
   );
 
   return (

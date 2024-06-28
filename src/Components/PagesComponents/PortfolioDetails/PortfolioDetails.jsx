@@ -14,12 +14,12 @@ const PortfolioDetails = ({ singlePortfolioItem }) => {
         <Container>
           <div className="text-center pb-3 lg:pb-5  md:pt-0">
             <h1 className=" text-[20px] md:text-[30px] lg:text-[54px] font-Raleway font-bold lg:leading-[63.4px] text-[#000000] ">
-              {basic.title}
+              {basic?.title}
             </h1>
           </div>
           <div>
             <p className="text-[18px] text-justify font-Roboto text-[#333333] md:leading-[27px] md:text-left py-3 md:pt-0 md:py-5">
-              {basic.details}
+              {basic?.details}
             </p>
           </div>
 
@@ -28,7 +28,7 @@ const PortfolioDetails = ({ singlePortfolioItem }) => {
             const { title, details, image, caption_text } = portfolio;
             // console.log(title);
             return (
-              <div key={portfolio.id}>
+              <div key={portfolio?.id}>
                 {/* title */}
 
                 <div className="w-[100%]">

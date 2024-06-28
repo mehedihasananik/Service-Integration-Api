@@ -17,10 +17,10 @@ const SinglePackage = ({ item, setOpenModal }) => {
 
   const handlePlaceOrder = async () => {
     const data = {
-      user_id: userData.id,
-      service_package: item.id,
-      sevice_items_id: item.sevice_items_id,
-      package_price: item.package_price,
+      user_id: userData?.id,
+      service_package: item?.id,
+      sevice_items_id: item?.sevice_items_id,
+      package_price: item?.package_price,
       payment_status: "done",
       order_status: "Requirement Needed",
     };
@@ -39,8 +39,8 @@ const SinglePackage = ({ item, setOpenModal }) => {
 
       const responseData = await response.json();
 
-      if (responseData.order_id) {
-        setOrderId(responseData.order_id);
+      if (responseData?.order_id) {
+        setOrderId(responseData?.order_id);
         router.push(`/checkout/${orderId}`);
       }
     } catch (error) {
@@ -50,7 +50,7 @@ const SinglePackage = ({ item, setOpenModal }) => {
 
   const handlePassData = () => {
     setItemId(item.id);
-    localStorage.setItem("itemId", item.id);
+    localStorage.setItem("itemId", item?.id);
   };
 
   // kakon
@@ -75,24 +75,24 @@ const SinglePackage = ({ item, setOpenModal }) => {
   return (
     <div className="md:mx-[10%] lg:mx-0">
       <div
-        key={item.id}
+        key={item?.id}
         className="border border-[#CBD5E1] transition-all duration-300 hover:border-[#FF693B] px-8 py-10 rounded-3xl 6xl:w-[400px] 6xl:gap-x-20"
       >
         {/* title */}
         <div className="h-[95px]">
           <div className="space-y-5">
             <h3 className="font-Raleway text-[16px] text-[#1E293B] font-bold">
-              {item.package_name}
+              {item?.package_name}
             </h3>
             <p className="text-[15px] text-[#334155] font-normal">
-              {item.package_text}
+              {item?.package_text}
             </p>
           </div>
         </div>
         {/* price */}
         <div className="md:h-[50px] xl:h-[60px] xxl:h-[50px] mt-[20px] md:mt-0">
           <h2 className="md:my-2 text-[20px] md:text-[32px] font-semibold font-Raleway flex items-center">
-            $ <span>{item.package_price}</span>
+            $ <span>{item?.package_price}</span>
           </h2>
         </div>
         {/* order button */}
@@ -115,13 +115,13 @@ const SinglePackage = ({ item, setOpenModal }) => {
         </div>
         {/* order details */}
         <div className="space-y-5 md:h-[150px]">
-          {item?.package_details.map((item, index) => (
+          {item?.package_details?.map((item, index) => (
             <div key={index} className="flex justify-start items-center gap-5">
               <span>
                 <IoCheckmarkSharp className="text-[#FF8F5A] w-[16px] h-[16px]" />
               </span>
               <span className="text-[#646464] text-[16px] font-Roboto">
-                {item.package_item}
+                {item?.package_item}
               </span>
             </div>
           ))}
@@ -135,8 +135,8 @@ const SinglePackage = ({ item, setOpenModal }) => {
             </span>
             <div className="flex items-center gap-2">
               <span className="text-[12px] md:text-[16px]">
-                {item.delivery_time}{" "}
-                {item.delivery_time === "1" ? "Day Delivery" : "Days Delivery"}
+                {item?.delivery_time}{" "}
+                {item?.delivery_time === "1" ? "Day Delivery" : "Days Delivery"}
               </span>{" "}
               <Tooltip
                 content={
@@ -160,7 +160,8 @@ const SinglePackage = ({ item, setOpenModal }) => {
               <BiRevision className="w-[24px] h-[24px]" />
             </span>
             <span className="text-[12px] md:text-[16px]">
-              {item.revision} {item.revision === "1" ? "Revision" : "Revisions"}
+              {item?.revision}{" "}
+              {item?.revision === "1" ? "Revision" : "Revisions"}
             </span>
           </div>
         </div>

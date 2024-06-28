@@ -131,7 +131,7 @@ const ServicesPageContent = ({ serviceCategories, services }) => {
             {serviceItems.map((service, index) => (
               <Link
                 key={index} // Change key to index
-                href={`/services/${service.slug.replace(/\s+/g, "")}`}
+                href={`/services/${service?.slug}`}
               >
                 <div className="group xl:w-[280px] xxl:w-[310px]  2xl:w-[330px]  shadow-lg rounded-md border border-[#E2E8F0]  cursor-pointer">
                   <div className="flex flex-col">
@@ -141,7 +141,7 @@ const ServicesPageContent = ({ serviceCategories, services }) => {
                           width={700}
                           height={700}
                           className="w-full h-[270px]"
-                          src={service.image}
+                          src={service?.image}
                           alt=""
                         />
                       </div>

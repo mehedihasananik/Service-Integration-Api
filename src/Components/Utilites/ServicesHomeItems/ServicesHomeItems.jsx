@@ -149,9 +149,7 @@ const DemoServices = ({ services }) => {
 
                     return (
                       <SwiperSlide key={service.id}>
-                        <Link
-                          href={`/services/${service.slug.replace(/\s+/g, "")}`}
-                        >
+                        <Link href={`/services/${service.slug}`}>
                           <div
                             className={`w-[300px] h-[500px] xl:w-[350px]  xxl:w-[280px] xll:w-[300px] 4xl:w-[330px] group shadow-lg rounded-md border border-[#E2E8F0]   cursor-pointer ${
                               isThirdSlide && "no-margin"
