@@ -28,7 +28,7 @@ const CustomOffer = ({ order }) => {
 
     try {
       const response = await fetch(
-        `http://192.168.10.16:8000/api/chat/order/update/${id}`,
+        `https://admin.envobyte.com/api/chat/order/update/${id}`,
         {
           method: "POST",
           body: formData,

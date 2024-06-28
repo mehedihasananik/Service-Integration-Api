@@ -38,7 +38,7 @@ export const sendMessageToServer = async (message, files) => {
     console.log(files);
     // http://192.168.10.15:8000
     const response = await fetch(
-      "http://192.168.10.16:8000/api/save/chat/order",
+      "https://admin.envobyte.com/api/save/chat/order",
       {
         method: "POST",
         body: formData,
@@ -58,7 +58,7 @@ export const sendMessageToServer = async (message, files) => {
 export const fetchMessagesFromServer = async () => {
   try {
     const response = await fetch(
-      "http://192.168.10.16:8000/api/save/chat/list",
+      "https://admin.envobyte.com/api/save/chat/list",
       {
         method: "POST",
         headers: {

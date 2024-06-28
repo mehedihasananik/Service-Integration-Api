@@ -9,7 +9,7 @@ const OrderRequirementDetails = async (
   try {
     const response = await axios.post(
       `
-http://192.168.10.14:8000/api/order_delivery`,
+https://admin.envobyte.com/api/order_delivery`,
       {
         order_id: orderID,
       }

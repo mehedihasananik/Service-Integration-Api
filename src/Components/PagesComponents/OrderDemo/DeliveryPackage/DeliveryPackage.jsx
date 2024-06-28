@@ -74,7 +74,7 @@ const DeliveryPackage = ({ delivery, human_readable_delivery_time }) => {
 
     try {
       const response = await fetch(
-        `http://192.168.10.16:8000/api/chat/delivery/update/${id}`,
+        `https://admin.envobyte.com/api/chat/delivery/update/${id}`,
         {
           method: "POST",
           body: formData,
