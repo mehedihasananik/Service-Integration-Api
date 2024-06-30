@@ -1,6 +1,6 @@
 import Container from "@/Components/Container/Container";
 import { bannerApi } from "@/config/apis";
-import Image from "next/image";
+
 import Link from "next/link";
 
 // api fetching from sever side
@@ -59,15 +59,10 @@ const Banner = async () => {
         {/* right side image */}
         <div>
           <div>
-            <Image
+            <img
               className="md:w-[742px] md:h-[554px]"
-              width={500}
-              height={500}
               src={banner.banner}
-              quality={100}
-              priority={true}
               alt="banner image"
-              blurDataURL={banner.banner}
               placeholder="blur"
             />
           </div>

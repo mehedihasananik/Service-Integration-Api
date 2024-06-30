@@ -61,26 +61,6 @@ const Login = () => {
     setLoading(false);
   };
 
-  useEffect(() => {
-    // Event listener for the 'message' event
-    const handleMessage = (event) => {
-      // Check the event.origin for security if needed
-      console.log("Received data from child window:", event.data.message);
-      console.log(event.data.message?.token);
-
-      // Save the received data to local storage
-      if (event.data.message) {
-        localStorage.setItem("userData", JSON.stringify(event.data.message));
-        router.push("/dashboard");
-      }
-    };
-
-    window.addEventListener("message", handleMessage);
-
-    // Clean up the event listener on component unmount
-    return () => window.removeEventListener("message", handleMessage);
-  }, []);
-
   const handleCaptchaChange = (value) => {
     // This function will be called when ReCAPTCHA status changes
     setCaptchaVerified(true); // Set captcha verification status to true

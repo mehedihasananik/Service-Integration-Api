@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { HiArrowSmallRight } from "react-icons/hi2";
 import Loading from "@/Components/Utilites/Loading/Loading";
-import Image from "next/image";
+
 import Link from "next/link";
 import { searchServiceApi } from "@/config/apis";
 
@@ -174,7 +174,7 @@ const PortfolioPage = ({
             <>
               {filteredPortfolio &&
                 filteredPortfolio.map((portfolio) => {
-                  // console.log(portfolio);
+                  console.log(portfolio);
                   return (
                     <Link
                       key={portfolio.id}
@@ -183,9 +183,7 @@ const PortfolioPage = ({
                       <div className="group">
                         <div className="portfolio-bgHover cursor-pointer flex flex-col xl:flex-row justify-between bg-[#FFFFFF] rounded-xl border border-[#CBD5E1]">
                           <div>
-                            <Image
-                              width={800}
-                              height={262}
+                            <img
                               className="w-full lg:w-[400px] h-[420px] object-cover md:rounded-l"
                               src={portfolio?.image}
                               alt=""
@@ -220,12 +218,7 @@ const PortfolioPage = ({
         </div>
         {filteredPortfolio && filteredPortfolio.length === 0 && !loading && (
           <div className="flex justify-center text-center text-gray-600 mt-0">
-            <Image
-              src={"/assets/data.gif"}
-              width={500}
-              height={500}
-              alt="no data found"
-            />
+            <img src={"/assets/data.gif"} alt="no data found" />
           </div>
         )}
       </div>
