@@ -1,6 +1,9 @@
 import Container from "@/Components/Container/Container";
 import RelevantPortfolio from "@/Components/Utilites/RelevantServices/RelevantPortfolio";
+
+import Image from "next/image";
 import Link from "next/link";
+import React from "react";
 
 const PortfolioDetails = ({ singlePortfolioItem }) => {
   const { basic, details, relevant } = singlePortfolioItem;
@@ -29,9 +32,11 @@ const PortfolioDetails = ({ singlePortfolioItem }) => {
                 {/* title */}
 
                 <div className="w-[100%]">
-                  <img
+                  <Image
                     className="md:w-full md:h-[75vh] rounded-md"
                     alt="image"
+                    width={1000}
+                    height={1000}
                     src={image}
                   />
                 </div>

@@ -13,6 +13,7 @@ import { fetchData } from "@/config/apiRequests.js";
 import { loginApi } from "@/config/apis";
 import axios from "axios";
 import UserLoading from "@/Components/Utilites/UserLoading/UserLoading";
+import GoogleOneTapLoginWrapper from "@/Components/Utilites/OneTap/GoogleOneTapLoginWrapper";
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
@@ -61,6 +62,39 @@ const Login = () => {
     setLoading(false);
   };
 
+  const handleSocialLogin = async (provider) => {
+    const url = `https://admin.envobyte.com/api/auth/${provider}`;
+    const response = await axios.get(url);
+
+    if (typeof window !== "undefined") {
+      window.open(
+        response.data.redirectUrl,
+        "_blank",
+        "width=600,height=800,left=100,top=100"
+      );
+    }
+  };
+
+  useEffect(() => {
+    // Event listener for the 'message' event
+    const handleMessage = (event) => {
+      // Check the event.origin for security if needed
+      console.log("Received data from child window:", event.data.message);
+      console.log(event.data.message?.token);
+
+      // Save the received data to local storage
+      if (event.data.message) {
+        localStorage.setItem("userData", JSON.stringify(event.data.message));
+        router.push("/dashboard");
+      }
+    };
+
+    window.addEventListener("message", handleMessage);
+
+    // Clean up the event listener on component unmount
+    return () => window.removeEventListener("message", handleMessage);
+  }, []);
+
   const handleCaptchaChange = (value) => {
     // This function will be called when ReCAPTCHA status changes
     setCaptchaVerified(true); // Set captcha verification status to true
@@ -87,6 +121,7 @@ const Login = () => {
             <div className="flex flex-col md:flex-row pb-4 gap-y-4 md:gap-10  lg:pb-12">
               <button
                 type="button"
+                onClick={() => handleSocialLogin("facebook")}
                 className="flex justify-center items-center gap-2 font-Raleway border p-2 rounded-md hover:border-[#FF693B] transition-all duration-200"
               >
                 <img src="/assets/fLogo.png" alt="" />
@@ -96,6 +131,7 @@ const Login = () => {
                 </span>
               </button>
               <button
+                onClick={() => handleSocialLogin("google")}
                 type="button"
                 className="flex justify-center items-center gap-2 font-Raleway border p-2 rounded-md hover:border-[#FF693B] transition-all duration-200"
               >
@@ -212,6 +248,7 @@ const Login = () => {
           </div>
         </div>
       </Container>
+      <GoogleOneTapLoginWrapper />
     </div>
   );
 };
