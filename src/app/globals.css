@@ -507,3 +507,9 @@ select {
 [type="password"]:focus {
   border: 2px solid #dedcdc !important;
 }
+.flowbite-tooltip {
+  left: 420px !important;
+}
+.flowbite-tooltip-target {
+  left: 424px !important;
+}

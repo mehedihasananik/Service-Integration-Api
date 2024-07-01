@@ -129,9 +129,9 @@ const ServicesPageContent = ({ serviceCategories, services }) => {
           </div>
           <div className="grid grid-cols-1 md:grid md:grid-cols-2 lg:grid-cols-2  xl:grid-cols-4 justify-items-center place-items-center gap-8 pb-8 lg:gap-x-40 4xl:gap-x-16  mt-5 md:mt-10 ">
             {serviceItems.map((service, index) => (
-              <Link
+              <a
                 key={index} // Change key to index
-                href={`/services/${service?.slug}`}
+                href={`services/${service?.slug}`}
               >
                 <div className="group xl:w-[280px] xxl:w-[310px]  2xl:w-[330px]  shadow-lg rounded-md border border-[#E2E8F0]  cursor-pointer">
                   <div className="flex flex-col">
@@ -176,7 +176,7 @@ const ServicesPageContent = ({ serviceCategories, services }) => {
                     </div>
                   </div>
                 </div>
-              </Link>
+              </a>
             ))}
           </div>
           {/* see more button */}

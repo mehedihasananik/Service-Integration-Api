@@ -1,47 +1,61 @@
+"use client";
+import { useEffect, useState } from "react";
 import ServiceDetails from "@/Components/PagesComponents/ServiceDetails/ServiceDetails";
+import UserLoading from "@/Components/Utilites/UserLoading/UserLoading";
 import {
   singeServiceDetails,
   singleService_package,
   singleSliderPageDetails,
 } from "@/config/apis";
 
-export async function generateMetadata({ params, searchParams }, parent) {
-  const id = params?.id;
+const SinglePage = ({ params }) => {
+  const [service, setService] = useState(null);
+  const [sliders, setSliders] = useState(null);
+  const [packages, setPackages] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  // Fetch data for generating metadata
-  const service = await fetch(`${singeServiceDetails}/${id}`).then((res) =>
-    res?.json()
-  );
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const serviceResponse = await fetch(
+          `${singeServiceDetails}/${params?.id}`
+        );
+        const serviceData = await serviceResponse.json();
 
-  // Optionally access and extend (rather than replace)  metadata
-  const previousImages = (await parent).openGraph?.images || [];
+        const slidersResponse = await fetch(
+          `${singleSliderPageDetails}/${params?.id}`
+        );
+        const slidersData = await slidersResponse.json();
 
-  return {
-    title: `${service?.service_details[0]?.sevice_items_name} || Envobyte`,
-    description: service?.description,
-    openGraph: {
-      images: ["/some-specific-page-image.jpg", ...previousImages],
-    },
-  };
-}
+        const packagesResponse = await fetch(
+          `${singleService_package}/${params?.id}`
+        );
+        const packagesData = await packagesResponse.json();
 
-const SinglePage = async ({ params }) => {
-  // console.log(params.id);
-  // Fetch data for the page
-  const service = await fetch(`${singeServiceDetails}/${params?.id}`).then(
-    (res) => res?.json()
-  );
-  const sliders = await fetch(`${singleSliderPageDetails}/${params?.id}`).then(
-    (res) => res?.json()
-  );
-  const packages = await fetch(`${singleService_package}/${params?.id}`).then(
-    (res) => res?.json()
-  );
+        setService(serviceData);
+        setSliders(slidersData);
+        setPackages(packagesData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [params?.id]);
+
+  if (loading) {
+    return <UserLoading />;
+  }
 
   return (
-    <>
-      <ServiceDetails service={service} sliders={sliders} packages={packages} />
-    </>
+    <ServiceDetails
+      service={service}
+      sliders={sliders}
+      packages={packages}
+      id={params?.id}
+    />
   );
 };
 

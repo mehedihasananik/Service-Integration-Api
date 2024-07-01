@@ -127,7 +127,7 @@ const SinglePackage = ({ item, setOpenModal }) => {
           ))}
         </div>
         {/* delivery date */}
-        <div className="flex pt-14 lg:pt-28 items-center justify-between">
+        <div className="flex pt-14 lg:pt-18 items-center justify-between">
           {/* 1st */}
           <div className="flex items-center gap-1.5 font-Raleway font-semibold">
             <span>
@@ -139,9 +139,19 @@ const SinglePackage = ({ item, setOpenModal }) => {
                 {item?.delivery_time === "1" ? "Day Delivery" : "Days Delivery"}
               </span>{" "}
               <Tooltip
+                className="flowbite-tooltip-target"
+                placement="top"
                 content={
-                  <div style={{ fontSize: "12px" }}>
-                    Tooltip content <br /> tooltip content
+                  <div
+                    className="py-2"
+                    style={{ fontSize: "12px", left: "300px" }}
+                  >
+                    <h3>
+                      All days are business days except Friday and Saturday.
+                    </h3>
+                    <button className="bg-[#FF6C37] px-2 text-[13px] mt-2 rounded-sm">
+                      Learn More
+                    </button>
                   </div>
                 }
               >
@@ -154,15 +164,6 @@ const SinglePackage = ({ item, setOpenModal }) => {
                 </div>
               </Tooltip>
             </div>
-          </div>
-          <div className="flex gap-1 items-center justify-center font-Raleway font-semibold">
-            <span>
-              <BiRevision className="w-[24px] h-[24px]" />
-            </span>
-            <span className="text-[12px] md:text-[16px]">
-              {item?.revision}{" "}
-              {item?.revision === "1" ? "Revision" : "Revisions"}
-            </span>
           </div>
         </div>
       </div>
