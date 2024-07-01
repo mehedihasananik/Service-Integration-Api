@@ -1,11 +1,9 @@
 import ServiceDetails from "@/Components/PagesComponents/ServiceDetails/ServiceDetails";
-import UserLoading from "@/Components/Utilites/UserLoading/UserLoading";
 import {
   singeServiceDetails,
   singleService_package,
   singleSliderPageDetails,
 } from "@/config/apis";
-import { Suspense } from "react";
 
 export async function generateMetadata({ params, searchParams }, parent) {
   const id = params?.id;
@@ -42,13 +40,7 @@ const SinglePage = async ({ params }) => {
 
   return (
     <>
-      <Suspense fallback={<UserLoading />}>
-        <ServiceDetails
-          service={service}
-          sliders={sliders}
-          packages={packages}
-        />
-      </Suspense>
+      <ServiceDetails service={service} sliders={sliders} packages={packages} />
     </>
   );
 };

@@ -1,7 +1,6 @@
 import ServicesPageContent from "@/Components/PagesComponents/ServicesPageContent/ServicesPageContent";
-import UserLoading from "@/Components/Utilites/UserLoading/UserLoading";
 import { allsServiceItemsApi, serviceListApi } from "@/config/apis";
-import React, { Suspense } from "react";
+import React from "react";
 
 export const metadata = {
   title: "Envobyte || Services",
@@ -35,12 +34,10 @@ const ServicesPage = async () => {
 
   return (
     <>
-      <Suspense fallback={<UserLoading />}>
-        <ServicesPageContent
-          serviceCategories={serviceCategories}
-          services={services}
-        />
-      </Suspense>
+      <ServicesPageContent
+        serviceCategories={serviceCategories}
+        services={services}
+      />
     </>
   );
 };

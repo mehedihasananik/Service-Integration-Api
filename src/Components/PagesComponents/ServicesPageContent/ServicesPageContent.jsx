@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Container from "@/Components/Container/Container";
 import Image from "next/image";
 import Link from "next/link";
+import ServiceLoading from "@/Components/Utilites/Loading/ServiceLoading";
 
 const ServicesPageContent = ({ serviceCategories, services }) => {
   const [loading, setLoading] = useState(true);
