@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import Container from "@/Components/Container/Container";
 import Image from "next/image";
 import Link from "next/link";
-import ServiceLoading from "@/Components/Utilites/Loading/ServiceLoading";
 
 const ServicesPageContent = ({ serviceCategories, services }) => {
   const [loading, setLoading] = useState(true);
@@ -129,7 +128,7 @@ const ServicesPageContent = ({ serviceCategories, services }) => {
           </div>
           <div className="grid grid-cols-1 md:grid md:grid-cols-2 lg:grid-cols-2  xl:grid-cols-4 justify-items-center place-items-center gap-8 pb-8 lg:gap-x-40 4xl:gap-x-16  mt-5 md:mt-10 ">
             {serviceItems.map((service, index) => (
-              <a
+              <Link
                 key={index} // Change key to index
                 href={`services/${service?.slug}`}
               >
@@ -176,7 +175,7 @@ const ServicesPageContent = ({ serviceCategories, services }) => {
                     </div>
                   </div>
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
           {/* see more button */}

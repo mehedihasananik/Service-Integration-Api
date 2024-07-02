@@ -4,6 +4,7 @@ import { Toaster } from "react-hot-toast";
 import DashBoardSideNav from "@/Components/Dashboard/DashBoardSideNav";
 import DashBoardNav from "@/Components/Dashboard/DashBoardNav";
 import AuthProviders from "@/providers/AuthProviders";
+import { Suspense } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,7 +28,9 @@ export default function RootLayout({ children }) {
               <AuthProviders>
                 <DashBoardSideNav height="100vh" />
                 <div className="w-full ">
-                  <DashBoardNav />
+                  <Suspense>
+                    <DashBoardNav />
+                  </Suspense>
                   <div className="bg-[#fff] px-[5%] md:px-0 w-full">
                     {children}
                   </div>

@@ -9,7 +9,7 @@ const Tawk = () => {
 
   useEffect(() => {
     const handleLoad = () => {
-      console.log("Tawk.to messenger loaded successfully!");
+      // console.log("Tawk.to messenger loaded successfully!");
       setLoaded(true);
       if (window.Tawk_API && window.$i18n) {
         // Check if $i18n is defined

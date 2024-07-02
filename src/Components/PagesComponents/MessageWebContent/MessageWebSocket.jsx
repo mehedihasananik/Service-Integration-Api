@@ -1,15 +1,8 @@
-// OrderWebSocket.js
 "use client";
 
 import React, { useState, useLayoutEffect } from "react";
-
 import MessageChat from "./MessageChat";
-import {
-  fetchChatFromServer,
-  sendChatToServer,
-  disconnectSocket,
-  setChatHandler,
-} from "./MessageSoketManager";
+import { fetchChatFromServer, sendChatToServer } from "./MessageSoketManager";
 
 const MessageWebSocket = () => {
   const [messageHistory, setMessageHistory] = useState([]);
@@ -28,38 +21,31 @@ const MessageWebSocket = () => {
 
     fetchInitialMessages();
 
-    const handleMessage = (data) => {
-      setMessageHistory((prevMessages) => [...prevMessages, data]);
-    };
-
-    setChatHandler(handleMessage);
-
     const interval = setInterval(() => {
       fetchChatFromServer().then(setMessageHistory).catch(console.error);
     }, 3000);
 
     return () => {
       clearInterval(interval);
-      disconnectSocket();
     };
   }, []);
 
   const handleSendMessage = async (message, files) => {
     try {
       if (message.trim() || files.length > 0) {
-        setIsMediaLoading(true); // Set loading state to true before sending message
+        setIsMediaLoading(true);
         const newMessage = await sendChatToServer(message, files);
         setMessageHistory((prevMessages) => [...prevMessages, newMessage]);
         setInputtedMessage("");
         setSelectedFile(null);
         setAttachments([]);
-        setIsMediaLoading(false); // Set loading state to false after message is sent
+        setIsMediaLoading(false);
       } else {
         // Handle empty message or file selection here
       }
     } catch (error) {
       console.error("Error sending message:", error);
-      setIsMediaLoading(false); // Set loading state to false if an error occurs
+      setIsMediaLoading(false);
     }
   };
 

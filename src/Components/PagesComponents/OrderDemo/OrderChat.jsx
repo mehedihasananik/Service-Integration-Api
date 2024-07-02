@@ -4,26 +4,18 @@ import Image from "next/image";
 import { GoPaperclip } from "react-icons/go";
 import { CiFaceSmile } from "react-icons/ci";
 import Loading from "@/Components/Utilites/Loading/Loading";
-import { IoMdMore } from "react-icons/io";
-import io from "socket.io-client";
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
 import { useDropzone } from "react-dropzone";
 import { FaTimes } from "react-icons/fa";
-import { BiRevision } from "react-icons/bi";
-import { MdDownload, MdOutlineAccessTimeFilled } from "react-icons/md";
 import CustomOffer from "./CustomOffer/CustomOffer";
 import DeliveryPackage from "./DeliveryPackage/DeliveryPackage";
-import OrderRequirements from "@/Components/Utilites/OrderRequirements/OrderRequirements";
 import Media_Urls from "@/Components/Utilites/Media_Urls/Media_Urls";
 import { AuthContext } from "@/providers/AuthProviders";
 import Link from "next/link";
 import ServiceOrderRevisions from "@/Components/Utilites/ServiceOrderRevisions/ServiceOrderRevisions";
 import { Spinner } from "flowbite-react";
 import toast from "react-hot-toast";
-
-const SOCKET_URL_ONE = "http://localhost:3000";
-const socket = io(SOCKET_URL_ONE);
 
 const OrderChat = ({
   messageHistory,
@@ -46,7 +38,6 @@ const OrderChat = ({
   const { userData } = useContext(AuthContext);
   const senderId = localStorage.getItem("senderId");
   const receiverId = localStorage.getItem("receiverId");
-  console.log(senderId);
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -65,16 +56,6 @@ const OrderChat = ({
   const handleImageLoaded = () => {
     setIsLoading(false);
   };
-
-  useEffect(() => {
-    socket.on("message", (newMessage) => {
-      sendMessageToAPI(newMessage.message);
-    });
-
-    return () => {
-      socket.off("message");
-    };
-  }, []);
 
   const parseDate = (timestamp) => {
     if (!timestamp) return null;

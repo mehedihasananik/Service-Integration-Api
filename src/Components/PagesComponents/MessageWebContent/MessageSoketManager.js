@@ -1,29 +1,4 @@
-// orderSocketManager.js
-import io from "socket.io-client";
-
-const SOCKET_URL_ONE = "http://localhost:3000";
-const socket = io(SOCKET_URL_ONE);
-
-let senderId = null;
-let receiverId = null;
-
-// Check if window and localStorage are available
-if (typeof window !== "undefined" && typeof localStorage !== "undefined") {
-  senderId = localStorage.getItem("senderId");
-  receiverId = localStorage.getItem("receiverId");
-}
-
-let messageHandler = null;
-
-socket.on("message", (data) => {
-  if (messageHandler) {
-    messageHandler(data);
-  }
-});
-
-export const setChatHandler = (handler) => {
-  messageHandler = handler;
-};
+// MessageSocketManager.js
 
 export const sendChatToServer = async (message, files) => {
   try {
@@ -79,8 +54,4 @@ export const fetchChatFromServer = async () => {
     console.error("Error fetching messages:", error);
     throw error;
   }
-};
-
-export const disconnectSocket = () => {
-  socket.disconnect();
 };

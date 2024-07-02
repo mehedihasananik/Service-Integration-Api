@@ -13,21 +13,35 @@ const HeaderItems = ({ headers }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const storedUserData = localStorage.getItem("userData");
-    if (storedUserData) {
-      setUserData(JSON.parse(storedUserData));
-    }
-    setLoading(false);
-  }, []);
-
-  if (typeof window !== "undefined") {
-    window.addEventListener("storage", () => {
+    const loadUserData = async () => {
       const storedUserData = localStorage.getItem("userData");
       if (storedUserData) {
         setUserData(JSON.parse(storedUserData));
       }
-    });
-  }
+
+      // Set a timeout to ensure loading state doesn't last more than 1 second
+      setTimeout(() => setLoading(false), 1000);
+    };
+
+    loadUserData();
+  }, []);
+
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const storedUserData = localStorage.getItem("userData");
+      if (storedUserData) {
+        setUserData(JSON.parse(storedUserData));
+      } else {
+        setUserData(null);
+      }
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
 
   const { logo, menu } = headers || {};
 

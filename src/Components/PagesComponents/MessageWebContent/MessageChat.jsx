@@ -5,7 +5,6 @@ import { GoPaperclip } from "react-icons/go";
 import { CiFaceSmile } from "react-icons/ci";
 import Loading from "@/Components/Utilites/Loading/Loading";
 import { IoMdMore } from "react-icons/io";
-import io from "socket.io-client";
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
 import { useDropzone } from "react-dropzone";
@@ -19,9 +18,6 @@ import CustomMessageOffer from "@/Components/Utilites/CustomMessageOffer/CustomM
 import { Spinner } from "flowbite-react";
 import toast from "react-hot-toast";
 import MsgMedia_Urls from "@/Components/Utilites/Media_Urls/MsgMedia_Urls";
-
-const SOCKET_URL_ONE = "http://localhost:3000";
-const socket = io(SOCKET_URL_ONE);
 
 const MessageChat = ({
   messageHistory,
@@ -43,7 +39,6 @@ const MessageChat = ({
   const [userScrolledUp, setUserScrolledUp] = useState(false);
   const { userData } = useContext(AuthContext);
   const [user, setUser] = useState("Anik");
-  // console.log(userData);
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -62,16 +57,6 @@ const MessageChat = ({
   const handleImageLoaded = () => {
     setIsLoading(false);
   };
-
-  useEffect(() => {
-    socket.on("message", (newMessage) => {
-      sendMessageToAPI(newMessage.message);
-    });
-
-    return () => {
-      socket.off("message");
-    };
-  }, []);
 
   const parseDate = (timestamp) => {
     if (!timestamp) return null;
@@ -116,8 +101,8 @@ const MessageChat = ({
     onDrop,
     accept: "image/*",
   });
+
   useEffect(() => {
-    // Scroll to the bottom of the chat container only if user is already at the bottom
     if (chatContainerRef.current && !userScrolledUp) {
       const { scrollHeight, clientHeight } = chatContainerRef.current;
       chatContainerRef.current.scrollTop = scrollHeight - clientHeight;
@@ -128,7 +113,7 @@ const MessageChat = ({
     if (chatContainerRef.current) {
       const { scrollTop, scrollHeight, clientHeight } =
         chatContainerRef.current;
-      const isAtBottom = scrollTop + clientHeight >= scrollHeight - 10; // Adjust threshold as needed
+      const isAtBottom = scrollTop + clientHeight >= scrollHeight - 10;
       setUserScrolledUp(!isAtBottom);
     }
   };
@@ -150,9 +135,11 @@ const MessageChat = ({
       console.error("Error downloading the image:", error);
     }
   };
+
   const handleImageClick = (url) => {
     window.open(url, "_blank");
   };
+
   // console.log(messageHistory);
 
   return (

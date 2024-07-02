@@ -1,15 +1,11 @@
-// OrderWebSocket.js
 "use client";
 
-import React, { useState, useLayoutEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   sendMessageToServer,
   fetchMessagesFromServer,
-  disconnectSocket,
-  setMessageHandler,
 } from "./orderSocketManager";
 import OrderChat from "./OrderChat";
-import OrderRequirements from "@/Components/Utilites/OrderRequirements/OrderRequirements";
 
 const OrderWebSocket = () => {
   const [messageHistory, setMessageHistory] = useState([]);
@@ -19,7 +15,7 @@ const OrderWebSocket = () => {
   const [attachments, setAttachments] = useState([]);
   const [isImageSending, setIsImageSending] = useState(false);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const fetchInitialMessages = async () => {
       const messages = await fetchMessagesFromServer();
       setMessageHistory(messages);
@@ -28,26 +24,19 @@ const OrderWebSocket = () => {
 
     fetchInitialMessages();
 
-    const handleMessage = (data) => {
-      setMessageHistory((prevMessages) => [...prevMessages, data]);
-    };
-
-    setMessageHandler(handleMessage);
-
     const interval = setInterval(() => {
       fetchMessagesFromServer().then(setMessageHistory).catch(console.error);
     }, 3000);
 
     return () => {
       clearInterval(interval);
-      disconnectSocket();
     };
   }, []);
 
   const handleSendMessage = async (message, files) => {
     try {
       if (files.length > 0) {
-        setIsImageSending(true); // Set isImageSending to true when there are files to send
+        setIsImageSending(true);
       }
 
       if (message.trim() || files.length > 0) {
@@ -63,7 +52,7 @@ const OrderWebSocket = () => {
       console.error("Error sending message:", error);
     } finally {
       if (files.length > 0) {
-        setIsImageSending(false); // Set isImageSending to false after sending the message
+        setIsImageSending(false);
       }
     }
   };
