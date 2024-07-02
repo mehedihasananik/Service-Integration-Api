@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import UserLoading from "../UserLoading/UserLoading";
 
 const HeaderItems = ({ headers }) => {
   const pathname = usePathname();
@@ -45,26 +44,6 @@ const HeaderItems = ({ headers }) => {
 
   const { logo, menu } = headers || {};
 
-  const NavButton = () => {
-    if (loading) return <UserLoading />;
-
-    return userData?.email ? (
-      <Link
-        href="/dashboard"
-        className="bg-[#FF693B] border border-[#FF693B] text-white font-medium px-6 py-2 rounded-lg hover:bg-white hover:text-[#FF693B] transition-all duration-300"
-      >
-        Dashboard
-      </Link>
-    ) : (
-      <Link
-        href="/login"
-        className="bg-[#FF693B] border border-[#FF693B] text-white font-medium px-12 py-2 rounded-lg hover:bg-white hover:text-[#FF693B] transition-all duration-300"
-      >
-        Login
-      </Link>
-    );
-  };
-
   return (
     <>
       <Container>
@@ -100,7 +79,21 @@ const HeaderItems = ({ headers }) => {
               </Link>
             ))}
             {/* Nav button */}
-            <NavButton />
+            {userData?.email ? (
+              <Link
+                href="/dashboard"
+                className="bg-[#FF693B] border border-[#FF693B] text-white font-medium px-6 py-2 rounded-lg hover:bg-white hover:text-[#FF693B] transition-all duration-300"
+              >
+                Dashboard
+              </Link>
+            ) : (
+              <Link
+                href="/login"
+                className="bg-[#FF693B] border border-[#FF693B] text-white font-medium px-12 py-2 rounded-lg hover:bg-white hover:text-[#FF693B] transition-all duration-300"
+              >
+                Login
+              </Link>
+            )}
           </div>
         </nav>
       </Container>
@@ -133,9 +126,7 @@ const HeaderItems = ({ headers }) => {
               </Link>
             ))}
             {/* Login button */}
-            <div className="mt-3">
-              <NavButton />
-            </div>
+            <div className="mt-3"></div>
           </Navbar.Collapse>
         </Navbar>
       </div>

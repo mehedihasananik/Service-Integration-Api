@@ -12,7 +12,6 @@ import ReCAPTCHA from "react-google-recaptcha";
 import { fetchData } from "@/config/apiRequests.js";
 import axios from "axios";
 import UserLoading from "@/Components/Utilites/UserLoading/UserLoading";
-import GoogleOneTapLoginWrapper from "@/Components/Utilites/OneTap/GoogleOneTapLoginWrapper";
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
@@ -247,7 +246,6 @@ const Login = () => {
           </div>
         </div>
       </Container>
-      <GoogleOneTapLoginWrapper />
     </div>
   );
 };
