@@ -76,7 +76,7 @@ const SinglePackage = ({ item, setOpenModal }) => {
     <div className="md:mx-[10%] lg:mx-0">
       <div
         key={item?.id}
-        className="border border-[#CBD5E1] transition-all duration-300 hover:border-[#FF693B] px-8 py-10 rounded-3xl 6xl:w-[400px] 6xl:gap-x-20"
+        className="border border-[#CBD5E1] transition-all duration-300 hover:border-[#FF693B] px-8 pt-10 pb-11 rounded-3xl 6xl:w-[400px] 6xl:gap-x-20"
       >
         {/* title */}
         <div className="h-[95px]">
@@ -126,8 +126,7 @@ const SinglePackage = ({ item, setOpenModal }) => {
             </div>
           ))}
         </div>
-        {/* delivery date */}
-        <div className="flex pt-14 lg:pt-18 items-center justify-between">
+        <div className="flex pt-14 lg:pt-80 items-center justify-between">
           {/* 1st */}
           <div className="flex items-center gap-1.5 font-Raleway font-semibold">
             <span>
@@ -166,6 +165,7 @@ const SinglePackage = ({ item, setOpenModal }) => {
             </div>
           </div>
         </div>
+        {/* delivery date */}
       </div>
     </div>
   );
