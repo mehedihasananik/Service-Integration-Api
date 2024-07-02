@@ -116,7 +116,7 @@ const Login = () => {
                 Please log in to your account
               </p>
             </div>
-            <div className="flex flex-col md:flex-row pb-4 gap-y-4 md:gap-10  lg:pb-12">
+            {/* <div className="flex flex-col md:flex-row pb-4 gap-y-4 md:gap-10  lg:pb-12">
               <button
                 type="button"
                 // onClick={() => handleSocialLogin("facebook")}
@@ -138,7 +138,7 @@ const Login = () => {
                   Continue with Google
                 </span>
               </button>
-            </div>
+            </div> */}
             <div className="flex items-center gap-x-5  md:pt-0">
               <span className="w-[50%] h-[1px] border"></span>{" "}
               <span className="text-[14px] font-Raleway text-[#032333] font-medium">
