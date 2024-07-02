@@ -152,7 +152,7 @@ const MessageChat = ({
         <div className="bg-[#fff] px-4">
           <div className="mb-[8%]">
             {messageHistory.map((msg, index) => {
-              console.log(msg.sender_id);
+              // console.log(msg.sender_id);
               // console.log(msg);
               const senderName = msg?.sender_id == 18 ? `Envobyte` : "Anik";
               const updatedAt = parseDate(msg.updated_at);

@@ -151,7 +151,7 @@ const OrderChat = ({
         <div className="bg-[#fff] px-4">
           <div className="mb-[8%]">
             {messageHistory.map((msg, index) => {
-              console.log(msg);
+              // console.log(msg);
               const senderName =
                 msg.sender_id == senderId ? `${userData.name}` : "Envobyte";
               const updatedAt = parseDate(msg.updated_at);
