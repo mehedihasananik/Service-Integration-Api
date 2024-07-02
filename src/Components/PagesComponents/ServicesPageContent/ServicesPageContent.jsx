@@ -3,12 +3,15 @@ import React, { useEffect, useState } from "react";
 import Container from "@/Components/Container/Container";
 import Image from "next/image";
 import Link from "next/link";
+import { allsServiceItemsApi, serviceListApi } from "@/config/apis";
 
-const ServicesPageContent = ({ serviceCategories, services }) => {
+const ServicesPageContent = () => {
   const [loading, setLoading] = useState(true);
   const [selectedCategoryId, setSelectedCategoryId] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [serviceItems, setServiceItems] = useState([]);
+  const [serviceCategories, setServiceCategories] = useState([]);
+  const [services, setServices] = useState([]);
 
   const truncateText = (text, maxWords) => {
     const words = text.split(" ");
@@ -18,36 +21,46 @@ const ServicesPageContent = ({ serviceCategories, services }) => {
     return text;
   };
 
-  useEffect(() => {
-    setLoading(false);
-  }, []);
+  const fetchData = async () => {
+    try {
+      const [res1, res2] = await Promise.all([
+        fetch(`${serviceListApi}`),
+        fetch(`${allsServiceItemsApi}`),
+      ]);
 
-  useEffect(() => {
-    const filterServices = () => {
-      let filteredServices = services;
-
-      if (selectedCategoryId) {
-        filteredServices = filteredServices.filter(
-          (item) => item.category_id === parseInt(selectedCategoryId)
-        );
+      if (!res1.ok || !res2.ok) {
+        throw new Error("Failed to fetch data");
       }
 
-      if (searchQuery) {
-        filteredServices = filteredServices.filter((service) =>
-          service.title.toLowerCase().includes(searchQuery.toLowerCase())
-        );
-      }
+      const categoriesData = await res1.json();
+      const servicesData = await res2.json();
 
-      return filteredServices;
-    };
+      setServiceCategories(categoriesData);
+      setServices(servicesData);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      setLoading(false);
+    }
+  };
 
-    const filteredServices = filterServices();
+  const filterServices = () => {
+    let filteredServices = services;
 
-    // Remove duplicates by filtering out services with duplicate IDs
-    const uniqueServices = filteredServices;
+    if (selectedCategoryId) {
+      filteredServices = filteredServices.filter(
+        (item) => item.category_id === parseInt(selectedCategoryId)
+      );
+    }
 
-    setServiceItems(uniqueServices);
-  }, [selectedCategoryId, searchQuery, services]);
+    if (searchQuery) {
+      filteredServices = filteredServices.filter((service) =>
+        service.title.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+
+    return filteredServices;
+  };
 
   const handleCategoryChange = (e) => {
     setSelectedCategoryId(e.target.value);
@@ -56,6 +69,15 @@ const ServicesPageContent = ({ serviceCategories, services }) => {
   const handleSearchInputChange = (e) => {
     setSearchQuery(e.target.value);
   };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const filteredServices = filterServices();
+    setServiceItems(filteredServices);
+  }, [selectedCategoryId, searchQuery, services]);
 
   return (
     <div className="service_section">
