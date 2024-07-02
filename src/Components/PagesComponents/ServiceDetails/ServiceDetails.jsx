@@ -1,64 +1,24 @@
 "use client";
+
 import RelevantServices from "@/Components/Utilites/RelevantServices/RelevantServices";
 import Container from "@/Components/Container/Container";
 import ServicePortolio from "@/Components/Utilites/ServicePortfolio/ServicePortolio";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ServiceModal from "@/Components/Utilites/ServiceModal/ServiceModal";
 import SinglePackage from "./SinglePackage";
 import Link from "next/link";
 import OrderSliderLg from "@/Components/Utilites/OrderSlider/OrderSliderLg";
 import OrderSliderSm from "@/Components/Utilites/OrderSlider/OrderSliderSm";
 import QuestionService from "@/Components/Home/Questions/QuestionService";
-import {
-  singeServiceDetails,
-  singleService_package,
-  singleSliderPageDetails,
-} from "@/config/apis";
-import UserLoading from "@/Components/Utilites/UserLoading/UserLoading";
 
-const ServiceDetails = ({ id }) => {
-  const [service, setService] = useState(null);
-  const [sliders, setSliders] = useState(null);
-  const [packages, setPackages] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
+const ServiceDetails = ({
+  service,
+  sliders,
+  packages,
+  imgBlurSlider,
+  imgBlurThumb,
+}) => {
   const [openModal, setOpenModal] = useState(false);
-
-  const fetchData = async () => {
-    try {
-      setIsLoading(true);
-      const [serviceRes, slidersRes, packagesRes] = await Promise.all([
-        fetch(`${singeServiceDetails}/${id}`),
-        fetch(`${singleSliderPageDetails}/${id}`),
-        fetch(`${singleService_package}/${id}`),
-      ]);
-
-      if (!serviceRes.ok || !slidersRes.ok || !packagesRes.ok) {
-        throw new Error("Failed to fetch data");
-      }
-
-      const [serviceData, slidersData, packagesData] = await Promise.all([
-        serviceRes.json(),
-        slidersRes.json(),
-        packagesRes.json(),
-      ]);
-
-      setService(serviceData);
-      setSliders(slidersData);
-      setPackages(packagesData);
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, [id]);
-
-  if (isLoading) return <UserLoading />;
-  if (error) return <div>Error: {error}</div>;
 
   return (
     <>
@@ -102,7 +62,11 @@ const ServiceDetails = ({ id }) => {
             </div>
           </Link>
           {/* order Slider */}
-          <OrderSliderLg sliders={sliders} />
+          <OrderSliderLg
+            sliders={sliders}
+            imgBlurSlider={imgBlurSlider}
+            imgBlurThumb={imgBlurThumb}
+          />
           <OrderSliderSm sliders={sliders} />
           {/* description */}
           <div className="bg-[#FCFCFC] mt-4 p-4 md:p-7 rounded-lg text-justify">

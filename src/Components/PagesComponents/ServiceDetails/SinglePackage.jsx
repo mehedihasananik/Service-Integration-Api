@@ -5,7 +5,6 @@ import { IoCheckmarkSharp } from "react-icons/io5";
 import { FaRegClock } from "react-icons/fa6";
 import { BiRevision } from "react-icons/bi";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 import { AuthContext } from "@/providers/AuthProviders";
 
 const SinglePackage = ({ item, setOpenModal }) => {

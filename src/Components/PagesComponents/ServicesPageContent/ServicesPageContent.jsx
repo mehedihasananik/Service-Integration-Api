@@ -3,15 +3,12 @@ import React, { useEffect, useState } from "react";
 import Container from "@/Components/Container/Container";
 import Image from "next/image";
 import Link from "next/link";
-import { allsServiceItemsApi, serviceListApi } from "@/config/apis";
 
-const ServicesPageContent = () => {
+const ServicesPageContent = ({ serviceCategories, services }) => {
   const [loading, setLoading] = useState(true);
   const [selectedCategoryId, setSelectedCategoryId] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [serviceItems, setServiceItems] = useState([]);
-  const [serviceCategories, setServiceCategories] = useState([]);
-  const [services, setServices] = useState([]);
 
   const truncateText = (text, maxWords) => {
     const words = text.split(" ");
@@ -21,46 +18,36 @@ const ServicesPageContent = () => {
     return text;
   };
 
-  const fetchData = async () => {
-    try {
-      const [res1, res2] = await Promise.all([
-        fetch(`${serviceListApi}`),
-        fetch(`${allsServiceItemsApi}`),
-      ]);
+  useEffect(() => {
+    setLoading(false);
+  }, []);
 
-      if (!res1.ok || !res2.ok) {
-        throw new Error("Failed to fetch data");
+  useEffect(() => {
+    const filterServices = () => {
+      let filteredServices = services;
+
+      if (selectedCategoryId) {
+        filteredServices = filteredServices.filter(
+          (item) => item.category_id === parseInt(selectedCategoryId)
+        );
       }
 
-      const categoriesData = await res1.json();
-      const servicesData = await res2.json();
+      if (searchQuery) {
+        filteredServices = filteredServices.filter((service) =>
+          service.title.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+      }
 
-      setServiceCategories(categoriesData);
-      setServices(servicesData);
-      setLoading(false);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-      setLoading(false);
-    }
-  };
+      return filteredServices;
+    };
 
-  const filterServices = () => {
-    let filteredServices = services;
+    const filteredServices = filterServices();
 
-    if (selectedCategoryId) {
-      filteredServices = filteredServices.filter(
-        (item) => item.category_id === parseInt(selectedCategoryId)
-      );
-    }
+    // Remove duplicates by filtering out services with duplicate IDs
+    const uniqueServices = filteredServices;
 
-    if (searchQuery) {
-      filteredServices = filteredServices.filter((service) =>
-        service.title.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-    }
-
-    return filteredServices;
-  };
+    setServiceItems(uniqueServices);
+  }, [selectedCategoryId, searchQuery, services]);
 
   const handleCategoryChange = (e) => {
     setSelectedCategoryId(e.target.value);
@@ -69,15 +56,6 @@ const ServicesPageContent = () => {
   const handleSearchInputChange = (e) => {
     setSearchQuery(e.target.value);
   };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  useEffect(() => {
-    const filteredServices = filterServices();
-    setServiceItems(filteredServices);
-  }, [selectedCategoryId, searchQuery, services]);
 
   return (
     <div className="service_section">
@@ -152,7 +130,7 @@ const ServicesPageContent = () => {
             {serviceItems.map((service, index) => (
               <Link
                 key={index} // Change key to index
-                href={`services/${service?.slug}`}
+                href={`/services/${service?.slug}`}
               >
                 <div className="group xl:w-[280px] xxl:w-[310px]  2xl:w-[330px]  shadow-lg rounded-md border border-[#E2E8F0]  cursor-pointer">
                   <div className="flex flex-col">

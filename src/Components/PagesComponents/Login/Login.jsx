@@ -10,7 +10,6 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import ReCAPTCHA from "react-google-recaptcha";
 import { fetchData } from "@/config/apiRequests.js";
-import { loginApi } from "@/config/apis";
 import axios from "axios";
 import UserLoading from "@/Components/Utilites/UserLoading/UserLoading";
 import GoogleOneTapLoginWrapper from "@/Components/Utilites/OneTap/GoogleOneTapLoginWrapper";
@@ -62,18 +61,18 @@ const Login = () => {
     setLoading(false);
   };
 
-  const handleSocialLogin = async (provider) => {
-    const url = `https://admin.envobyte.com/api/auth/${provider}`;
-    const response = await axios.get(url);
+  // const handleSocialLogin = async (provider) => {
+  //   const url = `https://admin.envobyte.com/api/auth/${provider}`;
+  //   const response = await axios.get(url);
 
-    if (typeof window !== "undefined") {
-      window.open(
-        response.data.redirectUrl,
-        "_blank",
-        "width=600,height=800,left=100,top=100"
-      );
-    }
-  };
+  //   if (typeof window !== "undefined") {
+  //     window.open(
+  //       response.data.redirectUrl,
+  //       "_blank",
+  //       "width=600,height=800,left=100,top=100"
+  //     );
+  //   }
+  // };
 
   useEffect(() => {
     // Event listener for the 'message' event
@@ -121,7 +120,7 @@ const Login = () => {
             <div className="flex flex-col md:flex-row pb-4 gap-y-4 md:gap-10  lg:pb-12">
               <button
                 type="button"
-                onClick={() => handleSocialLogin("facebook")}
+                // onClick={() => handleSocialLogin("facebook")}
                 className="flex justify-center items-center gap-2 font-Raleway border p-2 rounded-md hover:border-[#FF693B] transition-all duration-200"
               >
                 <img src="/assets/fLogo.png" alt="" />
@@ -131,7 +130,7 @@ const Login = () => {
                 </span>
               </button>
               <button
-                onClick={() => handleSocialLogin("google")}
+                // onClick={() => handleSocialLogin("google")}
                 type="button"
                 className="flex justify-center items-center gap-2 font-Raleway border p-2 rounded-md hover:border-[#FF693B] transition-all duration-200"
               >

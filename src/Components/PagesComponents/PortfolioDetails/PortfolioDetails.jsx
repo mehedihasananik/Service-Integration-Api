@@ -1,42 +1,11 @@
-"use client";
-
-import { useState, useEffect } from "react";
 import Container from "@/Components/Container/Container";
 import RelevantPortfolio from "@/Components/Utilites/RelevantServices/RelevantPortfolio";
+
 import Image from "next/image";
 import Link from "next/link";
-import { singlePortfolio } from "@/config/apis";
-import UserLoading from "@/Components/Utilites/UserLoading/UserLoading";
+import React from "react";
 
-const PortfolioDetails = ({ id }) => {
-  const [singlePortfolioItem, setSinglePortfolioItem] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  const fetchPortfolioItem = async () => {
-    try {
-      setIsLoading(true);
-      const response = await fetch(`${singlePortfolio}/${id}`);
-      if (!response.ok) {
-        throw new Error("Failed to fetch portfolio item");
-      }
-      const data = await response.json();
-      setSinglePortfolioItem(data);
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchPortfolioItem();
-  }, [id]);
-
-  if (isLoading) return <UserLoading />;
-  if (error) return <div>Error: {error}</div>;
-  if (!singlePortfolioItem) return null;
-
+const PortfolioDetails = ({ singlePortfolioItem }) => {
   const { basic, details, relevant } = singlePortfolioItem;
 
   return (
@@ -55,9 +24,13 @@ const PortfolioDetails = ({ id }) => {
           </div>
 
           {details.map((portfolio, index) => {
+            //console.log(portfolio);
             const { title, details, image, caption_text } = portfolio;
+            // console.log(title);
             return (
               <div key={portfolio?.id}>
+                {/* title */}
+
                 <div className="w-[100%]">
                   <Image
                     className="md:w-full md:h-[75vh] rounded-md"
