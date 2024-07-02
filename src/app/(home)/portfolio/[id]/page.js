@@ -3,11 +3,11 @@ import { Suspense } from "react";
 
 const SinglePage = ({ params }) => {
   return (
-    <div>
-      <Suspense fallback={<div>Loading...</div>}>
+    <>
+      <Suspense>
         <PortfolioDetails id={params?.id} />
       </Suspense>
-    </div>
+    </>
   );
 };
 

@@ -1,5 +1,4 @@
 import PortfolioPage from "@/Components/PagesComponents/PortfolioPage/PortfolioPage";
-import UserLoading from "@/Components/Utilites/UserLoading/UserLoading";
 import { serviceListApi, sevice_portfolioApi } from "@/config/apis";
 import { apiEndpoint } from "@/config/config";
 import { Suspense } from "react";
