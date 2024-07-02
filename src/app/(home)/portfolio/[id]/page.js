@@ -1,14 +1,12 @@
 import PortfolioDetails from "@/Components/PagesComponents/PortfolioDetails/PortfolioDetails";
-import { singlePortfolio } from "@/config/apis";
+import { Suspense } from "react";
 
-const SinglePage = async ({ params }) => {
-  const singlePortfolioItem = await fetch(
-    `${singlePortfolio}/${params?.id}`
-  ).then((res) => res?.json());
-
+const SinglePage = ({ params }) => {
   return (
     <div>
-      <PortfolioDetails singlePortfolioItem={singlePortfolioItem} />
+      <Suspense fallback={<div>Loading...</div>}>
+        <PortfolioDetails id={params?.id} />
+      </Suspense>
     </div>
   );
 };

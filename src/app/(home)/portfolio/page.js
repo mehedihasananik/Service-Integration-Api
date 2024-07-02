@@ -49,7 +49,7 @@ const Portfolio = async () => {
 
   return (
     <>
-      <Suspense fallback={<UserLoading />}>
+      <Suspense>
         <PortfolioPage
           portfolios={portfolios}
           portfoliosCategories={portfoliosCategories}
