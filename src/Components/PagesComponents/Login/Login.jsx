@@ -73,6 +73,11 @@ const Login = () => {
   //   }
   // };
 
+  const handleCaptchaChange = (value) => {
+    // This function will be called when ReCAPTCHA status changes
+    setCaptchaVerified(true); // Set captcha verification status to true
+  };
+
   useEffect(() => {
     // Event listener for the 'message' event
     const handleMessage = (event) => {
@@ -93,13 +98,8 @@ const Login = () => {
     return () => window.removeEventListener("message", handleMessage);
   }, []);
 
-  const handleCaptchaChange = (value) => {
-    // This function will be called when ReCAPTCHA status changes
-    setCaptchaVerified(true); // Set captcha verification status to true
-  };
-
   return (
-    <div className="login_singUp overflow-hidden  my-5">
+    <div className="login_singUp overflow-hidden  my-5 py-5">
       <Container>
         {loading && (
           <div className="text-center">
@@ -107,7 +107,7 @@ const Login = () => {
           </div>
         )}
         <div className="w-full flex justify-center md:pt-5">
-          <div className="shadow-md  border rounded-lg  py-6 px-10  md:py-10 md:px-12">
+          <div className="shadow-md  border rounded-lg  py-6 px-10  md:py-10 md:px-32">
             <div className="text-center pb-5 md:pb-14">
               <h3 className="text-[30px] md:text-[40px] text-[#333333] font-Raleway font-bold">
                 Welcome back!
@@ -139,16 +139,16 @@ const Login = () => {
                 </span>
               </button>
             </div> */}
-            <div className="flex items-center gap-x-5  md:pt-0">
+            {/* <div className="flex items-center gap-x-5  md:pt-0">
               <span className="w-[50%] h-[1px] border"></span>{" "}
               <span className="text-[14px] font-Raleway text-[#032333] font-medium">
                 Or
               </span>{" "}
               <span className="w-[50%] h-[1px] border"></span>
-            </div>
-            <div className="pt-4 md:pt-8">
+            </div> */}
+            <div className="pt-4 md:pt-3">
               <form
-                className="flex max-w-md flex-col gap-4"
+                className="flex max-w-lg flex-col gap-4"
                 onSubmit={handleLogin}
               >
                 <div>

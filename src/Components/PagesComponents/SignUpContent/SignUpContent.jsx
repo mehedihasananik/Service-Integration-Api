@@ -90,10 +90,10 @@ const SignUpContent = () => {
     }));
   };
   return (
-    <div className="login_singUp overflow-hidden  my-5">
+    <div className="login_singUp overflow-hidden  my-5 py-5">
       <>
         <div className="w-full h-fit md:flex md:justify-center pt-5 ">
-          <div className="shadow-md  border rounded-lg  py-6 px-10  md:py-10 md:px-12">
+          <div className="shadow-md  border rounded-lg  py-6 px-10  md:py-10 md:px-32">
             <div className="text-center pb-5 md:pb-14">
               <h3
                 style={{ whiteSpace: "nowrap" }}
@@ -119,13 +119,13 @@ const SignUpContent = () => {
                 </span>
               </button>
             </div> */}
-            <div className="flex items-center gap-x-5  md:pt-0">
+            {/* <div className="flex items-center gap-x-5  md:pt-0">
               <span className="w-[50%] h-[1px] border"></span>{" "}
               <span className="text-[14px] font-Raleway text-[#032333] font-medium">
                 Or
               </span>{" "}
               <span className="w-[50%] h-[1px] border"></span>
-            </div>
+            </div> */}
             <div className="pt-4 md:pt-8">
               <form
                 className="flex max-w-md flex-col gap-4"

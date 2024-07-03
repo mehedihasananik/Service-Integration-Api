@@ -1,4 +1,5 @@
 "use client";
+
 import Container from "@/Components/Container/Container";
 import { Navbar } from "flowbite-react";
 import Image from "next/image";
@@ -9,20 +10,14 @@ import React, { useEffect, useState } from "react";
 const HeaderItems = ({ headers }) => {
   const pathname = usePathname();
   const [userData, setUserData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    const loadUserData = async () => {
-      const storedUserData = localStorage.getItem("userData");
-      if (storedUserData) {
-        setUserData(JSON.parse(storedUserData));
-      }
-
-      // Set a timeout to ensure loading state doesn't last more than 1 second
-      setTimeout(() => setLoading(false), 1000);
-    };
-
-    loadUserData();
+    setIsClient(true);
+    const storedUserData = localStorage.getItem("userData");
+    if (storedUserData) {
+      setUserData(JSON.parse(storedUserData));
+    }
   }, []);
 
   useEffect(() => {
@@ -79,21 +74,22 @@ const HeaderItems = ({ headers }) => {
               </Link>
             ))}
             {/* Nav button */}
-            {userData?.email ? (
-              <Link
-                href="/dashboard"
-                className="bg-[#FF693B] border border-[#FF693B] text-white font-medium px-6 py-2 rounded-lg hover:bg-white hover:text-[#FF693B] transition-all duration-300"
-              >
-                Dashboard
-              </Link>
-            ) : (
-              <Link
-                href="/login"
-                className="bg-[#FF693B] border border-[#FF693B] text-white font-medium px-12 py-2 rounded-lg hover:bg-white hover:text-[#FF693B] transition-all duration-300"
-              >
-                Login
-              </Link>
-            )}
+            {isClient &&
+              (userData?.email ? (
+                <Link
+                  href="/dashboard"
+                  className="bg-[#FF693B] border border-[#FF693B] text-white font-medium px-6 py-2 rounded-lg hover:bg-white hover:text-[#FF693B] transition-all duration-300"
+                >
+                  Dashboard
+                </Link>
+              ) : (
+                <Link
+                  href="/login"
+                  className="bg-[#FF693B] border border-[#FF693B] text-white font-medium px-12 py-2 rounded-lg hover:bg-white hover:text-[#FF693B] transition-all duration-300"
+                >
+                  Login
+                </Link>
+              ))}
           </div>
         </nav>
       </Container>
@@ -126,7 +122,24 @@ const HeaderItems = ({ headers }) => {
               </Link>
             ))}
             {/* Login button */}
-            <div className="mt-3"></div>
+            <div className="mt-3">
+              {isClient &&
+                (userData?.email ? (
+                  <Link
+                    href="/dashboard"
+                    className="bg-[#FF693B] border border-[#FF693B] text-white font-medium px-6 py-2 rounded-lg hover:bg-white hover:text-[#FF693B] transition-all duration-300"
+                  >
+                    Dashboard
+                  </Link>
+                ) : (
+                  <Link
+                    href="/login"
+                    className="bg-[#FF693B] border border-[#FF693B] text-white font-medium px-12 py-2 rounded-lg hover:bg-white hover:text-[#FF693B] transition-all duration-300"
+                  >
+                    Login
+                  </Link>
+                ))}
+            </div>
           </Navbar.Collapse>
         </Navbar>
       </div>

@@ -1,5 +1,5 @@
+"use client";
 import Container from "@/Components/Container/Container";
-import { Navbar } from "flowbite-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";

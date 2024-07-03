@@ -1,7 +1,7 @@
 import { headerApi } from "@/config/apis";
 import HeaderItems from "@/Components/Utilites/HeaderItems/HeaderItems";
 
-async function getHeaderContentContent() {
+async function getHeaderContent() {
   const res = await fetch(`${headerApi}`, {
     next: { revalidate: 10 },
   });
@@ -13,13 +13,9 @@ async function getHeaderContentContent() {
 }
 
 const Header = async () => {
-  const headers = await getHeaderContentContent();
+  const headers = await getHeaderContent();
 
-  return (
-    <div>
-      <HeaderItems headers={headers} />
-    </div>
-  );
+  return <HeaderItems headers={headers} />;
 };
 
 export default Header;
