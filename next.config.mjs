@@ -18,6 +18,7 @@ const nextConfig = {
       "192.168.10.15",
       "lh3.googleusercontent.com",
       "envobyte.com",
+      "i.ibb.co",
     ],
   },
 };

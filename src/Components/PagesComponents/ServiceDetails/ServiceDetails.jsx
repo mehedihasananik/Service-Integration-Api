@@ -20,6 +20,8 @@ const ServiceDetails = ({
 }) => {
   const [openModal, setOpenModal] = useState(false);
 
+  const height = packages[2].package_details.length;
+
   return (
     <>
       {" "}
@@ -35,7 +37,7 @@ const ServiceDetails = ({
             </h3>
           </div>
           {/* packages */}
-          <div className="grid grid-cols-1 gap-y-10 lg:grid-cols-3 gap-x-5 lg:gap-y-0 4xl:px-[10%] 6xl:px-[0%]">
+          <div className="grid grid-cols-1 gap-y-10 lg:grid-cols-3 gap-x-5 lg:gap-y-0 4xl:px-[10%] 6xl:px-[0%] ">
             {packages.map((item) => {
               return (
                 <SinglePackage
@@ -43,13 +45,14 @@ const ServiceDetails = ({
                   item={item}
                   openModal={openModal}
                   setOpenModal={setOpenModal}
+                  height={height}
                 />
               );
             })}
           </div>
           {/* custom projects */}
           <Link href={"/#projectDetails"}>
-            <div className="flex flex-col lg:flex-row justify-center items-center py-14 gap-5 text-center">
+            <div className="flex flex-col lg:flex-row justify-center items-center py-14 gap-5 text-center mt-[20px]">
               <h2 className="text-[20px] text-[#646464]">
                 <span className="text-[#FF693B]">
                   Have a complex or custom project?{" "}
@@ -115,10 +118,10 @@ const ServiceDetails = ({
           See More
         </Link>
       </div>
-      <Container>
+      <div className="max-w-[1520px] mx-auto px-[6%] md:px-[4%] lg:px-[8%] 4xl:px-[0%]">
         {/* relevant services */}
         <RelevantServices service={service} />
-      </Container>
+      </div>
       <div className="bg-[#F8FAFC]">
         <QuestionService
           service={service}

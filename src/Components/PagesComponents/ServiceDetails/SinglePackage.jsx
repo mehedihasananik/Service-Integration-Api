@@ -7,7 +7,7 @@ import { BiRevision } from "react-icons/bi";
 import { useRouter } from "next/navigation";
 import { AuthContext } from "@/providers/AuthProviders";
 
-const SinglePackage = ({ item, setOpenModal }) => {
+const SinglePackage = ({ item, setOpenModal, height }) => {
   const router = useRouter();
   const { setItemId } = useContext(AuthContext);
 
@@ -71,11 +71,57 @@ const SinglePackage = ({ item, setOpenModal }) => {
     }
   }, [orderId, router]);
 
+  const heightClass =
+    height === 1
+      ? "h-[360px]"
+      : height === 2
+      ? "h-[400px]"
+      : height === 3
+      ? "h-[480px]"
+      : height === 4
+      ? "h-[520px]"
+      : height === 5
+      ? "h-[570px]"
+      : height === 6
+      ? "h-[640px]"
+      : height === 7
+      ? "h-[660px]"
+      : height === 8
+      ? "h-[680px]"
+      : height === 9
+      ? "h-[700px]"
+      : height === 10
+      ? "h-[720px]"
+      : "";
+
+  const deliveryHeight =
+    height === 1
+      ? "mt-[10px]"
+      : height === 2
+      ? "mt-[20px]"
+      : height === 3
+      ? "mt-[-10px]"
+      : height === 4
+      ? "mt-[50px]"
+      : height === 5
+      ? "mt-[90px]"
+      : height === 6
+      ? "mt-[120px]"
+      : height === 7
+      ? "mt-[140px]"
+      : height === 8
+      ? "mt-[160px]"
+      : height === 9
+      ? "mt-[180px]"
+      : height === 10
+      ? "mt-[200px]"
+      : "";
+
   return (
     <div className="md:mx-[10%] lg:mx-0">
       <div
         key={item?.id}
-        className="border border-[#CBD5E1] transition-all duration-300 hover:border-[#FF693B] px-8 pt-10 pb-11 rounded-3xl 6xl:w-[400px] 6xl:gap-x-20"
+        className={`border ${heightClass} border-[#CBD5E1] transition-all duration-300 hover:border-[#FF693B] px-8 pt-10 pb-11 rounded-3xl 6xl:w-[400px] 6xl:gap-x-20`}
       >
         {/* title */}
         <div className="h-[95px]">
@@ -125,13 +171,15 @@ const SinglePackage = ({ item, setOpenModal }) => {
             </div>
           ))}
         </div>
-        <div className="flex pt-14 lg:pt-80 items-center justify-between">
+        <div
+          className={`flex items-center justify-between mt-[100px] ${deliveryHeight}`}
+        >
           {/* 1st */}
           <div className="flex items-center gap-1.5 font-Raleway font-semibold">
             <span>
               <FaRegClock className="w-[24px] h-[24px]" />
             </span>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 ">
               <span className="text-[12px] md:text-[16px]">
                 {item?.delivery_time}{" "}
                 {item?.delivery_time === "1" ? "Day Delivery" : "Days Delivery"}

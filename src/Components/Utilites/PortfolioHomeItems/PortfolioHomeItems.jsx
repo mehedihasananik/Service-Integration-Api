@@ -105,11 +105,11 @@ const PortfolioHomeItems = ({ portfolios, services }) => {
                           <div className="text-center">
                             {/* portfolio category */}
                             <h4 className="text-[14px] text-[#999999] pt-3 pb-3 md:pt-0 md:pb-6 portfolio-textHover">
-                              {portfolio.service_name[0].service_name}
+                              {portfolio?.service_name[0]?.service_name}
                             </h4>
                             {/* portfolio title */}
                             <h3 className="text-[16px] font-bold font-Raleway text-[#333333] portfolio-textHover">
-                              {portfolio.heading}
+                              {portfolio?.heading}
                             </h3>
                             {/* description */}
                             <p className="w-[250px] text-[14px] text-[#666666] py-3 portfolio-textHover">

@@ -29,14 +29,14 @@ const WhyChooseUs = async () => {
           {/* 1st cARD */}
           <div className="bg-[#FFF9EE] xl:h-[300px] 2xl:h-[250px] flex flex-col items-center lg:flex-row gap-4 px-10 py-16 ">
             <div className="w-full flex justify-center lg:w-[550px] mt-4">
-              <img src={data[0].icon} alt="" />
+              <img src={data[0]?.icon} alt="" />
             </div>
             <div className="text-center lg:text-left space-y-4">
               <h2 className="text-[24px] text-[#333333] font-bold">
-                {data[0].heading}
+                {data[0]?.heading}
               </h2>
               <p className="text-[16px] text-[#666666] text-justify">
-                {data[0].text}
+                {data[0]?.text}
               </p>
             </div>
           </div>

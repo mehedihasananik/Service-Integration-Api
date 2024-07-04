@@ -49,6 +49,14 @@ const RelevantServices = ({ service }) => {
     },
   };
 
+  const truncateText = (text, maxWords) => {
+    const words = text.split(" ");
+    if (words.length > maxWords) {
+      return words.slice(0, maxWords).join(" ") + "...";
+    }
+    return text;
+  };
+
   return (
     <div className="pt-5 pb-10 md:pt-3 md:pb-8">
       <div className="text-center font-Raleway">
@@ -80,11 +88,11 @@ const RelevantServices = ({ service }) => {
                     />
                   </div>
                   <div className="px-5 group-hover:bg-[#FF693B]  group-hover:text-white transition-all duration-200">
-                    <h3 className="text-[24px] font-bold font-Raleway pt-5 pb-2">
+                    <h3 className="text-[20px] font-bold font-Raleway pt-5 pb-2 text-nowrap">
                       {service.title}
                     </h3>
                     <p className="text-[14px] text-[#475569] group-hover:text-white transition-all duration-200">
-                      {service.details}
+                      {truncateText(service.details, 33)}
                     </p>
                   </div>
                   <div className="flex items-center justify-between px-5 py-5 group-hover:bg-[#FF693B] transition-all duration-200">

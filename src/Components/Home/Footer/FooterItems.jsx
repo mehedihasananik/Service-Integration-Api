@@ -4,39 +4,12 @@ import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
 
-import { FaArrowUp } from "react-icons/fa";
-import { IoIosArrowUp } from "react-icons/io";
-import ScrollToTop from "react-scroll-up";
-
 const FooterItems = ({ footer, userContact }) => {
   const currentDate = format(new Date(), "yyyy");
   return (
     <Container>
       <div className="flex flex-col py-3 md:py-4 lg:flex-row justify-between items-center lg:pt-4 ">
         {/* left side */}
-        <ScrollToTop
-          duration={1000}
-          style={{
-            position: "fixed",
-            bottom: 20,
-            right: 100,
-            cursor: "pointer",
-            transitionDuration: ".1s", // Adjust for desired scroll speed
-            transitionTimingFunction: "ease-in-out", // Smooth scrolling animation
-            transitionDelay: "0.6s",
-            zIndex: 10000,
-            duration: 1000,
-          }}
-          showUnder={100}
-        >
-          <span className="bg-red-500 flex justify-center items-center rounded-full">
-            <IoIosArrowUp
-              height={20}
-              width={20}
-              className="w-[50px] h-[50px] bg-[#FF693B] text-white rounded-full"
-            />
-          </span>
-        </ScrollToTop>
 
         <div className="w-full py-4 md:justify-between md:items-center lg:py-10 lg:flex-col lg:justify-start lg:items-start lg:w-[30%]">
           {/* logo & description */}

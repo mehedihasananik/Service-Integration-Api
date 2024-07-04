@@ -3,9 +3,11 @@ import React, { useEffect, useState } from "react";
 import Container from "@/Components/Container/Container";
 import Image from "next/image";
 import Link from "next/link";
+import UserLoading from "@/Components/Utilites/UserLoading/UserLoading";
 
 const ServicesPageContent = ({ serviceCategories, services }) => {
   const [loading, setLoading] = useState(true);
+  const [serviceLoading, setServiceLoading] = useState(true);
   const [selectedCategoryId, setSelectedCategoryId] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [serviceItems, setServiceItems] = useState([]);
@@ -41,12 +43,14 @@ const ServicesPageContent = ({ serviceCategories, services }) => {
       return filteredServices;
     };
 
+    setServiceLoading(true); // Set service loading state to true
     const filteredServices = filterServices();
 
     // Remove duplicates by filtering out services with duplicate IDs
     const uniqueServices = filteredServices;
 
     setServiceItems(uniqueServices);
+    setServiceLoading(false); // Set service loading state to false
   }, [selectedCategoryId, searchQuery, services]);
 
   const handleCategoryChange = (e) => {
@@ -126,67 +130,66 @@ const ServicesPageContent = ({ serviceCategories, services }) => {
               <div></div>
             </div>
           </div>
-          <div className="grid grid-cols-1 md:grid md:grid-cols-2 lg:grid-cols-2  xl:grid-cols-4 justify-items-center place-items-center gap-8 pb-8 lg:gap-x-40 4xl:gap-x-16  mt-5 md:mt-10 ">
-            {serviceItems.map((service, index) => (
-              <Link
-                key={index} // Change key to index
-                href={`/services/${service?.slug}`}
-              >
-                <div className="group xl:w-[280px] xxl:w-[310px]  2xl:w-[330px]  shadow-lg rounded-md border border-[#E2E8F0]  cursor-pointer">
-                  <div className="flex flex-col">
-                    <div className="bg-[#E2E8F0]">
+
+          {serviceLoading ? (
+            <div className="flex justify-center text-center text-gray-600 mt-10">
+              <UserLoading />
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid md:grid-cols-2 lg:grid-cols-2  xl:grid-cols-4 justify-items-center place-items-center gap-8 pb-8 lg:gap-x-40 4xl:gap-x-16  mt-5 md:mt-10 ">
+              {serviceItems.map((service, index) => (
+                <Link
+                  key={index} // Change key to index
+                  href={`/services/${service?.slug}`}
+                >
+                  <div className="group xl:w-[280px] xxl:w-[310px]  2xl:w-[330px]  shadow-lg rounded-md border border-[#E2E8F0]  cursor-pointer">
+                    <div className="flex flex-col">
+                      <div className="bg-[#E2E8F0]">
+                        <div>
+                          <Image
+                            width={700}
+                            height={700}
+                            className="w-full h-[270px]"
+                            src={service?.image}
+                            alt=""
+                          />
+                        </div>
+                      </div>
                       <div>
-                        <Image
-                          width={700}
-                          height={700}
-                          className="w-full h-[270px]"
-                          src={service?.image}
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      {" "}
-                      <div className="px-5 group-hover:bg-[#FF693B] group-hover:text-white transition-all duration-200">
-                        <h3 className="text-[20px] md:text-[20px] font-bold  font-Raleway pt-5 pb-2 whitespace-nowrap">
-                          {service.title}
-                        </h3>
-                        <p className="text-[14px] text-[#475569]  group-hover:text-white transition-all duration-200">
-                          {truncateText(service.details, 33)}
-                        </p>
-                      </div>
-                      <div className="flex items-center justify-between px-5 py-5 group-hover:bg-[#FF693B] transition-all duration-200">
-                        <div className="font-Raleway">
-                          <span className=" font-bold text-[16px] text-[#1E293B] group-hover:text-white transition-all duration-200">
-                            Start From
-                          </span>
+                        {" "}
+                        <div className="px-5 group-hover:bg-[#FF693B] group-hover:text-white transition-all duration-200">
+                          <h3 className="text-[20px] md:text-[20px] font-bold  font-Raleway pt-5 pb-2 whitespace-nowrap">
+                            {service.title}
+                          </h3>
+                          <p className="text-[14px] text-[#475569]  group-hover:text-white transition-all duration-200">
+                            {truncateText(service.details, 33)}
+                          </p>
                         </div>
-                        <div>
-                          <span className="font-Raleway text-[20px] font-bold text-[#0A2C8C] group-hover:text-white transition-all duration-200">
-                            20$
-                          </span>
-                        </div>
-                        <div>
-                          <button className="text-[14px] bg-[#FF693B] rounded-md px-8 py-[5px] text-white border border-[#ff693B]  group-hover:bg-white group-hover:text-[#FF693B] transition-all duration-200">
-                            View
-                          </button>
+                        <div className="flex items-center justify-between px-5 py-5 group-hover:bg-[#FF693B] transition-all duration-200">
+                          <div className="font-Raleway">
+                            <span className=" font-bold text-[16px] text-[#1E293B] group-hover:text-white transition-all duration-200">
+                              Start From
+                            </span>
+                          </div>
+                          <div>
+                            <span className="font-Raleway text-[20px] font-bold text-[#0A2C8C] group-hover:text-white transition-all duration-200">
+                              20$
+                            </span>
+                          </div>
+                          <div>
+                            <button className="text-[14px] bg-[#FF693B] rounded-md px-8 py-[5px] text-white border border-[#ff693B]  group-hover:bg-white group-hover:text-[#FF693B] transition-all duration-200">
+                              View
+                            </button>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-          {/* see more button */}
-          {/* <div className="py-8  md:pt-16 text-center ">
-            <Link
-              href={"#"}
-              className=" text-[16px] bg-[#FF693B] px-14 py-4 text-white rounded-lg border border-[#FF693B]  hover:bg-white hover:text-[#FF693B] transition-all duration-300"
-            >
-              See more
-            </Link>
-          </div> */}
+                </Link>
+              ))}
+            </div>
+          )}
+
           {serviceItems.length === 0 && !loading && (
             <div className="flex justify-center text-center text-gray-600 mt-0">
               <Image

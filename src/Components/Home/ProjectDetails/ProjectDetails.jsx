@@ -144,9 +144,13 @@ const ProjectDetails = ({ userContact }) => {
         {/* our details */}
         <div className="w-[100%] flex flex-col justify-center items-center  lg:flex-row lg:items-start lg:justify-between gap-10 md:pt-14">
           <div className="w-full md:w-[80%] lg:w-[40%] flex flex-col gap-10 md:pl-10 2xl:pl-0">
-            <div className="flex  items-center gap-6 bg-[#FFFFFF] py-8  rounded-lg pl-5 lg:pl-5 lg:pr-14">
+            <div className="flex  items-center gap-6 bg-[#FFFFFF] py-8  rounded-lg pl-5">
               <div className="bg-[#FFF5F1] p-4 rounded-lg">
-                <img src="/assets/email.png" alt="" />
+                <img
+                  className="w-6 h-6"
+                  src="https://i.ibb.co/hVTCYCp/Email.png"
+                  alt=""
+                />
               </div>
               <div>
                 <h3 className="text-[16px] text-[#94A3B8]">Email us</h3>
@@ -160,7 +164,7 @@ const ProjectDetails = ({ userContact }) => {
               </div>
             </div>
 
-            <div className="flex  items-center gap-6 bg-[#FFFFFF] py-8  rounded-lg pl-5 pr-14">
+            <div className="flex items-center gap-6 bg-[#FFFFFF] py-8 rounded-lg pl-5 pr-14">
               <div className="bg-[#FFF5F1] p-4 rounded-lg">
                 <img src="/assets/whatsapp.svg" alt="" />
               </div>
@@ -168,10 +172,10 @@ const ProjectDetails = ({ userContact }) => {
                 <h3 className="text-[16px] text-[#94A3B8]">Whatsapp</h3>
                 <a
                   target="_blank"
-                  href={`https://wa.me/${userContact?.phone_number}`}
+                  href={`https://wa.me/8801963800900`}
                   className="text-[#475569] text-[16px] pt-1"
                 >
-                  {userContact?.phone_number}
+                  01963-800-900
                 </a>
               </div>
             </div>

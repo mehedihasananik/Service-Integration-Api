@@ -214,7 +214,7 @@ const MessageChat = ({
                         </span>
                       </div>
                       {msg.message && (
-                        <p className="text-[14px] pr-[4%] text-justify font-Roboto font-[400] text-[#666666]">
+                        <p className="text-[14px] pr-[4%] text-justify font-Roboto font-[400] text-[#666666] whitespace-pre-wrap">
                           {msg.message}
                         </p>
                       )}

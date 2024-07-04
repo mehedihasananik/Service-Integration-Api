@@ -65,6 +65,7 @@ const ServicePortolio = () => {
       spaceBetween: 10,
     },
   };
+
   return (
     <div className="px-[5%] md:px-[5%] lg:px-0">
       <Swiper
@@ -95,7 +96,7 @@ const ServicePortolio = () => {
                     <div className="flex flex-col justify-center items-center p-3 md:py-0 2xl:px-10  border border-t-0  border-[#CBD5E1]  md:border md:border-t-0 lg:border-t lg:border-l-0  rounded-b-lg  md:rounded-r-0 md:rounded-l-none lg:rounded-r-lg">
                       <div className="text-center">
                         <h4 className="text-[14px] text-[#999999] pt-3 pb-3 md:pt-0 md:pb-6 portfolio-textHover">
-                          {portfolio.service_name[0].service_name}
+                          {portfolio?.service_name[0]?.service_name}
                         </h4>
                         <h3 className="text-[16px] font-bold font-Raleway text-[#333333] portfolio-textHover">
                           {portfolio.heading}
