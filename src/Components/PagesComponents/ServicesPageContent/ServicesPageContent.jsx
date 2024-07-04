@@ -142,14 +142,12 @@ const ServicesPageContent = ({ serviceCategories, services }) => {
                   key={index} // Change key to index
                   href={`/services/${service?.slug}`}
                 >
-                  <div className="group h-[500px] xl:w-[280px] xxl:w-[310px]  2xl:w-[330px]  shadow-lg rounded-md border border-[#E2E8F0]  cursor-pointer">
+                  <div className="group h-[550px] xl:w-[296px] xxl:w-[296px]  2xl:w-[296px]  shadow-lg rounded-md border border-[#E2E8F0]  cursor-pointer">
                     <div className="flex flex-col">
                       <div className="bg-[#E2E8F0]">
                         <div>
-                          <Image
-                            width={700}
-                            height={700}
-                            className="w-full h-[270px]"
+                          <img
+                            className="w-[296px] h-[304px] overflow-hidden rounded-t-md"
                             src={service?.image}
                             alt=""
                           />
@@ -157,15 +155,15 @@ const ServicesPageContent = ({ serviceCategories, services }) => {
                       </div>
                       <div>
                         {" "}
-                        <div className="px-5 group-hover:bg-[#FF693B] group-hover:text-white transition-all duration-200">
-                          <h3 className="text-[20px] md:text-[20px] font-bold  font-Raleway pt-5 pb-2 whitespace-nowrap">
+                        <div className="px-3 group-hover:bg-[#FF693B] group-hover:text-white  transition-all duration-200">
+                          <h3 className="text-[20px] md:text-[18px] font-bold  font-Raleway pt-5 pb-2 whitespace-nowrap">
                             {service.title}
                           </h3>
                           <p className="text-[14px] text-[#475569]  group-hover:text-white transition-all duration-200">
-                            {truncateText(service.details, 33)}
+                            {service.details.slice(0, 195)}..
                           </p>
                         </div>
-                        <div className="flex items-center justify-between px-5 py-5 group-hover:bg-[#FF693B] transition-all duration-200">
+                        <div className="flex  group-hover:rounded-b-md items-center justify-between px-3 h-[50px] pt-10 pb-12 group-hover:bg-[#FF693B] transition-all duration-200">
                           <div className="font-Raleway">
                             <span className=" font-bold text-[16px] text-[#1E293B] group-hover:text-white transition-all duration-200">
                               Start From

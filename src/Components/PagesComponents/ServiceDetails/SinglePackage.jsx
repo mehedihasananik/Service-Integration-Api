@@ -100,46 +100,46 @@ const SinglePackage = ({ item, setOpenModal, height }) => {
     height === 1
       ? "h-[360px]"
       : height === 2
-      ? "h-[400px]"
+      ? "h-[410px]"
       : height === 3
-      ? "h-[500px]"
+      ? "h-[460px]"
       : height === 4
-      ? "h-[520px]"
+      ? "h-[500px]"
       : height === 5
-      ? "h-[570px]"
+      ? "h-[565px]"
       : height === 6
-      ? "h-[640px]"
+      ? "h-[595px]"
       : height === 7
-      ? "h-[625px]"
+      ? "h-[628px]"
       : height === 8
-      ? "h-[680px]"
+      ? "h-[675px]"
       : height === 9
-      ? "h-[700px]"
-      : height === 10
       ? "h-[720px]"
+      : height === 10
+      ? "h-[760px]"
       : "";
 
   const deliveryHeight =
     height === 1
-      ? "mt-[10px]"
+      ? "mt-[-110px]"
       : height === 2
-      ? "mt-[-70px]"
+      ? "mt-[-60px]"
       : height === 3
       ? "mt-[-20px]"
       : height === 4
-      ? "mt-[50px]"
+      ? "mt-[30px]"
       : height === 5
       ? "mt-[90px]"
       : height === 6
       ? "mt-[120px]"
       : height === 7
-      ? "mt-[150px]"
+      ? "mt-[155px]"
       : height === 8
-      ? "mt-[160px]"
-      : height === 9
-      ? "mt-[180px]"
-      : height === 10
       ? "mt-[200px]"
+      : height === 9
+      ? "mt-[245px]"
+      : height === 10
+      ? "mt-[290px]"
       : "";
 
   return (
