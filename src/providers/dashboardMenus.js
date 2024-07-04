@@ -9,5 +9,5 @@ export const dashboardMenus = [
   { name: "Message", link: "/message", icon: CiDeliveryTruck },
   { name: "New Order", link: "/new-order", icon: HiMenuAlt3 },
   { name: "Manage Order", link: "/manage-order", icon: FiLayers },
-  { name: "Order-Delivery", link: "/order-delivery", icon: CiDeliveryTruck },
+  // { name: "Order-Delivery", link: "/order-delivery", icon: CiDeliveryTruck },
 ];
