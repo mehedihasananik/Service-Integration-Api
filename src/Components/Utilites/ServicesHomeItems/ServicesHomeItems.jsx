@@ -183,10 +183,12 @@ const DemoServices = ({ services }) => {
                                   </span>
                                 </div>
                                 {/* price */}
+
                                 <div>
-                                  <span className="font-Raleway text-[20px] font-bold text-[#0A2C8C] group-hover:text-[#fff]">
-                                    ${service.start_price}
-                                  </span>
+                                  <h3 className="flex items-center space-x-[1px] font-Raleway text-[20px] font-bold text-[#0A2C8C] group-hover:text-white transition-all duration-200">
+                                    <span> $</span>{" "}
+                                    <span>{service.start_price}</span>
+                                  </h3>
                                 </div>
                                 {/* view more button */}
                                 <div>

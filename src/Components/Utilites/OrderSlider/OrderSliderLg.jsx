@@ -139,7 +139,7 @@ const OrderSliderLg = ({ sliders }) => {
           style={{
             maxHeight:
               isFullscreen && imageHeight && imageHeight > 900
-                ? "900px"
+                ? "1900px"
                 : "none",
           }}
         >
@@ -151,7 +151,6 @@ const OrderSliderLg = ({ sliders }) => {
               height: isFullscreen ? "auto" : "100%",
               objectFit: isFullscreen ? "contain" : "cover",
               objectPosition: "center",
-              borderRadius: "10px",
             }}
           />
         </div>
@@ -160,7 +159,7 @@ const OrderSliderLg = ({ sliders }) => {
   };
 
   return (
-    <div className="hidden md:block bg-[#F8FAFC] md:p-8 rounded-[10px]">
+    <div className="hidden md:block bg-[#F8FAFC] md:p-8 ">
       {isLoading ? (
         <Loading />
       ) : (
