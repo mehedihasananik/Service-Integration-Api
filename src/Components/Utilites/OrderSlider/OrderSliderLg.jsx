@@ -62,10 +62,11 @@ const OrderSliderLg = ({ sliders }) => {
   useEffect(() => {
     // Check if all images are loaded
     const loadedImages = images.map((image) => {
-      const img = new Image();
-      img.src = image.original;
-      return new Promise((resolve) => {
+      return new Promise((resolve, reject) => {
+        const img = new Image();
         img.onload = resolve;
+        img.onerror = reject;
+        img.src = image.original;
       });
     });
 
@@ -75,6 +76,7 @@ const OrderSliderLg = ({ sliders }) => {
       })
       .catch((error) => {
         console.error("Error loading images:", error);
+        setIsLoading(false); // Set loading to false even if there's an error
       });
   }, [images]);
 

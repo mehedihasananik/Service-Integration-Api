@@ -146,7 +146,9 @@ const ServicesPageContent = ({ serviceCategories, services }) => {
                     <div className="flex flex-col">
                       <div className="bg-[#E2E8F0]">
                         <div>
-                          <img
+                          <Image
+                            width={700}
+                            height={700}
                             className="w-[296px] h-[304px] overflow-hidden rounded-t-md"
                             src={service?.image}
                             alt=""
