@@ -147,7 +147,7 @@ const OrderSliderLg = ({ sliders }) => {
             src={item.original}
             alt=""
             style={{
-              width: "100%",
+              width: "1920px",
               height: isFullscreen ? "auto" : "100%",
               objectFit: isFullscreen ? "contain" : "cover",
               objectPosition: "center",
