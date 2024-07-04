@@ -66,6 +66,14 @@ const ServicePortolio = () => {
     },
   };
 
+  const truncateText = (text, maxWords) => {
+    const words = text.split(" ");
+    if (words.length > maxWords) {
+      return words.slice(0, maxWords).join(" ") + "...";
+    }
+    return text;
+  };
+
   return (
     <div className="px-[5%] md:px-[5%] lg:px-0">
       <Swiper
@@ -102,7 +110,7 @@ const ServicePortolio = () => {
                           {portfolio.heading}
                         </h3>
                         <p className="w-[250px] text-[14px] text-[#666666] py-3 portfolio-textHover">
-                          {portfolio.text}
+                          {truncateText(portfolio?.text, 35)}
                         </p>
                       </div>
                       <div className="group flex justify-center items-center gap-2 text-[#FF693B] font-bold mt-2 pb-2 md:mt-5 portfolio-textHover md:pb-6 lg:pb-0">

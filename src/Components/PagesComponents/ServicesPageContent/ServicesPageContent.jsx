@@ -142,7 +142,7 @@ const ServicesPageContent = ({ serviceCategories, services }) => {
                   key={index} // Change key to index
                   href={`/services/${service?.slug}`}
                 >
-                  <div className="group xl:w-[280px] xxl:w-[310px]  2xl:w-[330px]  shadow-lg rounded-md border border-[#E2E8F0]  cursor-pointer">
+                  <div className="group h-[500px] xl:w-[280px] xxl:w-[310px]  2xl:w-[330px]  shadow-lg rounded-md border border-[#E2E8F0]  cursor-pointer">
                     <div className="flex flex-col">
                       <div className="bg-[#E2E8F0]">
                         <div>

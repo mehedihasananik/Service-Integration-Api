@@ -1,6 +1,11 @@
 "use client";
-import React, { useContext, useLayoutEffect, useState, useEffect } from "react";
-import { Tooltip } from "flowbite-react";
+import React, {
+  useContext,
+  useLayoutEffect,
+  useState,
+  useEffect,
+  useCallback,
+} from "react";
 import { IoCheckmarkSharp } from "react-icons/io5";
 import { FaRegClock } from "react-icons/fa6";
 import { BiRevision } from "react-icons/bi";
@@ -13,6 +18,8 @@ const SinglePackage = ({ item, setOpenModal, height }) => {
 
   const [userData, setUserData] = useState(null);
   const [orderId, setOrderId] = useState(null);
+  const [isTooltipVisible, setIsTooltipVisible] = useState(false);
+  let timeoutId = null;
 
   const handlePlaceOrder = async () => {
     const data = {
@@ -52,7 +59,6 @@ const SinglePackage = ({ item, setOpenModal, height }) => {
     localStorage.setItem("itemId", item?.id);
   };
 
-  // kakon
   const orderWithLogin = () => {
     localStorage.setItem("item", JSON.stringify(item));
     setOpenModal(true);
@@ -71,13 +77,32 @@ const SinglePackage = ({ item, setOpenModal, height }) => {
     }
   }, [orderId, router]);
 
+  const showTooltip = () => {
+    clearTimeout(timeoutId);
+    setIsTooltipVisible(true);
+  };
+
+  const hideTooltip = useCallback(() => {
+    timeoutId = setTimeout(() => {
+      setIsTooltipVisible(false);
+    }, 1500); // 300ms delay
+  }, []);
+
+  const truncateText = (text, maxWords) => {
+    const words = text.split(" ");
+    if (words.length > maxWords) {
+      return words.slice(0, maxWords).join(" ") + "...";
+    }
+    return text;
+  };
+
   const heightClass =
     height === 1
       ? "h-[360px]"
       : height === 2
       ? "h-[400px]"
       : height === 3
-      ? "h-[480px]"
+      ? "h-[500px]"
       : height === 4
       ? "h-[520px]"
       : height === 5
@@ -85,7 +110,7 @@ const SinglePackage = ({ item, setOpenModal, height }) => {
       : height === 6
       ? "h-[640px]"
       : height === 7
-      ? "h-[660px]"
+      ? "h-[625px]"
       : height === 8
       ? "h-[680px]"
       : height === 9
@@ -98,9 +123,9 @@ const SinglePackage = ({ item, setOpenModal, height }) => {
     height === 1
       ? "mt-[10px]"
       : height === 2
-      ? "mt-[20px]"
+      ? "mt-[-70px]"
       : height === 3
-      ? "mt-[-10px]"
+      ? "mt-[-20px]"
       : height === 4
       ? "mt-[50px]"
       : height === 5
@@ -108,7 +133,7 @@ const SinglePackage = ({ item, setOpenModal, height }) => {
       : height === 6
       ? "mt-[120px]"
       : height === 7
-      ? "mt-[140px]"
+      ? "mt-[150px]"
       : height === 8
       ? "mt-[160px]"
       : height === 9
@@ -130,7 +155,7 @@ const SinglePackage = ({ item, setOpenModal, height }) => {
               {item?.package_name}
             </h3>
             <p className="text-[15px] text-[#334155] font-normal">
-              {item?.package_text}
+              {truncateText(item?.package_text, 20)}
             </p>
           </div>
         </div>
@@ -184,31 +209,34 @@ const SinglePackage = ({ item, setOpenModal, height }) => {
                 {item?.delivery_time}{" "}
                 {item?.delivery_time === "1" ? "Day Delivery" : "Days Delivery"}
               </span>{" "}
-              <Tooltip
-                className="flowbite-tooltip-target"
-                placement="top"
-                content={
+              <div className="relative inline-block">
+                <img
+                  className="w-[14px] h-[14px] cursor-pointer"
+                  src="/assets/mark.png"
+                  alt=""
+                  onMouseEnter={showTooltip}
+                  onMouseLeave={hideTooltip}
+                />
+                {isTooltipVisible && (
                   <div
-                    className="py-2"
-                    style={{ fontSize: "12px", left: "300px" }}
+                    className="absolute z-10 bg-gray-800 bg-opacity-50 text-white text-sm rounded py-3 px-4 bottom-full left-1/2 transform -translate-x-1/2 -translate-y-2 w-[300px]"
+                    onMouseEnter={showTooltip}
+                    onMouseLeave={hideTooltip}
                   >
-                    <h3>
-                      All days are business days except Friday and Saturday.
-                    </h3>
-                    <button className="bg-[#FF6C37] px-2 text-[13px] mt-2 rounded-sm">
+                    All days are business days except Friday and Saturday.
+                    <button
+                      className="bg-[#FF6C37] px-2 text-[13px] mt-2 rounded-sm mx-3"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        // Add your "Learn More" button functionality here
+                        console.log("Learn More clicked");
+                      }}
+                    >
                       Learn More
                     </button>
                   </div>
-                }
-              >
-                <div className="cursor-pointer">
-                  <img
-                    className="w-[14px] h-[14px]"
-                    src="/assets/mark.png"
-                    alt=""
-                  />
-                </div>
-              </Tooltip>
+                )}
+              </div>
             </div>
           </div>
         </div>

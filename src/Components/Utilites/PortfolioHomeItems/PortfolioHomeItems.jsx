@@ -15,6 +15,14 @@ const PortfolioHomeItems = ({ portfolios, services }) => {
   }, []);
   // console.log(services);
 
+  const truncateText = (text, maxWords) => {
+    const words = text.split(" ");
+    if (words.length > maxWords) {
+      return words.slice(0, maxWords).join(" ") + "...";
+    }
+    return text;
+  };
+
   return (
     <div className="md:py-5 lg:pt-20">
       <Container>
@@ -113,7 +121,7 @@ const PortfolioHomeItems = ({ portfolios, services }) => {
                             </h3>
                             {/* description */}
                             <p className="w-[250px] text-[14px] text-[#666666] py-3 portfolio-textHover">
-                              {portfolio.text.slice(0, 200)}
+                              {truncateText(portfolio?.text, 35)}
                             </p>
                           </div>
                           {/* Read More Btn */}

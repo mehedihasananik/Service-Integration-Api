@@ -51,19 +51,21 @@ const ServiceDetails = ({
             })}
           </div>
           {/* custom projects */}
-          <Link href={"/#projectDetails"}>
-            <div className="flex flex-col lg:flex-row justify-center items-center py-14 gap-5 text-center mt-[20px]">
-              <h2 className="text-[20px] text-[#646464]">
-                <span className="text-[#FF693B]">
-                  Have a complex or custom project?{" "}
-                </span>{" "}
-                Send details and get offer
-              </h2>
+
+          <div className="flex flex-col lg:flex-row justify-center items-center py-14 gap-5 text-center mt-[20px]">
+            <h2 className="text-[20px] text-[#646464]">
+              <span className="text-[#FF693B]">
+                Have a complex or custom project?{" "}
+              </span>{" "}
+              Send details and get offer
+            </h2>
+            <Link href={"/#projectDetails"}>
               <button className="border border-[#FF693B] text-[#FF693B] text-[16px] font-medium px-10 py-2 rounded-[4px] hover:text-white hover:bg-[#FF693B] transition-all duration-300">
                 Get Custom Offer
               </button>
-            </div>
-          </Link>
+            </Link>
+          </div>
+
           {/* order Slider */}
           <OrderSliderLg
             sliders={sliders}
