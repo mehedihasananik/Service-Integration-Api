@@ -93,8 +93,8 @@ const ServicePortolio = () => {
           return (
             <SwiperSlide key={portfolio.id} className="">
               <Link href={`/portfolio/${portfolio.slug}`}>
-                <div className="group ">
-                  <div className="w-[630px]  portfolio-bgHover cursor-pointer xxl:space-x-4 4xl:space-x-0 flex flex-col lg:flex-row xll:justify-between bg-[#FFFFFF] rounded-xl border border-[#CBD5E1]">
+                <div className="group xl:flex xl:justify-center 4xl:block ">
+                  <div className="w-[630px] xll:w-[670px] 2xl:w-[710px] 4xl:w-[635px] portfolio-bgHover cursor-pointer xxl:space-x-4 4xl:space-x-0 flex flex-col lg:flex-row xll:justify-between bg-[#FFFFFF] rounded-xl border border-[#CBD5E1]">
                     <div>
                       <Image
                         width={800}

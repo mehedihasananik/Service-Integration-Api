@@ -59,9 +59,7 @@ const RelevantServices = ({ service }) => {
 
   return (
     <>
-      {relevant_services.length < 0 ? (
-        ""
-      ) : (
+      {relevant_services.length > 0 ? (
         <div className="pt-5 pb-10 md:pt-3 md:pb-8">
           <div className="text-center font-Raleway">
             <h3 className="text-[32px] font-bold md:text-[48px] pb-10">
@@ -123,7 +121,9 @@ const RelevantServices = ({ service }) => {
             </Swiper>
           </div>
         </div>
-      )}{" "}
+      ) : (
+        " "
+      )}
     </>
   );
 };

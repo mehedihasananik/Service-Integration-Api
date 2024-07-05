@@ -109,7 +109,7 @@ const TestimonialHomeItems = ({ testimonials }) => {
                   /{totalSlides}
                 </span>
               </div>
-              <div className="text-center lg:text-left hidden xll:block ">
+              <div className="text-center lg:text-left hidden xl:block ">
                 <span className="text-[48px] font-Raleway text-[#0A2C8C] font-bold">
                   {currentSlide + 3}
                 </span>

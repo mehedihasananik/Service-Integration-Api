@@ -136,7 +136,7 @@ const ServicesPageContent = ({ serviceCategories, services }) => {
               <UserLoading />
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid md:grid-cols-2 lg:grid-cols-2  xl:grid-cols-4 justify-items-center place-items-center gap-8 pb-8 lg:gap-x-40 4xl:gap-x-16  mt-5 md:mt-10 ">
+            <div className="grid grid-cols-1 md:grid md:grid-cols-2 lg:grid-cols-2  xl:grid-cols-4 justify-items-center place-items-center gap-x-8 pb-8 lg:gap-x-44  xxl:gap-x-40    4xl:gap-x-16  mt-5 md:mt-10 ">
               {serviceItems.map((service, index) => {
                 // console.log(service);
                 return (

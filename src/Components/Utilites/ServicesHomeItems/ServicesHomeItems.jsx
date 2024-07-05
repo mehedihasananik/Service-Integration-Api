@@ -48,13 +48,14 @@ const DemoServices = ({ services }) => {
       slidesPerView: 3,
       spaceBetween: 30,
     },
+
     1336: {
-      slidesPerView: 3,
-      spaceBetween: 10,
+      slidesPerView: 2,
+      spaceBetween: 50,
     },
     1280: {
       slidesPerView: 2,
-      spaceBetween: 30,
+      spaceBetween: 10,
     },
     1024: {
       slidesPerView: 2,
@@ -146,7 +147,7 @@ const DemoServices = ({ services }) => {
                       <SwiperSlide key={service.id}>
                         <Link href={`/services/${service.slug}`}>
                           <div
-                            className={`w-[300px] h-[550px] xl:w-[350px] xxl:w-[280px] xll:w-[300px] 4xl:w-[330px] group shadow-lg rounded-md border border-[#E2E8F0] cursor-pointer ${
+                            className={`w-[300px] h-[550px] xl:w-[330px] xxl:w-[330px] xll:w-[350px] 4xl:w-[330px] group shadow-lg rounded-md border border-[#E2E8F0] cursor-pointer ${
                               isThirdSlide && "no-margin"
                             } ${
                               isLastSlide ? "" : "no-margin2"
