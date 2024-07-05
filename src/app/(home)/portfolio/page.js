@@ -8,7 +8,7 @@ export const metadata = {
 };
 
 async function portfolioCategory() {
-  const res = await fetch(`${sevice_portfolioApi}`, {
+  const res = await fetch(`https://admin.envobyte.com/api/sevice_portfolio`, {
     next: { revalidate: 10 },
   });
 
@@ -44,17 +44,14 @@ const Portfolio = async () => {
   const portfolios = await portfolioCategory();
   const portfoliosCategories = await portfoliosCategoriesApi();
   const services = await servicesApi();
-  // console.log(services);
 
   return (
-    <div>
-      <Container>
-        <PortfolioPage
-          portfolios={portfolios}
-          portfoliosCategories={portfoliosCategories}
-          services={services}
-        />
-      </Container>
+    <div className="max-w-[1520px] mx-auto px-[6%] md:px-[4%] lg:px-[2%] 4xl:px-[4%]">
+      <PortfolioPage
+        portfolios={portfolios}
+        portfoliosCategories={portfoliosCategories}
+        services={services}
+      />
     </div>
   );
 };

@@ -138,7 +138,7 @@ const ServicesPageContent = ({ serviceCategories, services }) => {
           ) : (
             <div className="grid grid-cols-1 md:grid md:grid-cols-2 lg:grid-cols-2  xl:grid-cols-4 justify-items-center place-items-center gap-8 pb-8 lg:gap-x-40 4xl:gap-x-16  mt-5 md:mt-10 ">
               {serviceItems.map((service, index) => {
-                console.log(service);
+                // console.log(service);
                 return (
                   <Link
                     key={index} // Change key to index
@@ -164,7 +164,7 @@ const ServicesPageContent = ({ serviceCategories, services }) => {
                               {service.title}
                             </h3>
                             <p className="text-[14px] text-[#475569]  group-hover:text-white transition-all duration-200">
-                              {service.details.slice(0, 195)}..
+                              {service.details.slice(0, 195)}...
                             </p>
                           </div>
                           <div className="flex  group-hover:rounded-b-md items-center justify-between px-3 h-[50px] pt-10 pb-12 group-hover:bg-[#FF693B] transition-all duration-200">

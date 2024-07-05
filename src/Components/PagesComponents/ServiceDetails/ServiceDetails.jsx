@@ -11,13 +11,7 @@ import OrderSliderLg from "@/Components/Utilites/OrderSlider/OrderSliderLg";
 import OrderSliderSm from "@/Components/Utilites/OrderSlider/OrderSliderSm";
 import QuestionService from "@/Components/Home/Questions/QuestionService";
 
-const ServiceDetails = ({
-  service,
-  sliders,
-  packages,
-  imgBlurSlider,
-  imgBlurThumb,
-}) => {
+const ServiceDetails = ({ service, sliders, packages }) => {
   const [openModal, setOpenModal] = useState(false);
 
   const height = packages[2].package_details.length;
@@ -67,11 +61,7 @@ const ServiceDetails = ({
           </div>
 
           {/* order Slider */}
-          <OrderSliderLg
-            sliders={sliders}
-            imgBlurSlider={imgBlurSlider}
-            imgBlurThumb={imgBlurThumb}
-          />
+          <OrderSliderLg sliders={sliders} />
           <OrderSliderSm sliders={sliders} />
           {/* description */}
           <div className="bg-[#FCFCFC] mt-4 p-4 md:p-7 rounded-lg text-justify">
@@ -79,22 +69,7 @@ const ServiceDetails = ({
               Description
             </h2>
             <p className="text-[16px] text-[#666] pt-2">
-              Lorem ipsum dolor sit amet consectetur. Eget egestas lectus sit
-              velit vitae diam mollis tellus adipiscing. Arcu netus orci eu
-              blandit quis arcu ut massa diam. Adipiscing consequat enim lacus
-              in. Diam consequat proin cras cursus. Ultrices purus nunc integer
-              amet ultrices. Tortor ut tempus feugiat ut. Semper purus sagittis
-              sit tortor. Lorem ipsum dolor sit amet consectetur. Eget egestas
-              lectus sit velit vitae diam mollis tellus adipiscing. Arcu netus
-              orci eu blandit quis arcu ut massa diam. Adipiscing consequat enim
-              lacus in. Diam consequat proin cras cursus. Ultrices purus nunc
-              integer amet ultrices. Tortor ut tempus feugiat ut. Semper purus
-              sagittis sit tortor. Lorem ipsum dolor sit amet consectetur. Eget
-              egestas lectus sit velit vitae diam mollis tellus adipiscing. Arcu
-              netus orci eu blandit quis arcu ut massa diam. Adipiscing
-              consequat enim lacus in. Diam consequat proin cras cursus.
-              Ultrices purus nunc integer amet ultrices. Tortor ut tempus
-              feugiat ut. Semper purus sagittis sit tortor.
+              {service?.service_details[0]?.text}
             </p>
           </div>
 

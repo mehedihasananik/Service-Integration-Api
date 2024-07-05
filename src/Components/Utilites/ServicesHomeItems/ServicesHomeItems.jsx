@@ -146,53 +146,50 @@ const DemoServices = ({ services }) => {
                       <SwiperSlide key={service.id}>
                         <Link href={`/services/${service.slug}`}>
                           <div
-                            className={`w-[300px] h-[500px] xl:w-[350px]  xxl:w-[280px] xll:w-[300px] 4xl:w-[330px] group shadow-lg rounded-md border border-[#E2E8F0]   cursor-pointer ${
+                            className={`w-[300px] h-[550px] xl:w-[350px] xxl:w-[280px] xll:w-[300px] 4xl:w-[330px] group shadow-lg rounded-md border border-[#E2E8F0] cursor-pointer ${
                               isThirdSlide && "no-margin"
-                            } ${isLastSlide ? "" : "no-margin2"}`}
+                            } ${
+                              isLastSlide ? "" : "no-margin2"
+                            } hover:bg-[#FF693B] hover:text-white`}
                           >
-                            <div className="flex flex-col">
-                              <div className="bg-[#E2E8F0] group-hover:bg-[#FF693B] ">
-                                {/* slider image */}
+                            <div className="flex flex-col h-full">
+                              <div className="bg-[#E2E8F0] group-hover:bg-[#FF693B] transition-all duration-300">
                                 <div>
                                   <Image
                                     width={700}
                                     height={700}
-                                    className="w-full h-[270px]"
-                                    src={
-                                      service.image || "/assets/service1.jpeg"
-                                    }
+                                    className="w-full h-[304px] overflow-hidden rounded-t-md"
+                                    src={service?.image}
                                     alt=""
                                   />
                                 </div>
                               </div>
 
-                              {/* title & description */}
-
-                              <div className="px-5 h-[155px] group-hover:bg-[#FF693B] group-hover:h-[155px] transition-all duration-300  ">
-                                <h3 className="text-[20px] font-bold text-[#1E293B] font-Raleway whitespace-nowrap pt-5   group-hover:text-white transition-all duration-300 ">
+                              <div className="px-5 h-[155px] group-hover:bg-[#FF693B] group-hover:h-[155px] transition-all duration-300 flex-grow">
+                                <h3 className="text-[20px] font-bold text-[#1E293B] font-Raleway whitespace-nowrap pt-5 group-hover:text-white transition-all duration-300">
                                   {service.title}
                                 </h3>
                                 <p className="text-[14px] text-[#475569] group-hover:text-white transition-all duration-300">
-                                  {truncateText(service.details, 33)}
+                                  {service?.details.slice(0, 195)}..
                                 </p>
                               </div>
+
                               <div className="flex items-center justify-between px-5 py-5 group-hover:bg-[#FF693B] transition-all duration-300 group-hover:rounded-b-md">
                                 <div className="font-Raleway">
-                                  <span className=" font-bold text-[16px] text-[#1E293B] group-hover:text-[#fff] ">
+                                  <span className="font-bold text-[16px] text-[#1E293B] group-hover:text-white">
                                     Start From
                                   </span>
                                 </div>
-                                {/* price */}
 
                                 <div>
                                   <h3 className="flex items-center space-x-[1px] font-Raleway text-[20px] font-bold text-[#0A2C8C] group-hover:text-white transition-all duration-200">
-                                    <span> $</span>{" "}
+                                    <span>$</span>
                                     <span>{service.start_price}</span>
                                   </h3>
                                 </div>
-                                {/* view more button */}
+
                                 <div>
-                                  <button className="text-[14px] bg-[#FF693B] rounded-md px-8 py-[5px] text-white border border-[#ff693B]  group-hover:bg-white group-hover:text-[#FF693B] transition-all duration-300">
+                                  <button className="text-[14px] bg-[#FF693B] rounded-md px-8 py-[5px] text-white border border-[#ff693B] group-hover:bg-white group-hover:text-[#FF693B] transition-all duration-300">
                                     View
                                   </button>
                                 </div>

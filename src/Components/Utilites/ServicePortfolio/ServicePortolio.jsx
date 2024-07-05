@@ -20,7 +20,9 @@ const ServicePortolio = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch(`${sevice_portfolioApi}`);
+      const response = await fetch(
+        `https://admin.envobyte.com/api/sevice_portfolio`
+      );
       const data = await response.json();
       setPortfolios(data);
       setLoading(false);
@@ -73,6 +75,7 @@ const ServicePortolio = () => {
     }
     return text;
   };
+  console.log(portfolios);
 
   return (
     <div className="px-[5%] md:px-[5%] lg:px-0">
@@ -90,33 +93,33 @@ const ServicePortolio = () => {
           return (
             <SwiperSlide key={portfolio.id} className="">
               <Link href={`/portfolio/${portfolio.slug}`}>
-                <div className="group">
-                  <div className="portfolio-bgHover cursor-pointer flex flex-col xl:flex-row justify-between bg-[#FFFFFF] rounded-xl  ">
-                    <div className="overflow-hidden">
+                <div className="group ">
+                  <div className="w-[630px]  portfolio-bgHover cursor-pointer xxl:space-x-4 4xl:space-x-0 flex flex-col lg:flex-row xll:justify-between bg-[#FFFFFF] rounded-xl border border-[#CBD5E1]">
+                    <div>
                       <Image
                         width={800}
                         height={262}
-                        className="overflow-hidden w-full lg:w-[400px] h-[350px] md:h-[420px] border-b-0 object-cover   border-[#CBD5E1]  rounded-b-none rounded-r-none rounded-t-lg border lg:rounded-l-lg lg:rounded-r-none lg:rounded-l-0 lg:rounded-t lg:border-r-0 lg:border-b "
-                        src={portfolio.image}
+                        className="lg:w-[340px] 4xl:w-[332px]  lg:h-[450px] 4xl:h-[420px] object-cover md:rounded-l"
+                        src={portfolio?.image}
                         alt=""
                       />
                     </div>
-                    <div className="flex flex-col justify-center items-center p-3 md:py-0 2xl:px-10  border border-t-0  border-[#CBD5E1]  md:border md:border-t-0 lg:border-t lg:border-l-0  rounded-b-lg  md:rounded-r-0 md:rounded-l-none lg:rounded-r-lg">
-                      <div className="text-center">
+                    <div className="flex flex-col justify-center items-center p-3 md:py-0 xll:px-8 2xl:px-12 4xl:px-8">
+                      <div className="text-center h-[300px]">
                         <h4 className="text-[14px] text-[#999999] pt-3 pb-3 md:pt-0 md:pb-6 portfolio-textHover">
                           {portfolio?.service_name[0]?.service_name}
                         </h4>
                         <h3 className="text-[16px] font-bold font-Raleway text-[#333333] portfolio-textHover">
-                          {portfolio.heading}
+                          {portfolio?.heading}
                         </h3>
-                        <p className="w-[250px] text-[14px] text-[#666666] py-3 portfolio-textHover">
-                          {truncateText(portfolio?.text, 35)}
+                        <p className="w-[250px] text-justify text-[14px] text-[#666666] py-3 portfolio-textHover">
+                          {portfolio.text.slice(0, 400)}...
                         </p>
                       </div>
-                      <div className="group flex justify-center items-center gap-2 text-[#FF693B] font-bold mt-2 pb-2 md:mt-5 portfolio-textHover md:pb-6 lg:pb-0">
+                      <div className="group flex justify-center items-center gap-2 text-[#FF693B] font-bold mt-10 portfolio-textHover pb-6 lg:pb-0">
                         <button className="text-[14px]">Read More</button>
                         <span className="w-[19px] font-bold">
-                          <HiArrowSmallRight className="text-xl " />
+                          <HiArrowSmallRight className="text-xl" />
                         </span>
                       </div>
                     </div>

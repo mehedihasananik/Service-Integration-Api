@@ -5,7 +5,7 @@ const bannerApi = `${apiEndpoint}/home_banner`;
 const brandsApi = `${apiEndpoint}/home_brand`;
 const servicesApi = `${apiEndpoint}/sevice_items`;
 const about_us_homeApi = `${apiEndpoint}/about_us_home`;
-const sevice_portfolioApi = `${apiEndpoint}/sevice_portfolio`;
+const sevice_portfolioApi = "https://admin.envobyte.com/api/sevice_portfolio";
 const whyChoose_us = `${apiEndpoint}/home_choose_us`;
 
 const serviceApi = `${apiEndpoint}/service`;
