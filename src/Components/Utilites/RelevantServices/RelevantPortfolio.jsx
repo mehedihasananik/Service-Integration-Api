@@ -49,9 +49,9 @@ const RelevantPortfolio = ({ singlePortfolioItem }) => {
   return (
     <>
       {relevant.length > 0 ? (
-        <div className="pt-5 pb-10 md:pt-3 md:pb-8">
+        <div className="pt-0 pb-5 md:pt-3 md:pb-0">
           <div className="text-center font-Raleway">
-            <h3 className="text-[32px] font-bold md:text-[48px] pb-10">
+            <h3 className="text-[32px] font-bold md:text-[48px] pb-5">
               Relevant Services
             </h3>
           </div>

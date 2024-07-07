@@ -124,7 +124,7 @@ const PortfolioHomeItems = ({ portfolios, services }) => {
                             </div>
                             <div>
                               <p className="w-full px-[10%] flex justify-center text-[14px] text-[#666666] py-3 portfolio-textHover pt-7">
-                                <span>{portfolio.text.slice(0, 240)}...</span>
+                                <span>{portfolio.text.slice(0, 220)}...</span>
                               </p>
                               <div className="pt-0 group flex justify-center items-center gap-2 text-[#FF693B] font-bold portfolio-textHover pb-6 lg:pb-0">
                                 <button className="text-[14px]">

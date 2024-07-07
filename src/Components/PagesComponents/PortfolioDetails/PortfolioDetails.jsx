@@ -9,7 +9,7 @@ const PortfolioDetails = ({ singlePortfolioItem }) => {
   const { basic, details, relevant } = singlePortfolioItem;
 
   return (
-    <div>
+    <div className="bg-[rgb(255,255,255)]">
       <div className="md:py-10 md:pb-5">
         <Container>
           <div className="text-center pb-3 lg:pb-5  md:pt-0">
@@ -56,12 +56,12 @@ const PortfolioDetails = ({ singlePortfolioItem }) => {
         </h3>
         <Link
           href={"/#projectDetails"}
-          className="bg-[#FF693B] border border-[#FF693B] text-[18px] font-Poppins text-white px-5 py-2 md:px-10 md:py-3 rounded-lg mt-3 transition-all duration-300 hover:bg-[#fff] hover:text-[#FF693B]"
+          className="bg-[#FF693B] border border-[#FF693B] text-[18px] font-Poppins text-white px-5 py-2 md:px-10 md:py-2 rounded-lg mt-3 transition-all duration-300 hover:bg-[#fff] hover:text-[#FF693B]"
         >
           Contact Us
         </Link>
       </div>
-      <div className="bg-[#F8FAFC] py-5 md:py-10">
+      <div className="bg-[#F8FAFC] py-5 md:pt-3 md:pb-10">
         <Container>
           <RelevantPortfolio singlePortfolioItem={singlePortfolioItem} />
         </Container>

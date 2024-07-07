@@ -62,7 +62,7 @@ const ServicePortolio = ({ portfolios }) => {
     <>
       {portfolios?.length > 0 ? (
         <>
-          <div className="text-center py-3 md:py-5">
+          <div className="text-center py-3 md:pt-0 md:pb-5">
             <h2 className="text-[32px] md:text-[48px] text-[#0F172A] font-bold font-Raleway">
               Portfolio&apos;s{" "}
             </h2>
@@ -133,7 +133,7 @@ const ServicePortolio = ({ portfolios }) => {
           <div className="flex justify-center py-10">
             <Link
               href={"/portfolio"}
-              className="text-[16px] bg-[#FF693B] px-11 py-3 text-white rounded-xl border border-[#FF693B]  hover:bg-white hover:text-[#FF693B] transition-all duration-300"
+              className="text-[16px] bg-[#FF693B] px-11 py-2 text-white rounded-lg border border-[#FF693B]  hover:bg-white hover:text-[#FF693B] transition-all duration-300"
             >
               See More
             </Link>
