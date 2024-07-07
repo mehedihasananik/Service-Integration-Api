@@ -15,6 +15,7 @@ const ServiceDetails = ({ service, sliders, packages }) => {
   const [openModal, setOpenModal] = useState(false);
 
   const height = packages[2].package_details.length;
+  console.log(service);
 
   return (
     <>

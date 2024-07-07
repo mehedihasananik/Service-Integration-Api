@@ -113,7 +113,7 @@ const PortfolioHomeItems = ({ portfolios, services }) => {
                             <h4 className="text-[14px] text-[#999999] pt-3 pb-3 md:pt-0 md:pb-6 portfolio-textHover">
                               {portfolio?.service_name[0]?.service_name}
                             </h4>
-                            <div className="text-[16px] px-[10%] w-full h-[75px] font-bold font-Raleway text-[#333333] portfolio-textHover line-clamp-3">
+                            <div className="text-[16px] px-[10%] w-full h-[65px] font-bold font-Raleway text-[#333333] portfolio-textHover line-clamp-3">
                               {portfolio?.heading
                                 .split(" ")
                                 .slice(0, 12)
@@ -123,10 +123,10 @@ const PortfolioHomeItems = ({ portfolios, services }) => {
                                 : ""}
                             </div>
                             <div>
-                              <p className="w-full px-[10%] flex justify-center text-[14px] text-[#666666] py-3 portfolio-textHover pt-7">
+                              <p className="w-full px-[10%] flex justify-center text-[14px] text-[#666666] py-3 portfolio-textHover pt-3.5">
                                 <span>{portfolio.text.slice(0, 220)}...</span>
                               </p>
-                              <div className="pt-0 group flex justify-center items-center gap-2 text-[#FF693B] font-bold portfolio-textHover pb-6 lg:pb-0">
+                              <div className="pt-5 group flex justify-center items-center gap-2 text-[#FF693B] font-bold portfolio-textHover pb-6 lg:pb-0">
                                 <button className="text-[14px]">
                                   Read More
                                 </button>
