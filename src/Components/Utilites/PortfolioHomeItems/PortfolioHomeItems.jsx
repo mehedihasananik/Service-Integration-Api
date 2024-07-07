@@ -97,30 +97,58 @@ const PortfolioHomeItems = ({ portfolios, services }) => {
                     key={portfolio.id}
                     href={`/portfolio/${portfolio.slug}`}
                   >
-                    <div className="group ">
-                      <div className="portfolio-bgHover cursor-pointer xxl:space-x-4 4xl:space-x-0 flex flex-col lg:flex-row xll:justify-between bg-[#FFFFFF] rounded-xl border border-[#CBD5E1]">
+                    <div className="group border border-[#CBD5E1] rounded-[10px]">
+                      <div className="portfolio-bgHover cursor-pointer xxl:space-x-4 4xl:space-x-0 flex flex-col lg:flex-row xll:justify-between bg-[#FFFFFF] rounded-[10px]">
                         <div>
                           <Image
                             width={800}
                             height={262}
-                            className="lg:w-[340px] 4xl:w-[332px]  lg:h-[450px] 4xl:h-[420px] object-cover md:rounded-l"
+                            className="lg:w-[340px] 4xl:w-[332px] lg:h-[450px] 4xl:h-[420px] object-cover rounded-l-[10px]"
                             src={portfolio?.image}
                             alt=""
                           />
                         </div>
                         <div className="flex flex-col justify-center items-center p-3 md:py-0 xll:px-8 2xl:px-12 4xl:px-8">
                           <div className="text-center h-[300px]">
-                            <h4 className="text-[14px] text-[#999999] pt-3 pb-3 md:pt-0 md:pb-6 portfolio-textHover">
+                            <h4 className="text-[14px] text-[#999999] pt-3 pb-3 md:pt-0 md:pb-6 portfolio-textHover ">
                               {portfolio?.service_name[0]?.service_name}
                             </h4>
-                            <h3 className="text-[16px] font-bold font-Raleway text-[#333333] portfolio-textHover">
-                              {portfolio?.heading}
+                            <h3 className="text-[16px] w-[280px] font-bold font-Raleway text-[#333333] portfolio-textHover  ">
+                              {(() => {
+                                const originalHeading =
+                                  portfolio?.heading || "";
+                                const truncatedHeading = originalHeading.slice(
+                                  0,
+                                  145
+                                );
+                                const words = truncatedHeading.split(" ");
+                                const isHeadingTruncated =
+                                  originalHeading.length > 146;
+
+                                return (
+                                  <>
+                                    {words.map((word, index) => (
+                                      <React.Fragment key={index}>
+                                        {word}
+                                        {index === 3 ||
+                                        index === 9 ||
+                                        index === 12 ? (
+                                          <br />
+                                        ) : (
+                                          " "
+                                        )}
+                                      </React.Fragment>
+                                    ))}
+                                    {isHeadingTruncated && "..."}
+                                  </>
+                                );
+                              })()}
                             </h3>
-                            <p className="w-[250px] text-justify text-[14px] text-[#666666] py-3 portfolio-textHover">
-                              {portfolio.text.slice(0, 400)}...
+                            <p className="w-[280px] text-center text-[14px] text-[#666666] py-3 portfolio-textHover pt-10">
+                              <span>{portfolio.text.slice(0, 195)}...</span>
                             </p>
                           </div>
-                          <div className="group flex justify-center items-center gap-2 text-[#FF693B] font-bold mt-10 portfolio-textHover pb-6 lg:pb-0">
+                          <div className="group flex justify-center items-center gap-2 text-[#FF693B] font-bold mt-10 portfolio-textHover pb-6 lg:pb-0 mt-14">
                             <button className="text-[14px]">Read More</button>
                             <span className="w-[19px] font-bold">
                               <HiArrowSmallRight className="text-xl" />

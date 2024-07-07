@@ -154,7 +154,7 @@ const DemoServices = ({ services }) => {
                             } hover:bg-[#FF693B] hover:text-white`}
                           >
                             <div className="flex flex-col h-full">
-                              <div className="bg-[#E2E8F0] group-hover:bg-[#FF693B] transition-all duration-300">
+                              <div className="bg-[#E2E8F0] ] transition-all duration-300">
                                 <div>
                                   <Image
                                     width={700}

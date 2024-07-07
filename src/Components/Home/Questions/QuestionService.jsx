@@ -9,16 +9,16 @@ const QuestionService = ({ className, title, service }) => {
 
   return (
     <Container>
-      <div className={`md:py-10 ${className}`}>
+      <div className={`pt-6 ${className}`}>
         <div className="max-w-[1680px] mx-auto">
           <>
             <div className="text-center">
-              <h3 className="text-[#0F172A] text-[30px] md:text-[48px] font-bold font-Raleway pb-5">
+              <h3 className="text-[#0F172A] text-[30px] md:text-[48px] font-bold font-Raleway pb-0">
                 {title}
               </h3>
             </div>
-            <div className="py-5 md:py-10">
-              <div className="md:p-4 rounded-lg">
+            <div className="py-5 md:pb-5">
+              <div className="md:pt-0 rounded-lg">
                 {services_faq.map((question, index) => (
                   <Accordion
                     key={index}

@@ -33,7 +33,7 @@ const PortfolioDetails = ({ singlePortfolioItem }) => {
 
                 <div className="w-[100%]">
                   <Image
-                    className="md:w-full md:h-[75vh]"
+                    className="md:w-full md:h-[auto]"
                     alt="image"
                     width={1000}
                     height={1000}

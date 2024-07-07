@@ -14,27 +14,8 @@ import Link from "next/link";
 import { Autoplay } from "swiper/modules";
 import { sevice_portfolioApi } from "@/config/apis";
 
-const ServicePortolio = () => {
-  const [portfolios, setPortfolios] = useState([]);
+const ServicePortolio = ({ portfolios }) => {
   const [loading, setLoading] = useState(true);
-
-  const fetchData = async () => {
-    try {
-      const response = await fetch(
-        `https://admin.envobyte.com/api/sevice_portfolio`
-      );
-      const data = await response.json();
-      setPortfolios(data);
-      setLoading(false);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
 
   const swiperRef = useRef(null);
 
@@ -42,7 +23,7 @@ const ServicePortolio = () => {
     // when window width is >= 1024px (lg)
     1920: {
       slidesPerView: 2.5,
-      spaceBetween: 30,
+      spaceBetween: 50,
     },
     1336: {
       slidesPerView: 2,
@@ -78,59 +59,90 @@ const ServicePortolio = () => {
   console.log(portfolios);
 
   return (
-    <div className="px-[5%] md:px-[5%] lg:px-0">
-      <Swiper
-        ref={swiperRef}
-        slidesPerView={3}
-        spaceBetween={30}
-        breakpoints={breakpoints}
-        className="mySwiper "
-        modules={[Autoplay]}
-        autoplay={{ delay: 3000, disableOnInteraction: false }}
-      >
-        {portfolios.map((portfolio) => {
-          // console.log(portfolio);
-          return (
-            <SwiperSlide key={portfolio.id} className="">
-              <Link href={`/portfolio/${portfolio.slug}`}>
-                <div className="group xl:flex xl:justify-center 4xl:block ">
-                  <div className="w-[630px] xll:w-[670px] 2xl:w-[710px] 4xl:w-[635px] portfolio-bgHover cursor-pointer xxl:space-x-4 4xl:space-x-0 flex flex-col lg:flex-row xll:justify-between bg-[#FFFFFF] rounded-xl border border-[#CBD5E1]">
-                    <div>
-                      <Image
-                        width={800}
-                        height={262}
-                        className="lg:w-[340px] 4xl:w-[332px]  lg:h-[450px] 4xl:h-[420px] object-cover md:rounded-l"
-                        src={portfolio?.image}
-                        alt=""
-                      />
-                    </div>
-                    <div className="flex flex-col justify-center items-center p-3 md:py-0 xll:px-8 2xl:px-12 4xl:px-8">
-                      <div className="text-center h-[300px]">
-                        <h4 className="text-[14px] text-[#999999] pt-3 pb-3 md:pt-0 md:pb-6 portfolio-textHover">
-                          {portfolio?.service_name[0]?.service_name}
-                        </h4>
-                        <h3 className="text-[16px] font-bold font-Raleway text-[#333333] portfolio-textHover">
-                          {portfolio?.heading}
-                        </h3>
-                        <p className="w-[250px] text-justify text-[14px] text-[#666666] py-3 portfolio-textHover">
-                          {portfolio.text.slice(0, 400)}...
-                        </p>
+    <>
+      {portfolios?.length > 0 ? (
+        <>
+          <div className="text-center py-3 md:py-5">
+            <h2 className="text-[32px] md:text-[48px] text-[#0F172A] font-bold font-Raleway">
+              Portfolio&apos;s{" "}
+            </h2>
+          </div>
+          <div className="px-[5%] md:px-[5%] lg:px-0">
+            <Swiper
+              ref={swiperRef}
+              slidesPerView={3}
+              spaceBetween={30}
+              breakpoints={breakpoints}
+              className="mySwiper "
+              modules={[Autoplay]}
+              autoplay={{ delay: 3000, disableOnInteraction: false }}
+            >
+              {portfolios?.map((portfolio) => {
+                console.log(portfolio);
+                return (
+                  <SwiperSlide key={portfolio.id} className="">
+                    <Link href={`/portfolio/${portfolio.slug}`}>
+                      <div className="group rounded-[10px] overflow-hidden ">
+                        <div className="border border-[#CBD5E1] portfolio-bgHover h-[440px] w-[650px] cursor-pointer flex bg-[#FFFFFF] rounded-[10px] ">
+                          <div className="w-1/2 h-full">
+                            <Image
+                              width={800}
+                              height={500}
+                              className="w-[350px] h-full  rounded-l-[10px]"
+                              src={portfolio?.image}
+                              alt=""
+                            />
+                          </div>
+                          <div className="w-1/2 h-[500px] flex flex-col justify-center items-center p-0 md:py-0 xll:px-8 2xl:px-12 4xl:px-0">
+                            <div className="text-center ">
+                              <h4 className="text-[14px] text-[#999999] pt-3 pb-3 md:pt-0 md:pb-6 portfolio-textHover">
+                                {portfolio?.service_name[0]?.service_name}
+                              </h4>
+                              <div className="text-[16px] px-[10%] w-[380px] h-[75px] font-bold font-Raleway text-[#333333] portfolio-textHover line-clamp-3">
+                                {portfolio?.heading
+                                  .split(" ")
+                                  .slice(0, 12)
+                                  .join(" ")}
+                                {portfolio?.heading.split(" ").length > 12
+                                  ? "..."
+                                  : ""}
+                              </div>
+                              <div>
+                                <p className="w-[370px] px-[10%] flex justify-center  text-center text-[14px] text-[#666666] py-3 portfolio-textHover pt-7">
+                                  <span>{portfolio.text.slice(0, 240)}...</span>
+                                </p>
+                                <div className="pt-0 group flex justify-center items-center gap-2 text-[#FF693B] font-bold portfolio-textHover pb-6 lg:pb-0">
+                                  <button className="text-[14px]">
+                                    Read More
+                                  </button>
+                                  <span className="w-[19px] font-bold">
+                                    <HiArrowSmallRight className="text-xl" />
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                      <div className="group flex justify-center items-center gap-2 text-[#FF693B] font-bold mt-10 portfolio-textHover pb-6 lg:pb-0">
-                        <button className="text-[14px]">Read More</button>
-                        <span className="w-[19px] font-bold">
-                          <HiArrowSmallRight className="text-xl" />
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            </SwiperSlide>
-          );
-        })}
-      </Swiper>
-    </div>
+                    </Link>
+                  </SwiperSlide>
+                );
+              })}
+            </Swiper>
+          </div>
+          <div className="flex justify-center py-10">
+            <Link
+              href={"/portfolio"}
+              className="text-[16px] bg-[#FF693B] px-11 py-3 text-white rounded-xl border border-[#FF693B]  hover:bg-white hover:text-[#FF693B] transition-all duration-300"
+            >
+              See More
+            </Link>
+          </div>
+        </>
+      ) : (
+        ""
+      )}
+    </>
   );
 };
 

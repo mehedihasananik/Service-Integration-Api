@@ -20,9 +20,9 @@ const ServiceDetails = ({ service, sliders, packages }) => {
     <>
       {" "}
       <Container>
-        <div className="pt-3 pb-8">
+        <div className="pt-3 pb-4">
           {/* title */}
-          <div className="text-center font-Raleway pb-10">
+          <div className="text-center font-Raleway pb-5">
             <h1 className="text-[#10F172A] text-[32px] md:text-[48px] font-bold capitalize">
               {service?.service_details[0]?.sevice_items_name}
             </h1>
@@ -46,7 +46,7 @@ const ServiceDetails = ({ service, sliders, packages }) => {
           </div>
           {/* custom projects */}
 
-          <div className="flex flex-col lg:flex-row justify-center items-center py-14 gap-5 text-center mt-[20px]">
+          <div className="flex flex-col lg:flex-row justify-center items-center py-8 gap-5 text-center mt-[20px]">
             <h2 className="text-[20px] text-[#646464]">
               <span className="text-[#FF693B]">
                 Have a complex or custom project?{" "}
@@ -78,22 +78,9 @@ const ServiceDetails = ({ service, sliders, packages }) => {
       </Container>
       {/* portfolios*/}
       <div>
-        <div className="text-center py-3 md:py-5">
-          <h2 className="text-[32px] md:text-[48px] text-[#0F172A] font-bold font-Raleway">
-            Portfolio&apos;s{" "}
-          </h2>
-        </div>
         <div className="lg:px-[0%] xxl:px-[0%] 4xl:pl-[3%]">
-          <ServicePortolio />
+          <ServicePortolio portfolios={service.portfolio} />
         </div>
-      </div>
-      <div className="flex justify-center py-10">
-        <Link
-          href={"/portfolio"}
-          className="text-[16px] bg-[#FF693B] px-11 py-3 text-white rounded-xl border border-[#FF693B]  hover:bg-white hover:text-[#FF693B] transition-all duration-300"
-        >
-          See More
-        </Link>
       </div>
       <div className="max-w-[1520px] mx-auto px-[6%] md:px-[4%] lg:px-[8%] 4xl:px-[0%]">
         {/* relevant services */}

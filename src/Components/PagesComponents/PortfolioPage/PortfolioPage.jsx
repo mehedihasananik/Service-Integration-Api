@@ -16,24 +16,20 @@ const PortfolioPage = ({
   const [selectedCategoryId, setSelectedCategoryId] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
   const [services, setServices] = useState([]);
-  // console.log(portfolios);
-  // console.log(portfoliosCategories);
-  // console.log(services);
 
   useEffect(() => {
     setLoading(false);
-    setServices(initialServices); // Initially set to all services
+    setServices(initialServices);
   }, [initialServices]);
 
   const fetchServices = async (categoryId) => {
-    // console.log(categoryId);
     try {
       const response = await fetch(`${searchServiceApi}/${categoryId}`);
       if (!response.ok) {
         throw new Error("Failed to fetch services");
       }
       const data = await response.json();
-      setServices(data); // Update the services state with fetched data
+      setServices(data);
     } catch (error) {
       console.error("Error fetching services:", error);
     }
@@ -42,11 +38,11 @@ const PortfolioPage = ({
   const handleCategoryChange = async (e) => {
     const selectedCategoryId = parseInt(e.target.value);
     setSelectedCategoryId(selectedCategoryId);
-    setSelectedServiceId(0); // Reset selected service when category changes
+    setSelectedServiceId(0);
     if (selectedCategoryId !== 0) {
-      await fetchServices(selectedCategoryId); // Fetch services based on the selected category
+      await fetchServices(selectedCategoryId);
     } else {
-      setServices(initialServices); // Reset to all services if no category is selected
+      setServices(initialServices);
     }
   };
 
@@ -56,7 +52,6 @@ const PortfolioPage = ({
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    // console.log("Search Query:", searchQuery);
   };
 
   const handleSearchInputChange = (e) => {
@@ -71,14 +66,6 @@ const PortfolioPage = ({
         (selectedServiceId === 0 || item.service_id === selectedServiceId) &&
         item.heading.toLowerCase().includes(searchQuery.toLowerCase())
     );
-
-  const truncateText = (text, maxWords) => {
-    const words = text.split(" ");
-    if (words.length > maxWords) {
-      return words.slice(0, maxWords).join(" ") + "...";
-    }
-    return text;
-  };
 
   return (
     <div className="pt-8 lg:pt-10">
@@ -173,48 +160,55 @@ const PortfolioPage = ({
           ) : (
             <>
               {filteredPortfolio &&
-                filteredPortfolio.map((portfolio) => {
-                  // console.log(portfolio);
-                  return (
-                    <Link
-                      key={portfolio.id}
-                      href={`/portfolio/${portfolio?.slug}`}
-                    >
-                      <div className="group ">
-                        <div className="portfolio-bgHover cursor-pointer xxl:space-x-4 4xl:space-x-0 flex flex-col lg:flex-row xll:justify-between bg-[#FFFFFF] rounded-xl border border-[#CBD5E1]">
-                          <div>
-                            <Image
-                              width={800}
-                              height={262}
-                              className="lg:w-[340px] 4xl:w-[332px]  lg:h-[450px] 4xl:h-[420px] object-cover md:rounded-l"
-                              src={portfolio?.image}
-                              alt=""
-                            />
-                          </div>
-                          <div className="flex flex-col justify-center items-center p-3 md:py-0 xll:px-8 2xl:px-12 4xl:px-8">
-                            <div className="text-center h-[300px]">
-                              <h4 className="text-[14px] text-[#999999] pt-3 pb-3 md:pt-0 md:pb-6 portfolio-textHover">
-                                {portfolio?.service_name[0]?.service_name}
-                              </h4>
-                              <h3 className="text-[16px] font-bold font-Raleway text-[#333333] portfolio-textHover">
-                                {portfolio?.heading}
-                              </h3>
-                              <p className="w-[250px] text-justify text-[14px] text-[#666666] py-3 portfolio-textHover">
-                                {portfolio.text.slice(0, 400)}...
-                              </p>
+                filteredPortfolio.map((portfolio) => (
+                  <Link
+                    key={portfolio.id}
+                    href={`/portfolio/${portfolio?.slug}`}
+                  >
+                    <div className="group rounded-[10px] overflow-hidden border border-[#CBD5E1]">
+                      <div className="portfolio-bgHover h-[420px] w-[700px] cursor-pointer flex bg-[#FFFFFF] rounded-[10px] ">
+                        <div className="w-1/2 h-full">
+                          <Image
+                            width={800}
+                            height={500}
+                            className="w-[350px] h-full  rounded-l-[10px]"
+                            src={portfolio?.image}
+                            alt=""
+                          />
+                        </div>
+                        <div className="w-1/2 h-[500px] flex flex-col justify-center items-center p-0 md:py-0 xll:px-8 2xl:px-12 4xl:px-0">
+                          <div className="text-center ">
+                            <h4 className="text-[14px] text-[#999999] pt-3 pb-3 md:pt-0 md:pb-6 portfolio-textHover">
+                              {portfolio?.service_name[0]?.service_name}
+                            </h4>
+                            <div className="text-[16px] px-[10%] w-[380px] h-[75px] font-bold font-Raleway text-[#333333] portfolio-textHover line-clamp-3">
+                              {portfolio?.heading
+                                .split(" ")
+                                .slice(0, 12)
+                                .join(" ")}
+                              {portfolio?.heading.split(" ").length > 12
+                                ? "..."
+                                : ""}
                             </div>
-                            <div className="group flex justify-center items-center gap-2 text-[#FF693B] font-bold mt-10 portfolio-textHover pb-6 lg:pb-0">
-                              <button className="text-[14px]">Read More</button>
-                              <span className="w-[19px] font-bold">
-                                <HiArrowSmallRight className="text-xl" />
-                              </span>
+                            <div>
+                              <p className="w-[370px] px-[10%] flex justify-center  text-center text-[14px] text-[#666666] py-3 portfolio-textHover pt-7">
+                                <span>{portfolio.text.slice(0, 240)}...</span>
+                              </p>
+                              <div className="pt-0 group flex justify-center items-center gap-2 text-[#FF693B] font-bold portfolio-textHover pb-6 lg:pb-0">
+                                <button className="text-[14px]">
+                                  Read More
+                                </button>
+                                <span className="w-[19px] font-bold">
+                                  <HiArrowSmallRight className="text-xl" />
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </Link>
-                  );
-                })}
+                    </div>
+                  </Link>
+                ))}
             </>
           )}
         </div>
