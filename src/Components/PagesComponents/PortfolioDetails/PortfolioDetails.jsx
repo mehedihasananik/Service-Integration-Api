@@ -9,7 +9,7 @@ const PortfolioDetails = ({ singlePortfolioItem }) => {
   const { basic, details, relevant } = singlePortfolioItem;
 
   return (
-    <div className="bg-[rgb(255,255,255)]">
+    <div className="bg-[rgb(252,252,252)]">
       <div className="md:py-10 md:pb-5">
         <Container>
           <div className="text-center pb-3 lg:pb-5  md:pt-0">
