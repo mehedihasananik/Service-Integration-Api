@@ -15,7 +15,6 @@ const ServiceDetails = ({ service, sliders, packages }) => {
   const [openModal, setOpenModal] = useState(false);
 
   const height = packages[2].package_details.length;
-  console.log(service);
 
   return (
     <>
@@ -23,7 +22,7 @@ const ServiceDetails = ({ service, sliders, packages }) => {
       <Container>
         <div className="pt-3 pb-4">
           {/* title */}
-          <div className="text-center font-Raleway pb-5">
+          <div className="text-center font-Raleway pb-[1.75rem]">
             <h1 className="text-[#10F172A] text-[32px] md:text-[48px] font-bold capitalize">
               {service?.service_details[0]?.sevice_items_name}
             </h1>

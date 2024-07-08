@@ -10,7 +10,7 @@ const PaymentInfo = ({ productInfo }) => {
   const [scriptLoaded, setScriptLoaded] = useState(false);
 
   const [loading, setLoading] = useState(false); // Loading state
-  console.log(productInfo);
+  // console.log(productInfo);
 
   useEffect(() => {
     const script = document.createElement("script");

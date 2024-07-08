@@ -39,7 +39,7 @@ const Login = () => {
         "POST",
         requestData
       );
-      console.log(data);
+      // console.log(data);
 
       if (data.success) {
         toast.success("Logged in successfully");

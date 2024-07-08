@@ -277,6 +277,11 @@
   .image-gallery-right-nav {
     right: -3vw !important;
   } */
+
+  .swiper-slide {
+    display: flex !important;
+    justify-content: center !important;
+  }
 }
 
 .disabled {

@@ -110,36 +110,36 @@ const SinglePackage = ({ item, setOpenModal, height }) => {
       : height === 6
       ? "h-[595px]"
       : height === 7
-      ? "h-[628px]"
+      ? "h-[615px] md:h-[628px]"
       : height === 8
-      ? "h-[675px]"
+      ? "h-[615px] md:h-[675px]"
       : height === 9
-      ? "h-[720px]"
+      ? "h-[620px] md:h-[720px]"
       : height === 10
-      ? "h-[760px]"
+      ? "h-[620px] md:h-[760px]"
       : "";
 
   const deliveryHeight =
     height === 1
-      ? "mt-[-110px]"
+      ? "mt-[30px] md:mt-[-110px]"
       : height === 2
-      ? "mt-[-60px]"
+      ? "mt-[30px] md:mt-[-60px]"
       : height === 3
-      ? "mt-[-20px]"
+      ? "mt-[30px] md:mt-[-20px]"
       : height === 4
-      ? "mt-[30px]"
+      ? "mt-[30px] md:mt-[30px]"
       : height === 5
-      ? "mt-[90px]"
+      ? "mt-[30px] md:mt-[90px]"
       : height === 6
-      ? "mt-[120px]"
+      ? "mt-[30px] md:mt-[120px]"
       : height === 7
-      ? "mt-[155px]"
+      ? "mt-[30px] md:mt-[155px]"
       : height === 8
-      ? "mt-[200px]"
+      ? "mt-[30px] md:mt-[200px]"
       : height === 9
-      ? "mt-[245px]"
+      ? "mt-[30px] md:mt-[245px]"
       : height === 10
-      ? "mt-[290px]"
+      ? "mt-[30px] md:mt-[290px]"
       : "";
 
   return (

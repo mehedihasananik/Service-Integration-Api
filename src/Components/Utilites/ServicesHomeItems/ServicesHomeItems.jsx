@@ -75,7 +75,7 @@ const DemoServices = ({ services }) => {
     <div id="testimonial" className="overflow-hidden">
       <div className=" max-w-[1680px] mx-auto 4xl:px-[0] 4xl:max-w-[1920px] xl:pl-[8%] 2xl:pl-[13%] 4xl:pl-[14%]">
         <div className="py-5 xl:pt-10">
-          <div className="flex flex-col lg:flex-row items-center justify-between lg:gap-20 xl:gap-12 py-8">
+          <div className="flex flex-col  lg:flex-row items-center justify-between lg:gap-20 xl:gap-12 py-8">
             <div className="w-full text-center lg:text-left lg:w-[35%]">
               <div className="lg:w-[400px]">
                 <h3 className="text-[30px] md:text-[42px] lg:text-[48px] font-bold font-Raleway text-[#0F172A]">
@@ -89,7 +89,23 @@ const DemoServices = ({ services }) => {
                   that you need for your business.
                 </p>
               </div>
-              <div className="text-center lg:text-left   ">
+              <div className="text-center lg:text-left md:hidden ">
+                <span className="text-[48px] font-Raleway text-[#0A2C8C] font-bold">
+                  {currentSlide + 1}
+                </span>
+                <span className="text-[16px] font-bold text-[#94A3B8] font-Raleway">
+                  /{totalSlides}
+                </span>
+              </div>
+              <div className="text-center lg:text-left hidden md:block xl:hidden">
+                <span className="text-[48px] font-Raleway text-[#0A2C8C] font-bold">
+                  {currentSlide + 3}
+                </span>
+                <span className="text-[16px] font-bold text-[#94A3B8] font-Raleway">
+                  /{totalSlides}
+                </span>
+              </div>
+              <div className="text-center lg:text-left hidden xl:block ">
                 <span className="text-[48px] font-Raleway text-[#0A2C8C] font-bold">
                   {currentSlide + 3}
                 </span>
@@ -115,7 +131,7 @@ const DemoServices = ({ services }) => {
                   </button>
                 </div>
               </div>
-              <div className="py-8 lg:py-5 text-center lg:text-left  lg:mt-8">
+              <div className="py-8 lg:py-5 text-center lg:text-left  lg:mt-8 hidden md:block">
                 <Link
                   href={"/services"}
                   className="bg-[#FF693B] text-white text-[16px]  font-semibold py-4 px-14 rounded-lg border border-[#FF693B]  hover:bg-white hover:text-[#FF693B] transition-all duration-300"
@@ -136,7 +152,7 @@ const DemoServices = ({ services }) => {
                   slidesPerGroup={1}
                   spaceBetween={30}
                   breakpoints={breakpoints}
-                  className="mySwiper mx-auto"
+                  className="mySwiper  "
                   onSlideChange={handleSlideChange}
                 >
                   {services.map((service, index) => {
@@ -144,10 +160,10 @@ const DemoServices = ({ services }) => {
                     const isThirdSlide = index === 1;
 
                     return (
-                      <SwiperSlide key={service.id}>
+                      <SwiperSlide className="" key={service.id}>
                         <Link href={`/services/${service.slug}`}>
                           <div
-                            className={`w-[300px] h-[550px] xl:w-[330px] xxl:w-[330px] xll:w-[350px] 4xl:w-[330px] group shadow-lg rounded-md border border-[#E2E8F0] cursor-pointer ${
+                            className={` w-[300px] h-[550px] xl:w-[330px] xxl:w-[330px] xll:w-[350px] 4xl:w-[330px] group shadow-lg rounded-md border border-[#E2E8F0] cursor-pointer ${
                               isThirdSlide && "no-margin"
                             } ${
                               isLastSlide ? "" : "no-margin2"
@@ -203,6 +219,14 @@ const DemoServices = ({ services }) => {
                   })}
                 </Swiper>
               )}
+              <div className="py-0 lg:py-2 text-center lg:text-left  lg:mt-8  md:hidden  mt-10">
+                <Link
+                  href={"/services"}
+                  className="bg-[#FF693B] text-white text-[16px]  font-semibold py-2.5 px-14 rounded-lg border border-[#FF693B]  hover:bg-white hover:text-[#FF693B] transition-all duration-300"
+                >
+                  View all
+                </Link>
+              </div>
             </div>
           </div>
         </div>

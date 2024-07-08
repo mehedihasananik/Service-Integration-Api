@@ -129,7 +129,7 @@ const OrderSliderLg = ({ sliders }) => {
     return (
       <div
         className={`flex items-center justify-center ${
-          isFullscreen ? "h-[100vh]" : "xl:h-[500px] 4xl:h-[600px]"
+          isFullscreen ? "h-[100vh]" : "xl:h-[500px] 4xl:h-[600px] "
         }`}
         style={{
           width: isFullscreen ? "100%" : "100%",
@@ -160,7 +160,7 @@ const OrderSliderLg = ({ sliders }) => {
   };
 
   return (
-    <div className="hidden md:block bg-[#F8FAFC] xl:p-3 4xl:p-8 ">
+    <div className="hidden md:block bg-[#F8FAFC] xl:p-3 4xl:p-8 rounded-[10px]">
       {isLoading ? (
         <Loading />
       ) : (

@@ -124,7 +124,7 @@ const TestimonialHomeItems = ({ testimonials }) => {
                   {[...Array(3)].map((_, index) => (
                     <div
                       key={index}
-                      className="max-w-sm p-4 border border-gray-200 rounded shadow animate-pulse md:p-6 dark:border-gray-700 mx-4 my-2"
+                      className="max-w-sm p-4 border border-gray-200  rounded shadow animate-pulse md:p-6 dark:border-gray-700 mx-4 my-2"
                     >
                       {/* Placeholder content for loading state */}
                     </div>

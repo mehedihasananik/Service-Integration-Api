@@ -1,9 +1,8 @@
 "use client";
 
-import Container from "@/Components/Container/Container";
-import Image from "next/image";
-import Link from "next/link";
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import Image from "next/image";
 import { HiArrowSmallRight } from "react-icons/hi2";
 
 const PortfolioHomeItems = ({ portfolios, services }) => {
@@ -11,9 +10,8 @@ const PortfolioHomeItems = ({ portfolios, services }) => {
   const [selectedServiceId, setSelectedServiceId] = useState(0);
 
   useEffect(() => {
-    setLoading(false); // Assuming data is already passed as props, set loading to false
+    setLoading(false);
   }, []);
-  // console.log(services);
 
   const truncateText = (text, maxWords) => {
     const words = text.split(" ");
@@ -39,117 +37,89 @@ const PortfolioHomeItems = ({ portfolios, services }) => {
               Our beautiful work you need to know!
             </h3>
           </div>
-          {/* portfolio buttons  */}
-          <div className="flex flex-col lg:flex-row gap-3 md:gap-10 text-[#9E9E9E] text-[16px] lg:text-[16px] ">
-            <div className="hidden md:block">
-              <div className="flex md:gap-10">
+          {/* portfolio buttons */}
+          <div className="w-full lg:w-auto">
+            <div className="flex flex-wrap justify-center gap-3 md:gap-4 text-[#9E9E9E] text-[14px] md:text-[16px]">
+              <button
+                key={0}
+                onClick={() => setSelectedServiceId(0)}
+                className={`w-[30%] md:w-auto text-[#9E9E9E] hover:text-[#FA8D59] font-bold transition-all ${
+                  selectedServiceId === 0 ? "text-[#FA8D59]" : ""
+                }`}
+              >
+                All
+              </button>
+              {services.map((service, index) => (
                 <button
-                  key={0}
-                  onClick={() => setSelectedServiceId(0)} // Set selectedServiceId to 0 for "All"
-                  className={`text-[#9E9E9E] hover:text-[#FA8D59] font-bold transition-all text-[16px] ${
-                    selectedServiceId === 0 && "text-[#FA8D59]" // Add a class to differentiate the active button
+                  key={index + 1}
+                  onClick={() => setSelectedServiceId(service.category_id)}
+                  className={`w-[30%] md:w-auto text-[#9E9E9E] hover:text-[#FA8D59] font-bold transition-all ${
+                    selectedServiceId === service.category_id
+                      ? "text-[#FA8D59]"
+                      : ""
                   }`}
                 >
-                  All
+                  {service.category_name}
                 </button>
-
-                {services.map((service, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setSelectedServiceId(service.category_id)}
-                    className={`text-[#9E9E9E] hover:text-[#FA8D59] font-bold transition-all text-[16px] ${
-                      selectedServiceId === service.category_id &&
-                      "text-[#FA8D59]" // Add a class to differentiate the active button
-                    }`}
-                  >
-                    {service.category_name}
-                  </button>
-                ))}
-              </div>
-            </div>
-            <div className="block md:hidden ">
-              <div className="flex justify-center space-x-4 pb-4">
-                {services.map((service, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setSelectedServiceId(service.category_id)}
-                    className="text-[#9E9E9E] hover:text-[#FA8D59] font-bold  transition-all text-[16px]"
-                  >
-                    {service.category_name}
-                  </button>
-                ))}
-              </div>{" "}
+              ))}
             </div>
           </div>
         </div>
-        {/*Portfolio  cards */}
+        {/* Portfolio cards */}
         <div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10 justify-between pt-10 pb-5">
-            <>
-              {portfolios
-                ?.filter(
-                  (portfolio) =>
-                    selectedServiceId === 0 ||
-                    portfolio.service_id === selectedServiceId
-                )
-                .map((portfolio) => (
-                  <Link
-                    key={portfolio.id}
-                    href={`/portfolio/${portfolio.slug}`}
-                  >
-                    <div className="group rounded-[10px] border border-[#CBD5E1] overflow-hidden">
-                      <div className="portfolio-bgHover h-[420px] w-full cursor-pointer flex bg-[#FFFFFF] rounded-[10px]">
-                        <div className="w-1/2 h-full">
-                          <Image
-                            width={800}
-                            height={500}
-                            className="w-full h-full object-cover rounded-l-[10px]"
-                            src={portfolio?.image}
-                            alt=""
-                          />
-                        </div>
-                        <div className="w-1/2 h-[420px] flex flex-col justify-center items-center p-4">
-                          <div className="text-center">
-                            <h4 className="text-[14px] text-[#999999] pt-3 pb-3 md:pt-0 md:pb-6 portfolio-textHover">
-                              {portfolio?.service_name[0]?.service_name}
-                            </h4>
-                            <div className="text-[16px] px-[10%] w-full h-[65px] font-bold font-Raleway text-[#333333] portfolio-textHover line-clamp-3">
-                              {portfolio?.heading
-                                .split(" ")
-                                .slice(0, 12)
-                                .join(" ")}
-                              {portfolio?.heading.split(" ").length > 12
-                                ? "..."
-                                : ""}
-                            </div>
-                            <div>
-                              <p className="w-full px-[10%] flex justify-center text-[14px] text-[#666666] py-3 portfolio-textHover pt-3.5">
-                                <span>{portfolio.text.slice(0, 220)}...</span>
-                              </p>
-                              <div className="pt-5 group flex justify-center items-center gap-2 text-[#FF693B] font-bold portfolio-textHover pb-6 lg:pb-0">
-                                <button className="text-[14px]">
-                                  Read More
-                                </button>
-                                <span className="w-[19px] font-bold">
-                                  <HiArrowSmallRight className="text-xl" />
-                                </span>
-                              </div>
+            {portfolios
+              ?.filter(
+                (portfolio) =>
+                  selectedServiceId === 0 ||
+                  portfolio.service_id === selectedServiceId
+              )
+              .map((portfolio) => (
+                <Link key={portfolio.id} href={`/portfolio/${portfolio.slug}`}>
+                  <div className="group rounded-[10px] border border-[#CBD5E1] overflow-hidden">
+                    <div className="portfolio-bgHover w-full cursor-pointer flex flex-col lg:flex-row bg-[#FFFFFF] rounded-[10px]">
+                      <div className="w-full lg:w-1/2 h-[250px] lg:h-[420px]">
+                        <Image
+                          width={800}
+                          height={500}
+                          className="w-full h-full object-cover rounded-t-[10px] lg:rounded-l-[10px] lg:rounded-tr-none"
+                          src={portfolio?.image}
+                          alt=""
+                        />
+                      </div>
+                      <div className="w-full lg:w-1/2 h-auto lg:h-[420px] flex flex-col justify-center items-center p-4">
+                        <div className="text-center">
+                          <h4 className="text-[14px] text-[#999999] pt-3 pb-3 md:pt-0 md:pb-6 portfolio-textHover">
+                            {portfolio?.service_name[0]?.service_name}
+                          </h4>
+                          <div className="text-[16px] px-[10%] w-full h-[65px] font-bold font-Raleway text-[#333333] portfolio-textHover line-clamp-3">
+                            {truncateText(portfolio?.heading, 12)}
+                          </div>
+                          <div>
+                            <p className="w-full px-[10%] flex justify-center text-[14px] text-[#666666] py-3 portfolio-textHover pt-3.5">
+                              <span>{truncateText(portfolio.text, 30)}</span>
+                            </p>
+                            <div className="pt-5 group flex justify-center items-center gap-2 text-[#FF693B] font-bold portfolio-textHover pb-6 lg:pb-0">
+                              <button className="text-[14px]">Read More</button>
+                              <span className="w-[19px] font-bold">
+                                <HiArrowSmallRight className="text-xl" />
+                              </span>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </Link>
-                ))}
-            </>
+                  </div>
+                </Link>
+              ))}
           </div>
         </div>
 
         {/* navigate to portfolio */}
         <div className="flex justify-center py-10">
           <Link
-            href={"/portfolio"}
-            className="text-[16px] bg-[#FF693B] px-11 py-2.5 md:px-10 md:py-3 text-white rounded-lg border border-[#FF693B]  hover:bg-white hover:text-[#FF693B] transition-all duration-300"
+            href="/portfolio"
+            className="text-[16px] bg-[#FF693B] px-11 py-2.5 md:px-10 md:py-3 text-white rounded-lg border border-[#FF693B] hover:bg-white hover:text-[#FF693B] transition-all duration-300"
           >
             View All Portfolio
           </Link>
