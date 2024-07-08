@@ -22,8 +22,8 @@ const ServicePortolio = ({ portfolios }) => {
   const breakpoints = {
     // when window width is >= 1024px (lg)
     1920: {
-      slidesPerView: 2,
-      spaceBetween: 20,
+      slidesPerView: 3,
+      spaceBetween: 50,
     },
     1336: {
       slidesPerView: 2,
@@ -81,7 +81,7 @@ const ServicePortolio = ({ portfolios }) => {
                 return (
                   <SwiperSlide key={portfolio.id} className="">
                     <Link href={`/portfolio/${portfolio.slug}`}>
-                      <div className="group rounded-[10px] overflow-hidden hidden lg:block border border-[#CBD5E1]  w-[650px]">
+                      <div className="group rounded-[10px] overflow-hidden hidden lg:block border border-[#CBD5E1]  w-[620px]">
                         <div className="portfolio-bgHover h-[440px]  cursor-pointer flex bg-[#FFFFFF] rounded-[10px]">
                           <div className="w-1/2 h-full">
                             <Image
