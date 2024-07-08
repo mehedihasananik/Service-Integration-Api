@@ -165,7 +165,7 @@ const PortfolioPage = ({
                     key={portfolio.id}
                     href={`/portfolio/${portfolio?.slug}`}
                   >
-                    <div className="group rounded-[10px] overflow-hidden border border-[#CBD5E1]">
+                    <div className="group rounded-[10px] overflow-hidden border border-[#CBD5E1] hidden lg:block">
                       <div className="portfolio-bgHover h-[420px] 4xl:w-[700px] cursor-pointer flex bg-[#FFFFFF] rounded-[10px] ">
                         <div className="w-1/2 h-full">
                           <Image
@@ -198,6 +198,48 @@ const PortfolioPage = ({
                                 </p>
                               </div>
                               <div className="pt-10 group flex justify-center items-center gap-2 text-[#FF693B] font-bold portfolio-textHover pb-6 lg:pb-0">
+                                <button className="text-[14px]">
+                                  Read More
+                                </button>
+                                <span className="w-[19px] font-bold">
+                                  <HiArrowSmallRight className="text-xl" />
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="group rounded-[10px] overflow-hidden border border-[#CBD5E1] block lg:hidden">
+                      <div className="portfolio-bgHover flex flex-col lg:flex-row bg-[#FFFFFF] rounded-[10px] cursor-pointer">
+                        <div className="w-full lg:w-1/2 h-[300px] lg:h-[420px]">
+                          <Image
+                            width={800}
+                            height={500}
+                            className="w-full h-full object-cover lg:rounded-l-[10px]"
+                            src={portfolio?.image}
+                            alt=""
+                          />
+                        </div>
+                        <div className="w-full lg:w-1/2 flex flex-col justify-start items-center p-6 lg:p-10">
+                          <div className="text-center">
+                            <h4 className="text-[14px] text-[#999999] pb-3 portfolio-textHover">
+                              {portfolio?.service_name[0]?.service_name}
+                            </h4>
+                            <div className="text-[16px] w-full lg:w-[380px] font-bold font-Raleway text-[#333333] portfolio-textHover line-clamp-3 mb-3">
+                              {portfolio?.heading
+                                .split(" ")
+                                .slice(0, 12)
+                                .join(" ")}
+                              {portfolio?.heading.split(" ").length > 12
+                                ? "..."
+                                : ""}
+                            </div>
+                            <div>
+                              <p className="w-full lg:w-[250px] 4xl:w-[370px] text-center text-[14px] text-[#666666] portfolio-textHover mb-6">
+                                <span>{portfolio.text.slice(0, 300)}...</span>
+                              </p>
+                              <div className="group flex justify-center items-center gap-2 text-[#FF693B] font-bold portfolio-textHover">
                                 <button className="text-[14px]">
                                   Read More
                                 </button>

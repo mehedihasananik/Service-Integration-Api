@@ -22,8 +22,8 @@ const ServicePortolio = ({ portfolios }) => {
   const breakpoints = {
     // when window width is >= 1024px (lg)
     1920: {
-      slidesPerView: 2.5,
-      spaceBetween: 50,
+      slidesPerView: 2,
+      spaceBetween: 20,
     },
     1336: {
       slidesPerView: 2,
@@ -31,7 +31,7 @@ const ServicePortolio = ({ portfolios }) => {
     },
     1280: {
       slidesPerView: 2,
-      spaceBetween: 30,
+      spaceBetween: 50,
     },
     1024: {
       slidesPerView: 2,
@@ -66,7 +66,7 @@ const ServicePortolio = ({ portfolios }) => {
               Portfolio&apos;s{" "}
             </h2>
           </div>
-          <div className="px-[5%] md:px-[5%] lg:px-0">
+          <div className="px-[5%] md:px-[5%] lg:px-0 ">
             <Swiper
               ref={swiperRef}
               slidesPerView={3}
@@ -81,19 +81,19 @@ const ServicePortolio = ({ portfolios }) => {
                 return (
                   <SwiperSlide key={portfolio.id} className="">
                     <Link href={`/portfolio/${portfolio.slug}`}>
-                      <div className="group rounded-[10px] overflow-hidden hidden lg:block ">
-                        <div className="border border-[#CBD5E1] portfolio-bgHover h-[440px] w-[650px] cursor-pointer flex bg-[#FFFFFF] rounded-[10px] ">
+                      <div className="group rounded-[10px] overflow-hidden hidden lg:block border border-[#CBD5E1]  w-[650px]">
+                        <div className="portfolio-bgHover h-[440px]  cursor-pointer flex bg-[#FFFFFF] rounded-[10px]">
                           <div className="w-1/2 h-full">
                             <Image
                               width={800}
                               height={500}
-                              className="w-[350px] h-full  rounded-l-[10px]"
+                              className="w-[350px] h-full rounded-l-[10px]"
                               src={portfolio?.image}
                               alt=""
                             />
                           </div>
                           <div className="w-1/2 h-[500px] flex flex-col justify-start items-center mt-10 p-0 md:py-0 xll:px-8 2xl:px-12 4xl:px-0">
-                            <div className="text-center ">
+                            <div className="text-center">
                               <h4 className="text-[14px] text-[#999999] pt-3 pb-3 md:pt-0 md:pb-6 portfolio-textHover">
                                 {portfolio?.service_name[0]?.service_name}
                               </h4>
@@ -107,7 +107,7 @@ const ServicePortolio = ({ portfolios }) => {
                                   : ""}
                               </div>
                               <div>
-                                <p className="w-[370px] px-[10%] flex justify-center  text-center text-[14px] text-[#666666] py-3 portfolio-textHover pt-3.5">
+                                <p className="w-[370px] px-[10%] flex justify-center text-center text-[14px] text-[#666666] py-3 portfolio-textHover pt-3.5">
                                   <span>{portfolio.text.slice(0, 240)}...</span>
                                 </p>
                                 <div className="pt-10 group flex justify-center items-center gap-2 text-[#FF693B] font-bold portfolio-textHover pb-6 lg:pb-0">

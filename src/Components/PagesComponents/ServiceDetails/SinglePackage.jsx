@@ -11,6 +11,9 @@ import { FaRegClock } from "react-icons/fa6";
 import { BiRevision } from "react-icons/bi";
 import { useRouter } from "next/navigation";
 import { AuthContext } from "@/providers/AuthProviders";
+import { Button, Tooltip } from "flowbite-react";
+import { VscQuestion } from "react-icons/vsc";
+import Link from "next/link";
 
 const SinglePackage = ({ item, setOpenModal, height }) => {
   const router = useRouter();
@@ -210,32 +213,25 @@ const SinglePackage = ({ item, setOpenModal, height }) => {
                 {item?.delivery_time === "1" ? "Day Delivery" : "Days Delivery"}
               </span>{" "}
               <div className="relative inline-block">
-                <img
-                  className="w-[14px] h-[14px] cursor-pointer"
-                  src="/assets/mark.png"
-                  alt=""
-                  onMouseEnter={showTooltip}
-                  onMouseLeave={hideTooltip}
-                />
-                {isTooltipVisible && (
-                  <div
-                    className="absolute z-10 bg-gray-800 bg-opacity-50 text-white text-sm rounded py-3 px-4 bottom-full left-1/2 transform -translate-x-1/2 -translate-y-2 w-[300px]"
-                    onMouseEnter={showTooltip}
-                    onMouseLeave={hideTooltip}
-                  >
-                    All days are business days except Friday and Saturday.
-                    <button
-                      className="bg-[#FF6C37] px-2 text-[13px] mt-2 rounded-sm mx-3"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        // Add your "Learn More" button functionality here
-                        console.log("Learn More clicked");
-                      }}
-                    >
-                      Learn More
-                    </button>
-                  </div>
-                )}
+                <Tooltip
+                  className="w-[350px] py-3"
+                  content={
+                    <div className="flex">
+                      <span>
+                        {" "}
+                        All days are business days except Friday and Saturday.
+                      </span>
+                      <Link
+                        href={"/faq"}
+                        className="flex justify-center items-center py-0 px-2 rounded-md bg-[#FF693B] whitespace-nowrap"
+                      >
+                        More Info
+                      </Link>
+                    </div>
+                  }
+                >
+                  <VscQuestion className="cursor-pointer" />
+                </Tooltip>
               </div>
             </div>
           </div>
