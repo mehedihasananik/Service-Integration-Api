@@ -110,7 +110,7 @@ const BillingContent = () => {
         Update Billing Information
       </h1>
       <div className="flex justify-center">
-        <section className="bg-white antialiased dark:bg-gray-900 w-[50%]">
+        <section className="bg-white antialiased dark:bg-gray-900 lg:w-[50%] xs:w-[100%]">
           <form
             className="mx-auto max-w-screen-xl px-4 2xl:px-0"
             onSubmit={handleSubmit(onSubmit)}
@@ -118,9 +118,9 @@ const BillingContent = () => {
             <div className=" lg:flex lg:items-start lg:gap-12 xl:gap-16">
               <div className="min-w-0 flex-1 space-y-8">
                 <div className="space-y-4">
-                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  <div className="lg:flex gap-4">
                     {/* start first name and last name */}
-                    <div>
+                    <div className="lg:w-[49%] sm:w-[100%]">
                       <label
                         for="your_name"
                         className="block py-4 text-sm font-medium text-gray-900 dark:text-white"
@@ -137,7 +137,7 @@ const BillingContent = () => {
                       />
                     </div>
 
-                    <div>
+                    <div className="lg:w-[49%] sm:w-[100%]">
                       <label
                         for="your_name"
                         className="block py-4 text-sm font-medium text-gray-900 dark:text-white"
@@ -153,8 +153,14 @@ const BillingContent = () => {
                         {...register("last_name")}
                       />
                     </div>
-                    <div className="w-full">
-                      <label htmlFor="country" className="dark:text-gray-300">
+                  </div>
+
+                  <div className="lg:flex gap-4">
+                    <div className="lg:w-[49%] sm:w-[100%]">
+                      <label
+                        htmlFor="country"
+                        className="dark:text-gray-300 py-3"
+                      >
                         Country
                       </label>
                       <Select
@@ -165,7 +171,7 @@ const BillingContent = () => {
                       />
                     </div>
 
-                    <div>
+                    <div className="lg:w-[49%] sm:w-[100%] xs:pt-3 lg:pt-0">
                       <label
                         for="your_name"
                         className="block py-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -182,13 +188,14 @@ const BillingContent = () => {
                         required
                       />
                     </div>
+                  </div>
 
-                    {/* done */}
-
-                    <div>
+                  {/* done */}
+                  <div className="lg:flex gap-4">
+                    <div className="lg:w-[49%] sm:w-[100%]">
                       <label
                         for="your_name"
-                        className="block text-sm font-medium text-gray-900 dark:text-white mt-3"
+                        className="block text-sm font-medium text-gray-900 dark:text-white pb-3"
                       >
                         City
                       </label>
@@ -203,7 +210,7 @@ const BillingContent = () => {
                       />
                     </div>
 
-                    <div>
+                    <div className="lg:w-[49%] sm:w-[100%] xs:pt-3 lg:pt-0">
                       <label
                         for="zip"
                         className="block text-sm font-medium text-gray-900 dark:text-white"
@@ -220,34 +227,35 @@ const BillingContent = () => {
                         required
                       />
                     </div>
-                    <div className="sm:col-span-2 pt-4">
-                      <div>
-                        <label
-                          for="address"
-                          className="block text-sm font-medium text-gray-900 dark:text-white mt-2"
-                        >
-                          Address
-                        </label>
-                        <input
-                          type="text"
-                          id="address"
-                          name="address"
-                          className="py-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
-                          placeholder="Bonnie Green"
-                          {...register("address")}
-                          required
-                        />
-                      </div>
-                    </div>
+                  </div>
 
-                    <div className="sm:col-span-2 pt-4">
-                      <button
-                        type="submit"
-                        className="bg-[#FF693B] text-white hover:text-[#FF693B] flex w-[30%] py-4 items-center justify-center gap-2 rounded-lg border border-gray-200 px-5 py-2.5 text-sm font-medium text-gray-900 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600  dark:hover:text-white dark:focus:ring-gray-700 hover:bg-white mx-auto"
+                  <div className="sm:col-span-2">
+                    <div>
+                      <label
+                        for="address"
+                        className="block text-sm font-medium text-gray-900 dark:text-white pb-3"
                       >
-                        Update
-                      </button>
+                        Address
+                      </label>
+                      <input
+                        type="text"
+                        id="address"
+                        name="address"
+                        className="py-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                        placeholder="Bonnie Green"
+                        {...register("address")}
+                        required
+                      />
                     </div>
+                  </div>
+
+                  <div className="sm:col-span-2 pt-4">
+                    <button
+                      type="submit"
+                      className="bg-[#FF693B] text-white hover:text-[#FF693B] flex px-[10%] py-4 items-center justify-center gap-2 rounded-lg border border-gray-200 px-5 py-2.5 text-sm font-medium text-gray-900 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600  dark:hover:text-white dark:focus:ring-gray-700 hover:bg-white mx-auto"
+                    >
+                      Update
+                    </button>
                   </div>
                 </div>
               </div>

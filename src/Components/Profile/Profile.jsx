@@ -173,16 +173,16 @@ const Profile = () => {
       id="profilepage"
       style={{ maxHeight: "calc(100vh - 20px)", overflowY: "auto" }}
     >
-      <section className="py-10 my-auto dark:bg-gray-900 p-20 md:pb-[10%]">
+      <section className="py-10 my-auto dark:bg-gray-900 p-20 md:pb-[10%] sm:w-[100%] xs:px-0 ">
         <div className="flex justify-center"></div>
-        <div className="lg:w-[80%] md:w-[90%] xs:w-[96%] mx-auto flex gap-4">
-          <div className="lg:w-[88%] md:w-[80%] sm:w-[88%] xs:w-full mx-auto shadow-2xl px-[5%] py-[5%] rounded-xl h-fit self-center dark:bg-gray-800/40">
+        <div className="lg:w-[80%] md:w-[90%] xs:w-[100%] mx-auto flex gap-4">
+          <div className="sm:w-full xs:w-full mx-auto shadow-2xl px-[5%] py-[5%] rounded-xl h-fit self-center dark:bg-gray-800/40 xs:pb-[44%] md:pb-10">
             <div className="">
               <div className="text-end">
                 <button
                   type="button"
                   onClick={() => setOpenModal(true)}
-                  className="text-[16px] whitespace-nowrap text-white bg-[#FF693B]  border border-[#FF693B] px-6 py-2 md:px-10 md:py-4 font-[600] rounded-lg  hover:bg-[#fff] hover:text-[#FF693B] transition-all duration-300"
+                  className="text-[16px] whitespace-nowrap mb-10 text-white bg-[#FF693B]  border border-[#FF693B] px-5 py-2 md:px-10 md:py-3 font-[600] rounded-lg  hover:bg-[#fff] hover:text-[#FF693B] transition-all duration-300"
                 >
                   Edit Profile
                 </button>
@@ -206,7 +206,7 @@ const Profile = () => {
                   {profile?.first_name} {profile?.last_name}
                 </h3>
 
-                <div className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full">
+                <div className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 lg:gap-8 justify-center w-full">
                   <div className="w-full mb-4 mt-6">
                     <label
                       htmlFor="first_name"
@@ -239,8 +239,8 @@ const Profile = () => {
                     />
                   </div>
                 </div>
-                <div className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full">
-                  <div className="w-full mb-4 mt-6">
+                <div className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 lg:gap-8 justify-center w-full">
+                  <div className="w-full mb-4 lg:mt-6">
                     <label htmlFor="email" className="mb-2 dark:text-gray-300">
                       Email
                     </label>
@@ -277,8 +277,8 @@ const Profile = () => {
                     />
                   </div>
                 </div>
-                <div className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full">
-                  <div className="w-full mb-4 mt-6">
+                <div className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 lg:gap-8 justify-center w-full">
+                  <div className="w-full mb-4 lg:mt-6">
                     <label htmlFor="gender" className="mb-2 dark:text-gray-300">
                       Gender
                     </label>
@@ -307,7 +307,7 @@ const Profile = () => {
                     </div>
                   </div>
                 </div>
-                <div className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full">
+                <div className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 lg:gap-8 justify-center w-full">
                   <div className="w-full mb-4 lg:mt-6">
                     <label htmlFor="country" className="dark:text-gray-300">
                       Country
@@ -323,7 +323,7 @@ const Profile = () => {
                     />
                   </div>
 
-                  <div className="w-full mb-4 mt-6">
+                  <div className="w-full mb-4 lg:mt-6">
                     <label htmlFor="city" className="mb-2 dark:text-gray-300">
                       City
                     </label>
@@ -338,7 +338,7 @@ const Profile = () => {
                     />
                   </div>
                 </div>
-                <div className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full">
+                <div className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 lg:gap-8 justify-center w-full">
                   <div className="w-full mb-4 lg:mt-6">
                     <label htmlFor="address" className="dark:text-gray-300">
                       Address
@@ -362,7 +362,7 @@ const Profile = () => {
       <Modal show={openModal} onClose={() => setOpenModal(false)} size="5xl">
         <Modal.Header>Profile Update</Modal.Header>
         <Modal.Body>
-          <div className="p-8 h-full">
+          <div className="p-8 xs:p-0 h-full">
             <form onSubmit={updateProfile}>
               <div className="w-full py-4 items-center rounded-md">
                 <label htmlFor="upload_profile">
@@ -393,7 +393,7 @@ const Profile = () => {
               <h2 className="text-center mt-3 font-semibold dark:text-gray-300">
                 Upload Profile and Name.
               </h2>
-              <div className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full">
+              <div className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 lg:gap-8 justify-center w-full">
                 <div className="w-full mb-4 mt-6">
                   <label
                     htmlFor="first_name"
@@ -424,8 +424,8 @@ const Profile = () => {
                   />
                 </div>
               </div>
-              <div className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full">
-                <div className="w-full mb-4 mt-6">
+              <div className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 lg:gap-8 justify-center w-full">
+                <div className="w-full mb-4 lg:mt-6 sm:mt-0">
                   <label htmlFor="email" className="mb-2 dark:text-gray-300">
                     Email
                   </label>
@@ -456,14 +456,14 @@ const Profile = () => {
                   />
                 </div>
               </div>
-              <div className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full">
-                <div className="w-full mb-4 mt-6">
+              <div className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 lg:gap-8 justify-center w-full">
+                <div className="w-full mb-4 lg:mt-6 sm:mt-0">
                   <label htmlFor="gender" className="mb-2 dark:text-gray-300">
                     Gender
                   </label>
                   <select
                     name="gender"
-                    className="mt-2 p-4 w-full border-2 rounded-lg text-red-600"
+                    className="mt-2 p-4 w-full border-2 rounded-lg text-red-600 gender-select"
                     value={profile?.gender}
                     onChange={handleInputChange}
                   >
@@ -482,13 +482,13 @@ const Profile = () => {
                       id="dateofbirth"
                       name="date_birth"
                       onChange={setDefaultDate}
-                      className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800 w-full"
+                      className="mt-2 p-[17px] w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800 w-full"
                       defaultValue={profile?.birthday}
                     />
                   </div>
                 </div>
               </div>
-              <div className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full">
+              <div className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 lg:gap-8 justify-center w-full">
                 <div className="w-full mb-4 lg:mt-6">
                   <label htmlFor="country" className="dark:text-gray-300">
                     Country
@@ -500,7 +500,7 @@ const Profile = () => {
                   />
                 </div>
 
-                <div className="w-full mb-4 mt-6">
+                <div className="w-full mb-4 lg:mt-6 sm:mt-0">
                   <label htmlFor="city" className="mb-2 dark:text-gray-300">
                     City
                   </label>
@@ -514,7 +514,7 @@ const Profile = () => {
                   />
                 </div>
               </div>
-              <div className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full">
+              <div className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 lg:gap-8 justify-center w-full">
                 <div className="w-full mb-4 lg:mt-6">
                   <label htmlFor="address" className="dark:text-gray-300">
                     Address

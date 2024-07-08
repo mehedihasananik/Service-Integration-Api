@@ -227,7 +227,7 @@ const ProjectDetails = ({ userContact }) => {
                 {/* email & phone number */}
                 <div className="flex flex-col gap-5  lg:flex-row md:gap-0">
                   <div className="w-full lg:w-[50%]">
-                    <div className="flex flex-col gap-3">
+                    <div className="flex flex-col gap-3 ">
                       <label className="text-[16px]" htmlFor="email">
                         Your Email:
                       </label>
@@ -243,27 +243,17 @@ const ProjectDetails = ({ userContact }) => {
                       />
                     </div>
                   </div>
-                  <div className="w-full lg:w-[50%]">
-                    <div className="flex flex-col gap-3">
+                  <div className="w-full lg:w-[50%] sm:w-[100%]">
+                    <div className="flex flex-col gap-3 lg:w-[80%] sm:w-[100%]">
                       <label
                         className="text-[16px] mt-3 lg:mt-0"
                         htmlFor="lastname"
                       >
                         Your Phone Number:
                       </label>
-                      {/* <input
-                        className="w-full l lg:w-[80%] py-4 border border-[#CBD5E1] px-4 rounded-md shadow-sm"
-                        type="number"
-                        id="user_phone"
-                        name="user_phone"
-                        placeholder="Enter your phone Number"
-                        value={formData.user_phone}
-                        onChange={handleChange}
-                        required
-                      /> */}
 
                       <PhoneInput
-                        defaultCountry="ua"
+                        defaultCountry="bd"
                         value={phone}
                         onChange={handlePhoneOnChange}
                         searchPlaceholder="Search country"

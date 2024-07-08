@@ -299,6 +299,7 @@
 }
 
 /* kakon css */
+/* kakon css */
 .react-tel-input .form-control {
   font-size: 16px;
   background: #ffffff;
@@ -312,12 +313,13 @@
 }
 
 .css-13cymwt-control {
-  border-color: hsl(0deg 0% 0%) !important;
+  border-color: hsl(0deg 2.88% 39.03%) !important;
   border-width: 2px !important;
   padding: 10px !important;
   margin-top: 10px !important;
   border-radius: 8px !important;
 }
+
 .css-t3ipsp-control {
   border-color: hsl(0deg 0% 0%) !important;
   border-width: 2px !important;
@@ -406,23 +408,25 @@ input::-webkit-calendar-picker-indicator {
   width: 8%;
   position: relative;
   right: -0px;
-  padding-left: 62%;
+  padding-left: 54%;
 }
 
 /* react phone input */
 .react-international-phone-input-container
   .react-international-phone-country-selector-button {
-  height: 60px !important;
+  height: 58px !important;
   border: 2px solid #6e6c6c !important;
   border-right: none !important;
   width: 50px;
+  border-radius: 8px 0px 0px 8px !important;
 }
 
 .react-international-phone-input-container .react-international-phone-input {
-  height: var(--react-international-phone-height, 60px) !important;
+  height: var(--react-international-phone-height, 58px) !important;
   width: 100% !important;
   border: 2px solid #636262 !important;
   font-size: 17px !important;
+  border-radius: 0px 8px 8px 0px !important;
 }
 
 .react-international-phone-input-container {
@@ -485,32 +489,64 @@ select {
 #projectDetails
   .react-international-phone-input-container
   .react-international-phone-input {
-  border: 2px solid #dedcdc !important;
+  border: 1px solid #cbd5e1 !important;
 }
 
 #projectDetails
   .react-international-phone-input-container
   .react-international-phone-country-selector-button {
-  height: 60px !important;
-  border: 2px solid #dedcdc !important;
+  height: 58px !important;
+  border: 1px solid #cbd5e1 !important;
   border-right: none !important;
   width: 50px;
 }
 
-#projectDetails
+/* #projectDetails
   .react-international-phone-input-container
   .react-international-phone-input {
   width: 69% !important;
-}
+} */
 
 #projectDetails .react-international-phone-input-container {
-  margin-top: 8px !important;
+  margin-top: 0px !important;
 }
 
 #projectDetails [type="text"]:focus,
 [type="email"]:focus,
 [type="password"]:focus {
   border: 2px solid #dedcdc !important;
+}
+.flowbite-tooltip {
+  left: 420px !important;
+}
+.flowbite-tooltip-target {
+  left: 424px !important;
+}
+
+.css-1dimb5e-singleValue {
+  margin-left: -6px !important;
+}
+
+select:not([size]) {
+  color: #000;
+  padding: 17px 11px !important;
+}
+
+.css-qbdosj-Input {
+  position: relative !important;
+  left: -14px !important;
+}
+
+.css-t3ipsp-control [type="text"]:focus {
+  position: relative !important;
+  left: -13px !important;
+}
+
+.react-international-phone-flag-emoji {
+  width: var(--react-international-phone-flag-width, 24px);
+  height: var(--react-international-phone-flag-height, 24px);
+  box-sizing: border-box;
+  margin-left: 12px !important;
 }
 .flowbite-tooltip {
   left: 420px !important;

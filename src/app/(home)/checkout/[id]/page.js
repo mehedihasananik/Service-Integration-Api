@@ -273,126 +273,131 @@ const SinglePage = ({ params }) => {
             >
               <>
                 <div className="flex justify-center">
-                  <section className="bg-white antialiased dark:bg-gray-900 w-[50%]">
+                  <section className="bg-white antialiased dark:bg-gray-900 lg:w-[50%] xs:w-[100%]">
                     <form
                       className="mx-auto max-w-screen-xl px-4 2xl:px-0"
                       onSubmit={handleSubmit}
                     >
-                      <div className=" lg:flex lg:items-start lg:gap-12 xl:gap-16">
+                      <div className="lg:flex lg:items-start lg:gap-12 xl:gap-16">
                         <div className="min-w-0 flex-1 space-y-8">
                           <div className="space-y-4">
-                            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                              {/* start first name and last name */}
-                              <div>
-                                <label
-                                  for="your_name"
-                                  className="block py-4 text-sm font-medium text-gray-900 dark:text-white"
-                                >
-                                  First Name
-                                </label>
-                                <input
-                                  type="text"
-                                  id="first_name"
-                                  name="first_name"
-                                  className="py-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
-                                  placeholder="Enter Your First Name"
-                                  required
-                                  defaultValue={billingAddress.first_name}
-                                />
+                            <div>
+                              <div className="lg:flex gap-3 mt-4">
+                                <div className="lg:w-[49%] sm:w-[100%]">
+                                  <label
+                                    for="your_name"
+                                    className="block py-3 text-sm font-medium text-gray-900 dark:text-white"
+                                  >
+                                    First Name
+                                  </label>
+                                  <input
+                                    type="text"
+                                    id="first_name"
+                                    name="first_name"
+                                    className="py-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                                    placeholder="Enter Your First Name"
+                                    required
+                                    defaultValue={billingAddress.first_name}
+                                  />
+                                </div>
+
+                                <div className="lg:w-[49%] sm:w-[100%]">
+                                  <label
+                                    for="your_name"
+                                    className="block py-3 text-sm font-medium text-gray-900 dark:text-white"
+                                  >
+                                    Last Name
+                                  </label>
+                                  <input
+                                    type="text"
+                                    id="last_name"
+                                    name="last_name"
+                                    className="py-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                                    placeholder="Enter Your Last Name"
+                                    required
+                                    defaultValue={billingAddress.last_name}
+                                  />
+                                </div>
                               </div>
 
-                              <div>
-                                <label
-                                  for="your_name"
-                                  className="block py-4 text-sm font-medium text-gray-900 dark:text-white"
-                                >
-                                  Last Name
-                                </label>
-                                <input
-                                  type="text"
-                                  id="last_name"
-                                  name="last_name"
-                                  className="py-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
-                                  placeholder="Enter Your Last Name"
-                                  required
-                                  defaultValue={billingAddress.last_name}
-                                />
-                              </div>
-                              <div className="w-full">
-                                <label
-                                  htmlFor="country"
-                                  className="dark:text-gray-300"
-                                >
-                                  Country
-                                </label>
-                                <Select
-                                  options={options}
-                                  value={value}
-                                  name="country"
-                                  onChange={changeCountryHandler}
-                                />
-                              </div>
+                              <div className="lg:flex gap-3 mt-3">
+                                <div className="lg:w-[49%] sm:w-[100%]">
+                                  <label
+                                    htmlFor="country"
+                                    className="dark:text-gray-300"
+                                  >
+                                    Country
+                                  </label>
+                                  <Select
+                                    options={options}
+                                    value={value}
+                                    name="country"
+                                    onChange={changeCountryHandler}
+                                  />
+                                </div>
 
-                              <div>
-                                <label
-                                  for="your_name"
-                                  className="block py-2 text-sm font-medium text-gray-900 dark:text-white"
-                                >
-                                  State
-                                </label>
-                                <input
-                                  type="text"
-                                  id="state"
-                                  name="state"
-                                  className="py-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
-                                  placeholder="State"
-                                  required
-                                  defaultValue={billingAddress.state}
-                                />
+                                <div className="lg:w-[49%] sm:w-[100%] xs:pt-2 lg:pt-0">
+                                  <label
+                                    for="your_name"
+                                    className="block py-2 text-sm font-medium text-gray-900 dark:text-white xs:py-3 lg:pt-0"
+                                  >
+                                    State
+                                  </label>
+                                  <input
+                                    type="text"
+                                    id="state"
+                                    name="state"
+                                    className="py-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                                    placeholder="State"
+                                    required
+                                    defaultValue={billingAddress.state}
+                                  />
+                                </div>
                               </div>
-
                               {/* done */}
+                              <div className="lg:flex gap-3 items-center mt-3">
+                                <div className="lg:w-[49%] sm:w-[100%]">
+                                  <label
+                                    for="your_name"
+                                    className="block text-sm font-medium text-gray-900 dark:text-white xs:py-3 lg:pt-0"
+                                  >
+                                    City
+                                  </label>
+                                  <input
+                                    type="text"
+                                    id="city"
+                                    name="city"
+                                    className="py-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                                    placeholder="Bonnie Green"
+                                    required
+                                    defaultValue={billingAddress.city}
+                                  />
+                                </div>
 
-                              <div>
-                                <label
-                                  for="your_name"
-                                  className="block text-sm font-medium text-gray-900 dark:text-white mt-3"
-                                >
-                                  City
-                                </label>
-                                <input
-                                  type="text"
-                                  id="city"
-                                  name="city"
-                                  className="py-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
-                                  placeholder="Bonnie Green"
-                                  required
-                                  defaultValue={billingAddress.city}
-                                />
+                                <div className="lg:w-[49%] sm:w-[100%] xs:pt-2 lg:pt-0">
+                                  <label
+                                    for="zip"
+                                    className="block text-sm font-medium text-gray-900 dark:text-white xs:py-3 lg:pt-0"
+                                  >
+                                    Zip
+                                  </label>
+                                  <input
+                                    type="number"
+                                    id="zip"
+                                    name="zip"
+                                    className="py-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                                    placeholder="Bonnie Green"
+                                    required
+                                    defaultValue={billingAddress.zip}
+                                  />
+                                </div>
                               </div>
 
-                              <div>
-                                <label
-                                  for="zip"
-                                  className="block text-sm font-medium text-gray-900 dark:text-white"
-                                >
-                                  Zip
-                                </label>
-                                <input
-                                  type="number"
-                                  id="zip"
-                                  name="zip"
-                                  className="mt-3 py-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
-                                  placeholder="Bonnie Green"
-                                  required
-                                  defaultValue={billingAddress.zip}
-                                />
-                              </div>
-                              <div className="sm:col-span-2 pt-4">
+                              <div className="sm:col-span-2 xs:pt-2 lg:pt-0">
                                 <div>
                                   <label
                                     for="address"
-                                    className="block text-sm font-medium text-gray-900 dark:text-white mt-2"
+                                    className="block text-sm font-medium text-gray-900 dark:text-white my-3"
                                   >
                                     Address
                                   </label>
@@ -411,7 +416,7 @@ const SinglePage = ({ params }) => {
                               <div className="sm:col-span-2 pt-4">
                                 <button
                                   type="submit"
-                                  className="bg-[#FF693B] text-white hover:text-[#FF693B] flex w-[30%] py-4 items-center justify-center gap-2 rounded-lg border border-gray-200 px-5 py-2.5 text-sm font-medium text-gray-900 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600  dark:hover:text-white dark:focus:ring-gray-700 hover:bg-white mx-auto"
+                                  className="bg-[#FF693B] text-white hover:text-[#FF693B] flex px-[10%] py-4 items-center justify-center gap-2 rounded-lg border border-gray-200 px-5 py-2.5 text-sm font-medium text-gray-900 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600  dark:hover:text-white dark:focus:ring-gray-700 hover:bg-white mx-auto"
                                 >
                                   Continue
                                 </button>
