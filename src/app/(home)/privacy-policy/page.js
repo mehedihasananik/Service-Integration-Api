@@ -45,7 +45,7 @@ const PrivacyPolicy = () => {
             how we will collect, use, disclose and protect your personal
             information. This policy does not limit or exclude any of your
             rights. If you wish to seek further information on the Data
-            Protection Laws of the World, see
+            Protection Laws of the World,Please see
             <Link
               target="_blank"
               className="text-[#FF693B]"
