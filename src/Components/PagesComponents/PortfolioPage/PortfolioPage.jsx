@@ -166,7 +166,7 @@ const PortfolioPage = ({
                     href={`/portfolio/${portfolio?.slug}`}
                   >
                     <div className="group rounded-[10px] overflow-hidden border border-[#CBD5E1] hidden lg:block">
-                      <div className="portfolio-bgHover h-[420px] 4xl:w-[700px] cursor-pointer flex bg-[#FFFFFF] rounded-[10px] ">
+                      <div className="portfolio-bgHover h-[400px] 4xl:w-[700px] cursor-pointer flex bg-[#FFFFFF] rounded-[10px] ">
                         <div className="w-1/2 h-full">
                           <Image
                             width={800}
