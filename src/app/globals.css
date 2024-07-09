@@ -557,3 +557,6 @@ select:not([size]) {
 .mySwiper_serviceSlider {
   height: 591px !important;
 }
+.testimonial_mySwiper {
+  height: 500px !important;
+}

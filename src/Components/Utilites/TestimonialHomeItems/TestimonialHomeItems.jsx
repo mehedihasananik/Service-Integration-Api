@@ -141,7 +141,7 @@ const TestimonialHomeItems = ({ testimonials }) => {
                   slidesPerGroup={1}
                   spaceBetween={30}
                   breakpoints={breakpoints}
-                  className="mySwiper mx-auto"
+                  className="mySwiper testimonial_mySwiper mx-auto"
                   onSlideChange={handleSlideChange}
                   pagination={true}
                   modules={[Pagination]}
