@@ -569,4 +569,11 @@ select:not([size]) {
   .testimonial_mySwiper {
     height: 390px !important;
   }
+  .image-gallery-thumbnails {
+    padding: 12px 0 !important;
+  }
+  .image-gallery-thumbnail .image-gallery-thumbnail-image,
+  .blur_thumb {
+    height: 40px !important;
+  }
 }
