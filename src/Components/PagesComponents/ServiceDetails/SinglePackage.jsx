@@ -213,7 +213,7 @@ const SinglePackage = ({ item, setOpenModal, height }) => {
                       </span>
                       <Link
                         href={"/faq"}
-                        className="flex justify-center items-center mt-2 py-1 px-2 rounded-md bg-[#FF693B] whitespace-nowrap w-[30%]"
+                        className="flex justify-center items-center mt-2 py-1 px-3 rounded-md bg-[#FF693B] whitespace-nowrap w-[32%]"
                       >
                         Learn More
                       </Link>

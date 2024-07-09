@@ -123,23 +123,24 @@ const ServicePortolio = ({ portfolios }) => {
                           </div>
                         </div>
                       </div>
+
                       <div className="group rounded-[10px] overflow-hidden block lg:hidden">
-                        <div className="border border-[#CBD5E1] portfolio-bgHover h-auto sm:h-[440px] w-full sm:w-[650px] cursor-pointer flex flex-col sm:flex-row bg-[#FFFFFF] rounded-[10px]">
-                          <div className="w-full sm:w-1/2 h-[300px] sm:h-full">
+                        <div className="border border-[#CBD5E1] portfolio-bgHover h-auto w-full cursor-pointer flex flex-col bg-[#FFFFFF] rounded-[10px]">
+                          <div className="w-full h-[300px]">
                             <Image
                               width={800}
                               height={500}
-                              className="w-full h-full object-cover sm:rounded-l-[10px]"
+                              className="w-full h-full object-cover"
                               src={portfolio?.image}
                               alt=""
                             />
                           </div>
-                          <div className="w-full sm:w-1/2 h-auto sm:h-[500px] flex flex-col justify-start items-center p-4 sm:mt-10 sm:p-0 sm:py-0 xll:px-8 2xl:px-12 4xl:px-0">
+                          <div className="w-full h-auto flex flex-col justify-start items-center p-4 mt-10 p-0 py-0">
                             <div className="text-center">
-                              <h4 className="text-[14px] text-[#999999] pt-3 pb-3 md:pt-0 md:pb-6 portfolio-textHover">
+                              <h4 className="text-[14px] text-[#999999] pt-3 pb-3 portfolio-textHover">
                                 {portfolio?.service_name[0]?.service_name}
                               </h4>
-                              <div className="text-[16px] px-[5%] sm:px-[10%] w-full sm:w-[380px] h-[65px] font-bold font-Raleway text-[#333333] portfolio-textHover line-clamp-3">
+                              <div className="text-[16px] px-[5%] w-full h-[65px] font-bold font-Raleway text-[#333333] portfolio-textHover line-clamp-3">
                                 {portfolio?.heading
                                   .split(" ")
                                   .slice(0, 12)
@@ -149,10 +150,10 @@ const ServicePortolio = ({ portfolios }) => {
                                   : ""}
                               </div>
                               <div>
-                                <p className="w-full sm:w-[370px] px-[5%] sm:px-[10%] flex justify-center text-center text-[14px] text-[#666666] py-3 portfolio-textHover pt-3.5">
+                                <p className="w-full px-[5%] flex justify-center text-center text-[14px] text-[#666666] py-3 portfolio-textHover pt-3.5">
                                   <span>{portfolio.text.slice(0, 240)}...</span>
                                 </p>
-                                <div className="pt-5 sm:pt-10 group flex justify-center items-center gap-2 text-[#FF693B] font-bold portfolio-textHover pb-6 lg:pb-0">
+                                <div className="pt-5 group flex justify-center items-center gap-2 text-[#FF693B] font-bold portfolio-textHover pb-6">
                                   <button className="text-[14px]">
                                     Read More
                                   </button>
