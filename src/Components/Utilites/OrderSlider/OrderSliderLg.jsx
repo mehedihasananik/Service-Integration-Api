@@ -165,7 +165,7 @@ const OrderSliderLg = ({ sliders }) => {
   };
 
   return (
-    <div className="hidden md:block bg-[#F8FAFC] xl:p-3 4xl:p-8 rounded-[10px]">
+    <div className="block bg-[#F8FAFC] xl:p-3 4xl:p-8 rounded-[10px]">
       {isLoading ? (
         <Loading />
       ) : (
