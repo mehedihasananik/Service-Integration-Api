@@ -12,14 +12,6 @@ const ServicesPageContent = ({ serviceCategories, services }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [serviceItems, setServiceItems] = useState([]);
 
-  const truncateText = (text, maxWords) => {
-    const words = text.split(" ");
-    if (words.length > maxWords) {
-      return words.slice(0, maxWords).join(" ") + "...";
-    }
-    return text;
-  };
-
   useEffect(() => {
     setLoading(false);
   }, []);
@@ -64,7 +56,7 @@ const ServicesPageContent = ({ serviceCategories, services }) => {
   return (
     <div className="service_section">
       <Container>
-        <div className="py-5 md:py-8">
+        <div className="py-5 md:pt-8">
           <div className="text-center">
             <h2 className="text-[30px] md:text-[30px] lg:text-[48px] font-Raleway font-bold">
               Choose a <span className="text-[#FF693B]">service</span> that you
@@ -136,7 +128,7 @@ const ServicesPageContent = ({ serviceCategories, services }) => {
               <UserLoading />
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid md:grid-cols-2 lg:grid-cols-2  xl:grid-cols-4 justify-items-center place-items-center gap-x-8 pb-8 lg:gap-x-44  xxl:gap-x-40    4xl:gap-x-16  mt-5 md:mt-10 ">
+            <div className="grid grid-cols-1 md:grid md:grid-cols-2 lg:grid-cols-2   xl:grid-cols-4 justify-items-center place-items-center  gap-x-8 pb-8 lg:gap-y-0 lg:gap-x-44  xxl:gap-x-40 4xl:gap-x-16  mt-5 md:mt-10 ">
               {serviceItems.map((service, index) => {
                 // console.log(service);
                 return (
@@ -144,8 +136,8 @@ const ServicesPageContent = ({ serviceCategories, services }) => {
                     key={index} // Change key to index
                     href={`/services/${service?.slug}`}
                   >
-                    <div className="group h-[550px] xl:w-[296px] xxl:w-[296px]  2xl:w-[320px]  shadow-lg rounded-md border border-[#E2E8F0]  cursor-pointer">
-                      <div className="flex flex-col">
+                    <div className="group  h-[550px] xl:w-[296px] xxl:w-[296px]  2xl:w-[320px]  shadow-lg rounded-md border border-[#E2E8F0]  cursor-pointer mb-5 lg:mb-10">
+                      <div className="flex flex-col ">
                         <div className="bg-[#E2E8F0]">
                           <div>
                             <Image

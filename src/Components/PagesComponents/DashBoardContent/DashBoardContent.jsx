@@ -103,7 +103,7 @@ const DashBoardContent = () => {
                             <Image
                               width={700}
                               height={700}
-                              className="w-full h-[270px]"
+                              className="w-full h-[304px] overflow-hidden rounded-t-md"
                               src={`${sevice_items.image}`}
                               alt=""
                               onContextMenu={(e) => e.preventDefault()}
@@ -114,8 +114,10 @@ const DashBoardContent = () => {
                         {/* title & description */}
 
                         <div className="px-5">
-                          <h3 className="text-[24px] font-bold text-[#1E293B] font-Raleway pt-5 pb-2">
-                            {sevice_items.title}
+                          <h3 className="text-[20px] font-bold text-[#1E293B] font-Raleway pt-5 pb-2">
+                            {sevice_items?.title.length > 26
+                              ? `${sevice_items.title.slice(0, 26)}...`
+                              : sevice_items.title}
                           </h3>
                           <span className="flex w-[100%] h-[1px] border border-[#E2E2E2]"></span>
                         </div>

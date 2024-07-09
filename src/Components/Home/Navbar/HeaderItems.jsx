@@ -7,6 +7,7 @@ import React from "react";
 
 const HeaderItems = ({ headers }) => {
   const pathname = usePathname();
+
   return (
     <div>
       <Container>

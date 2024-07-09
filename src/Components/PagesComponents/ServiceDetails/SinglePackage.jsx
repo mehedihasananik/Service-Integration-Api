@@ -8,21 +8,17 @@ import React, {
 } from "react";
 import { IoCheckmarkSharp } from "react-icons/io5";
 import { FaRegClock } from "react-icons/fa6";
-import { BiRevision } from "react-icons/bi";
 import { useRouter } from "next/navigation";
 import { AuthContext } from "@/providers/AuthProviders";
-import { Button, Tooltip } from "flowbite-react";
+import { Tooltip } from "flowbite-react";
 import { VscQuestion } from "react-icons/vsc";
 import Link from "next/link";
 
 const SinglePackage = ({ item, setOpenModal, height }) => {
   const router = useRouter();
   const { setItemId } = useContext(AuthContext);
-
   const [userData, setUserData] = useState(null);
   const [orderId, setOrderId] = useState(null);
-  const [isTooltipVisible, setIsTooltipVisible] = useState(false);
-  let timeoutId = null;
 
   const handlePlaceOrder = async () => {
     const data = {
@@ -80,17 +76,6 @@ const SinglePackage = ({ item, setOpenModal, height }) => {
     }
   }, [orderId, router]);
 
-  const showTooltip = () => {
-    clearTimeout(timeoutId);
-    setIsTooltipVisible(true);
-  };
-
-  const hideTooltip = useCallback(() => {
-    timeoutId = setTimeout(() => {
-      setIsTooltipVisible(false);
-    }, 1500); // 300ms delay
-  }, []);
-
   const truncateText = (text, maxWords) => {
     const words = text.split(" ");
     if (words.length > maxWords) {
@@ -107,19 +92,19 @@ const SinglePackage = ({ item, setOpenModal, height }) => {
       : height === 3
       ? "h-[460px]"
       : height === 4
-      ? "h-[500px]"
+      ? "h-[490px]"
       : height === 5
-      ? "h-[565px]"
+      ? "h-[530px] md:h-[565px]"
       : height === 6
-      ? "h-[595px]"
+      ? "h-[570px] md:h-[595px]"
       : height === 7
       ? "h-[615px] md:h-[628px]"
       : height === 8
-      ? "h-[615px] md:h-[675px]"
+      ? "h-[615px] md:h-[660px]"
       : height === 9
-      ? "h-[620px] md:h-[720px]"
+      ? "h-[700px] md:h-[720px]"
       : height === 10
-      ? "h-[620px] md:h-[760px]"
+      ? "h-[700px] md:h-[760px]"
       : "";
 
   const deliveryHeight =
@@ -146,13 +131,13 @@ const SinglePackage = ({ item, setOpenModal, height }) => {
       : "";
 
   return (
-    <div className="md:mx-[10%] lg:mx-0">
+    <div className="md:mx-[10%] lg:mx-0 overflow-hidden">
       <div
         key={item?.id}
-        className={`border ${heightClass} border-[#CBD5E1] transition-all duration-300 hover:border-[#FF693B] px-8 pt-5 pb-11 rounded-3xl 6xl:w-[400px] 6xl:gap-x-20`}
+        className={`border ${heightClass} border-[#CBD5E1] transition-all duration-300 hover:border-[#FF693B] pt-5 pb-11 rounded-3xl 6xl:w-[400px] 6xl:gap-x-20`}
       >
         {/* title */}
-        <div className="h-[95px]">
+        <div className="h-[95px]  px-4 md:px-8">
           <div className="space-y-5">
             <h3 className="font-Raleway text-[16px] text-[#1E293B] font-bold">
               {item?.package_name}
@@ -163,13 +148,13 @@ const SinglePackage = ({ item, setOpenModal, height }) => {
           </div>
         </div>
         {/* price */}
-        <div className="md:h-[50px] xl:h-[60px] xxl:h-[50px] mt-[20px] md:mt-0">
+        <div className="md:h-[50px] xl:h-[60px] xxl:h-[50px] mt-[20px] md:mt-0 px-4 md:px-8">
           <h2 className="md:my-2 text-[20px] md:text-[32px] font-semibold font-Raleway flex items-center">
             $ <span>{item?.package_price}</span>
           </h2>
         </div>
         {/* order button */}
-        <div className="py-4 mt-4 md:mt-0 md:pb-8 flex justify-center">
+        <div className="py-4 mt-4 md:mt-0 md:pb-8 flex justify-center px-4 md:px-8">
           {userData ? (
             <button
               onClick={handlePlaceOrder}
@@ -187,20 +172,25 @@ const SinglePackage = ({ item, setOpenModal, height }) => {
           )}
         </div>
         {/* order details */}
-        <div className="space-y-5 md:h-[150px]">
-          {item?.package_details?.map((item, index) => (
-            <div key={index} className="flex justify-start items-center gap-5">
+        <div className="space-y-5 md:h-[150px] pl-3 md:pl-8">
+          {item?.package_details?.slice(0, 10).map((item, index) => (
+            <div
+              key={index}
+              className="flex justify-start items-center gap-x-1.5"
+            >
               <span>
                 <IoCheckmarkSharp className="text-[#FF8F5A] w-[16px] h-[16px]" />
               </span>
               <span className="text-[#646464] text-[16px] font-Roboto">
-                {item?.package_item}
+                {item?.package_item.length > 40
+                  ? `${item?.package_item.slice(0, 40)}...`
+                  : item?.package_item}
               </span>
             </div>
           ))}
         </div>
         <div
-          className={`flex items-center justify-between mt-[100px] ${deliveryHeight}`}
+          className={`flex items-center justify-between mt-[100px] px-4 md:px-8 ${deliveryHeight}`}
         >
           {/* 1st */}
           <div className="flex items-center gap-1.5 font-Raleway font-semibold">
@@ -214,18 +204,18 @@ const SinglePackage = ({ item, setOpenModal, height }) => {
               </span>{" "}
               <div className="relative inline-block">
                 <Tooltip
-                  className="w-[350px] py-3"
+                  className="w-[280px] py-3 "
                   content={
-                    <div className="flex">
+                    <div className="">
                       <span>
                         {" "}
                         All days are business days except Friday and Saturday.
                       </span>
                       <Link
                         href={"/faq"}
-                        className="flex justify-center items-center py-0 px-2 rounded-md bg-[#FF693B] whitespace-nowrap"
+                        className="flex justify-center items-center mt-2 py-1 px-2 rounded-md bg-[#FF693B] whitespace-nowrap w-[30%]"
                       >
-                        More Info
+                        Learn More
                       </Link>
                     </div>
                   }

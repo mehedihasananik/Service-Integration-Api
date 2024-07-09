@@ -80,6 +80,7 @@ const DashBoardNav = () => {
               )}
             </Link>
             <Dropdown
+              className="mt-2"
               label={userData?.name || userData?.user_name}
               dismissOnClick={false}
               renderTrigger={() => (
@@ -91,16 +92,23 @@ const DashBoardNav = () => {
                 </div>
               )}
             >
-              <Dropdown.Item>
-                <Link href={"/profile"}>Profile</Link>
-              </Dropdown.Item>
-              <Dropdown.Item>
-                <Link href={"/history"}>History</Link>
-              </Dropdown.Item>
-              <Dropdown.Item>
-                <Link href={"/billing"}>Billing</Link>
-              </Dropdown.Item>
-              <Dropdown.Item onClick={clearSession}>Sign out</Dropdown.Item>
+              <div className="mt-0 pt-0">
+                <Dropdown.Item className="flex justify-center text-center">
+                  <Link href={"/profile"}>Profile</Link>
+                </Dropdown.Item>
+                <Dropdown.Item className="flex justify-center text-center">
+                  <Link href={"/history"}>History</Link>
+                </Dropdown.Item>
+                <Dropdown.Item className="flex justify-center text-center">
+                  <Link href={"/billing"}>Billing</Link>
+                </Dropdown.Item>
+                <Dropdown.Item
+                  className="flex justify-center text-center"
+                  onClick={clearSession}
+                >
+                  Sign out
+                </Dropdown.Item>
+              </div>
             </Dropdown>
           </button>
         </ul>
