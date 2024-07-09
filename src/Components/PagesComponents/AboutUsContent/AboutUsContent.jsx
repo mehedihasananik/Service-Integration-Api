@@ -108,9 +108,8 @@ const AboutUsContent = async ({ aboutDetails, singleAboutDetails }) => {
               <h2 className="text-[#0F172A] text-[30px] md:text-[32px] font-bold font-Raleway text-center lg:text-left">
                 {detail.title}
               </h2>
-              <div className="text-[#334155] text-[18px] space-y-5 pt-5 text-left">
-                <p>{detail.details.slice(0, 292)}</p>
-                <p>{detail.details.slice(292, 600)}</p>
+              <div className="text-[#334155] text-[18px] space-y-5 pt-5 text-left whitespace-pre-wrap">
+                <p>{detail.details}</p>
               </div>
             </div>
             {/* right side */}

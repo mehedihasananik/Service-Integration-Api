@@ -7,6 +7,26 @@ import {
 } from "@/config/apis";
 import { Suspense } from "react";
 
+export async function generateMetadata({ params, searchParams }, parent) {
+  const id = params.id;
+
+  // Fetch data for generating metadata
+  const service = await fetch(`${singeServiceDetails}/${id}`).then((res) =>
+    res.json()
+  );
+
+  // Optionally access and extend (rather than replace)  metadata
+  const previousImages = (await parent).openGraph?.images || [];
+
+  return {
+    title: `${service.service_details[0].sevice_items_name} || Services`,
+    description: service.description,
+    openGraph: {
+      images: ["/some-specific-page-image.jpg", ...previousImages],
+    },
+  };
+}
+
 const SinglePage = async ({ params }) => {
   // console.log(params.id);
   // Fetch data for the page

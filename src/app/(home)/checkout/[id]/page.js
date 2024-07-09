@@ -46,8 +46,8 @@ const SinglePage = ({ params }) => {
       ? window.localStorage.getItem("userData")
       : null;
   const userData = userDataString ? JSON.parse(userDataString) : null;
-  console.log(params.id);
-  console.log(userData.id);
+  // console.log(params.id);
+  // console.log(userData.id);
 
   const fetchData = async () => {
     try {
