@@ -161,7 +161,7 @@ const DemoServices = ({ services }) => {
                       <SwiperSlide className="" key={service.id}>
                         <Link href={`/services/${service.slug}`}>
                           <div
-                            className={` w-[350px] h-[550px] xl:w-[330px] xxl:w-[330px] xll:w-[350px] 4xl:w-[330px] group shadow-lg rounded-md border border-[#E2E8F0] cursor-pointer ${
+                            className={` w-[330px] h-[550px] xl:w-[330px] xxl:w-[330px] xll:w-[350px] 4xl:w-[330px] group shadow-lg rounded-md border border-[#E2E8F0] cursor-pointer ${
                               isThirdSlide && "no-margin"
                             } ${
                               isLastSlide ? "" : "no-margin2"
