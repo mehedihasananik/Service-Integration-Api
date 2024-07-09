@@ -7,6 +7,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Loading from "../Loading/Loading";
 import UserLoading from "../UserLoading/UserLoading";
+import { Pagination } from "swiper/modules";
 
 const DemoServices = ({ services }) => {
   const [loading, setLoading] = useState(true);
@@ -158,6 +159,8 @@ const DemoServices = ({ services }) => {
                   breakpoints={breakpoints}
                   className="mySwiper  "
                   onSlideChange={handleSlideChange}
+                  pagination={true}
+                  modules={[Pagination]}
                 >
                   {services.map((service, index) => {
                     const isLastSlide = index === services.length - 1;

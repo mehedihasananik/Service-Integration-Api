@@ -72,8 +72,9 @@ const PortfolioHomeItems = ({ portfolios, services }) => {
               ?.filter(
                 (portfolio) =>
                   selectedServiceId === 0 ||
-                  portfolio.service_id === selectedServiceId
+                  portfolio.category_id === selectedServiceId
               )
+              .slice(0, 4)
               .map((portfolio) => (
                 <Link key={portfolio.id} href={`/portfolio/${portfolio.slug}`}>
                   <div className="group rounded-[10px] border border-[#CBD5E1] overflow-hidden">
