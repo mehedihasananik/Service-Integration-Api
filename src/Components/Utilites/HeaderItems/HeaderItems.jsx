@@ -11,6 +11,11 @@ const HeaderItems = ({ headers }) => {
   const pathname = usePathname();
   const [userData, setUserData] = useState(null);
   const [isClient, setIsClient] = useState(false);
+  const [isNavbarOpen, setIsNavbarOpen] = useState(false);
+
+  const handleMenuItemClick = () => {
+    setIsNavbarOpen(false);
+  };
 
   useEffect(() => {
     setIsClient(true);
@@ -96,7 +101,7 @@ const HeaderItems = ({ headers }) => {
 
       {/* Navbar for small devices */}
       <div className="lg:hidden">
-        <Navbar>
+        <Navbar fluid rounded>
           <Navbar.Brand as={Link} href="/">
             <Image
               src="/assets/logo.png"
@@ -106,35 +111,39 @@ const HeaderItems = ({ headers }) => {
               priority={false}
             />
           </Navbar.Brand>
-          <Navbar.Toggle />
-          <Navbar.Collapse>
+          <Navbar.Toggle onClick={() => setIsNavbarOpen(!isNavbarOpen)} />
+          <Navbar.Collapse className={isNavbarOpen ? "block" : "hidden"}>
             {menu?.map((item, index) => (
-              <Link
-                className={
-                  pathname === item.menu_link
-                    ? "text-[16px] text-[#FF0000] font-normal pb-1 transition delay-700  duration-300 ease-in-out"
-                    : "text-[16px] text-[#0F172A] cursor-pointer font-normal hover:text-[#FF693B]   pb-1 transition delay-700  duration-300 ease-in-out"
-                }
+              <Navbar.Link
+                as={Link}
                 href={item.menu_link}
                 key={index}
+                onClick={handleMenuItemClick}
+                className={
+                  pathname === item.menu_link
+                    ? "text-[16px] text-[#FF0000] font-normal pb-1 transition delay-700 duration-300 ease-in-out"
+                    : "text-[16px] text-[#0F172A] cursor-pointer font-normal hover:text-[#FF693B] pb-1 transition delay-700 duration-300 ease-in-out"
+                }
               >
                 {item.menu_name}
-              </Link>
+              </Navbar.Link>
             ))}
             {/* Login button */}
-            <div className="mt-3">
+            <div className="mt-4">
               {isClient &&
                 (userData?.email ? (
                   <Link
                     href="/dashboard"
-                    className="bg-[#FF693B] border border-[#FF693B] text-white font-medium px-6 py-2 rounded-lg hover:bg-white hover:text-[#FF693B] transition-all duration-300"
+                    className="bg-[#FF693B] border border-[#FF693B] text-white font-medium px-3 py-1.5 rounded-md hover:bg-white hover:text-[#FF693B] transition-all duration-300"
+                    onClick={handleMenuItemClick}
                   >
                     Dashboard
                   </Link>
                 ) : (
                   <Link
                     href="/login"
-                    className="bg-[#FF693B] border border-[#FF693B] text-white font-medium px-12 py-2 rounded-lg hover:bg-white hover:text-[#FF693B] transition-all duration-300"
+                    className="bg-[#FF693B] border border-[#FF693B] text-white font-medium px-6 py-1 rounded-lg hover:bg-white hover:text-[#FF693B] transition-all duration-300"
+                    onClick={handleMenuItemClick}
                   >
                     Login
                   </Link>
