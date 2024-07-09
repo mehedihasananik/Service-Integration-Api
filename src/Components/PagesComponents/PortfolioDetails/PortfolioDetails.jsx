@@ -33,12 +33,12 @@ const PortfolioDetails = ({ singlePortfolioItem }) => {
         </div>
       </Container>
       <div className="text-center bg-[#FF693B08] py-8 md:py-14 md:pb-16">
-        <h3 className="text-[20px] md:text-[32px] lg:text-[54px] text-[#111111] lg:leading-[101px] font-semibold pb-10 md:pb-0">
+        <h3 className="text-[20px] md:text-[32px] lg:text-[54px] text-[#111111] lg:leading-[101px] font-semibold pb-4 md:pb-0">
           Let&apos;s Choose Us for Your Next Project
         </h3>
         <Link
           href="/#projectDetails"
-          className="bg-[#FF693B] border border-[#FF693B] text-[18px] font-Poppins text-white px-5 py-2 md:px-10 md:py-2 rounded-lg transition-all duration-300 hover:bg-[#fff] hover:text-[#FF693B]"
+          className="bg-[#FF693B] text-[16px] border border-[#FF693B] md:text-[18px] font-Poppins text-white px-5 py-2 md:px-10 md:py-2 rounded-lg transition-all duration-300 hover:bg-[#fff] hover:text-[#FF693B]"
         >
           Contact Us
         </Link>
