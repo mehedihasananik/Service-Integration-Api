@@ -235,6 +235,7 @@
     }
   }
 }
+
 .image-gallery-left-nav .image-gallery-svg,
 .image-gallery-right-nav .image-gallery-svg {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -244,44 +245,6 @@
   width: 100%;
   line-height: 0;
   height: 60px !important;
-}
-
-@media only screen and (max-width: 2500px) {
-  .image-gallery-left-nav .image-gallery-svg,
-  .image-gallery-right-nav .image-gallery-svg {
-    height: 50px !important;
-    width: 50px !important;
-    background: #fff !important;
-    color: black;
-    border-radius: 100%;
-  }
-  /* .image-gallery-left-nav {
-    left: -1vw !important;
-  }
-  .image-gallery-right-nav {
-    right: -3vw !important;
-  } */
-}
-@media only screen and (max-width: 768px) {
-  .image-gallery-left-nav .image-gallery-svg,
-  .image-gallery-right-nav .image-gallery-svg {
-    height: 30px !important;
-    width: 30px !important;
-    background: #fff !important;
-    color: black;
-    border-radius: 100%;
-  }
-  /* .image-gallery-left-nav {
-    left: -1vw !important;
-  }
-  .image-gallery-right-nav {
-    right: -3vw !important;
-  } */
-
-  .swiper-slide {
-    display: flex !important;
-    justify-content: center !important;
-  }
 }
 
 .disabled {
@@ -554,9 +517,56 @@ select:not([size]) {
 .flowbite-tooltip-target {
   left: 424px !important;
 }
-.mySwiper_serviceSlider {
-  height: 591px !important;
-}
+
 .testimonial_mySwiper {
   height: 500px !important;
+}
+@media only screen and (max-width: 2500px) {
+  .image-gallery-left-nav .image-gallery-svg,
+  .image-gallery-right-nav .image-gallery-svg {
+    height: 50px !important;
+    width: 50px !important;
+    background: #fff !important;
+    color: black;
+    border-radius: 100%;
+  }
+  /* .image-gallery-left-nav {
+    left: -1vw !important;
+  }
+  .image-gallery-right-nav {
+    right: -3vw !important;
+  } */
+  .mySwiper_serviceSlider {
+    height: 591px !important;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .image-gallery-left-nav .image-gallery-svg,
+  .image-gallery-right-nav .image-gallery-svg {
+    height: 30px !important;
+    width: 30px !important;
+    background: #fff !important;
+    color: black;
+    border-radius: 100%;
+  }
+  /* .image-gallery-left-nav {
+    left: -1vw !important;
+  }
+  .image-gallery-right-nav {
+    right: -3vw !important;
+  } */
+
+  .swiper-slide {
+    display: flex !important;
+    justify-content: center !important;
+  }
+
+  .testimonial_mySwiper {
+    height: 500px !important;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .testimonial_mySwiper {
+    height: 390px !important;
+  }
 }
