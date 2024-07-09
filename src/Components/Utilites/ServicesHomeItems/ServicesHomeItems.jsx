@@ -64,7 +64,7 @@ const DemoServices = ({ services }) => {
   };
 
   return (
-    <div id="testimonial" className="overflow-hidden">
+    <div id="serviceSlider" className="serviceSlider">
       <div className=" max-w-[1680px] mx-auto 4xl:px-[0] 4xl:max-w-[1920px] xl:pl-[8%] 2xl:pl-[13%] 4xl:pl-[14%]">
         <div className="py-5 xl:pt-10">
           <div className="flex flex-col  lg:flex-row items-center justify-between lg:gap-20 xl:gap-12 py-8">
@@ -148,7 +148,7 @@ const DemoServices = ({ services }) => {
                   slidesPerGroup={1}
                   spaceBetween={30}
                   breakpoints={breakpoints}
-                  className="mySwiper  "
+                  className="mySwiper  mySwiper_serviceSlider"
                   onSlideChange={handleSlideChange}
                   pagination={true}
                   modules={[Pagination]}

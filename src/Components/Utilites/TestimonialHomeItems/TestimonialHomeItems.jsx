@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
 import { HiArrowLeft, HiArrowRight } from "react-icons/hi";
+import { Pagination } from "swiper/modules";
 
 const TestimonialHomeItems = ({ testimonials }) => {
   const [loading, setLoading] = useState(true);
@@ -142,6 +143,8 @@ const TestimonialHomeItems = ({ testimonials }) => {
                   breakpoints={breakpoints}
                   className="mySwiper mx-auto"
                   onSlideChange={handleSlideChange}
+                  pagination={true}
+                  modules={[Pagination]}
                 >
                   {testimonials.map((testimonial) => (
                     <SwiperSlide key={testimonial.id}>

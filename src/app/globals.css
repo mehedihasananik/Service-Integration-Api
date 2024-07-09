@@ -554,12 +554,6 @@ select:not([size]) {
 .flowbite-tooltip-target {
   left: 424px !important;
 }
-.swiper-horizontal > .swiper-pagination-bullets,
-.swiper-pagination-bullets.swiper-pagination-horizontal,
-.swiper-pagination-custom,
-.swiper-pagination-fraction {
-  position: relaitve !important;
-  bottom: -4px !important;
-  left: 0 !important;
-  width: 100%;
+.mySwiper_serviceSlider {
+  height: 590px !important;
 }
