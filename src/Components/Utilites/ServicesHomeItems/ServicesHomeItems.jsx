@@ -5,7 +5,6 @@ import "swiper/swiper-bundle.css";
 import { HiArrowLeft, HiArrowRight } from "react-icons/hi";
 import Link from "next/link";
 import Image from "next/image";
-import Loading from "../Loading/Loading";
 import UserLoading from "../UserLoading/UserLoading";
 import { Pagination } from "swiper/modules";
 
@@ -19,14 +18,6 @@ const DemoServices = ({ services }) => {
     setTotalSlides(services?.length);
     setLoading(false);
   }, [services]);
-
-  const truncateText = (text, maxWords) => {
-    const words = text.split(" ");
-    if (words.length > maxWords) {
-      return words.slice(0, maxWords).join(" ") + "...";
-    }
-    return text;
-  };
 
   const handlePrevSlide = () => {
     if (swiperRef.current) {
@@ -170,7 +161,7 @@ const DemoServices = ({ services }) => {
                       <SwiperSlide className="" key={service.id}>
                         <Link href={`/services/${service.slug}`}>
                           <div
-                            className={` w-[300px] h-[550px] xl:w-[330px] xxl:w-[330px] xll:w-[350px] 4xl:w-[330px] group shadow-lg rounded-md border border-[#E2E8F0] cursor-pointer ${
+                            className={` w-[350px] h-[550px] xl:w-[330px] xxl:w-[330px] xll:w-[350px] 4xl:w-[330px] group shadow-lg rounded-md border border-[#E2E8F0] cursor-pointer ${
                               isThirdSlide && "no-margin"
                             } ${
                               isLastSlide ? "" : "no-margin2"
