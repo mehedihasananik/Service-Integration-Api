@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Accordion from "@/Components/Accordion/Accordion";
-import Container from "@/Components/Container/Container";
 import { faqApi } from "@/config/apis";
 
 const Questions = ({ className, title }) => {
@@ -25,34 +24,36 @@ const Questions = ({ className, title }) => {
   }, []);
 
   return (
-    <Container>
-      <div className={`md:py-10 ${className}`}>
+    <div className="max-w-[1520px] mx-auto px-[0%] md:px-[4%] lg:px-[8%] 4xl:px-[4%]">
+      <div className={`py-6 md:py-10 ${className}`}>
         <div className="max-w-[1680px] mx-auto">
-          <>
-            <div className="text-center">
-              <h3 className="text-[#0F172A] text-[30px] md:text-[48px] font-bold font-Raleway pb-5">
-                {title}
-              </h3>
-              <p className="text-[#0F172A] text-[16px]">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. <br /> Lorem Ipsum has been the
+          <div className="text-center">
+            <h3 className="text-[#0F172A] text-[24px] md:text-[30px] lg:text-[48px] font-bold font-Raleway pb-3 md:pb-5">
+              {title}
+            </h3>
+            <div className="flex justify-center">
+              <p className="text-[#0F172A] text-[14px] md:text-[16px] w-full md:w-2/3 lg:w-1/2">
+                Here, you&apos;ll find answers to the most common questions and
+                concerns our clients have. We&apos;ve compiled this
+                comprehensive resource to provide you with the information you
+                need, right at your fingertips.
               </p>
             </div>
-            <div className="py-5 md:py-10">
-              <div className="md:p-4 rounded-lg">
-                {questions.map((question) => (
-                  <Accordion
-                    key={question.id}
-                    title={question.title}
-                    answer={question.details}
-                  />
-                ))}
-              </div>
+          </div>
+          <div className="py-4 md:py-8">
+            <div className="rounded-lg">
+              {questions.map((question) => (
+                <Accordion
+                  key={question.id}
+                  title={question.title}
+                  answer={question.details}
+                />
+              ))}
             </div>
-          </>
+          </div>
         </div>
       </div>
-    </Container>
+    </div>
   );
 };
 

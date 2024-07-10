@@ -6,30 +6,29 @@ const Accordion = ({ title, answer }) => {
   const [accordionOpen, setAccordionOpen] = useState(false);
 
   return (
-    <div className="py-2 rounded-md ">
+    <div className="py-2 rounded-md">
       <button
         onClick={() => setAccordionOpen(!accordionOpen)}
-        className="flex justify-between items-center  w-full bg-[#F8FAFC] rounded-md py-3 px-4 font-semibold"
+        className="flex justify-between items-center w-full bg-[#F8FAFC] rounded-md py-3 px-3 md:px-4 font-semibold"
       >
-        <div className="flex items-center gap-4 ">
+        <div className="flex items-center gap-2 md:gap-4">
           <span
-            className={`p-2 rounded-full ${
+            className={`p-1 md:p-2 rounded-full ${
               accordionOpen ? "bg-red-500" : "bg-[#0A2C8C]"
             }`}
           >
-            <RiEdit2Fill className="hidden md:block  text-white" />
+            <RiEdit2Fill className="text-white w-3 h-3 md:w-4 md:h-4" />
           </span>
 
-          <span className="text-[#334155] text-[14px] md:text-[20px] md:w-[500px] lg:w-full">
+          <span className="text-[#334155] text-[12px] md:text-[14px] lg:text-[20px] text-left">
             {title}
           </span>
         </div>
 
         <svg
-          className="fill-indigo-500 shrink-0 ml-8"
-          width="16"
-          height="16"
+          className="fill-indigo-500 shrink-0 ml-2 md:ml-8 w-4 h-4 md:w-6 md:h-6"
           xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 16 16"
         >
           <rect
             y="7"
@@ -58,8 +57,8 @@ const Accordion = ({ title, answer }) => {
             : "grid-rows-[0fr] opacity-0"
         }`}
       >
-        <div className=" overflow-hidden text-center md:text-left text-[16px] px-4 py-0  bg-[#F8FAFC]">
-          <p className="py-3 pb-8 "> {answer}</p>
+        <div className="overflow-hidden text-left text-[12px] md:text-[16px] px-3 md:px-4 py-0 bg-[#F8FAFC]">
+          <p className="py-3 pb-6 md:pb-8">{answer}</p>
         </div>
       </div>
     </div>

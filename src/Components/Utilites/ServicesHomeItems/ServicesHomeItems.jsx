@@ -74,11 +74,13 @@ const DemoServices = ({ services }) => {
                   Kick Start With Our Services{" "}
                 </h3>
               </div>
-              <div className="pt-4 lg:w-[380px]">
-                <p className="text-[16px] text-[#666666] font-normal">
-                  We help businesses to bring their products to life, improve
-                  growth and reach ultimate success. We provide all services
-                  that you need for your business.
+              <div className="pt-4 lg:w-[380px] 4xl:w-[500px]">
+                <p className="text-[16px] text-left text-[#666666] font-normal">
+                  Elevate your business to new heights with our transformative
+                  IT solutions. Captivating design, innovative web/app
+                  development, and impactful digital marketing - our expert team
+                  crafts tailored services to ignite your growth and outshine
+                  the competition. Unlock your true potential today.
                 </p>
               </div>
               {/* small device */}
@@ -127,7 +129,7 @@ const DemoServices = ({ services }) => {
                   </button>
                 </div>
               </div>
-              <div className="py-8 lg:py-5 text-center lg:text-left  lg:mt-8 hidden md:block">
+              <div className="py-8 lg:py-5 text-center lg:text-left  lg:mt-3 hidden md:block">
                 <Link
                   href={"/services"}
                   className="bg-[#FF693B] text-white text-[16px]  font-semibold py-4 px-14 rounded-lg border border-[#FF693B]  hover:bg-white hover:text-[#FF693B] transition-all duration-300"

@@ -10,6 +10,7 @@ import Link from "next/link";
 import OrderSliderLg from "@/Components/Utilites/OrderSlider/OrderSliderLg";
 import OrderSliderSm from "@/Components/Utilites/OrderSlider/OrderSliderSm";
 import QuestionService from "@/Components/Home/Questions/QuestionService";
+import SinglePackageSm from "./SinglePackageSm";
 
 const ServiceDetails = ({ service, sliders, packages }) => {
   const [openModal, setOpenModal] = useState(false);
@@ -31,7 +32,7 @@ const ServiceDetails = ({ service, sliders, packages }) => {
             </h3>
           </div>
           {/* packages */}
-          <div className="grid grid-cols-1 gap-y-10 lg:grid-cols-3 gap-x-5 lg:gap-y-0 4xl:px-[10%] 6xl:px-[0%] ">
+          <div className="hidden grid-cols-1 gap-y-10 lg:grid  lg:grid-cols-3 gap-x-5 lg:gap-y-0 4xl:px-[10%] 6xl:px-[0%]   ">
             {packages.map((item) => {
               return (
                 <SinglePackage
@@ -44,6 +45,19 @@ const ServiceDetails = ({ service, sliders, packages }) => {
               );
             })}
           </div>
+          <div className=" grid-cols-1 lg:hidden space-y-5  ">
+            {packages.map((item) => {
+              return (
+                <SinglePackageSm
+                  key={item?.id}
+                  item={item}
+                  openModal={openModal}
+                  setOpenModal={setOpenModal}
+                />
+              );
+            })}
+          </div>
+
           {/* custom projects */}
 
           <div className="flex flex-col lg:flex-row justify-center items-center py-8 gap-5 text-center mt-[20px]">
