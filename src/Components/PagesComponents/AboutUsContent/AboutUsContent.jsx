@@ -76,7 +76,7 @@ const AboutUsContent = async ({ aboutDetails, singleAboutDetails }) => {
           </div>
         </div>
         {/* values */}
-        <div className="lg:pt-20 lg:pb-4 space-y-3">
+        <div className="pt-4  lg:pt-20 lg:pb-4 space-y-3">
           <h3 className="text-[30px] md:text-[32px] text-[#334155] text-center lg:text-left">
             Our Values
           </h3>
@@ -95,7 +95,7 @@ const AboutUsContent = async ({ aboutDetails, singleAboutDetails }) => {
               detail.image_positions === "right"
                 ? "lg:justify-between"
                 : "lg:flex-row-reverse lg:justify-between"
-            } my-5 lg:py-20`}
+            } my-5 lg:py-8`}
           >
             {/* left side */}
             <div
