@@ -209,10 +209,11 @@ const SinglePackage = ({ item, setOpenModal, height }) => {
                     <div className="">
                       <span>
                         {" "}
-                        All days are business days except Friday and Saturday.
+                        All days are business days except <br /> Friday and
+                        Saturday.
                       </span>
                       <Link
-                        href={"/faq"}
+                        href="/refund-policy#working_days"
                         className="flex justify-center items-center mt-2 py-1 px-3 rounded-md bg-[#FF693B] whitespace-nowrap w-[32%]"
                       >
                         Learn More

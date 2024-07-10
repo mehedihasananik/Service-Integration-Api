@@ -592,3 +592,7 @@ select:not([size]) {
     transform: translateY(0);
   }
 }
+.custom-justify {
+  text-align: justify;
+  text-justify: inter-word;
+}

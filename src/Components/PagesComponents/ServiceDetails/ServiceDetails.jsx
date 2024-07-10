@@ -92,7 +92,7 @@ const ServiceDetails = ({ service, sliders, packages }) => {
       </Container>
       {/* portfolios*/}
       <div>
-        <div className="lg:px-[0%] xxl:px-[0%] 4xl:pl-[3%]">
+        <div className="lg:px-[0%] xxl:px-[0%] 4xl:pl-[4%]">
           <ServicePortolio portfolios={service.portfolio} />
         </div>
       </div>

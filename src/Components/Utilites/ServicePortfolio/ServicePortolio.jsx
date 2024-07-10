@@ -22,7 +22,7 @@ const ServicePortolio = ({ portfolios }) => {
   const breakpoints = {
     // when window width is >= 1024px (lg)
     1920: {
-      slidesPerView: 3,
+      slidesPerView: 2.8,
       spaceBetween: 50,
     },
     1336: {

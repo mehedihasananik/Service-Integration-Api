@@ -18,11 +18,9 @@ const PortfolioDetails = ({ singlePortfolioItem }) => {
           </p>
           {details.map((portfolio) => (
             <div key={portfolio?.id}>
-              <Image
+              <img
                 className="md:w-full md:h-[auto]"
                 alt="image"
-                width={1000}
-                height={1000}
                 src={portfolio.image}
               />
               <h3 className="text-gray-500 text-[18px] md:text-[20px] font-Raleway font-semibold text-center py-4 md:py-5 md:pb-8">

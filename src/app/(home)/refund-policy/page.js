@@ -109,6 +109,12 @@ const RefundPolicy = () => {
             <li>Items Beyond the 30-Day Return Window</li>
           </ul>
         </section>
+        <section id="working_days" className="mb-8">
+          <h2 className="text-xl font-semibold mb-2">Our Working Days</h2>
+          <p className="mb-4">
+            All days are business days except Friday and Saturday.
+          </p>
+        </section>
         <section className="mb-8">
           <h2 className="text-xl font-semibold mb-2">
             Refund Processing Timeline
