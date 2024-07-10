@@ -74,7 +74,7 @@ const ServicePortolio = ({ portfolios }) => {
               breakpoints={breakpoints}
               className="mySwiper "
               modules={[Autoplay]}
-              autoplay={{ delay: 3000, disableOnInteraction: false }}
+              // autoplay={{ delay: 3000, disableOnInteraction: false }}
             >
               {portfolios?.map((portfolio) => {
                 // console.log(portfolio);
@@ -82,7 +82,7 @@ const ServicePortolio = ({ portfolios }) => {
                   <SwiperSlide key={portfolio.id} className="">
                     <Link href={`/portfolio/${portfolio.slug}`}>
                       <div className="group rounded-[10px] overflow-hidden hidden lg:block border border-[#CBD5E1]  w-[620px]">
-                        <div className="portfolio-bgHover h-[440px]  cursor-pointer flex bg-[#FFFFFF] rounded-[10px]">
+                        <div className="portfolio-bgHover h-[390px]  cursor-pointer flex bg-[#FFFFFF] rounded-[10px]">
                           <div className="w-1/2 h-full">
                             <Image
                               width={800}
@@ -124,9 +124,9 @@ const ServicePortolio = ({ portfolios }) => {
                         </div>
                       </div>
 
-                      <div className="group rounded-[10px] overflow-hidden block lg:hidden">
+                      <div className="group h-auto rounded-[10px] overflow-hidden block lg:hidden">
                         <div className="border border-[#CBD5E1] portfolio-bgHover h-auto w-full cursor-pointer flex flex-col bg-[#FFFFFF] rounded-[10px]">
-                          <div className="w-full h-[300px]">
+                          <div className="w-full h-[250px]">
                             <Image
                               width={800}
                               height={500}
@@ -135,7 +135,7 @@ const ServicePortolio = ({ portfolios }) => {
                               alt=""
                             />
                           </div>
-                          <div className="w-full h-auto flex flex-col justify-start items-center p-4 mt-10 p-0 py-0">
+                          <div className="w-full h-auto flex flex-col justify-start items-center p-4">
                             <div className="text-center">
                               <h4 className="text-[14px] text-[#999999] pt-3 pb-3 portfolio-textHover">
                                 {portfolio?.service_name[0]?.service_name}
@@ -151,9 +151,9 @@ const ServicePortolio = ({ portfolios }) => {
                               </div>
                               <div>
                                 <p className="w-full px-[5%] flex justify-center text-center text-[14px] text-[#666666] py-3 portfolio-textHover pt-3.5">
-                                  <span>{portfolio.text.slice(0, 240)}...</span>
+                                  <span>{portfolio.text.slice(0, 150)}...</span>
                                 </p>
-                                <div className="pt-5 group flex justify-center items-center gap-2 text-[#FF693B] font-bold portfolio-textHover pb-6">
+                                <div className="pt-4 group flex justify-center items-center gap-2 text-[#FF693B] font-bold portfolio-textHover pb-5">
                                   <button className="text-[14px]">
                                     Read More
                                   </button>

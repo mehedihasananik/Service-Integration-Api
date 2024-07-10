@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -8,10 +7,23 @@ import { HiArrowSmallRight } from "react-icons/hi2";
 const PortfolioHomeItems = ({ portfolios, services }) => {
   const [loading, setLoading] = useState(true);
   const [selectedServiceId, setSelectedServiceId] = useState(0);
+  const [animate, setAnimate] = useState(false);
 
   useEffect(() => {
     setLoading(false);
   }, []);
+
+  useEffect(() => {
+    if (animate) {
+      const timer = setTimeout(() => setAnimate(false), 500);
+      return () => clearTimeout(timer);
+    }
+  }, [animate]);
+
+  const handleServiceClick = (categoryId) => {
+    setSelectedServiceId(categoryId);
+    setAnimate(true);
+  };
 
   const truncateText = (text, maxWords) => {
     const words = text.split(" ");
@@ -20,6 +32,13 @@ const PortfolioHomeItems = ({ portfolios, services }) => {
     }
     return text;
   };
+
+  const filteredPortfolios = portfolios
+    ?.filter(
+      (portfolio) =>
+        selectedServiceId === 0 || portfolio.category_id === selectedServiceId
+    )
+    .slice(0, 4);
 
   return (
     <div className="md:py-5 lg:pt-20">
@@ -42,7 +61,7 @@ const PortfolioHomeItems = ({ portfolios, services }) => {
             <div className="flex flex-wrap justify-center gap-3 md:gap-4 text-[#9E9E9E] text-[14px] md:text-[16px]">
               <button
                 key={0}
-                onClick={() => setSelectedServiceId(0)}
+                onClick={() => handleServiceClick(0)}
                 className={`w-[30%] md:w-auto text-[#9E9E9E] hover:text-[#FA8D59] font-bold transition-all ${
                   selectedServiceId === 0 ? "text-[#FA8D59]" : ""
                 }`}
@@ -52,7 +71,7 @@ const PortfolioHomeItems = ({ portfolios, services }) => {
               {services.map((service, index) => (
                 <button
                   key={index + 1}
-                  onClick={() => setSelectedServiceId(service.category_id)}
+                  onClick={() => handleServiceClick(service.category_id)}
                   className={`w-[30%] md:w-auto text-[#9E9E9E] hover:text-[#FA8D59] font-bold transition-all ${
                     selectedServiceId === service.category_id
                       ? "text-[#FA8D59]"
@@ -66,16 +85,14 @@ const PortfolioHomeItems = ({ portfolios, services }) => {
           </div>
         </div>
         {/* Portfolio cards */}
-        <div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10 justify-between pt-10 pb-5">
-            {portfolios
-              ?.filter(
-                (portfolio) =>
-                  selectedServiceId === 0 ||
-                  portfolio.category_id === selectedServiceId
-              )
-              .slice(0, 4)
-              .map((portfolio) => (
+        <div className="min-h-[300px]">
+          {filteredPortfolios.length > 0 ? (
+            <div
+              className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10 justify-between pt-10 pb-5 ${
+                animate ? "fade-in" : ""
+              }`}
+            >
+              {filteredPortfolios.map((portfolio) => (
                 <Link key={portfolio.id} href={`/portfolio/${portfolio.slug}`}>
                   <div className="group rounded-[10px] border border-[#CBD5E1] overflow-hidden">
                     <div className="portfolio-bgHover w-full cursor-pointer flex flex-col lg:flex-row bg-[#FFFFFF] rounded-[10px]">
@@ -113,7 +130,14 @@ const PortfolioHomeItems = ({ portfolios, services }) => {
                   </div>
                 </Link>
               ))}
-          </div>
+            </div>
+          ) : (
+            <div className="flex justify-center items-center h-[300px]">
+              <p className="text-[20px] text-[#666666] font-semibold">
+                No portfolio is available for this category...
+              </p>
+            </div>
+          )}
         </div>
 
         {/* navigate to portfolio */}
