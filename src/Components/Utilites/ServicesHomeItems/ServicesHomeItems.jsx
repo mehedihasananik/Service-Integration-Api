@@ -219,7 +219,7 @@ const DemoServices = ({ services }) => {
                   })}
                 </Swiper>
               )}
-              <div className="py-0 lg:py-2 text-center lg:text-left  lg:mt-8  md:hidden  mt-10">
+              <div className="py-0 lg:py-2 text-center lg:text-left  lg:mt-8  md:hidden mt-5  md:mt-10">
                 <Link
                   href={"/services"}
                   className="bg-[#FF693B] text-white text-[16px]  font-semibold py-2.5 px-14 rounded-lg border border-[#FF693B]  hover:bg-white hover:text-[#FF693B] transition-all duration-300"
