@@ -144,7 +144,7 @@ const PortfolioHomeItems = ({ portfolios, services }) => {
                           <h4 className="text-[14px] text-[#999999] pt-0 pb-2 portfolio-textHover">
                             {portfolio?.service_name[0]?.service_name}
                           </h4>
-                          <div className="text-[16px] px-[5%] w-full h-[65px] font-bold font-Raleway text-[#333333] portfolio-textHover line-clamp-3">
+                          <div className="text-[16px] px-[5%] w-full h-[67px] font-bold font-Raleway text-[#333333] portfolio-textHover line-clamp-3">
                             {portfolio?.heading
                               .split(" ")
                               .slice(0, 12)
