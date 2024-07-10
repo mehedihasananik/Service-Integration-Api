@@ -74,8 +74,8 @@ const DemoServices = ({ services }) => {
                   Kick Start With Our Services{" "}
                 </h3>
               </div>
-              <div className="pt-4  ">
-                <p className="text-justify text-[16px] text-[#666666] font-normal w-[300px] lg:w-[380px] 4xl:w-[500px]">
+              <div className="pt-4  flex justify-center md:block">
+                <p className="text-justify  text-[16px] text-[#666666] font-normal w-[300px] lg:w-[380px] 4xl:w-[500px]">
                   Elevate your business to new heights with our transformative
                   IT solutions. Captivating design, innovative web/app
                   development, and impactful digital marketing - our expert team
