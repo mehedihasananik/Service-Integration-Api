@@ -62,8 +62,8 @@ const TestimonialHomeItems = ({ testimonials }) => {
   return (
     <div id="testimonial" className="overflow-hidden">
       <div className=" max-w-[1680px] mx-auto 4xl:px-[0] 4xl:max-w-[1920px] xl:pl-[8%] 2xl:pl-[13%] 4xl:pl-[14%]">
-        <div className="py-5 xl:pt-10">
-          <div className="flex flex-col lg:flex-row items-center justify-between lg:gap-20 xl:gap-12 py-8">
+        <div className="py-5 xl:pt-0">
+          <div className="flex flex-col lg:flex-row items-center justify-between lg:gap-20 xl:gap-12 pt-5 pb-5 md:pt-8 md:pb-5">
             <div className="w-full text-center lg:text-left lg:w-[35%]">
               <div className="lg:w-[400px]">
                 <h3 className="text-[30px] md:text-[42px] lg:text-[48px] font-bold font-Raleway text-[#0F172A]">

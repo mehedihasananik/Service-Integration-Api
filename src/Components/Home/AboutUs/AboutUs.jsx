@@ -21,7 +21,7 @@ const AboutUs = async () => {
   // console.log(about);
 
   return (
-    <div className="pb-5 md:pb-0 md:py-10 overflow-hidden">
+    <div className="pb-5  md:pt-3  md:pb-10 overflow-hidden">
       <Container>
         {/* about us content */}
         <div className="flex flex-col lg:flex-row   md:gap-[6%] 2xl:gap-[10%]">
