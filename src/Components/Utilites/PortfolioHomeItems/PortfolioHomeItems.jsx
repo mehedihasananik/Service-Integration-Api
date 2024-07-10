@@ -94,7 +94,7 @@ const PortfolioHomeItems = ({ portfolios, services }) => {
             >
               {filteredPortfolios.map((portfolio) => (
                 <Link key={portfolio.id} href={`/portfolio/${portfolio.slug}`}>
-                  <div className="group rounded-[10px] border border-[#CBD5E1] overflow-hidden">
+                  <div className="hidden lg:block group rounded-[10px] border border-[#CBD5E1] overflow-hidden">
                     <div className="portfolio-bgHover w-full cursor-pointer flex flex-col lg:flex-row bg-[#FFFFFF] rounded-[10px]">
                       <div className="w-full lg:w-1/2 h-[250px] lg:h-[420px]">
                         <Image
@@ -118,6 +118,46 @@ const PortfolioHomeItems = ({ portfolios, services }) => {
                               <span>{truncateText(portfolio.text, 30)}</span>
                             </p>
                             <div className="pt-5 group flex justify-center items-center gap-2 text-[#FF693B] font-bold portfolio-textHover pb-6 lg:pb-0">
+                              <button className="text-[14px]">Read More</button>
+                              <span className="w-[19px] font-bold">
+                                <HiArrowSmallRight className="text-xl" />
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="group h-auto rounded-[10px] overflow-hidden block lg:hidden">
+                    <div className="border border-[#CBD5E1] portfolio-bgHover h-auto w-full cursor-pointer flex flex-col bg-[#FFFFFF] rounded-[10px]">
+                      <div className="w-full h-[250px]">
+                        <Image
+                          width={800}
+                          height={500}
+                          className="w-full h-full object-cover"
+                          src={portfolio?.image}
+                          alt=""
+                        />
+                      </div>
+                      <div className="w-full h-auto flex flex-col justify-start items-center p-4">
+                        <div className="text-center">
+                          <h4 className="text-[14px] text-[#999999] pt-0 pb-2 portfolio-textHover">
+                            {portfolio?.service_name[0]?.service_name}
+                          </h4>
+                          <div className="text-[16px] px-[5%] w-full h-[65px] font-bold font-Raleway text-[#333333] portfolio-textHover line-clamp-3">
+                            {portfolio?.heading
+                              .split(" ")
+                              .slice(0, 12)
+                              .join(" ")}
+                            {portfolio?.heading.split(" ").length > 12
+                              ? "..."
+                              : ""}
+                          </div>
+                          <div>
+                            <p className="w-full px-[5%] flex justify-center text-center text-[14px] text-[#666666] py-3 portfolio-textHover pt-3.5">
+                              <span>{portfolio.text.slice(0, 150)}...</span>
+                            </p>
+                            <div className="pt-2 pb-0 group flex justify-center items-center gap-2 text-[#FF693B] font-bold portfolio-textHover ">
                               <button className="text-[14px]">Read More</button>
                               <span className="w-[19px] font-bold">
                                 <HiArrowSmallRight className="text-xl" />

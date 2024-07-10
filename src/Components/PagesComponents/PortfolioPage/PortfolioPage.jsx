@@ -221,9 +221,9 @@ const PortfolioPage = ({
                             alt=""
                           />
                         </div>
-                        <div className="w-full lg:w-1/2 flex flex-col justify-start items-center p-6 lg:p-10">
+                        <div className="w-full lg:w-1/2 flex flex-col justify-start items-center p-4 lg:p-10">
                           <div className="text-center">
-                            <h4 className="text-[14px] text-[#999999] pb-3 portfolio-textHover">
+                            <h4 className="text-[14px] text-[#999999] pb-2 portfolio-textHover">
                               {portfolio?.service_name[0]?.service_name}
                             </h4>
                             <div className="text-[16px] w-full lg:w-[380px] font-bold font-Raleway text-[#333333] portfolio-textHover line-clamp-3 mb-3">

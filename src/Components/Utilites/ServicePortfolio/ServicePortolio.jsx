@@ -137,7 +137,7 @@ const ServicePortolio = ({ portfolios }) => {
                           </div>
                           <div className="w-full h-auto flex flex-col justify-start items-center p-4">
                             <div className="text-center">
-                              <h4 className="text-[14px] text-[#999999] pt-3 pb-3 portfolio-textHover">
+                              <h4 className="text-[14px] text-[#999999] pt-0 pb-2 portfolio-textHover">
                                 {portfolio?.service_name[0]?.service_name}
                               </h4>
                               <div className="text-[16px] px-[5%] w-full h-[65px] font-bold font-Raleway text-[#333333] portfolio-textHover line-clamp-3">
@@ -153,7 +153,7 @@ const ServicePortolio = ({ portfolios }) => {
                                 <p className="w-full px-[5%] flex justify-center text-center text-[14px] text-[#666666] py-3 portfolio-textHover pt-3.5">
                                   <span>{portfolio.text.slice(0, 150)}...</span>
                                 </p>
-                                <div className="pt-4 group flex justify-center items-center gap-2 text-[#FF693B] font-bold portfolio-textHover pb-5">
+                                <div className="pt-2 pb-0 group flex justify-center items-center gap-2 text-[#FF693B] font-bold portfolio-textHover ">
                                   <button className="text-[14px]">
                                     Read More
                                   </button>
