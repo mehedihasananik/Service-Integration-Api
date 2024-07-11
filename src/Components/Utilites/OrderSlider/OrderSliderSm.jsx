@@ -127,11 +127,15 @@ const OrderSliderSm = ({ sliders }) => {
   const renderItem = (item) => {
     return (
       <div
-        className={`flex items-center justify-center ${
-          isFullscreen ? "h-[100vh]" : "xl:h-[500px] 4xl:h-[600px] "
+        className={`${
+          isFullscreen
+            ? "h-screen"
+            : "max-h-[200px] xl:max-h-[500px] 4xl:max-h-[600px] "
         }`}
         style={{
-          width: isFullscreen ? "100%" : "100%",
+          display: "grid",
+          alignItems: "center",
+          width: "100%",
           overflowY: isFullscreen ? "scroll" : "hidden",
         }}
       >
@@ -147,6 +151,7 @@ const OrderSliderSm = ({ sliders }) => {
             src={item.original}
             alt=""
             style={{
+              margin: "auto",
               width: "1920px",
               height: isFullscreen ? "auto" : "100%",
               objectFit: isFullscreen ? "contain" : "cover",

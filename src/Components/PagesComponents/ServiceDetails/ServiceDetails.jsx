@@ -75,7 +75,9 @@ const ServiceDetails = ({ service, sliders, packages }) => {
           </div>
 
           {/* order Slider */}
+
           <OrderSliderLg sliders={sliders} />
+
           {/* <OrderSliderSm sliders={sliders} /> */}
           {/* description */}
           <div className="bg-[#FCFCFC] mt-4 p-4 md:p-7 rounded-lg text-justify">

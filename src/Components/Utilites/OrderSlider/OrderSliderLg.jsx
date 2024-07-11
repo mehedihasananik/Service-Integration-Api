@@ -127,34 +127,35 @@ const OrderSliderLg = ({ sliders }) => {
   const renderItem = (item) => {
     return (
       <div
-        className={`flex items-start justify-center ${
+        className={`${
           isFullscreen
             ? "h-screen"
-            : "max-h-[200px] xl:max-h-[500px] 4xl:max-h-[600px]"
+            : "max-h-[200px] xl:max-h-[500px] 4xl:max-h-[600px] "
         }`}
         style={{
+          display: "grid",
+          alignItems: "center",
           width: "100%",
-          overflowY: isFullscreen ? "auto" : "hidden",
+          overflowY: isFullscreen ? "scroll" : "hidden",
         }}
       >
         <div
           style={{
-            width: "100%",
-            height: isFullscreen ? "auto" : "100%",
-            display: "flex",
-            alignItems: "flex-start",
-            justifyContent: "center",
+            maxHeight:
+              isFullscreen && imageHeight && imageHeight > 900
+                ? "1900px"
+                : "none",
           }}
         >
           <img
             src={item.original}
             alt=""
             style={{
-              maxWidth: "100%",
-              width: "auto",
+              margin: "auto",
+              width: "1920px",
               height: isFullscreen ? "auto" : "100%",
               objectFit: isFullscreen ? "contain" : "cover",
-              objectPosition: "top center",
+              objectPosition: "center",
             }}
             onClick={(event) => {
               if (isFullscreen) {
@@ -184,7 +185,7 @@ const OrderSliderLg = ({ sliders }) => {
           thumbnailHeight={100}
           renderCustomControls={() => (
             <button
-              className="absolute right-[2%] top-[3%] z-[9999]"
+              className="absolute right-[1%] top-[1%] z-[9999]"
               onClick={handleFullscreen}
             >
               {isFullscreen && <IoMdClose className="cross-btn" />}
