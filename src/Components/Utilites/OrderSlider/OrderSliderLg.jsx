@@ -127,32 +127,34 @@ const OrderSliderLg = ({ sliders }) => {
   const renderItem = (item) => {
     return (
       <div
-        className={`flex items-center justify-center ${
+        className={`flex items-start justify-center ${
           isFullscreen
-            ? "h-[100vh]"
-            : "max-h-[200px] xl:max-h-[500px] 4xl:max-h-[600px] "
+            ? "h-screen"
+            : "max-h-[200px] xl:max-h-[500px] 4xl:max-h-[600px]"
         }`}
         style={{
-          width: isFullscreen ? "100%" : "100%",
-          overflowY: isFullscreen ? "scroll" : "hidden",
+          width: "100%",
+          overflowY: isFullscreen ? "auto" : "hidden",
         }}
       >
         <div
           style={{
-            maxHeight:
-              isFullscreen && imageHeight && imageHeight > 900
-                ? "1900px"
-                : "none",
+            width: "100%",
+            height: isFullscreen ? "auto" : "100%",
+            display: "flex",
+            alignItems: "flex-start",
+            justifyContent: "center",
           }}
         >
           <img
             src={item.original}
             alt=""
             style={{
-              width: "1920px",
+              maxWidth: "100%",
+              width: "auto",
               height: isFullscreen ? "auto" : "100%",
               objectFit: isFullscreen ? "contain" : "cover",
-              objectPosition: "center",
+              objectPosition: "top center",
             }}
             onClick={(event) => {
               if (isFullscreen) {
