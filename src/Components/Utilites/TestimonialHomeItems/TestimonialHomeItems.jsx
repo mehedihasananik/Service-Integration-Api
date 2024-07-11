@@ -166,7 +166,7 @@ const TestimonialHomeItems = ({ testimonials }) => {
                             </p>
                           </div>
                           <div>
-                            <p className="w-full lg:w-[260px] 4xl:w-[310px] text-[16px] text-[#666666] pt-1 pb-12 lg:group-hover:text-[#fff]">
+                            <p className="w-full lg:w-[260px] 4xl:w-[300px] text-[16px] text-[#666666] pt-1 pb-12 lg:group-hover:text-[#fff]">
                               {testimonial.message.length > 300
                                 ? `${testimonial.message.slice(0, 300)}...`
                                 : testimonial.message}
