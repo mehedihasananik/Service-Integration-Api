@@ -127,10 +127,10 @@ const OrderSliderLg = ({ sliders }) => {
   const renderItem = (item) => {
     return (
       <div
-        className={` ${
+        className={`flex items-center justify-center ${
           isFullscreen
             ? "h-[100vh]"
-            : "max-h-[200px] xl:max-h-[500px] 4xl:max-h-[600px] flex items-center justify-center"
+            : "max-h-[200px] xl:max-h-[500px] 4xl:max-h-[600px] "
         }`}
         style={{
           width: isFullscreen ? "100%" : "100%",
