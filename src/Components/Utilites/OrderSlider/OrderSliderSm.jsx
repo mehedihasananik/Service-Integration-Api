@@ -129,8 +129,8 @@ const OrderSliderSm = ({ sliders }) => {
       <div
         className={`${
           isFullscreen
-            ? "h-screen"
-            : "max-h-[200px] xl:max-h-[500px] 4xl:max-h-[600px] "
+            ? "h-screen "
+            : " max-h-[200px] xl:max-h-[500px] 4xl:max-h-[600px] "
         }`}
         style={{
           display: "grid",

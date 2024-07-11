@@ -127,15 +127,13 @@ const OrderSliderLg = ({ sliders }) => {
   const renderItem = (item) => {
     return (
       <div
-        className={`${
+        className={` ${
           isFullscreen
-            ? "h-screen"
-            : "max-h-[200px] xl:max-h-[500px] 4xl:max-h-[600px] "
+            ? "h-[100vh]"
+            : "max-h-[200px] xl:max-h-[500px] 4xl:max-h-[600px] flex items-center justify-center"
         }`}
         style={{
-          display: "grid",
-          alignItems: "center",
-          width: "100%",
+          width: isFullscreen ? "100%" : "100%",
           overflowY: isFullscreen ? "scroll" : "hidden",
         }}
       >
@@ -151,7 +149,6 @@ const OrderSliderLg = ({ sliders }) => {
             src={item.original}
             alt=""
             style={{
-              margin: "auto",
               width: "1920px",
               height: isFullscreen ? "auto" : "100%",
               objectFit: isFullscreen ? "contain" : "cover",
@@ -185,7 +182,7 @@ const OrderSliderLg = ({ sliders }) => {
           thumbnailHeight={100}
           renderCustomControls={() => (
             <button
-              className="absolute right-[1%] top-[1%] z-[9999]"
+              className="absolute right-[2%] top-[3%] z-[9999]"
               onClick={handleFullscreen}
             >
               {isFullscreen && <IoMdClose className="cross-btn" />}
