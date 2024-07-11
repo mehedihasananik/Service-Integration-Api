@@ -128,7 +128,9 @@ const OrderSliderLg = ({ sliders }) => {
     return (
       <div
         className={`flex items-center justify-center ${
-          isFullscreen ? "h-[100vh]" : "xl:h-[500px] 4xl:h-[600px] "
+          isFullscreen
+            ? "h-[100vh]"
+            : "max-h-[200px] xl:max-h-[500px] 4xl:max-h-[600px] "
         }`}
         style={{
           width: isFullscreen ? "100%" : "100%",
@@ -180,7 +182,7 @@ const OrderSliderLg = ({ sliders }) => {
           thumbnailHeight={100}
           renderCustomControls={() => (
             <button
-              className="absolute right-[1%] top-[1%] z-[9999]"
+              className="absolute right-[2%] top-[3%] z-[9999]"
               onClick={handleFullscreen}
             >
               {isFullscreen && <IoMdClose className="cross-btn" />}

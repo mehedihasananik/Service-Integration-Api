@@ -152,7 +152,7 @@ const TestimonialHomeItems = ({ testimonials }) => {
                         <div className="relative">
                           <div className="absolute top-[-25px] left-[140px] md:left-[120px] lg:left-0">
                             <img
-                              className="w-[56px] h-[56px]"
+                              className="w-[56px] h-[56px] rounded-full"
                               src={testimonial.image}
                               alt=""
                             />
@@ -166,7 +166,7 @@ const TestimonialHomeItems = ({ testimonials }) => {
                             </p>
                           </div>
                           <div>
-                            <p className="w-full lg:w-[260px] text-[16px] text-[#666666] pt-1 pb-12 lg:group-hover:text-[#fff]">
+                            <p className="w-full lg:w-[260px] 4xl:w-[310px] text-[16px] text-[#666666] pt-1 pb-12 lg:group-hover:text-[#fff]">
                               {testimonial.message.length > 300
                                 ? `${testimonial.message.slice(0, 300)}...`
                                 : testimonial.message}

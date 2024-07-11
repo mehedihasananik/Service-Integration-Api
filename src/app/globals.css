@@ -576,7 +576,12 @@ select:not([size]) {
   .blur_thumb {
     height: 40px !important;
   }
+  .react-international-phone-country-selector-dropdown {
+    margin-top: 18px !important;
+    width: 308px !important;
+  }
 }
+
 /* styles/globals.css */
 .fade-in {
   animation: fadeIn 0.5s ease-in-out;

@@ -60,7 +60,7 @@ const ServicePortolio = ({ portfolios }) => {
   return (
     <>
       {portfolios?.length > 0 ? (
-        <>
+        <div className="lg:px-[0%] xxl:px-[0%] 4xl:px-[2%]">
           <div className="text-center py-3 md:pt-0 md:pb-5">
             <h2 className="text-[32px] md:text-[48px] text-[#0F172A] font-bold font-Raleway">
               Portfolio&apos;s{" "}
@@ -180,7 +180,7 @@ const ServicePortolio = ({ portfolios }) => {
               See More
             </Link>
           </div>
-        </>
+        </div>
       ) : (
         ""
       )}
