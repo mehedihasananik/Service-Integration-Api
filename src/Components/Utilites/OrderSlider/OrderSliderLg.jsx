@@ -139,7 +139,7 @@ const OrderSliderLg = ({ sliders }) => {
       <div
         className={`${
           isFullscreen
-            ? currentImageHeight < 900
+            ? currentImageHeight < 1000
               ? "h-[100vh] flex items-center justify-center"
               : "h-[100vh]"
             : "max-h-[200px] xl:max-h-[500px] 4xl:max-h-[600px] flex items-center justify-center"
