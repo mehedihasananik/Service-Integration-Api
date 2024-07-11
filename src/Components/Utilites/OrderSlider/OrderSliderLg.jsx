@@ -11,6 +11,7 @@ const OrderSliderLg = ({ sliders }) => {
   const [imageHeight, setImageHeight] = useState(null);
   const [images, setImages] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [imageHeights, setImageHeights] = useState({});
 
   useEffect(() => {
     const mappedImages = sliders.map((slider) => ({
@@ -58,10 +59,13 @@ const OrderSliderLg = ({ sliders }) => {
   }, [images]);
 
   useEffect(() => {
-    const loadedImages = images.map((image) => {
+    const loadedImages = images.map((image, index) => {
       return new Promise((resolve, reject) => {
         const img = new Image();
-        img.onload = resolve;
+        img.onload = () => {
+          setImageHeights((prev) => ({ ...prev, [index]: img.naturalHeight }));
+          resolve();
+        };
         img.onerror = reject;
         img.src = image.original;
       });
@@ -123,33 +127,39 @@ const OrderSliderLg = ({ sliders }) => {
     }
     setIsFullscreen(false);
   };
+  console.log(imageHeight);
 
   const renderItem = (item) => {
+    const currentIndex = galleryRef.current
+      ? galleryRef.current.getCurrentIndex()
+      : 0;
+    const currentImageHeight = imageHeights[currentIndex] || 0;
+
     return (
       <div
-        className={`flex items-center justify-center ${
+        className={`${
           isFullscreen
-            ? "h-[100vh]"
-            : "max-h-[200px] xl:max-h-[500px] 4xl:max-h-[600px] "
+            ? currentImageHeight < 900
+              ? "h-[100vh] flex items-center justify-center"
+              : "h-[100vh]"
+            : "max-h-[200px] xl:max-h-[500px] 4xl:max-h-[600px] flex items-center justify-center"
         }`}
         style={{
-          width: isFullscreen ? "100%" : "100%",
-          overflowY: isFullscreen ? "scroll" : "hidden",
+          width: "100%",
+          overflowY: isFullscreen ? "auto" : "hidden",
         }}
       >
         <div
           style={{
             maxHeight:
-              isFullscreen && imageHeight && imageHeight > 900
-                ? "1900px"
-                : "none",
+              isFullscreen && currentImageHeight > 900 ? "1900px" : "none",
           }}
         >
           <img
             src={item.original}
             alt=""
             style={{
-              width: "1920px",
+              width: "100%",
               height: isFullscreen ? "auto" : "100%",
               objectFit: isFullscreen ? "contain" : "cover",
               objectPosition: "center",
@@ -165,7 +175,6 @@ const OrderSliderLg = ({ sliders }) => {
       </div>
     );
   };
-
   return (
     <div className="block bg-[#F8FAFC] xl:p-3 4xl:p-8 rounded-[10px]">
       {isLoading ? (
