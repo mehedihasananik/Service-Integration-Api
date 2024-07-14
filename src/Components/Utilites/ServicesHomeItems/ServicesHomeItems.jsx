@@ -64,7 +64,7 @@ const DemoServices = ({ services }) => {
   };
 
   return (
-    <div id="serviceSlider" className="serviceSlider">
+    <div id="serviceSlider" className="serviceSlider md:px-5 xl:px-0">
       <div className=" max-w-[1680px] mx-auto 4xl:px-[0] 4xl:max-w-[1920px] xl:pl-[8%] 2xl:pl-[13%] 4xl:pl-[14%]">
         <div className="py-5 xl:pt-10">
           <div className="flex flex-col  lg:flex-row items-center justify-between lg:gap-20 xl:gap-12 py-8">
@@ -74,8 +74,8 @@ const DemoServices = ({ services }) => {
                   Kick Start With Our Services{" "}
                 </h3>
               </div>
-              <div className="pt-4  flex justify-center md:block">
-                <p className="text-justify  text-[16px] text-[#666666] font-normal w-[300px] lg:w-[380px] 4xl:w-[500px]">
+              <div className="pt-4  flex justify-center xl:block">
+                <p className="text-justify  text-[16px] text-[#666666] font-normal w-[300px] md:w-[700px] xl:w-[380px] 4xl:w-[500px]">
                   Elevate your business to new heights with our transformative
                   IT solutions. Captivating design, innovative web/app
                   development, and impactful digital marketing - our expert team

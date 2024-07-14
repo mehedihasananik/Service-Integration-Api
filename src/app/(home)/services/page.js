@@ -11,8 +11,8 @@ export const metadata = {
 async function getServices() {
   try {
     const [res1, res2] = await Promise?.all([
-      fetch(`${serviceListApi}`, { next: { revalidate: 10 } }),
-      fetch(`${allsServiceItemsApi}`, { next: { revalidate: 10 } }),
+      fetch(`${serviceListApi}`, { cache: "no-store" }),
+      fetch(`${allsServiceItemsApi}`, { cache: "no-store" }),
     ]);
 
     if (!res1?.ok || !res2?.ok) {
