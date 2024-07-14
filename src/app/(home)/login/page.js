@@ -3,8 +3,8 @@
 import withAuthRedirect from "@/Components/Utilites/WithAuthRedirect/WithAuthRedirect";
 import Login from "@/Components/PagesComponents/Login/Login";
 
-const ProtectedLogin = () => {
+const LoginPage = () => {
   return <Login />;
 };
 
-export default withAuthRedirect(ProtectedLogin);
+export default withAuthRedirect(LoginPage);

@@ -1,24 +1,29 @@
 // components/withAuthRedirect.js
 "use client";
-import { useEffect } from "react";
+
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 const withAuthRedirect = (WrappedComponent) => {
   const Wrapper = (props) => {
+    const [isClient, setIsClient] = useState(false);
     const router = useRouter();
 
     useEffect(() => {
-      // Check if user is logged in
-      const userData = JSON.parse(localStorage.getItem("userData"));
-      if (userData) {
-        // If user is logged in, redirect to dashboard
-        router.push("/dashboard");
-      }
-    }, [router]);
+      // Ensure this code runs only on the client
+      setIsClient(true);
 
-    // Render the wrapped component only if user is not logged in
-    const userData = JSON.parse(localStorage.getItem("userData"));
-    return !userData ? <WrappedComponent {...props} /> : null;
+      if (isClient) {
+        const userData = JSON.parse(localStorage.getItem("userData"));
+        if (userData) {
+          router.push("/dashboard");
+        }
+      }
+    }, [isClient, router]);
+
+    return isClient && !localStorage.getItem("userData") ? (
+      <WrappedComponent {...props} />
+    ) : null;
   };
 
   return Wrapper;
