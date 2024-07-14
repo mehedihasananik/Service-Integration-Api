@@ -8,9 +8,9 @@ import Loading from "../Loading/Loading";
 const OrderSliderSm = ({ sliders }) => {
   const galleryRef = useRef();
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const [imageHeight, setImageHeight] = useState(null);
   const [images, setImages] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [imageHeights, setImageHeights] = useState({});
 
   useEffect(() => {
     const mappedImages = sliders.map((slider) => ({
@@ -32,36 +32,13 @@ const OrderSliderSm = ({ sliders }) => {
   }, []);
 
   useEffect(() => {
-    const handleResize = () => {
-      if (galleryRef.current) {
-        const currentIndex = galleryRef.current.getCurrentIndex();
-        const currentImage = images[currentIndex];
-
-        if (currentImage) {
-          const img = new Image();
-          img.src = currentImage.original;
-
-          img.onload = () => {
-            const naturalHeight = img.naturalHeight;
-            setImageHeight(naturalHeight);
-          };
-        }
-      }
-    };
-
-    handleResize();
-
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [images]);
-
-  useEffect(() => {
-    const loadedImages = images.map((image) => {
+    const loadedImages = images.map((image, index) => {
       return new Promise((resolve, reject) => {
         const img = new Image();
-        img.onload = resolve;
+        img.onload = () => {
+          setImageHeights((prev) => ({ ...prev, [index]: img.naturalHeight }));
+          resolve();
+        };
         img.onerror = reject;
         img.src = image.original;
       });
@@ -85,22 +62,8 @@ const OrderSliderSm = ({ sliders }) => {
     }
 
     if (galleryRef.current) {
-      const currentIndex = galleryRef.current.getCurrentIndex();
-      const currentImage = images[currentIndex];
-
-      if (currentImage) {
-        const img = new Image();
-        img.src = currentImage.original;
-
-        img.onload = () => {
-          const naturalHeight = img.naturalHeight;
-
-          if (!isFullscreen) {
-            setIsFullscreen(true);
-            galleryRef.current.fullScreen();
-          }
-        };
-      }
+      setIsFullscreen(true);
+      galleryRef.current.fullScreen();
     }
   };
 
@@ -125,38 +88,28 @@ const OrderSliderSm = ({ sliders }) => {
   };
 
   const renderItem = (item) => {
+    const currentIndex = galleryRef.current
+      ? galleryRef.current.getCurrentIndex()
+      : 0;
+    const currentImageHeight = imageHeights[currentIndex] || 0;
+
     return (
       <div
-        className={`${
+        className={`w-full ${
           isFullscreen
-            ? "h-screen "
-            : " max-h-[200px] xl:max-h-[500px] 4xl:max-h-[600px] "
+            ? "h-screen overflow-y-auto flex items-start justify-center"
+            : "max-h-[200px] sm:max-h-[300px] md:max-h-[400px] lg:max-h-[500px] xl:max-h-[600px] flex items-center justify-center overflow-hidden"
         }`}
-        style={{
-          display: "grid",
-          alignItems: "center",
-          width: "100%",
-          overflowY: isFullscreen ? "scroll" : "hidden",
-        }}
       >
-        <div
-          style={{
-            maxHeight:
-              isFullscreen && imageHeight && imageHeight > 900
-                ? "1900px"
-                : "none",
-          }}
-        >
+        <div className={isFullscreen ? "min-h-screen flex items-center" : ""}>
           <img
             src={item.original}
             alt=""
-            style={{
-              margin: "auto",
-              width: "1920px",
-              height: isFullscreen ? "auto" : "100%",
-              objectFit: isFullscreen ? "contain" : "cover",
-              objectPosition: "center",
-            }}
+            className={`w-full ${
+              isFullscreen
+                ? "h-auto max-w-full object-contain"
+                : "h-full object-cover"
+            }`}
             onClick={(event) => {
               if (isFullscreen) {
                 event.preventDefault();
@@ -170,31 +123,33 @@ const OrderSliderSm = ({ sliders }) => {
   };
 
   return (
-    <div className="block bg-[#F8FAFC] xl:p-3 4xl:p-8 rounded-[10px]">
+    <div className="block md:hidden w-full max-w-screen-xl mx-auto bg-[#F8FAFC] rounded-[10px] overflow-hidden">
       {isLoading ? (
         <Loading />
       ) : (
-        <ReactImageGallery
-          ref={galleryRef}
-          items={images}
-          showPlayButton={true}
-          showFullscreenButton={true}
-          slideDuration={500}
-          slideOnThumbnailOver={true}
-          thumbnailWidth={100}
-          thumbnailHeight={100}
-          renderCustomControls={() => (
-            <button
-              className="absolute right-[1%] top-[1%] z-[9999]"
-              onClick={handleFullscreen}
-            >
-              {isFullscreen && <IoMdClose className="cross-btn" />}
-            </button>
-          )}
-          renderItem={renderItem}
-          onClick={handleImageClick}
-          onImageLoad={() => isFullscreen}
-        />
+        <div className="block bg-[#F8FAFC] xl:p-3 4xl:p-8 rounded-[10px]">
+          <ReactImageGallery
+            ref={galleryRef}
+            items={images}
+            showPlayButton={true}
+            showFullscreenButton={true}
+            slideDuration={500}
+            slideOnThumbnailOver={true}
+            renderCustomControls={() => (
+              <button
+                className="absolute right-2 top-2 z-50 p-2 bg-black bg-opacity-50 rounded-full text-white"
+                onClick={handleFullscreen}
+              >
+                {isFullscreen && <IoMdClose className="text-xl" />}
+              </button>
+            )}
+            renderItem={renderItem}
+            onClick={handleImageClick}
+            onImageLoad={() => isFullscreen}
+            useSwipeable={true}
+            showNav={true}
+          />
+        </div>
       )}
     </div>
   );

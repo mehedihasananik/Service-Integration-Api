@@ -127,7 +127,6 @@ const OrderSliderLg = ({ sliders }) => {
     }
     setIsFullscreen(false);
   };
-  console.log(imageHeight);
 
   const renderItem = (item) => {
     const currentIndex = galleryRef.current
@@ -176,7 +175,7 @@ const OrderSliderLg = ({ sliders }) => {
     );
   };
   return (
-    <div className="block bg-[#F8FAFC] xl:p-3 4xl:p-8 rounded-[10px]">
+    <div className="hidden md:block bg-[#F8FAFC] xl:p-3 4xl:p-8 rounded-[10px]">
       {isLoading ? (
         <Loading />
       ) : (
