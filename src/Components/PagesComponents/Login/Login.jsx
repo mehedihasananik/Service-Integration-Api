@@ -16,15 +16,13 @@ import { signIn, useSession } from "next-auth/react";
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
-  const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
+  const [showPassword, setShowPassword] = useState(false);
+  const [captchaVerified, setCaptchaVerified] = useState(false);
   const router = useRouter();
-
-  const [captchaVerified, setCaptchaVerified] = useState(false); // State to track ReCAPTCHA verification
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
-
     const formData = new FormData(e.target);
     const email = formData.get("email");
     const password = formData.get("password");
@@ -36,20 +34,19 @@ const Login = () => {
 
     try {
       const data = await fetchData(
-        `https://admin.envobyte.com/api/user_login`,
+        "https://admin.envobyte.com/api/user_login",
         "POST",
         requestData
       );
-      // console.log(data);
 
       if (data.success) {
         toast.success("Logged in successfully");
-
         localStorage.setItem("userData", JSON.stringify(data));
         router.push("/dashboard");
       } else {
         router.push("/");
       }
+
       if (data.ErrorMessage) {
         toast.error(data.ErrorMessage);
       }
@@ -61,43 +58,9 @@ const Login = () => {
     setLoading(false);
   };
 
-  // const handleSocialLogin = async (provider) => {
-  //   const url = `https://admin.envobyte.com/api/auth/${provider}`;
-  //   const response = await axios.get(url);
-
-  //   if (typeof window !== "undefined") {
-  //     window.open(
-  //       response.data.redirectUrl,
-  //       "_blank",
-  //       "width=600,height=800,left=100,top=100"
-  //     );
-  //   }
-  // };
-
   const handleCaptchaChange = (value) => {
-    // This function will be called when ReCAPTCHA status changes
-    setCaptchaVerified(true); // Set captcha verification status to true
+    setCaptchaVerified(true);
   };
-
-  useEffect(() => {
-    // Event listener for the 'message' event
-    const handleMessage = (event) => {
-      // Check the event.origin for security if needed
-      console.log("Received data from child window:", event.data.message);
-      console.log(event.data.message?.token);
-
-      // Save the received data to local storage
-      if (event.data.message) {
-        localStorage.setItem("userData", JSON.stringify(event.data.message));
-        router.push("/dashboard");
-      }
-    };
-
-    window.addEventListener("message", handleMessage);
-
-    // Clean up the event listener on component unmount
-    return () => window.removeEventListener("message", handleMessage);
-  }, []);
 
   const session = useSession();
   console.log(session);
