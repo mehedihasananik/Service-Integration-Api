@@ -17,7 +17,6 @@ const PrivacyPolicy = () => {
           </h1>
 
           <h2 className="text-2xl font-bold mb-2"> INTRODUCTION</h2>
-
           <p className="mb-4">
             Envobyte collects and uses information through our website
             <Link
@@ -45,7 +44,7 @@ const PrivacyPolicy = () => {
             how we will collect, use, disclose and protect your personal
             information. This policy does not limit or exclude any of your
             rights. If you wish to seek further information on the Data
-            Protection Laws of the World,Please see
+            Protection Laws of the World, see
             <Link
               target="_blank"
               className="text-[#FF693B]"
@@ -81,11 +80,13 @@ const PrivacyPolicy = () => {
               Google Analytics.
             </li>
             <li>
-              When you visit this website we collect anonymous information such
-              as your IP address or domain name to analyze site traffic for
-              “visits” but this information is not tied to a given user&apos;s
-              personal information. This information is collected and stored via
-              Google Analytics.
+              When you make a purchase on our website certain types of sensitive
+              information, such as financial information, may be collected. We
+              do not receive or retain copies of this information on our server.
+              We redirect visitors to a secure server to complete these
+              transactions and all data is both collected and stored by these
+              processors. Current payment gateways in user are maintained by
+              2Checkout.
             </li>
           </ul>
 
@@ -96,17 +97,19 @@ const PrivacyPolicy = () => {
           <p className="mb-4">We will use your personal information:</p>
 
           <ul className="list-disc list-inside mb-4">
-            <li>to verify your identity</li>
-            <li>to provide services and products to you</li>
+            <li>to verify your identity.</li>
+            <li>to provide services and products to you.</li>
             <li>
               to market our services and products to you, including contacting
               you electronically (e.g. by phone, text or email for this purpose)
             </li>
-            <li>to improve the services and products that we provide to you</li>
+            <li>
+              to improve the services and products that we provide to you.
+            </li>
             <li>to undertake credit checks of you (if necessary)</li>
             <li>
               to bill you and to collect money that you owe us, including
-              authorising and processing credit card transactions
+              authorising and processing credit card transactions.
             </li>
             <li>
               to conduct research and statistical analysis (on an anonymised
@@ -114,13 +117,13 @@ const PrivacyPolicy = () => {
             </li>
             <li>
               to protect and/or enforce our legal rights and interests,
-              including defending any claim
+              including defending any claim.
             </li>
-            <li>for any other purpose authorised by you or the Act</li>
+            <li>for any other purpose authorised by you or The Act.</li>
           </ul>
 
           <h2 className="text-2xl font-bold mb-2">
-            HOW WE USE YOUR PERSONAL INFORMATION
+            DISCLOSING YOUR PERSONAL INFORMATION
           </h2>
 
           <p className="mb-4">
@@ -321,10 +324,12 @@ const PrivacyPolicy = () => {
             You can choose whether to accept cookies by changing the settings
             within your browser. If you disable cookies by changing the settings
             on your browser, this may mean that you cannot use all of the
-            features of the website
+            features of the website.
           </p>
 
-          <h2 className="text-2xl font-bold mb-2">CHANGES TO THIS POLICY</h2>
+          <h2 className="text-2xl font-bold mb-2 mt-2">
+            CHANGES TO THIS POLICY
+          </h2>
 
           <p>
             We may change this policy by uploading a revised policy onto the

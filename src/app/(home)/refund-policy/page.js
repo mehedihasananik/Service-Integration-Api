@@ -34,20 +34,20 @@ const RefundPolicy = () => {
               the point of cancellation.
             </li>
             <li>
-              Service Requirements not met: If Envobyte can t complete project
-              requirement, subject to clear, straightforward communication on
-              part of the client, provided any and all pre-requisites including
-              but not limited to content, graphics, specifications, and channels
-              are mentioned. Any additional requirements made after the purchase
-              will not be refunded. Before starting project, client will have to
-              submit all requirement from Requirement Submit page. Any
-              additional changes made during the process will not be included in
-              the refund.
+              Service Requirements not met: If Envobyte can&apos;t complete
+              project requirement, subject to clear, straightforward
+              communication on part of the client, provided any and all
+              pre-requisites including but not limited to content, graphics,
+              specifications, and channels are mentioned. Any additional
+              requirements made after the purchase will not be refunded. Before
+              starting project, client will have to submit all requirement from
+              Requirement Submit page. Any additional changes made during the
+              process will not be included in the refund.
             </li>
             <li>
               Timeline is not met: Refunds can only be claimed if 2x of service
               timeline has been passed. In short, if the service has been given
-              5 days’ timeline and 10 business day are gone, the user can claim
+              5 days timeline and 10 business day are gone, the user can claim
               Refund.
             </li>
             <li>
@@ -55,123 +55,40 @@ const RefundPolicy = () => {
               include Monday thru Friday, whereas, Saturdays&Sundays are
               excluded from business days.
             </li>
-            <li>
+          </ul>
+
+          <div className="flex flex-col gap-y-2">
+            <span className="py-4">
               Without Service or Timeline restrictions, if any user claims
               refund then Envobyte will settle the matter on merit of the
               validity of the claim. Envobyte reserves the right to accept or
               reject any claims, and the management decision will be considered
               final.
-            </li>
-            <li>
+            </span>{" "}
+            <span>
               NO REFUND WILL BE ENTERTAINED IF A PROJECT IS DELAYED AT THE
-              REQUEST OF THE CLIENT, DUE TO THE CLIENT’S INTERNAL PROCESSES,
-              LACK OF COMMUNICATION, AND EXPLICIT INSTRUCTIONS ON PART OF THE
-              CLIENT.{" "}
-            </li>
+              REQUEST OF THE CLIENT, DUE TO THE CLIENT&apos;S INTERNAL
+              PROCESSES, LACK OF COMMUNICATION, AND EXPLICIT INSTRUCTIONS ON
+              PART OF THE CLIENT.{" "}
+            </span>
+          </div>
 
-            <b>Changes to payment and refund policy</b>
-          </ul>
+          <h3 className="text-xl font-bold mb-4 text-left pt-3">
+            Changes to payment and refund policy:
+          </h3>
 
           <p>
             We reserve the right to change this refunds policy terms and
             conditions at any time. Any such changes will take effect when
             posted on the website.
           </p>
+        </section>
 
-          <p className="mb-4">
-            A receipt or proof of purchase is required. We may ask for an email
-            for online orders.
-          </p>
-          <p className="mb-4">
-            Items on final sale are not eligible for refunds or exchanges.
-          </p>
-          <p className="mb-4">
-            Items purchased via gift cards will receive an equivalent gift card
-            credit in return.
-          </p>
-          <p className="mb-4">
-            Exchanges are only allowed if the item is deemed to be defective or
-            damaged.
-          </p>
-        </section>
-        <section className="mb-8">
-          <h2 className="text-xl font-semibold mb-2">Exemptions</h2>
-          <p className="mb-4">
-            The following items will not be eligible for any refunds:
-          </p>
-          <ul id="working_days" className="list-disc pl-6">
-            <li>Gift Cards</li>
-            <li>Personal Care Items</li>
-            <li>Customized Items</li>
-            <li>Final Sale and Clearance Items</li>
-            <li>Items Not in Original Condition</li>
-            <li>Damaged Items</li>
-            <li>Items Beyond the 30-Day Return Window</li>
-          </ul>
-        </section>
         <section className="mb-8">
           <h2 className="text-xl font-semibold mb-2">Our Working Days</h2>
           <p className="mb-4">
             All days are business days except Friday and Saturday.
           </p>
-        </section>
-        <section className="mb-8">
-          <h2 className="text-xl font-semibold mb-2">
-            Refund Processing Timeline
-          </h2>
-          <p className="mb-4">
-            We aim to process all refunds within two weeks. The amount will be
-            refunded back to the original card used for payment, and timelines
-            for that depend on the payment processor.
-          </p>
-          <p className="mb-4">
-            All returns received in-store are inspected and processed the same
-            day. Online order returns shipped to our warehouse will take a
-            maximum of two weeks, but we aim to finish this quicker.
-          </p>
-          <p className="mb-4">
-            All customers will be shown their return status via email and order
-            tracking on the store website.
-          </p>
-        </section>
-        <section className="mb-8">
-          <h2 className="text-xl font-semibold mb-2">Missing Refunds</h2>
-          <p className="mb-4">
-            If we have approved a refund but it has nt reflected on your bank
-            account yet, please contact your bank or credit card company first.
-            It can take up to two weeks for the refund to process seamlessly.
-          </p>
-        </section>
-        <section className="mb-8">
-          <h2 className="text-xl font-semibold mb-2">Shipping Costs</h2>
-          <p className="mb-4">
-            For online orders, we will generate a shipping label for you. Please
-            do not send us items of your own accord as the shipping label
-            generates a tracking link that we use.
-          </p>
-          <p className="mb-4">
-            If the item is found to be defective or in a non-returnable
-            condition, we may recover shipping costs.
-          </p>
-        </section>
-        <section>
-          <h2 className="text-xl font-semibold mb-2">
-            Can&apos;t Find What You&apos;re Looking For?
-          </h2>
-          <p>
-            If you have further questions, please contact our customer support
-            center where one of our representatives will be happy to assist you.
-          </p>
-          <p className="font-semibold">
-            Customer Service Contact Number: 1-800-OURSTORE
-          </p>
-          <p className="font-semibold">
-            Customer Service Email:{" "}
-            <a href="mailto:support@storename.com">support@storename.com</a>
-          </p>
-          <p className="font-semibold">Customer Service Hours:</p>
-          <p>Americas: 8am-5pm EST, Monday to Friday</p>
-          <p>Europe: 9am-5pm, Monday to Friday</p>
         </section>
       </div>
     </Container>

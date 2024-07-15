@@ -137,7 +137,7 @@ const SinglePackage = ({ item, setOpenModal, height }) => {
         className={`border ${heightClass} border-[#CBD5E1] transition-all duration-300 hover:border-[#FF693B] pt-5 pb-11 rounded-3xl 6xl:w-[400px] 6xl:gap-x-20`}
       >
         {/* title */}
-        <div className="h-[95px]  px-4 md:px-8">
+        <div className="h-[95px]  px-4 md:px-4">
           <div className="space-y-5">
             <h3 className="font-Raleway text-[16px] text-[#1E293B] font-bold">
               {item?.package_name}

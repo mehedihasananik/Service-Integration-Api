@@ -1,8 +1,10 @@
+import Header from "@/Components/Home/Navbar/Header";
 import React from "react";
 
 const NotFoundContent = () => {
   return (
     <div className="notfound">
+      <Header />
       <div className="min-h-screen flex flex-grow items-center justify-center ">
         <div className="rounded-lg  p-8 text-center shadow-xl">
           <h1 className="mb-4 text-4xl font-bold">404</h1>

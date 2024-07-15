@@ -172,7 +172,7 @@ const ProjectDetails = ({ userContact }) => {
                   href={`https://wa.me/8801963800900`}
                   className="text-[#475569] text-[16px] pt-1"
                 >
-                  01963-800-900
+                  {userContact?.phone_number}
                 </a>
               </div>
             </div>

@@ -49,18 +49,10 @@ const ServicePortolio = ({ portfolios }) => {
     },
   };
 
-  const truncateText = (text, maxWords) => {
-    const words = text.split(" ");
-    if (words.length > maxWords) {
-      return words.slice(0, maxWords).join(" ") + "...";
-    }
-    return text;
-  };
-
   return (
     <>
       {portfolios?.length > 0 ? (
-        <div className="lg:px-[0%] xxl:px-[0%] 4xl:px-[2%]">
+        <div className="lg:px-[0%] xxl:px-[0%] 4xl:px-[1%]">
           <div className="text-center py-3 md:pt-0 md:pb-5">
             <h2 className="text-[32px] md:text-[48px] text-[#0F172A] font-bold font-Raleway">
               Portfolio&apos;s{" "}
@@ -107,7 +99,7 @@ const ServicePortolio = ({ portfolios }) => {
                                   : ""}
                               </div>
                               <div>
-                                <p className="w-[370px] px-[10%] flex justify-center text-center text-[14px] text-[#666666] py-3 portfolio-textHover pt-3.5">
+                                <p className="w-[370px] px-[13%] h-[155px] flex justify-center text-center text-[14px] text-[#666666] py-3 portfolio-textHover pt-3.5">
                                   <span>{portfolio.text.slice(0, 240)}...</span>
                                 </p>
                                 <div className="pt-10 group flex justify-center items-center gap-2 text-[#FF693B] font-bold portfolio-textHover pb-6 lg:pb-0">
