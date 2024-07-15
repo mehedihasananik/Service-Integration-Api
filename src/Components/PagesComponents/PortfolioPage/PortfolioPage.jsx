@@ -15,12 +15,38 @@ const PortfolioPage = ({
   const [selectedServiceId, setSelectedServiceId] = useState(0);
   const [selectedCategoryId, setSelectedCategoryId] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
-  const [services, setServices] = useState([]);
+  const [services, setServices] = useState(initialServices);
+  const [filteredPortfolio, setFilteredPortfolio] = useState(portfolios);
+  const [animate, setAnimate] = useState(false);
 
   useEffect(() => {
     setLoading(false);
-    setServices(initialServices);
-  }, [initialServices]);
+  }, []);
+
+  useEffect(() => {
+    if (animate) {
+      const timer = setTimeout(() => setAnimate(false), 500);
+      return () => clearTimeout(timer);
+    }
+  }, [animate]);
+
+  useEffect(() => {
+    const filterPortfolios = () => {
+      return portfolios.filter(
+        (item) =>
+          (selectedCategoryId === 0 ||
+            item.category_id === selectedCategoryId) &&
+          (selectedServiceId === 0 || item.service_id === selectedServiceId) &&
+          item.heading.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    };
+
+    setLoading(true);
+    const filtered = filterPortfolios();
+    setFilteredPortfolio(filtered);
+    setLoading(false);
+    setAnimate(true);
+  }, [selectedCategoryId, selectedServiceId, searchQuery, portfolios]);
 
   const fetchServices = async (categoryId) => {
     try {
@@ -36,11 +62,11 @@ const PortfolioPage = ({
   };
 
   const handleCategoryChange = async (e) => {
-    const selectedCategoryId = parseInt(e.target.value);
-    setSelectedCategoryId(selectedCategoryId);
+    const categoryId = parseInt(e.target.value);
+    setSelectedCategoryId(categoryId);
     setSelectedServiceId(0);
-    if (selectedCategoryId !== 0) {
-      await fetchServices(selectedCategoryId);
+    if (categoryId !== 0) {
+      await fetchServices(categoryId);
     } else {
       setServices(initialServices);
     }
@@ -50,22 +76,9 @@ const PortfolioPage = ({
     setSelectedServiceId(parseInt(e.target.value));
   };
 
-  const handleSearchSubmit = (e) => {
-    e.preventDefault();
-  };
-
   const handleSearchInputChange = (e) => {
     setSearchQuery(e.target.value);
   };
-
-  const filteredPortfolio =
-    portfolios &&
-    portfolios.filter(
-      (item) =>
-        (selectedCategoryId === 0 || item.category_id === selectedCategoryId) &&
-        (selectedServiceId === 0 || item.service_id === selectedServiceId) &&
-        item.heading.toLowerCase().includes(searchQuery.toLowerCase())
-    );
 
   return (
     <div className="pt-8 lg:pt-10">
@@ -128,7 +141,6 @@ const PortfolioPage = ({
             />
             <button
               type="submit"
-              onClick={handleSearchSubmit}
               className="absolute top-0 end-0 h-full p-2.5 text-sm font-medium text-[#64748B]"
             >
               <svg
@@ -152,112 +164,99 @@ const PortfolioPage = ({
         </div>
       </div>
       <div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 4xl:gap-10 justify-between pt-10 pb-5">
-          {loading ? (
-            <div>
-              <Loading />
-            </div>
-          ) : (
-            <>
-              {filteredPortfolio &&
-                filteredPortfolio.map((portfolio) => (
-                  <Link
-                    key={portfolio.id}
-                    href={`/portfolio/${portfolio?.slug}`}
-                  >
-                    <div className="group rounded-[10px] overflow-hidden border border-[#CBD5E1] hidden lg:block">
-                      <div className="portfolio-bgHover h-[400px] 4xl:w-[700px] cursor-pointer flex bg-[#FFFFFF] rounded-[10px] ">
-                        <div className="w-1/2 h-full">
-                          <Image
-                            width={800}
-                            height={500}
-                            className="4xl:max-w-[350px] h-full  rounded-l-[10px]"
-                            src={portfolio?.image}
-                            alt=""
-                          />
+        {loading ? (
+          <div className="flex justify-center text-center text-gray-600 mt-10">
+            <Loading />
+          </div>
+        ) : (
+          <div
+            className={`grid grid-cols-1 md:grid-cols-2 gap-8 4xl:gap-10 justify-between pt-10 pb-5 ${
+              animate ? "fade-in" : ""
+            }`}
+          >
+            {filteredPortfolio.map((portfolio) => (
+              <Link key={portfolio.id} href={`/portfolio/${portfolio?.slug}`}>
+                <div className="group rounded-[10px] overflow-hidden border border-[#CBD5E1] hidden lg:block">
+                  <div className="portfolio-bgHover h-[400px] 4xl:w-[700px] cursor-pointer flex bg-[#FFFFFF] rounded-[10px] ">
+                    <div className="w-1/2 h-full">
+                      <Image
+                        width={800}
+                        height={500}
+                        className="4xl:max-w-[350px] h-full  rounded-l-[10px]"
+                        src={portfolio?.image}
+                        alt=""
+                      />
+                    </div>
+                    <div className="w-1/2 h-[500px] flex flex-col justify-start items-center mt-10 md:py-0 xll:px-8 2xl:px-12 4xl:px-0">
+                      <div className="text-center ">
+                        <h4 className="text-[14px] text-[#999999] pt-3 pb-3 md:pt-0 md:pb-3 portfolio-textHover">
+                          {portfolio?.service_name[0]?.service_name}
+                        </h4>
+                        <div className="text-[16px] px-[10%] w-[380px] h-[65px] font-bold font-Raleway text-[#333333] portfolio-textHover line-clamp-3">
+                          {portfolio?.heading.split(" ").slice(0, 12).join(" ")}
+                          {portfolio?.heading.split(" ").length > 12
+                            ? "..."
+                            : ""}
                         </div>
-                        <div className="w-1/2 h-[500px] flex flex-col justify-start items-center mt-10 md:py-0 xll:px-8 2xl:px-12 4xl:px-0">
-                          <div className="text-center ">
-                            <h4 className="text-[14px] text-[#999999] pt-3 pb-3 md:pt-0 md:pb-3 portfolio-textHover">
-                              {portfolio?.service_name[0]?.service_name}
-                            </h4>
-                            <div className="text-[16px] px-[10%] w-[380px] h-[65px] font-bold font-Raleway text-[#333333] portfolio-textHover line-clamp-3">
-                              {portfolio?.heading
-                                .split(" ")
-                                .slice(0, 12)
-                                .join(" ")}
-                              {portfolio?.heading.split(" ").length > 12
-                                ? "..."
-                                : ""}
-                            </div>
-                            <div>
-                              <div className="flex justify-center ">
-                                {" "}
-                                <p className="w-[250px] 4xl:w-[370px] 4xl:px-[10%] flex justify-center  text-center text-[14px] text-[#666666] py-3 portfolio-textHover pt-3.5">
-                                  <span>{portfolio.text.slice(0, 300)}...</span>
-                                </p>
-                              </div>
-                              <div className="pt-10 group flex justify-center items-center gap-2 text-[#FF693B] font-bold portfolio-textHover pb-6 lg:pb-0">
-                                <button className="text-[14px]">
-                                  Read More
-                                </button>
-                                <span className="w-[19px] font-bold">
-                                  <HiArrowSmallRight className="text-xl" />
-                                </span>
-                              </div>
-                            </div>
+                        <div>
+                          <div className="flex justify-center ">
+                            <p className="w-[250px] 4xl:w-[370px] 4xl:px-[10%] flex justify-center  text-center text-[14px] text-[#666666] py-3 portfolio-textHover pt-3.5">
+                              <span>{portfolio.text.slice(0, 300)}...</span>
+                            </p>
+                          </div>
+                          <div className="pt-10 group flex justify-center items-center gap-2 text-[#FF693B] font-bold portfolio-textHover pb-6 lg:pb-0">
+                            <button className="text-[14px]">Read More</button>
+                            <span className="w-[19px] font-bold">
+                              <HiArrowSmallRight className="text-xl" />
+                            </span>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div className="group rounded-[10px] overflow-hidden border border-[#CBD5E1] block lg:hidden">
-                      <div className="portfolio-bgHover flex flex-col lg:flex-row bg-[#FFFFFF] rounded-[10px] cursor-pointer">
-                        <div className="w-full lg:w-1/2 h-[300px] lg:h-[420px]">
-                          <Image
-                            width={800}
-                            height={500}
-                            className="w-full h-full object-cover lg:rounded-l-[10px]"
-                            src={portfolio?.image}
-                            alt=""
-                          />
+                  </div>
+                </div>
+                <div className="group rounded-[10px] overflow-hidden border border-[#CBD5E1] block lg:hidden">
+                  <div className="portfolio-bgHover flex flex-col lg:flex-row bg-[#FFFFFF] rounded-[10px] cursor-pointer">
+                    <div className="w-full lg:w-1/2 h-[300px] lg:h-[420px]">
+                      <Image
+                        width={800}
+                        height={500}
+                        className="w-full h-full object-cover lg:rounded-l-[10px]"
+                        src={portfolio?.image}
+                        alt=""
+                      />
+                    </div>
+                    <div className="w-full lg:w-1/2 flex flex-col justify-start items-center p-4 lg:p-10">
+                      <div className="text-center">
+                        <h4 className="text-[14px] text-[#999999] pb-2 portfolio-textHover">
+                          {portfolio?.service_name[0]?.service_name}
+                        </h4>
+                        <div className="text-[16px] w-full lg:w-[380px] font-bold font-Raleway text-[#333333] portfolio-textHover line-clamp-3 mb-3">
+                          {portfolio?.heading.split(" ").slice(0, 12).join(" ")}
+                          {portfolio?.heading.split(" ").length > 12
+                            ? "..."
+                            : ""}
                         </div>
-                        <div className="w-full lg:w-1/2 flex flex-col justify-start items-center p-4 lg:p-10">
-                          <div className="text-center">
-                            <h4 className="text-[14px] text-[#999999] pb-2 portfolio-textHover">
-                              {portfolio?.service_name[0]?.service_name}
-                            </h4>
-                            <div className="text-[16px] w-full lg:w-[380px] font-bold font-Raleway text-[#333333] portfolio-textHover line-clamp-3 mb-3">
-                              {portfolio?.heading
-                                .split(" ")
-                                .slice(0, 12)
-                                .join(" ")}
-                              {portfolio?.heading.split(" ").length > 12
-                                ? "..."
-                                : ""}
-                            </div>
-                            <div>
-                              <p className="w-full lg:w-[250px] 4xl:w-[370px] text-center text-[14px] text-[#666666] portfolio-textHover mb-6">
-                                <span>{portfolio.text.slice(0, 300)}...</span>
-                              </p>
-                              <div className="group flex justify-center items-center gap-2 text-[#FF693B] font-bold portfolio-textHover">
-                                <button className="text-[14px]">
-                                  Read More
-                                </button>
-                                <span className="w-[19px] font-bold">
-                                  <HiArrowSmallRight className="text-xl" />
-                                </span>
-                              </div>
-                            </div>
+                        <div>
+                          <p className="w-full lg:w-[250px] 4xl:w-[370px] text-center text-[14px] text-[#666666] portfolio-textHover mb-6">
+                            <span>{portfolio.text.slice(0, 300)}...</span>
+                          </p>
+                          <div className="group flex justify-center items-center gap-2 text-[#FF693B] font-bold portfolio-textHover">
+                            <button className="text-[14px]">Read More</button>
+                            <span className="w-[19px] font-bold">
+                              <HiArrowSmallRight className="text-xl" />
+                            </span>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </Link>
-                ))}
-            </>
-          )}
-        </div>
-        {filteredPortfolio && filteredPortfolio.length === 0 && !loading && (
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        )}
+        {filteredPortfolio.length === 0 && !loading && (
           <div className="flex justify-center text-center text-gray-600 mt-0">
             <Image
               src={"/assets/data.gif"}

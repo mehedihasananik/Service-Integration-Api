@@ -11,10 +11,18 @@ const ServicesPageContent = ({ serviceCategories, services }) => {
   const [selectedCategoryId, setSelectedCategoryId] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [serviceItems, setServiceItems] = useState([]);
+  const [animate, setAnimate] = useState(false);
 
   useEffect(() => {
     setLoading(false);
   }, []);
+
+  useEffect(() => {
+    if (animate) {
+      const timer = setTimeout(() => setAnimate(false), 500);
+      return () => clearTimeout(timer);
+    }
+  }, [animate]);
 
   useEffect(() => {
     const filterServices = () => {
@@ -35,14 +43,13 @@ const ServicesPageContent = ({ serviceCategories, services }) => {
       return filteredServices;
     };
 
-    setServiceLoading(true); // Set service loading state to true
+    setServiceLoading(true);
     const filteredServices = filterServices();
-
-    // Remove duplicates by filtering out services with duplicate IDs
     const uniqueServices = filteredServices;
 
     setServiceItems(uniqueServices);
-    setServiceLoading(false); // Set service loading state to false
+    setServiceLoading(false);
+    setAnimate(true);
   }, [selectedCategoryId, searchQuery, services]);
 
   const handleCategoryChange = (e) => {
@@ -70,14 +77,14 @@ const ServicesPageContent = ({ serviceCategories, services }) => {
                   <select
                     onChange={handleCategoryChange}
                     id="category"
-                    className="cursor-pointer border border-gray-300  text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="cursor-pointer border border-gray-300 text-sm rounded-lg focus:ring-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   >
                     <option value="">Select Category</option>
                     {serviceCategories.map((category) => (
                       <option
                         key={category.category_id}
                         value={category.category_id}
-                        className="text-[#434348] text-[16px] "
+                        className="text-[#434348] text-[16px]"
                       >
                         {category.category_name}
                       </option>
@@ -91,14 +98,14 @@ const ServicesPageContent = ({ serviceCategories, services }) => {
                     type="search"
                     placeholder="What are you looking for?"
                     id="search"
-                    className=" text-[#C1C1C1] py-[13px] px-[10px] border border-gray-300  text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="text-[#C1C1C1] py-[13px] px-[10px] border border-gray-300 text-sm rounded-lg focus:ring-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     value={searchQuery}
                     onChange={handleSearchInputChange}
                     required
                   />
                   <button
                     type="submit"
-                    className="absolute top-0 end-0 h-full p-2.5 text-sm font-medium text-[#64748B]   "
+                    className="absolute top-0 end-0 h-full p-2.5 text-sm font-medium text-[#64748B]"
                   >
                     <svg
                       className="w-4 h-4"
@@ -119,7 +126,6 @@ const ServicesPageContent = ({ serviceCategories, services }) => {
                   </button>
                 </div>
               </div>
-              <div></div>
             </div>
           </div>
 
@@ -128,61 +134,57 @@ const ServicesPageContent = ({ serviceCategories, services }) => {
               <UserLoading />
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid md:grid-cols-2 lg:grid-cols-2   xl:grid-cols-4 justify-items-center place-items-center  gap-x-8 pb-8 lg:gap-y-0 lg:gap-x-44  xxl:gap-x-40 4xl:gap-x-16  mt-5 md:mt-10 ">
-              {serviceItems.map((service, index) => {
-                // console.log(service);
-                return (
-                  <Link
-                    key={index} // Change key to index
-                    href={`/services/${service?.slug}`}
-                  >
-                    <div className="group  h-[550px] xl:w-[296px] xxl:w-[296px]  2xl:w-[320px]  shadow-lg rounded-md border border-[#E2E8F0]  cursor-pointer mb-5 lg:mb-10">
-                      <div className="flex flex-col ">
-                        <div className="bg-[#E2E8F0]">
-                          <div>
-                            <Image
-                              width={700}
-                              height={700}
-                              className="w-full h-[304px] overflow-hidden rounded-t-md"
-                              src={service?.image}
-                              alt=""
-                            />
-                          </div>
-                        </div>
+            <div
+              className={`grid grid-cols-1 md:grid md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 justify-items-center place-items-center gap-x-8 pb-8 lg:gap-y-0 lg:gap-x-44 xxl:gap-x-40 4xl:gap-x-16 mt-5 md:mt-10 ${
+                animate ? "fade-in" : ""
+              }`}
+            >
+              {serviceItems.map((service, index) => (
+                <Link key={index} href={`/services/${service?.slug}`}>
+                  <div className="group h-[550px] xl:w-[296px] xxl:w-[296px] 2xl:w-[320px] shadow-lg rounded-md border border-[#E2E8F0] cursor-pointer mb-5 lg:mb-10">
+                    <div className="flex flex-col">
+                      <div className="bg-[#E2E8F0]">
                         <div>
-                          {" "}
-                          <div className="px-3 group-hover:bg-[#FF693B] group-hover:text-white  transition-all duration-200">
-                            <h3 className="text-[20px] md:text-[18px] font-bold  font-Raleway pt-5 pb-2 whitespace-nowrap">
-                              {service.title}
-                            </h3>
-                            <p className="text-[14px] text-[#475569]  group-hover:text-white transition-all duration-200">
-                              {service.details.slice(0, 195)}...
-                            </p>
+                          <Image
+                            width={700}
+                            height={700}
+                            className="w-full h-[304px] overflow-hidden rounded-t-md"
+                            src={service?.image}
+                            alt=""
+                          />
+                        </div>
+                      </div>
+                      <div>
+                        <div className="px-3 group-hover:bg-[#FF693B] group-hover:text-white transition-all duration-200">
+                          <h3 className="text-[20px] md:text-[18px] font-bold font-Raleway pt-5 pb-2 whitespace-nowrap">
+                            {service.title}
+                          </h3>
+                          <p className="text-[14px] text-[#475569] group-hover:text-white transition-all duration-200">
+                            {service.details.slice(0, 195)}...
+                          </p>
+                        </div>
+                        <div className="flex group-hover:rounded-b-md items-center justify-between px-3 h-[50px] pt-10 pb-12 group-hover:bg-[#FF693B] transition-all duration-200">
+                          <div className="font-Raleway">
+                            <span className="font-bold text-[16px] text-[#1E293B] group-hover:text-white transition-all duration-200">
+                              Start From
+                            </span>
                           </div>
-                          <div className="flex  group-hover:rounded-b-md items-center justify-between px-3 h-[50px] pt-10 pb-12 group-hover:bg-[#FF693B] transition-all duration-200">
-                            <div className="font-Raleway">
-                              <span className=" font-bold text-[16px] text-[#1E293B] group-hover:text-white transition-all duration-200">
-                                Start From
-                              </span>
-                            </div>
-                            <div>
-                              <h3 className="flex items-center space-x-[1px] font-Raleway text-[20px] font-bold text-[#0A2C8C] group-hover:text-white transition-all duration-200">
-                                <span> $</span>{" "}
-                                <span>{service.start_price}</span>
-                              </h3>
-                            </div>
-                            <div>
-                              <button className="text-[14px] bg-[#FF693B] rounded-md px-8 py-[5px] text-white border border-[#ff693B]  group-hover:bg-white group-hover:text-[#FF693B] transition-all duration-200">
-                                View
-                              </button>
-                            </div>
+                          <div>
+                            <h3 className="flex items-center space-x-[1px] font-Raleway text-[20px] font-bold text-[#0A2C8C] group-hover:text-white transition-all duration-200">
+                              <span>$</span> <span>{service.start_price}</span>
+                            </h3>
+                          </div>
+                          <div>
+                            <button className="text-[14px] bg-[#FF693B] rounded-md px-8 py-[5px] text-white border border-[#ff693B] group-hover:bg-white group-hover:text-[#FF693B] transition-all duration-200">
+                              View
+                            </button>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </Link>
-                );
-              })}
+                  </div>
+                </Link>
+              ))}
             </div>
           )}
 

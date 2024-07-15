@@ -1,8 +1,9 @@
+"use client";
 import Container from "@/Components/Container/Container";
 import Image from "next/image";
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-const AboutUsContent = async ({ aboutDetails, singleAboutDetails }) => {
+const AboutUsContent = ({ aboutDetails, singleAboutDetails }) => {
   const {
     title1,
     details1,
@@ -15,10 +16,17 @@ const AboutUsContent = async ({ aboutDetails, singleAboutDetails }) => {
     details4,
   } = aboutDetails;
 
-  // console.log(singleAboutDetails);
+  const [animate, setAnimate] = useState(false);
+
+  useEffect(() => {
+    setAnimate(true);
+    const timer = setTimeout(() => setAnimate(false), 500);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <Container>
-      <div>
+      <div className={`${animate ? "fade-in" : ""}`}>
         {/* titles & description */}
         <div className="pt-5 md:pt-10 lg:pt-10 space-y-4">
           <h2 className="text-[30px] lg:text-[48px] text-[#0F172A] font-bold font-Raleway text-center lg:text-left">
@@ -27,7 +35,7 @@ const AboutUsContent = async ({ aboutDetails, singleAboutDetails }) => {
           <p className="text-[18px] text-justify">{details1}</p>
         </div>
         {/* mission & vision */}
-        <div className="grid grid-cols-1 justify-items-center lg:justify-items-start gap-y-10 lg:gap-y-0 lg:grid-cols-3 pt-10 lg:pt-16 lg:gap-x-10  ">
+        <div className="grid grid-cols-1 justify-items-center lg:justify-items-start gap-y-10 lg:gap-y-0 lg:grid-cols-3 pt-10 lg:pt-16 lg:gap-x-10">
           {/* 1st col */}
           <div>
             <Image
@@ -92,7 +100,7 @@ const AboutUsContent = async ({ aboutDetails, singleAboutDetails }) => {
           <div
             key={detail.id}
             className={`flex flex-col gap-4 md:gap-8 lg:flex-row ${
-              detail.image_positions === "right"
+              detail.image_positions === "rignt"
                 ? "lg:justify-between"
                 : "lg:flex-row-reverse lg:justify-between"
             } my-5 lg:py-8`}
@@ -100,7 +108,7 @@ const AboutUsContent = async ({ aboutDetails, singleAboutDetails }) => {
             {/* left side */}
             <div
               className={`lg:w-[50%] ${
-                detail.image_positions === "right"
+                detail.image_positions === "rignt"
                   ? "text-center"
                   : "text-center lg:text-left"
               } flex flex-col justify-center`}
@@ -115,7 +123,7 @@ const AboutUsContent = async ({ aboutDetails, singleAboutDetails }) => {
             {/* right side */}
             <div
               className={`lg:w-[40%] flex justify-center ${
-                detail.image_positions === "right"
+                detail.image_positions === "rignt"
                   ? "lg:justify-end"
                   : "lg:justify-start"
               } gap-x-4`}

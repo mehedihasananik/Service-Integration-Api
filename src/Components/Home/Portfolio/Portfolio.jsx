@@ -28,7 +28,7 @@ async function getPortfolioContent() {
 const Portfolio = async () => {
   // getting data successfully
   const { data1, data2 } = await getPortfolioContent();
-  console.log(data1);
+  // console.log(data1);
 
   return (
     <div>

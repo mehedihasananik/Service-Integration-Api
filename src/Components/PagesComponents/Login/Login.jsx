@@ -63,7 +63,7 @@ const Login = () => {
   };
 
   const session = useSession();
-  console.log(session);
+  // console.log(session);
 
   return (
     <div className="login_singUp overflow-hidden  my-5 py-5">

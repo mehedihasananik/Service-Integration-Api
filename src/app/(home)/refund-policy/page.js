@@ -10,9 +10,7 @@ const RefundPolicy = () => {
   return (
     <Container>
       <div className=" pb-8 pt-5">
-        <h1 className="text-4xl font-bold mb-4 text-center">
-          Refund and Refund Policy
-        </h1>
+        <h1 className="text-4xl font-bold mb-4 text-center">Refund Policy</h1>
         <section className="mb-8">
           <h2 className="text-xl font-semibold mb-2">Disclaimer</h2>
           <p className="mb-4">
@@ -22,16 +20,18 @@ const RefundPolicy = () => {
             IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
             PURPOSE.
           </p>
-          <p className="mb-4">Refund Policy:</p>
         </section>
         <section className="mb-8">
-          <p className="mb-4">Envobyte will entertain refundson:</p>
+          <h3 className="text-xl font-bold mb-4 text-left">Refund Policy:</h3>
+
+          <p className="mb-4">Envobyte will entertain refunds on:</p>
 
           <ul className="list-disc list-inside mb-4">
             <li>
-              Order placement cancellations communicated within the first 12
-              hours of the order placement, subject to 50% deduction after 12
-              hours’ period.{" "}
+              Once work on a project has commenced, any cancellation initiated
+              by the client will result in a partial refund. The refund amount
+              will be adjusted based on the proportion of work completed up to
+              the point of cancellation.
             </li>
             <li>
               Service Requirements not met: If Envobyte can t complete project
@@ -99,7 +99,7 @@ const RefundPolicy = () => {
           <p className="mb-4">
             The following items will not be eligible for any refunds:
           </p>
-          <ul className="list-disc pl-6">
+          <ul id="working_days" className="list-disc pl-6">
             <li>Gift Cards</li>
             <li>Personal Care Items</li>
             <li>Customized Items</li>
@@ -109,7 +109,7 @@ const RefundPolicy = () => {
             <li>Items Beyond the 30-Day Return Window</li>
           </ul>
         </section>
-        <section id="working_days" className="mb-8">
+        <section className="mb-8">
           <h2 className="text-xl font-semibold mb-2">Our Working Days</h2>
           <p className="mb-4">
             All days are business days except Friday and Saturday.
