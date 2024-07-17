@@ -14,133 +14,780 @@ const Terms = () => {
           {/* general */}
           <div>
             <h1 className="text-4xl font-bold mb-8 text-center">
-              TERMS OF USE
+              TERMS AND CONDITIONS
             </h1>
 
             <p className="mb-4">
-              These Terms of Use (“Terms”) govern your use of Envobyte’s
-              (“Envobyte”) website (the “Site”). Please read the Terms before
-              using the Site. Use of the Site constitutes your agreement to all
-              Terms. If you object to anything in these Terms or the Site’s
-              Privacy Policy, please do not use the Site. The Terms are subject
-              to change at any time, effective upon posting on the Site.
+              For purposes of these Envobyte Client Terms and Conditions
+              (“Terms”), “Envobyte”, “we” or “our” refers to Envobyte, and
+              “Client,” “you” or “your” refers to your company. Please read
+              these Terms carefully as they, together with your signed Proposal
+              (hereinafter “Service Agreement”) and any Change Orders constitute
+              your entire agreement with Envobyte (hereinafter the “Agreement”).
+              By engaging Envobyte to provide services to you, you agree to be
+              legally bound by these Terms. Envobyte reserves the right to
+              change or modify these Terms at any time and in its sole
+              discretion by posting the amended Terms on our website at
+              http://www.Envobyte.com/terms/ Unless otherwise specified, any
+              changes or modifications will be effective immediately upon
+              posting on the website and your continued use of Envobyte’s
+              services after such time will constitute your acceptance of such
+              changes or modifications.
             </p>
 
-            <h2 className="text-2xl font-bold mb-2">
-              PRIVACY AND PROTECTION OF PERSONAL INFORMATION
-            </h2>
+            <ul className="list-disc list-inside mb-4 ms-5">
+              <li>
+                <b>Point of Contact:</b> Envobyte will need at least one point
+                of contact from you for day-to-day communications. This person
+                will be responsible for: i) gathering your company’s data,
+                files, or other content required for Envobyte to complete its
+                deliverables; ii) attending conference calls or meetings at key
+                intervals with Envobyte; and iii) coordinating internal
+                communications with your team regarding the status of the
+                project. They will receive all communications from your contact
+                person(s) at Envobyte. Unless another individual is expressly
+                designated in the Service Agreement as your company’s point of
+                contact to whom Envobyte should direct all communications, there
+                will be a legal presumption that any person holding themselves
+                out as representing your company’s interests relative to the
+                services, and/or having day to day contact with Envobyte in its
+                performance of the services, is your company’s point of contact
+                and is legally authorized to make decisions on your company’s
+                behalf. As such, Envobyte will move forward with work authorized
+                by this point of contact and Client shall be responsible for
+                payment for such services.
+              </li>
+              <li>
+                <b>Deadlines:</b> Client is responsible for meeting time
+                deadline(s) associated with Envobyte’s performance of the
+                deliverables which may include but are not limited to deadlines
+                for providing content and/or approvals. Envobyte is not
+                responsible for late deliverables resulting from Client’s
+                failure to meet time deadlines specified by Envobyte. Client
+                also understands that if it makes changes in scope, requests
+                additional deliverables or requires revisions of work delivered
+                beyond what was set forth in the Service Agreement during the
+                course of a project, this will affect the deadlines originally
+                set at the outset of the project and Envobyte will not be
+                considered to have failed to meet the deadline set forth in the
+                original Service Agreement for that project.
+              </li>
+              <li>
+                <b>Content:</b> Unless otherwise specifically stated as a part
+                of the deliverables in the Service Agreement, Client is
+                responsible for providing all content necessary for Envobyte’s
+                performance of the deliverables, including but not limited to
+                written copy, logos, photographs, video, music, fonts and/or
+                other materials. The pricing reflected in your Service Agreement
+                with Envobyte assumes that content will be readily provided to
+                Envobyte in a manner specified by Envobyte, in acceptable
+                format(s), and that
+              </li>
+              <li>
+                Envobytewill not be required to pull content from other Client
+                website(s), follow up with prior vendors of Client, find content
+                from third party sources or otherwise spend time obtaining,
+                aggregating or organizing content on Client’s behalf. In
+                situations where Envobyte must locate, aggregate, organize or
+                create content on Client’s behalf, Client will be charged for
+                such additional time. Logos, graphics, and/or photographic
+                images should be supplied in an electronic acceptable format,
+                such as high-resolution jpeg. Photo retouching, manipulation, or
+                illustration is billed in accordance with the requirements and
+                agreed upon by both parties. This pricing may vary based upon
+                the original source material and the required output.
+              </li>
+              <li>
+                If written copy is not addressed in the Service Agreement and
+                Client requires Envobyte to write copy for inclusion in the
+                deliverables, the cost will be agreed upon by both parties. In
+                the case where Client is responsible for but has failed to
+                provide written content to Envobyte to allow it to perform the
+                deliverables under this Agreement and Envobyte therefore must
+                obtain written content from other sources, Envobyte disclaims
+                any warranties over the accuracy and reliability of any such
+                information. Client warrants and agrees that it shall be solely
+                responsible for reviewing the accuracy of all written content
+                provided by Envobyte in connection with its provision of the
+                deliverables before publication. Client must ensure that the
+                content is factually accurate and not false or misleading.
+              </li>
+              <li>
+                Where Client is providing content, Client shall be responsible
+                for obtaining all required licenses, permissions and/or
+                approvals for use of such content. Client warrants and agrees
+                that where it has provided content to Envobyte, it has full
+                legal authority to use such content and/or has obtained the
+                required licenses, permissions, and/or approvals and warrants
+                that such content is not in violation of any third party’s
+                copyright(s), trade or service marks or other intellectual
+                property rights. Further, client assumes responsibility for the
+                accuracy, spelling and truthfulness of all content it provides
+                to Envobyte. All Client-provided content including all
+                pre-existing trademarks and copyright material, shall remain the
+                sole property of Client, and Client shall be the sole owner of
+                all rights in connection therewith. Client hereby grants to
+                Envobyte a nonexclusive, nontransferable license to use,
+                reproduce, and modify the Client Content solely in connection
+                with Envobyte’s performance of the services and the production
+                of the deliverables.
+                <br></br>
+                Where Envobyte has agreed to develop a website, video, web,
+                mobile or social media application, email template, etc., such
+                deliverables may require the purchase or license of fonts,
+                photographs, background music, video clips, APIs, plug-ins or
+                other items from a third party. The cost of same is NOT included
+                in the pricing set forth in your Service Agreement with
+                Envobyte. Client may either purchase or license those items on
+                their own or Envobyte may purchase/license them on Client’s
+                behalf. If Client has not specified that it would like to
+                license these items on their own, Envobyte will assume that it
+                should license them and will invoice Client for same. Third
+                party items that Client (or Envobyte on behalf of Client)
+                licenses from a third party to be placed deliverables created by
+                Envobyte for Client will not be owned by Client. Client should
+                not use such content in other items, such as print materials or
+                promotional items, or otherwise use such content inconsistent
+                with the third party’s terms of licensing such use. Upon
+                request, Envobyte will provide Client with a listing of third
+                party content used in the deliverables and the source(s) of such
+                content so that Client may review the licensing requirements
+                associated with that content.
+              </li>
+              <li>
+                <b>Design – What is Included/Not Included:</b> Unless otherwise
+                specifically stated as a part of the deliverables in your
+                Service Agreement with Envobyte, if Client has engaged Envobyte
+                to design a website, web application, mobile site, email
+                template or the like, Envobyte will provide two home page
+                designs for Client to choose from. Additional designs can be
+                provided at additional cost. In the case of web and/or mobile
+                sites, once Client has selected the design it would like to use
+                as the home page, it will be permitted one round of revisions to
+                that design Once those revisions have been made, Envobyte will
+                design one subpage template that will follow the same look and
+                feel of the home page. Client will be permitted one round of
+                revisions to that subpage template. Please note that the same
+                subpage template will be used for all of the other pages of the
+                site. Additional revisions beyond those set forth above or
+                additional template designs will be billed to the client as per
+                the cost policy. Also, please note that the design of the
+                layout/placement of the content in each of the subpages of a
+                site is not included in the cost of the project. Rather, Client
+                will be asked to advise where they wish to place images,
+                content, etc. within each of the subpages. Should Client require
+                assistance in designing a proper aesthetic for each of the
+                subpages this will be at an additional charge. Finally,
+                alterations to or resizing of graphics for placement in the
+                subpages will also be at an additional charge.
+              </li>
+              <li>
+                <b>Scope change:</b> If Client requests additional work not
+                included in the original scope of the Service Agreement, Client
+                will be responsible for all additional charges. Scope changes
+                include but are not limited to, additional design comps,
+                additional rounds of revision, additional copyrighting/edits,
+                additional video edits, changes to website/web application
+                functionality, addition of plug-ins or other technical
+                capabilities. If a Change Order form or amendment to the Service
+                Agreement is not completed for the change in scope, Client’s
+                emailed or verbal request for any work not included in the
+                original scope of the Service Agreement will be deemed a change
+                order request for which payment will be required. The pricing
+                for the scope change will be the amount set forth in email or
+                verbal communications between Client and Envobyte or in a Change
+                Order form. If no amount has been specified, Client will be
+                billed at the rate of $50/hour.
+              </li>
+              <li>
+                <b>Third party providers:</b> Client will be billed for all
+                third party costs, including but not limited to domain name
+                purchases and renewals, website hosting fees, ESP (email service
+                provider platforms) such as Mailchimp or ConstantContact, CMS
+                (content management system) licenses such as WordPress or
+                Joomla, social media advertising platforms and telephone and SMS
+                messaging platforms. Some providers charge based on the volume
+                of the number of email sends, posts, ads placed, calls made or
+                messages sent. Client will be charged for any overages caused by
+                Client’s exceeding a specified number of sends, posts, ads and
+                the like.
+              </li>
+              <li>
+                <b>Third Party Cancellation fees:</b> Where Envobyte has
+                purchased licenses from third parties on behalf of Client and
+                Client seeks to terminate the arrangement prior to expiration of
+                the term required for same, Client shall be responsible for all
+                applicable cancellation fees required from those third parties
+                and also shall be responsible for Envobyte’s time spent having
+                to process such cancellations at the rate of $50/hour.
+              </li>
+              <li>
+                <b>Retainer/monthly bank of hours clients:</b> If you are on a
+                monthly marketing retainer/bank of hours, content management,
+                social media page management, banner and poster packages, in
+                most cases you will be advised in your Service Agreement the
+                maximum number of monthly marketing hours you are allotted. We
+                strive to use up to your maximum allotted hours per month;
+                however, occasionally, this is not possible because we are
+                awaiting content or approvals from you for the proposed
+                marketing initiatives or you may have asked to defer some hours
+                in anticipation of a large future initiative. Except as
+                otherwise specified in the Service Agreement or otherwise
+                specifically agreed to in writing by Envobyte, if you do not use
+                all marketing retainer hours in a month, unused hours may roll
+                forward only to the end of the term of the Agreement. If they
+                are not used they are forfeited. If you exceed the maximum
+                number of hours in a month, Envobyte, at its discretion will
+                either reduce your bank of hours for the upcoming month or bill
+                you at the rate of $50/hour for any overages.
+              </li>
+              <li>
+                <b>Branding Clients:</b> If Client has engaged Envobyte to
+                assist with business name selection, logo creation or slogan
+                creation, please be advised that Envobyte cannot search
+                trademark or other databases to ensure that the name or mark is
+                not already being used, is/is not available to be trademarked or
+                otherwise provide advice on whether the contemplated name or
+                mark is legally available as Envobyte cannot provide legal
+                advice to its clients. Envobyte encourages Client to retain an
+                attorney to assist in this process.
+              </li>
+              <li>
+                <b>Search Engine Optimization Clients:</b>
+                <p>
+                  Client acknowledges the following with respect to SEO services
+                  from Envobyte:
+                </p>
 
-            <p className="mb-4">
-              See the privacy statement for disclosures relating to the
-              collection and use of your information.
-            </p>
-
-            <h2 className="text-2xl font-bold mb-2">WEBSITE CONTENT</h2>
-            <p className="mb-4">
-              All content available on the Site is the copyrighted work of
-              Envobyte. Any reproduction or redistribution of this Site, in
-              whole or in part, without the written permission of Envobyte is
-              expressly prohibited by law, and may result in civil and criminal
-              penalties. All text, graphics, editorial content, data,
-              formatting, graphs, designs, HTML, look and feel, photographs,
-              music, sounds, images, software, videos, designs, typefaces and
-              other content (collectively “Proprietary Material”), as well as
-              the coordination, selection, arrangement and enhancement of such
-              Proprietary Material, that users see or read on the Site is owned
-              by Envobyte or is used with permission. This Proprietary Material
-              is protected in all forms, media and technologies now known or
-              hereinafter developed. Users may not copy, download, use redesign,
-              reconfigure, or retransmit anything from the Site without
-              Envobyte’s prior express written permission.
-            </p>
-            <p className="mb-4">
-              Envobyte makes no representations about the suitability of the
-              information or content contained on the Site for any purpose. All
-              such materials are provided “as is” without warranty of any kind.
-              Envobyte disclaims all warranties and conditions with regard to
-              the Site, including all warranties and conditions of
-              merchantability, whether express, implied or statutory, fitness
-              for a particular purpose, title and non-infringement. In no event
-              shall Envobyte be liable for any special, indirect or
-              consequential damages or any damages whatsoever resulting from
-              loss of use, data or profits, whether in an action of contract,
-              negligence or other tortious action, arising out of or in
-              connection with the use of information available from the Site.
-            </p>
-
-            <h2 className="text-2xl font-bold mb-2">
-              NO UNLAWFUL OR PROHIBITED USE
-            </h2>
-
-            <p className="mb-4">
-              As a condition of your use of the Site, you will not use the Site
-              for any purpose that is unlawful or prohibited by these terms,
-              conditions, and notices. You may not use the Site in any manner
-              that could damage, disable, overburden, or impair the Site or the
-              servers that host it, or interfere with any other party’s use and
-              enjoyment of the Site. You may not attempt to gain unauthorized
-              access to the Site, or accounts, computer systems or networks that
-              may be accessed through the Site, through hacking, password mining
-              or any other means. You may not obtain or attempt to obtain any
-              materials or information through any means not intentionally made
-              available through the Site.
-            </p>
-
-            <p className="mb-4">
-              Envobyte may terminate your access to the Site at any time and for
-              any reason with or without notice to you. Envobyte shall not be
-              liable to you for any loss associated with termination of such
-              access.
-            </p>
-
-            <h2 className="text-2xl font-bold mb-2">
-              LINKS TO THIRD PARTY SITES
-            </h2>
-
-            <p className="mb-4">
-              Links from the Site to other sites on the Web, if any, are
-              provided as an information service only. It is the responsibility
-              of the user to evaluate the content and usefulness of the
-              information obtained from other sites. Envobyte does not control
-              such websites, and is not responsible for their content. Users
-              further acknowledge that use of any website controlled, owned or
-              operated by third parties is governed by the terms and conditions
-              of use for those websites, and not by Envobyte’s Terms of Use and
-              Privacy Policy. All users do hereby agree to hold Envobyte
-              harmless from any liability that may result from the use of links
-              that may appear on the Site.
-            </p>
-
-            <h2 className="text-2xl font-bold mb-2">
-              MODIFICATIONS TO THE SITE
-            </h2>
-            <p className="mb-4">
-              Envobyte reserves the right in its sole discretion to review,
-              improve, modify or discontinue, temporarily or permanently, the
-              Site or any content or information on the Site with or without
-              notice to the user and Envobyte shall not be liable to user or any
-              third party for any modification or discontinuance of the Site.
-            </p>
-
-            <h2 className="text-2xl font-bold mb-2">MISCELLANEOUS</h2>
-            <p className="mb-4">
-              Failure by Envobyte to enforce any provision(s) of these Terms
-              shall not be construed as a waiver of any provision or right.
-              These Terms, and all other aspects of use of the Site, shall be
-              governed by and construed in accordance with the laws of the
-              Bangladesh, without regard to its conflict of laws rules. All
-              claims and disputes arising out of these Terms or use of the Site
-              shall be exclusively brought in the federal, state or local courts
-              located in Tayamun Center (3rd floor), 181/1 Jessore Road, Khulna,
-              Bangladesh; and, with regard to such claims and disputes, Users
-              hereby irrevocably (i) submit to the exercise of personal
-              jurisdiction over them by these courts, and (ii) waive any
-              jurisdictional, venue or inconvenient forum objections to such
-              courts. If any provision of these Terms is found to be invalid or
-              unenforceable, the remaining provisions shall be enforced to the
-              fullest extent possible, and the remaining Terms shall remain in
-              full force and effect.
-            </p>
+                <ul className="ms-5">
+                  <li>
+                    a. Envobyte has no control over the policies and ranking
+                    algorithms of search engines with respect to the type of
+                    sites and/or content that they accept now or in the future.
+                    A Client’s website may decline in rankings or become
+                    deindexed from any search engine or directory at any time at
+                    the sole discretion of the search engine or directory.
+                  </li>
+                  <li>
+                    b. Due to the competitiveness of some keywords/phrases,
+                    ongoing algorithm changes, and other competitive factors,
+                    Envobyte does not guarantee specific rankings or search
+                    engine results page positions for any particular keyword,
+                    phrase, or search term.
+                  </li>
+                  <li>
+                    c. Search engines have been known to rank pages over time,
+                    therefore we cannot guarantee the rankings and traffic of
+                    new websites (or pages) to improve in “x” amount of time
+                  </li>
+                  <li>
+                    d. Engaging in link schemes, link exchanges or buying links
+                    can negatively impact your site’s rankings. Envobyte does
+                    not assume liability for Client’s choice to link to or
+                    obtain a link from any particular website without prior
+                    consultation, nor does Envobyte assume liability for
+                    ranking, traffic, indexing issues related to such penalties.
+                  </li>
+                  <li>
+                    e. Envobyte’s SEO process takes at least 2-3 months to show
+                    some significant effect. During this time, the Client’s site
+                    is analyzed and optimized within the timelines and resources
+                    specified in the agreement. Achieving stable ranking
+                    improvements can take up to 6-12 months.
+                  </li>
+                  <li>
+                    f. Envobyte is not responsible for changes made to the
+                    website by other parties that adversely affect the site’s
+                    visibility in search engine results.
+                  </li>
+                  <li>
+                    g. Envobyte makes no guarantee/warranty of project timelines
+                    or added expenses if SEO work is destroyed either wholly or
+                    in parts, either knowingly or unknowingly by any party other
+                    than Envobyte or without the prior consultation of Envobyte.
+                  </li>
+                  <li>
+                    h. Envobyte is not responsible for the Client or any of its
+                    affiliates overwriting SEO work. The Client will be charged
+                    an additional fee for re-constructing, re-optimizing
+                    content/web pages, based on the hourly rate of $50 per hour.
+                  </li>
+                  <li>
+                    <br />
+                    <b>Media/Advertising Clients</b>
+                    <p>
+                      Performance <br></br>
+                      Client acknowledges the following with respect to
+                      media/advertising services from Envobyte:
+                    </p>
+                    <ul className="ms-6">
+                      <li>
+                        a. Envobyte accepts no responsibility for policies of
+                        advertising networks, third-party search engines,
+                        directories or other web sites that Envobyte may submit
+                        to with respect to the classification or type of content
+                        it accepts, whether now or in the future. Client’s
+                        website or content may be excluded or banned from any
+                        third-party resource at any time if their policies are
+                        not adhered to. Client agrees not to hold Envobyte
+                        responsible for any liability or actions taken by
+                        third-party resource under this Agreement.
+                      </li>
+                      <li>
+                        b. Envobyte does not guarantee position, consistent
+                        positioning, or specific placement for any particular
+                        paid search keyword, phrase or search term. Client
+                        acknowledges that Envobyte’s past performance is not
+                        indicative of any future results client may experience.
+                      </li>
+                      <li>
+                        c. Client acknowledges that advertising campaigns may be
+                        subject to the individual advertising network’s policies
+                        and procedures. Changes to these policies may require
+                        added resources employed by Envobyte to adhere to these
+                        changes. The Client may be charged an additional fee for
+                        making these updates, based on the hourly rate of $50
+                        per hour.
+                      </li>
+                      <li>
+                        d. Client acknowledges that any advertising networks,
+                        search engines, directories or other resources may
+                        block, prevent or otherwise stop accepting submissions
+                        for an indefinite period of time.
+                      </li>
+                      <li>
+                        e. Client acknowledges that advertising networks may
+                        drop listings from its database for no apparent or
+                        predictable reason. Envobyte shall re-submit resources
+                        to the advertising network based on the current policies
+                        of the search engine in question.
+                      </li>
+                      <li>
+                        f. Envobyte will endeavor to make every effort to keep
+                        Client informed of any changes that Envobyte is made
+                        aware of that may impact any of the Paid Media Campaign
+                        and Strategy and the execution thereof under this
+                        Agreement.
+                      </li>
+                      <li>
+                        g. Client acknowledges that Envobyte cannot guarantee
+                        the exact placement of Client’s advertising; its
+                        availability or availability related to the funds in the
+                        Client’s account.
+                      </li>
+                      <li>
+                        h. Development of creative assets in support of Paid
+                        Media campaigns will be outlined specifically as a part
+                        of the deliverables in the SOW with Envobyte.
+                      </li>
+                      <li>
+                        i. Any forecasting metrics provided to Client are
+                        estimates based on industry knowledge and advertising
+                        network projected forecasts.
+                      </li>
+                      <li>
+                        j. If Envobyte executes Insertion Orders (IO) as it
+                        relates to advertising placements, each IO will list the
+                        type and amount of deliverables, the maximum amount of
+                        money to be spent, and the flight dates of advertising
+                        placements. Envobyte cannot be held accountable for the
+                        exact delivery, inventory and/or performance of ad
+                        campaigns projected in an IO due to these being third
+                        party forecasts.
+                      </li>
+                      <li>
+                        k. When applicable, Third Party Ad Server tags will be
+                        implemented so that they are functional in all aspects.
+                        Envobyte cannot be held to reporting accuracy without
+                        the ability to install appropriate tagging on all
+                        digital assets.
+                      </li>
+                      <li>
+                        l. When reporting is delivered by Envobyte, data is
+                        provided directly based on the ad network’s currently
+                        available data. If reporting is delivered before 30 days
+                        after the campaign has ended, all data may not have time
+                        to be collected and exact accuracy can be affected.
+                      </li>
+                      <li>
+                        a. Where Client has engaged Envobyte to procure media or
+                        advertising on its behalf (e.g., including but not
+                        limited to print, radio, television, digital), and
+                        Client is not paying for the media/advertising directly
+                        to the advertising/media vendor, Envobyte must receive
+                        payment for the media/advertising prior to the
+                        media/advertising running. (Envobyte will typically
+                        issue an invoice for media budget and media management
+                        services the month before the media is scheduled to
+                        run.) If Envobyte does not receive payment for both the
+                        media budget and the media management fees, it may, at
+                        its discretion, choose to cancel or pause the media
+                        until payment is received. If Envobyte has not received
+                        payment for the media/advertising but nonetheless allows
+                        the media/advertising to run, Client will remain
+                        responsible to Envobyte and/or the advertising/media
+                        vendor for payment of same, notwithstanding the
+                        existence of any insertion order or contract between
+                        Envobyte and the advertising/media vendor. If an
+                        advertising/media vendor seeks payment from Envobyte for
+                        media that Client has not paid Envobyte for, Client
+                        agrees that it will execute any documents requested by
+                        Envobyte and/or the media/advertising vendor to assume
+                        liability for payment.{" "}
+                      </li>
+                      <li>
+                        b. Early termination of media spend. If Client seeks to
+                        cancel media earlier than the date set forth in any
+                        media contract or insertion order, Envobyte will use its
+                        best efforts to cancel same without penalty to Client.
+                        However, Client expressly understands and agrees that
+                        certain media/advertising vendors will not allow
+                        cancellations and/or will charge a cancellation fee or
+                        “short rate” for same. Client shall be responsible for
+                        those amounts to the extent they have not already been
+                        paid to Envobyte. To the extent that Envobyte has
+                        received payment from Client that will cover those
+                        amounts, Client shall nonetheless remain responsible for
+                        payment of Envobyte’s time in having to process the
+                        cancellations at the rate of $50/hour.
+                      </li>
+                      <li>
+                        c. Effect of termination of Agreement or SOW for media
+                        placement. If Client terminates a Service Agreement for
+                        media placement, Envobyte will cancel all pending media
+                        unless otherwise agreed to in writing by the parties. If
+                        Client is indebted to Envobyte for Envobyte’s services,
+                        Envobyte reserves the right to offset that debt with any
+                        payments Client has prepaid to Envobyte for media. Any
+                        amounts left over after full payment of Envobyte’s
+                        outstanding fees (including time spent cancelling media)
+                        and fees still due to media/advertising vendors will not
+                        be refunded but may instead be used by Client for
+                        additional Envobyte services and/or additional media
+                        placement.
+                      </li>
+                      <li>
+                        d. Video clients: Envobyte may, but is not required to,
+                        retain or store video footage on behalf of Client unless
+                        specifically agreed to in the Service Agreement. If a
+                        video shoot is scheduled that Client must cancel, Client
+                        should provide at least 24 hours notice. Shoots
+                        cancelled with less than 24 hours notice will be subject
+                        to a day’s production fee.
+                      </li>
+                      <li>
+                        e. PR clients: While Envobyte uses its best efforts to
+                        get a Client’s press release(s) published, Client
+                        acknowledges that the decision to accept a story remains
+                        with the publishing source and Envobyte cannot therefore
+                        guarantee that a story or press release will be
+                        published or when it will be published.
+                      </li>
+                      <li>f. Ownership:</li>
+                      <li>
+                        g. Client Content: Client Content is written or visual
+                        content that is provided by Client to Envobyte for its
+                        performance of the deliverables. Client Content,
+                        including all pre-existing trademarks and copyright
+                        material, shall remain the sole property of Client, and
+                        Client shall be the sole owner of all rights in
+                        connection therewith. Client hereby grants to Envobyte a
+                        nonexclusive, nontransferable license to use, reproduce,
+                        and modify the Client Content solely regarding
+                        Envobyte’s performance of the services and the
+                        production of the deliverables.
+                      </li>
+                      <li>
+                        h.{" "}
+                        <span>
+                          Third Party Materials: Client shall not own any third
+                          party licensed commercial components or materials that
+                          are embedded in the deliverables provided to Client.
+                          The owners of these components shall retain ownership
+                          of these items in accordance with their Terms and
+                          Conditions, licensing agreements, or other applicable
+                          agreements. Upon request, Envobyte shall provide
+                          Client with a listing of third party components used
+                          in the deliverables and the source(s) of such
+                          components.
+                        </span>
+                        <ul className="ms-10">
+                          <li>
+                            1. Designs/Written Copy: Upon completion of the
+                            deliverables and conditioned upon full payment of
+                            all fees, costs and out-of-pocket expenses due,
+                            Envobyte shall assign to Client all ownership
+                            rights, including any copyrights, in any artwork,
+                            designs or written copy Envobyte has created for
+                            Client as a part of its deliverables. At the request
+                            of Client and subject to a charge of $50/hour for
+                            assembling and preparing the materials for delivery,
+                            Envobyte can provide a PSD (Photoshop file) or other
+                            file format of any design it has created for Client
+                            and/or HTML files. Should Client require any of the
+                            above to be placed on a disc (as opposed to
+                            delivered electronically), Client shall also be
+                            responsible for any applicable sales tax.
+                          </li>
+                          <li>
+                            i. Websites, web and mobile applications: Upon
+                            completion of the deliverables and conditioned upon
+                            full payment of all fees, costs and out-of-pocket
+                            expenses due, Envobyte shall assign to Client all
+                            ownership rights to the front end design of any
+                            website, web or mobile applications; however,
+                            Envobyte will retain ownership of all custom
+                            back-end programming. Client, however, will be given
+                            a world-wide, royalty-free, non-exclusive,
+                            transferable, and perpetual right and license to the
+                            programming including, but not limited to, the right
+                            to modify, amend, and change the programming and
+                            create derivative works. If Client would like to
+                            have their website or web application “packaged” up
+                            and electronically delivered, this is an additional
+                            charge and Client will be billed $50/hour for same.
+                          </li>
+                          <li>
+                            j. Changing Hosts: Should Client wish to move its
+                            website/web application to another server/host from
+                            the original hosting source, Client will be provided
+                            access to port its site over; however, Client should
+                            be advised that sites may not port over to certain
+                            servers and/or the site may lose certain
+                            functionalities on certain servers. Envobyte is not
+                            responsible for same and will still be responsible
+                            for the charge for packaging the website/web
+                            application. Should the site require additional
+                            programming to port to another server/host, or
+                            should Envobyte be required to engage in extensive
+                            consulting to assist in the migration, Envobyte will
+                            bill Client for same at the rate of $50 per hour.
+                            Should Client require any of the above to be placed
+                            on a disc (as opposed to delivered electronically),
+                            Client shall also be responsible for any applicable
+                            sales tax.
+                          </li>
+                        </ul>
+                      </li>
+                      <li></li>
+                    </ul>
+                    <br />
+                    <p>
+                      <b>Term and Termination:</b> Unless otherwise specified in
+                      the Service Agreement, the Service Agreement between
+                      Client and Envobyte shall be effective as of the date that
+                      Client executes the Service Agreement and shall continue
+                      in effect for the duration of the term. Once the term has
+                      been completed, the Service Agreement will continue on a
+                      month-to-month basis and may be terminated upon thirty
+                      (30) days notice. If no term is specified in the Service
+                      Agreement, the term shall be the latter of complete
+                      payment of the amounts due under that Agreement or until
+                      the contracted services have been completed. A Service
+                      Agreement may only be terminated prior to the end of a
+                      term as follows:
+                    </p>
+                    <br />
+                    <ul className="ms-10">
+                      <li>
+                        a. Breach. Either party may terminate an SOW and/or this
+                        Agreement in the event of a material breach by the other
+                        party if such breach continues uncured for a period of
+                        thirty (30) calendar days after written notice of the
+                        breach.{" "}
+                      </li>
+                      <li>
+                        b. Either Party may, in its sole discretion, terminate
+                        this Agreement in the event the other party files for
+                        bankruptcy, or is subject to involuntary bankruptcy.
+                      </li>
+                      <li>
+                        c. Effect of Termination on Payment. In the event of
+                        Client’s termination of this Agreement and/or any SOW
+                        for claimed breach by Envobyte, Client shall pay
+                        Envobyte for all previously issued unpaid invoices,
+                        out-of-pocket expenses incurred by Envobyte, as well as
+                        for services rendered up to the date of termination
+                        (such date being thirty (30) days after receipt of
+                        notification of the breach) that may or may not yet have
+                        been invoiced. If the payment schedule in the Service
+                        Agreement is milestone or project-based, rather than
+                        hourly or monthly fee-based, Envobyte will determine the
+                        number of hours of work performed beyond the last
+                        completed (and paid for) milestone or the number of
+                        hours expended toward completion of the project beyond
+                        what has already been paid for by Client and will
+                        invoice Client at the rate of $50/hour for those hours.
+                        Envobyte shall provide the Client with an invoice within
+                        thirty (30) days of the effective date of the
+                        termination. The client shall pay the invoice within
+                        fourteen (14) days of receipt. Such payment shall not
+                        affect Envobyte’s right to pursue other potential
+                        damages relating to the client’s termination.
+                      </li>
+                      <li>
+                        d. Survival of Provisions. Notwithstanding the
+                        foregoing, the portions of this Agreement relating to
+                        Taxes, Indemnity, Warranties, Limitation of Liability,
+                        Governing Law and Venue, Force Majeure, Waiver, and
+                        Counterparts shall survive termination of this
+                        Agreement.
+                        <ul className="ms-8">
+                          <li>
+                            i. Taxes: Client will pay, reimburse, and/or hold
+                            Envobyte harmless for all sales, use, transfer,
+                            privilege, tariffs, excise, and all other taxes and
+                            duties (other than as related to Envobyte’s income),
+                            whether international, national, state, or local
+                            (however designated), which are levied or imposed by
+                            reason of the performance of the deliverables.
+                          </li>
+                          <li>
+                            ii. Payment: Unless otherwise set forth in the
+                            Service Agreement, payment will be due upon receipt
+                            of the invoice. Unless otherwise set forth in the
+                            Service Agreement, all ongoing monthly program costs
+                            will be billed on the first day of the month for
+                            that month’s services. Quarterly or monthly website
+                            hosting costs will be billed the month prior to the
+                            start of the quarter. Billing for media spends will
+                            be on the first of the month in the month prior to
+                            when the spend is to occur. In the case where Client
+                            has terminated a Service Agreement involving
+                            recurring monthly program costs or a marketing
+                            retainer, Client will be billed for the full month
+                            of services if the termination date occurs after the
+                            first of the month (e.g., Client gives notice on
+                            January 15th of desire to terminate; Client will be
+                            billed for January and February due to the 30-day
+                            notice period). Client will not be refunded for
+                            pre-paid hosting fees if Client terminates the
+                            Service Agreement. All payments made to Envobyte
+                            shall be in U.S. Dollars in the form of company
+                            check, cashier’s check, or electronic wire transfer.
+                            Payments made by credit card shall be subject to a
+                            3% processing fee. Payments not made within 60 days
+                            of the date of invoice may be subject to late
+                            charges equal to the lesser of i) one and one-half
+                            percent (1.5%) per month of the overdue amount; or
+                            ii) the maximum amount permitted under applicable
+                            law. If Client fails to timely pay the amounts due
+                            during the development or delivery of the
+                            deliverables pursuant to this paragraph and/or the
+                            payment terms set forth in the Services Agreement,
+                            Envobyte retains the right to stop work and/or
+                            suspend services after five (5) days’ written notice
+                            (email communication sufficient) until payment is
+                            made. Further, Envobyte shall retain full ownership
+                            over the deliverables (whether completed or not)
+                            until full payment is received. Client shall
+                            reimburse Envobyte for travel and any related
+                            expenses. Envobyte will advise Client if travel
+                            expenses are expected to exceed $100.
+                          </li>
+                          <li>
+                            iii. Indemnity: Client agrees to indemnify and hold
+                            harmless Envobyte, its owners and employees from and
+                            against all allegations, claims, actions, suits,
+                            demands, damages, liabilities, obligations, losses,
+                            settlements, judgments, costs and expenses
+                            (including without limitation attorneys’ fees and
+                            costs) which arise out of, relate to Envobyte’s use
+                            of materials furnished by Client (including but not
+                            limited to, logos, slogans, trademarks, written
+                            content, photographs, video, music and fonts).
+                            Information or data obtained by us from you to
+                            substantiate claims made in marketing deliverables
+                            shall also be deemed to be “materials furnished by
+                            you.” Such claims may include claims for invasion of
+                            privacy, defamation, patent, trademark copyright or
+                            other intellectual property claims. Additionally,
+                            Client agrees to indemnify and hold harmless
+                            Envobyte, its owners and employees against any and
+                            all allegations, claims, actions, suits, demands,
+                            damages, liabilities, obligations, losses,
+                            settlements, judgments, costs and expenses
+                            (including without limitation attorneys’ fees and
+                            costs) which arise out of, relate to business ideas,
+                            innovations, concepts, websites, web-based
+                            applications and the like that Client has generated
+                            and has asked Envobyte to develop or implement. For
+                            example, if you have an idea for a web application,
+                            we develop it, and it is determined that the
+                            application’s functionality violates another
+                            company’s patent, you will indemnify Envobyte for
+                            any claims instituted by the third party. Envobyte
+                            does not take responsibility for determining whether
+                            your business ideas, business plans, concepts or
+                            innovations may interfere with another party’s
+                            rights or are otherwise in compliance with
+                            applicable law. You warrant that any business ideas,
+                            business plans, concepts or innovations that you
+                            have presented to Envobyte and asked Envobyte to
+                            create deliverables for are compliant with
+                            applicable federal, state and local laws, rules and
+                            regulations.
+                          </li>
+                        </ul>
+                        <br />
+                        <p>
+                          <b>Limitation of Liability</b>
+                        </p>
+                        <p>
+                          IN NO EVENT SHALL ENVOBYTE BE LIABLE TO CLIENT FOR ANY
+                          DIRECT, SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES,
+                          INCLUDING BUT NOT LIMITED TO LOSS OF USE, LOSS OF
+                          PROFITS, LOSS OF DATA OR LOSSES AS A RESULT OF
+                          DISCLOSURE OF USER CONTENT OR OTHER DATA, WHETHER IN
+                          AN ACTION IN CONTRACT, TORT (INCLUDING BUT NOT LIMITED
+                          TO NEGLIGENCE), OR OTHERWISE, ARISING OUT OF OR IN ANY
+                          WAY CONNECTED WITH ENVOBYTE’S PRODUCTS OR SERVICES. IN
+                          NO EVENT SHALL THE AGGREGATE LIABILITY OF ENVOBYTE
+                          EXCEED ANY COMPENSATION PAID BY YOU TO ENVOBYTE FOR
+                          ITS PRODUCTS OR SERVICES.
+                        </p>
+                        <br />
+                        <b>
+                          <b>Governing Law/Venue:</b>{" "}
+                        </b>
+                        <p>
+                          This Agreement shall be governed by and construed in
+                          accordance with the internal laws of Bangladesh and
+                          not the principles of conflicts of law thereof. The
+                          Parties agree that the venue for any action arising
+                          out of this Agreement will beTayamun Center (3rd
+                          floor), 181/1 Jessore Road, Khulna, Bangladesh.
+                        </p>
+                        <br />
+                        <b>Miscellaneous: </b>
+                        <p>
+                          If any portion of these Terms shall be deemed
+                          unlawful, void or for any reason unenforceable, then
+                          that provision shall be deemed severable from these
+                          Terms and shall not affect the validity or
+                          enforceability of any remaining provisions or the
+                          provisions in the Services Agreement. The Service
+                          Agreement entered into between the parties and
+                          applicable change orders, together with these Terms,
+                          constitutes the entire agreement between the parties
+                          as it pertains to the matters in that Service
+                          Agreement and supersedes any oral discussions, written
+                          communications or draft agreements that occurred prior
+                          to execution of that Service Agreement.
+                          Notwithstanding the foregoing, to the extent that
+                          Envobyte and Client have executed more than one
+                          Service Agreement throughout their relationship, each
+                          of those Service Agreements, along with their
+                          corresponding Terms, shall be treated separately and
+                          remain in full force and effect according to their
+                          individual terms.
+                        </p>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
           </div>
         </div>
       </div>

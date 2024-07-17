@@ -6,6 +6,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { searchServiceApi } from "@/config/apis";
 
+const truncateText = (text, limit) => {
+  if (text.length <= limit) return text;
+  return text.slice(0, limit) + "...";
+};
+
 const PortfolioPage = ({
   portfolios,
   portfoliosCategories,
@@ -32,13 +37,18 @@ const PortfolioPage = ({
 
   useEffect(() => {
     const filterPortfolios = () => {
-      return portfolios.filter(
-        (item) =>
-          (selectedCategoryId === 0 ||
-            item.category_id === selectedCategoryId) &&
-          (selectedServiceId === 0 || item.service_id === selectedServiceId) &&
-          item.heading.toLowerCase().includes(searchQuery.toLowerCase())
-      );
+      return portfolios.filter((item) => {
+        const categoryMatch =
+          selectedCategoryId === 0 ||
+          item.category_id.includes(selectedCategoryId.toString());
+        const serviceMatch =
+          selectedServiceId === 0 ||
+          item.service_id.includes(selectedServiceId.toString());
+        const searchMatch = item.heading
+          .toLowerCase()
+          .includes(searchQuery.toLowerCase());
+        return categoryMatch && serviceMatch && searchMatch;
+      });
     };
 
     setLoading(true);
@@ -175,78 +185,91 @@ const PortfolioPage = ({
             }`}
           >
             {filteredPortfolio.map((portfolio) => (
-              <Link key={portfolio.id} href={`/portfolio/${portfolio?.slug}`}>
-                <div className="group rounded-[10px] overflow-hidden border border-[#CBD5E1] hidden lg:block">
-                  <div className="portfolio-bgHover h-[400px] 4xl:w-[700px] cursor-pointer flex bg-[#FFFFFF] rounded-[10px] ">
+              <Link
+                key={portfolio.id + "-" + portfolio.slug}
+                href={`/portfolio/${portfolio?.slug}`}
+              >
+                <div className="hidden lg:block group rounded-[10px] overflow-hidden border border-[#CBD5E1] ">
+                  <div className="portfolio-bgHover h-auto lg:h-[400px]  w-[100%]  cursor-pointer flex flex-col lg:flex-row bg-[#FFFFFF] rounded-[10px]">
                     <div className="w-1/2 h-full">
                       <Image
                         width={800}
                         height={500}
-                        className="4xl:max-w-[350px] h-full  rounded-l-[10px]"
+                        className="4xl:max-w-[345px] h-[400px]  rounded-l-[10px]"
                         src={portfolio?.image}
                         alt=""
                       />
                     </div>
-                    <div className="w-1/2 h-[500px] flex flex-col justify-start items-center mt-10 md:py-0 xll:px-8 2xl:px-12 4xl:px-0">
-                      <div className="text-center ">
-                        <h4 className="text-[14px] text-[#999999] pt-3 pb-3 md:pt-0 md:pb-3 portfolio-textHover">
-                          {portfolio?.service_name[0]?.service_name}
+
+                    <div className="w-full lg:w-1/2 p-4  mt-5 lg:p-6 flex flex-col lg:justify-center 4xl:justify-center items-center">
+                      <div className="text-center w-full">
+                        <h4 className="text-[14px] text-[#999999] mb-2 portfolio-textHover">
+                          {portfolio?.service_name
+                            .slice(0, 3)
+                            .map((service, index) => (
+                              <span key={index}>
+                                {index > 0 && (
+                                  <>
+                                    ,<br />
+                                  </>
+                                )}
+                                {service}
+                              </span>
+                            ))}
                         </h4>
-                        <div className="text-[16px] px-[10%] w-[380px] h-[65px] font-bold font-Raleway text-[#333333] portfolio-textHover line-clamp-3">
-                          {portfolio?.heading.split(" ").slice(0, 12).join(" ")}
-                          {portfolio?.heading.split(" ").length > 12
-                            ? "..."
-                            : ""}
+                        <div className="text-[16px] font-bold font-Raleway text-[#333333] portfolio-textHover line-clamp-3 mb-3">
+                          {truncateText(portfolio?.heading, 120)}
                         </div>
-                        <div>
-                          <div className="flex justify-center ">
-                            <p className="w-[250px] 4xl:w-[370px] 4xl:px-[10%] flex justify-center  text-center text-[14px] text-[#666666] py-3 portfolio-textHover pt-3.5">
-                              <span>{portfolio.text.slice(0, 300)}...</span>
-                            </p>
-                          </div>
-                          <div className="pt-10 group flex justify-center items-center gap-2 text-[#FF693B] font-bold portfolio-textHover pb-6 lg:pb-0">
-                            <button className="text-[14px]">Read More</button>
-                            <span className="w-[19px] font-bold">
-                              <HiArrowSmallRight className="text-xl" />
-                            </span>
-                          </div>
+                        <p className="text-[14px] text-[#666666] portfolio-textHover mb-4">
+                          {truncateText(portfolio.text, 300)}
+                        </p>
+                        <div className="flex justify-center items-center gap-2 text-[#FF693B] font-bold portfolio-textHover">
+                          <button className="text-[14px]">Read More</button>
+                          <span className="w-[19px]">
+                            <HiArrowSmallRight className="text-xl" />
+                          </span>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="group rounded-[10px] overflow-hidden border border-[#CBD5E1] block lg:hidden">
-                  <div className="portfolio-bgHover flex flex-col lg:flex-row bg-[#FFFFFF] rounded-[10px] cursor-pointer">
-                    <div className="w-full lg:w-1/2 h-[300px] lg:h-[420px]">
+                <div className="block lg:hidden group rounded-[10px] overflow-hidden border border-[#CBD5E1]">
+                  <div className="portfolio-bgHover h-auto md:h-[650px] lg:h-[400px] w-full cursor-pointer flex flex-col lg:flex-row bg-[#FFFFFF] rounded-[10px]">
+                    <div className="w-full lg:w-1/2 h-[200px] md:h-[300px] lg:h-full">
                       <Image
                         width={800}
                         height={500}
-                        className="w-full h-full object-cover lg:rounded-l-[10px]"
+                        className="w-full h-full object-cover rounded-t-[10px] lg:rounded-l-[10px] lg:rounded-tr-none"
                         src={portfolio?.image}
                         alt=""
                       />
                     </div>
-                    <div className="w-full lg:w-1/2 flex flex-col justify-start items-center p-4 lg:p-10">
-                      <div className="text-center">
-                        <h4 className="text-[14px] text-[#999999] pb-2 portfolio-textHover">
-                          {portfolio?.service_name[0]?.service_name}
+
+                    <div className="w-full lg:w-1/2 p-4 md:p-5 lg:p-6 flex flex-col justify-start md:justify-center items-center h-[calc(100%-200px)] md:h-[300px] lg:h-full">
+                      <div className="text-center w-full">
+                        <h4 className="text-[14px] text-[#999999] mb-2 portfolio-textHover md:mt-10 lg:mt-0">
+                          {portfolio?.service_name
+                            .slice(0, 3)
+                            .map((service, index) => (
+                              <span key={index}>
+                                {index > 0 && ", "}
+                                {service}
+                              </span>
+                            ))}
                         </h4>
-                        <div className="text-[16px] w-full lg:w-[380px] font-bold font-Raleway text-[#333333] portfolio-textHover line-clamp-3 mb-3">
-                          {portfolio?.heading.split(" ").slice(0, 12).join(" ")}
-                          {portfolio?.heading.split(" ").length > 12
-                            ? "..."
-                            : ""}
+                        <div className="text-[16px] md:text-[18px] font-bold font-Raleway text-[#333333] portfolio-textHover line-clamp-3 mb-3">
+                          {truncateText(portfolio?.heading, 120)}
                         </div>
-                        <div>
-                          <p className="w-full lg:w-[250px] 4xl:w-[370px] text-center text-[14px] text-[#666666] portfolio-textHover mb-6">
-                            <span>{portfolio.text.slice(0, 300)}...</span>
-                          </p>
-                          <div className="group flex justify-center items-center gap-2 text-[#FF693B] font-bold portfolio-textHover">
-                            <button className="text-[14px]">Read More</button>
-                            <span className="w-[19px] font-bold">
-                              <HiArrowSmallRight className="text-xl" />
-                            </span>
-                          </div>
+                        <p className="text-[14px] md:text-[15px] text-[#666666] portfolio-textHover mb-4">
+                          {truncateText(portfolio.text, 300)}
+                        </p>
+                        <div className="flex justify-center items-center gap-2 text-[#FF693B] font-bold portfolio-textHover">
+                          <button className="text-[14px] md:text-[15px]">
+                            Read More
+                          </button>
+                          <span className="w-[19px]">
+                            <HiArrowSmallRight className="text-xl" />
+                          </span>
                         </div>
                       </div>
                     </div>

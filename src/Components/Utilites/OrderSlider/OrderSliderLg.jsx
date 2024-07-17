@@ -12,6 +12,11 @@ const OrderSliderLg = ({ sliders }) => {
   const [images, setImages] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [imageHeights, setImageHeights] = useState({});
+  const [imagesLoaded, setImagesLoaded] = useState({});
+
+  const handleContextMenu = (e) => {
+    e.preventDefault();
+  };
 
   useEffect(() => {
     const mappedImages = sliders.map((slider) => ({
@@ -64,6 +69,7 @@ const OrderSliderLg = ({ sliders }) => {
         const img = new Image();
         img.onload = () => {
           setImageHeights((prev) => ({ ...prev, [index]: img.naturalHeight }));
+          setImagesLoaded((prev) => ({ ...prev, [index]: true }));
           resolve();
         };
         img.onerror = reject;
@@ -153,27 +159,32 @@ const OrderSliderLg = ({ sliders }) => {
             maxHeight:
               isFullscreen && currentImageHeight > 900 ? "1900px" : "none",
           }}
+          className={`relative ${
+            !imagesLoaded[currentIndex] ? "bg-gray-200 animate-pulse" : ""
+          }`}
         >
           <img
+            className={`mx-auto transition-opacity duration-300 ${
+              imagesLoaded[currentIndex] ? "opacity-100" : "opacity-0"
+            }`}
             src={item.original}
             alt=""
             style={{
-              width: "100%",
+              width: isFullscreen ? "95%" : "100%",
               height: isFullscreen ? "auto" : "100%",
               objectFit: isFullscreen ? "contain" : "cover",
               objectPosition: "center",
             }}
-            onClick={(event) => {
-              if (isFullscreen) {
-                event.preventDefault();
-                event.stopPropagation();
-              }
+            onContextMenu={handleContextMenu}
+            onLoad={() => {
+              setImagesLoaded((prev) => ({ ...prev, [currentIndex]: true }));
             }}
           />
         </div>
       </div>
     );
   };
+
   return (
     <div className="hidden md:block bg-[#F8FAFC] xl:p-3 4xl:p-8 rounded-[10px]">
       {isLoading ? (

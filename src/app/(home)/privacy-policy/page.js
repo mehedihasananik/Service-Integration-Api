@@ -10,7 +10,7 @@ export const metadata = {
 const PrivacyPolicy = () => {
   return (
     <Container>
-      <div className="bg-gray-100 mt-5 px-10">
+      <div className="bg-gray-100 mt-5 md:px-10 overflow-hidden">
         <div className="container mx-auto px-4 py-8">
           <h1 className="text-4xl font-bold mb-8 text-center">
             Privacy Policy

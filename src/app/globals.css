@@ -263,6 +263,7 @@
 
 /* kakon css */
 /* kakon css */
+/* kakon css */
 .react-tel-input .form-control {
   font-size: 16px;
   background: #ffffff;
@@ -378,23 +379,47 @@ input::-webkit-calendar-picker-indicator {
 .react-international-phone-input-container
   .react-international-phone-country-selector-button {
   height: 58px !important;
-  border: 2px solid #6e6c6c !important;
+  border: 1px solid #ced2d4 !important;
   border-right: none !important;
   width: 50px;
   border-radius: 8px 0px 0px 8px !important;
 }
 
+#project_details_input [type="text"]:focus,
+[type="email"]:focus,
+[type="url"]:focus,
+[type="password"]:focus,
+[type="number"]:focus,
+[type="date"]:focus,
+[type="datetime-local"]:focus,
+[type="month"]:focus,
+[type="search"]:focus,
+[type="tel"]:focus,
+[type="time"]:focus,
+[type="week"]:focus,
+[multiple]:focus,
+textarea:focus,
+select:focus {
+  box-shadow: none;
+  border: 1px solid #ced2d4 !important;
+}
+
 .react-international-phone-input-container .react-international-phone-input {
   height: var(--react-international-phone-height, 58px) !important;
   width: 100% !important;
-  border: 2px solid #636262 !important;
+  border: 1px solid #ced2d4 !important;
   font-size: 17px !important;
   border-radius: 0px 8px 8px 0px !important;
 }
 
+.react-international-phone-input-container
+  .react-international-phone-input:focus {
+  border: 1px solid #ced2d4 !important;
+}
+
 .react-international-phone-input-container {
   display: flex;
-  margin-top: 8px !important;
+  margin-top: 0px !important;
 }
 
 .react-international-phone-country-selector-dropdown {
@@ -511,6 +536,8 @@ select:not([size]) {
   box-sizing: border-box;
   margin-left: 12px !important;
 }
+
+/* kakon css end */
 .flowbite-tooltip {
   left: 420px !important;
 }
@@ -606,3 +633,4 @@ select:not([size]) {
     width: 308px !important;
   }
 }
+/* ----------- */

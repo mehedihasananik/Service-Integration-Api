@@ -8,7 +8,7 @@ import Image from "next/image";
 import UserLoading from "../UserLoading/UserLoading";
 import { Pagination } from "swiper/modules";
 
-const DemoServices = ({ services }) => {
+const DemoServices = ({ services, details }) => {
   const [loading, setLoading] = useState(true);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [totalSlides, setTotalSlides] = useState(0);
@@ -71,16 +71,12 @@ const DemoServices = ({ services }) => {
             <div className="w-full text-center lg:text-left lg:w-[35%]">
               <div className="lg:w-[400px]">
                 <h3 className="text-[30px] md:text-[42px] lg:text-[48px] font-bold font-Raleway text-[#0F172A]">
-                  Kick Start With Our Services{" "}
+                  {details.title}
                 </h3>
               </div>
               <div className="pt-4  flex justify-center xl:block">
                 <p className="text-justify  text-[16px] text-[#666666] font-normal w-[300px] md:w-[700px] xl:w-[380px] 4xl:w-[500px]">
-                  Elevate your business to new heights with our transformative
-                  IT solutions. Captivating design, innovative web/app
-                  development, and impactful digital marketing - our expert team
-                  crafts tailored services to ignite your growth and outshine
-                  the competition. Unlock your true potential today.
+                  {details.details}
                 </p>
               </div>
               {/* small device */}

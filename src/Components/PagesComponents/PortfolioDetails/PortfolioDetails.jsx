@@ -1,10 +1,21 @@
+"use client";
 import Container from "@/Components/Container/Container";
 import RelevantPortfolio from "@/Components/Utilites/RelevantServices/RelevantPortfolio";
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
+import { useState } from "react";
 
 const PortfolioDetails = ({ singlePortfolioItem }) => {
   const { basic, details, relevant } = singlePortfolioItem;
+  const [imagesLoaded, setImagesLoaded] = useState({});
+
+  const handleContextMenu = (e) => {
+    e.preventDefault();
+  };
+
+  const handleImageLoad = (id) => {
+    setImagesLoaded((prev) => ({ ...prev, [id]: true }));
+  };
 
   return (
     <div className="bg-[rgb(252,252,252)]">
@@ -17,12 +28,25 @@ const PortfolioDetails = ({ singlePortfolioItem }) => {
             {basic?.details}
           </p>
           {details.map((portfolio) => (
-            <div key={portfolio?.id}>
-              <img
-                className="md:w-full md:h-[auto]"
-                alt="image"
-                src={portfolio.image}
-              />
+            <div key={portfolio?.id} className="relative">
+              <div
+                className={`aspect-w-16 aspect-h-9  ${
+                  !imagesLoaded[portfolio.id] ? "bg-gray-200 animate-pulse" : ""
+                }`}
+              >
+                <Image
+                  height={800}
+                  width={1000}
+                  onContextMenu={handleContextMenu}
+                  className={`transition-opacity duration-300 md:w-full md:h-[auto] ${
+                    imagesLoaded[portfolio.id] ? "opacity-100" : "opacity-0"
+                  }`}
+                  alt="image"
+                  src={portfolio.image}
+                  objectFit="cover"
+                  onLoad={() => handleImageLoad(portfolio.id)}
+                />
+              </div>
               <h3 className="text-gray-500 text-[18px] md:text-[20px] font-Raleway font-semibold text-center py-4 md:py-5 md:pb-8">
                 {portfolio.caption_text}
               </h3>

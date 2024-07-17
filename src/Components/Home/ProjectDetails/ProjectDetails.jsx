@@ -77,6 +77,7 @@ const ProjectDetails = ({ userContact }) => {
           user_phone: "",
           message: "",
         });
+        setPhone("");
       }
     } catch (error) {
       console.error("Error:", error);
@@ -178,7 +179,10 @@ const ProjectDetails = ({ userContact }) => {
             </div>
           </div>
 
-          <div className="w-full md:w-[68%] lg:w-[60%] contact">
+          <div
+            className="w-full md:w-[68%] lg:w-[60%] contact"
+            id="project_details_input"
+          >
             <form onSubmit={handleSubmit} action="">
               {/* first name & last name */}
               <div className="flex flex-col gap-5">
@@ -244,12 +248,13 @@ const ProjectDetails = ({ userContact }) => {
                     <div className="flex flex-col gap-3 lg:w-[80%] sm:w-[100%]">
                       <label
                         className="text-[16px] mt-3 lg:mt-0"
-                        htmlFor="lastname"
+                        htmlFor="user_phone"
                       >
                         Your Phone Number:
                       </label>
 
                       <PhoneInput
+                        name="user_phone"
                         defaultCountry="bd"
                         value={phone}
                         onChange={handlePhoneOnChange}

@@ -3,7 +3,7 @@ import { singlePortfolio } from "@/config/apis";
 
 const SinglePage = async ({ params }) => {
   const singlePortfolioItem = await fetch(
-    `${singlePortfolio}/${params?.id}`
+    `http://192.168.10.14:8000/api/portfolio_details/${params?.id}`
   ).then((res) => res?.json());
 
   return (

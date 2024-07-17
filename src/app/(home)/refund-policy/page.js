@@ -9,8 +9,10 @@ export const metadata = {
 const RefundPolicy = () => {
   return (
     <Container>
-      <div className=" pb-8 pt-5">
-        <h1 className="text-4xl font-bold mb-4 text-center">Refund Policy</h1>
+      <div className="bg-gray-100  px-8 mt-5 pb-8 pt-5">
+        <h1 className="text-4xl font-bold mb-4 text-center pt-3">
+          Refund Policy
+        </h1>
         <section className="mb-8">
           <h2 className="text-xl font-semibold mb-2">Disclaimer</h2>
           <p className="mb-4">
