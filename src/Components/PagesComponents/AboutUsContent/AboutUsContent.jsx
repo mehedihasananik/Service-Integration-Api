@@ -100,7 +100,7 @@ const AboutUsContent = ({ aboutDetails, singleAboutDetails }) => {
           <div
             key={detail.id}
             className={`flex flex-col gap-4 md:gap-8 lg:flex-row ${
-              detail.image_positions === "rignt"
+              detail.image_positions === "right"
                 ? "lg:justify-between"
                 : "lg:flex-row-reverse lg:justify-between"
             } my-5 lg:py-8`}
@@ -108,7 +108,7 @@ const AboutUsContent = ({ aboutDetails, singleAboutDetails }) => {
             {/* left side */}
             <div
               className={`lg:w-[50%] ${
-                detail.image_positions === "rignt"
+                detail.image_positions === "right"
                   ? "text-center"
                   : "text-center lg:text-left"
               } flex flex-col justify-center`}
@@ -123,7 +123,7 @@ const AboutUsContent = ({ aboutDetails, singleAboutDetails }) => {
             {/* right side */}
             <div
               className={`lg:w-[40%] flex justify-center ${
-                detail.image_positions === "rignt"
+                detail.image_positions === "right"
                   ? "lg:justify-end"
                   : "lg:justify-start"
               } gap-x-4`}

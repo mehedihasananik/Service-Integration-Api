@@ -1,9 +1,9 @@
 "use client";
+import { useState, useEffect } from "react";
 import Container from "@/Components/Container/Container";
 import RelevantPortfolio from "@/Components/Utilites/RelevantServices/RelevantPortfolio";
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
 
 const PortfolioDetails = ({ singlePortfolioItem }) => {
   const { basic, details, relevant } = singlePortfolioItem;
@@ -16,6 +16,38 @@ const PortfolioDetails = ({ singlePortfolioItem }) => {
   const handleImageLoad = (id) => {
     setImagesLoaded((prev) => ({ ...prev, [id]: true }));
   };
+
+  // Disable right-click
+  useEffect(() => {
+    const handleContextMenu = (e) => {
+      e.preventDefault();
+    };
+    document.addEventListener("contextmenu", handleContextMenu);
+    return () => {
+      document.removeEventListener("contextmenu", handleContextMenu);
+    };
+  }, []);
+
+  // Disable keyboard shortcuts
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (
+        (e.ctrlKey &&
+          (e.keyCode === 67 ||
+            e.keyCode === 86 ||
+            e.keyCode === 85 ||
+            e.keyCode === 117)) ||
+        e.keyCode === 123
+      ) {
+        e.preventDefault();
+        return false;
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
   return (
     <div className="bg-[rgb(252,252,252)]">
