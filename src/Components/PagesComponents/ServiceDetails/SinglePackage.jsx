@@ -143,7 +143,9 @@ const SinglePackage = ({ item, setOpenModal, height }) => {
               {item?.package_name}
             </h3>
             <p className="text-[15px] text-[#334155] font-normal">
-              {truncateText(item?.package_text, 20)}
+              {item?.package_text.length > 80
+                ? item?.package_text.slice(0, 80) + "..."
+                : item?.package_text}
             </p>
           </div>
         </div>

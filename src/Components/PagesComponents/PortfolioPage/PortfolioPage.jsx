@@ -201,7 +201,7 @@ const PortfolioPage = ({
                       />
                     </div>
 
-                    <div className="w-full lg:w-1/2 p-4  mt-5 lg:p-6 flex flex-col lg:justify-center 4xl:justify-center items-center">
+                    <div className="w-full lg:w-1/2 p-4  mt-0 lg:p-6 flex flex-col lg:justify-center 4xl:justify-center items-center">
                       <div className="text-center w-full">
                         <h4 className="text-[14px] text-[#999999] mb-2 portfolio-textHover">
                           {portfolio?.service_name
@@ -221,7 +221,9 @@ const PortfolioPage = ({
                           {truncateText(portfolio?.heading, 120)}
                         </div>
                         <p className="text-[14px] text-[#666666] portfolio-textHover mb-4">
-                          {truncateText(portfolio.text, 300)}
+                          {portfolio.text.length > 300
+                            ? portfolio.text.slice(0, 300) + "..."
+                            : portfolio.text}
                         </p>
                         <div className="flex justify-center items-center gap-2 text-[#FF693B] font-bold portfolio-textHover">
                           <button className="text-[14px]">Read More</button>
@@ -233,6 +235,7 @@ const PortfolioPage = ({
                     </div>
                   </div>
                 </div>
+
                 <div className="block lg:hidden group rounded-[10px] overflow-hidden border border-[#CBD5E1]">
                   <div className="portfolio-bgHover h-auto md:h-[650px] lg:h-[400px] w-full cursor-pointer flex flex-col lg:flex-row bg-[#FFFFFF] rounded-[10px]">
                     <div className="w-full lg:w-1/2 h-[200px] md:h-[300px] lg:h-full">

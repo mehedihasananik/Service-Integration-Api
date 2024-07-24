@@ -14,7 +14,7 @@ const AboutUsContent = ({ aboutDetails, singleAboutDetails }) => {
     details3,
     title4,
     details4,
-  } = aboutDetails;
+  } = aboutDetails[0];
 
   const [animate, setAnimate] = useState(false);
 

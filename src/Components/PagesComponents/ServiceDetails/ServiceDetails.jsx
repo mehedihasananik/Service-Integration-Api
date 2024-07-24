@@ -11,6 +11,7 @@ import OrderSliderLg from "@/Components/Utilites/OrderSlider/OrderSliderLg";
 import OrderSliderSm from "@/Components/Utilites/OrderSlider/OrderSliderSm";
 import QuestionService from "@/Components/Home/Questions/QuestionService";
 import SinglePackageSm from "./SinglePackageSm";
+import parse from "html-react-parser";
 
 const ServiceDetails = ({ service, sliders, packages }) => {
   const [openModal, setOpenModal] = useState(false);
@@ -84,9 +85,9 @@ const ServiceDetails = ({ service, sliders, packages }) => {
             <h2 className="text-[24px] font-bold font-Raleway text-[#333333]">
               Description
             </h2>
-            <p className="text-[16px] text-[#666] pt-2">
-              {service?.service_details[0]?.text}
-            </p>
+            <div className="text-[16px] text-[#666] pt-2">
+              {parse(service?.service_details[0]?.text)}
+            </div>
           </div>
 
           {/* questions */}

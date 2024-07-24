@@ -17,13 +17,13 @@ const footer = `${apiEndpoint}/footer`;
 
 // services page
 const serviceListApi = `${apiEndpoint}/category`;
-const allsServiceItemsApi = `${apiEndpoint}/sevice_items`;
+const allsServiceItemsApi = `http://192.168.10.16:8000/api/sevice_items`;
 
 // single service page
 
-const singeServiceDetails = `${apiEndpoint}/sevice_items_details`;
-const singleSliderPageDetails = `${apiEndpoint}/service_items_slider`;
-const singleService_package = `${apiEndpoint}/service_package`;
+const singeServiceDetails = `http://192.168.10.16:8000/api/sevice_items_details`;
+const singleSliderPageDetails = `http://192.168.10.16:8000/api/service_items_slider`;
+const singleService_package = `http://192.168.10.16:8000/api/service_package`;
 
 // portfolio page
 const searchServiceApi = `${apiEndpoint}/search_sevice_category`;
@@ -33,7 +33,7 @@ const search_sevice_categoryAll = `${apiEndpoint}/search_sevice_category/all`;
 const singlePortfolio = `${apiEndpoint}/portfolio_details`;
 
 // about page
-const aboutUsApi = `${apiEndpoint}/aboutus_page`;
+const aboutUsApi = `http://192.168.10.16:8000/api/aboutus_page`;
 const aboutUsItemApi = `${apiEndpoint}/aboutus_page_item`;
 
 // register page page

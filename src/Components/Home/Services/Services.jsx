@@ -17,7 +17,7 @@ async function getServiceItems() {
 const Services = async () => {
   // getting the server data
   const serviceItems = await getServiceItems();
-  console.log(serviceItems.service_items);
+  // console.log(serviceItems.service_items);
 
   return (
     <div className="overflow-hidden">

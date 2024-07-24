@@ -4,8 +4,13 @@ import Container from "@/Components/Container/Container";
 import Image from "next/image";
 import Link from "next/link";
 import UserLoading from "@/Components/Utilites/UserLoading/UserLoading";
+import Service_PageHtml from "@/Components/Utilites/Service_PageHtml/Service_PageHtml";
 
-const ServicesPageContent = ({ serviceCategories, services }) => {
+const ServicesPageContent = ({
+  serviceCategories,
+  services,
+  serviceDetails,
+}) => {
   const [loading, setLoading] = useState(true);
   const [serviceLoading, setServiceLoading] = useState(true);
   const [selectedCategoryId, setSelectedCategoryId] = useState("");
@@ -61,7 +66,7 @@ const ServicesPageContent = ({ serviceCategories, services }) => {
   };
 
   return (
-    <div className="service_section">
+    <div className="service_section overflow-hidden">
       <Container>
         <div className="py-5 md:pt-8">
           <div className="text-center">
@@ -200,6 +205,13 @@ const ServicesPageContent = ({ serviceCategories, services }) => {
           )}
         </div>
       </Container>
+      {serviceLoading ? (
+        ""
+      ) : (
+        <div className="max-w-[1520px] mx-auto px-[6%] md:px-[4%] lg:px-[8%] 4xl:px-[3%]">
+          <Service_PageHtml serviceDetails={serviceDetails} />
+        </div>
+      )}
     </div>
   );
 };
