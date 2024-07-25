@@ -130,7 +130,7 @@ const SinglePage = ({ params }) => {
       );
       setServices(result.data);
       setLoading(false); // Set loading to false once data is fetched
-      console.log(result.data);
+      // console.log(result.data);
     } catch (err) {
       setError(err.message);
       setLoading(false); // Set loading to false if there's an error

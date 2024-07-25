@@ -162,14 +162,14 @@ const SinglePackage = ({ item, setOpenModal, height }) => {
               onClick={handlePlaceOrder}
               className="text-[16px] w-[100%] text-center font-medium text-[#FF693B] border border-[#FF693B] px-6 py-2 rounded-md hover:text-white hover:bg-[#FF693B] transition-all duration-300"
             >
-              Place Order Now
+              Contact For Order
             </button>
           ) : (
             <button
               onClick={orderWithLogin}
               className="text-[16px] font-medium text-[#FF693B] border border-[#FF693B] px-6 py-2 w-full rounded-md hover:text-white hover:bg-[#FF693B] transition-all duration-300"
             >
-              Place Order Now
+              Contact For Order
             </button>
           )}
         </div>

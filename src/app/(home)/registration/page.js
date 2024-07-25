@@ -11,7 +11,7 @@ async function getMetadata() {
 
 export async function generateMetadata() {
   const service = await getMetadata();
-  console.log(service?.meta?.seo_meta?.owner);
+  // console.log(service?.meta?.seo_meta?.owner);
 
   return {
     title: `${

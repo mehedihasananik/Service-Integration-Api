@@ -12,6 +12,7 @@ import OrderSliderSm from "@/Components/Utilites/OrderSlider/OrderSliderSm";
 import QuestionService from "@/Components/Home/Questions/QuestionService";
 import SinglePackageSm from "./SinglePackageSm";
 import parse from "html-react-parser";
+import ContactModal from "@/Components/Utilites/ContactModal/ContactModal";
 
 const ServiceDetails = ({ service, sliders, packages }) => {
   const [openModal, setOpenModal] = useState(false);
@@ -110,7 +111,8 @@ const ServiceDetails = ({ service, sliders, packages }) => {
           className="bg-[#F8FAFC]"
         />
       </div>
-      <ServiceModal openModal={openModal} setOpenModal={setOpenModal} />
+      {/* <ServiceModal openModal={openModal} setOpenModal={setOpenModal} /> */}
+      <ContactModal openModal={openModal} setOpenModal={setOpenModal} />
     </>
   );
 };

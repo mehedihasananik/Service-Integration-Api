@@ -427,7 +427,7 @@ select:focus {
   width: 425px !important;
 }
 
-[type="text"]:focus,
+/* [type="text"]:focus,
 [type="email"]:focus,
 [type="url"]:focus,
 [type="password"]:focus,
@@ -444,7 +444,7 @@ textarea:focus,
 select:focus {
   box-shadow: none;
   border: 2px solid #787777 !important;
-}
+} */
 
 [type="tel"]:focus {
   box-shadow: none;
@@ -504,6 +504,7 @@ select {
 [type="password"]:focus {
   border: 2px solid #dedcdc !important;
 }
+
 .flowbite-tooltip {
   left: 420px !important;
 }

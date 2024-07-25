@@ -25,7 +25,7 @@ const ForgetPassword = () => {
       );
       toast.success(response.data.msg);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       toast.error("An error occurred. Please try again.");
     } finally {
       setLoading(false); // Set loading back to false after response or error
