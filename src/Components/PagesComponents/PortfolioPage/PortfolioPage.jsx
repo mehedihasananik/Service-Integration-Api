@@ -5,6 +5,7 @@ import Loading from "@/Components/Utilites/Loading/Loading";
 import Image from "next/image";
 import Link from "next/link";
 import { searchServiceApi } from "@/config/apis";
+import Service_PageHtml from "@/Components/Utilites/Service_PageHtml/Service_PageHtml";
 
 const truncateText = (text, limit) => {
   if (text.length <= limit) return text;
@@ -15,6 +16,7 @@ const PortfolioPage = ({
   portfolios,
   portfoliosCategories,
   services: initialServices,
+  serviceDetails,
 }) => {
   const [loading, setLoading] = useState(true);
   const [selectedServiceId, setSelectedServiceId] = useState(0);
@@ -293,6 +295,7 @@ const PortfolioPage = ({
           </div>
         )}
       </div>
+      <Service_PageHtml serviceDetails={serviceDetails} />
     </div>
   );
 };

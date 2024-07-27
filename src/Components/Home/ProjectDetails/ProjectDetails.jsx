@@ -190,43 +190,20 @@ const ProjectDetails = ({ userContact }) => {
                   <div className="w-full lg:w-[50%]">
                     <div className="flex flex-col gap-3">
                       <label className="text-[16px]" htmlFor="firstName">
-                        Your First Name:
+                        Your Name:
                       </label>
                       <input
                         className="w-full  lg:w-[80%] py-4 border border-[#CBD5E1] px-4 rounded-md shadow-sm"
                         type="text"
                         id="first_name"
                         name="first_name"
-                        placeholder="Enter your first name"
+                        placeholder="Enter your name"
                         value={formData.first_name}
                         onChange={handleChange}
                         required
                       />
                     </div>
                   </div>
-                  <div className="w-full lg:w-[50%]">
-                    <div className="flex flex-col gap-3">
-                      <label
-                        className="text-[16px] mt-3 lg:mt-0"
-                        htmlFor="lastname"
-                      >
-                        Your Last Name:
-                      </label>
-                      <input
-                        className="w-full l lg:w-[80%] py-4 border border-[#CBD5E1] px-4 rounded-md shadow-sm"
-                        type="text"
-                        id="last_name"
-                        name="last_name"
-                        placeholder="Enter your last name"
-                        value={formData.last_name}
-                        onChange={handleChange}
-                        required
-                      />
-                    </div>
-                  </div>
-                </div>
-                {/* email & phone number */}
-                <div className="flex flex-col gap-5  lg:flex-row md:gap-0">
                   <div className="w-full lg:w-[50%]">
                     <div className="flex flex-col gap-3 ">
                       <label className="text-[16px]" htmlFor="email">
@@ -244,8 +221,11 @@ const ProjectDetails = ({ userContact }) => {
                       />
                     </div>
                   </div>
-                  <div className="w-full lg:w-[50%] sm:w-[100%]">
-                    <div className="flex flex-col gap-3 lg:w-[80%] sm:w-[100%]">
+                </div>
+                {/* email & phone number */}
+                <div className="flex flex-col gap-5  lg:flex-row md:gap-0">
+                  <div className="w-full lg:w-[100%] sm:w-[100%]">
+                    <div className="flex flex-col gap-3 lg:w-[90%] sm:w-[100%]">
                       <label
                         className="text-[16px] mt-3 lg:mt-0"
                         htmlFor="user_phone"
@@ -270,6 +250,7 @@ const ProjectDetails = ({ userContact }) => {
                         Message
                       </label>
                       <textarea
+                        color="gray"
                         className="w-full lg:w-[90%] py-4 border border-[#CBD5E1] px-4 shadow-sm"
                         type="text"
                         id="message"

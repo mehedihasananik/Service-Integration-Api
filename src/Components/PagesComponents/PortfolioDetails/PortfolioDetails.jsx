@@ -29,25 +29,25 @@ const PortfolioDetails = ({ singlePortfolioItem }) => {
   }, []);
 
   // Disable keyboard shortcuts
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (
-        (e.ctrlKey &&
-          (e.keyCode === 67 ||
-            e.keyCode === 86 ||
-            e.keyCode === 85 ||
-            e.keyCode === 117)) ||
-        e.keyCode === 123
-      ) {
-        e.preventDefault();
-        return false;
-      }
-    };
-    document.addEventListener("keydown", handleKeyDown);
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, []);
+  // useEffect(() => {
+  //   const handleKeyDown = (e) => {
+  //     if (
+  //       (e.ctrlKey &&
+  //         (e.keyCode === 67 ||
+  //           e.keyCode === 86 ||
+  //           e.keyCode === 85 ||
+  //           e.keyCode === 117)) ||
+  //       e.keyCode === 123
+  //     ) {
+  //       e.preventDefault();
+  //       return false;
+  //     }
+  //   };
+  //   document.addEventListener("keydown", handleKeyDown);
+  //   return () => {
+  //     document.removeEventListener("keydown", handleKeyDown);
+  //   };
+  // }, []);
 
   return (
     <div className="bg-[rgb(252,252,252)]">
