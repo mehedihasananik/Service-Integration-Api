@@ -4,6 +4,7 @@ import Container from "@/Components/Container/Container";
 import RelevantPortfolio from "@/Components/Utilites/RelevantServices/RelevantPortfolio";
 import Link from "next/link";
 import Image from "next/image";
+import Global_PageHtml from "@/Components/Utilites/Global_PageHtml/Global_PageHtml";
 
 const PortfolioDetails = ({ singlePortfolioItem }) => {
   const { basic, details, relevant } = singlePortfolioItem;
@@ -52,13 +53,14 @@ const PortfolioDetails = ({ singlePortfolioItem }) => {
   return (
     <div className="bg-[rgb(252,252,252)]">
       <Container>
-        <div className="md:py-10 md:pb-5">
-          <h1 className="text-[20px] md:text-[30px] lg:text-[54px] font-Raleway font-bold lg:leading-[63.4px] text-[#000000] text-center pb-3 lg:pb-5 pt-5 md:pt-0">
+        <div className="md:py-10 md:pb-0">
+          <h1 className="text-[20px] md:text-[30px] lg:text-[54px] font-Raleway font-bold lg:leading-[63.4px] text-[#000000] text-center pb-3 lg:pb-0 pt-5 md:pt-0">
             {basic?.title}
           </h1>
-          <p className="text-[18px] font-Roboto text-[#333333] md:leading-[27px] md:text-left py-3 md:pt-0 md:py-5">
-            {basic?.details}
-          </p>
+          <div className="text-[18px] font-Roboto text-[#333333] md:leading-[27px] md:text-left py-3 md:pt-5 md:py-5">
+            {basic?.portfolio_summery}
+          </div>
+
           {details.map((portfolio) => (
             <div key={portfolio?.id} className="relative">
               <div
@@ -79,13 +81,17 @@ const PortfolioDetails = ({ singlePortfolioItem }) => {
                   onLoad={() => handleImageLoad(portfolio.id)}
                 />
               </div>
-              <h3 className="text-gray-500 text-[18px] md:text-[20px] font-Raleway font-semibold text-center py-4 md:py-5 md:pb-8">
+              <h3 className="text-gray-500 text-[18px] md:text-[20px] font-Raleway font-semibold text-center py-4 md:py-5 md:pb-3">
                 {portfolio.caption_text}
               </h3>
             </div>
           ))}
         </div>
+        <div className=" portfolio_text single_description">
+          <Global_PageHtml serviceDetails={basic?.details} />
+        </div>
       </Container>
+
       <div className="text-center bg-[#FF693B08] py-8 md:py-14 md:pb-16">
         <h3 className="text-[20px] md:text-[32px] lg:text-[54px] text-[#111111] lg:leading-[101px] font-semibold pb-4 md:pb-0">
           Let&apos;s Choose Us for Your Next Project

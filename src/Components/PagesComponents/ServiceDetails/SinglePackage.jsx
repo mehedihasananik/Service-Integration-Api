@@ -14,7 +14,7 @@ import { Tooltip } from "flowbite-react";
 import { VscQuestion } from "react-icons/vsc";
 import Link from "next/link";
 
-const SinglePackage = ({ item, setOpenModal, height }) => {
+const SinglePackage = ({ item, setOpenModal, height, serviceName }) => {
   const router = useRouter();
   const { setItemId } = useContext(AuthContext);
   const [userData, setUserData] = useState(null);
@@ -59,7 +59,13 @@ const SinglePackage = ({ item, setOpenModal, height }) => {
   };
 
   const orderWithLogin = () => {
-    localStorage.setItem("item", JSON.stringify(item));
+    localStorage.setItem(
+      "item",
+      JSON.stringify({
+        ...item,
+        serviceName: serviceName,
+      })
+    );
     setOpenModal(true);
   };
 
@@ -129,6 +135,8 @@ const SinglePackage = ({ item, setOpenModal, height }) => {
       : height === 10
       ? "mt-[30px] md:mt-[290px]"
       : "";
+
+  // console.log(item?.package_name);
 
   return (
     <div className="md:mx-[10%] lg:mx-0 overflow-hidden">

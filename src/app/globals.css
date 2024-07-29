@@ -644,3 +644,43 @@ textarea:focus {
 .ql-container.ql-snow {
   border: none !important;
 }
+.single_description h2 {
+  font-size: 22px !important;
+  color: #333333;
+
+  font-weight: 500;
+}
+.single_description h3 {
+  font-size: 18px !important;
+
+  font-weight: 500;
+}
+.single_description h4 {
+  font-size: 16px !important;
+
+  font-weight: 500;
+}
+.single_description p {
+  font-size: 16px !important;
+  color: #333333;
+}
+.single_description ol li,
+.servicePage_content ol li {
+  font-size: 15px !important;
+  color: #333333;
+  margin: 5px 0 !important;
+}
+.single_description ul li,
+.servicePage_content ul li {
+  font-size: 14px !important;
+  color: #333333;
+  margin: 5px 0 !important;
+}
+.servicePage_content h2 {
+  font-size: 48px !important;
+  color: #333333;
+}
+.servicePage_content p {
+  font-size: 14px !important;
+  color: #333333;
+}

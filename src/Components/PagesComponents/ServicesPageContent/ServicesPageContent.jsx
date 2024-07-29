@@ -4,7 +4,8 @@ import Container from "@/Components/Container/Container";
 import Image from "next/image";
 import Link from "next/link";
 import UserLoading from "@/Components/Utilites/UserLoading/UserLoading";
-import Service_PageHtml from "@/Components/Utilites/Service_PageHtml/Service_PageHtml";
+import Global_PageHtml from "@/Components/Utilites/Global_PageHtml/Global_PageHtml";
+import ServicePageItems from "./ServicePageItems";
 
 const ServicesPageContent = ({
   serviceCategories,
@@ -16,7 +17,10 @@ const ServicesPageContent = ({
   const [selectedCategoryId, setSelectedCategoryId] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [serviceItems, setServiceItems] = useState([]);
+  const [displayedItems, setDisplayedItems] = useState([]);
   const [animate, setAnimate] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 4;
 
   useEffect(() => {
     setLoading(false);
@@ -50,12 +54,24 @@ const ServicesPageContent = ({
 
     setServiceLoading(true);
     const filteredServices = filterServices();
-    const uniqueServices = filteredServices;
-
-    setServiceItems(uniqueServices);
+    setServiceItems(filteredServices);
+    setCurrentPage(1);
+    updateDisplayedItems(filteredServices, 1);
     setServiceLoading(false);
     setAnimate(true);
   }, [selectedCategoryId, searchQuery, services]);
+
+  const updateDisplayedItems = (items, page) => {
+    const startIndex = (page - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    setDisplayedItems(items.slice(0, endIndex));
+  };
+
+  const handleLoadMore = () => {
+    const nextPage = currentPage + 1;
+    setCurrentPage(nextPage);
+    updateDisplayedItems(serviceItems, nextPage);
+  };
 
   const handleCategoryChange = (e) => {
     setSelectedCategoryId(e.target.value);
@@ -144,52 +160,22 @@ const ServicesPageContent = ({
                 animate ? "fade-in" : ""
               }`}
             >
-              {serviceItems.map((service, index) => (
+              {displayedItems.map((service, index) => (
                 <Link key={index} href={`/services/${service?.slug}`}>
-                  <div className="group h-[550px] xl:w-[296px] xxl:w-[296px] 2xl:w-[320px] shadow-lg rounded-md border border-[#E2E8F0] cursor-pointer mb-5 lg:mb-10">
-                    <div className="flex flex-col">
-                      <div className="bg-[#E2E8F0]">
-                        <div>
-                          <Image
-                            width={700}
-                            height={700}
-                            className="w-full h-[304px] overflow-hidden rounded-t-md"
-                            src={service?.image}
-                            alt=""
-                          />
-                        </div>
-                      </div>
-                      <div>
-                        <div className="px-3 group-hover:bg-[#FF693B] group-hover:text-white transition-all duration-200">
-                          <h3 className="text-[20px] md:text-[18px] font-bold font-Raleway pt-5 pb-2 whitespace-nowrap">
-                            {service.title}
-                          </h3>
-                          <p className="text-[14px] text-[#475569] group-hover:text-white transition-all duration-200">
-                            {service.details.slice(0, 195)}...
-                          </p>
-                        </div>
-                        <div className="flex group-hover:rounded-b-md items-center justify-between px-3 h-[50px] pt-10 pb-12 group-hover:bg-[#FF693B] transition-all duration-200">
-                          <div className="font-Raleway">
-                            <span className="font-bold text-[16px] text-[#1E293B] group-hover:text-white transition-all duration-200">
-                              Start From
-                            </span>
-                          </div>
-                          <div>
-                            <h3 className="flex items-center space-x-[1px] font-Raleway text-[20px] font-bold text-[#0A2C8C] group-hover:text-white transition-all duration-200">
-                              <span>$</span> <span>{service.start_price}</span>
-                            </h3>
-                          </div>
-                          <div>
-                            <button className="text-[14px] bg-[#FF693B] rounded-md px-8 py-[5px] text-white border border-[#ff693B] group-hover:bg-white group-hover:text-[#FF693B] transition-all duration-200">
-                              View
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  <ServicePageItems {...service} />
                 </Link>
               ))}
+            </div>
+          )}
+
+          {displayedItems.length < serviceItems.length && (
+            <div className="flex justify-center mt-5">
+              <button
+                onClick={handleLoadMore}
+                className="bg-[#FF693B] text-white px-4 py-2 rounded-md hover:bg-[#e55a2f] transition-colors duration-300"
+              >
+                Load More
+              </button>
             </div>
           )}
 
@@ -208,8 +194,8 @@ const ServicesPageContent = ({
       {serviceLoading ? (
         ""
       ) : (
-        <div className="max-w-[1520px] mx-auto px-[6%] md:px-[4%] lg:px-[8%] 4xl:px-[3%]">
-          <Service_PageHtml serviceDetails={serviceDetails} />
+        <div className="max-w-[1520px] mx-auto px-[6%] md:px-[4%] lg:px-[8%] 4xl:px-[3%] servicePage_content">
+          <Global_PageHtml serviceDetails={serviceDetails} />
         </div>
       )}
     </div>

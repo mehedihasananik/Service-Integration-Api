@@ -73,21 +73,21 @@ export async function generateMetadata() {
 
 async function getServices() {
   try {
-    const [res1, res2] = await Promise.all([
-      fetch(`${serviceListApi}`, { cache: "no-store" }),
-      fetch(`${allsServiceItemsApi}`, { cache: "no-store" }),
+    const [res1, res2] = await Promise?.all([
+      fetch(`${serviceListApi}`, { next: { revalidate: 10 } }),
+      fetch(`${allsServiceItemsApi}`, { next: { revalidate: 10 } }),
     ]);
 
     if (!res1?.ok || !res2?.ok) {
       throw new Error("Failed to fetch data");
     }
 
-    const serviceCategories = await res1.json();
-    const services = await res2.json();
+    const serviceCategories = await res1?.json();
+    const services = await res2?.json();
 
     return { serviceCategories, services };
   } catch (error) {
-    console.error("Error fetching data:", error);
+    console.error("Error fetching datas:", error);
     throw error;
   }
 }

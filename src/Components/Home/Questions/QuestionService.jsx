@@ -12,9 +12,9 @@ const QuestionService = ({ className, title, service }) => {
         <div className={`py-6 md:py-10 ${className}`}>
           <div className="max-w-[1680px] mx-auto">
             <div className="text-center">
-              <h3 className="text-[#0F172A] text-[24px] md:text-[30px] lg:text-[48px] font-bold font-Raleway pb-3 md:pb-5">
+              <h2 className="text-[#0F172A] text-[24px] md:text-[30px] lg:text-[48px] font-bold font-Raleway pb-3 md:pb-5">
                 {title}
-              </h3>
+              </h2>
             </div>
             <div className="py-4 md:py-8">
               <div className="rounded-lg">

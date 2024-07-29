@@ -1,10 +1,11 @@
+"use client";
 import React, { useEffect } from "react";
 import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css"; // Import Quill styles
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
-const Service_PageHtml = ({ serviceDetails }) => {
+const Global_PageHtml = ({ serviceDetails }) => {
   useEffect(() => {
     // This ensures that the Quill editor is only rendered on the client-side
     if (typeof window !== "undefined") {
@@ -24,4 +25,4 @@ const Service_PageHtml = ({ serviceDetails }) => {
   );
 };
 
-export default Service_PageHtml;
+export default Global_PageHtml;

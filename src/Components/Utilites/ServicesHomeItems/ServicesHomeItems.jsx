@@ -70,9 +70,9 @@ const DemoServices = ({ services, details }) => {
           <div className="flex flex-col  lg:flex-row items-center justify-between lg:gap-20 xl:gap-12 py-8">
             <div className="w-full text-center lg:text-left lg:w-[35%]">
               <div className="lg:w-[400px]">
-                <h3 className="text-[30px] md:text-[42px] lg:text-[48px] font-bold font-Raleway text-[#0F172A]">
+                <h2 className="text-[30px] md:text-[42px] lg:text-[48px] font-bold font-Raleway text-[#0F172A]">
                   {details.title}
-                </h3>
+                </h2>
               </div>
               <div className="pt-4  flex justify-center xl:block">
                 <p className="text-justify  text-[16px] text-[#666666] font-normal w-[300px] md:w-[700px] xl:w-[380px] 4xl:w-[500px]">
@@ -194,11 +194,9 @@ const DemoServices = ({ services, details }) => {
                                   </span>
                                 </div>
 
-                                <div>
-                                  <h3 className="flex items-center space-x-[1px] font-Raleway text-[20px] font-bold text-[#0A2C8C] group-hover:text-white transition-all duration-200">
-                                    <span>$</span>
-                                    <span>{service.start_price}</span>
-                                  </h3>
+                                <div className="flex items-center space-x-[1px] font-Raleway text-[20px] font-bold text-[#0A2C8C] group-hover:text-white transition-all duration-200">
+                                  <span>$</span>
+                                  <span>{service.start_price}</span>
                                 </div>
 
                                 <div>

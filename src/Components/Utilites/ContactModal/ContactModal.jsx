@@ -1,26 +1,130 @@
-import React, { useState } from "react";
-import { Checkbox, Label, Modal, Textarea, TextInput } from "flowbite-react";
+import React, { useState, useEffect } from "react";
+import { Label, Modal } from "flowbite-react";
 import { FiArrowRight } from "react-icons/fi";
-import { HiMail } from "react-icons/hi";
-import { IoMdLock } from "react-icons/io";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import { FaPhone, FaRegUserCircle, FaUserCircle } from "react-icons/fa";
 import { PhoneInput } from "react-international-phone";
 import "react-international-phone/style.css";
+import axios from "axios";
+import * as Yup from "yup";
+import ReCAPTCHA from "react-google-recaptcha";
+import { user_feedbackApi } from "@/config/apis";
 
 const ContactModal = ({ openModal, setOpenModal }) => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const [phone, setPhone] = useState("");
+  const [captchaVerified, setCaptchaVerified] = useState(false);
 
-  const handleLogin = async (e) => {
-    // ... (keep the existing handleLogin logic)
+  const [formData, setFormData] = useState({
+    first_name: "",
+    user_email: "",
+    user_phone: "",
+    message: "",
+    service_name: "",
+    package_name: "",
+  });
+
+  useEffect(() => {
+    if (openModal) {
+      const storedItem = JSON.parse(localStorage.getItem("item") || "{}");
+      setFormData((prevData) => ({
+        ...prevData,
+        service_name: storedItem.serviceName || "",
+        package_name: storedItem.package_name || "",
+      }));
+    }
+  }, [openModal]);
+
+  const validationSchema = Yup.object().shape({
+    first_name: Yup.string()
+      .required("Name is required")
+      .min(2, "Name must be at least 2 characters")
+      .matches(
+        /^[a-zA-Z][a-zA-Z\s]*\d*$/,
+        "Name cannot start with special characters or numbers"
+      ),
+    user_email: Yup.string()
+      .required("Email is required")
+      .email("Invalid email")
+      .min(3, "Email must be at least 3 characters")
+      .matches(
+        /^[^\d].*\.com$/,
+        "Email can't start with a number & must end with .com"
+      ),
+    user_phone: Yup.string()
+      .required("Phone number is required")
+      .min(5, "Phone number must be at least 5 characters"),
+    message: Yup.string()
+      .required("Message is required")
+      .max(2000, "Message must not exceed 2000 characters"),
+  });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!captchaVerified) {
+      toast.error(
+        "Please complete the reCAPTCHA verification before submitting."
+      );
+      return;
+    }
+
+    try {
+      setLoading(true);
+      await validationSchema.validate(formData, { abortEarly: false });
+      const response = await axios.post(user_feedbackApi, formData);
+
+      if (response.data) {
+        toast.success(
+          "Project details sent successfully, we will contact you",
+          {
+            duration: 10000, // 10 seconds
+          }
+        );
+        setFormData({
+          first_name: "",
+          user_email: "",
+          user_phone: "",
+          message: "",
+          service_name: "",
+          package_name: "",
+        });
+        setPhone("");
+        setOpenModal(false);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      if (error.name === "ValidationError") {
+        error.inner.forEach((err) => {
+          toast.error(err.message);
+        });
+      } else {
+        toast.error("Something went wrong. Please try again later.");
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
   const handlePhoneOnChange = (value, data) => {
     setPhone(value);
+    setFormData((prevData) => ({
+      ...prevData,
+      user_phone: value,
+    }));
+  };
+
+  const handleCaptchaChange = (value) => {
+    setCaptchaVerified(!!value);
   };
 
   return (
@@ -34,7 +138,6 @@ const ContactModal = ({ openModal, setOpenModal }) => {
         <Modal.Body>
           <div className="w-full h-fit mx-auto ">
             <div className="rounded-lg pt-0 pb-0 px-5 md:px-5">
-              {/* title */}
               <div className="text-center pb-10 md:pb-3">
                 <h3 className="text-[32px] md:text-[32px] text-[#333333] font-Raleway font-bold">
                   Contact for place order
@@ -82,7 +185,6 @@ const ContactModal = ({ openModal, setOpenModal }) => {
                 </a>
               </div>
 
-              {/* or break */}
               <div className="flex items-center gap-x-5 md:pt-8 md:pb-4">
                 <span className="w-[50%] h-[1px] border"></span>
                 <span className="text-[14px] font-Raleway text-[#032333] font-medium">
@@ -91,10 +193,9 @@ const ContactModal = ({ openModal, setOpenModal }) => {
                 <span className="w-[50%] h-[1px] border"></span>
               </div>
 
-              {/* form */}
               <div className="pt-4 md:pt-2" id="contact_modal">
                 <form
-                  onSubmit={handleLogin}
+                  onSubmit={handleSubmit}
                   className="flex flex-col gap-4 w-full max-w-2xl mx-auto"
                 >
                   <div className="flex gap-x-3  w-[100%]">
@@ -102,36 +203,38 @@ const ContactModal = ({ openModal, setOpenModal }) => {
                       <div className="mb-2 block">
                         <Label
                           className="text-[16px] font-Raleway text-[#032333] font-[500]"
-                          htmlFor="name"
-                          value="Name"
+                          htmlFor="first_name"
+                          value="Full Name:"
                         />
                       </div>
                       <input
-                        name="name"
-                        id="name"
+                        name="first_name"
+                        id="first_name"
                         type="text"
-                        icon={HiMail}
                         placeholder="Jhon Doe"
                         required
                         className="w-full py-4 border border-[#CBD5E1] px-4 rounded-md shadow-sm"
+                        value={formData.first_name}
+                        onChange={handleChange}
                       />
                     </div>
                     <div className="w-[50%]">
                       <div className="mb-2 block">
                         <Label
                           className="text-[16px] font-Raleway text-[#032333] font-[500]"
-                          htmlFor="email1"
-                          value="Email"
+                          htmlFor="user_email"
+                          value="Email:"
                         />
                       </div>
                       <input
-                        name="email"
-                        id="email1"
+                        name="user_email"
+                        id="user_email"
                         type="email"
-                        icon={HiMail}
                         placeholder="jhondoe@email.com"
                         required
                         className="w-full py-4 border border-[#CBD5E1] px-4 rounded-md shadow-sm"
+                        value={formData.user_email}
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
@@ -139,8 +242,9 @@ const ContactModal = ({ openModal, setOpenModal }) => {
                     <div className="mb-2 block">
                       <Label
                         className="text-[16px] font-Raleway text-[#032333] font-[500]"
-                        htmlFor="number"
-                        value="Phone (Whatsapp)"
+                        htmlFor="user_phone"
+                        value="Phone (Whatsapp):"
+                        required
                       />
                     </div>
                     <PhoneInput
@@ -155,29 +259,36 @@ const ContactModal = ({ openModal, setOpenModal }) => {
                     <div className="mb-2 block">
                       <Label
                         className="text-[16px] font-Raleway text-[#032333] font-[500]"
-                        htmlFor="comment"
-                        value="Project details"
+                        htmlFor="message"
+                        value="Project details:"
                       />
                     </div>
                     <textarea
                       className="w-full lg:w-[100%]  border border-[#CBD5E1] px-4 shadow-sm rounded-md placeholder-[#C7C7C7]"
-                      type="text"
                       id="message"
                       name="message"
-                      placeholder="Write your project details"
+                      placeholder="Write your project details..."
                       rows={4}
-                      // value={formData.message}
-                      // onChange={handleChange}
+                      value={formData.message}
+                      onChange={handleChange}
                       required
+                    />
+                  </div>
+
+                  <div>
+                    <ReCAPTCHA
+                      sitekey="6LeHdPIpAAAAAJoof-1ewzeYES0jvTrJ9_g09hBQ"
+                      onChange={handleCaptchaChange}
                     />
                   </div>
 
                   <div className="flex justify-end">
                     <button
-                      className="bg-[#FF693B]  text-[16px] font-semibold font-Raleway md:mt-0 py-3 hover:bg-[#fff] hover:text-[#FF693B] flex justify-center items-center rounded-md text-white border border-[#FF693B] transition-all duration-300 w-[28%]"
+                      className="bg-[#FF693B] text-[16px] font-semibold font-Raleway md:mt-0 py-3 hover:bg-[#fff] hover:text-[#FF693B] flex justify-center items-center rounded-md text-white border border-[#FF693B] transition-all duration-300 w-[28%]"
                       type="submit"
+                      disabled={loading}
                     >
-                      Submit
+                      {loading ? "Submitting..." : "Submit"}
                       <span>
                         <FiArrowRight className="text-[20px] mx-1" />
                       </span>

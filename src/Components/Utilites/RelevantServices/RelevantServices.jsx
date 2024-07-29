@@ -60,9 +60,9 @@ const RelevantServices = ({ service }) => {
       {relevant_services.length > 0 ? (
         <div className="pt-5 pb-10 md:pt-3 md:pb-8">
           <div className="text-center font-Raleway">
-            <h3 className="text-[32px] font-bold md:text-[48px] pb-10">
+            <h2 className="text-[32px] font-bold md:text-[48px] pb-10">
               Relevant Services
-            </h3>
+            </h2>
           </div>
           <div className="relative">
             <Swiper

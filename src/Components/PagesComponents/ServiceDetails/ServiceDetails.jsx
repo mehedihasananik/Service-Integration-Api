@@ -13,11 +13,15 @@ import QuestionService from "@/Components/Home/Questions/QuestionService";
 import SinglePackageSm from "./SinglePackageSm";
 import parse from "html-react-parser";
 import ContactModal from "@/Components/Utilites/ContactModal/ContactModal";
+import Global_PageHtml from "@/Components/Utilites/Global_PageHtml/Global_PageHtml";
 
 const ServiceDetails = ({ service, sliders, packages }) => {
   const [openModal, setOpenModal] = useState(false);
 
   const height = packages[2].package_details.length;
+
+  const serviceName = service?.service_details[0]?.sevice_items_name;
+  console.log(packages);
 
   return (
     <>
@@ -43,6 +47,7 @@ const ServiceDetails = ({ service, sliders, packages }) => {
                   openModal={openModal}
                   setOpenModal={setOpenModal}
                   height={height}
+                  serviceName={serviceName}
                 />
               );
             })}
@@ -83,11 +88,13 @@ const ServiceDetails = ({ service, sliders, packages }) => {
 
           {/* description */}
           <div className="bg-[#FCFCFC] mt-4 p-4 md:p-7 rounded-lg text-justify">
-            <h2 className="text-[24px] font-bold font-Raleway text-[#333333]">
+            {/* <h2 className="text-[24px] font-bold font-Raleway text-[#333333]">
               Description
-            </h2>
-            <div className="text-[16px] text-[#666] pt-2">
-              {parse(service?.service_details[0]?.text)}
+            </h2> */}
+            <div className="text-[16px] text-[#666] pt-2 single_description">
+              <Global_PageHtml
+                serviceDetails={service?.service_details[0]?.text}
+              />
             </div>
           </div>
 

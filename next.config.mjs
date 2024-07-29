@@ -2,6 +2,7 @@ const nextConfig = {
   reactStrictMode: false,
   swcMinify: false,
   // trailingSlash: true,
+
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -19,15 +20,6 @@ const nextConfig = {
       "envobyte.com",
       "i.ibb.co",
     ],
-  },
-  // Add this section
-  async rewrites() {
-    return [
-      {
-        source: "/sitemap.xml",
-        destination: "/api/sitemap.xml",
-      },
-    ];
   },
 };
 

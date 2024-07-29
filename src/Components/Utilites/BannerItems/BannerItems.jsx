@@ -21,11 +21,11 @@ const BannerItems = ({ banner }) => {
       <div className="flex flex-col ">
         {/* title starts*/}
         <div className="w-full lg:w-[450px] lg:pt-14 xs:px-3  md:px-0 ">
-          <h3 className="font-Raleway font-bold text-[30px] md:text-[40px] xl:text-[48px] xl:leading-[63.98px]">
+          <h1 className="font-Raleway font-bold text-[30px] md:text-[40px] xl:text-[48px] xl:leading-[63.98px]">
             Creative Design <span className="line-break"></span> and{" "}
             <span className="custom-rotate">Development </span> <br />
             for your product
-          </h3>
+          </h1>
         </div>
         {/* title ends*/}
         {/* description starts */}
