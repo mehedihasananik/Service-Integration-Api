@@ -1,7 +1,13 @@
 import Image from "next/image";
 import React from "react";
 
-const ServicePageItems = ({ title, details, start_price, image }) => {
+const ServicePageItems = ({
+  title,
+  details,
+  start_price,
+  image,
+  service_summery,
+}) => {
   return (
     <div>
       <div className="group h-[550px] xl:w-[296px] xxl:w-[296px] 2xl:w-[320px] shadow-lg rounded-md border border-[#E2E8F0] cursor-pointer mb-5 lg:mb-10">
@@ -23,7 +29,7 @@ const ServicePageItems = ({ title, details, start_price, image }) => {
                 {title}
               </h3>
               <p className="text-[14px] text-[#475569] group-hover:text-white transition-all duration-200">
-                {details.slice(0, 195)}...
+                {service_summery.slice(0, 195)}...
               </p>
             </div>
             <div className="flex group-hover:rounded-b-md items-center justify-between px-3 h-[50px] pt-10 pb-12 group-hover:bg-[#FF693B] transition-all duration-200">

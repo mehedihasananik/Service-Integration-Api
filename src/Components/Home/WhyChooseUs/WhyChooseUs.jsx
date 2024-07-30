@@ -21,9 +21,9 @@ const WhyChooseUs = async () => {
     <div className="pb-5 lg:py-5 overflow-hidden">
       <Container>
         <div className="text-center pb-5 md:pb-12">
-          <h3 className="text-[30px] text-[#1E293B] md:text-[48px] font-bold font-Raleway  ">
+          <h2 className="text-[30px] text-[#1E293B] md:text-[48px] font-bold font-Raleway  ">
             Why Choose Us
-          </h3>
+          </h2>
         </div>
         <div className="grid grid-cols-1 gap-y-10 gap-x-24 md:grid-cols-1 lg:grid-cols-2">
           {/* 1st cARD */}

@@ -37,7 +37,7 @@ const HomePage = async () => {
       <Portfolio />
       <WhyChooseUs />
       <Testimonial />
-      {/* <Questions title="Questions Looks Here" /> */}
+      <Questions title="Questions Looks Here" />
       <ProjectDetails userContact={userContact} />
     </div>
   );

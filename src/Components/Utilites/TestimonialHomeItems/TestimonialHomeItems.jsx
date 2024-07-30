@@ -66,9 +66,9 @@ const TestimonialHomeItems = ({ testimonials }) => {
           <div className="flex flex-col lg:flex-row items-center justify-between lg:gap-20 xl:gap-12 pt-5 pb-5 md:pt-8 md:pb-5">
             <div className="w-full text-center lg:text-left lg:w-[35%]">
               <div className="lg:w-[400px]">
-                <h3 className="text-[30px] md:text-[42px] lg:text-[48px] font-bold font-Raleway text-[#0F172A]">
+                <h2 className="text-[30px] md:text-[42px] lg:text-[48px] font-bold font-Raleway text-[#0F172A]">
                   What Are People Saying About Us
-                </h3>
+                </h2>
               </div>
               <div className="pt-4 lg:w-[380px]">
                 <p className="text-[16px] text-[#666666] font-normal">

@@ -45,9 +45,9 @@ const PortfolioHomeItems = ({ portfolios, services }) => {
       <div className="max-w-[1520px] mx-auto px-[6%] md:px-[4%] lg:px-[2%] 4xl:px-[4%]">
         {/* title */}
         <div className="text-center lg:text-left">
-          <h3 className="text-[30px] text-[#0F172A] md:text-[38px] lg:text-[48px] font-bold font-Raleway">
+          <h2 className="text-[30px] text-[#0F172A] md:text-[38px] lg:text-[48px] font-bold font-Raleway">
             Our Amazing Portfolio
-          </h3>
+          </h2>
         </div>
         <div className="flex flex-col gap-5 md:gap-10 justify-center items-center lg:flex-row lg:justify-between py-4 pt-5">
           {/* description */}

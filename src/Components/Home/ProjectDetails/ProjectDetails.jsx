@@ -113,10 +113,10 @@ const ProjectDetails = ({ userContact }) => {
             />
           </div>
           <div id="projectDetails">
-            <h3 className="text-[20px] md:text-[32px] lg:text-[48px] font-Raleway font-bold">
+            <h2 className="text-[20px] md:text-[32px] lg:text-[48px] font-Raleway font-bold">
               Let&apos;s discuss <span className="project_title"></span> your
               project
-            </h3>
+            </h2>
           </div>
         </div>
         <div className="text-center py-5">

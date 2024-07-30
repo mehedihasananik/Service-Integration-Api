@@ -5,7 +5,7 @@ import React from "react";
 
 async function getMetadata() {
   const service = await fetch(
-    `http://192.168.10.16:8000/api/refund_policy`
+    `http://192.168.10.16:8000/api/terms_condition`
   ).then((res) => res.json());
 
   return service;
@@ -89,7 +89,7 @@ const Terms = async () => {
     <>
       <JsonLd data={terms?.meta?.json_ld} />
       <Container>
-        <div className="bg-gray-100 mt-5 px-10">
+        <div className="bg-gray-100 mt-5 px-10 pageHtml">
           <div className="container mx-auto px-4 py-8">
             <Global_PageHtml serviceDetails={terms.page_content} />
           </div>

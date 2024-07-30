@@ -89,7 +89,7 @@ const RefundPolicy = async () => {
     <>
       <JsonLd data={refunds?.meta?.json_ld} />
       <Container>
-        <div className="bg-gray-100  px-8 mt-5 pb-8 pt-5">
+        <div className="bg-gray-100  px-8 mt-5 pb-8 pt-5 pageHtml">
           <Global_PageHtml serviceDetails={refunds.page_content} />
         </div>
       </Container>
