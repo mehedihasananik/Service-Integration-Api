@@ -88,15 +88,15 @@ const OrderSliderLg = ({ sliders }) => {
   }, [images]);
 
   // New useEffect to disable right-click
-  useEffect(() => {
-    const handleContextMenu = (e) => {
-      e.preventDefault();
-    };
-    document.addEventListener("contextmenu", handleContextMenu);
-    return () => {
-      document.removeEventListener("contextmenu", handleContextMenu);
-    };
-  }, []);
+  // useEffect(() => {
+  //   const handleContextMenu = (e) => {
+  //     e.preventDefault();
+  //   };
+  //   document.addEventListener("contextmenu", handleContextMenu);
+  //   return () => {
+  //     document.removeEventListener("contextmenu", handleContextMenu);
+  //   };
+  // }, []);
 
   // New useEffect to disable keyboard shortcuts
   // useEffect(() => {
@@ -202,7 +202,7 @@ const OrderSliderLg = ({ sliders }) => {
             src={item.original}
             alt=""
             style={{
-              width: isFullscreen ? "95%" : "100%",
+              width: isFullscreen ? "100%" : "1280px",
               height: isFullscreen ? "auto" : "100%",
               objectFit: isFullscreen ? "contain" : "cover",
               objectPosition: "center",

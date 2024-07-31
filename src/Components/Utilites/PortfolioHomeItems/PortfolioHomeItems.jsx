@@ -1,12 +1,23 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import Link from "next/link";
-import Image from "next/image";
+import React, { useEffect, useState } from "react";
 import { HiArrowSmallRight } from "react-icons/hi2";
+import Loading from "@/Components/Utilites/Loading/Loading";
+import Image from "next/image";
+import Link from "next/link";
+import { searchServiceApi } from "@/config/apis";
 
-const PortfolioHomeItems = ({ portfolios, services }) => {
+const PortfolioHomeItems = ({
+  portfolios,
+  portfoliosCategories,
+  services: initialServices,
+  serviceDetails,
+}) => {
   const [loading, setLoading] = useState(true);
   const [selectedServiceId, setSelectedServiceId] = useState(0);
+  const [selectedCategoryId, setSelectedCategoryId] = useState(0);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [services, setServices] = useState(initialServices);
+  const [filteredPortfolio, setFilteredPortfolio] = useState([]);
   const [animate, setAnimate] = useState(false);
 
   useEffect(() => {
@@ -20,175 +31,175 @@ const PortfolioHomeItems = ({ portfolios, services }) => {
     }
   }, [animate]);
 
-  const handleServiceClick = (categoryId) => {
-    setSelectedServiceId(categoryId);
+  useEffect(() => {
+    const filterPortfolios = () => {
+      return portfolios.filter((item) => {
+        const categoryMatch =
+          selectedCategoryId === 0 ||
+          item.category_id.includes(selectedCategoryId.toString());
+        const serviceMatch =
+          selectedServiceId === 0 ||
+          item.service_id.includes(selectedServiceId.toString());
+        const searchMatch = item.heading
+          .toLowerCase()
+          .includes(searchQuery.toLowerCase());
+        return categoryMatch && serviceMatch && searchMatch;
+      });
+    };
+
+    setLoading(true);
+    const filtered = filterPortfolios();
+    setFilteredPortfolio(filtered);
+    setLoading(false);
     setAnimate(true);
-  };
+  }, [selectedCategoryId, selectedServiceId, searchQuery, portfolios]);
 
-  const truncateText = (text, maxWords) => {
-    const words = text.split(" ");
-    if (words.length > maxWords) {
-      return words.slice(0, maxWords).join(" ") + "...";
+  const fetchServices = async (categoryId) => {
+    try {
+      const response = await fetch(`${searchServiceApi}/${categoryId}`);
+      if (!response.ok) {
+        throw new Error("Failed to fetch services");
+      }
+      const data = await response.json();
+      setServices(data);
+    } catch (error) {
+      console.error("Error fetching services:", error);
     }
-    return text;
   };
 
-  const filteredPortfolios = portfolios
-    ?.filter(
-      (portfolio) =>
-        selectedServiceId === 0 || portfolio.category_id === selectedServiceId
-    )
-    .slice(0, 4);
+  const handleCategoryChange = async (categoryId) => {
+    setSelectedCategoryId(categoryId);
+    setSelectedServiceId(0);
+    if (categoryId !== 0) {
+      await fetchServices(categoryId);
+    } else {
+      setServices(initialServices);
+    }
+  };
+
+  const handleServiceChange = (e) => {
+    setSelectedServiceId(parseInt(e.target.value));
+  };
+
+  const handleSearchInputChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
 
   return (
-    <div className="md:py-5 lg:pt-20">
-      <div className="max-w-[1520px] mx-auto px-[6%] md:px-[4%] lg:px-[2%] 4xl:px-[4%]">
-        {/* title */}
-        <div className="text-center lg:text-left">
-          <h2 className="text-[30px] text-[#0F172A] md:text-[38px] lg:text-[48px] font-bold font-Raleway">
-            Our Amazing Portfolio
-          </h2>
-        </div>
-        <div className="flex flex-col gap-5 md:gap-10 justify-center items-center lg:flex-row lg:justify-between py-4 pt-5">
-          {/* description */}
-          <div>
-            <h3 className="text-[16px] text-[#666666]">
-              Our beautiful work you need to know!
-            </h3>
-          </div>
-          {/* portfolio buttons */}
-          <div className="w-full lg:w-auto">
-            <div className="flex flex-wrap justify-center gap-3 md:gap-4 text-[#9E9E9E] text-[14px] md:text-[16px]">
-              <button
-                key={0}
-                onClick={() => handleServiceClick(0)}
-                className={`w-[30%] md:w-auto text-[#9E9E9E] hover:text-[#FA8D59] font-bold transition-all ${
-                  selectedServiceId === 0 ? "text-[#FA8D59]" : ""
-                }`}
-              >
-                All
-              </button>
-              {services.map((service, index) => (
-                <button
-                  key={index + 1}
-                  onClick={() => handleServiceClick(service.category_id)}
-                  className={`w-[30%] md:w-auto text-[#9E9E9E] hover:text-[#FA8D59] font-bold transition-all ${
-                    selectedServiceId === service.category_id
-                      ? "text-[#FA8D59]"
-                      : ""
-                  }`}
-                >
-                  {service.category_name}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-        {/* Portfolio cards */}
-        <div className="min-h-[300px]">
-          {filteredPortfolios.length > 0 ? (
-            <div
-              className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10 justify-between pt-10 pb-5 ${
-                animate ? "fade-in" : ""
+    <div className="pt-8 lg:pt-10">
+      <div className="text-left">
+        <h1 className="text-[30px] md:text-[30px] lg:text-[48px] font-Raleway font-bold">
+          Our Amazing Portfolio
+        </h1>
+      </div>
+      <div className="flex justify-between pt-5">
+        <div>Our beautiful work you need to know!</div>
+        <div className="flex  gap-2">
+          <button
+            onClick={() => handleCategoryChange(0)}
+            className={`px-4 py-2 rounded-full text-sm ${
+              selectedCategoryId === 0
+                ? "bg-[#FF693B] text-white"
+                : "bg-gray-200 text-gray-700"
+            }`}
+          >
+            All Categories
+          </button>
+
+          {portfoliosCategories.map((category) => (
+            <button
+              key={category.category_id}
+              onClick={() => handleCategoryChange(category.category_id)}
+              className={`px-4 py-2 rounded-full text-sm  ${
+                selectedCategoryId === category.category_id
+                  ? "bg-[#FF693B] text-white"
+                  : "bg-gray-200 text-gray-700"
               }`}
             >
-              {filteredPortfolios.map((portfolio) => (
-                <Link key={portfolio.id} href={`/portfolio/${portfolio.slug}`}>
-                  <div className="hidden lg:block group rounded-[10px] border border-[#CBD5E1] overflow-hidden">
-                    <div className="portfolio-bgHover w-full cursor-pointer flex flex-col lg:flex-row bg-[#FFFFFF] rounded-[10px]">
-                      <div className="w-full lg:w-1/2 h-[250px] lg:h-[420px]">
-                        <Image
-                          width={800}
-                          height={500}
-                          className="w-full h-full object-cover rounded-t-[10px] lg:rounded-l-[10px] lg:rounded-tr-none"
-                          src={portfolio?.image}
-                          alt=""
-                        />
-                      </div>
-                      <div className="w-full lg:w-1/2 h-auto lg:h-[420px] flex flex-col justify-center items-center p-4">
-                        <div className="text-center">
-                          <h4 className="text-[14px] text-[#999999] pt-3 pb-3 md:pt-0 md:pb-6 portfolio-textHover">
-                            {portfolio?.service_name[0]?.service_name}
-                          </h4>
-                          <div className="text-[16px] px-[10%] w-full h-[65px] font-bold font-Raleway text-[#333333] portfolio-textHover line-clamp-3">
-                            {truncateText(portfolio?.heading, 12)}
-                          </div>
-                          <div>
-                            <p className="w-full px-[10%] flex justify-center text-[14px] text-[#666666] py-3 portfolio-textHover pt-3.5">
-                              <span>{truncateText(portfolio.text, 30)}</span>
-                            </p>
-                            <div className="pt-5 group flex justify-center items-center gap-2 text-[#FF693B] font-bold portfolio-textHover pb-6 lg:pb-0">
-                              <button className="text-[14px]">Read More</button>
-                              <span className="w-[19px] font-bold">
-                                <HiArrowSmallRight className="text-xl" />
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="group h-auto rounded-[10px] overflow-hidden block lg:hidden">
-                    <div className="border border-[#CBD5E1] portfolio-bgHover h-auto w-full cursor-pointer flex flex-col bg-[#FFFFFF] rounded-[10px]">
-                      <div className="w-full h-[250px]">
-                        <Image
-                          width={800}
-                          height={500}
-                          className="w-full h-full object-cover"
-                          src={portfolio?.image}
-                          alt=""
-                        />
-                      </div>
-                      <div className="w-full h-auto flex flex-col justify-start items-center p-4">
-                        <div className="text-center">
-                          <h4 className="text-[14px] text-[#999999] pt-0 pb-2 portfolio-textHover">
-                            {portfolio?.service_name[0]?.service_name}
-                          </h4>
-                          <div className="text-[16px] px-[5%] w-full h-[67px] font-bold font-Raleway text-[#333333] portfolio-textHover line-clamp-3">
-                            {portfolio?.heading
-                              .split(" ")
-                              .slice(0, 12)
-                              .join(" ")}
-                            {portfolio?.heading.split(" ").length > 12
-                              ? "..."
-                              : ""}
-                          </div>
-                          <div>
-                            <p className="w-full px-[5%] flex justify-center text-center text-[14px] text-[#666666] py-3 portfolio-textHover pt-3.5">
-                              <span>{portfolio.text.slice(0, 150)}...</span>
-                            </p>
-                            <div className="pt-2 pb-0 group flex justify-center items-center gap-2 text-[#FF693B] font-bold portfolio-textHover ">
-                              <button className="text-[14px]">Read More</button>
-                              <span className="w-[19px] font-bold">
-                                <HiArrowSmallRight className="text-xl" />
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          ) : (
-            <div className="flex justify-center items-center h-[300px]">
-              <p className="text-[20px] text-[#666666] font-semibold">
-                No portfolio is available for this category...
-              </p>
-            </div>
-          )}
+              {category.category_name}
+            </button>
+          ))}
         </div>
-
-        {/* navigate to portfolio */}
-        <div className="flex justify-center py-10">
-          <Link
-            href="/portfolio"
-            className="text-[16px] bg-[#FF693B] px-11 py-2.5 md:px-10 md:py-3 text-white rounded-lg border border-[#FF693B] hover:bg-white hover:text-[#FF693B] transition-all duration-300"
+      </div>
+      <div>
+        {loading ? (
+          <div className="flex justify-center text-center text-gray-600 mt-10">
+            <Loading />
+          </div>
+        ) : (
+          <div
+            className={`grid grid-cols-1 md:grid-cols-2 gap-8 4xl:gap-10 justify-between pt-10 pb-5 ${
+              animate ? "fade-in" : ""
+            }`}
           >
-            View All Portfolio
-          </Link>
-        </div>
+            {filteredPortfolio.map((portfolio) => (
+              <Link
+                key={portfolio.id + "-" + portfolio.slug}
+                href={`/portfolio/${portfolio?.slug}`}
+              >
+                <>
+                  <div className="hidden lg:block group rounded-[10px] overflow-hidden border border-[#CBD5E1] ">
+                    <div className="portfolio-bgHover h-auto lg:h-[400px]  w-[100%]  cursor-pointer flex flex-col lg:flex-row bg-[#FFFFFF] rounded-[10px]">
+                      <div className="w-1/2 h-full">
+                        <Image
+                          width={800}
+                          height={500}
+                          className="4xl:max-w-[345px] h-[400px]  rounded-l-[10px]"
+                          src={portfolio?.image}
+                          alt=""
+                        />
+                      </div>
+
+                      <div className="w-full lg:w-1/2 p-4  mt-0 lg:p-6 flex flex-col lg:justify-center 4xl:justify-center items-center">
+                        <div className="text-center w-full">
+                          <h4 className="text-[14px] text-[#999999] mb-2 portfolio-textHover">
+                            {portfolio?.service_name
+                              .slice(0, 3)
+                              .map((service, index) => (
+                                <span key={index}>
+                                  {index > 0 && (
+                                    <>
+                                      ,<br />
+                                    </>
+                                  )}
+                                  {service}
+                                </span>
+                              ))}
+                          </h4>
+                          <div className="text-[16px] font-bold font-Raleway text-[#333333] portfolio-textHover line-clamp-3 mb-3">
+                            {portfolio?.heading?.slice(120)}
+                          </div>
+                          <p className="text-[14px] text-[#666666] portfolio-textHover mb-4">
+                            {portfolio.portfolio_summery.length > 300
+                              ? portfolio.portfolio_summery.slice(0, 300) +
+                                "..."
+                              : portfolio.portfolio_summery}
+                          </p>
+                          <div className="flex justify-center items-center gap-2 text-[#FF693B] font-bold portfolio-textHover">
+                            <button className="text-[14px]">Read More</button>
+                            <span className="w-[19px]">
+                              <HiArrowSmallRight className="text-xl" />
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </>
+              </Link>
+            ))}
+          </div>
+        )}
+        {filteredPortfolio.length === 0 && !loading && (
+          <div className="flex justify-center text-center text-gray-600 mt-0">
+            <Image
+              src={"/assets/data.gif"}
+              width={500}
+              height={500}
+              alt="no data found"
+            />
+          </div>
+        )}
       </div>
     </div>
   );

@@ -24,6 +24,17 @@
   }
 }
 @layer components {
+  .btn {
+    @apply text-[16px] whitespace-nowrap px-6 py-2 md:px-10 md:py-4 font-[600] rounded-lg transition-all duration-300;
+  }
+
+  .btn-primary {
+    @apply text-white bg-[#FF693B] border border-[#FF693B] hover:bg-white hover:text-[#FF693B];
+  }
+
+  .btn-secondary {
+    @apply text-[#FF693B] border border-[#FF693B] hover:bg-[#FF693B] hover:text-white;
+  }
   .custom-rotate {
     background: linear-gradient(90deg, #2f4c9d 0%, #0a2c8c 100%);
     /* filter: drop-shadow(0px 4px 16px rgba(0, 0, 0, 0.10)); */
@@ -644,7 +655,7 @@ textarea:focus {
 .ql-container.ql-snow {
   border: none !important;
 }
-.single_description h2 {
+/* .single_description h2 {
   font-size: 45px !important;
   font-weight: 500 !important;
   margin: 5px 0 !important;
@@ -707,4 +718,4 @@ textarea:focus {
 .pageHtml ol li {
   font-size: 16px !important;
   color: #333333;
-}
+} */

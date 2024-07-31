@@ -5,7 +5,8 @@ const bannerApi = `${apiEndpoint}/home_banner`;
 const brandsApi = `${apiEndpoint}/home_brand`;
 const servicesApi = `http://192.168.10.14:8000/api/sevice_items`;
 const about_us_homeApi = `${apiEndpoint}/about_us_home`;
-const sevice_portfolioApi = "https://admin.envobyte.com/api/sevice_portfolio";
+const sevice_portfolioApi =
+  "http://192.168.10.16:8000/api/sevice_portfolio_update";
 const whyChoose_us = `${apiEndpoint}/home_choose_us`;
 
 const serviceApi = `${apiEndpoint}/service`;
@@ -16,7 +17,7 @@ const user_contactApi = `${apiEndpoint}/contact`;
 const footer = `${apiEndpoint}/footer`;
 
 // services page
-const serviceListApi = `${apiEndpoint}/category`;
+const serviceListApi = `http://192.168.10.16:8000/api/category`;
 const allsServiceItemsApi = `http://192.168.10.16:8000/api/sevice_items`;
 
 // single service page

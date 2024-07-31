@@ -1,12 +1,13 @@
 import Container from "@/Components/Container/Container";
 import BannerItems from "@/Components/Utilites/BannerItems/BannerItems";
+import UserLoading from "@/Components/Utilites/UserLoading/UserLoading";
 import { bannerApi } from "@/config/apis";
 import { Suspense } from "react";
 
 // api fetching from sever side
 async function getBannerContent() {
   const res = await fetch(`${bannerApi}`, {
-    next: { revalidate: 10 },
+    next: { revalidate: 3600 },
   });
 
   if (!res.ok) {
@@ -20,7 +21,7 @@ const Banner = async () => {
   const banner = await getBannerContent();
   return (
     <Container>
-      <Suspense>
+      <Suspense fallback={<UserLoading />}>
         <BannerItems banner={banner} />
       </Suspense>
     </Container>

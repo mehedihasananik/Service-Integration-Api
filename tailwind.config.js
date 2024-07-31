@@ -31,6 +31,15 @@ module.exports = {
         Raleway: ["Raleway", "sans-serif"],
         OpenSans: ["Open Sans", "sans-serif"],
       },
+      animation: {
+        "fade-in": "fadeIn 0.5s ease-out forwards",
+      },
+      keyframes: {
+        fadeIn: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+      },
     },
   },
   plugins: [require("flowbite/plugin")],

@@ -10,7 +10,7 @@ const ServicePageItems = ({
 }) => {
   return (
     <div>
-      <div className="group h-[550px] xl:w-[296px] xxl:w-[296px] 2xl:w-[320px] shadow-lg rounded-md border border-[#E2E8F0] cursor-pointer mb-5 lg:mb-10">
+      <div className="group h-[550px] xl:w-[296px] xxl:w-[296px] 2xl:w-[320px] shadow-lg rounded-md border border-[#E2E8F0] cursor-pointer mb-5 lg:mb-5">
         <div className="flex flex-col">
           <div className="bg-[#E2E8F0]">
             <div>

@@ -1,38 +1,58 @@
 import PortfolioHomeItems from "@/Components/Utilites/PortfolioHomeItems/PortfolioHomeItems";
-import { serviceApi, serviceListApi, sevice_portfolioApi } from "@/config/apis";
-import React from "react";
 
-// portfolio all api fetching from server side
-
-async function getPortfolioContent() {
-  try {
-    const [res1, res2] = await Promise.all([
-      fetch(`${sevice_portfolioApi}`, { next: { revalidate: 10 } }),
-      fetch(`${serviceListApi}`, { next: { revalidate: 10 } }),
-    ]);
-
-    if (!res1?.ok || !res2?.ok) {
-      throw new Error("Failed to fetch data");
+async function portfolioServices() {
+  const res = await fetch(
+    `http://192.168.10.16:8000/api/sevice_portfolio_update`,
+    {
+      next: { revalidate: 10 },
     }
+  );
 
-    const data1 = await res1?.json();
-    const data2 = await res2?.json();
-
-    return { data1, data2 };
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    throw error;
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
   }
+  return res.json();
+}
+
+async function portfoliosCategoriesApi() {
+  const res = await fetch(`http://192.168.10.16:8000/api/category`, {
+    next: { revalidate: 10 },
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+  return res.json();
+}
+
+async function servicesApi() {
+  const res = await fetch(
+    `http://192.168.10.16:8000/api/search_sevice_category/all`,
+    {
+      next: { revalidate: 10 },
+    }
+  );
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+  return res.json();
 }
 
 const Portfolio = async () => {
-  // getting data successfully
-  const { data1, data2 } = await getPortfolioContent();
-  // console.log(data1);
+  // Fetch data for the page
+  const portfolios = await portfolioServices();
+  const portfoliosCategories = await portfoliosCategoriesApi();
+  const services = await servicesApi();
 
   return (
-    <div>
-      <PortfolioHomeItems portfolios={data1} services={data2} />
+    <div className="max-w-[1520px] mx-auto px-[6%] md:px-[4%] lg:px-[1%] 4xl:px-[2%]">
+      <PortfolioHomeItems
+        portfolios={portfolios.ServiceportfolioArray}
+        portfoliosCategories={portfoliosCategories}
+        services={services}
+        serviceDetails={portfolios.page_content}
+      />
     </div>
   );
 };

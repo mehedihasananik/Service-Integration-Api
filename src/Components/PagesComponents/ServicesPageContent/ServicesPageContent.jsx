@@ -84,7 +84,7 @@ const ServicesPageContent = ({
   return (
     <div className="service_section overflow-hidden">
       <Container>
-        <div className="py-5 md:pt-8">
+        <div className="py-5 md:py-0 md:pt-8">
           <div className="text-center">
             <h1 className="text-[30px] md:text-[30px] lg:text-[48px] font-Raleway font-bold">
               Choose a <span className="text-[#FF693B]">service</span> that you
@@ -92,7 +92,7 @@ const ServicesPageContent = ({
             </h1>
           </div>
           <div className="pt-7">
-            <div className="w-[100%] flex flex-col md:flex-row justify-center gap-x-10 gap-y-4 lg:gap-y-0">
+            <div className="w-[100%] flex flex-col md:flex-row justify-center gap-x-10 gap-y-0 lg:gap-y-0">
               <div className="w-full md:w-[40%] lg:w-[25%]">
                 <form>
                   <select
@@ -156,7 +156,7 @@ const ServicesPageContent = ({
             </div>
           ) : (
             <div
-              className={`grid grid-cols-1 md:grid md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 justify-items-center place-items-center gap-x-8 pb-8 lg:gap-y-0 lg:gap-x-44 xxl:gap-x-40 4xl:gap-x-16 mt-5 md:mt-10 ${
+              className={`grid grid-cols-1 md:grid md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 justify-items-center place-items-center gap-x-8 pb-4 lg:gap-y-0 lg:gap-x-44 xxl:gap-x-40 4xl:gap-x-16 mt-5 md:mt-10 ${
                 animate ? "fade-in" : ""
               }`}
             >

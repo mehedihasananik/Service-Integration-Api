@@ -5,6 +5,8 @@ import Header from "@/Components/Home/Navbar/Header";
 import { Toaster } from "react-hot-toast";
 import AuthProviders, { ThemeProvider } from "@/providers/AuthProviders";
 import SocialProvider from "@/Components/SocialProvider/SocialProvider";
+import GoogleTagManagerScript from "../GoogleTagManager/GoogleTagManagerScript";
+import GoogleTagManagerNoScript from "../GoogleTagManager/GoogleTagManagerNoScript";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,13 +18,16 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <link
-        rel="icon"
-        href="https://i.ibb.co/nM2nH6n/android-chrome-256x256.png"
-        sizes="any"
-      />
-
+      <head>
+        <link
+          rel="icon"
+          href="https://i.ibb.co/nM2nH6n/android-chrome-256x256.png"
+          sizes="any"
+        />
+        <GoogleTagManagerScript />
+      </head>
       <body className={inter.className}>
+        <GoogleTagManagerNoScript />
         <Toaster />
         <AuthProviders>
           <SocialProvider>

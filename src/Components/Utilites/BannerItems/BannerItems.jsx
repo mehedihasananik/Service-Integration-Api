@@ -1,72 +1,41 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import GlobalButton from "../GlobalButton/GlobalButton";
 
 const BannerItems = ({ banner }) => {
-  const [animate, setAnimate] = useState(false);
-
-  useEffect(() => {
-    setAnimate(true);
-  }, []);
-
   return (
-    <div
-      className={`flex flex-col lg:flex-row items-center justify-between space-y-3 md:space-y-0 md:gap-11 pt-5 xl:pt-10 pb-10 ${
-        animate ? "fade-in" : ""
-      }`}
-    >
-      {/* left side description */}
-      <div className="flex flex-col ">
-        {/* title starts*/}
-        <div className="w-full lg:w-[450px] lg:pt-14 xs:px-3  md:px-0 ">
-          <h1 className="font-Raleway font-bold text-[30px] md:text-[40px] xl:text-[48px] xl:leading-[63.98px]">
-            Creative Design <span className="line-break"></span> and{" "}
-            <span className="custom-rotate">Development </span> <br />
-            for your product
-          </h1>
-        </div>
-        {/* title ends*/}
-        {/* description starts */}
-        <div className="w-full lg:w-[450px] pt-4 text-[16px]  xs:px-3 md:px-0">
-          <p>{banner.details}</p>
-        </div>
-        {/* description ends */}
-        {/* buttons starts */}
-        <div className="flex gap-6 py-6 justify-center lg:justify-start ">
-          {/* quote button */}
-          <Link
-            href={"#projectDetails"}
-            className="text-[16px] whitespace-nowrap text-white bg-[#FF693B]  border border-[#FF693B] px-6 py-2 md:px-10 md:py-4 font-[600] rounded-lg  hover:bg-[#fff] hover:text-[#FF693B] transition-all duration-300"
-          >
-            Get a Quote
-          </Link>
-          {/* our services */}
-          <Link
-            href={"/services"}
-            className="text-[16px]  whitespace-nowrap text-[#FF693B] border border-[#FF693B] px-6 py-2 md:px-10 md:py-4 font-[600] rounded-lg  hover:bg-[#FF693B] hover:text-white transition-all duration-300"
-          >
+    <div className="flex flex-col lg:flex-row items-center justify-between space-y-3 md:space-y-0 md:gap-11 pt-5 xl:pt-10 pb-10 animate-fade-in">
+      <div className="flex flex-col">
+        <h3 className="font-Raleway font-bold text-[30px] md:text-[40px] xl:text-[48px] xl:leading-[63.98px] lg:w-[450px] lg:pt-14 xs:px-3 md:px-0">
+          Creative Design <span className="line-break"></span> and{" "}
+          <span className="custom-rotate">Development </span> <br />
+          for your product
+        </h3>
+        <p className="w-full lg:w-[450px] pt-4 text-[16px] xs:px-3 md:px-0">
+          {banner.details}
+        </p>
+        <div className="flex gap-6 py-6 justify-center lg:justify-start">
+          <GlobalButton path={"#projectDetails"} />
+          <Link href="/services" className="btn btn-secondary">
             Our Services
           </Link>
         </div>
-        {/* buttons ends */}
       </div>
-      {/* right side image */}
       <div>
-        <div>
-          <Image
-            className="md:w-[742px] md:h-[554px]"
-            width={500}
-            height={500}
-            src={banner.banner}
-            quality={100}
-            priority={true}
-            alt="banner image"
-            blurDataURL={banner.banner}
-            placeholder="blur"
-          />
-        </div>
+        <Image
+          className="md:w-[742px] md:h-[554px]"
+          src={banner.banner}
+          width={742}
+          height={554}
+          quality={100}
+          priority
+          alt="banner image"
+          placeholder="blur"
+          blurDataURL={banner.banner}
+        />
       </div>
     </div>
   );
