@@ -10,7 +10,6 @@ const PortfolioHomeItems = ({
   portfolios,
   portfoliosCategories,
   services: initialServices,
-  serviceDetails,
 }) => {
   const [loading, setLoading] = useState(true);
   const [selectedServiceId, setSelectedServiceId] = useState(0);
@@ -75,14 +74,6 @@ const PortfolioHomeItems = ({
     } else {
       setServices(initialServices);
     }
-  };
-
-  const handleServiceChange = (e) => {
-    setSelectedServiceId(parseInt(e.target.value));
-  };
-
-  const handleSearchInputChange = (e) => {
-    setSearchQuery(e.target.value);
   };
 
   return (

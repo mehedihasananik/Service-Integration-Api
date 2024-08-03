@@ -96,7 +96,7 @@ const SinglePage = async ({ params }) => {
   const packages = await fetch(`${singleService_package}/${params?.id}`).then(
     (res) => res?.json()
   );
-  console.log(service);
+  // console.log(service);
 
   return (
     <>

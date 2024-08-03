@@ -7,7 +7,7 @@ import { Suspense } from "react";
 // api fetching from sever side
 async function getBannerContent() {
   const res = await fetch(`${bannerApi}`, {
-    next: { revalidate: 3600 },
+    next: { revalidate: 10 },
   });
 
   if (!res.ok) {
