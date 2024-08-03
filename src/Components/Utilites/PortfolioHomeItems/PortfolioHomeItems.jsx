@@ -87,14 +87,14 @@ const PortfolioHomeItems = ({
 
   return (
     <div className="pt-8 lg:pt-10">
-      <div className="text-left">
+      <div className="text-center">
         <h1 className="text-[30px] md:text-[30px] lg:text-[48px] font-Raleway font-bold">
           Our Amazing Portfolio
         </h1>
-      </div>
-      <div className="flex justify-between pt-5">
         <div>Our beautiful work you need to know!</div>
-        <div className="flex  gap-2">
+      </div>
+      <div className="flex justify-center pt-5">
+        <div className="flex flex-wrap  gap-2">
           <button
             onClick={() => handleCategoryChange(0)}
             className={`px-4 py-2 rounded-full text-sm ${
@@ -138,13 +138,13 @@ const PortfolioHomeItems = ({
                 href={`/portfolio/${portfolio?.slug}`}
               >
                 <>
-                  <div className="hidden lg:block group rounded-[10px] overflow-hidden border border-[#CBD5E1] ">
+                  <div className=" group rounded-[10px] overflow-hidden border border-[#CBD5E1] ">
                     <div className="portfolio-bgHover h-auto lg:h-[400px]  w-[100%]  cursor-pointer flex flex-col lg:flex-row bg-[#FFFFFF] rounded-[10px]">
-                      <div className="w-1/2 h-full">
+                      <div className="md:w-1/2 h-full">
                         <Image
                           width={800}
                           height={500}
-                          className="4xl:max-w-[345px] h-[400px]  rounded-l-[10px]"
+                          className="w-full 4xl:max-w-[345px] h-[400px]  rounded-l-[10px]"
                           src={portfolio?.image}
                           alt=""
                         />

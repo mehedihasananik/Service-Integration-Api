@@ -35,7 +35,7 @@ const singlePortfolio = `${apiEndpoint}/portfolio_details`;
 
 // about page
 const aboutUsApi = `http://192.168.10.16:8000/api/aboutus_page`;
-const aboutUsItemApi = `${apiEndpoint}/aboutus_page_item`;
+const aboutUsItemApi = `http://192.168.10.16:8000/api/aboutus_page_item`;
 
 // register page page
 const signupApi = `${apiEndpoint}/sign_up`;

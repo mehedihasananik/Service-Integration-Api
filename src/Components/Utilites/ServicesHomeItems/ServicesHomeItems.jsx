@@ -5,8 +5,9 @@ import { Pagination } from "swiper/modules";
 import "swiper/swiper-bundle.css";
 import SlideCounter from "../SlideCounter/SlideCounter";
 import NavigationButtons from "../NavigationButtons/NavigationButtons";
-import ViewAllButton from "../ViewAllButton/ViewAllButton";
+
 import ServiceCard from "../ServiceCard/ServiceCard";
+import ViewAllButton from "../ViewAllButton/ViewAllButton";
 
 const ServicesHomeItems = ({ services, details }) => {
   const [currentSlide, setCurrentSlide] = useState(0);

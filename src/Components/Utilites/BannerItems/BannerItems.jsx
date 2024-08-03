@@ -18,7 +18,7 @@ const BannerItems = ({ banner }) => {
           {banner.details}
         </p>
         <div className="flex gap-6 py-6 justify-center lg:justify-start">
-          <GlobalButton path={"#projectDetails"} />
+          <GlobalButton path={"#projectDetails"} title={"Get a Quote"} />
           <Link href="/services" className="btn btn-secondary">
             Our Services
           </Link>

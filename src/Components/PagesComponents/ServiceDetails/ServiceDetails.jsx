@@ -4,14 +4,12 @@ import RelevantServices from "@/Components/Utilites/RelevantServices/RelevantSer
 import Container from "@/Components/Container/Container";
 import ServicePortolio from "@/Components/Utilites/ServicePortfolio/ServicePortolio";
 import { useState } from "react";
-import ServiceModal from "@/Components/Utilites/ServiceModal/ServiceModal";
 import SinglePackage from "./SinglePackage";
 import Link from "next/link";
 import OrderSliderLg from "@/Components/Utilites/OrderSlider/OrderSliderLg";
 import OrderSliderSm from "@/Components/Utilites/OrderSlider/OrderSliderSm";
 import QuestionService from "@/Components/Home/Questions/QuestionService";
 import SinglePackageSm from "./SinglePackageSm";
-import parse from "html-react-parser";
 import ContactModal from "@/Components/Utilites/ContactModal/ContactModal";
 import Global_PageHtml from "@/Components/Utilites/Global_PageHtml/Global_PageHtml";
 

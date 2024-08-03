@@ -129,7 +129,7 @@ const HeaderItems = ({ headers }) => {
               </Navbar.Link>
             ))}
             {/* Login button */}
-            <div className="mt-4">
+            <div className="mt-4 md:mt-0">
               {isClient &&
                 (userData?.email ? (
                   <Link

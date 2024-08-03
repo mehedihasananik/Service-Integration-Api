@@ -94,6 +94,7 @@ const TestimonialHomeItems = ({ testimonials }) => {
                   </button>
                 </div>
               </div>
+
               {/* small device */}
               <div className="text-center lg:text-left md:hidden ">
                 <span className="text-[48px] font-Raleway text-[#0A2C8C] font-bold">
@@ -122,6 +123,7 @@ const TestimonialHomeItems = ({ testimonials }) => {
                 </span>
               </div>
             </div>
+
             <div className="w-full lg:w-[65%]">
               {loading ? (
                 <div className="flex flex-wrap justify-center">

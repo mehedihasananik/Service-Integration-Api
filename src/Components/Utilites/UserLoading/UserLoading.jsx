@@ -5,7 +5,7 @@ const UserLoading = () => {
     <div
       aria-label="Loading..."
       role="status"
-      className="flex justify-center items-center space-x-2"
+      className="flex justify-center items-center space-x-2 h-full"
     >
       <svg
         className="h-12 w-32 animate-spin stroke-[#0A2C8C]"

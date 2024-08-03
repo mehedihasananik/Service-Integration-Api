@@ -1,77 +1,32 @@
 "use client";
-import React, { useContext, useLayoutEffect, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Tooltip } from "flowbite-react";
 import { IoCheckmarkSharp } from "react-icons/io5";
 import { FaRegClock } from "react-icons/fa6";
 import { BiRevision } from "react-icons/bi";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { AuthContext } from "@/providers/AuthProviders";
 import { VscQuestion } from "react-icons/vsc";
 
 const SinglePackageSm = ({ item, setOpenModal }) => {
-  const router = useRouter();
-  const { setItemId } = useContext(AuthContext);
-
   const [userData, setUserData] = useState(null);
-  const [orderId, setOrderId] = useState(null);
 
-  const handlePlaceOrder = async () => {
-    const data = {
-      user_id: userData?.id,
-      service_package: item?.id,
-      sevice_items_id: item?.sevice_items_id,
-      package_price: item?.package_price,
-      payment_status: "done",
-      order_status: "Requirement Needed",
-    };
-
-    try {
-      const response = await fetch(
-        `https://admin.envobyte.com/api/service_order`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        }
-      );
-
-      const responseData = await response.json();
-
-      if (responseData?.order_id) {
-        setOrderId(responseData?.order_id);
-        router.push(`/checkout/${orderId}`);
-      }
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  };
-
-  const handlePassData = () => {
-    setItemId(item.id);
-    localStorage.setItem("itemId", item?.id);
-  };
-
-  // kakon
   const orderWithLogin = () => {
-    localStorage.setItem("item", JSON.stringify(item));
+    localStorage.setItem(
+      "item",
+      JSON.stringify({
+        ...item,
+        serviceName: serviceName,
+      })
+    );
     setOpenModal(true);
   };
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (typeof window !== "undefined") {
       const data = JSON.parse(localStorage.getItem("userData"));
       setUserData(data);
     }
   }, []);
-
-  useEffect(() => {
-    if (orderId) {
-      router.push(`/checkout/${orderId}`);
-    }
-  }, [orderId, router]);
 
   return (
     <div className="md:mx-[10%] lg:mx-0">
@@ -98,21 +53,12 @@ const SinglePackageSm = ({ item, setOpenModal }) => {
 
         {/* order button */}
         <div className="mb-6">
-          {userData ? (
-            <button
-              onClick={handlePlaceOrder}
-              className="text-[16px] w-full text-center font-medium text-[#FF693B] border border-[#FF693B] px-6 py-2 rounded-md hover:text-white hover:bg-[#FF693B] transition-all duration-300"
-            >
-              Place Order Now
-            </button>
-          ) : (
-            <button
-              onClick={orderWithLogin}
-              className="text-[16px] font-medium text-[#FF693B] border border-[#FF693B] px-6 py-2 w-full rounded-md hover:text-white hover:bg-[#FF693B] transition-all duration-300"
-            >
-              Place Order Now
-            </button>
-          )}
+          <button
+            onClick={orderWithLogin}
+            className="text-[16px] font-medium text-[#FF693B] border border-[#FF693B] px-6 py-2 w-full rounded-md hover:text-white hover:bg-[#FF693B] transition-all duration-300"
+          >
+            Place Order Now
+          </button>
         </div>
 
         {/* order details */}

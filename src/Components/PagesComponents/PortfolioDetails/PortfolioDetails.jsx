@@ -51,7 +51,7 @@ const PortfolioDetails = ({ singlePortfolioItem }) => {
   // }, []);
 
   return (
-    <div className="bg-[rgb(252,252,252)]">
+    <div className="bg-[#fff]]">
       <Container>
         <div className="md:py-10 md:pb-0">
           <h1 className="text-[20px] md:text-[30px] lg:text-[54px] font-Raleway font-bold lg:leading-[63.4px] text-[#000000] text-center pb-3 lg:pb-0 pt-5 md:pt-0">
@@ -103,7 +103,7 @@ const PortfolioDetails = ({ singlePortfolioItem }) => {
           Contact Us
         </Link>
       </div>
-      <div className="bg-[#F8FAFC] py-5 md:pt-3 md:pb-10">
+      <div className="bg-[#fff] py-5 md:pt-3 md:pb-10">
         <Container>
           <RelevantPortfolio singlePortfolioItem={singlePortfolioItem} />
         </Container>

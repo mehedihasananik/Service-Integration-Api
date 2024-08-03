@@ -1,62 +1,13 @@
 "use client";
-import React, {
-  useContext,
-  useLayoutEffect,
-  useState,
-  useEffect,
-  useCallback,
-} from "react";
+import React, { useState, useEffect } from "react";
 import { IoCheckmarkSharp } from "react-icons/io5";
 import { FaRegClock } from "react-icons/fa6";
-import { useRouter } from "next/navigation";
-import { AuthContext } from "@/providers/AuthProviders";
 import { Tooltip } from "flowbite-react";
 import { VscQuestion } from "react-icons/vsc";
 import Link from "next/link";
 
 const SinglePackage = ({ item, setOpenModal, height, serviceName }) => {
-  const router = useRouter();
-  const { setItemId } = useContext(AuthContext);
   const [userData, setUserData] = useState(null);
-  const [orderId, setOrderId] = useState(null);
-
-  const handlePlaceOrder = async () => {
-    const data = {
-      user_id: userData?.id,
-      service_package: item?.id,
-      sevice_items_id: item?.sevice_items_id,
-      package_price: item?.package_price,
-      payment_status: "done",
-      order_status: "Requirement Needed",
-    };
-
-    try {
-      const response = await fetch(
-        `https://admin.envobyte.com/api/service_order`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        }
-      );
-
-      const responseData = await response.json();
-
-      if (responseData?.order_id) {
-        setOrderId(responseData?.order_id);
-        router.push(`/checkout/${orderId}`);
-      }
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  };
-
-  const handlePassData = () => {
-    setItemId(item.id);
-    localStorage.setItem("itemId", item?.id);
-  };
 
   const orderWithLogin = () => {
     localStorage.setItem(
@@ -69,26 +20,12 @@ const SinglePackage = ({ item, setOpenModal, height, serviceName }) => {
     setOpenModal(true);
   };
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (typeof window !== "undefined") {
       const data = JSON.parse(localStorage.getItem("userData"));
       setUserData(data);
     }
   }, []);
-
-  useEffect(() => {
-    if (orderId) {
-      router.push(`/checkout/${orderId}`);
-    }
-  }, [orderId, router]);
-
-  const truncateText = (text, maxWords) => {
-    const words = text.split(" ");
-    if (words.length > maxWords) {
-      return words.slice(0, maxWords).join(" ") + "...";
-    }
-    return text;
-  };
 
   const heightClass =
     height === 1
@@ -165,21 +102,12 @@ const SinglePackage = ({ item, setOpenModal, height, serviceName }) => {
         </div>
         {/* order button */}
         <div className="py-4 mt-4 md:mt-0 md:pb-8 flex justify-center px-4 md:px-8">
-          {userData ? (
-            <button
-              onClick={handlePlaceOrder}
-              className="text-[16px] w-[100%] text-center font-medium text-[#FF693B] border border-[#FF693B] px-6 py-2 rounded-md hover:text-white hover:bg-[#FF693B] transition-all duration-300"
-            >
-              Contact For Order
-            </button>
-          ) : (
-            <button
-              onClick={orderWithLogin}
-              className="text-[16px] font-medium text-[#FF693B] border border-[#FF693B] px-6 py-2 w-full rounded-md hover:text-white hover:bg-[#FF693B] transition-all duration-300"
-            >
-              Contact For Order
-            </button>
-          )}
+          <button
+            onClick={orderWithLogin}
+            className="text-[16px] font-medium text-[#FF693B] border border-[#FF693B] px-6 py-2 w-full rounded-md hover:text-white hover:bg-[#FF693B] transition-all duration-300"
+          >
+            Contact For Order
+          </button>
         </div>
         {/* order details */}
         <div className="space-y-5 md:h-[150px] pl-3 md:pl-8">

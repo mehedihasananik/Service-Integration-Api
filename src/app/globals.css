@@ -655,7 +655,9 @@ textarea:focus {
 .ql-container.ql-snow {
   border: none !important;
 }
-/* .single_description h2 {
+
+/* 
+.single_description h2 {
   font-size: 45px !important;
   font-weight: 500 !important;
   margin: 5px 0 !important;

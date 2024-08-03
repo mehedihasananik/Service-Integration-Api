@@ -32,7 +32,7 @@ const HomePage = async () => {
       <Tawk />
       <Banner />
       <Brands />
-      {/* <Services /> */}
+      <Services />
       <AboutUs />
       <Portfolio />
       <WhyChooseUs />
