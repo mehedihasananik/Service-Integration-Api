@@ -37,10 +37,10 @@ const ServicesHomeItems = ({ services, details }) => {
           <div className="flex flex-col lg:flex-row items-center justify-between lg:gap-20 xl:gap-12 py-8">
             <div className="w-full text-center lg:text-left lg:w-[35%]">
               <h2 className="text-center md:text-left text-[30px] md:text-[42px] lg:text-[48px] font-bold font-Raleway text-[#0F172A] lg:w-[400px]">
-                {details.title}
+                {details?.title}
               </h2>
               <p className="pt-4  text-center md:text-left text-[16px] text-[#666666] font-normal w-[100%] md:w-[700px] xl:w-[380px] 4xl:w-[500px]">
-                {details.details}
+                {details?.details}
               </p>
               <SlideCounter
                 currentSlide={currentSlide}

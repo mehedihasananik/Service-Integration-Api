@@ -12,6 +12,7 @@ async function fetchBrands() {
 
 const Brands = async () => {
   const brands = await fetchBrands();
+  // console.log(brands);
 
   return (
     <div className="bg-[#F8FAFC]">

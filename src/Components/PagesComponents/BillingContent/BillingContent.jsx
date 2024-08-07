@@ -88,7 +88,7 @@ const BillingContent = () => {
         data: allData,
       })
         .then(function (response) {
-          console.log(response);
+          // console.log(response);
           if (response.data.success == true) {
             toast.success("Billing Address Submited");
           } else {

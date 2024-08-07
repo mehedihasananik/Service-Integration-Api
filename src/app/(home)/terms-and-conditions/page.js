@@ -83,7 +83,7 @@ async function termsContent() {
 
 const Terms = async () => {
   const terms = await termsContent();
-  console.log(terms);
+  // console.log(terms);
 
   return (
     <>

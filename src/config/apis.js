@@ -3,7 +3,7 @@ import { apiEndpoint } from "./config";
 const headerApi = `${apiEndpoint}/header`;
 const bannerApi = `${apiEndpoint}/home_banner`;
 const brandsApi = `${apiEndpoint}/home_brand`;
-const servicesApi = `http://192.168.10.14:8000/api/sevice_items`;
+const servicesApi = `http://192.168.10.16:8000/api/sevice_items`;
 const about_us_homeApi = `${apiEndpoint}/about_us_home`;
 const sevice_portfolioApi =
   "http://192.168.10.16:8000/api/sevice_portfolio_update";

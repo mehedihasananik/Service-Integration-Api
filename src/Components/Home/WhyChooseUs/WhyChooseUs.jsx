@@ -46,14 +46,14 @@ const WhyChooseUs = async () => {
             {/* content */}
             <div className="bg-[#FFF9EE] flex flex-col items-center lg:flex-row gap-4 pt-8 pl-10 pr-10 pb-10 lg:pt-[25px] lg:pb-[30px] lg:pl-[100px] lg:pr-[35px] lg:relative">
               <div className="flex justify-center items-center lg:absolute lg:left-[-72px] lg:top-[50px]">
-                <img className="w-[150px]" src={data[1].icon} alt="" />
+                <img className="w-[150px]" src={data[1]?.icon} alt="" />
               </div>
               <div className="text-center lg:text-left space-y-4">
                 <h2 className="text-[24px] text-[#333333] font-bold">
-                  {data[1].heading}
+                  {data[1]?.heading}
                 </h2>
                 <p className="text-[16px] text-[#666666] text-justify">
-                  {data[1].text}
+                  {data[1]?.text}
                 </p>
               </div>
             </div>
@@ -74,14 +74,14 @@ const WhyChooseUs = async () => {
             {/* content */}
             <div className="bg-[#EEF2FF] flex flex-col items-center lg:flex-row gap-4 pt-8 pl-10 pr-10 pb-10 lg:pt-[50px] lg:pb-[30px] lg:pl-[64px] 2xl:pr-[50px] lg:relative">
               <div className="lg:absolute left-[-98px] top-[48px]">
-                <img className="w-[150px]" src={data[2].icon} alt="" />
+                <img className="w-[150px]" src={data[2]?.icon} alt="" />
               </div>
               <div className="text-center lg:text-left space-y-4">
                 <h2 className="text-[24px] text-[#333333] font-bold">
-                  {data[2].heading}
+                  {data[2]?.heading}
                 </h2>
                 <p className="text-[16px] text-[#666666] text-justify">
-                  {data[2].text}
+                  {data[2]?.text}
                 </p>
               </div>
             </div>
@@ -100,14 +100,14 @@ const WhyChooseUs = async () => {
           {/* 4th card */}
           <div className="bg-[#EEF2FF] xl:h-[300px] 2xl:h-[250px] flex flex-col items-center lg:flex-row gap-4 px-10 py-10 lg:py-0 ">
             <div className="w-full flex items-center justify-center lg:w-[550px] mt-4">
-              <img className="w-[150px]" src={data[3].icon} alt="" />
+              <img className="w-[150px]" src={data[3]?.icon} alt="" />
             </div>
             <div className="text-center lg:text-left space-y-4">
               <h2 className="text-[24px] text-[#333333] font-bold">
-                {data[3].heading}
+                {data[3]?.heading}
               </h2>
               <p className="text-[16px] text-[#666666] text-justify">
-                {data[3].text}
+                {data[3]?.text}
               </p>
             </div>
           </div>

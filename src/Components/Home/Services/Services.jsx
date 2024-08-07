@@ -22,7 +22,7 @@ const Services = async () => {
   return (
     <div className="overflow-hidden">
       <ServicesHomeItems
-        services={serviceItems.service_items}
+        services={serviceItems.ServiceItemsArray}
         details={serviceItems.service_details}
       />
     </div>

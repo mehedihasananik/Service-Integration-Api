@@ -18,7 +18,7 @@ export async function generateMetadata() {
 
   return {
     title: `${
-      service?.meta?.seo_meta?.title || service.basic.title
+      service?.meta?.seo_meta?.title || service?.basic?.title
     } || Envobyte`,
     description: service?.meta?.seo_meta?.description,
     keywords: service?.meta?.seo_meta?.keywords,

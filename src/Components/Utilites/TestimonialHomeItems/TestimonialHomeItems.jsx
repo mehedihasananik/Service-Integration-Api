@@ -148,30 +148,30 @@ const TestimonialHomeItems = ({ testimonials }) => {
                   pagination={true}
                   modules={[Pagination]}
                 >
-                  {testimonials.map((testimonial) => (
+                  {testimonials?.map((testimonial) => (
                     <SwiperSlide key={testimonial.id}>
                       <div className="h-[400px] pl-4 mt-10 bg-[#F8FAFC] lg:hover:bg-[#1E293B] group  rounded-md transition-all duration-300 ">
                         <div className="relative">
                           <div className="absolute top-[-25px] left-[140px] md:left-[120px] lg:left-0">
                             <img
                               className="w-[56px] h-[56px] rounded-full"
-                              src={testimonial.image}
+                              src={testimonial?.image}
                               alt=""
                             />
                           </div>
                           <div className="pt-14 pb-4">
                             <h2 className="text-[24px] text-[#333333] lg:group-hover:text-[#fff] font-Raleway font-bold">
-                              {testimonial.name}
+                              {testimonial?.name}
                             </h2>
                             <p className="text-[14px] text-[#999999] pt-3 lg:group-hover:text-[#fff]">
-                              {testimonial.designation}
+                              {testimonial?.designation}
                             </p>
                           </div>
                           <div>
                             <p className="w-full lg:w-[260px] 4xl:w-[300px] text-[16px] text-[#666666] pt-1 pb-12 lg:group-hover:text-[#fff]">
-                              {testimonial.message.length > 300
-                                ? `${testimonial.message.slice(0, 300)}...`
-                                : testimonial.message}
+                              {testimonial?.message?.length > 300
+                                ? `${testimonial?.message?.slice(0, 300)}...`
+                                : testimonial?.message}
                             </p>
                           </div>
                         </div>

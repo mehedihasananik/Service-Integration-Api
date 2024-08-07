@@ -22,7 +22,7 @@ const Banner = async () => {
   return (
     <Container>
       <Suspense fallback={<UserLoading />}>
-        <BannerItems banner={banner} />
+        <BannerItems banner={banner.HomeBanner} />
       </Suspense>
     </Container>
   );

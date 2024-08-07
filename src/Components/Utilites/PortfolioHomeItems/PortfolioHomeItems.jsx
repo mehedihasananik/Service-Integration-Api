@@ -123,7 +123,7 @@ const PortfolioHomeItems = ({
               animate ? "fade-in" : ""
             }`}
           >
-            {filteredPortfolio.map((portfolio) => (
+            {filteredPortfolio.slice(0, 4).map((portfolio) => (
               <Link
                 key={portfolio.id + "-" + portfolio.slug}
                 href={`/portfolio/${portfolio?.slug}`}

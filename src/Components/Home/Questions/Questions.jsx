@@ -22,7 +22,7 @@ const Questions = ({ className, title }) => {
 
     fetchQuestions();
   }, []);
-  console.log(questions.FaqDataArray);
+  // console.log(questions.FaqDataArray);
 
   return (
     <div className="max-w-[1520px] mx-auto px-[0%] md:px-[4%] lg:px-[8%] 4xl:px-[4%]  md:mt-5">

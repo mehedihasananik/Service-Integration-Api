@@ -44,6 +44,7 @@ const Portfolio = async () => {
   const portfolios = await portfolioServices();
   const portfoliosCategories = await portfoliosCategoriesApi();
   const services = await servicesApi();
+  // console.log(portfolios);
 
   return (
     <div className="max-w-[1520px] mx-auto px-[6%] md:px-[4%] lg:px-[1%] 4xl:px-[2%]">

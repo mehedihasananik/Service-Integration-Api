@@ -18,7 +18,7 @@ const Testimonial = async () => {
 
   return (
     <div>
-      <TestimonialHomeItems testimonials={testimonials} />
+      <TestimonialHomeItems testimonials={testimonials.items} />
     </div>
   );
 };

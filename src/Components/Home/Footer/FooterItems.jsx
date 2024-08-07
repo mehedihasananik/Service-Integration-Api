@@ -18,7 +18,7 @@ const FooterItems = ({ footer, userContact }) => {
               className="w-[159px] h-[49px]"
               width={200}
               height={100}
-              src={footer?.logo.logo}
+              src={footer?.logo?.logo}
               alt=""
             />
           </div>
@@ -34,21 +34,21 @@ const FooterItems = ({ footer, userContact }) => {
         <div className="w-full  lg:w-[70%] grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 lg:gap-0">
           {/* footer links */}
           {/* 1st col */}
-          {footer.menu.map((item) => {
+          {footer?.menu?.map((item) => {
             return (
-              <div key={item.id}>
+              <div key={item?.id}>
                 <h3 className="text-[18px] font-Raleway text-[#444444] font-bold">
-                  {item.menu_name}
+                  {item?.menu_name}
                 </h3>
                 <ul className="flex flex-col gap-2 pt-5 text-[16px] text-[#444444]  ">
-                  {item.sub_menu.map((sub, index) => {
+                  {item?.sub_menu?.map((sub, index) => {
                     return (
                       <Link
                         key={index}
-                        href={sub.menu_sub_link}
+                        href={sub?.menu_sub_link}
                         className="cursor-pointer hover:text-[#FF693B] transition-all duration-200"
                       >
-                        {sub.menu_sub_name}
+                        {sub?.menu_sub_name}
                       </Link>
                     );
                   })}
@@ -69,10 +69,10 @@ const FooterItems = ({ footer, userContact }) => {
                   {" "}
                   <a
                     target="_blank"
-                    href={`mailto:${userContact.email}`}
+                    href={`mailto:${userContact?.email}`}
                     className="text-[#475569] text-[14px] xxl:text-[16px] pt-1"
                   >
-                    {userContact.email}
+                    {userContact?.email}
                   </a>
                 </span>
               </li>
@@ -93,12 +93,12 @@ const FooterItems = ({ footer, userContact }) => {
                 </span>
               </li>
               <div className="flex gap-4 pt-4">
-                {footer.social.map((item) => {
+                {footer?.social?.map((item) => {
                   return (
-                    <Link key={item.id} href={item.link} target="_blank">
+                    <Link key={item?.id} href={item?.link} target="_blank">
                       <Image
                         className="transform hover:scale-125 transition-all duration-300"
-                        src={item.social_icon}
+                        src={item?.social_icon}
                         alt="Instagram Logo"
                         width={30}
                         height={30}

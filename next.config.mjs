@@ -19,6 +19,7 @@ const nextConfig = {
       "lh3.googleusercontent.com",
       "envobyte.com",
       "i.ibb.co",
+      "admin.envobyte.shop",
     ],
   },
 };

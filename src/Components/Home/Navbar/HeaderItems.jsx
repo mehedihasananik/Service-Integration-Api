@@ -33,14 +33,14 @@ const HeaderItems = ({ headers }) => {
                 return (
                   <Link
                     className={
-                      pathname === item.menu_link
+                      pathname === item?.menu_link
                         ? "text-[16px] text-[#FF0000] font-normal"
                         : "text-[16px] text-[#0F172A] cursor-pointer font-normal hover:text-[#FF693B] transition-colors duration-300"
                     }
-                    href={item.menu_link}
+                    href={item?.menu_link}
                     key={index}
                   >
-                    {item.menu_name}
+                    {item?.menu_name}
                   </Link>
                 );
               })}
