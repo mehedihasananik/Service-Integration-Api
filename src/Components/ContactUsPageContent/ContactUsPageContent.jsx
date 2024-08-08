@@ -118,21 +118,26 @@ const ContactUsPageContent = ({ userContact }) => {
       className="bg-gradient-to-br from-[##FF693B] via-[##FF693B] to-[##FF693B] min-h-screen pt-0"
     >
       <Container>
-        <motion.div variants={stagger} className="text-center mb-20">
-          <motion.img
-            variants={fadeInUp}
-            whileHover={{ scale: 1.1, rotate: 360 }}
-            transition={{ duration: 0.5 }}
-            src="/assets/projectLogo.svg"
-            alt="Project Logo"
-            className="w-24 mx-auto mb-8"
-          />
-          <motion.h2
-            variants={fadeInUp}
-            className="text-5xl md:text-6xl lg:text-7xl font-bold text-[#2C3E50] mb-6"
-          >
-            Let&apos;s Craft Your <span className="text-[#FF693B]">Vision</span>
-          </motion.h2>
+        <motion.div variants={stagger} className="text-center mb-20 mt-10">
+          <div className="flex justify-center items-center">
+            <div className="relative top-5">
+              <motion.img
+                variants={fadeInUp}
+                whileHover={{ scale: 1.1, rotate: 360 }}
+                transition={{ duration: 0.5 }}
+                src="/assets/projectLogo.svg"
+                alt="Project Logo"
+                className="w-24  mb-8"
+              />
+            </div>
+            <motion.h2
+              variants={fadeInUp}
+              className="text-5xl md:text-6xl lg:text-7xl font-bold text-[#2C3E50] mb-0"
+            >
+              Let&apos;s Craft Your{" "}
+              <span className="text-[#FF693B]">Vision</span>
+            </motion.h2>
+          </div>
           <motion.p
             variants={fadeInUp}
             className="text-xl text-[#34495E] max-w-3xl mx-auto"
@@ -235,17 +240,22 @@ const ContactUsPageContent = ({ userContact }) => {
                 className="mt-8 space-y-2"
               >
                 <label
-                  className="text-[#34495E] font-medium"
+                  className="text-[#34495E] font-medium "
                   htmlFor="user_phone"
                 >
                   Phone (WhatsApp)
                 </label>
                 <PhoneInput
+                  style={{
+                    border: "none",
+                    padding: "0",
+                    marginTop: "10px !important",
+                  }}
                   name="user_phone"
                   defaultCountry="usa"
                   value={phone}
                   onChange={handlePhoneOnChange}
-                  className="w-full p-4 border border-[#BDC3C7] rounded-lg focus:ring-2 focus:ring-[#3498DB] focus:border-transparent transition"
+                  className="w-full p-4  border border-[#BDC3C7] rounded-lg focus:ring-2 focus:ring-[#3498DB] focus:border-transparent transition"
                 />
               </motion.div>
               <motion.div
@@ -278,7 +288,7 @@ const ContactUsPageContent = ({ userContact }) => {
                   boxShadow: "0px 0px 8px rgb(63,105,219)",
                 }}
                 whileTap={{ scale: 0.95 }}
-                className="mt-10 w-full bg-[#FF693B] text-white font-bold py-5 px-8 rounded-lg hover:bg-[#3d5bab] transition-all duration-300"
+                className="mt-10 w-[35%] bg-[#FF693B] text-white font-bold py-5 px-8 rounded-lg hover:bg-[#3d5bab] transition-all duration-300"
                 type="submit"
               >
                 Send Project Details
