@@ -8,6 +8,7 @@ import NavigationButtons from "../NavigationButtons/NavigationButtons";
 
 import ServiceCard from "../ServiceCard/ServiceCard";
 import ViewAllButton from "../ViewAllButton/ViewAllButton";
+import GlobalButtonColored from "../GlobalButton/GlobalButtonColored";
 
 const ServicesHomeItems = ({ services, details }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -50,7 +51,13 @@ const ServicesHomeItems = ({ services, details }) => {
                 onPrev={handlePrevSlide}
                 onNext={handleNextSlide}
               />
-              <ViewAllButton />
+              <div className="mt-10">
+                <GlobalButtonColored
+                  path={"/services"}
+                  title={"View All"}
+                  className="btn btn-primary px-12"
+                />
+              </div>
             </div>
             <div className="w-full lg:w-[65%]">
               <Swiper

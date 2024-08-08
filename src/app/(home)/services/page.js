@@ -2,12 +2,13 @@ import ServicesPageContent from "@/Components/PagesComponents/ServicesPageConten
 import JsonLd from "@/Components/Utilites/JsonLd/JsonLd";
 import UserLoading from "@/Components/Utilites/UserLoading/UserLoading";
 import { allsServiceItemsApi, serviceListApi } from "@/config/apis";
+import { apiEndpoint } from "@/config/config";
 import React, { Suspense } from "react";
 
 async function getMetadata() {
-  const service = await fetch(
-    `http://192.168.10.16:8000/api/sevice_items`
-  ).then((res) => res.json());
+  const service = await fetch(`${apiEndpoint}/sevice_items`).then((res) =>
+    res.json()
+  );
 
   return service;
 }

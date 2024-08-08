@@ -1,12 +1,10 @@
 import PortfolioHomeItems from "@/Components/Utilites/PortfolioHomeItems/PortfolioHomeItems";
+import { apiEndpoint } from "@/config/config";
 
 async function portfolioServices() {
-  const res = await fetch(
-    `http://192.168.10.16:8000/api/sevice_portfolio_update`,
-    {
-      next: { revalidate: 10 },
-    }
-  );
+  const res = await fetch(`${apiEndpoint}/sevice_portfolio_update`, {
+    next: { revalidate: 10 },
+  });
 
   if (!res.ok) {
     throw new Error("Failed to fetch data");
@@ -15,7 +13,7 @@ async function portfolioServices() {
 }
 
 async function portfoliosCategoriesApi() {
-  const res = await fetch(`http://192.168.10.16:8000/api/category`, {
+  const res = await fetch(`${apiEndpoint}/category`, {
     next: { revalidate: 10 },
   });
 
@@ -26,12 +24,9 @@ async function portfoliosCategoriesApi() {
 }
 
 async function servicesApi() {
-  const res = await fetch(
-    `http://192.168.10.16:8000/api/search_sevice_category/all`,
-    {
-      next: { revalidate: 10 },
-    }
-  );
+  const res = await fetch(`${apiEndpoint}/search_sevice_category/all`, {
+    next: { revalidate: 10 },
+  });
 
   if (!res.ok) {
     throw new Error("Failed to fetch data");

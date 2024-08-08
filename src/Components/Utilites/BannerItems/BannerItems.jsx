@@ -3,7 +3,8 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import GlobalButton from "../GlobalButton/GlobalButton";
+import GlobalButtonColored from "../GlobalButton/GlobalButtonColored";
+import GlobalButtonHovered from "../GlobalButton/GlobalButtonHovered";
 
 const BannerItems = ({ banner }) => {
   // console.log(banner);
@@ -19,10 +20,16 @@ const BannerItems = ({ banner }) => {
           {banner[0].details}
         </p>
         <div className="flex gap-6 py-6 justify-center lg:justify-start">
-          <GlobalButton path={"#projectDetails"} title={"Get a Quote"} />
-          <Link href="/services" className="btn btn-secondary">
-            Our Services
-          </Link>
+          <GlobalButtonColored
+            path={"#"}
+            title={"Book an Appointment"}
+            className="btn btn-primary"
+          />
+          <GlobalButtonHovered
+            path={"#projectDetails"}
+            title={" Get a Quote"}
+            className="btn btn-secondary"
+          />
         </div>
       </div>
       <div>

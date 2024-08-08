@@ -1,10 +1,11 @@
 import Login from "@/Components/PagesComponents/Login/Login";
 import ClientSideLoginWrapper from "@/Components/Utilites/WithAuthRedirect/ClientSideLoginWrapper";
+import { apiEndpoint } from "@/config/config";
 
 async function getMetadata() {
-  const service = await fetch(
-    `http://192.168.10.16:8000/api/login_page_seo`
-  ).then((res) => res.json());
+  const service = await fetch(`${apiEndpoint}/login_page_seo`).then((res) =>
+    res.json()
+  );
 
   return service;
 }

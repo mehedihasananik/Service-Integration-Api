@@ -1,12 +1,13 @@
 import Container from "@/Components/Container/Container";
 import Global_PageHtml from "@/Components/Utilites/Global_PageHtml/Global_PageHtml";
 import JsonLd from "@/Components/Utilites/JsonLd/JsonLd";
+import { apiEndpoint } from "@/config/config";
 import React from "react";
 
 async function getMetadata() {
-  const service = await fetch(
-    `http://192.168.10.16:8000/api/refund_policy`
-  ).then((res) => res.json());
+  const service = await fetch(`${apiEndpoint}/refund_policy`).then((res) =>
+    res.json()
+  );
 
   return service;
 }
@@ -71,7 +72,7 @@ export async function generateMetadata() {
 }
 
 async function refundContent() {
-  const res = await fetch(`http://192.168.10.16:8000/api/refund_policy`, {
+  const res = await fetch(`${apiEndpoint}/refund_policy`, {
     next: { revalidate: 10 },
   });
 

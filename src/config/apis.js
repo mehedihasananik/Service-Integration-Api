@@ -3,28 +3,27 @@ import { apiEndpoint } from "./config";
 const headerApi = `${apiEndpoint}/header`;
 const bannerApi = `${apiEndpoint}/home_banner`;
 const brandsApi = `${apiEndpoint}/home_brand`;
-const servicesApi = `http://192.168.10.16:8000/api/sevice_items`;
+const servicesApi = `${apiEndpoint}/sevice_items`;
 const about_us_homeApi = `${apiEndpoint}/about_us_home`;
-const sevice_portfolioApi =
-  "http://192.168.10.16:8000/api/sevice_portfolio_update";
+const sevice_portfolioApi = `${apiEndpoint}/sevice_portfolio_update`;
 const whyChoose_us = `${apiEndpoint}/home_choose_us`;
 
 const serviceApi = `${apiEndpoint}/service`;
 const testimonials_itemsApi = `${apiEndpoint}/testimonials_items`;
-const faqApi = `http://192.168.10.16:8000/api/faq`;
-const user_feedbackApi = `http://192.168.10.16:8000/api/user_feedback`;
+const faqApi = `${apiEndpoint}/faq`;
+const user_feedbackApi = `${apiEndpoint}/user_feedback`;
 const user_contactApi = `${apiEndpoint}/contact`;
 const footer = `${apiEndpoint}/footer`;
 
 // services page
-const serviceListApi = `http://192.168.10.16:8000/api/category`;
-const allsServiceItemsApi = `http://192.168.10.16:8000/api/sevice_items`;
+const serviceListApi = `${apiEndpoint}/category`;
+const allsServiceItemsApi = `${apiEndpoint}/sevice_items`;
 
 // single service page
 
-const singeServiceDetails = `http://192.168.10.16:8000/api/sevice_items_details`;
-const singleSliderPageDetails = `http://192.168.10.16:8000/api/service_items_slider`;
-const singleService_package = `http://192.168.10.16:8000/api/service_package`;
+const singeServiceDetails = `${apiEndpoint}/sevice_items_details`;
+const singleSliderPageDetails = `${apiEndpoint}/service_items_slider`;
+const singleService_package = `${apiEndpoint}/service_package`;
 
 // portfolio page
 const searchServiceApi = `${apiEndpoint}/search_sevice_category`;
@@ -34,8 +33,8 @@ const search_sevice_categoryAll = `${apiEndpoint}/search_sevice_category/all`;
 const singlePortfolio = `${apiEndpoint}/portfolio_details`;
 
 // about page
-const aboutUsApi = `http://192.168.10.16:8000/api/aboutus_page`;
-const aboutUsItemApi = `http://192.168.10.16:8000/api/aboutus_page_item`;
+const aboutUsApi = `${apiEndpoint}/aboutus_page`;
+const aboutUsItemApi = `${apiEndpoint}/aboutus_page_item`;
 
 // register page page
 const signupApi = `${apiEndpoint}/sign_up`;

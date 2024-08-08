@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import CountUp from "react-countup";
 import ScrollTrigger from "react-scroll-trigger";
 import Link from "next/link";
+import GlobalButtonColored from "../GlobalButton/GlobalButtonColored";
 
 const AboutUsItems = ({ about }) => {
   // counter states and about details
@@ -180,12 +181,11 @@ const AboutUsItems = ({ about }) => {
 
       {/* Learn More Button */}
       <div className="py-8 pt-10 md:pt-16 text-center lg:text-left">
-        <Link
-          href={"/about-us"}
-          className=" text-[16px] bg-[#FF693B]  px-12 py-2.5  md:px-10 md:py-4 text-white rounded-lg border border-[#FF693B]  hover:bg-white hover:text-[#FF693B] transition-all duration-300"
-        >
-          Learn more
-        </Link>
+        <GlobalButtonColored
+          path={"/about-us"}
+          title={"Learn More"}
+          className="btn btn-primary px-12"
+        />
       </div>
     </div>
   );

@@ -1,13 +1,14 @@
 import PortfolioDetails from "@/Components/PagesComponents/PortfolioDetails/PortfolioDetails";
 import JsonLd from "@/Components/Utilites/JsonLd/JsonLd";
+import { apiEndpoint } from "@/config/config";
 
 export async function generateMetadata({ params, searchParams }, parent) {
   const id = params.id;
 
   // Fetch data for generating metadata
-  const service = await fetch(
-    `http://192.168.10.16:8000/api/portfolio_details/${id}`
-  ).then((res) => res.json());
+  const service = await fetch(`${apiEndpoint}/portfolio_details/${id}`).then(
+    (res) => res.json()
+  );
 
   // Optionally access and extend (rather than replace) metadata
   const previousImages = (await parent).openGraph?.images || [];
@@ -81,7 +82,7 @@ export async function generateMetadata({ params, searchParams }, parent) {
 
 const SinglePage = async ({ params }) => {
   const singlePortfolioItem = await fetch(
-    `http://192.168.10.16:8000/api/portfolio_details/${params?.id}`
+    `${apiEndpoint}/portfolio_details/${params?.id}`
   ).then((res) => res?.json());
 
   return (

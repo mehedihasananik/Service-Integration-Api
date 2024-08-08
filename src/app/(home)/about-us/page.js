@@ -2,12 +2,13 @@ import AboutUsContent from "@/Components/PagesComponents/AboutUsContent/AboutUsC
 import JsonLd from "@/Components/Utilites/JsonLd/JsonLd";
 
 import { aboutUsApi, aboutUsItemApi } from "@/config/apis";
+import { apiEndpoint } from "@/config/config";
 import React from "react";
 
 async function getMetadata() {
-  const service = await fetch(
-    `http://192.168.10.16:8000/api/aboutus_page`
-  ).then((res) => res.json());
+  const service = await fetch(`${apiEndpoint}/aboutus_page`).then((res) =>
+    res.json()
+  );
 
   return service;
 }

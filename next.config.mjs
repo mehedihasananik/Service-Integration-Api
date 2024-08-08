@@ -20,6 +20,7 @@ const nextConfig = {
       "envobyte.com",
       "i.ibb.co",
       "admin.envobyte.shop",
+      "v2admin.envobyte.shop",
     ],
   },
 };

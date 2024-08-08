@@ -1,10 +1,11 @@
 import SignUpContent from "@/Components/PagesComponents/SignUpContent/SignUpContent";
+import { apiEndpoint } from "@/config/config";
 import React from "react";
 
 async function getMetadata() {
-  const service = await fetch(
-    `http://192.168.10.16:8000/api/signup_page_seo`
-  ).then((res) => res.json());
+  const service = await fetch(`${apiEndpoint}/signup_page_seo`).then((res) =>
+    res.json()
+  );
 
   return service;
 }

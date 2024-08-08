@@ -1,11 +1,12 @@
 import HomePage from "@/Components/Home/HomePage";
 import JsonLd from "@/Components/Utilites/JsonLd/JsonLd";
 import { servicesApi } from "@/config/apis";
+import { apiEndpoint } from "@/config/config";
 
 async function getMetadata() {
-  const service = await fetch(
-    ` http://192.168.10.16:8000/api/home_banner`
-  ).then((res) => res.json());
+  const service = await fetch(`${apiEndpoint}/home_banner`).then((res) =>
+    res.json()
+  );
 
   return service;
 }
@@ -70,7 +71,7 @@ export async function generateMetadata() {
 }
 
 async function getServiceItems() {
-  const res = await fetch(` http://192.168.10.16:8000/api/home_banner`, {
+  const res = await fetch(`${apiEndpoint}/home_banner`, {
     next: { revalidate: 10 },
   });
 
