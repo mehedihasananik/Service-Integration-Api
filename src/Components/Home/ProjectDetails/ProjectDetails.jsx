@@ -1,26 +1,25 @@
 "use client";
+import React, { useState } from "react";
 import Container from "@/Components/Container/Container";
 import axios from "axios";
-import React, { useState } from "react";
 import toast from "react-hot-toast";
 import * as Yup from "yup";
 import ReCAPTCHA from "react-google-recaptcha";
-import { user_feedbackApi } from "@/config/apis";
-
 import { PhoneInput } from "react-international-phone";
 import "react-international-phone/style.css";
+import { Checkbox, Label } from "flowbite-react";
+import Link from "next/link";
 
 const ProjectDetails = ({ userContact }) => {
   const [phone, setPhone] = useState("");
-
   const [formData, setFormData] = useState({
     first_name: "",
-    last_name: "",
     user_email: "",
     user_phone: "",
     message: "",
+    website: "",
+    service_categories: [],
   });
-
   const [captchaVerified, setCaptchaVerified] = useState(false);
 
   const validationSchema = Yup.object().shape({
@@ -41,6 +40,8 @@ const ProjectDetails = ({ userContact }) => {
     message: Yup.string()
       .required("Message is required")
       .max(2000, "Message must not exceed 2000 characters"),
+    website: Yup.string().url("Invalid URL"),
+    service_categories: Yup.array().min(1, "Select at least one service"),
   });
 
   const handleSubmit = async (event) => {
@@ -55,13 +56,24 @@ const ProjectDetails = ({ userContact }) => {
 
     try {
       await validationSchema.validate(formData, { abortEarly: false });
-      const response = await axios.post(user_feedbackApi, formData);
+
+      // Convert service_categories array to comma-separated string
+      const submissionData = {
+        ...formData,
+        service_categories: formData.service_categories.join(", "),
+      };
+
+      const response = await axios.post(
+        "http://192.168.10.222:8000/api/user_feedback",
+        submissionData
+      );
 
       if (response.data) {
+        console.log("Form submission result:", response.data);
         toast.success(
           "Project details sent successfully, we will contact you",
           {
-            duration: 10000, // 10 seconds
+            duration: 10000,
           }
         );
         setFormData({
@@ -69,6 +81,8 @@ const ProjectDetails = ({ userContact }) => {
           user_email: "",
           user_phone: "",
           message: "",
+          website: "",
+          service_categories: [],
         });
         setPhone("");
       }
@@ -85,21 +99,41 @@ const ProjectDetails = ({ userContact }) => {
   };
 
   const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-      user_phone: phone,
-    }));
+    const { name, value, type, checked } = event.target;
+    if (type === "checkbox") {
+      setFormData((prevData) => ({
+        ...prevData,
+        service_categories: checked
+          ? [...prevData.service_categories, value]
+          : prevData.service_categories.filter((item) => item !== value),
+      }));
+    } else {
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    }
   };
 
   const handleCaptchaChange = (value) => {
     setCaptchaVerified(!!value);
   };
 
-  const handlePhoneOnChange = (value, data) => {
+  const handlePhoneOnChange = (value) => {
     setPhone(value);
+    setFormData((prevData) => ({
+      ...prevData,
+      user_phone: value,
+    }));
   };
+
+  const services = [
+    "Graphics Design",
+    "Web Development",
+    "App Development",
+    "Digital Marketing",
+    "Video & Animation",
+  ];
 
   return (
     <div className="bg-[#F8FAFC] py-5 pb-8 md:py-10 md:pb-[4%] lg:py-10 lg:pb-[4%]">
@@ -113,22 +147,22 @@ const ProjectDetails = ({ userContact }) => {
             />
           </div>
           <div id="projectDetails">
-            <h2 className="text-[20px] md:text-[32px] lg:text-[48px] font-Raleway font-bold">
-              Let&apos;s discuss <span className="project_title"></span> your
-              project
-            </h2>
+            <div className="text-[20px] md:text-[32px] lg:text-[48px] font-Raleway font-bold">
+              Let&apos;s discuss your{" "}
+              <span className="text-[#FF693B]"> project</span>
+            </div>
           </div>
         </div>
         <div className="text-center py-5">
-          <p className=" text-[16px] text-[#475569]">
+          <p className="text-[16px] text-[#475569]">
             Send details of the project and we will provide a quote for the
             project. Let&apos;s make <br /> something new, different, and more
             meaningful.
           </p>
         </div>
-        <div className="w-[100%] flex flex-col justify-center items-center  lg:flex-row lg:items-start lg:justify-between gap-10 md:pt-14">
+        <div className="w-[100%] flex flex-col justify-center items-center lg:flex-row lg:items-start lg:justify-between gap-10 md:pt-14">
           <div className="w-full md:w-[80%] lg:w-[40%] flex flex-col gap-10 md:pl-10 2xl:pl-0">
-            <div className="flex  items-center gap-6 bg-[#FFFFFF] py-8  rounded-lg pl-5">
+            <div className="flex items-center gap-6 bg-[#FFFFFF] py-8 rounded-lg pl-5">
               <a
                 href={`mailto:${userContact.email}`}
                 target="_blank"
@@ -150,7 +184,6 @@ const ProjectDetails = ({ userContact }) => {
                 </div>
               </a>
             </div>
-
             <div className="flex items-center gap-6 bg-[#FFFFFF] py-8 rounded-lg pl-5 pr-14">
               <a
                 href={`https://wa.me/${userContact.phone_number}`}
@@ -170,17 +203,16 @@ const ProjectDetails = ({ userContact }) => {
               </a>
             </div>
           </div>
-
           <div
             className="w-full md:w-[68%] lg:w-[53%] contact"
             id="project_details_input"
           >
-            <form onSubmit={handleSubmit} action="">
+            <form onSubmit={handleSubmit}>
               <div className="flex flex-col gap-5">
-                <div className="flex  lg:flex-row md:gap-x-10">
+                <div className="flex lg:flex-row md:gap-x-10">
                   <div className="w-full lg:w-[50%]">
                     <div className="flex flex-col gap-3">
-                      <label className="text-[16px]" htmlFor="firstName">
+                      <label className="text-[16px]" htmlFor="first_name">
                         Full Name:
                       </label>
                       <input
@@ -188,7 +220,7 @@ const ProjectDetails = ({ userContact }) => {
                         type="text"
                         id="first_name"
                         name="first_name"
-                        placeholder="Jhon Doe"
+                        placeholder="John Doe"
                         value={formData.first_name}
                         onChange={handleChange}
                         required
@@ -196,16 +228,16 @@ const ProjectDetails = ({ userContact }) => {
                     </div>
                   </div>
                   <div className="w-full lg:w-[50%]">
-                    <div className="flex flex-col gap-3 ">
-                      <label className="text-[16px]" htmlFor="email">
+                    <div className="flex flex-col gap-3">
+                      <label className="text-[16px]" htmlFor="user_email">
                         Email:
                       </label>
                       <input
                         className="w-full py-4 border border-[#CBD5E1] px-4 rounded-md shadow-sm focus:border-blue-500"
-                        type="text"
+                        type="email"
                         id="user_email"
                         name="user_email"
-                        placeholder="jhondoe@email.com"
+                        placeholder="johndoe@email.com"
                         value={formData.user_email}
                         onChange={handleChange}
                         required
@@ -213,47 +245,99 @@ const ProjectDetails = ({ userContact }) => {
                     </div>
                   </div>
                 </div>
-                <div className="flex flex-col gap-5  lg:flex-row md:gap-0">
-                  <div className="w-full lg:w-[100%] sm:w-[100%]">
-                    <div className="flex flex-col gap-3 lg:w-[100%] sm:w-[100%]">
-                      <label
-                        className="text-[16px] mt-3 lg:mt-0"
-                        htmlFor="user_phone"
-                      >
-                        Phone (Whatsapp):
+                <div className="flex flex-col gap-5 lg:flex-row md:gap-x-10">
+                  <div className="flex flex-col gap-3 lg:w-[50%] sm:w-[100%]">
+                    <label
+                      className="text-[16px] mt-3 lg:mt-0"
+                      htmlFor="user_phone"
+                    >
+                      Phone/WhatsApp:
+                    </label>
+                    <PhoneInput
+                      name="user_phone"
+                      defaultCountry="usa"
+                      value={phone}
+                      onChange={handlePhoneOnChange}
+                      searchPlaceholder="Search country"
+                      placeholder="Enter phone number"
+                    />
+                  </div>
+                  <div className="w-full lg:w-[50%]">
+                    <div className="flex flex-col gap-3">
+                      <label className="text-[16px]" htmlFor="website">
+                        Do you have a website?
                       </label>
-
-                      <PhoneInput
-                        name="user_phone"
-                        defaultCountry="usa"
-                        value={phone}
-                        onChange={handlePhoneOnChange}
-                        searchPlaceholder="Search country"
-                        placeholder="Enter phone number"
+                      <input
+                        className="w-full py-4 border border-[#CBD5E1] px-4 rounded-md shadow-sm"
+                        type="text"
+                        id="website"
+                        name="website"
+                        placeholder="envobyte.com"
+                        value={formData.website}
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
                 </div>
-                <div className="">
-                  <div className="w-[100%]">
-                    <div className="flex flex-col gap-3">
-                      <label className="text-[16px]" htmlFor="firstName">
-                        Project details
-                      </label>
-                      <textarea
-                        color="gray"
-                        className="w-full lg:w-[100%] py-4 border border-[#CBD5E1] px-4 shadow-sm"
-                        type="text"
-                        id="message"
-                        name="message"
-                        placeholder="Write your project details..."
-                        rows={4}
-                        value={formData.message}
-                        onChange={handleChange}
-                        required
-                      />
-                    </div>
+                <div>
+                  <h4 className="mb-3">
+                    Service categories you&apos;re interested In:
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+                    {services.map((service, index) => (
+                      <div key={index} className="flex items-center gap-2">
+                        <Checkbox
+                          id={`service-${index}`}
+                          name="service_categories"
+                          value={service}
+                          onChange={handleChange}
+                          checked={formData.service_categories.includes(
+                            service
+                          )}
+                        />
+                        <Label
+                          htmlFor={`service-${index}`}
+                          className="flex font-normal"
+                        >
+                          {service}
+                        </Label>
+                      </div>
+                    ))}
                   </div>
+                </div>
+                <div className="w-[100%]">
+                  <div className="flex flex-col gap-3">
+                    <label className="text-[16px]" htmlFor="message">
+                      Project details
+                    </label>
+                    <textarea
+                      className="w-full lg:w-[100%] py-4 border border-[#CBD5E1] px-4 shadow-sm"
+                      id="message"
+                      name="message"
+                      placeholder="Write your project details..."
+                      rows={4}
+                      value={formData.message}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Checkbox id="accept" defaultChecked />
+                  <label
+                    htmlFor="accept"
+                    className="text-sm text-gray-700 leading-tight"
+                  >
+                    By checking this box, you agree that you have read,
+                    acknowledge and accept our{" "}
+                    <Link
+                      href="/terms-and-conditions"
+                      className="text-[#FF693B] hover:text-[#FF8D6B] underline font-semibold transition-colors duration-300"
+                    >
+                      Terms and conditions
+                    </Link>
+                    .
+                  </label>
                 </div>
                 <div>
                   <ReCAPTCHA

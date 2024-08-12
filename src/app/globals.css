@@ -25,7 +25,7 @@
 }
 @layer components {
   .btn {
-    @apply text-[16px] whitespace-nowrap px-6 py-2 md:px-10 md:py-4 font-[600] rounded-lg transition-all duration-300;
+    @apply text-[16px] whitespace-nowrap px-4  py-2 md:px-10 md:py-4 font-[600] rounded-lg transition-all duration-300;
   }
 
   .btn-primary {
@@ -245,6 +245,22 @@
       background-image: none;
     }
   }
+}
+@keyframes ripple {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 0.5;
+  }
+  100% {
+    width: 500px;
+    height: 500px;
+    opacity: 0;
+  }
+}
+
+.animate-ripple {
+  animation: ripple 3s linear infinite;
 }
 
 .image-gallery-left-nav .image-gallery-svg,
@@ -654,6 +670,10 @@ textarea:focus {
 /* ----------- */
 .ql-container.ql-snow {
   border: none !important;
+}
+[type="checkbox"],
+[type="radio"] {
+  color: #ff693b !important;
 }
 
 /* 

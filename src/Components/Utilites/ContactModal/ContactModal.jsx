@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Label, Modal } from "flowbite-react";
+import { Checkbox, Label, Modal } from "flowbite-react";
 import { FiArrowRight } from "react-icons/fi";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
@@ -127,6 +127,14 @@ const ContactModal = ({ openModal, setOpenModal }) => {
     setCaptchaVerified(!!value);
   };
 
+  const services = [
+    "Graphics Design",
+    "Web Development",
+    "App Development",
+    "Digital Marketing",
+    "Video & Animation",
+  ];
+
   return (
     <div className="overflow-hidden">
       <Modal
@@ -238,22 +246,61 @@ const ContactModal = ({ openModal, setOpenModal }) => {
                       />
                     </div>
                   </div>
-                  <div>
-                    <div className="mb-2 block">
-                      <Label
-                        className="text-[16px] font-Raleway text-[#032333] font-[500]"
-                        htmlFor="user_phone"
-                        value="Phone (Whatsapp):"
-                        required
+                  <div className="flex gap-x-3 w-[100%]">
+                    <div>
+                      <div className="w-full lg:w-[50%">
+                        <Label
+                          className="text-[16px] font-Raleway text-[#032333] font-[500]"
+                          htmlFor="user_phone"
+                          value="Phone (Whatsapp):"
+                          required
+                        />
+                      </div>
+                      <PhoneInput
+                        name="user_phone"
+                        defaultCountry="us"
+                        value={phone}
+                        onChange={handlePhoneOnChange}
+                        searchPlaceholder="Search country"
                       />
                     </div>
-                    <PhoneInput
-                      name="user_phone"
-                      defaultCountry="us"
-                      value={phone}
-                      onChange={handlePhoneOnChange}
-                      searchPlaceholder="Search country"
-                    />
+                    <div className="w-full lg:w-[50%]">
+                      <div className="flex flex-col ">
+                        <label className="text-[16px]" htmlFor="website">
+                          Do you have a website?
+                        </label>
+                        <input
+                          className="w-full py-4 border border-[#CBD5E1] px-4 rounded-md shadow-sm"
+                          type="text"
+                          id="website"
+                          name="website"
+                          placeholder="envobyte.com"
+                          value={formData.website}
+                          onChange={handleChange}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <h4 className="mb-3">
+                      Service categories you&apos;re interested In:
+                    </h4>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+                      {services.map((service, index) => (
+                        <div key={index} className="flex items-center gap-2">
+                          <Checkbox
+                            id={`service-${index}`}
+                            name="service_categories"
+                          />
+                          <Label
+                            htmlFor={`service-${index}`}
+                            className="flex font-normal"
+                          >
+                            {service}
+                          </Label>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                   <div>
                     <div className="mb-2 block">

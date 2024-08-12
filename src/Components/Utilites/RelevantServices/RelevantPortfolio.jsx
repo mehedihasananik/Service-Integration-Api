@@ -90,7 +90,7 @@ const RelevantPortfolio = ({ singlePortfolioItem }) => {
                                 {service.title}
                               </h3>
                               <p className="text-[14px] text-[#475569]  group-hover:text-white transition-all duration-200">
-                                {service.details.slice(0, 195)}...
+                                {service.service_summery.slice(0, 195)}...
                               </p>
                             </div>
                             <div className="flex  group-hover:rounded-b-md items-center justify-between px-3 h-[50px] pt-10 pb-12 group-hover:bg-[#FF693B] transition-all duration-200">

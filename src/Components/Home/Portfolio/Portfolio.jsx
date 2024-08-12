@@ -1,3 +1,4 @@
+import Container from "@/Components/Container/Container";
 import PortfolioHomeItems from "@/Components/Utilites/PortfolioHomeItems/PortfolioHomeItems";
 import { apiEndpoint } from "@/config/config";
 
@@ -42,14 +43,14 @@ const Portfolio = async () => {
   // console.log(portfolios);
 
   return (
-    <div className="max-w-[1520px] mx-auto px-[6%] md:px-[4%] lg:px-[1%] 4xl:px-[2%]">
+    <Container>
       <PortfolioHomeItems
         portfolios={portfolios.ServiceportfolioArray}
         portfoliosCategories={portfoliosCategories}
         services={services}
         serviceDetails={portfolios.page_content}
       />
-    </div>
+    </Container>
   );
 };
 

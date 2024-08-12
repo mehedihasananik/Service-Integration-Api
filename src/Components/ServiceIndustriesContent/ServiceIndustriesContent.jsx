@@ -119,17 +119,17 @@ const industries = [
 ];
 const ServiceIndustriesContent = () => {
   return (
-    <div className="bg-gradient-to-b from-gray-900 to-gray-800 text-white pt-10 pb-20 px-8 mt-5 rounded-md shadow-2xl overflow-hidden relative">
+    <div className=" text-dark pt-6 pb-20 px-0 mt-0 rounded-md  overflow-hidden relative text-center">
       <motion.h1
-        className="text-6xl font-serif font-bold text-center mb-8 text-white tracking-wide"
+        className="text-[30px] md:text-[30px] lg:text-[48px] font-Raleway font-bold tracking-wide"
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        Service Industries
+        Service <span className="text-[#FF693B]">Industries</span>
       </motion.h1>
       <motion.p
-        className="text-center mb-16 max-w-4xl mx-auto text-xl leading-relaxed text-gray-300"
+        className="text-center mb-16 max-w-4xl mx-auto text-xl leading-relaxed text-[#000]"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.4, duration: 0.8 }}

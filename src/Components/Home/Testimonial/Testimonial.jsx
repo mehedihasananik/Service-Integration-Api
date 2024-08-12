@@ -17,7 +17,7 @@ const Testimonial = async () => {
   const testimonials = await getTestimonialContent();
 
   return (
-    <div>
+    <div className="pt-6">
       <TestimonialHomeItems testimonials={testimonials.items} />
     </div>
   );

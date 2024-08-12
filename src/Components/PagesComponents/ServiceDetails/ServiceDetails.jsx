@@ -19,7 +19,7 @@ const ServiceDetails = ({ service, sliders, packages }) => {
   const height = packages[2].package_details.length;
 
   const serviceName = service?.service_details[0]?.sevice_items_name;
-  console.log(packages);
+  // console.log(packages);
 
   return (
     <>
