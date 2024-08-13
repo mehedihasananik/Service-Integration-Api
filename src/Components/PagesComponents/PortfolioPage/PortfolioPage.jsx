@@ -23,7 +23,7 @@ const PortfolioPage = ({
   const [displayedPortfolio, setDisplayedPortfolio] = useState([]);
   const [animate, setAnimate] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 3;
+  const itemsPerPage = 16;
 
   useEffect(() => {
     setLoading(false);

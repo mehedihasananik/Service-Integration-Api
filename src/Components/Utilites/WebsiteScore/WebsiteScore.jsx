@@ -1,10 +1,12 @@
 "use client";
 import React, { useState } from "react";
 import { Modal } from "flowbite-react";
-import { Rocket, X } from "lucide-react";
+import { Rocket, X, CheckCircle } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const WebsiteScore = () => {
   const [openModal, setOpenModal] = useState(false);
+  const [openFeedbackModal, setOpenFeedbackModal] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -12,12 +14,21 @@ const WebsiteScore = () => {
     website: "",
   });
   const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   function onCloseModal() {
     setOpenModal(false);
+    resetForm();
+  }
+
+  function onCloseFeedbackModal() {
+    setOpenFeedbackModal(false);
+  }
+
+  const resetForm = () => {
     setFormData({ name: "", email: "", phone: "", website: "" });
     setErrors({});
-  }
+  };
 
   const handleInputChange = (event) => {
     const { id, value } = event.target;
@@ -37,10 +48,35 @@ const WebsiteScore = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (validateForm()) {
-      console.log(formData);
-      // Here you would typically send the data to your server
+      setIsSubmitting(true);
+      try {
+        const response = await fetch(
+          "http://192.168.10.222:8000/api/web-score",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+
+        const data = await response.json();
+        console.log(data);
+        setOpenModal(false);
+        resetForm();
+        setOpenFeedbackModal(true);
+      } catch (error) {
+        console.error("Error:", error);
+      } finally {
+        setIsSubmitting(false);
+      }
     }
   };
 
@@ -49,7 +85,6 @@ const WebsiteScore = () => {
 
   return (
     <>
-      {/* Keep the existing button code */}
       <div className="flex justify-center items-center px-4 pb-3">
         <button
           className="relative overflow-hidden group bg-gradient-to-r from-[#FF693B] via-[#FF8C39] to-[#FF693B] text-white text-lg font-bold py-6 px-10 rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 ease-out transform hover:-translate-y-1 hover:scale-105"
@@ -67,6 +102,8 @@ const WebsiteScore = () => {
           <span className="absolute top-0 left-0 w-full h-full border-4 border-white rounded-full animate-pulse"></span>
         </button>
       </div>
+
+      {/* Form Modal */}
       <Modal show={openModal} size="2xl" onClose={onCloseModal} popup>
         <Modal.Body className="p-8 bg-gradient-to-br from-white to-gray-100">
           <div className="space-y-8">
@@ -82,7 +119,7 @@ const WebsiteScore = () => {
               </button>
             </div>
             <p className="text-gray-600 italic">
-              Submit your website for a free audit by experts.
+              Submit your website for a free audit by our expert team.
             </p>
             <form className="space-y-6">
               <div className="space-y-2">
@@ -114,7 +151,7 @@ const WebsiteScore = () => {
                   Email
                 </label>
                 <input
-                  type="text"
+                  type="email"
                   id="email"
                   placeholder="name@company.com"
                   value={formData.email}
@@ -135,7 +172,7 @@ const WebsiteScore = () => {
                   Phone
                 </label>
                 <input
-                  type="text"
+                  type="tel"
                   id="phone"
                   placeholder="+1 (555) 123-4567"
                   value={formData.phone}
@@ -156,7 +193,7 @@ const WebsiteScore = () => {
                   Website
                 </label>
                 <input
-                  type="text"
+                  type="url"
                   id="website"
                   placeholder="https://www.example.com"
                   value={formData.website}
@@ -173,11 +210,18 @@ const WebsiteScore = () => {
                 <button
                   type="button"
                   onClick={handleSubmit}
-                  className="w-full bg-gradient-to-r from-[#FF693B] to-[#FF8C39] text-white font-bold py-3 px-6 rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-102 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#FF693B]"
+                  disabled={isSubmitting}
+                  className="w-full bg-gradient-to-r from-[#FF693B] to-[#FF8C39] text-white font-bold py-3 px-6 rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-102 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#FF693B] disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <span className="flex items-center justify-center">
-                    <Rocket className="w-5 h-5 mr-2" />
-                    Get Website Score
+                    {isSubmitting ? (
+                      "Submitting..."
+                    ) : (
+                      <>
+                        <Rocket className="w-5 h-5 mr-2" />
+                        Get Website Score
+                      </>
+                    )}
                   </span>
                 </button>
               </div>
@@ -185,6 +229,66 @@ const WebsiteScore = () => {
           </div>
         </Modal.Body>
       </Modal>
+
+      {/* Animated Feedback Modal */}
+      <AnimatePresence>
+        {openFeedbackModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+          >
+            <motion.div
+              initial={{ scale: 0.5, y: -100 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.5, y: 100 }}
+              transition={{ type: "spring", damping: 15 }}
+              className="bg-white rounded-lg p-8 max-w-md w-full mx-4"
+            >
+              <div className="text-center">
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+                >
+                  <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
+                </motion.div>
+                <motion.h3
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                  className="mb-5 text-2xl font-bold text-gray-800"
+                >
+                  Submitted!
+                </motion.h3>
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                  className="text-gray-600"
+                >
+                  Thanks for submitting your website. We will audit your website
+                  and get back to you soon.
+                </motion.p>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                  className="mt-6"
+                >
+                  <button
+                    onClick={onCloseFeedbackModal}
+                    className="px-4 py-2 bg-[#FF693B] text-white rounded-lg hover:bg-[#FF8C39] transition-colors duration-300"
+                  >
+                    Close
+                  </button>
+                </motion.div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 };

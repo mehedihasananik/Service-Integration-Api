@@ -11,7 +11,7 @@ const whyChoose_us = `${apiEndpoint}/home_choose_us`;
 const serviceApi = `${apiEndpoint}/service`;
 const testimonials_itemsApi = `${apiEndpoint}/testimonials_items`;
 const faqApi = `${apiEndpoint}/faq`;
-const user_feedbackApi = `${apiEndpoint}/user_feedback`;
+const user_feedbackApi = `http://192.168.10.222:8000/api/user_feedback`;
 const user_contactApi = `${apiEndpoint}/contact`;
 const footer = `${apiEndpoint}/footer`;
 

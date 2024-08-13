@@ -212,7 +212,10 @@ const ProjectDetails = ({ userContact }) => {
                 <div className="flex lg:flex-row md:gap-x-10">
                   <div className="w-full lg:w-[50%]">
                     <div className="flex flex-col gap-3">
-                      <label className="text-[16px]" htmlFor="first_name">
+                      <label
+                        className="text-[16px] font-Roboto"
+                        htmlFor="first_name"
+                      >
                         Full Name:
                       </label>
                       <input
@@ -229,7 +232,10 @@ const ProjectDetails = ({ userContact }) => {
                   </div>
                   <div className="w-full lg:w-[50%]">
                     <div className="flex flex-col gap-3">
-                      <label className="text-[16px]" htmlFor="user_email">
+                      <label
+                        className="text-[16px] font-Roboto"
+                        htmlFor="user_email"
+                      >
                         Email:
                       </label>
                       <input
@@ -248,7 +254,7 @@ const ProjectDetails = ({ userContact }) => {
                 <div className="flex flex-col gap-5 lg:flex-row md:gap-x-10">
                   <div className="flex flex-col gap-3 lg:w-[50%] sm:w-[100%]">
                     <label
-                      className="text-[16px] mt-3 lg:mt-0"
+                      className="text-[16px] mt-3 lg:mt-0 font-Roboto"
                       htmlFor="user_phone"
                     >
                       Phone/WhatsApp:
@@ -264,7 +270,10 @@ const ProjectDetails = ({ userContact }) => {
                   </div>
                   <div className="w-full lg:w-[50%]">
                     <div className="flex flex-col gap-3">
-                      <label className="text-[16px]" htmlFor="website">
+                      <label
+                        className="text-[16px] font-Roboto"
+                        htmlFor="website"
+                      >
                         Do you have a website?
                       </label>
                       <input
@@ -280,12 +289,12 @@ const ProjectDetails = ({ userContact }) => {
                   </div>
                 </div>
                 <div>
-                  <h4 className="mb-3">
+                  <h4 className="mb-3 text-[16px] font-Roboto">
                     Service categories you&apos;re interested In:
                   </h4>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                     {services.map((service, index) => (
-                      <div key={index} className="flex items-center gap-2">
+                      <div key={index} className="flex items-center gap-2 ">
                         <Checkbox
                           id={`service-${index}`}
                           name="service_categories"
@@ -297,7 +306,7 @@ const ProjectDetails = ({ userContact }) => {
                         />
                         <Label
                           htmlFor={`service-${index}`}
-                          className="flex font-normal"
+                          className="flex font-normal text-[16px] font-Roboto"
                         >
                           {service}
                         </Label>
@@ -307,8 +316,11 @@ const ProjectDetails = ({ userContact }) => {
                 </div>
                 <div className="w-[100%]">
                   <div className="flex flex-col gap-3">
-                    <label className="text-[16px]" htmlFor="message">
-                      Project details
+                    <label
+                      className="text-[16px] font-Roboto"
+                      htmlFor="message"
+                    >
+                      How may we help you?
                     </label>
                     <textarea
                       className="w-full lg:w-[100%] py-4 border border-[#CBD5E1] px-4 shadow-sm"
@@ -326,7 +338,7 @@ const ProjectDetails = ({ userContact }) => {
                   <Checkbox id="accept" defaultChecked />
                   <label
                     htmlFor="accept"
-                    className="text-sm text-gray-700 leading-tight"
+                    className="text-sm text-gray-700 leading-tight font-Roboto"
                   >
                     By checking this box, you agree that you have read,
                     acknowledge and accept our{" "}

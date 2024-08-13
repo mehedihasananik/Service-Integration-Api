@@ -84,11 +84,11 @@ const PortfolioHomeItems = ({
         </h1>
         <div>Our beautiful work you need to know!</div>
       </div>
-      <div className="flex justify-center pt-5">
+      <div className="flex justify-center pt-6">
         <div className="flex flex-wrap  gap-2">
           <button
             onClick={() => handleCategoryChange(0)}
-            className={`px-4 py-2 rounded-full text-sm ${
+            className={`px-4 py-2 rounded-full text-[16px] ${
               selectedCategoryId === 0
                 ? "bg-[#FF693B] text-white"
                 : "bg-gray-200 text-gray-700"
@@ -101,7 +101,7 @@ const PortfolioHomeItems = ({
             <button
               key={category.category_id}
               onClick={() => handleCategoryChange(category.category_id)}
-              className={`px-4 py-2 rounded-full text-sm  ${
+              className={`px-4 py-2 rounded-full text-[16px]  ${
                 selectedCategoryId === category.category_id
                   ? "bg-[#FF693B] text-white"
                   : "bg-gray-200 text-gray-700"

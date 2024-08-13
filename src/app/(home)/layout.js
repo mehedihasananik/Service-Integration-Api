@@ -7,7 +7,7 @@ import AuthProviders, { ThemeProvider } from "@/providers/AuthProviders";
 import SocialProvider from "@/Components/SocialProvider/SocialProvider";
 import GoogleTagManagerScript from "../GoogleTagManager/GoogleTagManagerScript";
 import GoogleTagManagerNoScript from "../GoogleTagManager/GoogleTagManagerNoScript";
-import Smartlook from "../Smartlook/Smartlook";
+import Analytics from "../Analytics/Analytics";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,7 +26,7 @@ export default function RootLayout({ children }) {
           sizes="any"
         />
         <GoogleTagManagerScript />
-        <Smartlook />
+        <Analytics />
       </head>
       <body className={inter.className}>
         <GoogleTagManagerNoScript />

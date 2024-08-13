@@ -17,10 +17,7 @@ const ServicesPageContent = ({
   const [selectedCategoryId, setSelectedCategoryId] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [serviceItems, setServiceItems] = useState([]);
-  const [displayedItems, setDisplayedItems] = useState([]);
   const [animate, setAnimate] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 4;
 
   useEffect(() => {
     setLoading(false);
@@ -55,23 +52,9 @@ const ServicesPageContent = ({
     setServiceLoading(true);
     const filteredServices = filterServices();
     setServiceItems(filteredServices);
-    setCurrentPage(1);
-    updateDisplayedItems(filteredServices, 1);
     setServiceLoading(false);
     setAnimate(true);
   }, [selectedCategoryId, searchQuery, services]);
-
-  const updateDisplayedItems = (items, page) => {
-    const startIndex = (page - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    setDisplayedItems(items.slice(0, endIndex));
-  };
-
-  const handleLoadMore = () => {
-    const nextPage = currentPage + 1;
-    setCurrentPage(nextPage);
-    updateDisplayedItems(serviceItems, nextPage);
-  };
 
   const handleCategoryChange = (e) => {
     setSelectedCategoryId(e.target.value);
@@ -160,22 +143,11 @@ const ServicesPageContent = ({
                 animate ? "fade-in" : ""
               }`}
             >
-              {displayedItems.map((service, index) => (
+              {serviceItems.map((service, index) => (
                 <Link key={index} href={`/services/${service?.slug}`}>
                   <ServicePageItems {...service} />
                 </Link>
               ))}
-            </div>
-          )}
-
-          {displayedItems.length < serviceItems.length && (
-            <div className="flex justify-center mt-5">
-              <button
-                onClick={handleLoadMore}
-                className="bg-[#FF693B] text-white px-4 py-2 rounded-md hover:bg-[#e55a2f] transition-colors duration-300"
-              >
-                Load More
-              </button>
             </div>
           )}
 

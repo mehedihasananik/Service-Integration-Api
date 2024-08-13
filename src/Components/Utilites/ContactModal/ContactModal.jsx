@@ -9,6 +9,7 @@ import axios from "axios";
 import * as Yup from "yup";
 import ReCAPTCHA from "react-google-recaptcha";
 import { user_feedbackApi } from "@/config/apis";
+import Link from "next/link";
 
 const ContactModal = ({ openModal, setOpenModal }) => {
   const [loading, setLoading] = useState(false);
@@ -23,6 +24,8 @@ const ContactModal = ({ openModal, setOpenModal }) => {
     message: "",
     service_name: "",
     package_name: "",
+    website: "",
+    service_categories: [],
   });
 
   useEffect(() => {
@@ -58,28 +61,37 @@ const ContactModal = ({ openModal, setOpenModal }) => {
     message: Yup.string()
       .required("Message is required")
       .max(2000, "Message must not exceed 2000 characters"),
+    website: Yup.string().url("Invalid URL"),
+    service_categories: Yup.array().min(1, "Select at least one service"),
   });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!captchaVerified) {
-      toast.error(
-        "Please complete the reCAPTCHA verification before submitting."
-      );
-      return;
-    }
+    // if (!captchaVerified) {
+    //   toast.error(
+    //     "Please complete the reCAPTCHA verification before submitting."
+    //   );
+    //   return;
+    // }
 
     try {
       setLoading(true);
       await validationSchema.validate(formData, { abortEarly: false });
-      const response = await axios.post(user_feedbackApi, formData);
+
+      // Convert service_categories array to comma-separated string
+      const submissionData = {
+        ...formData,
+        service_categories: formData.service_categories.join(", "),
+      };
+
+      const response = await axios.post(user_feedbackApi, submissionData);
 
       if (response.data) {
         toast.success(
           "Project details sent successfully, we will contact you",
           {
-            duration: 10000, // 10 seconds
+            duration: 10000,
           }
         );
         setFormData({
@@ -89,6 +101,8 @@ const ContactModal = ({ openModal, setOpenModal }) => {
           message: "",
           service_name: "",
           package_name: "",
+          website: "",
+          service_categories: [],
         });
         setPhone("");
         setOpenModal(false);
@@ -108,14 +122,23 @@ const ContactModal = ({ openModal, setOpenModal }) => {
   };
 
   const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    const { name, value, type, checked } = event.target;
+    if (type === "checkbox") {
+      setFormData((prevData) => ({
+        ...prevData,
+        service_categories: checked
+          ? [...prevData.service_categories, value]
+          : prevData.service_categories.filter((item) => item !== value),
+      }));
+    } else {
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    }
   };
 
-  const handlePhoneOnChange = (value, data) => {
+  const handlePhoneOnChange = (value) => {
     setPhone(value);
     setFormData((prevData) => ({
       ...prevData,
@@ -210,7 +233,7 @@ const ContactModal = ({ openModal, setOpenModal }) => {
                     <div className="w-[50%]">
                       <div className="mb-2 block">
                         <Label
-                          className="text-[16px] font-Raleway text-[#032333] font-[500]"
+                          className="text-[16px] font-Roboto font-normal  "
                           htmlFor="first_name"
                           value="Full Name:"
                         />
@@ -229,7 +252,7 @@ const ContactModal = ({ openModal, setOpenModal }) => {
                     <div className="w-[50%]">
                       <div className="mb-2 block">
                         <Label
-                          className="text-[16px] font-Raleway text-[#032333] font-[500]"
+                          className="text-[16px] font-Roboto font-normal"
                           htmlFor="user_email"
                           value="Email:"
                         />
@@ -250,7 +273,7 @@ const ContactModal = ({ openModal, setOpenModal }) => {
                     <div>
                       <div className="w-full lg:w-[50%">
                         <Label
-                          className="text-[16px] font-Raleway text-[#032333] font-[500]"
+                          className="text-[16px] font-Roboto font-normal"
                           htmlFor="user_phone"
                           value="Phone (Whatsapp):"
                           required
@@ -266,7 +289,10 @@ const ContactModal = ({ openModal, setOpenModal }) => {
                     </div>
                     <div className="w-full lg:w-[50%]">
                       <div className="flex flex-col ">
-                        <label className="text-[16px]" htmlFor="website">
+                        <label
+                          className="text-[16px] font-Roboto font-normal"
+                          htmlFor="website"
+                        >
                           Do you have a website?
                         </label>
                         <input
@@ -282,7 +308,7 @@ const ContactModal = ({ openModal, setOpenModal }) => {
                     </div>
                   </div>
                   <div>
-                    <h4 className="mb-3">
+                    <h4 className="mb-3 text-[16px] font-Roboto font-normal">
                       Service categories you&apos;re interested In:
                     </h4>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
@@ -291,10 +317,15 @@ const ContactModal = ({ openModal, setOpenModal }) => {
                           <Checkbox
                             id={`service-${index}`}
                             name="service_categories"
+                            value={service}
+                            onChange={handleChange}
+                            checked={formData.service_categories.includes(
+                              service
+                            )}
                           />
                           <Label
                             htmlFor={`service-${index}`}
-                            className="flex font-normal"
+                            className="flex font-normal text-[16px] font-Roboto "
                           >
                             {service}
                           </Label>
@@ -305,7 +336,7 @@ const ContactModal = ({ openModal, setOpenModal }) => {
                   <div>
                     <div className="mb-2 block">
                       <Label
-                        className="text-[16px] font-Raleway text-[#032333] font-[500]"
+                        className="text-[16px] font-Roboto font-normal text-[#032333] "
                         htmlFor="message"
                         value="Project details:"
                       />
@@ -322,16 +353,16 @@ const ContactModal = ({ openModal, setOpenModal }) => {
                     />
                   </div>
 
-                  <div>
+                  {/* <div>
                     <ReCAPTCHA
                       sitekey="6LeHdPIpAAAAAJoof-1ewzeYES0jvTrJ9_g09hBQ"
                       onChange={handleCaptchaChange}
                     />
-                  </div>
+                  </div> */}
 
                   <div className="flex justify-end">
                     <button
-                      className="bg-[#FF693B] text-[16px] font-semibold font-Raleway md:mt-0 py-3 hover:bg-[#fff] hover:text-[#FF693B] flex justify-center items-center rounded-md text-white border border-[#FF693B] transition-all duration-300 w-[28%]"
+                      className="bg-[#FF693B] text-[16px] font-semibold font-Raleway md:mt-0 py-3 hover:bg-[#fff] hover:text-[#FF693B] flex justify-center items-center rounded-md text-white border border-[#FF693B] transition-all duration-300 w-[28%] font-Roboto font-normal"
                       type="submit"
                       disabled={loading}
                     >

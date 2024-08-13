@@ -66,55 +66,32 @@ const DigitalBusinessConsiderations = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
   return (
-    <div className="max-w-[1520px] mx-auto px-[6%] md:px-[4%] xl:px-[8%] 4xl:px-[4%] py-16 ">
-      <div className="mb-16">
-        <h3 className="text-4xl font-bold text-gray-900 leading-tight mb-6 text-center">
-          Before starting any business you should consider a few things
-        </h3>
-        <p className="text-xl text-gray-700 mb-8 text-center">
-          In today&apos;s fast-paced digital landscape, ensure your business has
-          a strong foundation with these key considerations:
-        </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {considerations.map((item, index) => (
-            <div
-              key={index}
-              style={{
-                backgroundColor:
-                  hoveredIndex === index
-                    ? hoverColors[index]
-                    : cardColors[index],
-                transition: "all 0.3s ease",
-              }}
-              className="rounded-lg shadow-md overflow-hidden cursor-pointer hover:scale-[1.03] hover:shadow-lg"
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
+    <section className="bg-white py-12">
+      <div className="container mx-auto px-4">
+        <div className="max-w-xl mx-auto text-center">
+          <h2 className="text-3xl font-bold mb-4">
+            Boost Your Online Presence
+          </h2>
+          <p className="text-gray-600 mb-8">
+            Join thousands of businesses who use our service to reach their
+            audience effectively. Sign up now to get started!
+          </p>
+          <form className="flex flex-col sm:flex-row items-center">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              className="w-full sm:w-auto flex-grow px-4 py-2 mb-4 sm:mb-0 sm:mr-4 border border-gray-300 rounded"
+            />
+            <button
+              type="submit"
+              className="w-full sm:w-auto bg-blue-600 text-white px-6 py-2 rounded shadow hover:bg-blue-700 transition"
             >
-              <div className="h-2 bg-gradient-to-r from-orange-400 to-red-500"></div>
-              <div className="p-6 relative">
-                <div className="absolute top-0 right-0 w-16 h-16 bg-white bg-opacity-20 rounded-bl-full"></div>
-                <div className="relative z-10">
-                  <CheckCircle className="w-8 h-8 text-white mb-4" />
-                </div>
-                <h4 className="text-lg font-semibold mb-2 text-white">
-                  {item}
-                </h4>
-                <p className="text-sm text-gray-200 mb-4">
-                  Essential for your digital success
-                </p>
-                <Link
-                  href={"/services"}
-                  className="flex items-center text-white text-sm font-medium group"
-                >
-                  Learn more{" "}
-                  <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </div>
-            </div>
-          ))}
+              Get Started
+            </button>
+          </form>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

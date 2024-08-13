@@ -2,6 +2,7 @@ import React from "react";
 import { CheckCircle, ArrowRight } from "lucide-react";
 import GlobalButtonColored from "../Utilites/GlobalButton/GlobalButtonColored";
 import WebsiteScore from "../Utilites/WebsiteScore/WebsiteScore";
+import Link from "next/link";
 
 async function fetchConsiderations() {
   const res = await fetch("http://192.168.10.16:8000/api/businessdev", {
@@ -45,32 +46,37 @@ const DigitalBusinessConsiderations2 = async () => {
           a strong foundation with these key considerations:
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {considerations.map((item, index) => (
-            <div
-              key={item.id}
-              style={{
-                backgroundColor: cardColors[index % cardColors.length],
-                transition: "all 0.3s ease",
-              }}
-              className="rounded-lg shadow-md overflow-hidden cursor-pointer hover:scale-[1.03] hover:bg-white hover:shadow-lg"
-            >
-              <div className="h-2 bg-gradient-to-r from-orange-400 to-red-500"></div>
-              <div className="p-6 relative">
-                <div className="absolute top-0 right-0 w-16 h-16 bg-white bg-opacity-30 rounded-bl-full"></div>
-                <div className="relative z-10">
-                  <CheckCircle className="w-8 h-8 text-gray-700 mb-4" />
+          {considerations.map((item, index) => {
+            return (
+              <Link key={item.id} href={"/services"}>
+                <div
+                  style={{
+                    backgroundColor: cardColors[index % cardColors.length],
+                    transition: "all 0.3s ease",
+                  }}
+                  className="rounded-lg shadow-md overflow-hidden cursor-pointer hover:scale-[1.03] hover:bg-white hover:shadow-lg"
+                >
+                  <div className="h-2 bg-gradient-to-r from-orange-400 to-red-500"></div>
+                  <div className="p-6 relative">
+                    <div className="absolute top-0 right-0 w-16 h-16 bg-white bg-opacity-30 rounded-bl-full"></div>
+                    <div className="relative z-10">
+                      <CheckCircle className="w-8 h-8 text-gray-700 mb-4" />
+                    </div>
+                    <h4 className="text-lg font-semibold mb-2 text-gray-800">
+                      {item.title}
+                    </h4>
+                    <p className="text-sm text-gray-600 mb-4">
+                      {item.description}
+                    </p>
+                    <div className="flex items-center text-orange-500 text-sm font-medium group">
+                      Learn more{" "}
+                      <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                    </div>
+                  </div>
                 </div>
-                <h4 className="text-lg font-semibold mb-2 text-gray-800">
-                  {item.title}
-                </h4>
-                <p className="text-sm text-gray-600 mb-4">{item.description}</p>
-                <div className="flex items-center text-orange-500 text-sm font-medium group">
-                  Learn more{" "}
-                  <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
-                </div>
-              </div>
-            </div>
-          ))}
+              </Link>
+            );
+          })}
         </div>
       </div>
       <WebsiteScore />
