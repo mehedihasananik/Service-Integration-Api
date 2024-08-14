@@ -31,9 +31,12 @@ const BannerItems = ({ banner }) => {
         </div>
       </div>
       <div>
-        <img
+        <Image
           className="md:w-[742px] md:h-[554px]"
           src={banner[0].banner_image}
+          width={742}
+          height={554}
+          quality={80}
           alt="banner image"
         />
       </div>

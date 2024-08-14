@@ -112,7 +112,7 @@ const PortfolioPage = ({
           Our Amazing Portfolio
         </h1>
       </div>
-      <div className="grid grid-cols-1 md:space-x-3 lg:space-x-20 space-y-5 md:space-y-0 md:grid-cols-3 mt-10">
+      <div className="grid grid-cols-1 md:space-x-3 lg:space-x-20 space-y-3 md:space-y-0 md:grid-cols-3 mt-10">
         <div>
           <form className="max-w-sm">
             <select
@@ -197,7 +197,7 @@ const PortfolioPage = ({
           </div>
         ) : (
           <div
-            className={`grid grid-cols-1 md:grid-cols-2 gap-8 4xl:gap-10 justify-between pt-10 pb-5 ${
+            className={`grid grid-cols-1 md:grid-cols-2 gap-8 4xl:gap-10 justify-between pt-5 md:pt-10 pb-5 ${
               animate ? "fade-in" : ""
             }`}
           >
@@ -228,6 +228,7 @@ const PortfolioPage = ({
               width={500}
               height={500}
               alt="no data found"
+              quality={80}
             />
           </div>
         )}

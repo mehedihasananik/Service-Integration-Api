@@ -1,11 +1,10 @@
 import React from "react";
 import { CheckCircle, ArrowRight } from "lucide-react";
-import GlobalButtonColored from "../Utilites/GlobalButton/GlobalButtonColored";
 import WebsiteScore from "../Utilites/WebsiteScore/WebsiteScore";
 import Link from "next/link";
 
 async function fetchConsiderations() {
-  const res = await fetch("http://192.168.10.16:8000/api/businessdev", {
+  const res = await fetch("https://v2admin.envobyte.shop/api/businessdev", {
     next: { revalidate: 10 },
   });
   if (!res.ok) throw new Error("Failed to fetch brands");

@@ -5,9 +5,9 @@ import Link from "next/link";
 
 const ServiceIndustriesContent = ({ industries, details }) => {
   return (
-    <div className=" text-dark pb-20 px-0 mt-0 rounded-md  overflow-hidden relative text-center pt-8">
+    <div className=" text-dark  px-0 mt-0 rounded-md  overflow-hidden relative text-center pt-2 md:pt-8 md:pb-20">
       <motion.h1
-        className="text-[30px] md:text-[30px] lg:text-[48px] font-Raleway font-bold tracking-wide"
+        className="text-[25px] md:text-[30px] lg:text-[48px] font-Raleway font-bold tracking-wide"
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
@@ -15,7 +15,7 @@ const ServiceIndustriesContent = ({ industries, details }) => {
         {details.title}
       </motion.h1>
       <motion.p
-        className="text-center mb-16 max-w-4xl mx-auto text-xl leading-relaxed text-[#000]"
+        className="text-center mb-4 md:mb-16 max-w-4xl mx-auto  leading-relaxed text-[#000] text-[18px] md:text-[20px]"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.4, duration: 0.8 }}
@@ -23,7 +23,7 @@ const ServiceIndustriesContent = ({ industries, details }) => {
         {details.description}
       </motion.p>
       <motion.div
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8"
         variants={{
           hidden: { opacity: 0 },
           show: {
@@ -58,7 +58,7 @@ const ServiceIndustriesContent = ({ industries, details }) => {
             </div>
             <Link
               href={`/contact-us`}
-              className="w-[35%] bg-white text-[#FF693B] text-nowrap font-semibold py-2 px-4 rounded-md text-center hover:bg-opacity-90 transition duration-300 mt-4 inline-block group-hover:bg-gray-100 group-hover:text-[#3B82F6]"
+              className="md:w-[35%] bg-white text-[#FF693B] text-nowrap font-semibold py-2 px-4 rounded-md text-center hover:bg-opacity-90 transition duration-300 mt-4 inline-block group-hover:bg-gray-100 group-hover:text-[#3B82F6]"
             >
               Learn More
             </Link>

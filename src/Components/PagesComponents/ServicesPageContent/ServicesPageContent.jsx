@@ -69,7 +69,7 @@ const ServicesPageContent = ({
       <Container>
         <div className="py-5 md:py-0 md:pt-8">
           <div className="text-center">
-            <h1 className="text-[20px] md:text-[30px] lg:text-[48px] font-Raleway font-bold">
+            <h1 className="text-[30px] md:text-[30px] lg:text-[48px] font-Raleway font-bold">
               Choose a <span className="text-[#FF693B]">service</span> that you
               need
             </h1>
@@ -81,7 +81,7 @@ const ServicesPageContent = ({
                   <select
                     onChange={handleCategoryChange}
                     id="category"
-                    className="cursor-pointer border border-gray-300 text-sm rounded-lg focus:ring-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="cursor-pointer border border-gray-300 text-sm rounded-lg focus:ring-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-3 md:mb-0"
                   >
                     <option value="">Select Category</option>
                     {serviceCategories.map((category) => (

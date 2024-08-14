@@ -42,7 +42,7 @@ const AboutUsContent = ({ aboutDetails, singleAboutDetails }) => {
 };
 
 const Header = ({ title, details }) => (
-  <div className="pt-5 md:pt-10 lg:pt-7 space-y-4">
+  <div className="pt-0 md:pt-10 lg:pt-7 space-y-2 md:space-y-4">
     <h1 className="text-[30px] lg:text-[48px] text-[#0F172A] font-bold font-Raleway text-center lg:text-left">
       {title}
     </h1>
@@ -51,8 +51,15 @@ const Header = ({ title, details }) => (
 );
 
 const MissionVision = ({ image, title2, details2, title3, details3 }) => (
-  <div className="grid grid-cols-1 justify-items-center lg:justify-items-start gap-y-10 lg:gap-y-0 lg:grid-cols-3 pt-10 lg:pt-16 lg:gap-x-10">
-    <Image className="w-[450px]" width={500} height={500} src={image} alt="" />
+  <div className="grid grid-cols-1 justify-items-center lg:justify-items-start gap-y-0 lg:gap-y-0 lg:grid-cols-3 pt-10 lg:pt-16 lg:gap-x-10">
+    <Image
+      className="w-[450px]"
+      width={500}
+      height={500}
+      src={image}
+      alt=""
+      quality={80}
+    />
     <MissionVisionItem
       title={title2}
       details={details2}
@@ -78,11 +85,11 @@ const MissionVisionItem = ({ title, details, logoSrc }) => (
 
 const Values = ({ title4, details4 }) => (
   <div className="pt-4 lg:pt-20 lg:pb-4 space-y-3">
-    <h3 className="text-[30px] md:text-[32px] text-[#334155] text-center lg:text-left">
+    <h3 className="text-[20px] md:text-[32px] text-[#334155] text-center lg:text-left">
       Our Values
     </h3>
     <div className="w-full lg:w-[70%] text-center lg:text-left space-y-3">
-      <h2 className="text-[#0F172A] text-[22px] lg:text-[48px] font-bold font-Raleway leading-tight">
+      <h2 className="text-[#0F172A] text-[20px] lg:text-[48px] font-bold font-Raleway leading-tight">
         {title4}
       </h2>
       <p className="text-[#334155] text-[16px]">{details4}</p>
@@ -112,10 +119,10 @@ const AboutDetailItem = ({ detail }) => {
       <div
         className={`lg:w-[50%] ${textAlignment} flex flex-col justify-center`}
       >
-        <h2 className="text-[#0F172A] text-[30px] md:text-[32px] font-bold font-Raleway text-center lg:text-left">
+        <h2 className="text-[#0F172A] text-[20px] md:text-[32px] font-bold font-Raleway text-center lg:text-left">
           {detail.title}
         </h2>
-        <div className="text-[#334155] text-[18px] space-y-5 pt-5 text-left whitespace-pre-wrap">
+        <div className="text-[#334155] text-[18px] space-y-5 pt-2 md:pt-5 text-left whitespace-pre-wrap">
           <p>{detail.details}</p>
         </div>
       </div>
