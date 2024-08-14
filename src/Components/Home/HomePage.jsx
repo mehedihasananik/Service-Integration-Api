@@ -12,7 +12,6 @@ import {
 } from "../index";
 import Tawk from "../Tawk/Tawk";
 import { user_contactApi } from "@/config/apis";
-import DigitalBusinessConsiderations from "../DigitalBusinessConsiderations/DigitalBusinessConsiderations";
 import DigitalBusinessConsiderations2 from "../DigitalBusinessConsiderations/DigitalBusinessConsiderations2";
 
 async function getUserContactContent() {
@@ -37,7 +36,6 @@ const HomePage = async () => {
       <Services />
       <AboutUs />
       <Portfolio />
-      {/* <DigitalBusinessConsiderations /> */}
       <DigitalBusinessConsiderations2 />
       <WhyChooseUs />
       <Testimonial />

@@ -60,18 +60,18 @@ const TestimonialHomeItems = ({ testimonials }) => {
   };
 
   return (
-    <div id="testimonial" className="overflow-hidden">
+    <div id="testimonial" className="overflow-hidden ">
       <div className=" max-w-[1680px] mx-auto 4xl:px-[0] 4xl:max-w-[1920px] xl:pl-[8%] 2xl:pl-[13%] 4xl:pl-[14%]">
-        <div className="py-5 xl:pt-0">
-          <div className="flex flex-col lg:flex-row items-center justify-between lg:gap-20 xl:gap-12 pt-5 pb-5 md:pt-8 md:pb-2">
-            <div className="w-full text-center lg:text-left lg:w-[35%]">
+        <div className="pb-0 xl:pt-0">
+          <div className="flex flex-col lg:flex-row items-center justify-between lg:gap-20 xl:gap-12 pt-0 pb-5 md:pt-8 md:pb-0">
+            <div className="w-full text-center lg:text-left lg:w-[35%] px-4 md:px-0">
               <div className="lg:w-[400px]">
-                <h2 className="text-[30px] md:text-[42px] lg:text-[48px] font-bold font-Raleway text-[#0F172A]">
+                <h2 className="text-[20px] md:text-[42px] lg:text-[48px] font-bold font-Raleway text-[#0F172A]">
                   What Are People Saying About Us
                 </h2>
               </div>
-              <div className="pt-4 lg:w-[380px]">
-                <p className="text-[16px] text-[#666666] font-normal">
+              <div className="pt-2 md:pt-4 lg:w-[380px]">
+                <p className=" text-[16px] text-[#666666] text-justify md:text-left font-normal">
                   We aim to provide top-notch quality service and client
                   satisfaction. We are happy to help a lot of companies.
                 </p>

@@ -16,7 +16,7 @@ async function getUserContactContent() {
 const ContactUs = async () => {
   const userContact = await getUserContactContent();
   return (
-    <div className="mt-3">
+    <div className="mt-0">
       <ContactUsPageContent userContact={userContact} />
     </div>
   );

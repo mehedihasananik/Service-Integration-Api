@@ -79,6 +79,7 @@ const PortfolioDetails = ({ singlePortfolioItem }) => {
                   src={portfolio.image}
                   objectFit="cover"
                   onLoad={() => handleImageLoad(portfolio.id)}
+                  quality={80}
                 />
               </div>
               <h3 className="text-gray-500 text-[18px] md:text-[20px] font-Raleway font-semibold text-center py-4 md:py-5 md:pb-3">

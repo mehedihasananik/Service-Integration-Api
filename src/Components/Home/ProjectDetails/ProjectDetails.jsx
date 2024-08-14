@@ -37,10 +37,13 @@ const ProjectDetails = ({ userContact }) => {
         /^[^\d].*\.com$/,
         "Email can't start with a number & must end with .com"
       ),
+    user_phone: Yup.string()
+      .required("Phone number is required")
+      .min(10, "Phone number must be at least 10 digits"),
     message: Yup.string()
       .required("Message is required")
       .max(2000, "Message must not exceed 2000 characters"),
-    website: Yup.string().url("Invalid URL"),
+    website: Yup.string().required("Need a  URL"),
     service_categories: Yup.array().min(1, "Select at least one service"),
   });
 
@@ -136,7 +139,7 @@ const ProjectDetails = ({ userContact }) => {
   ];
 
   return (
-    <div className="bg-[#F8FAFC] py-5 pb-8 md:py-10 md:pb-[4%] lg:py-10 lg:pb-[4%]">
+    <div className="bg-[#F8FAFC] py-0 pb-8 md:py-10 md:pb-[4%] lg:py-10 lg:pb-[4%]">
       <Container>
         <div className="flex md:flex-row justify-center items-center pt-6">
           <div>
@@ -153,7 +156,7 @@ const ProjectDetails = ({ userContact }) => {
             </div>
           </div>
         </div>
-        <div className="text-center py-5">
+        <div className="text-center py-2 pb-3 md:pb-0 md:py-5">
           <p className="text-[16px] text-[#475569]">
             Send details of the project and we will provide a quote for the
             project. Let&apos;s make <br /> something new, different, and more
@@ -209,7 +212,7 @@ const ProjectDetails = ({ userContact }) => {
           >
             <form onSubmit={handleSubmit}>
               <div className="flex flex-col gap-5">
-                <div className="flex lg:flex-row md:gap-x-10">
+                <div className="flex flex-col lg:flex-row md:gap-x-10">
                   <div className="w-full lg:w-[50%]">
                     <div className="flex flex-col gap-3">
                       <label
@@ -233,13 +236,13 @@ const ProjectDetails = ({ userContact }) => {
                   <div className="w-full lg:w-[50%]">
                     <div className="flex flex-col gap-3">
                       <label
-                        className="text-[16px] font-Roboto"
+                        className="text-[16px] font-Roboto mt-3"
                         htmlFor="user_email"
                       >
                         Email:
                       </label>
                       <input
-                        className="w-full py-4 border border-[#CBD5E1] px-4 rounded-md shadow-sm focus:border-blue-500"
+                        className=" w-full py-4 border border-[#CBD5E1] px-4 rounded-md shadow-sm focus:border-blue-500"
                         type="email"
                         id="user_email"
                         name="user_email"
@@ -266,6 +269,7 @@ const ProjectDetails = ({ userContact }) => {
                       onChange={handlePhoneOnChange}
                       searchPlaceholder="Search country"
                       placeholder="Enter phone number"
+                      required
                     />
                   </div>
                   <div className="w-full lg:w-[50%]">

@@ -42,7 +42,7 @@ const AboutUsContent = ({ aboutDetails, singleAboutDetails }) => {
 };
 
 const Header = ({ title, details }) => (
-  <div className="pt-5 md:pt-10 lg:pt-10 space-y-4">
+  <div className="pt-5 md:pt-10 lg:pt-7 space-y-4">
     <h1 className="text-[30px] lg:text-[48px] text-[#0F172A] font-bold font-Raleway text-center lg:text-left">
       {title}
     </h1>
@@ -99,7 +99,7 @@ const AboutDetailsSection = ({ singleAboutDetails }) => (
 );
 
 const AboutDetailItem = ({ detail }) => {
-  const isRightImage = detail.image_positions === "right";
+  const isRightImage = detail.image_positions === "rignt";
   const flexDirection = isRightImage ? "lg:flex-row" : "lg:flex-row-reverse";
   const textAlignment = isRightImage
     ? "text-center"
@@ -107,7 +107,7 @@ const AboutDetailItem = ({ detail }) => {
 
   return (
     <div
-      className={`flex flex-col gap-4 md:gap-8 ${flexDirection} lg:justify-between my-5 lg:py-8`}
+      className={`flex flex-col gap-4 md:gap-8 ${flexDirection} lg:justify-between my-5 lg:pb-8 lg:pt-4`}
     >
       <div
         className={`lg:w-[50%] ${textAlignment} flex flex-col justify-center`}
@@ -130,6 +130,7 @@ const AboutDetailItem = ({ detail }) => {
           height={500}
           src={detail.image}
           alt=""
+          quality={80}
         />
       </div>
     </div>

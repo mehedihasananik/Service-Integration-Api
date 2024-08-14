@@ -2,20 +2,31 @@ import { headerApi } from "@/config/apis";
 import HeaderItems from "@/Components/Utilites/HeaderItems/HeaderItems";
 
 async function getHeaderContent() {
-  const res = await fetch(`${headerApi}`, {
-    next: { revalidate: 3600 },
-  });
+  try {
+    const res = await fetch(`${headerApi}`, {
+      next: { revalidate: 10 },
+    });
 
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
+    if (!res.ok) {
+      console.error(`HTTP error! status: ${res.status}`);
+      throw new Error(`Failed to fetch data: ${res.status} ${res.statusText}`);
+    }
+
+    return res.json();
+  } catch (error) {
+    console.error("Error fetching header content:", error);
+    throw error;
   }
-  return res.json();
 }
 
 const Header = async () => {
-  const headers = await getHeaderContent();
-
-  return <HeaderItems headers={headers} />;
+  try {
+    const headers = await getHeaderContent();
+    return <HeaderItems headers={headers} />;
+  } catch (error) {
+    console.error("Error in Header component:", error);
+    return <div>Error loading header. Please try again later.</div>;
+  }
 };
 
 export default Header;

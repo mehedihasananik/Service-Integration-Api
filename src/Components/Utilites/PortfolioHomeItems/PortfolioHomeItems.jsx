@@ -77,18 +77,18 @@ const PortfolioHomeItems = ({
   };
 
   return (
-    <div className="pt-8 lg:pt-10">
+    <div className="pt-4 lg:pt-3 ">
       <div className="text-center">
-        <h1 className="text-[30px] md:text-[30px] lg:text-[48px] font-Raleway font-bold">
+        <h1 className="text-[20px] md:text-[30px] lg:text-[48px] font-Raleway font-bold text-center pb-2 md:pb-2">
           Our Amazing Portfolio
         </h1>
         <div>Our beautiful work you need to know!</div>
       </div>
-      <div className="flex justify-center pt-6">
-        <div className="flex flex-wrap  gap-2">
+      <div className="flex justify-center pt-4">
+        <div className="grid grid-cols-2  md:flex md:flex-wrap  gap-5 md:gap-2">
           <button
             onClick={() => handleCategoryChange(0)}
-            className={`px-4 py-2 rounded-full text-[16px] ${
+            className={`px-4 py-2 md:rounded-full text-[14px] md:text-[16px] ${
               selectedCategoryId === 0
                 ? "bg-[#FF693B] text-white"
                 : "bg-gray-200 text-gray-700"
@@ -101,7 +101,7 @@ const PortfolioHomeItems = ({
             <button
               key={category.category_id}
               onClick={() => handleCategoryChange(category.category_id)}
-              className={`px-4 py-2 rounded-full text-[16px]  ${
+              className={`px-4 py-2 md:rounded-full text-[14px] md:text-[16px]  ${
                 selectedCategoryId === category.category_id
                   ? "bg-[#FF693B] text-white"
                   : "bg-gray-200 text-gray-700"
@@ -135,7 +135,7 @@ const PortfolioHomeItems = ({
                         <Image
                           width={800}
                           height={500}
-                          className="w-full 4xl:max-w-[345px] h-[400px]  rounded-l-[10px]"
+                          className="w-full 4xl:max-w-[345px] h-[370px]  rounded-l-[10px]"
                           src={portfolio?.image}
                           alt=""
                         />

@@ -10,7 +10,7 @@ async function portfolioServices() {
   if (!res.ok) {
     throw new Error("Failed to fetch data");
   }
-  return res.json();
+  return res?.json();
 }
 
 async function portfoliosCategoriesApi() {
@@ -21,7 +21,7 @@ async function portfoliosCategoriesApi() {
   if (!res.ok) {
     throw new Error("Failed to fetch data");
   }
-  return res.json();
+  return res?.json();
 }
 
 async function servicesApi() {
@@ -32,7 +32,7 @@ async function servicesApi() {
   if (!res.ok) {
     throw new Error("Failed to fetch data");
   }
-  return res.json();
+  return res?.json();
 }
 
 const Portfolio = async () => {
@@ -45,10 +45,10 @@ const Portfolio = async () => {
   return (
     <Container>
       <PortfolioHomeItems
-        portfolios={portfolios.ServiceportfolioArray}
+        portfolios={portfolios?.ServiceportfolioArray}
         portfoliosCategories={portfoliosCategories}
         services={services}
-        serviceDetails={portfolios.page_content}
+        serviceDetails={portfolios?.page_content}
       />
     </Container>
   );

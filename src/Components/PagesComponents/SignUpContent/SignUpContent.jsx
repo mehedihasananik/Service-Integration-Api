@@ -105,7 +105,7 @@ const SignUpContent = () => {
                 Let&apos;s create your account
               </p>
             </div>
-            {/* <div className="flex flex-col md:flex-row pb-4 gap-y-4 md:gap-10  lg:pb-12">
+            <div className="flex flex-col md:flex-row pb-4 gap-y-4 md:gap-10  lg:pb-12">
               <button className="flex justify-center items-center gap-2 font-Raleway border p-2 rounded-md hover:border-[#FF693B] transition-all duration-200">
                 <img src="/assets/gLogo.png" alt="" />{" "}
                 <span className="text-[14px]text-[#032333]">
@@ -118,14 +118,14 @@ const SignUpContent = () => {
                   Continue with Facebook
                 </span>
               </button>
-            </div> */}
-            {/* <div className="flex items-center gap-x-5  md:pt-0">
+            </div>
+            <div className="flex items-center gap-x-5  md:pt-0">
               <span className="w-[50%] h-[1px] border"></span>{" "}
               <span className="text-[14px] font-Raleway text-[#032333] font-medium">
                 Or
               </span>{" "}
               <span className="w-[50%] h-[1px] border"></span>
-            </div> */}
+            </div>
             <div className="pt-4 md:pt-8">
               <form
                 className="flex max-w-md flex-col gap-4"

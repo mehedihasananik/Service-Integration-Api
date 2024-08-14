@@ -17,27 +17,23 @@ const BannerItems = ({ banner }) => {
         <p className="w-[300px] xs:w-full lg:w-[450px]  mx-auto  pt-4 text-[16px] xs:px-3 md:px-0">
           {banner[0].details}
         </p>
-        <div className="flex flex-col xs:flex-row  justify-center lg:justify-start gap-6 py-6">
+        <div className="flex flex-col xs:flex-row  justify-center lg:justify-start gap-4 md:gap-6 py-6">
           <GlobalButtonColored
             path={"#"}
             title={"Book an Appointment"}
-            className="btn btn-primary w-full text-center "
+            className="btn btn-primary md:w-full text-center "
           />
           <GlobalButtonHovered
             path={"#projectDetails"}
             title={" Get a Quote"}
-            className="btn btn-secondary w-full text-center"
+            className="btn btn-secondary md:w-full text-center"
           />
         </div>
       </div>
       <div>
-        <Image
+        <img
           className="md:w-[742px] md:h-[554px]"
           src={banner[0].banner_image}
-          width={742}
-          height={554}
-          quality={100}
-          priority
           alt="banner image"
         />
       </div>

@@ -2,10 +2,24 @@ import Container from "@/Components/Container/Container";
 import ServiceIndustriesContent from "@/Components/ServiceIndustriesContent/ServiceIndustriesContent";
 import React from "react";
 
-const ServiceIndustries = () => {
+async function fetchIndustries() {
+  const res = await fetch("http://192.168.10.16:8000/api/service-industry", {
+    next: { revalidate: 10 },
+  });
+  if (!res.ok) throw new Error("Failed to fetch brands");
+  return res.json();
+}
+
+const ServiceIndustries = async () => {
+  const industries = await fetchIndustries();
+  console.log(industries[0].title);
+
   return (
     <Container>
-      <ServiceIndustriesContent />
+      <ServiceIndustriesContent
+        details={industries[0]}
+        industries={industries[0].items}
+      />
     </Container>
   );
 };

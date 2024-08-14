@@ -21,7 +21,7 @@ const AboutUs = async () => {
   // console.log(about);
 
   return (
-    <div className="pb-5  md:pt-3  md:pb-10 overflow-hidden">
+    <div className="pb-5  md:pt-0  md:pb-10 overflow-hidden">
       <Container>
         {/* about us content */}
         <div className="flex flex-col xl:flex-row   md:gap-[6%] 2xl:gap-[10%]">
@@ -32,11 +32,12 @@ const AboutUs = async () => {
               height={500}
               className="w-[650px]"
               src={about.image}
+              quality={80}
               alt="about-img"
             />
           </div>
           {/* right side counters */}
-          <div className="pt-10">
+          <div className="pt-4 md:pt-10">
             <AboutUsItems about={about} />
           </div>
         </div>

@@ -18,7 +18,7 @@ const AboutUsItems = ({ about }) => {
     setShouldAnimate(true);
   }, []);
 
-  const CountUpItem = ({ end, label }) => (
+  const CountUpItem = ({ end, label, suffix = "" }) => (
     <div>
       <h3 className="text-[30px] md:text-[48px] text-[#0A2C8C] font-bold">
         <CountUp
@@ -29,7 +29,12 @@ const AboutUsItems = ({ about }) => {
           redraw={true}
           preserveValue={true}
         >
-          {({ countUpRef }) => <span ref={countUpRef} />}
+          {({ countUpRef }) => (
+            <>
+              <span ref={countUpRef} />
+              {suffix}
+            </>
+          )}
         </CountUp>
         +
       </h3>
@@ -40,10 +45,10 @@ const AboutUsItems = ({ about }) => {
   return (
     <div ref={ref}>
       <div className="w-full text-center lg:text-left lg:w-[544px]">
-        <h2 className="text-[30px] md:text-[38px] lg:text-[48px] font-bold font-Raleway text-[#0F172A] md:leading-[55px]">
+        <h2 className="text-[20px] md:text-[38px] lg:text-[48px] font-bold font-Raleway text-[#0F172A] md:leading-[55px]">
           {heading}
         </h2>
-        <p className="text-[16px] text-[#666666] py-5">{text}</p>
+        <p className="text-[16px] text-[#666666] py-2 md:py-5">{text}</p>
       </div>
 
       {(inView || shouldAnimate) && (
@@ -51,7 +56,7 @@ const AboutUsItems = ({ about }) => {
           <div className="hidden md:block">
             <div className="flex justify-between gap-6 md:gap-0">
               <CountUpItem end={experience} label="Years of Experience" />
-              <CountUpItem end={project} label="Project Completed" />
+              <CountUpItem end={project} label="Project Completed" suffix="k" />
               <CountUpItem end={customers} label="Customers Satisfaction" />
               <CountUpItem end={country} label="Numbers of Country" />
             </div>
@@ -61,7 +66,11 @@ const AboutUsItems = ({ about }) => {
             <div className="space-y-5">
               <div className="flex justify-center gap-x-20">
                 <CountUpItem end={experience} label="Years of Experience" />
-                <CountUpItem end={project} label="Project Completed" />
+                <CountUpItem
+                  end={project}
+                  label="Project Completed"
+                  suffix="k"
+                />
               </div>
               <div className="flex justify-center gap-x-20">
                 <CountUpItem end={customers} label="Customers Satisfaction" />
@@ -72,7 +81,7 @@ const AboutUsItems = ({ about }) => {
         </>
       )}
 
-      <div className="py-8 pt-10 md:pt-16 text-center lg:text-left">
+      <div className="md:py-8 pt-4 md:pt-16 text-center lg:text-left">
         <GlobalButtonColored
           path={"/about-us"}
           title={"Learn More"}

@@ -118,7 +118,7 @@ const ContactUsPageContent = ({ userContact }) => {
       className="bg-gradient-to-br from-[##FF693B] via-[##FF693B] to-[##FF693B] min-h-screen pt-0  lg:pb-28"
     >
       <Container>
-        <motion.div variants={stagger} className="text-center mb-20 mt-10">
+        <motion.div variants={stagger} className="text-center mb-20 mt-4">
           <div className="flex justify-center items-center">
             <div className="relative top-5">
               <motion.img

@@ -69,7 +69,7 @@ const ServicesPageContent = ({
       <Container>
         <div className="py-5 md:py-0 md:pt-8">
           <div className="text-center">
-            <h1 className="text-[30px] md:text-[30px] lg:text-[48px] font-Raleway font-bold">
+            <h1 className="text-[20px] md:text-[30px] lg:text-[48px] font-Raleway font-bold">
               Choose a <span className="text-[#FF693B]">service</span> that you
               need
             </h1>

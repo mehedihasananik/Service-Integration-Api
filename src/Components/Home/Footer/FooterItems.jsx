@@ -6,6 +6,7 @@ import Link from "next/link";
 
 const FooterItems = ({ footer, userContact }) => {
   const currentDate = format(new Date(), "yyyy");
+  // console.log(userContact);
   return (
     <Container>
       <div className="flex flex-col py-3 md:py-4 lg:flex-row justify-between items-center lg:pt-4 ">
@@ -70,7 +71,7 @@ const FooterItems = ({ footer, userContact }) => {
                   <a
                     target="_blank"
                     href={`mailto:${userContact?.email}`}
-                    className="text-[#475569] text-[14px] xxl:text-[16px] pt-1"
+                    className="text-[#475569] text-[16px] xl:text-[15px] xxl:text-[16px] pt-1"
                   >
                     {userContact?.email}
                   </a>
@@ -85,7 +86,7 @@ const FooterItems = ({ footer, userContact }) => {
                   {" "}
                   <a
                     target="_blank"
-                    href={`https://wa.me/8801963800900`}
+                    href={`https://wa.me/${userContact?.phone_number} `}
                     className="text-[#475569] text-[16px] pt-1"
                   >
                     {userContact?.phone_number}
@@ -97,7 +98,7 @@ const FooterItems = ({ footer, userContact }) => {
                   return (
                     <Link key={item?.id} href={item?.link} target="_blank">
                       <Image
-                        className="transform hover:scale-125 transition-all duration-300"
+                        className="transform hover:scale-125 transition-all duration-300 h-[28px] w-[30px]"
                         src={item?.social_icon}
                         alt="Instagram Logo"
                         width={30}

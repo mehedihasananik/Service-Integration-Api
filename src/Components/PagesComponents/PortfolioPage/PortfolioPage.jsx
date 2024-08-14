@@ -106,7 +106,7 @@ const PortfolioPage = ({
   };
 
   return (
-    <div className="pt-8 lg:pt-10">
+    <div className="pt-8 lg:pt-8">
       <div className="text-center">
         <h1 className="text-[30px] md:text-[30px] lg:text-[48px] font-Raleway font-bold">
           Our Amazing Portfolio

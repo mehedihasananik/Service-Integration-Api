@@ -18,10 +18,10 @@ const WhyChooseUs = async () => {
   const data = await getWhyChooseContent();
 
   return (
-    <div className="pb-5 lg:py-5 overflow-hidden">
+    <div className="pb-5 lg:py-5  overflow-hidden">
       <Container>
         <div className="text-center pb-5 md:pb-12">
-          <h2 className="text-[30px] text-[#1E293B] md:text-[48px] font-bold font-Raleway  ">
+          <h2 className="text-[25px] text-[#1E293B] md:text-[48px] font-bold font-Raleway  ">
             Why Choose Us
           </h2>
         </div>
@@ -31,8 +31,8 @@ const WhyChooseUs = async () => {
             <div className="w-full flex justify-center lg:w-[550px] mt-4">
               <img src={data[0]?.icon} alt="" />
             </div>
-            <div className="text-center lg:text-left space-y-4">
-              <h2 className="text-[24px] text-[#333333] font-bold">
+            <div className="text-center lg:text-left space-y-2 md:space-y-4">
+              <h2 className="text-[20px] md:text-[24px] text-[#333333] font-bold">
                 {data[0]?.heading}
               </h2>
               <p className="text-[16px] text-[#666666] text-justify">
@@ -48,8 +48,8 @@ const WhyChooseUs = async () => {
               <div className="flex justify-center items-center lg:absolute lg:left-[-72px] lg:top-[50px]">
                 <img className="w-[150px]" src={data[1]?.icon} alt="" />
               </div>
-              <div className="text-center lg:text-left space-y-4">
-                <h2 className="text-[24px] text-[#333333] font-bold">
+              <div className="text-center lg:text-left space-y-2 md:space-y-4">
+                <h2 className="text-[20px] md:text-[24px] text-[#333333] font-bold">
                   {data[1]?.heading}
                 </h2>
                 <p className="text-[16px] text-[#666666] text-justify">
@@ -76,8 +76,8 @@ const WhyChooseUs = async () => {
               <div className="lg:absolute left-[-98px] top-[48px]">
                 <img className="w-[150px]" src={data[2]?.icon} alt="" />
               </div>
-              <div className="text-center lg:text-left space-y-4">
-                <h2 className="text-[24px] text-[#333333] font-bold">
+              <div className="text-center lg:text-left space-y-2 md:space-y-4">
+                <h2 className="text-[20px] md:text-[24px] text-[#333333] font-bold">
                   {data[2]?.heading}
                 </h2>
                 <p className="text-[16px] text-[#666666] text-justify">
@@ -102,8 +102,8 @@ const WhyChooseUs = async () => {
             <div className="w-full flex items-center justify-center lg:w-[550px] mt-4">
               <img className="w-[150px]" src={data[3]?.icon} alt="" />
             </div>
-            <div className="text-center lg:text-left space-y-4">
-              <h2 className="text-[24px] text-[#333333] font-bold">
+            <div className="text-center lg:text-left space-y-2 md:space-y-4">
+              <h2 className="text-[20px] md:text-[24px] text-[#333333] font-bold">
                 {data[3]?.heading}
               </h2>
               <p className="text-[16px] text-[#666666] text-justify">

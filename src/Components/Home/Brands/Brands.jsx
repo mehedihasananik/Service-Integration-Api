@@ -5,9 +5,9 @@ import UserLoading from "@/Components/Utilites/UserLoading/UserLoading";
 import { brandsApi } from "@/config/apis";
 
 async function fetchBrands() {
-  const res = await fetch(brandsApi, { next: { revalidate: 3600 } });
+  const res = await fetch(brandsApi, { next: { revalidate: 10 } });
   if (!res.ok) throw new Error("Failed to fetch brands");
-  return res.json();
+  return res?.json();
 }
 
 const Brands = async () => {

@@ -34,13 +34,13 @@ const ServicesHomeItems = ({ services, details }) => {
   return (
     <div id="serviceSlider" className="serviceSlider md:px-5 xl:px-0">
       <div className="max-w-[1680px] mx-auto 4xl:px-[0] 4xl:max-w-[1920px] xl:pl-[8%] 2xl:pl-[13%] 4xl:pl-[14%]">
-        <div className="py-5 xl:pt-10">
-          <div className="flex flex-col lg:flex-row items-center justify-between lg:gap-20 xl:gap-12 py-8">
+        <div className="md:py-5 xl:pt-10">
+          <div className="flex flex-col lg:flex-row items-center justify-between lg:gap-20 xl:gap-12 md:pt-8 md:pb-3 ">
             <div className="w-full text-center lg:text-left lg:w-[35%]">
-              <h2 className="text-center md:text-left text-[30px] md:text-[42px] lg:text-[48px] font-bold font-Raleway text-[#0F172A] lg:w-[400px]">
+              <h2 className="text-center md:text-left text-[20px] md:text-[42px] lg:text-[48px] font-bold font-Raleway text-[#0F172A] lg:w-[400px]">
                 {details?.title}
               </h2>
-              <p className="pt-4  text-center md:text-left text-[16px] text-[#666666] font-normal w-[100%] md:w-[700px] xl:w-[380px] 4xl:w-[500px]">
+              <p className="pt-4  text-center md:text-left text-[16px] text-[#666666] font-normal w-[100%] px-4 md:px-0 md:w-[700px] xl:w-[380px] 4xl:w-[500px]">
                 {details?.details}
               </p>
               <SlideCounter
@@ -51,7 +51,7 @@ const ServicesHomeItems = ({ services, details }) => {
                 onPrev={handlePrevSlide}
                 onNext={handleNextSlide}
               />
-              <div className="mt-10">
+              <div className="my-5 mb-7 md:mt-10 md:mb-0 md:my-0">
                 <GlobalButtonColored
                   path={"/services"}
                   title={"View All"}

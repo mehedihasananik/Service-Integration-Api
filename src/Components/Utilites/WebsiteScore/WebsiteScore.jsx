@@ -81,25 +81,27 @@ const WebsiteScore = () => {
   };
 
   const inputClass =
-    "w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#FF693B] focus:border-[#FF693B] transition-colors duration-200";
+    "w-full px-4 py-3 rounded-3xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#FF693B] focus:border-[#FF693B] transition-colors duration-200";
 
   return (
     <>
       <div className="flex justify-center items-center px-4 pb-3">
         <button
-          className="relative overflow-hidden group bg-gradient-to-r from-[#FF693B] via-[#FF8C39] to-[#FF693B] text-white text-lg font-bold py-6 px-10 rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 ease-out transform hover:-translate-y-1 hover:scale-105"
+          className="relative overflow-hidden group bg-gradient-to-r from-[#FF693B] via-[#FF8C39] to-[#FF693B] text-white font-bold py-4 px-6 md:py-6 md:px-10 lg:py-8 lg:px-12 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 ease-out transform hover:-translate-y-1 hover:scale-105"
           onClick={() => setOpenModal(true)}
         >
           <span className="relative z-10 flex items-center">
-            <Rocket className="w-8 h-8 mr-3 animate-launch" />
-            <span className="animate-pulse">Check Your Website Score</span>
+            <Rocket className="w-6 h-6 mr-3 animate-launch md:w-6 md:h-6" />
+            <span className="animate-pulse text-sm md:text-base lg:text-lg">
+              Check Your Website Score
+            </span>
           </span>
           <span className="absolute inset-0 bg-gradient-to-r from-[#FF693B] via-yellow-500 to-[#FF693B] opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out"></span>
           <span className="absolute top-0 left-0 w-full h-full bg-white opacity-0 group-hover:opacity-30 transition-all duration-300 ease-out scale-x-0 group-hover:scale-x-100 origin-left"></span>
-          <span className="absolute -top-1 -right-1 w-4 h-4 bg-yellow-300 rounded-full animate-ping"></span>
-          <span className="absolute -bottom-1 -left-1 w-4 h-4 bg-yellow-300 rounded-full animate-ping"></span>
-          <span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-0 h-0 bg-white rounded-full animate-ripple"></span>
-          <span className="absolute top-0 left-0 w-full h-full border-4 border-white rounded-full animate-pulse"></span>
+          <span className="absolute -top-1 -right-1 w-4 h-4 bg-yellow-300 rounded-3xl animate-ping"></span>
+          <span className="absolute -bottom-1 -left-1 w-4 h-4 bg-yellow-300 rounded-3xl animate-ping"></span>
+          <span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-0 h-0 bg-white rounded-3xl animate-ripple"></span>
+          <span className="absolute top-0 left-0 w-full h-full border-4 border-white rounded-3xl animate-pulse"></span>
         </button>
       </div>
 
@@ -108,8 +110,8 @@ const WebsiteScore = () => {
         <Modal.Body className="p-8 bg-gradient-to-br from-white to-gray-100">
           <div className="space-y-8">
             <div className="flex justify-between items-center">
-              <h3 className="text-5xl font-bold text-gray-800">
-                Get Your Website Score
+              <h3 className="text-[30px] font-bold text-gray-800">
+                Discover Your Website&apos;s Potential
               </h3>
               <button
                 onClick={onCloseModal}
@@ -119,7 +121,9 @@ const WebsiteScore = () => {
               </button>
             </div>
             <p className="text-gray-600 italic">
-              Submit your website for a free audit by our expert team.
+              Take the first step towards enhancing your digital footprint with
+              a free website audit from our expert team at Envobyte. Submit your
+              site now and let us help you unlock its full potential!
             </p>
             <form className="space-y-6">
               <div className="space-y-2">
@@ -211,7 +215,7 @@ const WebsiteScore = () => {
                   type="button"
                   onClick={handleSubmit}
                   disabled={isSubmitting}
-                  className="w-full bg-gradient-to-r from-[#FF693B] to-[#FF8C39] text-white font-bold py-3 px-6 rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-102 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#FF693B] disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full bg-gradient-to-r from-[#FF693B] to-[#FF8C39] text-white font-bold py-3 px-6 rounded-3xl shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-102 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#FF693B] disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <span className="flex items-center justify-center">
                     {isSubmitting ? (
@@ -244,7 +248,7 @@ const WebsiteScore = () => {
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.5, y: 100 }}
               transition={{ type: "spring", damping: 15 }}
-              className="bg-white rounded-lg p-8 max-w-md w-full mx-4"
+              className="bg-white rounded-3xl p-8 max-w-md w-full mx-4"
             >
               <div className="text-center">
                 <motion.div
@@ -279,7 +283,7 @@ const WebsiteScore = () => {
                 >
                   <button
                     onClick={onCloseFeedbackModal}
-                    className="px-4 py-2 bg-[#FF693B] text-white rounded-lg hover:bg-[#FF8C39] transition-colors duration-300"
+                    className="px-4 py-2 bg-[#FF693B] text-white rounded-3xl hover:bg-[#FF8C39] transition-colors duration-300"
                   >
                     Close
                   </button>
