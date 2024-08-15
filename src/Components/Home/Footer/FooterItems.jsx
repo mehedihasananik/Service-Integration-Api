@@ -63,9 +63,11 @@ const FooterItems = ({ footer, userContact }) => {
             </h3>
             <ul className="flex flex-col gap-2 pt-5 text-[16px] text-[#444444]  ">
               <li className="flex items-center gap-3">
-                <span>
-                  <img src="/assets/Email.png" alt="" />
-                </span>
+                <img
+                  className="w-[20px] h-[20px]"
+                  src="/assets/Email.png"
+                  alt=""
+                />
                 <span className="cursor-pointer hover:text-[#FF693B] transition-all duration-200">
                   {" "}
                   <a

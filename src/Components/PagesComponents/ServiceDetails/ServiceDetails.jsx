@@ -105,7 +105,7 @@ const ServiceDetails = ({ service, sliders, packages }) => {
           <ServicePortolio portfolios={service.portfolio} />
         </div>
       </div>
-      <div className="max-w-[1520px] mx-auto px-[6%] md:px-[4%] lg:px-[8%] 4xl:px-[0%]">
+      <div className="max-w-[1520px] mx-auto px-[6%] md:px-[4%] lg:px-[8%] xxl:px-[4%] 2xl:px-[4%] 4xl:px-[0%]">
         {/* relevant services */}
         <RelevantServices service={service} />
       </div>

@@ -88,7 +88,7 @@ const PortfolioHomeItems = ({
         <div className="grid grid-cols-2  md:flex md:flex-wrap  gap-5 md:gap-2">
           <button
             onClick={() => handleCategoryChange(0)}
-            className={`px-4 py-2 md:rounded-full text-[14px] md:text-[16px] ${
+            className={`px-4 py-2 rounded-lg md:rounded-full text-[14px] md:text-[16px] ${
               selectedCategoryId === 0
                 ? "bg-[#FF693B] text-white"
                 : "bg-gray-200 text-gray-700"
@@ -101,7 +101,7 @@ const PortfolioHomeItems = ({
             <button
               key={category.category_id}
               onClick={() => handleCategoryChange(category.category_id)}
-              className={`px-4 py-2 md:rounded-full text-[14px] md:text-[16px]  ${
+              className={`px-4 py-2 rounded-lg md:rounded-full text-[14px] md:text-[16px]  ${
                 selectedCategoryId === category.category_id
                   ? "bg-[#FF693B] text-white"
                   : "bg-gray-200 text-gray-700"
@@ -129,13 +129,13 @@ const PortfolioHomeItems = ({
                 href={`/portfolio/${portfolio?.slug}`}
               >
                 <>
-                  <div className=" group rounded-[10px] overflow-hidden border border-[#CBD5E1] ">
+                  <div className=" group rounded-t-[10px] md:rounded-[10px] overflow-hidden border border-[#CBD5E1] ">
                     <div className="portfolio-bgHover h-auto lg:h-[370px]  w-[100%]  cursor-pointer flex flex-col lg:flex-row bg-[#FFFFFF] rounded-[10px]">
                       <div className="md:w-1/2 h-full">
                         <Image
                           width={800}
                           height={500}
-                          className="w-full 4xl:max-w-[345px] h-[370px]  rounded-l-[10px]"
+                          className="w-full 4xl:max-w-[345px] h-[370px]  md:rounded-l-[10px]"
                           src={portfolio?.image}
                           alt=""
                         />

@@ -25,7 +25,7 @@
 }
 @layer components {
   .btn {
-    @apply text-[14px] md:text-[16px] whitespace-nowrap px-4  py-2 md:px-10 md:py-4 font-[600] rounded-lg transition-all duration-300;
+    @apply text-[14px] md:text-[16px] whitespace-nowrap px-4  py-2.5 md:px-10 md:py-4 font-[600] rounded-lg transition-all duration-300;
   }
 
   .btn-primary {
@@ -207,43 +207,6 @@
   }
   .no-margin2 {
     margin-left: 5% !important;
-  }
-
-  @media only screen and (max-width: 1500px) {
-    .custom-margin {
-      margin-left: 0% !important;
-    }
-    .no-margin {
-      margin-left: 0% !important;
-    }
-    .no-margin2 {
-      margin-left: 0% !important;
-    }
-  }
-
-  @media only screen and (max-width: 1024px) {
-    .project_title {
-      display: block;
-    }
-  }
-
-  @media only screen and (max-width: 768px) {
-    .project_title {
-      display: inline;
-    }
-  }
-  @media only screen and (max-width: 425px) {
-    .service_section {
-      background-image: none;
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: left;
-      z-index: -1;
-      width: 100%;
-    }
-    .login_singUp {
-      background-image: none;
-    }
   }
 }
 @keyframes ripple {
@@ -607,6 +570,15 @@ textarea:focus {
   background: #ff693b !important;
 }
 
+/* ----------- */
+.ql-container.ql-snow {
+  border: none !important;
+}
+[type="checkbox"],
+[type="radio"] {
+  color: #ff693b !important;
+}
+
 @media only screen and (max-width: 2500px) {
   .image-gallery-left-nav .image-gallery-svg,
   .image-gallery-right-nav .image-gallery-svg {
@@ -626,6 +598,24 @@ textarea:focus {
     height: 591px !important;
   }
 }
+@media only screen and (max-width: 1500px) {
+  .custom-margin {
+    margin-left: 0% !important;
+  }
+  .no-margin {
+    margin-left: 0% !important;
+  }
+  .no-margin2 {
+    margin-left: 0% !important;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .project_title {
+    display: block;
+  }
+}
+
 @media only screen and (max-width: 768px) {
   .image-gallery-left-nav .image-gallery-svg,
   .image-gallery-right-nav .image-gallery-svg {
@@ -650,8 +640,6 @@ textarea:focus {
   .testimonial_mySwiper {
     height: 500px !important;
   }
-}
-@media only screen and (max-width: 767px) {
   .testimonial_mySwiper {
     height: 390px !important;
   }
@@ -666,18 +654,24 @@ textarea:focus {
     margin-top: 18px !important;
     width: 308px !important;
   }
-}
-/* ----------- */
-.ql-container.ql-snow {
-  border: none !important;
-}
-[type="checkbox"],
-[type="radio"] {
-  color: #ff693b !important;
+  .project_title {
+    display: inline;
+  }
 }
 
-/* 
-.single_description h2 {
+@media only screen and (max-width: 425px) {
+  .service_section {
+    background-image: none;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: left;
+    z-index: -1;
+    width: 100%;
+  }
+  .login_singUp {
+    background-image: none;
+  }
+  /* .single_description h2 {
   font-size: 45px !important;
   font-weight: 500 !important;
   margin: 5px 0 !important;
@@ -708,10 +702,7 @@ textarea:focus {
   font-size: 14px !important;
   color: #333333;
 }
-.servicePage_content h2 {
-  font-size: 45px !important;
-  color: #333333;
-}
+
 .servicePage_content p {
   font-size: 14px !important;
   color: #333333;
@@ -741,3 +732,8 @@ textarea:focus {
   font-size: 16px !important;
   color: #333333;
 } */
+  .servicePage_content h2 {
+    font-size: 20px !important;
+    color: #333333;
+  }
+}

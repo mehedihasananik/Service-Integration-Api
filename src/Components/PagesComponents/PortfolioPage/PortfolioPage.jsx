@@ -233,9 +233,13 @@ const PortfolioPage = ({
           </div>
         )}
       </div>
-      <div className="single_description">
-        <Global_PageHtml serviceDetails={serviceDetails} />
-      </div>
+      {loading ? (
+        ""
+      ) : (
+        <div className="single_description">
+          <Global_PageHtml serviceDetails={serviceDetails} />
+        </div>
+      )}
     </div>
   );
 };

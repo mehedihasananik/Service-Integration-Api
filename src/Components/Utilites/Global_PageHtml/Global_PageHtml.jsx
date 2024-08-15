@@ -73,18 +73,12 @@ const Global_PageHtml = ({ serviceDetails }) => {
   ];
 
   return (
-    <div>
-      {isLoading ? (
-        <div>
-          <h3>Loading editor...</h3>
-        </div>
-      ) : (
-        <div
-          className="ql-editor"
-          dangerouslySetInnerHTML={{ __html: serviceDetails }}
-        />
-      )}
-    </div>
+    <>
+      <div
+        className="ql-editor"
+        dangerouslySetInnerHTML={{ __html: serviceDetails }}
+      />
+    </>
   );
 };
 

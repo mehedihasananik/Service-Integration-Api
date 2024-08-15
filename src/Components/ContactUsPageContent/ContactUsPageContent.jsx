@@ -1,7 +1,7 @@
 "use client";
 import Container from "@/Components/Container/Container";
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import * as Yup from "yup";
 import ReCAPTCHA from "react-google-recaptcha";
@@ -13,6 +13,7 @@ import { motion } from "framer-motion";
 
 const ContactUsPageContent = ({ userContact }) => {
   const [phone, setPhone] = useState("");
+  const [recaptchaSize, setRecaptchaSize] = useState("normal");
 
   const [formData, setFormData] = useState({
     first_name: "",
@@ -23,6 +24,19 @@ const ContactUsPageContent = ({ userContact }) => {
   });
 
   const [captchaVerified, setCaptchaVerified] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setRecaptchaSize(window.innerWidth < 400 ? "compact" : "normal");
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const validationSchema = Yup.object().shape({
     first_name: Yup.string()
@@ -62,7 +76,7 @@ const ContactUsPageContent = ({ userContact }) => {
         toast.success(
           "Project details sent successfully, we will contact you",
           {
-            duration: 10000, // 10 seconds
+            duration: 10000,
           }
         );
         setFormData({
@@ -115,24 +129,27 @@ const ContactUsPageContent = ({ userContact }) => {
     <motion.div
       initial="hidden"
       animate="visible"
-      className="bg-gradient-to-br from-[##FF693B] via-[##FF693B] to-[##FF693B] min-h-screen pt-0  lg:pb-28"
+      className="bg-gradient-to-br from-[#FFFFFF] via-[#FFFFFF] to-[#FFFFFF] min-h-screen pt-0 pb-2 lg:pb-28"
     >
       <Container>
-        <motion.div variants={stagger} className="text-center mb-20 mt-4">
-          <div className="flex justify-center items-center">
-            <div className="relative top-5">
+        <motion.div
+          variants={stagger}
+          className="text-center mb-8 lg:mb-20 mt-4"
+        >
+          <div className="flex flex-col lg:flex-row justify-center items-center">
+            <div className="relative top-0 lg:top-5 mb-4 lg:mb-0">
               <motion.img
                 variants={fadeInUp}
                 whileHover={{ scale: 1.1, rotate: 360 }}
                 transition={{ duration: 0.5 }}
                 src="/assets/projectLogo.svg"
                 alt="Project Logo"
-                className="w-24  mb-8"
+                className="w-16 lg:w-24"
               />
             </div>
             <motion.h2
               variants={fadeInUp}
-              className="text-5xl md:text-6xl lg:text-7xl font-bold text-[#2C3E50] mb-0"
+              className="text-3xl md:text-4xl lg:text-6xl font-bold text-[#2C3E50] mb-2 lg:mb-0"
             >
               Let&apos;s Craft Your{" "}
               <span className="text-[#FF693B]">Vision</span>
@@ -140,7 +157,7 @@ const ContactUsPageContent = ({ userContact }) => {
           </div>
           <motion.p
             variants={fadeInUp}
-            className="text-xl text-[#34495E] max-w-3xl mx-auto"
+            className="text-lg lg:text-xl text-[#34495E] max-w-3xl mx-auto px-4"
           >
             Share your project ideas, and we&apos;ll transform them into
             reality. Let&apos;s create something extraordinary together.
@@ -149,9 +166,12 @@ const ContactUsPageContent = ({ userContact }) => {
 
         <motion.div
           variants={stagger}
-          className="flex flex-col lg:flex-row gap-16"
+          className="flex flex-col lg:flex-row gap-8 lg:gap-16 md:px-4"
         >
-          <motion.div variants={fadeInUp} className="lg:w-1/3 space-y-8">
+          <motion.div
+            variants={fadeInUp}
+            className="w-full lg:w-1/3 space-y-4 lg:space-y-8"
+          >
             {[
               {
                 icon: "https://i.ibb.co/hVTCYCp/Email.png",
@@ -171,20 +191,26 @@ const ContactUsPageContent = ({ userContact }) => {
                 href={item.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300"
+                className="flex items-center p-4 lg:p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300"
                 whileHover={{ scale: 1.05, y: -5 }}
                 whileTap={{ scale: 0.95 }}
               >
                 <motion.div
-                  className="bg-[#ECF0F1] p-5 rounded-full mr-6"
+                  className="bg-[#ECF0F1] p-3 lg:p-5 rounded-full mr-4 lg:mr-6"
                   whileHover={{ rotate: 360 }}
                   transition={{ duration: 0.5 }}
                 >
-                  <img src={item.icon} alt={item.title} className="w-10 h-10" />
+                  <img
+                    src={item.icon}
+                    alt={item.title}
+                    className="w-6 h-6 lg:w-10 lg:h-10"
+                  />
                 </motion.div>
                 <div>
-                  <h3 className="text-xl text-[#7F8C8D] mb-1">{item.title}</h3>
-                  <span className="text-2xl font-semibold text-[#2C3E50]">
+                  <h3 className="text-lg lg:text-xl text-[#7F8C8D] mb-1">
+                    {item.title}
+                  </h3>
+                  <span className="text-base lg:text-2xl font-semibold text-[#2C3E50]">
                     {item.value}
                   </span>
                 </div>
@@ -192,12 +218,12 @@ const ContactUsPageContent = ({ userContact }) => {
             ))}
           </motion.div>
 
-          <motion.div variants={fadeInUp} className="lg:w-2/3">
+          <motion.div variants={fadeInUp} className="w-full lg:w-2/3">
             <form
               onSubmit={handleSubmit}
-              className="bg-white p-10 rounded-3xl shadow-2xl"
+              className="bg-white p-4 md:p-6 lg:p-10 md:rounded-3xl md:shadow-2xl"
             >
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-8">
                 <motion.div whileHover={{ scale: 1.02 }} className="space-y-2">
                   <label
                     className="text-[#34495E] font-medium"
@@ -206,7 +232,7 @@ const ContactUsPageContent = ({ userContact }) => {
                     Full Name
                   </label>
                   <input
-                    className="w-full p-4 border border-[#BDC3C7] rounded-lg focus:ring-2 focus:ring-[#3498DB] focus:border-transparent transition"
+                    className="w-full p-3 lg:p-4 border border-[#BDC3C7] rounded-lg focus:ring-2 focus:ring-[#3498DB] focus:border-transparent transition"
                     type="text"
                     id="first_name"
                     name="first_name"
@@ -224,7 +250,7 @@ const ContactUsPageContent = ({ userContact }) => {
                     Email
                   </label>
                   <input
-                    className="w-full p-4 border border-[#BDC3C7] rounded-lg focus:ring-2 focus:ring-[#3498DB] focus:border-transparent transition"
+                    className="w-full p-3 lg:p-4 border border-[#BDC3C7] rounded-lg focus:ring-2 focus:ring-[#3498DB] focus:border-transparent transition"
                     type="email"
                     id="user_email"
                     name="user_email"
@@ -237,10 +263,10 @@ const ContactUsPageContent = ({ userContact }) => {
               </div>
               <motion.div
                 whileHover={{ scale: 1.02 }}
-                className="mt-8 space-y-2"
+                className="mt-4 lg:mt-8 space-y-2"
               >
                 <label
-                  className="text-[#34495E] font-medium "
+                  className="text-[#34495E] font-medium"
                   htmlFor="user_phone"
                 >
                   Phone (WhatsApp)
@@ -255,18 +281,18 @@ const ContactUsPageContent = ({ userContact }) => {
                   defaultCountry="usa"
                   value={phone}
                   onChange={handlePhoneOnChange}
-                  className="w-full p-4  border border-[#BDC3C7] rounded-lg focus:ring-2 focus:ring-[#3498DB] focus:border-transparent transition"
+                  className="w-full p-3 lg:p-4 border border-[#BDC3C7] rounded-lg focus:ring-2 focus:ring-[#3498DB] focus:border-transparent transition"
                 />
               </motion.div>
               <motion.div
                 whileHover={{ scale: 1.02 }}
-                className="mt-8 space-y-2"
+                className="mt-4 lg:mt-8 space-y-2"
               >
                 <label className="text-[#34495E] font-medium" htmlFor="message">
                   Project details
                 </label>
                 <textarea
-                  className="w-full p-4 border border-[#BDC3C7] rounded-lg focus:ring-2 focus:ring-[#3498DB] focus:border-transparent transition"
+                  className="w-full p-3 lg:p-4 border border-[#BDC3C7] rounded-lg focus:ring-2 focus:ring-[#3498DB] focus:border-transparent transition"
                   id="message"
                   name="message"
                   placeholder="Describe your project vision..."
@@ -276,19 +302,20 @@ const ContactUsPageContent = ({ userContact }) => {
                   required
                 />
               </motion.div>
-              <motion.div whileHover={{ scale: 1.02 }} className="mt-8">
+              <div className="mt-4 lg:mt-8 flex justify-center md:justify-start">
                 <ReCAPTCHA
                   sitekey="6LeHdPIpAAAAAJoof-1ewzeYES0jvTrJ9_g09hBQ"
                   onChange={handleCaptchaChange}
+                  size={recaptchaSize}
                 />
-              </motion.div>
+              </div>
               <motion.button
                 whileHover={{
                   scale: 1.05,
                   boxShadow: "0px 0px 8px rgb(63,105,219)",
                 }}
                 whileTap={{ scale: 0.95 }}
-                className="mt-10 w-[35%] bg-[#FF693B] text-white font-bold py-5 px-8 rounded-lg hover:bg-[#3d5bab] transition-all duration-300"
+                className="mt-8 lg:mt-10 w-full lg:w-[35%] bg-[#FF693B] text-white font-bold py-3 lg:py-5 px-4 lg:px-8 rounded-lg hover:bg-[#3d5bab] transition-all duration-300"
                 type="submit"
               >
                 Send Project Details

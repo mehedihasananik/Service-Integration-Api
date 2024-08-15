@@ -81,11 +81,11 @@ const AboutUsItems = ({ about }) => {
         </>
       )}
 
-      <div className="md:py-8 pt-4 md:pt-16 text-center lg:text-left">
+      <div className="md:py-8 pt-6 md:pt-16 text-center lg:text-left">
         <GlobalButtonColored
           path={"/about-us"}
           title={"Learn More"}
-          className="btn btn-primary px-12"
+          className="btn btn-primary px-12 "
         />
       </div>
     </div>

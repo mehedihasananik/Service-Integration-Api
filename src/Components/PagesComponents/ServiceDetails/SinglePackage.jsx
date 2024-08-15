@@ -35,7 +35,7 @@ const SinglePackage = ({ item, setOpenModal, height, serviceName }) => {
       : height === 3
       ? "h-[460px]"
       : height === 4
-      ? "h-[490px]"
+      ? "h-[495px]"
       : height === 5
       ? "h-[530px] md:h-[565px]"
       : height === 6
@@ -58,7 +58,7 @@ const SinglePackage = ({ item, setOpenModal, height, serviceName }) => {
       : height === 3
       ? "mt-[30px] md:mt-[-20px]"
       : height === 4
-      ? "mt-[30px] md:mt-[30px]"
+      ? "mt-[30px] md:mt-[40px]"
       : height === 5
       ? "mt-[30px] md:mt-[90px]"
       : height === 6
@@ -120,8 +120,8 @@ const SinglePackage = ({ item, setOpenModal, height, serviceName }) => {
                 <IoCheckmarkSharp className="text-[#FF8F5A] w-[16px] h-[16px]" />
               </span>
               <span className="text-[#646464] text-[16px] font-Roboto">
-                {item?.package_item.length > 40
-                  ? `${item?.package_item.slice(0, 40)}...`
+                {item?.package_item.length > 35
+                  ? `${item?.package_item.slice(0, 35)}...`
                   : item?.package_item}
               </span>
             </div>

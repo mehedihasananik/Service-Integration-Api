@@ -236,7 +236,7 @@ const ProjectDetails = ({ userContact }) => {
                   <div className="w-full lg:w-[50%]">
                     <div className="flex flex-col gap-3">
                       <label
-                        className="text-[16px] font-Roboto mt-3"
+                        className="text-[16px] font-Roboto mt-3 md:mt-0"
                         htmlFor="user_email"
                       >
                         Email:

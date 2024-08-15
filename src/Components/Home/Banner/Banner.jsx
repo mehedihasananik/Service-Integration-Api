@@ -1,20 +1,23 @@
-import axios from "axios";
 import Container from "@/Components/Container/Container";
 import BannerItems from "@/Components/Utilites/BannerItems/BannerItems";
 import UserLoading from "@/Components/Utilites/UserLoading/UserLoading";
 import { bannerApi } from "@/config/apis";
 import { Suspense } from "react";
 
+// api fetching from sever side
 async function getBannerContent() {
-  try {
-    const res = await axios.get(bannerApi);
-    return res.data;
-  } catch (error) {
-    throw new Error("Failed to fetch banner data");
+  const res = await fetch(`${bannerApi}`, {
+    next: { revalidate: 10 },
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
   }
+  return res.json();
 }
 
 const Banner = async () => {
+  // getting the banner data
   const banner = await getBannerContent();
   return (
     <Container>

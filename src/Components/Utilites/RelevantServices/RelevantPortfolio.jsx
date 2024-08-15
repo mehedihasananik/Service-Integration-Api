@@ -22,8 +22,12 @@ const RelevantPortfolio = ({ singlePortfolioItem }) => {
       slidesPerView: 4,
       spaceBetween: 50,
     },
-    1336: {
+    1536: {
       slidesPerView: 4,
+      spaceBetween: 50,
+    },
+    1336: {
+      slidesPerView: 3,
       spaceBetween: 50,
     },
     1280: {
@@ -51,7 +55,7 @@ const RelevantPortfolio = ({ singlePortfolioItem }) => {
       {relevant.length > 0 ? (
         <div className="pt-0 pb-5 md:pt-3 md:pb-0">
           <div className="text-center font-Raleway">
-            <h3 className="text-[32px] font-bold md:text-[48px] pb-5">
+            <h3 className="text-[32px] font-bold md:text-[48px] pb-6">
               Relevant Services
             </h3>
           </div>

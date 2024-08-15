@@ -105,9 +105,9 @@ const PortfolioDetails = ({ singlePortfolioItem }) => {
         </Link>
       </div>
       <div className="bg-[#fff] py-5 md:pt-3 md:pb-10">
-        <Container>
+        <div className="max-w-[1520px] mx-auto px-[6%] md:px-[4%] xl:px-[8%] 2xl:px-[2%]  4xl:px-[2%]">
           <RelevantPortfolio singlePortfolioItem={singlePortfolioItem} />
-        </Container>
+        </div>
       </div>
     </div>
   );

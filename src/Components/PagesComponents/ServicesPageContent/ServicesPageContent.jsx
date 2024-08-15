@@ -3,9 +3,9 @@ import React, { useEffect, useState } from "react";
 import Container from "@/Components/Container/Container";
 import Image from "next/image";
 import Link from "next/link";
-import UserLoading from "@/Components/Utilites/UserLoading/UserLoading";
 import Global_PageHtml from "@/Components/Utilites/Global_PageHtml/Global_PageHtml";
 import ServicePageItems from "./ServicePageItems";
+import Loading from "@/Components/Utilites/Loading/Loading";
 
 const ServicesPageContent = ({
   serviceCategories,
@@ -135,7 +135,7 @@ const ServicesPageContent = ({
 
           {serviceLoading ? (
             <div className="flex justify-center text-center text-gray-600 mt-10">
-              <UserLoading />
+              <Loading />
             </div>
           ) : (
             <div
