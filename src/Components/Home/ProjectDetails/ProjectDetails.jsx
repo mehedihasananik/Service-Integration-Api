@@ -164,7 +164,7 @@ const ProjectDetails = ({ userContact }) => {
           </p>
         </div>
         <div className="w-[100%] flex flex-col justify-center items-center lg:flex-row lg:items-start lg:justify-between gap-10 md:pt-14">
-          <div className="w-full md:w-[80%] lg:w-[40%] flex flex-col gap-10 md:pl-10 2xl:pl-0">
+          <div className="w-full md:w-[80%] lg:w-[40%] flex flex-col gap-5 md:gap-10 md:pl-10 2xl:pl-0">
             <div className="flex items-center gap-6 bg-[#FFFFFF] py-8 rounded-lg pl-5">
               <a
                 href={`mailto:${userContact.email}`}
@@ -344,8 +344,7 @@ const ProjectDetails = ({ userContact }) => {
                     htmlFor="accept"
                     className="text-sm text-gray-700 leading-tight font-Roboto"
                   >
-                    By checking this box, you agree that you have read,
-                    acknowledge and accept our{" "}
+                    You agree that you have read, acknowledge and accept our{" "}
                     <Link
                       href="/terms-and-conditions"
                       className="text-[#FF693B] hover:text-[#FF8D6B] underline font-semibold transition-colors duration-300"

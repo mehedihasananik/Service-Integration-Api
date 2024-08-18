@@ -90,10 +90,10 @@ const SignUpContent = () => {
     }));
   };
   return (
-    <div className="login_singUp overflow-hidden  my-5 py-5">
+    <div className="login_singUp overflow-hidden  md:my-5 md:py-5">
       <>
-        <div className="w-full h-fit md:flex md:justify-center pt-5 ">
-          <div className="shadow-md  border rounded-lg  py-6 px-10  md:py-10 md:px-32">
+        <div className="w-full h-fit md:flex md:justify-center pt-2 md:pt-5 ">
+          <div className="md:shadow-md  md:border rounded-lg  py-2 px-10  md:py-10 md:px-32">
             <div className="text-center pb-5 md:pb-14">
               <h3
                 style={{ whiteSpace: "nowrap" }}

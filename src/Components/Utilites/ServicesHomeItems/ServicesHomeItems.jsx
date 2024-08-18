@@ -51,7 +51,7 @@ const ServicesHomeItems = ({ services, details }) => {
                 onPrev={handlePrevSlide}
                 onNext={handleNextSlide}
               />
-              <div className="my-5 mb-7 md:mt-10 md:mb-0 md:my-0">
+              <div className="hidden md:block my-5 mb-7 md:mt-10 md:mb-0 md:my-0">
                 <GlobalButtonColored
                   path={"/services"}
                   title={"View All"}
@@ -76,6 +76,13 @@ const ServicesHomeItems = ({ services, details }) => {
               </Swiper>
               <div className="py-0 lg:py-2 text-center lg:text-left lg:mt-8 md:hidden mt-5 md:mt-10">
                 <ViewAllButton />
+              </div>
+              <div className=" md:hidden my-5 mb-10 md:mt-10 md:mb-0 md:my-0 text-center ">
+                <GlobalButtonColored
+                  path={"/services"}
+                  title={"View All"}
+                  className="btn btn-primary px-12"
+                />
               </div>
             </div>
           </div>

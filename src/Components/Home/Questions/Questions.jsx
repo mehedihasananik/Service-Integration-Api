@@ -33,7 +33,7 @@ const Questions = ({ className, title }) => {
               {title}
             </h3>
             <div className="flex justify-center">
-              <p className="text-[#0F172A] text-[14px] md:text-[16px] w-full md:w-2/3 lg:w-1/2">
+              <p className="text-[#0F172A] text-[16px] md:text-[16px] w-full md:w-2/3 lg:w-1/2 px-4 md:px-0 ">
                 Here, you&apos;ll find answers to the most common questions and
                 concerns our clients have. We&apos;ve compiled this
                 comprehensive resource to provide you with the information you

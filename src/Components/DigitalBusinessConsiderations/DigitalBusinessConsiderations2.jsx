@@ -36,7 +36,7 @@ const DigitalBusinessConsiderations2 = async () => {
 
   return (
     <div className="max-w-[1520px] mx-auto px-[6%] md:px-[4%] xl:px-[8%] 4xl:px-[4%] md:pt-8  md:pb-3 ">
-      <div className="mb-5 md:mb-10">
+      <div className="mb-6 md:mb-10">
         <h3 className="text-[20px] md:text-[30px] lg:text-[48px] font-Raleway font-bold text-center pb-1 md:pb-2">
           Before starting a business consider a few things
         </h3>
@@ -44,7 +44,7 @@ const DigitalBusinessConsiderations2 = async () => {
           In today&apos;s fast-paced digital landscape, ensure your business has
           a strong foundation with these key considerations:
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {considerations.map((item, index) => {
             return (
               <Link key={item.id} href={"/services"}>
@@ -78,7 +78,9 @@ const DigitalBusinessConsiderations2 = async () => {
           })}
         </div>
       </div>
-      <WebsiteScore />
+      <div className="py-3">
+        <WebsiteScore />
+      </div>
     </div>
   );
 };

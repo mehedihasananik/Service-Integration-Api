@@ -71,7 +71,7 @@ const TestimonialHomeItems = ({ testimonials }) => {
                 </h2>
               </div>
               <div className="pt-2 md:pt-4 lg:w-[380px]">
-                <p className=" text-[16px] text-[#666666] text-justify md:text-left font-normal">
+                <p className=" text-[16px] text-[#666666]  md:text-left font-normal px-4 md:px-0">
                   We aim to provide top-notch quality service and client
                   satisfaction. We are happy to help a lot of companies.
                 </p>

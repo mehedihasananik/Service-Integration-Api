@@ -7,7 +7,7 @@ const ServiceIndustriesContent = ({ industries, details }) => {
   return (
     <div className=" text-dark  px-0 mt-0 rounded-md  overflow-hidden relative text-center pt-2 md:pt-8 md:pb-20">
       <motion.h1
-        className="text-[25px] md:text-[30px] lg:text-[48px] font-Raleway font-bold tracking-wide"
+        className="text-[20px] whitespace-nowrap md:text-[30px] lg:text-[48px] font-Raleway font-bold tracking-wide"
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
@@ -39,7 +39,7 @@ const ServiceIndustriesContent = ({ industries, details }) => {
         {industries.map((industry, index) => (
           <motion.div
             key={index}
-            className="bg-gradient-to-br from-[#FF693B] to-[#FF8C5F] p-6 rounded-lg shadow-lg transition-all duration-300 flex flex-col justify-between h-full overflow-hidden hover:scale-105 hover:shadow-2xl hover:from-[#11328F] hover:to-[#11328F] group"
+            className="bg-gradient-to-br  from-[#11328F] to-[#11328F] hover:from-[#FF693B] hover:to-[#FF8C5F]   p-6 rounded-lg shadow-lg transition-all duration-300 flex flex-col justify-between h-full overflow-hidden hover:scale-105 hover:shadow-2xl  group"
             variants={{
               hidden: { opacity: 0, y: 20 },
               show: { opacity: 1, y: 0 },
@@ -48,7 +48,7 @@ const ServiceIndustriesContent = ({ industries, details }) => {
             <div>
               <div className="flex items-center mb-4">
                 <span className="text-4xl mr-3">{industry.emoji}</span>
-                <h2 className="text-2xl font-serif font-bold text-white group-hover:text-gray-100">
+                <h2 className="text-[16px] whitespace-nowrap md:text-2xl font-serif font-bold text-white group-hover:text-gray-100">
                   {industry.title}
                 </h2>
               </div>

@@ -66,7 +66,7 @@ const Login = () => {
   console.log(session?.data?.user);
 
   return (
-    <div className="login_singUp overflow-hidden  my-5 py-5">
+    <div className="login_singUp overflow-hidden  md:my-5 md:py-5">
       <Container>
         {loading && (
           <div className="text-center">
@@ -75,7 +75,7 @@ const Login = () => {
         )}
 
         <div className="w-full flex justify-center md:pt-5">
-          <div className="shadow-md  border rounded-lg  py-6 px-10  md:py-10 md:px-32">
+          <div className="md:shadow-md  md:border rounded-lg  py-5 px-10  md:py-10 md:px-32">
             <div className="text-center pb-5 md:pb-14">
               <h3 className="text-[30px] md:text-[40px] text-[#333333] font-Raleway font-bold">
                 Welcome back!

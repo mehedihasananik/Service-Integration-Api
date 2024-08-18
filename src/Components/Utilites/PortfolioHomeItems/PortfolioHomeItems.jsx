@@ -129,7 +129,7 @@ const PortfolioHomeItems = ({
                 href={`/portfolio/${portfolio?.slug}`}
               >
                 <>
-                  <div className=" group rounded-t-[10px] md:rounded-[10px] overflow-hidden border border-[#CBD5E1] ">
+                  <div className=" group rounded-t-[10px] rounded-b-[10px] md:rounded-[10px] overflow-hidden border border-[#CBD5E1] ">
                     <div className="portfolio-bgHover h-auto lg:h-[370px]  w-[100%]  cursor-pointer flex flex-col lg:flex-row bg-[#FFFFFF] rounded-[10px]">
                       <div className="md:w-1/2 h-full">
                         <Image
