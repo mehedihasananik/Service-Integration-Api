@@ -44,7 +44,7 @@ const AboutUsItems = ({ about }) => {
 
   return (
     <div ref={ref}>
-      <div className="w-full text-center lg:text-left lg:w-[544px]">
+      <div className="w-full text-center xl:text-left xl:w-[544px]">
         <h2 className="text-[20px] md:text-[38px] lg:text-[48px] font-bold font-Raleway text-[#0F172A] md:leading-[55px]">
           {heading}
         </h2>
@@ -81,7 +81,7 @@ const AboutUsItems = ({ about }) => {
         </>
       )}
 
-      <div className="md:py-8 pt-6 md:pt-16 text-center lg:text-left">
+      <div className="md:py-8 pt-6 md:pt-16 text-center xl:text-left">
         <GlobalButtonColored
           path={"/about-us"}
           title={"Learn More"}

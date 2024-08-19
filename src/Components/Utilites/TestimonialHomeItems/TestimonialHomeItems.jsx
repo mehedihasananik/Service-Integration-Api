@@ -46,7 +46,7 @@ const TestimonialHomeItems = ({ testimonials }) => {
       spaceBetween: 30,
     },
     1024: {
-      slidesPerView: 2,
+      slidesPerView: 3,
       spaceBetween: 30,
     },
     768: {
@@ -63,20 +63,20 @@ const TestimonialHomeItems = ({ testimonials }) => {
     <div id="testimonial" className="overflow-hidden ">
       <div className=" max-w-[1680px] mx-auto 4xl:px-[0] 4xl:max-w-[1920px] xl:pl-[8%] 2xl:pl-[13%] 4xl:pl-[14%]">
         <div className="pb-0 xl:pt-0">
-          <div className="flex flex-col lg:flex-row items-center justify-between lg:gap-20 xl:gap-12 pt-0 pb-5 md:pt-8 md:pb-0">
-            <div className="w-full text-center lg:text-left lg:w-[35%] px-4 md:px-0">
-              <div className="lg:w-[400px]">
-                <h2 className="text-[20px] md:text-[42px] lg:text-[48px] font-bold font-Raleway text-[#0F172A]">
+          <div className="flex flex-col xl:flex-row items-center justify-between lg:gap-10 xl:gap-12 pt-0 pb-5 md:pt-8 md:pb-0">
+            <div className="w-full text-center xl:text-left xl:w-[35%] px-4 md:px-0">
+              <div className="w-full xl:w-[400px]">
+                <h2 className="text-[20px] md:text-[42px] xl:text-[48px] font-bold font-Raleway text-[#0F172A]">
                   What Are People Saying About Us
                 </h2>
               </div>
-              <div className="pt-2 md:pt-4 lg:w-[380px]">
-                <p className=" text-[16px] text-[#666666]  md:text-left font-normal px-4 md:px-0">
+              <div className="pt-2 md:pt-4 xl:w-[380px]">
+                <p className=" text-[16px] text-[#666666]  xl:text-left font-normal px-4 md:px-0">
                   We aim to provide top-notch quality service and client
                   satisfaction. We are happy to help a lot of companies.
                 </p>
               </div>
-              <div className="flex justify-center items-center lg:justify-start lg:items-start gap-6 py-4">
+              <div className="flex justify-center items-center xl:justify-start xl:items-start gap-6 py-4">
                 <div className="group text-center">
                   <button
                     className=" bg-[#FF9F711A]  group-hover:bg-[#FF693B] px-5 py-5 rounded-lg transition-all duration-300"
@@ -105,7 +105,7 @@ const TestimonialHomeItems = ({ testimonials }) => {
                 </span>
               </div>
               {/* md device */}
-              <div className="text-center lg:text-left hidden md:block xxl:hidden">
+              <div className="text-center  hidden md:block xxl:hidden">
                 <span className="text-[48px] font-Raleway text-[#0A2C8C] font-bold">
                   {currentSlide + 2}
                 </span>
@@ -124,7 +124,7 @@ const TestimonialHomeItems = ({ testimonials }) => {
               </div>
             </div>
 
-            <div className="w-full lg:w-[65%]">
+            <div className="w-full xl:w-[65%]">
               {loading ? (
                 <div className="flex flex-wrap justify-center">
                   {[...Array(3)].map((_, index) => (

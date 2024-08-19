@@ -1,13 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
 import parse from "html-react-parser";
-
-const ReactQuill = dynamic(() => import("react-quill"), {
-  ssr: false,
-  loading: () => <p>Loading editor...</p>,
-});
 
 const Global_PageHtml = ({ serviceDetails }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -35,7 +29,6 @@ const Global_PageHtml = ({ serviceDetails }) => {
                 }
                 return acc;
               }, {});
-
             domNode.attribs.style = styles;
           }
           return domNode;
@@ -45,40 +38,10 @@ const Global_PageHtml = ({ serviceDetails }) => {
     }
   }, [serviceDetails]);
 
-  const modules = {
-    toolbar: false,
-    clipboard: {
-      matchVisual: false,
-    },
-  };
-
-  const formats = [
-    "header",
-    "font",
-    "size",
-    "bold",
-    "italic",
-    "underline",
-    "strike",
-    "blockquote",
-    "list",
-    "bullet",
-    "indent",
-    "link",
-    "image",
-    "video",
-    "align",
-    "color",
-    "background",
-  ];
-
   return (
-    <>
-      <div
-        className="ql-editor"
-        dangerouslySetInnerHTML={{ __html: serviceDetails }}
-      />
-    </>
+    <div className="ql-editor custom-content-container">
+      <div dangerouslySetInnerHTML={{ __html: serviceDetails }} />
+    </div>
   );
 };
 

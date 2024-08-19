@@ -89,13 +89,13 @@ const Terms = async () => {
   return (
     <>
       <JsonLd data={terms?.meta?.json_ld} />
-      <Container>
-        <div className="bg-gray-100 mt-5 px-10 pageHtml">
-          <div className="container mx-auto px-4 py-8">
+      <div className="max-w-[1520px] mx-auto px-[0%] md:px-[4%] xl:px-[8%] 4xl:px-[4%]">
+        <div className="bg-gray-100 mt-5 md:px-10 pageHtml">
+          <div className="container mx-auto px-4 py-3 md:py-8">
             <Global_PageHtml serviceDetails={terms.page_content} />
           </div>
         </div>
-      </Container>
+      </div>
     </>
   );
 };

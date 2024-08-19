@@ -40,7 +40,9 @@ const SinglePackageSm = ({ item, setOpenModal }) => {
             {item?.package_name}
           </h3>
           <p className="text-[15px] text-[#334155] font-normal">
-            {item?.package_text}
+            {item?.package_text.length > 80
+              ? item?.package_text.slice(0, 80) + "..."
+              : item?.package_text}
           </p>
         </div>
 

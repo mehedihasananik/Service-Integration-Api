@@ -19,7 +19,7 @@ const BannerItems = ({ banner }) => {
         </p>
         <div className="flex flex-col xs:flex-row  justify-center lg:justify-start gap-4 md:gap-6 py-6">
           <GlobalButtonColored
-            path={"#"}
+            path={"/schedule-meeting"}
             title={"Book an Appointment"}
             className="btn btn-primary md:w-full text-center "
           />

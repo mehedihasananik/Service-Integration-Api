@@ -73,7 +73,7 @@ const SinglePackage = ({ item, setOpenModal, height, serviceName }) => {
       ? "mt-[30px] md:mt-[290px]"
       : "";
 
-  // console.log(item?.package_name);
+  // console.log(item);
 
   return (
     <div className="md:mx-[10%] lg:mx-0 overflow-hidden">
@@ -96,9 +96,16 @@ const SinglePackage = ({ item, setOpenModal, height, serviceName }) => {
         </div>
         {/* price */}
         <div className="md:h-[50px] xl:h-[60px] xxl:h-[50px] mt-[20px] md:mt-0 px-4 md:px-8">
-          <h2 className="md:my-2 text-[20px] md:text-[32px] font-semibold font-Raleway flex items-center">
-            $ <span>{item?.package_price}</span>
-          </h2>
+          <div className="md:my-2 font-Raleway font-semibold flex items-center space-x-2">
+            <span className="text-[20px] md:text-[32px]  ">
+              ${item?.package_price}
+            </span>
+            {item?.discount_price && (
+              <span className="line-through text-[#FF693B] text-[16px] md:text-[20px] ">
+                ${item?.discount_price}
+              </span>
+            )}{" "}
+          </div>
         </div>
         {/* order button */}
         <div className="py-4 mt-4 md:mt-0 md:pb-8 flex justify-center px-4 md:px-8">

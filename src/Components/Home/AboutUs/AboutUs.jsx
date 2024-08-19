@@ -24,7 +24,7 @@ const AboutUs = async () => {
     <div className="pb-5  md:pt-0  md:pb-10 overflow-hidden">
       <Container>
         {/* about us content */}
-        <div className="flex flex-col xl:flex-row   md:gap-[6%] 2xl:gap-[10%]">
+        <div className="flex flex-col items-center xl:flex-row   md:gap-[6%] 2xl:gap-[10%]">
           {/* left side image */}
           <div className="bg-[#DDFFFB]">
             <Image

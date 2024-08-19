@@ -90,11 +90,11 @@ const PrivacyPolicy = async () => {
   return (
     <>
       <JsonLd data={privacy?.meta?.json_ld} />
-      <Container>
-        <div className="bg-gray-100 mt-5 md:px-10 pt-5 pb-8 overflow-hidden pageHtml">
+      <div className="max-w-[1520px] mx-auto px-[2%] md:px-[4%] xl:px-[8%] 4xl:px-[4%]">
+        <div className="bg-gray-100 mt-5 md:px-5 md:pt-5 md:pb-8 overflow-hidden pageHtml">
           <Global_PageHtml serviceDetails={privacy.page_content} />
         </div>
-      </Container>
+      </div>
     </>
   );
 };

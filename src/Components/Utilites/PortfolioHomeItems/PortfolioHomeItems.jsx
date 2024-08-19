@@ -85,7 +85,7 @@ const PortfolioHomeItems = ({
         <div>Our beautiful work you need to know!</div>
       </div>
       <div className="flex justify-center pt-4">
-        <div className="grid grid-cols-2  md:flex md:flex-wrap  gap-5 md:gap-2">
+        <div className="grid grid-cols-2 md:grid-cols-5  lg:grid-cols-6 gap-5 md:gap-2">
           <button
             onClick={() => handleCategoryChange(0)}
             className={`px-4 py-2 rounded-lg md:rounded-full text-[14px] md:text-[16px] ${
@@ -119,7 +119,7 @@ const PortfolioHomeItems = ({
           </div>
         ) : (
           <div
-            className={`grid grid-cols-1 md:grid-cols-2 gap-8 4xl:gap-10 justify-between pt-10 pb-5 ${
+            className={`grid grid-cols-1 md:grid-cols-2  gap-8 4xl:gap-10 justify-between pt-10 pb-5 ${
               animate ? "fade-in" : ""
             }`}
           >

@@ -578,6 +578,9 @@ textarea:focus {
 [type="radio"] {
   color: #ff693b !important;
 }
+.ql-editor p {
+  padding: 5px 0 !important;
+}
 
 @media only screen and (max-width: 2500px) {
   .image-gallery-left-nav .image-gallery-svg,
@@ -657,6 +660,34 @@ textarea:focus {
   .project_title {
     display: inline;
   }
+  .custom-content-container {
+    font-size: 16px; /* Adjust this value as needed */
+  }
+
+  .custom-content-container h1 {
+    font-size: 24px;
+  }
+
+  .custom-content-container h2 {
+    font-size: 18px;
+    padding: 8px 0 !important;
+  }
+
+  .custom-content-container h3 {
+    font-size: 18px;
+  }
+  .custom-content-container p {
+    padding: 25px 0 !important;
+  }
+
+  /* Add more selectors as needed */
+
+  .custom-content-container [style*="font-size:"] {
+    font-size: inherit !important;
+  }
+  .ql-editor .ql-indent-2:not(.ql-direction-rtl) {
+    padding-left: 0 !important;
+  }
 }
 
 @media only screen and (max-width: 425px) {
@@ -732,8 +763,11 @@ textarea:focus {
   font-size: 16px !important;
   color: #333333;
 } */
-  .servicePage_content h2 {
-    font-size: 20px !important;
-    color: #333333;
+  .ql-editor p {
+    padding: 2px 0 !important;
+  }
+  .ql-editor ol li:not(.ql-direction-rtl),
+  .ql-editor ul li:not(.ql-direction-rtl) {
+    padding-left: 0.5em !important;
   }
 }

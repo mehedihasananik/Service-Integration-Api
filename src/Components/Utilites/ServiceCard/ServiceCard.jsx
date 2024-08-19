@@ -5,7 +5,7 @@ import React from "react";
 const ServiceCard = ({ service }) => {
   return (
     <Link href={`/services/${service.slug}`}>
-      <div className="w-[330px] h-[550px] xl:w-[330px] xxl:w-[330px] xll:w-[350px] 4xl:w-[330px] group shadow-lg rounded-md border border-[#E2E8F0] cursor-pointer hover:bg-[#FF693B] hover:text-white">
+      <div className="w-[330px] h-[550px] md:w-[350px]  lg:w-[330px] xxl:w-[330px] xll:w-[350px] 4xl:w-[330px] group shadow-lg rounded-md border border-[#E2E8F0] cursor-pointer hover:bg-[#FF693B] hover:text-white">
         <div className="flex flex-col h-full">
           <div className="bg-[#E2E8F0] transition-all duration-300">
             <Image
