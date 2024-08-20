@@ -101,7 +101,7 @@ const SinglePackage = ({ item, setOpenModal, height, serviceName }) => {
               ${item?.package_price}
             </span>
             {item?.discount_price && (
-              <span className="line-through text-[#FF693B] text-[16px] md:text-[20px] ">
+              <span className="line-through text-gray-500 text-[16px] md:text-[20px] ">
                 ${item?.discount_price}
               </span>
             )}{" "}

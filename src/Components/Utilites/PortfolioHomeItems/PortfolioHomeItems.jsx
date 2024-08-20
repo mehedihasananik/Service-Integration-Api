@@ -85,10 +85,10 @@ const PortfolioHomeItems = ({
         <div>Our beautiful work you need to know!</div>
       </div>
       <div className="flex justify-center pt-4">
-        <div className="grid grid-cols-2 md:grid-cols-5  lg:grid-cols-6 gap-5 md:gap-2">
+        <div className="grid grid-cols-2 md:grid-cols-6  lg:grid-cols-6 gap-5 md:gap-2">
           <button
             onClick={() => handleCategoryChange(0)}
-            className={`px-4 py-2 rounded-lg md:rounded-full text-[14px] md:text-[16px] ${
+            className={`px-4 py-2 rounded-lg xl:rounded-full text-[14px] md:text-[16px] ${
               selectedCategoryId === 0
                 ? "bg-[#FF693B] text-white"
                 : "bg-gray-200 text-gray-700"
@@ -101,7 +101,7 @@ const PortfolioHomeItems = ({
             <button
               key={category.category_id}
               onClick={() => handleCategoryChange(category.category_id)}
-              className={`px-4 py-2 rounded-lg md:rounded-full text-[14px] md:text-[16px]  ${
+              className={`px-4 py-2 rounded-lg xl:rounded-full text-[14px] md:text-[16px]  ${
                 selectedCategoryId === category.category_id
                   ? "bg-[#FF693B] text-white"
                   : "bg-gray-200 text-gray-700"
@@ -130,18 +130,18 @@ const PortfolioHomeItems = ({
               >
                 <>
                   <div className=" group rounded-t-[10px] rounded-b-[10px] md:rounded-[10px] overflow-hidden border border-[#CBD5E1] ">
-                    <div className="portfolio-bgHover h-auto lg:h-[370px]  w-[100%]  cursor-pointer flex flex-col lg:flex-row bg-[#FFFFFF] rounded-[10px]">
-                      <div className="md:w-1/2 h-full">
+                    <div className="portfolio-bgHover w-[100%]  h-auto md:h-[650px] xl:h-[370px]   cursor-pointer flex flex-col xl:flex-row bg-[#FFFFFF] rounded-[10px]">
+                      <div className="xl:w-1/2 h-full">
                         <Image
                           width={800}
                           height={500}
-                          className="w-full 4xl:max-w-[345px] h-[370px]  md:rounded-l-[10px]"
+                          className="w-full 4xl:max-w-[345px] h-[370px]  md:rounded-l-[10px] object-cover"
                           src={portfolio?.image}
                           alt=""
                         />
                       </div>
 
-                      <div className="w-full lg:w-1/2 p-4  mt-0 lg:p-6 flex flex-col lg:justify-center 4xl:justify-center items-center">
+                      <div className="w-full xl:w-1/2 p-4  mt-0 lg:p-6 flex flex-col lg:justify-center 4xl:justify-center items-center">
                         <div className="text-center w-full">
                           <h4 className="text-[14px] text-[#999999] mb-2 portfolio-textHover">
                             {portfolio?.service_name

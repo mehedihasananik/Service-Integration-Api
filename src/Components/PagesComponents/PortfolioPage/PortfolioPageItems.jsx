@@ -11,7 +11,7 @@ const PortfolioPageItems = ({ portfolio }) => {
 
   return (
     <>
-      <div className="hidden lg:block group rounded-[10px] overflow-hidden border border-[#CBD5E1] ">
+      <div className="hidden xl:block group rounded-[10px] overflow-hidden border border-[#CBD5E1] ">
         <div className="portfolio-bgHover h-auto lg:h-[400px]  w-[100%]  cursor-pointer flex flex-col lg:flex-row bg-[#FFFFFF] rounded-[10px]">
           <div className="w-1/2 h-full">
             <Image
@@ -56,21 +56,21 @@ const PortfolioPageItems = ({ portfolio }) => {
         </div>
       </div>
 
-      <div className="block lg:hidden group rounded-[10px] overflow-hidden border border-[#CBD5E1]">
-        <div className="portfolio-bgHover h-auto md:h-[650px] lg:h-[400px] w-full cursor-pointer flex flex-col lg:flex-row bg-[#FFFFFF] rounded-[10px]">
-          <div className="w-full lg:w-1/2 h-[200px] md:h-[300px] lg:h-full">
+      <div className="block xl:hidden group rounded-[10px] overflow-hidden border border-[#CBD5E1]">
+        <div className="portfolio-bgHover h-auto md:h-[600px] lg:h-[600px] w-full cursor-pointer flex flex-col bg-[#FFFFFF] rounded-[10px]">
+          <div className="w-full h-[300px] md:h-[300px] lg:h-[300px]">
             <Image
               width={800}
               height={500}
-              className="w-full h-full object-cover rounded-t-[10px] lg:rounded-l-[10px] lg:rounded-tr-none"
+              className="w-full h-full object-cover rounded-t-[10px]"
               src={portfolio?.image}
               alt=""
             />
           </div>
 
-          <div className="w-full lg:w-1/2 p-4 md:p-5 lg:p-6 flex flex-col justify-start md:justify-center items-center h-[calc(100%-200px)] md:h-[300px] lg:h-full">
+          <div className="w-full p-4 md:p-5 lg:p-5 flex flex-col justify-start items-center h-[calc(100%-300px)] md:h-[300px] lg:h-[300px]">
             <div className="text-center w-full">
-              <h4 className="text-[14px] text-[#999999] mb-2 portfolio-textHover md:mt-10 lg:mt-0">
+              <h4 className="text-[14px] text-[#999999] mb-2 portfolio-textHover mt-2 md:mt-2 lg:mt-2">
                 {portfolio?.service_name.slice(0, 3).map((service, index) => (
                   <span key={index}>
                     {index > 0 && ", "}
@@ -78,14 +78,16 @@ const PortfolioPageItems = ({ portfolio }) => {
                   </span>
                 ))}
               </h4>
-              <div className="text-[16px] md:text-[18px] font-bold font-Raleway text-[#333333] portfolio-textHover line-clamp-3 mb-3">
+              <div className="text-[16px] md:text-[18px] lg:text-[18px] font-bold font-Raleway text-[#333333] portfolio-textHover line-clamp-3 mb-3">
                 {truncateText(portfolio?.heading, 120)}
               </div>
-              <p className="text-[14px] md:text-[15px] text-[#666666] portfolio-textHover mb-4">
-                {truncateText(portfolio.text, 300)}
+              <p className="text-[14px] text-[#666666] portfolio-textHover mb-4">
+                {portfolio.portfolio_summery.length > 300
+                  ? portfolio.portfolio_summery.slice(0, 300) + "..."
+                  : portfolio.portfolio_summery}
               </p>
               <div className="flex justify-center items-center gap-2 text-[#FF693B] font-bold portfolio-textHover">
-                <button className="text-[14px] md:text-[15px]">
+                <button className="text-[14px] md:text-[15px] lg:text-[15px]">
                   Read More
                 </button>
                 <span className="w-[19px]">

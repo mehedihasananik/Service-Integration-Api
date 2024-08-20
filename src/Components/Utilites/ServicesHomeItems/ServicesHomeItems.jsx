@@ -35,7 +35,7 @@ const ServicesHomeItems = ({ services, details }) => {
     <div id="serviceSlider" className="serviceSlider md:px-5  xl:px-0">
       <div className="max-w-[1680px] mx-auto 4xl:px-[0] 4xl:max-w-[1920px] xl:pl-[8%] 2xl:pl-[13%] 4xl:pl-[14%]">
         <div className="md:py-5 xl:pt-10">
-          <div className="flex flex-col xl:flex-row items-center justify-center xl:justify-between lg:gap-14 xl:gap-12 md:pt-8 md:pb-3 ">
+          <div className="flex flex-col xl:flex-row items-center justify-center xl:justify-between md:gap-0 lg:gap-4 xl:gap-12 xl:pt-8 xl:pb-3 ">
             <div className="w-full flex flex-col items-center text-center xl:block  xl:text-left xl:w-[35%]">
               <h2 className="text-center md:text-left text-[20px] md:text-[42px] lg:text-[48px] font-bold font-Raleway text-[#0F172A] xl:w-[400px]">
                 {details?.title}

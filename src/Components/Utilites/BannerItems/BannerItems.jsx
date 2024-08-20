@@ -32,7 +32,7 @@ const BannerItems = ({ banner }) => {
       </div>
       <div>
         <Image
-          className="md:w-[742px] md:h-[554px]"
+          className="w-full h-full xl:w-[742px] xl:h-[554px]"
           src={banner[0].banner_image}
           width={742}
           height={554}
