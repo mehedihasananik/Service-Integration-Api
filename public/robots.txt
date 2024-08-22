@@ -1,9 +1,74 @@
-# *
+# Global rules
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /_next/static/
+Disallow: /_next/image
+Disallow: /admin/
+Disallow: /config/
+Disallow: /database/
+Disallow: /resources/
+Disallow: /routes/
+Disallow: /storage/
+Disallow: /tests/
+Disallow: /*set_currency=*
+Disallow: /upload/
+Disallow: /imgs/
+Disallow: /assets/
 
-# Host
-Host: http://localhost:3000
+# Googlebot-specific rules
+User-agent: Googlebot
+Allow: /_next/static/
+Allow: /_next/image
+Disallow: /api/
+Disallow: /admin/
+Disallow: /config/
+Disallow: /database/
+Disallow: /resources/
+Disallow: /routes/
+Disallow: /storage/
+Disallow: /tests/
+Disallow: /upload/
+Disallow: /imgs/
+Disallow: /assets/
 
-# Sitemaps
-Sitemap: http://localhost:3000/sitemap.xml
+# Bing-specific rules
+User-agent: Bingbot
+Allow: /_next/static/
+Allow: /_next/image
+Disallow: /api/
+
+# Baidu-specific rules
+User-agent: Baiduspider
+Allow: /_next/static/
+Allow: /_next/image
+Disallow: /api/
+
+# Yandex-specific rules
+User-agent: Yandex
+Allow: /_next/static/
+Allow: /_next/image
+Disallow: /api/
+
+# DuckDuckGo-specific rules
+User-agent: DuckDuckBot
+Allow: /_next/static/
+Allow: /_next/image
+Disallow: /api/
+
+# Prevent access to external API
+Disallow: https://admin.envobyte.com/
+Disallow: https://envobyte.shop/
+
+# Block specific bots
+User-agent: VelenPublicWebCrawler
+Disallow: /
+
+# Specify the correct host
+Host: https://www.envobyte.com
+
+# Sitemap location
+Sitemap: https://www.envobyte.com/sitemap.xml
+
+# Crawl-delay for rate limiting
+Crawl-delay: 10

@@ -53,7 +53,7 @@ const Header = ({ title, details }) => (
 const MissionVision = ({ image, title2, details2, title3, details3 }) => (
   <div className="grid grid-cols-1 justify-items-center lg:justify-items-start gap-y-0 lg:gap-y-0 lg:grid-cols-3 pt-10 lg:pt-16 lg:gap-x-10">
     <Image
-      className="w-[450px]"
+      className="w-full h-full xl:w-[450px]"
       width={500}
       height={500}
       src={image}
@@ -75,9 +75,6 @@ const MissionVision = ({ image, title2, details2, title3, details3 }) => (
 
 const MissionVisionItem = ({ title, details, logoSrc }) => (
   <div className="space-y-3 text-center lg:text-left lg:pt-[8%]">
-    <div className="flex justify-center lg:justify-start">
-      <img src={logoSrc} alt="" />
-    </div>
     <h3 className="text-[18px] md:text-[32px] font-semibold">{title}</h3>
     <p className="text-[16px]">{details}</p>
   </div>
@@ -132,7 +129,7 @@ const AboutDetailItem = ({ detail }) => {
         } gap-x-4`}
       >
         <Image
-          className="w-[100%] md:h-[350px] lg:h-[450px] rounded-lg"
+          className="w-[100%]  md:h-[100%]  rounded-lg"
           width={500}
           height={500}
           src={detail.image}

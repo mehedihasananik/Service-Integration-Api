@@ -67,7 +67,7 @@ const ProjectDetails = ({ userContact }) => {
       };
 
       const response = await axios.post(
-        "https://v2admin.envobyte.shop/api/user_feedback",
+        "https://v2admin.envobyte.com/api/user_feedback",
         submissionData
       );
 

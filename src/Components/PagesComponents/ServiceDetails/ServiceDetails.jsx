@@ -12,6 +12,8 @@ import QuestionService from "@/Components/Home/Questions/QuestionService";
 import SinglePackageSm from "./SinglePackageSm";
 import ContactModal from "@/Components/Utilites/ContactModal/ContactModal";
 import Global_PageHtml from "@/Components/Utilites/Global_PageHtml/Global_PageHtml";
+import ServiceFeatures from "@/Components/Utilites/ServiceFeatures/ServiceFeatures";
+import GlobalButtonColored from "@/Components/Utilites/GlobalButton/GlobalButtonColored";
 
 const ServiceDetails = ({ service, sliders, packages }) => {
   const [openModal, setOpenModal] = useState(false);
@@ -70,25 +72,27 @@ const ServiceDetails = ({ service, sliders, packages }) => {
               <span className="text-[#FF693B]">
                 Have a complex or custom project?{" "}
               </span>{" "}
-              Send details and get offer
+              Let&apos;s discuss
             </h2>
-            <Link href={"/#projectDetails"}>
-              <button className="border border-[#FF693B] text-[#FF693B] text-[16px] font-medium px-10 py-2 rounded-[4px] hover:text-white hover:bg-[#FF693B] transition-all duration-300">
-                Get Custom Offer
-              </button>
-            </Link>
+            <GlobalButtonColored
+              path={"/schedule-meeting"}
+              title={"Book an Appointment"}
+              className="btn btn-primary md:w-[20%] text-center "
+            />
           </div>
 
           {/* order Slider */}
 
           <OrderSliderLg sliders={sliders} />
           <OrderSliderSm sliders={sliders} />
-
+          {/* service features */}
+          <ServiceFeatures />
           {/* description */}
           <div className="bg-[#FCFCFC] mt-4 p-4 md:p-7 rounded-lg text-justify">
             {/* <h2 className="text-[24px] font-bold font-Raleway text-[#333333]">
               Description
             </h2> */}
+
             <div className="text-[16px] text-[#666] pt-2 single_description">
               <Global_PageHtml
                 serviceDetails={service?.service_details[0]?.text}

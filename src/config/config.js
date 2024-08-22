@@ -1,1 +1,1 @@
-export const apiEndpoint = "https://v2admin.envobyte.shop/api";
+export const apiEndpoint = "https://admin.envobyte.com/api";

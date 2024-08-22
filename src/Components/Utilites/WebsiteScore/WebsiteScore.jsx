@@ -53,7 +53,7 @@ const WebsiteScore = () => {
       setIsSubmitting(true);
       try {
         const response = await fetch(
-          "https://v2admin.envobyte.shop/api/web-score",
+          "https://v2admin.envobyte.com/api/web-score",
           {
             method: "POST",
             headers: {

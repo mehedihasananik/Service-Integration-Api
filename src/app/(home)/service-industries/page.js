@@ -3,12 +3,9 @@ import ServiceIndustriesContent from "@/Components/ServiceIndustriesContent/Serv
 import React from "react";
 
 async function fetchIndustries() {
-  const res = await fetch(
-    "https://v2admin.envobyte.shop/api/service-industry",
-    {
-      next: { revalidate: 10 },
-    }
-  );
+  const res = await fetch("https://v2admin.envobyte.com/api/service-industry", {
+    next: { revalidate: 10 },
+  });
   if (!res.ok) throw new Error("Failed to fetch brands");
   return res.json();
 }

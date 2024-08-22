@@ -22,6 +22,7 @@ const nextConfig = {
       "admin.envobyte.shop",
       "v2admin.envobyte.shop",
       "192.168.10.222",
+      "v2admin.envobyte.com",
     ],
   },
 };

@@ -139,7 +139,7 @@ const ServicesPageContent = ({
             </div>
           ) : (
             <div
-              className={`grid grid-cols-1 md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center place-items-center gap-x-8 pb-4 lg:gap-y-0 lg:gap-x-5 xxl:gap-x-40 4xl:gap-x-16 mt-5 md:mt-10 ${
+              className={`grid grid-cols-1 md:grid md:grid-cols-2 lg:grid-cols-3 xxl:grid-cols-4  justify-items-center place-items-center gap-x-8 pb-4 lg:gap-y-0 lg:gap-x-5 xxl:gap-x-40 4xl:gap-x-16 mt-5 md:mt-10 ${
                 animate ? "fade-in" : ""
               }`}
             >

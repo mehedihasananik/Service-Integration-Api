@@ -4,7 +4,7 @@ import { apiEndpoint } from "@/config/config";
 
 async function getMetadata() {
   const service = await fetch(
-    "https://v2admin.envobyte.shop/api/home_banner"
+    "https://v2admin.envobyte.com/api/home_banner"
   ).then((res) => res?.json());
 
   return service;
@@ -70,7 +70,7 @@ export async function generateMetadata() {
 }
 
 async function getServiceItems() {
-  const res = await fetch("https://v2admin.envobyte.shop/api/home_banner", {
+  const res = await fetch("https://v2admin.envobyte.com/api/home_banner", {
     next: { revalidate: 10 },
   });
 

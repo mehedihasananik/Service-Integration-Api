@@ -73,7 +73,7 @@ const ServicePortolio = ({ portfolios }) => {
                 return (
                   <SwiperSlide key={portfolio.id} className="">
                     <Link href={`/portfolio/${portfolio.slug}`}>
-                      <div className="group rounded-[10px] overflow-hidden hidden lg:block border border-[#CBD5E1]  w-[620px]">
+                      <div className="group rounded-[10px] overflow-hidden hidden xl:block border border-[#CBD5E1]  w-[620px]">
                         <div className="portfolio-bgHover h-[390px]  cursor-pointer flex bg-[#FFFFFF] rounded-[10px]">
                           <div className="w-1/2 h-full">
                             <Image
@@ -100,7 +100,7 @@ const ServicePortolio = ({ portfolios }) => {
                               </div>
                               <div>
                                 <p className="w-[370px] px-[13%] h-[155px] flex justify-center text-center text-[14px] text-[#666666] py-3 portfolio-textHover pt-3.5">
-                                  <span>{portfolio?.portfolio_summery}</span>
+                                {portfolio?.portfolio_summery?.slice(0,320)}
                                 </p>
                                 <div className="pt-10 group flex justify-center items-center gap-2 text-[#FF693B] font-bold portfolio-textHover pb-6 lg:pb-0">
                                   <button className="text-[14px]">
@@ -116,7 +116,9 @@ const ServicePortolio = ({ portfolios }) => {
                         </div>
                       </div>
 
-                      <div className="group h-auto rounded-[10px] overflow-hidden block lg:hidden">
+                      {/* small design */}
+
+                      <div className="group h-auto rounded-[10px] overflow-hidden block xl:hidden">
                         <div className="border border-[#CBD5E1] portfolio-bgHover h-auto w-full cursor-pointer flex flex-col bg-[#FFFFFF] rounded-[10px]">
                           <div className="w-full h-[250px]">
                             <Image
