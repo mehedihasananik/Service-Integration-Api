@@ -86,7 +86,7 @@ const ServiceDetails = ({ service, sliders, packages }) => {
           <OrderSliderLg sliders={sliders} />
           <OrderSliderSm sliders={sliders} />
           {/* service features */}
-          <ServiceFeatures />
+          <ServiceFeatures features={service.features_table} />
           {/* description */}
           <div className="bg-[#FCFCFC] mt-4 p-4 md:p-7 rounded-lg text-justify">
             {/* <h2 className="text-[24px] font-bold font-Raleway text-[#333333]">

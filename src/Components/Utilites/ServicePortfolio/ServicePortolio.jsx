@@ -74,12 +74,12 @@ const ServicePortolio = ({ portfolios }) => {
                   <SwiperSlide key={portfolio.id} className="">
                     <Link href={`/portfolio/${portfolio.slug}`}>
                       <div className="group rounded-[10px] overflow-hidden hidden xl:block border border-[#CBD5E1]  w-[620px]">
-                        <div className="portfolio-bgHover h-[390px]  cursor-pointer flex bg-[#FFFFFF] rounded-[10px]">
+                        <div className="portfolio-bgHover h-auto lg:h-[380px]  w-[100%] cursor-pointer flex bg-[#FFFFFF] rounded-[10px]">
                           <div className="w-1/2 h-full">
                             <Image
                               width={800}
                               height={500}
-                              className="w-[350px] h-full rounded-l-[10px]"
+                                 className="w-[330px] h-[380px]  rounded-l-[10px]"
                               src={portfolio?.image}
                               alt=""
                             />
@@ -100,9 +100,9 @@ const ServicePortolio = ({ portfolios }) => {
                               </div>
                               <div>
                                 <p className="w-[370px] px-[13%] h-[155px] flex justify-center text-center text-[14px] text-[#666666] py-3 portfolio-textHover pt-3.5">
-                                {portfolio?.portfolio_summery?.slice(0,320)}
+                                {portfolio?.portfolio_summery?.slice(0,250)}
                                 </p>
-                                <div className="pt-10 group flex justify-center items-center gap-2 text-[#FF693B] font-bold portfolio-textHover pb-6 lg:pb-0">
+                                <div className="pt-5 group flex justify-center items-center gap-2 text-[#FF693B] font-bold portfolio-textHover pb-6 lg:pb-0">
                                   <button className="text-[14px]">
                                     Read More
                                   </button>

@@ -47,13 +47,7 @@ const RelevantServices = ({ service }) => {
     },
   };
 
-  const truncateText = (text, maxWords) => {
-    const words = text.split(" ");
-    if (words.length > maxWords) {
-      return words.slice(0, maxWords).join(" ") + "...";
-    }
-    return text;
-  };
+
 
   return (
     <>
@@ -77,14 +71,14 @@ const RelevantServices = ({ service }) => {
               {relevant_services.map((service) => (
                 <SwiperSlide key={service.id}>
                   <Link href={`/services/${service.slug.replace(/\s+/g, "")}`}>
-                    <div className="group h-[550px] xl:w-[296px] xxl:w-[296px]  2xl:w-[320px]  shadow-lg rounded-md border border-[#E2E8F0]  cursor-pointer">
+                    <div className="group w-[330px] h-[550px] shadow-lg rounded-md border border-[#E2E8F0]  cursor-pointer">
                       <div className="flex flex-col">
                         <div className="bg-[#E2E8F0]">
                           <div>
                             <Image
                               width={700}
                               height={700}
-                              className="w-full h-[304px] overflow-hidden rounded-t-md"
+                             className="w-[330px] h-[305px] overflow-hidden rounded-t-md"
                               src={service?.image}
                               alt=""
                             />

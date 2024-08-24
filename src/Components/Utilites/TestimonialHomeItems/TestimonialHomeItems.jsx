@@ -5,7 +5,7 @@ import "swiper/swiper-bundle.css";
 import { HiArrowLeft, HiArrowRight } from "react-icons/hi";
 import { Pagination } from "swiper/modules";
 
-const TestimonialHomeItems = ({ testimonials }) => {
+const TestimonialHomeItems = ({ testimonials,details }) => {
   const [loading, setLoading] = useState(true);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [totalSlides, setTotalSlides] = useState(0);
@@ -67,13 +67,12 @@ const TestimonialHomeItems = ({ testimonials }) => {
             <div className="w-full text-center xl:text-left xl:w-[35%] px-4 md:px-0">
               <div className="w-full xl:w-[400px]">
                 <h2 className="text-[20px] md:text-[42px] xl:text-[48px] font-bold font-Raleway text-[#0F172A]">
-                  What Are People Saying About Us
+                {details.heading}
                 </h2>
               </div>
               <div className="pt-2 md:pt-4 xl:w-[380px]">
                 <p className=" text-[16px] text-[#666666]  xl:text-left font-normal px-4 md:px-0">
-                  We aim to provide top-notch quality service and client
-                  satisfaction. We are happy to help a lot of companies.
+                {details.text}
                 </p>
               </div>
               <div className="flex justify-center items-center xl:justify-start xl:items-start gap-6 py-4">

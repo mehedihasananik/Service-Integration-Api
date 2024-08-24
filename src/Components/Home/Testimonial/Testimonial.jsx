@@ -18,7 +18,7 @@ const Testimonial = async () => {
 
   return (
     <div className="md:pt-1.5">
-      <TestimonialHomeItems testimonials={testimonials.items} />
+      <TestimonialHomeItems testimonials={testimonials.items} details={testimonials.testimonials} />
     </div>
   );
 };

@@ -26,9 +26,9 @@ const ServicesHomeItems = ({ services, details }) => {
 
   const breakpoints = {
     320: { slidesPerView: 1, spaceBetween: 10 },
-    768: { slidesPerView: 2, spaceBetween: 20 },
+    768: { slidesPerView: 2.2, spaceBetween: 20 },
     1024: { slidesPerView: 3, spaceBetween: 30 },
-    1280: { slidesPerView: 2, spaceBetween: 30 },
+    1280: { slidesPerView: 2.3, spaceBetween: 30 },
     1336: { slidesPerView: 2.5, spaceBetween: 120 },
     1680: { slidesPerView: 2.5, spaceBetween: 30 },
     1700: { slidesPerView: 2.8, spaceBetween: 30 },
@@ -82,7 +82,7 @@ const ServicesHomeItems = ({ services, details }) => {
                       index === previousSlide &&
                       index !== currentSlide &&
                       currentSlide !== previousSlide - 1
-                        ? "blur-sm"
+                        ? ""
                         : ""
                     }`}
                   >

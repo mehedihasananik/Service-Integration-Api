@@ -11,7 +11,7 @@ const whyChoose_us = `${apiEndpoint}/home_choose_us`;
 const serviceApi = `${apiEndpoint}/service`;
 const testimonials_itemsApi = `${apiEndpoint}/testimonials_items`;
 const faqApi = `${apiEndpoint}/faq`;
-const user_feedbackApi = `https://v2admin.envobyte.com/api/user_feedback`;
+const user_feedbackApi = `https://admin.envobyte.com/api/user_feedback`;
 const user_contactApi = `${apiEndpoint}/contact`;
 const footer = `${apiEndpoint}/footer`;
 

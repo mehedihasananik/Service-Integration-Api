@@ -135,7 +135,7 @@ const PortfolioHomeItems = ({
                         <Image
                           width={800}
                           height={500}
-                          className="w-full 4xl:max-w-[345px] h-[370px]  md:rounded-l-[10px] object-cover"
+                          className="w-full xl:w-[330px] h-[370px]  md:rounded-l-[10px] "
                           src={portfolio?.image}
                           alt=""
                         />

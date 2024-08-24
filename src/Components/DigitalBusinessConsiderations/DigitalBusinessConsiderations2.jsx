@@ -4,7 +4,7 @@ import WebsiteScore from "../Utilites/WebsiteScore/WebsiteScore";
 import Link from "next/link";
 
 async function fetchConsiderations() {
-  const res = await fetch("https://v2admin.envobyte.com/api/businessdev", {
+  const res = await fetch("https://admin.envobyte.com/api/businessdev", {
     next: { revalidate: 10 },
   });
   if (!res.ok) throw new Error("Failed to fetch brands");

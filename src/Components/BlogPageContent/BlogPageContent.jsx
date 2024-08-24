@@ -1,11 +1,12 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { Search, Calendar, ChevronRight, ArrowRight } from "lucide-react";
+import { Search, Calendar, ChevronRight, ArrowRight, X } from "lucide-react";
 import Container from "../Container/Container";
 import { motion, AnimatePresence } from "framer-motion";
 
 import { Button, Modal } from "flowbite-react";
+import ElegantSubscribeModal from "../Utilites/ElegantSubscribeModal/ElegantSubscribeModal";
 
 const GuideCard = ({ title, date, category, image, description, index }) => (
   <motion.div
@@ -109,7 +110,8 @@ const RecommendedPosts = ({ posts }) => (
 const BlogPageContent = () => {
   const [searchFocus, setSearchFocus] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const [openModal, setOpenModal] = useState(true);
+  const [openModal, setOpenModal] = useState(false);
+
   const guides = [
     {
       title: "Vidyard's Ultimate Video Marketing Guide",
@@ -345,27 +347,38 @@ const BlogPageContent = () => {
           </div>
         </Container>
       </div>
-      <Button onClick={() => setOpenModal(true)}>Show Coming Soon Modal</Button>{" "}
-      {/* Button to toggle modal */}
-      <Modal show={openModal} onClose={() => setOpenModal(false)}>
-        <Modal.Body className="bg-gradient-to-r from-pink-500 to-orange-500 rounded-lg p-6">
-          <div className="text-center">
-            <h1 className="text-4xl font-bold text-white mb-4">Kontify.me</h1>
-            <p className="text-xl text-white mb-4">Coming soon...</p>
-            <p className="text-white mb-6">
-              Don&apos;t miss our launch, get notified when we&apos;re ready! We don&apos;t
-              share your email with any third-party companies, promise!
-            </p>
-            <input
-              type="email"
-              placeholder="Your email"
-              className="block w-full p-2 mb-4 rounded-md border border-gray-300 text-gray-700"
-            />
-            <Button className="w-full bg-red-500 text-white hover:bg-red-600">
-              SUBSCRIBE ME
-            </Button>
-          </div>
-        </Modal.Body>
+      <Button onClick={() => setOpenModal(true)}>Show Coming Soon Modal</Button>
+      <ElegantSubscribeModal isOpen={openModal} setOpenModal={setOpenModal} />
+      <Modal show={openModal} onClose={() => setOpenModal(false)} dismissible={false}>
+        <div className="relative bg-gradient-to-br  from-[#11328F] to-[#11328F] rounded-lg p-6">
+          <button
+            onClick={() => setOpenModal(false)}
+            className="absolute top-2 right-2 text-white hover:text-gray-200 transition-colors"
+          >
+            <X size={24} />
+          </button>
+          <Modal.Body>
+            <div className="text-center flex flex-col items-center">
+             
+              <h2 className="text-white mb-6 text-[30px] capitalize">
+              Subscribe to receive our latest newsletters and special offers
+              </h2>
+              <input
+                type="name"
+                placeholder="You Name"
+                className="block w-[80%] p-2 mb-4 rounded-md border border-gray-300 text-gray-700"
+              />
+              <input
+                type="email"
+                placeholder="Your email"
+                className="block w-[80%] p-2 mb-4 rounded-md border border-gray-300 text-gray-700"
+              />
+              <button className="w-[30%] bg-[#FF693B] text-white hover:bg-[#fff] py-2 rounded-md hover:text-[#000] font-semibold transition-all delay-100">
+                SUBSCRIBE 
+              </button>
+            </div>
+          </Modal.Body>
+        </div>
       </Modal>
     </div>
   );

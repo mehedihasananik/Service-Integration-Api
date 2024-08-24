@@ -78,7 +78,7 @@ const HeaderItems = ({ headers }) => {
                 {item.menu_name}
               </Link>
             ))}
-            <Link href={"/blogs"}>Blogs</Link>
+            {/* <Link href={"/blogs"}>Blogs</Link> */}
             {/* Nav button */}
             {isClient &&
               (userData?.email ? (

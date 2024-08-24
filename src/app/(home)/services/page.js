@@ -95,6 +95,7 @@ async function getServices() {
 
 export default async function ServicesPage() {
   const { serviceCategories, services } = await getServices();
+  console.log(services)
 
   return (
     <>

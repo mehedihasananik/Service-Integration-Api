@@ -12,12 +12,12 @@ const PortfolioPageItems = ({ portfolio }) => {
   return (
     <>
       <div className="hidden xl:block group rounded-[10px] overflow-hidden border border-[#CBD5E1] ">
-        <div className="portfolio-bgHover h-auto lg:h-[400px]  w-[100%]  cursor-pointer flex flex-col lg:flex-row bg-[#FFFFFF] rounded-[10px]">
+        <div className="portfolio-bgHover h-auto lg:h-[370px]  w-[100%]  cursor-pointer flex flex-col lg:flex-row bg-[#FFFFFF] rounded-[10px]">
           <div className="w-1/2 h-full">
             <Image
               width={800}
               height={500}
-              className="4xl:max-w-[345px] h-[400px]  rounded-l-[10px]"
+              className="w-[330px] h-[370px]  rounded-l-[10px]"
               src={portfolio?.image}
               alt=""
             />
@@ -41,8 +41,8 @@ const PortfolioPageItems = ({ portfolio }) => {
                 {truncateText(portfolio?.heading, 120)}
               </div>
               <p className="text-[14px] text-[#666666] portfolio-textHover mb-4">
-                {portfolio.portfolio_summery.length > 300
-                  ? portfolio.portfolio_summery.slice(0, 300) + "..."
+                {portfolio.portfolio_summery.length > 250
+                  ? portfolio.portfolio_summery.slice(0, 250) + "..."
                   : portfolio.portfolio_summery}
               </p>
               <div className="flex justify-center items-center gap-2 text-[#FF693B] font-bold portfolio-textHover">
@@ -56,13 +56,15 @@ const PortfolioPageItems = ({ portfolio }) => {
         </div>
       </div>
 
+      {/* small device */}
+
       <div className="block xl:hidden group rounded-[10px] overflow-hidden border border-[#CBD5E1]">
         <div className="portfolio-bgHover h-auto md:h-[600px] lg:h-[600px] w-full cursor-pointer flex flex-col bg-[#FFFFFF] rounded-[10px]">
-          <div className="w-full h-[300px] md:h-[300px] lg:h-[300px]">
+          <div className="w-[330px] h-[370px] ">
             <Image
               width={800}
               height={500}
-              className="w-full h-full object-cover rounded-t-[10px]"
+              className="w-[330px] h-[370px]  rounded-t-[10px]"
               src={portfolio?.image}
               alt=""
             />
