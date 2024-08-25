@@ -28,15 +28,16 @@ const ServicesHomeItems = ({ services, details }) => {
     320: { slidesPerView: 1, spaceBetween: 10 },
     768: { slidesPerView: 2.2, spaceBetween: 20 },
     1024: { slidesPerView: 3, spaceBetween: 30 },
-    1280: { slidesPerView: 2.3, spaceBetween: 30 },
-    1336: { slidesPerView: 2.5, spaceBetween: 120 },
-    1680: { slidesPerView: 2.5, spaceBetween: 30 },
+    1280: { slidesPerView: 2.2, spaceBetween: 30 },
+    1336: { slidesPerView: 2.3, spaceBetween: 30 },
+    1440: { slidesPerView: 2.4, spaceBetween: 30 },
+    1680: { slidesPerView: 2.8, spaceBetween: 30 },
     1700: { slidesPerView: 2.8, spaceBetween: 30 },
     1920: { slidesPerView: 3, spaceBetween: 30 },
   };
 
   return (
-    <div id="serviceSlider" className="serviceSlider md:px-5  xl:px-0">
+    <div id="serviceSlider" className="serviceSlider md:px-0  xl:px-0">
       <div className=" 4xl:px-[0]  xl:pl-[8%] 2xl:pl-[14%] 4xl:pl-[14%]">
         <div className="md:py-5 xl:pt-10">
           <div className="flex flex-col xl:flex-row items-center justify-center  md:gap-0 lg:gap-4 xl:gap-12 xl:pt-8 xl:pb-3 ">

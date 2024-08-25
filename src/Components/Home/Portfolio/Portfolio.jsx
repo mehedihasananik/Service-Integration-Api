@@ -43,14 +43,14 @@ const Portfolio = async () => {
   // console.log(portfolios);
 
   return (
-    <Container>
+    <div className="max-w-[1520px] mx-auto px-[6%] md:px-[4%] lg:px-[2%] xl:px-[2%] 4xl:px-[2%]">
       <PortfolioHomeItems
         portfolios={portfolios?.ServiceportfolioArray}
         portfoliosCategories={portfoliosCategories}
         services={services}
         serviceDetails={portfolios?.page_content}
       />
-    </Container>
+    </div>
   );
 };
 

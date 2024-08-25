@@ -21,21 +21,21 @@ const BannerItems = ({ banner }) => {
           <GlobalButtonColored
             path={"/schedule-meeting"}
             title={"Book an Appointment"}
-            className="btn btn-primary md:w-full text-center "
+            className="btn btn-primary md:w-[50%] text-center "
           />
           <GlobalButtonHovered
             path={"#projectDetails"}
             title={" Get a Quote"}
-            className="btn btn-secondary md:w-full text-center"
+            className="btn btn-secondary md:w-[50%] text-center"
           />
         </div>
       </div>
-      <div>
+
+      <div className="relative w-full max-w-[742px] aspect-[742/554]">
         <Image
-          className="w-full h-full xxl:w-[742px] xxl:h-[554px]"
           src={banner[0].banner_image}
-          width={742}
-          height={554}
+          layout="fill"
+          objectFit="contain"
           quality={80}
           alt="banner image"
         />

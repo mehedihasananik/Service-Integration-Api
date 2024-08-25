@@ -36,7 +36,7 @@ const ServicesPageContent = ({
 
       if (selectedCategoryId) {
         filteredServices = filteredServices.filter(
-          (item) => item.category_id === parseInt(selectedCategoryId)
+          (item) => item.category_id === selectedCategoryId
         );
       }
 
@@ -66,7 +66,7 @@ const ServicesPageContent = ({
 
   return (
     <div className="service_section overflow-hidden">
-      <Container>
+      <div className="max-w-[1520px] mx-auto px-[6%] md:px-[4%] lg:px-0 xl:px-[8%] 4xl:px-[4%]">
         <div className="py-5 md:py-0 md:pt-8">
           <div className="text-center">
             <h1 className="text-[30px] md:text-[30px] lg:text-[48px] font-Raleway font-bold">
@@ -139,7 +139,7 @@ const ServicesPageContent = ({
             </div>
           ) : (
             <div
-              className={`grid grid-cols-1 md:grid md:grid-cols-2 lg:grid-cols-3 xxl:grid-cols-4  justify-items-center place-items-center gap-x-8 pb-4 lg:gap-y-0 lg:gap-x-5 xxl:gap-x-40 4xl:gap-x-16 mt-5 md:mt-10 ${
+              className={`grid grid-cols-1 md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 xll:grid-cols-4 justify-items-center place-items-center gap-x-8 pb-4 lg:gap-y-0 lg:gap-x-0 xxl:gap-x-40 4xl:gap-x-16 mt-5 md:mt-10 ${
                 animate ? "fade-in" : ""
               }`}
             >
@@ -162,7 +162,7 @@ const ServicesPageContent = ({
             </div>
           )}
         </div>
-      </Container>
+      </div>
       {serviceLoading ? (
         ""
       ) : (

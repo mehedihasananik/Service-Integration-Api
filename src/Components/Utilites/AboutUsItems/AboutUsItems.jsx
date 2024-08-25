@@ -17,6 +17,7 @@ const AboutUsItems = ({ about }) => {
     // Trigger animation on initial load
     setShouldAnimate(true);
   }, []);
+  // console.log(about.project)
 
   const CountUpItem = ({ end, label, suffix = "" }) => (
     <div>

@@ -95,7 +95,7 @@ const SinglePackage = ({ item, setOpenModal, height, serviceName }) => {
           </div>
         </div>
         {/* price */}
-        <div className="md:h-[50px] xl:h-[60px] xxl:h-[50px] mt-[20px] md:mt-0 px-4 md:px-8">
+        <div className="md:h-[50px] xl:h-[60px] xxl:h-[50px] mt-[20px] md:mt-0 px-4 md:px-4">
           <div className="md:my-2 font-Raleway font-semibold flex items-center space-x-2">
             <span className="text-[20px] md:text-[32px]  ">
               ${item?.package_price}
@@ -108,7 +108,7 @@ const SinglePackage = ({ item, setOpenModal, height, serviceName }) => {
           </div>
         </div>
         {/* order button */}
-        <div className="py-4 mt-4 md:mt-0 md:pb-8 flex justify-center px-4 md:px-8">
+        <div className="py-4 mt-4 md:mt-0 md:pb-8 flex justify-center px-4 md:px-4">
           <button
             onClick={orderWithLogin}
             className="text-[16px] font-medium text-[#FF693B] border border-[#FF693B] px-6 py-2 w-full rounded-md hover:text-white hover:bg-[#FF693B] transition-all duration-300"

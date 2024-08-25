@@ -17,8 +17,11 @@ const Testimonial = async () => {
   const testimonials = await getTestimonialContent();
 
   return (
-    <div className="md:pt-1.5">
-      <TestimonialHomeItems testimonials={testimonials.items} details={testimonials.testimonials} />
+    <div className="mx-4 lg:mx-4 xl:mx-0 md:pt-1.5">
+      <TestimonialHomeItems
+        testimonials={testimonials.items}
+        details={testimonials.testimonials}
+      />
     </div>
   );
 };

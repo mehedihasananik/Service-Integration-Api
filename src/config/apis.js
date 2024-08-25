@@ -11,7 +11,7 @@ const whyChoose_us = `${apiEndpoint}/home_choose_us`;
 const serviceApi = `${apiEndpoint}/service`;
 const testimonials_itemsApi = `${apiEndpoint}/testimonials_items`;
 const faqApi = `${apiEndpoint}/faq`;
-const user_feedbackApi = `https://admin.envobyte.com/api/user_feedback`;
+const user_feedbackApi = `${apiEndpoint}/user_feedback`;
 const user_contactApi = `${apiEndpoint}/contact`;
 const footer = `${apiEndpoint}/footer`;
 
@@ -57,6 +57,9 @@ const singleRequirement = `${apiEndpoint}/service_requirements`;
 const checkoutApi = `${apiEndpoint}/checkout`;
 // service order
 const serviceOrder = `${apiEndpoint}/service_order`;
+// webscore
+
+const business_webscore = `${apiEndpoint}/web-score`;
 
 export {
   headerApi,
@@ -89,4 +92,5 @@ export {
   singleRequirement,
   checkoutApi,
   serviceOrder,
+  business_webscore,
 };

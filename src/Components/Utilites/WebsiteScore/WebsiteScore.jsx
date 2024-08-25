@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Modal } from "flowbite-react";
 import { Rocket, X, CheckCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { business_webscore } from "@/config/apis";
 
 const WebsiteScore = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -52,8 +53,7 @@ const WebsiteScore = () => {
     if (validateForm()) {
       setIsSubmitting(true);
       try {
-        const response = await fetch(
-          "https://admin.envobyte.com/api/web-score",
+        const response = await fetch(business_webscore,
           {
             method: "POST",
             headers: {

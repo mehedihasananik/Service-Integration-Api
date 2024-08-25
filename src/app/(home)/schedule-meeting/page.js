@@ -29,7 +29,7 @@ const ScheduleMeeting = () => {
       </div>
       <div
         className="meetings-iframe-container"
-        data-src="https://meetings.hubspot.com/thosen?embed=true"
+        data-src="https://meetings.hubspot.com/envobyte?embed=true"
       ></div>
       <div className="mt-0 text-center text-gray-600 text-sm font-bold">
         Need help? Contact{" "}

@@ -26,15 +26,14 @@ const AboutUs = async () => {
         {/* about us content */}
         <div className="flex flex-col items-center xl:flex-row   md:gap-[6%] 2xl:gap-[10%]">
           {/* left side image */}
-          <div className="bg-[#DDFFFB]">
-            <Image
-              width={500}
-              height={500}
-              className="w-[650px]"
-              src={about.image}
-              quality={80}
-              alt="about-img"
-            />
+          <div className="bg-[#DDFFFB] relative w-full max-w-[650px] aspect-square">
+          <Image
+            src={about.image}
+            layout="fill"
+            objectFit="contain"
+            quality={80}
+            alt="about-img"
+          />
           </div>
           {/* right side counters */}
           <div className="pt-4 md:pt-10">

@@ -9,6 +9,7 @@ import { PhoneInput } from "react-international-phone";
 import "react-international-phone/style.css";
 import { Checkbox, Label } from "flowbite-react";
 import Link from "next/link";
+import { user_feedbackApi } from "@/config/apis";
 
 const ProjectDetails = ({ userContact }) => {
   const [phone, setPhone] = useState("");
@@ -66,10 +67,7 @@ const ProjectDetails = ({ userContact }) => {
         service_categories: formData.service_categories.join(", "),
       };
 
-      const response = await axios.post(
-        "https://admin.envobyte.com/api/user_feedback",
-        submissionData
-      );
+      const response = await axios.post(user_feedbackApi, submissionData);
 
       if (response.data) {
         console.log("Form submission result:", response.data);
@@ -139,7 +137,7 @@ const ProjectDetails = ({ userContact }) => {
   ];
 
   return (
-    <div className="bg-[#F8FAFC] py-0 pb-8 md:py-10 md:pb-[4%] lg:py-10 lg:pb-[4%]">
+    <div className="bg-[#F8FAFC] py-0 pb-8 md:py-0 md:pb-[4%] lg:py-10 lg:pb-[4%]">
       <Container>
         <div className="flex md:flex-row justify-center items-center pt-6">
           <div>

@@ -29,7 +29,7 @@ const Questions = ({ className, title }) => {
       <div className={`md:py-6 md:pt-0 md:pb-6 ${className}`}>
         <div className="max-w-[1680px] mx-auto">
           <div className="text-center">
-            <h3 className="text-[#0F172A] text-[24px] md:text-[30px] lg:text-[48px] font-bold font-Raleway pb-3 md:pb-5 md:pt-0">
+            <h3 className="text-[#0F172A] text-[24px] md:text-[30px] lg:text-[48px] font-bold font-Raleway pb-3 md:pb-5 md:pt-5 lg:pt-0">
               {title}
             </h3>
             <div className="flex justify-center">

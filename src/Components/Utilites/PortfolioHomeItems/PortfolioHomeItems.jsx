@@ -5,6 +5,7 @@ import Loading from "@/Components/Utilites/Loading/Loading";
 import Image from "next/image";
 import Link from "next/link";
 import { searchServiceApi } from "@/config/apis";
+import GlobalButtonColored from "../GlobalButton/GlobalButtonColored";
 
 const PortfolioHomeItems = ({
   portfolios,
@@ -129,21 +130,24 @@ const PortfolioHomeItems = ({
                 href={`/portfolio/${portfolio?.slug}`}
               >
                 <>
-                  <div className=" group rounded-t-[10px] rounded-b-[10px] md:rounded-[10px] overflow-hidden border border-[#CBD5E1] ">
-                    <div className="portfolio-bgHover w-[100%]  h-auto md:h-[650px] xl:h-[370px]   cursor-pointer flex flex-col xl:flex-row bg-[#FFFFFF] rounded-[10px]">
-                      <div className="xl:w-1/2 h-full">
-                        <Image
-                          width={800}
-                          height={500}
-                          className="w-full xl:w-[330px] h-[370px]  md:rounded-l-[10px] "
-                          src={portfolio?.image}
-                          alt=""
-                        />
+                  <div className="group rounded-lg overflow-hidden border border-[#CBD5E1]">
+                    <div className="portfolio-bgHover w-full cursor-pointer flex flex-col xl:flex-row bg-white rounded-lg">
+                      <div className="w-full xl:w-1/2">
+                        <div className="relative w-full aspect-[16/9] lg:aspect-[330/370] overflow-hidden">
+                          <Image
+                            src={portfolio?.image}
+                            layout="fill"
+                            objectFit="cover"
+                            quality={80}
+                            className="rounded-t-lg xl:rounded-l-lg lg:rounded-tr-none"
+                            alt={portfolio?.title || "Portfolio image"}
+                          />
+                        </div>
                       </div>
 
-                      <div className="w-full xl:w-1/2 p-4  mt-0 lg:p-6 flex flex-col lg:justify-center 4xl:justify-center items-center">
+                      <div className="w-full xl:w-1/2 p-4 lg:p-6 flex flex-col justify-center items-center">
                         <div className="text-center w-full">
-                          <h4 className="text-[14px] text-[#999999] mb-2 portfolio-textHover">
+                          <h4 className="text-sm text-[#999999] mb-2 portfolio-textHover">
                             {portfolio?.service_name
                               .slice(0, 3)
                               .map((service, index) => (
@@ -157,18 +161,17 @@ const PortfolioHomeItems = ({
                                 </span>
                               ))}
                           </h4>
-                          <div className="text-[16px] font-bold font-Raleway text-[#333333] portfolio-textHover line-clamp-3 mb-3">
-                            {portfolio?.heading?.slice(120)}
+                          <div className="text-base lg:text-lg font-bold font-Raleway text-[#333333] portfolio-textHover line-clamp-2 lg:line-clamp-3 mb-3">
+                            {portfolio?.heading?.slice(0, 120)}
                           </div>
-                          <p className="text-[14px] text-[#666666] portfolio-textHover mb-4">
-                            {portfolio.portfolio_summery.length > 300
-                              ? portfolio.portfolio_summery.slice(0, 300) +
-                                "..."
-                              : portfolio.portfolio_summery}
+                          <p className="text-sm text-[#666666] portfolio-textHover mb-4 line-clamp-3 lg:line-clamp-4">
+                            {portfolio.portfolio_summery}
                           </p>
                           <div className="flex justify-center items-center gap-2 text-[#FF693B] font-bold portfolio-textHover">
-                            <button className="text-[14px]">Read More</button>
-                            <span className="w-[19px]">
+                            <button className="text-sm lg:text-base">
+                              Read More
+                            </button>
+                            <span className="w-5">
                               <HiArrowSmallRight className="text-xl" />
                             </span>
                           </div>
@@ -181,6 +184,13 @@ const PortfolioHomeItems = ({
             ))}
           </div>
         )}
+       <div className="text-center pt-8">
+       <GlobalButtonColored
+            path={"/portfolio"}
+            title={"View All Portfolio"}
+            className="btn btn-primary md:w-[50%] text-center "
+          />
+       </div>
         {filteredPortfolio.length === 0 && !loading && (
           <div className="flex justify-center text-center text-gray-600 mt-0">
             <Image

@@ -14,38 +14,19 @@ const RelevantPortfolio = ({ singlePortfolioItem }) => {
   const swiperRef = useRef(null);
 
   const breakpoints = {
-    2500: {
-      slidesPerView: 4,
-      spaceBetween: 50,
-    },
-    1920: {
-      slidesPerView: 4,
-      spaceBetween: 50,
-    },
-    1536: {
-      slidesPerView: 4,
-      spaceBetween: 50,
-    },
-    1336: {
-      slidesPerView: 3,
-      spaceBetween: 50,
-    },
-    1280: {
-      slidesPerView: 3,
-      spaceBetween: 30,
-    },
-    1024: {
-      slidesPerView: 2,
-      spaceBetween: 10,
-    },
-    768: {
-      slidesPerView: 2,
-      spaceBetween: 20,
-    },
-    320: {
-      slidesPerView: 1,
-      spaceBetween: 10,
-    },
+    320: { slidesPerView: 1, spaceBetween: 10 },
+    500: { slidesPerView: 1.3, spaceBetween: 10 },
+    768: { slidesPerView: 2, spaceBetween: 20 },
+    800: { slidesPerView: 2.2, spaceBetween: 20 },
+    991: { slidesPerView: 2.5, spaceBetween: 20 },
+    1024: { slidesPerView: 2.6, spaceBetween: 30 },
+    1280: { slidesPerView: 3.3, spaceBetween: 30 },
+    1336: { slidesPerView: 3.5, spaceBetween: 30 },
+    1440: { slidesPerView: 3.5, spaceBetween: 30 },
+    1536: { slidesPerView: 3.8, spaceBetween: 30 },
+    1680: { slidesPerView: 4, spaceBetween: 30 },
+    1700: { slidesPerView: 4, spaceBetween: 30 },
+    1920: { slidesPerView: 4, spaceBetween: 30 },
   };
   const { relevant } = singlePortfolioItem;
   // console.log(singlePortfolioItem.relevant);
