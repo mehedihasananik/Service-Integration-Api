@@ -10,7 +10,6 @@ import {
   WhyChooseUs,
   Testimonial,
 } from "../index";
-import Tawk from "../Tawk/Tawk";
 import { user_contactApi } from "@/config/apis";
 import DigitalBusinessConsiderations2 from "../DigitalBusinessConsiderations/DigitalBusinessConsiderations2";
 
@@ -30,7 +29,6 @@ const HomePage = async () => {
 
   return (
     <div className="overflow-hidden">
-      <Tawk />
       <Banner />
       <Brands />
       <Services />

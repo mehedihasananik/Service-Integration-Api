@@ -1,39 +1,19 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { Search } from "lucide-react";
+import Image from "next/image";
 import Container from "../Container/Container";
 import Link from "next/link";
 import BlogSideBar from "../Utilites/BlogSection/BlogSideBar/BlogSideBar";
-import ElegantSubscribeModal from "../Utilites/BlogSection/ElegantSubscribeModal/ElegantSubscribeModal";
 import BlogCard from "../Utilites/BlogSection/BlogCard/BlogCard";
+import ElegantSubscribeModal from "../Utilites/BlogSection/ElegantSubscribeModal/ElegantSubscribeModal";
 
-const BlogPageContent = () => {
+const BlogPageContent = ({ blogs, categories, recommended, popular, tags }) => {
   const [openModal, setOpenModal] = useState(false);
-
-  const guides = [
-    {
-      title: "Vidyard's Ultimate Video Marketing Guide",
-      description: "This guide provides comprehensive insights into video marketing strategies for 2023.",
-      date: "Jul 14, 2023",
-      category: "Marketing",
-      image: "/assets/marketing-guide-1024x576.webp",
-    },
-    {
-      title: "The Ultimate Guide to Using Video for Sales in 2024",
-      description: "Learn how to leverage video content to boost your sales efforts in 2024.",
-      date: "Jan 28, 2024",
-      category: "Sales",
-      image: "/assets/marketing-guide-1024x576.webp",
-    },
-    {
-      title: "The Complete Guide to Video Production",
-      description: "A detailed guide on video production techniques, perfect for beginners and pros alike.",
-      date: "Nov 6, 2023",
-      category: "Video Tips",
-      image: "/assets/marketing-guide-1024x576.webp",
-    },
-
-  ];
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedTag, setSelectedTag] = useState(null);
+  const [filteredBlogs, setFilteredBlogs] = useState(blogs);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -43,50 +23,101 @@ const BlogPageContent = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  useEffect(() => {
+    const filterBlogs = () => {
+      let filtered = blogs;
+
+      if (selectedCategory) {
+        filtered = filtered.filter(blog => blog.category.id === selectedCategory.id);
+      }
+
+      if (selectedTag) {
+        filtered = filtered.filter(blog => {
+          const blogTags = Object.values(blog.tags);
+          return blogTags.includes(selectedTag.name);
+        });
+      }
+
+      if (searchTerm.trim() !== "") {
+        const lowercasedSearchTerm = searchTerm.toLowerCase();
+        filtered = filtered.filter(blog =>
+          blog.title.toLowerCase().includes(lowercasedSearchTerm) ||
+          blog.content.toLowerCase().includes(lowercasedSearchTerm)
+        );
+      }
+
+      setFilteredBlogs(filtered);
+    };
+
+    const debounceTimer = setTimeout(filterBlogs, 300);
+
+    return () => clearTimeout(debounceTimer);
+  }, [selectedCategory, selectedTag, blogs, searchTerm]);
+
+  const handleCategorySelect = (category) => {
+    setSelectedCategory(category);
+    setSelectedTag(null);
+  };
+
+  const handleTagSelect = (tag) => {
+    setSelectedTag(tag);
+    setSelectedCategory(null);
+  };
+
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
   return (
     <div>
-      <div className="bg-gradient-to-b from-gray-100 to-white pt-4 pb-10 mt-4">
+      <div className="bg-gradient-to-b from-gray-100 to-white py-8 mt-5">
         <Container>
-          <h1 className="text-[30px] md:text-[30px] lg:text-[48px] font-Raleway font-bold text-center pb-4">
-            Our <span className="text-[#FF693B]">Blogs</span>
+          <h1 className="text-[30px] md:text-[30px] lg:text-[48px] font-Raleway font-bold text-center pb-10">
+            <span className="text-[#133490]">Our</span> <span className="text-[#FF693B]">Blogs</span>
           </h1>
 
-          <div className="mb-12">
-            <div className="w-full md:w-[70%] lg:w-[40%] mx-auto">
-              <div className="relative">
-                <input
-                  type="text"
-                  placeholder="Search articles..."
-                  className={`w-full p-4 pr-12 text-gray-700 bg-white border-2 rounded-lg transition-all duration-300 `}
-                />
-                <button className="absolute right-4 top-1/2 transform -translate-y-1/2">
-                  <Search
-                    size={24}
-                    className="text-gray-400 hover:text-[#FF693B] transition-colors"
-                  />
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div className="flex flex-col lg:flex-row gap-12">
-            <div className="w-[75%]">
-              <Link href={"/blogs/1"}>
+          <div className="flex flex-col xl:flex-row gap-12">
+            <div className="w-full xl:w-[73%]">
+              {filteredBlogs.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  {guides.map((guide, index) => (
-                    <BlogCard key={index} {...guide} />
+                  {filteredBlogs.map((item) => (
+                    <Link href={`/blogs/${item?.slug}`} key={item.id}>
+                      <BlogCard item={item} />
+                    </Link>
                   ))}
                 </div>
-              </Link>
-            </div>
+              ) : (
 
-            <div className="w-[30%]">
-              <BlogSideBar />
+                <div className="relative w-full  aspect-[742/554]">
+                  <Image
+                    src="/assets/data.gif"
+                    layout="fill"
+                    objectFit="contain"
+                    quality={80}
+                    alt="banner image"
+                  />
+                </div>
+
+              )}
+            </div>
+            <div className="w-full xl:w-[27%]">
+              <BlogSideBar
+                categories={categories}
+                recommended={recommended}
+                popular={popular}
+                tags={tags}
+                selectedCategory={selectedCategory}
+                selectedTag={selectedTag}
+                onCategorySelect={handleCategorySelect}
+                onTagSelect={handleTagSelect}
+                searchTerm={searchTerm}
+                handleSearch={handleSearch}
+              />
             </div>
           </div>
         </Container>
       </div>
-      {/* <ElegantSubscribeModal isOpen={openModal} setOpenModal={setOpenModal} /> */}
+      <ElegantSubscribeModal isOpen={openModal} setOpenModal={setOpenModal} />
     </div>
   );
 };

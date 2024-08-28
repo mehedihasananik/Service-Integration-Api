@@ -18,9 +18,8 @@ export async function generateMetadata() {
   // console.log(service?.meta?.seo_meta?.owner);
 
   return {
-    title: `${
-      service?.meta?.seo_meta?.title || service?.basic?.title
-    } || Envobyte`,
+    title: `${service?.meta?.seo_meta?.title || service?.basic?.title
+      } || Envobyte`,
     description: service?.meta?.seo_meta?.description,
     keywords: service?.meta?.seo_meta?.keywords,
     authors: [{ name: service?.meta?.seo_meta?.author }],
@@ -95,7 +94,7 @@ async function getServices() {
 
 export default async function ServicesPage() {
   const { serviceCategories, services } = await getServices();
-  console.log(services)
+  // console.log(services)
 
   return (
     <>

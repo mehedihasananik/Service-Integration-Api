@@ -87,37 +87,37 @@ const OrderSliderLg = ({ sliders }) => {
       });
   }, [images]);
 
-  // New useEffect to disable right-click
-  // useEffect(() => {
-  //   const handleContextMenu = (e) => {
-  //     e.preventDefault();
-  //   };
-  //   document.addEventListener("contextmenu", handleContextMenu);
-  //   return () => {
-  //     document.removeEventListener("contextmenu", handleContextMenu);
-  //   };
-  // }, []);
+  // New useEffect to disable right - click
+  useEffect(() => {
+    const handleContextMenu = (e) => {
+      e.preventDefault();
+    };
+    document.addEventListener("contextmenu", handleContextMenu);
+    return () => {
+      document.removeEventListener("contextmenu", handleContextMenu);
+    };
+  }, []);
 
   // New useEffect to disable keyboard shortcuts
-  // useEffect(() => {
-  //   const handleKeyDown = (e) => {
-  //     if (
-  //       (e.ctrlKey &&
-  //         (e.keyCode === 67 ||
-  //           e.keyCode === 86 ||
-  //           e.keyCode === 85 ||
-  //           e.keyCode === 117)) ||
-  //       e.keyCode === 123
-  //     ) {
-  //       e.preventDefault();
-  //       return false;
-  //     }
-  //   };
-  //   document.addEventListener("keydown", handleKeyDown);
-  //   return () => {
-  //     document.removeEventListener("keydown", handleKeyDown);
-  //   };
-  // }, []);
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (
+        (e.ctrlKey &&
+          (e.keyCode === 67 ||
+            e.keyCode === 86 ||
+            e.keyCode === 85 ||
+            e.keyCode === 117)) ||
+        e.keyCode === 123
+      ) {
+        e.preventDefault();
+        return false;
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
   const handleImageClick = (event) => {
     if (isFullscreen) {
@@ -175,10 +175,10 @@ const OrderSliderLg = ({ sliders }) => {
     return (
       <div
         className={`${isFullscreen
-            ? currentImageHeight < 1000
-              ? "h-[100vh] flex items-center justify-center"
-              : "h-[100vh]"
-            : "max-h-[500px] 4xl:max-h-[600px] flex items-center justify-center"
+          ? currentImageHeight < 1000
+            ? "h-[100vh] flex items-center justify-center"
+            : "h-[100vh]"
+          : "max-h-[500px] 4xl:max-h-[600px] flex items-center justify-center"
           }`}
         style={{
           width: "100%",

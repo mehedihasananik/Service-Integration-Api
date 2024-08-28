@@ -52,16 +52,14 @@ const Header = ({ title, details }) => (
 
 const MissionVision = ({ image, title2, details2, title3, details3 }) => (
   <div className="grid grid-cols-1 justify-items-center lg:justify-items-start gap-y-0 lg:gap-y-0 lg:grid-cols-3 pt-10 lg:pt-16 lg:gap-x-10">
-  <div className="relative w-full h-full xl:w-[450px] aspect-square">
-      <Image
-        src={image}
-        layout="fill"
-        objectFit="cover"
-        quality={80}
-        className="w-full h-full"
-        alt={"Flexible image"}
-      />
-    </div>
+    <Image
+      className="w-[450px]"
+      width={500}
+      height={500}
+      src={image}
+      alt=""
+      quality={80}
+    />
     <MissionVisionItem
       title={title2}
       details={details2}
@@ -126,21 +124,20 @@ const AboutDetailItem = ({ detail }) => {
         </div>
       </div>
       <div
-      className={`lg:w-[40%] flex justify-center ${
-        isRightImage ? "lg:justify-end" : "lg:justify-start"
-      } gap-x-4`}
-    >
-      <div className="relative w-full aspect-square rounded-lg overflow-hidden">
-        <Image
-          src={detail.image}
-          layout="fill"
-          objectFit="cover"
-          quality={80}
-          className="rounded-lg"
-          alt={detail.alt || "Detailed image"}
-        />
+        className={`lg:w-[40%] flex justify-center ${isRightImage ? "lg:justify-end" : "lg:justify-start"
+          } gap-x-4`}
+      >
+        <div className="relative w-full aspect-square rounded-lg overflow-hidden">
+          <Image
+            src={detail.image}
+            layout="fill"
+            objectFit="cover"
+            quality={80}
+            className="rounded-lg"
+            alt={detail.alt || "Detailed image"}
+          />
+        </div>
       </div>
-    </div>
     </div>
   );
 };

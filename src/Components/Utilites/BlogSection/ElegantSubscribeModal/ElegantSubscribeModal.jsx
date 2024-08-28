@@ -1,51 +1,87 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 
-const ElegantSubscribeModal = ({ isOpen, setOpenModal }) => {
-  if (!isOpen) return null;
+const ElegantSubscribeModal = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+
+  useEffect(() => {
+    const hasSeenModal = sessionStorage.getItem('hasSeenSubscribeModal');
+
+    if (!hasSeenModal) {
+      const timer = setTimeout(() => {
+        setModalOpen(true);
+        setTimeout(() => setModalVisible(true), 3000);
+        sessionStorage.setItem('hasSeenSubscribeModal', 'true');
+      }, 2000); // Delay before showing the modal
+
+      return () => clearTimeout(timer);
+    }
+  }, []); // Empty dependency array ensures this runs only once on mount
+
+  const handleClose = () => {
+    setModalVisible(false);
+    setTimeout(() => setModalOpen(false), 300);
+  };
+
+  if (!modalOpen) return null;
 
   return (
     <div
-      className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
-      onClick={() => setOpenModal(false)}
+      className={`fixed inset-0 bg-black transition-all duration-300 ease-in-out flex items-center justify-center z-50 p-4 ${modalVisible ? 'bg-opacity-50 backdrop-blur-sm' : 'bg-opacity-0'
+        }`}
+      onClick={handleClose}
     >
       <div
-        className="bg-white rounded-lg shadow-2xl overflow-hidden max-w-md w-full mx-4"
+        className={`bg-white rounded-2xl shadow-2xl overflow-hidden max-w-md w-full mx-auto transform transition-all duration-300 ease-in-out ${modalVisible ? 'scale-100 opacity-100' : 'scale-95 opacity-0'
+          }`}
+        style={{
+          background: 'linear-gradient(135deg, #ffffff 0%, #f0f4f8 100%)',
+        }}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="relative bg-gradient-to-br from-blue-600 to-purple-600 p-8">
+        <div className="relative p-6">
           <button
-            onClick={() => setOpenModal(false)}
-            className="absolute top-4 right-4 text-white hover:text-gray-200 transition-colors"
+            onClick={handleClose}
+            className="text-gray-400 hover:text-gray-600 transition-colors"
           >
-            <X size={24} />
+            <span className='absolute top-4 right-4'>
+              <X className="h-6 w-6" />
+            </span>
           </button>
 
           <div className="text-center">
-            <h2 className="text-white text-3xl font-bold mb-4">
-              Subscribe Now
-            </h2>
-            <p className="text-blue-100 mb-6">
-              Get our latest newsletters and special offers!
+            <div className="mb-6 transform hover:scale-105 transition-transform duration-300">
+              <img
+                src="https://i.ibb.co/nM2nH6n/android-chrome-256x256.png"
+                alt="Decorative"
+                className="mx-auto rounded-full h-[100px] w-[100px] shadow-md"
+              />
+            </div>
+            <h2 className="text-3xl font-bold mb-2 text-gray-800">Stay Inspired</h2>
+            <p className="text-gray-600 mb-6">
+              Join our community and receive weekly insights on business growth, industry trends, and success stories.
             </p>
-
-            <input
-              type="text"
-              placeholder="Your Name"
-              className="w-full p-3 mb-4 rounded-md border border-blue-300 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-
-            <input
-              type="email"
-              placeholder="Your Email"
-              className="w-full p-3 mb-6 rounded-md border border-blue-300 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-
-            <button
-              className="w-full bg-white text-blue-600 font-semibold py-3 rounded-md hover:bg-blue-50 transition-colors duration-300"
-            >
-              SUBSCRIBE ME
-            </button>
+            <div className="space-y-4">
+              <input
+                type="email"
+                placeholder="Your Email"
+                className="w-full p-3 rounded-md border border-gray-300 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 ease-in-out"
+              />
+              <input
+                type="text"
+                placeholder="Your Name"
+                className="w-full p-3 rounded-md border border-gray-300 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 ease-in-out"
+              />
+              <button
+                className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold py-3 rounded-md hover:from-blue-600 hover:to-purple-700 transition-all duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              >
+                Subscribe Now
+              </button>
+            </div>
+            <p className="mt-4 text-xs text-gray-500">
+              By subscribing, you agree to our Terms of Service and Privacy Policy.
+            </p>
           </div>
         </div>
       </div>

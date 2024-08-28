@@ -8,6 +8,10 @@ import SocialProvider from "@/Components/SocialProvider/SocialProvider";
 import GoogleTagManagerScript from "../GoogleTagManager/GoogleTagManagerScript";
 import GoogleTagManagerNoScript from "../GoogleTagManager/GoogleTagManagerNoScript";
 import Analytics from "../Analytics/Analytics";
+import HubSpotScript from "@/Components/HubSpot/HubSpot";
+
+
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -35,6 +39,7 @@ export default function RootLayout({ children }) {
           <SocialProvider>
             <Header />
             {children}
+            <HubSpotScript />
             <Footer />
           </SocialProvider>
         </AuthProviders>
