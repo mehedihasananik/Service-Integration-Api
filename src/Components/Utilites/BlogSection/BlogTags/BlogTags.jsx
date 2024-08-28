@@ -44,7 +44,7 @@ const BlogTags = ({ tags, selectedTag, onTagSelect, singleBlogTags }) => {
                     <div className="flex flex-wrap gap-2">
 
                         {transformedTags.map((tag) => (
-                            <button
+                            <span
                                 key={tag.id}
 
                                 className={`px-4 py-2 rounded-md text-sm font-medium transition-all delay-75 ${selectedTag?.id === tag.id
@@ -53,7 +53,7 @@ const BlogTags = ({ tags, selectedTag, onTagSelect, singleBlogTags }) => {
                                     }`}
                             >
                                 {tag.name}
-                            </button>
+                            </span>
                         ))}
                     </div>
                 </div>

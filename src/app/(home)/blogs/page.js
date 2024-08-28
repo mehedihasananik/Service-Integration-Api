@@ -1,6 +1,7 @@
 import BlogPageContent from "@/Components/BlogPageContent/BlogPageContent";
+import { Suspense } from "react";
 
-const API_BASE_URL = "http://192.168.10.16:8000/api";
+const API_BASE_URL = "https://v2admin.envobyte.com/api";
 
 async function fetchData(url, options = {}) {
   const res = await fetch(url, {
@@ -26,13 +27,15 @@ const BlogPage = async () => {
     ]);
 
     return (
-      <BlogPageContent
-        blogs={blogs.data.formattedBlogs}
-        categories={categories.data}
-        recommended={recommended.data}
-        popular={popular?.data?.popular_blogs}
-        tags={tags.data}
-      />
+      <Suspense>
+        <BlogPageContent
+          blogs={blogs?.data?.formattedBlogs}
+          categories={categories?.data}
+          recommended={recommended?.data}
+          popular={popular?.data?.popular_blogs}
+          tags={tags.data}
+        />
+      </Suspense>
     );
   } catch (error) {
     console.error("Error fetching blog data:", error);

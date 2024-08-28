@@ -19,13 +19,13 @@ const BannerItems = ({ banner }) => {
         </p>
         <div className="flex flex-col xs:flex-row  justify-center lg:justify-start gap-4 md:gap-6 py-6">
           <GlobalButtonColored
-            path={"/schedule-meeting"}
-            title={"Book an Appointment"}
+            path={"#projectDetails"}
+            title={"Get a Quote"}
             className="btn btn-primary md:w-[50%] text-center "
           />
           <GlobalButtonHovered
-            path={"#projectDetails"}
-            title={" Get a Quote"}
+            path={"/services"}
+            title={"Our Services"}
             className="btn btn-secondary md:w-[50%] text-center"
           />
         </div>

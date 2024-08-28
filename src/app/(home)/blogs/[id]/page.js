@@ -1,7 +1,7 @@
 import SingleBlogContent from "@/Components/SingleBlogContent/SingleBlogContent";
 import React from "react";
 
-const API_BASE_URL = "http://192.168.10.16:8000/api";
+const API_BASE_URL = "https://v2admin.envobyte.com/api";
 
 async function fetchData(url, options = {}) {
   const res = await fetch(url, {
@@ -32,11 +32,11 @@ const SingleBlog = async ({ params }) => {
     return (
       <div>
         <SingleBlogContent
-          singleBlog={singleBlog.data.formattedBlog}
-          categories={categories.data}
-          recommended={recommended.data}
+          singleBlog={singleBlog?.data?.formattedBlog}
+          categories={categories?.data}
+          recommended={recommended?.data}
           popular={popular?.data?.popular_blogs}
-          tags={tags.data}
+          tags={tags?.data}
         />
       </div>
     );

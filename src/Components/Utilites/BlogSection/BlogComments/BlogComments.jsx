@@ -13,7 +13,7 @@ const BlogComments = ({ id }) => {
             setIsLoading(true);
             setError(null);
             try {
-                const response = await fetch(`http://192.168.10.16:8000/api/posts/${id}/comments`);
+                const response = await fetch(`https://v2admin.envobyte.com/api/posts/${id}/comments`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch comments');
                 }
@@ -66,10 +66,7 @@ const BlogComments = ({ id }) => {
                                 </div>
                                 <p className="text-gray-700 leading-relaxed">{comment.content}</p>
                             </div>
-                            <button className="self-start bg-indigo-100 text-indigo-600 px-4 py-2 rounded-full text-sm font-medium hover:bg-indigo-200 transition-colors duration-300 flex items-center">
-                                <CornerUpRight className="mr-1" size={16} />
-                                Reply
-                            </button>
+
                         </li>
                     ))}
                 </ul>
