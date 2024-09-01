@@ -73,19 +73,20 @@ const ServicesHomeItems = ({ services, details }) => {
                   setCurrentSlide(swiper.realIndex);
                   setPreviousSlide(swiper.previousIndex);
                 }}
-                pagination={true}
+                pagination={{
+                  clickable: true,
+                }}
                 modules={[Pagination]}
               >
                 {services.map((service, index) => (
                   <SwiperSlide
                     key={service.id}
-                    className={`transition-all duration-500 ${
-                      index === previousSlide &&
+                    className={`transition-all duration-500 ${index === previousSlide &&
                       index !== currentSlide &&
                       currentSlide !== previousSlide - 1
-                        ? ""
-                        : ""
-                    }`}
+                      ? ""
+                      : ""
+                      }`}
                   >
                     <ServiceCard service={service} />
                   </SwiperSlide>

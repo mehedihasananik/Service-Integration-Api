@@ -78,7 +78,7 @@ const HeaderItems = ({ headers }) => {
                 {item.menu_name}
               </Link>
             ))}
-            <Link href={"/blogs"}>Blogs</Link>
+
             <Link
               href="/schedule-meeting"
               className="bg-[#FF693B] border border-[#FF693B] text-white font-medium px-6 py-2 rounded-lg hover:bg-white hover:text-[#FF693B] transition-all duration-300"

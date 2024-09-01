@@ -5,6 +5,7 @@ import { IoEyeOutline } from 'react-icons/io5';
 
 
 const BlogCard = ({ item }) => {
+  // console.log(item.title)
 
   return (
     <div className="bg-white rounded-lg shadow-lg overflow-hidden">
@@ -31,11 +32,13 @@ const BlogCard = ({ item }) => {
           </div>
           <div className="flex items-center text-gray-500 mb-2">
             <Eye size={16} className="mr-1" />
-            <span className="text-sm">100 views</span>
+            <span className="text-sm">{item?.views} views</span>
           </div>
         </div>
         <h3 className="text-xl font-bold mb-2 text-gray-800 line-clamp-2 hover:text-[#FF693B] transition-colors">
+
           {item.title}
+
         </h3>
         <div>
           <p className="text-gray-600 line-clamp-3">{item.excerpt}</p>

@@ -1,29 +1,66 @@
 import Image from "next/image";
 import { Eye } from "lucide-react";
-
+import { TbCategoryPlus } from "react-icons/tb";
 import Container from "../Container/Container";
 import BlogSideBar from "../Utilites/BlogSection/BlogSideBar/BlogSideBar";
 import Global_PageHtml from "../Utilites/Global_PageHtml/Global_PageHtml";
 import BlogContact from "../Utilites/BlogSection/BlogContact/BlogContact";
 import BlogComments from "../Utilites/BlogSection/BlogComments/BlogComments";
 import BlogSocialShare from '../Utilites/BlogSection/BlogSocialShare/BlogSocialShare';
+import BlogViewCount from "../Utilites/BlogSection/BlogViewCount/BlogViewCount";
+import { Breadcrumb } from "flowbite-react";
+import { HiHome } from "react-icons/hi";
+import RelevantBlogs from "../Utilites/BlogSection/RelevantBlogs/RelevantBlogs";
 
-const SingleBlogContent = ({ singleBlog, categories, recommended, popular, tags }) => {
+const SingleBlogContent = ({ singleBlog, categories, recommended, popular, tags, params, comments }) => {
+  // console.log(singleBlog?.id)
 
   return (
     <div className="relative">
       {/* Sticky Social Share Buttons */}
-      <BlogSocialShare />
+      <div className="hidden xl:block">
+        <BlogSocialShare />
+      </div>
 
-      <div className="bg-gradient-to-b from-gray-100 to-white pt-16 pb-10 mt-4">
-        <Container>
-          <header className="mb-8">
-            <h1 className="text-[30px] lg:text-[48px] text-[#0F172A] font-bold font-Raleway text-center lg:text-left mb-2">
+      <div className="bg-gradient-to-b from-gray-100 to-white md:pt-10 md:pb-10 md:mt-4">
+
+        <div className="max-w-[1520px] mx-auto px-[6%] md:px-[4%] xl:px-[3.5%] xxl:px-[5%] 4xl:px-[4%]">
+          <div className=" rounded-lg">
+            <Breadcrumb aria-label="Elegant breadcrumb" className="text-sm">
+              <Breadcrumb.Item
+                href="/"
+                icon={HiHome}
+                className="transition-all duration-300 hover:text-indigo-700"
+              >
+                <span className="font-semibold text-indigo-600">Home</span>
+              </Breadcrumb.Item>
+              <Breadcrumb.Item
+                href="/blogs"
+                className="transition-all duration-300 hover:text-indigo-700"
+              >
+                <span className="font-semibold text-indigo-600">Blogs</span>
+              </Breadcrumb.Item>
+              <Breadcrumb.Item>
+                <span className="font-bold text-gray-700"></span>
+              </Breadcrumb.Item>
+            </Breadcrumb>
+          </div>
+          <header className="pt-2 pb-2">
+            <h1 className="text-[25px] lg:text-[48px] text-[#0F172A] font-bold font-Raleway text-center lg:text-left mb-2">
               {singleBlog.title}
             </h1>
           </header>
-          <div className="flex flex-col lg:flex-row gap-12">
-            <div className="w-full lg:w-[73%]">
+          <div className="flex items-center gap-x-3 pb-6">
+            <div className="flex items-center bg-gradient-to-r from-blue-50 to-indigo-50 rounded-md px-2 py-2 shadow-sm">
+              <TbCategoryPlus className="w-5 h-5 text-indigo-500 mr-2" />
+              <span className="font-medium text-gray-700">Category:</span>
+              <span className="ml-2 font-semibold text-indigo-600">
+                {singleBlog?.category?.name}
+              </span>
+            </div>
+          </div>
+          <div className="flex flex-col xl:flex-row gap-12">
+            <div className="w-full xl:w-[73%]">
               {/* Header Section */}
 
 
@@ -42,9 +79,9 @@ const SingleBlogContent = ({ singleBlog, categories, recommended, popular, tags 
                     <p className="text-gray-500">
                       Published in {singleBlog?.created_at}
                     </p>
-                    <div className="flex items-center text-gray-500 ">
+                    <div className="flex items-center text-gray-500 gap-x-1 ">
                       <Eye size={16} className="mr-0" />
-                      <span className="text-sm">100 views</span>
+                      <span className="text-sm">{singleBlog?.views} views</span>
                     </div>
                   </div>
                 </div>
@@ -53,23 +90,30 @@ const SingleBlogContent = ({ singleBlog, categories, recommended, popular, tags 
               {/* Image & Description */}
               <div>
                 <div>
-                  <Image src={singleBlog?.featured_image} height={1000} width={1000} alt="" />
+                  <Image className="rounded-[8px]" src={singleBlog?.featured_image} height={1000} width={1000} alt="" />
                 </div>
                 <div className="servicePage_content">
                   <Global_PageHtml serviceDetails={singleBlog.content} />
                 </div>
+                <div className="">
+                  <RelevantBlogs singleBlog={singleBlog} />
+                </div>
+                <div className="block xl:hidden">
+                  <BlogSocialShare />
+                </div>
               </div>
 
               <div className="space-y-10">
-                <BlogComments id={singleBlog.id} />
+                <BlogComments id={singleBlog?.id} comments={comments} />
                 <BlogContact />
               </div>
             </div>
-            <div className="w-full lg:w-[27%] pt-[6%]">
+            <div className="w-full xl:w-[27%] pt-[6%]">
               <BlogSideBar recommended={recommended} popular={popular} singleBlogTags={singleBlog?.tags} />
             </div>
           </div>
-        </Container>
+        </div>
+        <BlogViewCount params={params} />
       </div>
     </div>
   );

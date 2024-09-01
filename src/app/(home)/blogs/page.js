@@ -1,33 +1,31 @@
 import BlogPageContent from "@/Components/BlogPageContent/BlogPageContent";
+import UserLoading from "@/Components/Utilites/UserLoading/UserLoading";
+import { apiEndpoint } from "@/config/config";
 import { Suspense } from "react";
 
-const API_BASE_URL = "https://v2admin.envobyte.com/api";
-
-async function fetchData(url, options = {}) {
+async function fetchData(url) {
   const res = await fetch(url, {
-    next: { revalidate: 10 }, // Revalidate every hour
-    ...options,
+    next: { revalidate: 10 }
   });
-
   if (!res.ok) {
     throw new Error(`Failed to fetch data from ${url}`);
   }
-
   return res.json();
 }
 
 const BlogPage = async () => {
-  try {
-    const [blogs, categories, recommended, popular, tags] = await Promise.all([
-      fetchData(`${API_BASE_URL}/blogs`),
-      fetchData(`${API_BASE_URL}/blogs/categories`),
-      fetchData(`${API_BASE_URL}/blogs/recommended`),
-      fetchData(`${API_BASE_URL}/popular/blogs`),
-      fetchData(`${API_BASE_URL}/blogs/tags`)
-    ]);
 
-    return (
-      <Suspense>
+  const [blogs, categories, recommended, popular, tags] = await Promise.all([
+    fetchData(`${apiEndpoint}/blogs`),
+    fetchData(`${apiEndpoint}/blogs/categories`),
+    fetchData(`${apiEndpoint}/blogs/recommended`),
+    fetchData(`${apiEndpoint}/popular/blogs`),
+    fetchData(`${apiEndpoint}/blogs/tags`)
+  ]);
+
+  return (
+    <>
+      <Suspense fallback={<UserLoading />}>
         <BlogPageContent
           blogs={blogs?.data?.formattedBlogs}
           categories={categories?.data}
@@ -36,11 +34,9 @@ const BlogPage = async () => {
           tags={tags.data}
         />
       </Suspense>
-    );
-  } catch (error) {
-    console.error("Error fetching blog data:", error);
-    return <div>Error loading blog content. Please try again later.</div>;
-  }
-};
+    </>
+  );
+}
+
 
 export default BlogPage;

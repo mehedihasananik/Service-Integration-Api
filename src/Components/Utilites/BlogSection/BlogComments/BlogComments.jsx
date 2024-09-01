@@ -3,39 +3,40 @@
 import React, { useEffect, useState } from 'react';
 import { MessageCircle, Clock, CornerUpRight } from 'lucide-react';
 
-const BlogComments = ({ id }) => {
-    const [comments, setComments] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState(null);
+const BlogComments = ({ id, comments }) => {
+    // const [comments, setComments] = useState([]);
+    // const [isLoading, setIsLoading] = useState(true);
+    // const [error, setError] = useState(null);
+    // console.log(id)
 
-    useEffect(() => {
-        const fetchComments = async () => {
-            setIsLoading(true);
-            setError(null);
-            try {
-                const response = await fetch(`https://v2admin.envobyte.com/api/posts/${id}/comments`);
-                if (!response.ok) {
-                    throw new Error('Failed to fetch comments');
-                }
-                const data = await response.json();
-                setComments(data);
-            } catch (err) {
-                setError(err.message);
-            } finally {
-                setIsLoading(false);
-            }
-        };
+    // useEffect(() => {
+    //     const fetchComments = async () => {
+    //         setIsLoading(true);
+    //         setError(null);
+    //         try {
+    //             const response = await fetch(`http://v2admin.envobyte.com/api/posts/${id}/comments`);
+    //             if (!response.ok) {
+    //                 throw new Error('Failed to fetch comments');
+    //             }
+    //             const data = await response.json();
+    //             setComments(data);
+    //         } catch (err) {
+    //             setError(err.message);
+    //         } finally {
+    //             setIsLoading(false);
+    //         }
+    //     };
 
-        fetchComments();
-    }, [id]);
+    //     fetchComments();
+    // }, [id]);
 
-    if (isLoading) {
-        return <div className="text-center">Loading comments...</div>;
-    }
+    // if (isLoading) {
+    //     return <div className="text-center">Loading comments...</div>;
+    // }
 
-    if (error) {
-        return <div className="text-center text-red-500">Error: {error}</div>;
-    }
+    // if (error) {
+    //     return <div className="text-center text-red-500">Error: {error}</div>;
+    // }
 
     return (
         <div className="w-full p-8 bg-white rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl">

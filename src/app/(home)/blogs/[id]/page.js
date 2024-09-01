@@ -1,12 +1,10 @@
 import SingleBlogContent from "@/Components/SingleBlogContent/SingleBlogContent";
+import { apiEndpoint } from "@/config/config";
 import React from "react";
 
-const API_BASE_URL = "https://v2admin.envobyte.com/api";
-
-async function fetchData(url, options = {}) {
+async function fetchData(url) {
   const res = await fetch(url, {
-    next: { revalidate: 10 }, // Revalidate every 10 seconds
-    ...options,
+    next: { revalidate: 10 }
   });
 
   if (!res.ok) {
@@ -17,33 +15,29 @@ async function fetchData(url, options = {}) {
 }
 
 const SingleBlog = async ({ params }) => {
-  try {
-    const [singleBlog, categories, recommended, popular, tags] = await Promise.all([
-      fetchData(`${API_BASE_URL}/blog/${params?.id}`),
-      fetchData(`${API_BASE_URL}/blogs/categories`),
-      fetchData(`${API_BASE_URL}/blogs/recommended`),
-      fetchData(`${API_BASE_URL}/popular/blogs`),
-      fetchData(`${API_BASE_URL}/blogs/tags`)
-    ]);
+  const [singleBlog, categories, recommended, popular, tags] = await Promise.all([
+    fetchData(`${apiEndpoint}/blog/${params?.id}`),
+    fetchData(`${apiEndpoint}/blogs/categories`),
+    fetchData(`${apiEndpoint}/blogs/recommended`),
+    fetchData(`${apiEndpoint}/popular/blogs`),
+    fetchData(`${apiEndpoint}/blogs/tags`)
+  ]);
+  // console.log()
 
+  return (
+    <div>
+      <SingleBlogContent
+        singleBlog={singleBlog?.data?.formattedBlog}
+        categories={categories?.data}
+        recommended={recommended?.data}
+        popular={popular?.data?.popular_blogs}
+        tags={tags?.data}
+        params={params}
+        comments={singleBlog?.data?.formattedBlog?.comments}
+      />
+    </div>
+  );
+}
 
-
-
-    return (
-      <div>
-        <SingleBlogContent
-          singleBlog={singleBlog?.data?.formattedBlog}
-          categories={categories?.data}
-          recommended={recommended?.data}
-          popular={popular?.data?.popular_blogs}
-          tags={tags?.data}
-        />
-      </div>
-    );
-  } catch (error) {
-    console.error("Error fetching single blog data:", error);
-    return <div>Error loading blog content. Please try again later.</div>;
-  }
-};
 
 export default SingleBlog;

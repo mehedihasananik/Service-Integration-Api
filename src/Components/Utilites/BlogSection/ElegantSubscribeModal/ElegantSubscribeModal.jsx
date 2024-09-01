@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
+import Link from 'next/link';
 
 const ElegantSubscribeModal = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -64,13 +65,13 @@ const ElegantSubscribeModal = () => {
             </p>
             <div className="space-y-4">
               <input
-                type="email"
-                placeholder="Your Email"
+                type="text"
+                placeholder="Your Name"
                 className="w-full p-3 rounded-md border border-gray-300 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 ease-in-out"
               />
               <input
-                type="text"
-                placeholder="Your Name"
+                type="email"
+                placeholder="Your Email"
                 className="w-full p-3 rounded-md border border-gray-300 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 ease-in-out"
               />
               <button
@@ -80,12 +81,12 @@ const ElegantSubscribeModal = () => {
               </button>
             </div>
             <p className="mt-4 text-xs text-gray-500">
-              By subscribing, you agree to our Terms of Service and Privacy Policy.
+              By subscribing, you agree to our <Link className='text-red-400' href={"/terms-and-conditions"}>Terms & Conditions</Link> and <Link className='text-red-400' href={"/privacy-policy"}> Privacy Policy</Link>
             </p>
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 

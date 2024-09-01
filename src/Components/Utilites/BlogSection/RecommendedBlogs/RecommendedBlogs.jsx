@@ -9,18 +9,20 @@ const RecommendedBlogs = ({ recommended }) => {
         <div className="bg-white p-5 rounded-lg shadow-lg">
             <h3 className="text-lg font-semibold mb-4">Recommended Blogs</h3>
             <ul>
-                {recommended?.map((feed, index) => {
+                {recommended?.slice(0, 5)?.map((feed, index) => {
                     return <div key={feed.id} >
                         <Link href={`/blogs/${feed?.slug}`}>
-                            <div className="flex items-center mb-4">
-                                <Image
-                                    src={feed?.featured_image}
-                                    alt={feed?.alt_text}
-                                    width={100} // Increased width
-                                    height={180} // Increased height
-                                    className="mr-4 w-[100px] h-[60px]" // Removed rounded-lg
-                                />
-                                <div>
+                            <div className="flex items-center mb-4 gap-x-4 cursor-pointer">
+                                <div className='w-[30%] flex items-center'>
+                                    <Image
+                                        src={feed?.featured_image}
+                                        alt={feed?.alt_text}
+                                        width={100} // Increased width
+                                        height={180} // Increased height
+                                        className="mr-4 w-[100px] h-[60px]" // Removed rounded-lg
+                                    />
+                                </div>
+                                <div className='w-[70%]'>
                                     <h4 className="text-md font-medium">
                                         {feed?.title && feed.title.length > 35
                                             ? feed.title.slice(0, 35) + '...'
