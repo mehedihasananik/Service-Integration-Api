@@ -89,11 +89,10 @@ const PortfolioHomeItems = ({
         <div className="grid grid-cols-2 md:grid-cols-6  lg:grid-cols-6 gap-5 md:gap-2">
           <button
             onClick={() => handleCategoryChange(0)}
-            className={`px-4 py-2 rounded-lg xl:rounded-full text-[14px] md:text-[16px] ${
-              selectedCategoryId === 0
-                ? "bg-[#FF693B] text-white"
-                : "bg-gray-200 text-gray-700"
-            }`}
+            className={`px-4 py-2 rounded-lg xl:rounded-full text-[14px] md:text-[16px] ${selectedCategoryId === 0
+              ? "bg-[#FF693B] text-white"
+              : "bg-gray-200 text-gray-700"
+              }`}
           >
             All Categories
           </button>
@@ -102,11 +101,10 @@ const PortfolioHomeItems = ({
             <button
               key={category.category_id}
               onClick={() => handleCategoryChange(category.category_id)}
-              className={`px-4 py-2 rounded-lg xl:rounded-full text-[14px] md:text-[16px]  ${
-                selectedCategoryId === category.category_id
-                  ? "bg-[#FF693B] text-white"
-                  : "bg-gray-200 text-gray-700"
-              }`}
+              className={`px-4 py-2 rounded-lg xl:rounded-full text-[14px] md:text-[16px]  ${selectedCategoryId === category.category_id
+                ? "bg-[#FF693B] text-white"
+                : "bg-gray-200 text-gray-700"
+                }`}
             >
               {category.category_name}
             </button>
@@ -120,9 +118,8 @@ const PortfolioHomeItems = ({
           </div>
         ) : (
           <div
-            className={`grid grid-cols-1 md:grid-cols-2  gap-8 4xl:gap-10 justify-between pt-10 pb-5 ${
-              animate ? "fade-in" : ""
-            }`}
+            className={`grid grid-cols-1 md:grid-cols-2  gap-8 4xl:gap-10 justify-between pt-10 pb-5 ${animate ? "fade-in" : ""
+              }`}
           >
             {filteredPortfolio.slice(0, 4).map((portfolio) => (
               <Link
@@ -184,15 +181,15 @@ const PortfolioHomeItems = ({
             ))}
           </div>
         )}
-       <div className="text-center pt-8">
-       <GlobalButtonColored
+        <div className="text-center   md:mt-10 md:mb-8">
+          <GlobalButtonColored
             path={"/portfolio"}
             title={"View All Portfolio"}
             className="btn btn-primary md:w-[50%] text-center "
           />
-       </div>
+        </div>
         {filteredPortfolio.length === 0 && !loading && (
-          <div className="flex justify-center text-center text-gray-600 mt-0">
+          <div className="flex justify-center text-center text-gray-600 mt-5 md:mt-10">
             <Image
               src={"/assets/data.gif"}
               width={500}
