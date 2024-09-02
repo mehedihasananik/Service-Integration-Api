@@ -1,4 +1,4 @@
-
+"use client"
 import Image from "next/image";
 import { Eye } from "lucide-react";
 import { TbCategoryPlus } from "react-icons/tb";
@@ -11,9 +11,16 @@ import BlogSocialShare from '../Utilites/BlogSection/BlogSocialShare/BlogSocialS
 import BlogViewCount from "../Utilites/BlogSection/BlogViewCount/BlogViewCount";
 import RelevantBlogs from "../Utilites/BlogSection/RelevantBlogs/RelevantBlogs";
 import BlogBreadCrumb from "../Utilites/BlogSection/BlogBreadCrumb/BlogBreadCrumb";
+import { useRouter } from "next/navigation";
 
 const SingleBlogContent = ({ singleBlog, categories, recommended, popular, tags, params, comments }) => {
   // console.log(singleBlog?.id)
+  const router = useRouter();
+
+  const handleCategoryClick = (category) => {
+    router.push(`/blogs?category=${category.id}`);
+  };
+  console.log(singleBlog?.category)
 
   return (
     <div className="relative">
@@ -35,7 +42,10 @@ const SingleBlogContent = ({ singleBlog, categories, recommended, popular, tags,
             <div className="flex items-center bg-gradient-to-r from-blue-50 to-indigo-50 rounded-md px-2 py-2 shadow-sm">
               <TbCategoryPlus className="w-5 h-5 text-indigo-500 mr-2" />
               <span className="font-medium text-gray-700">Category:</span>
-              <button className="ml-2 font-semibold text-indigo-600">
+              <button
+                className="ml-2 font-semibold text-indigo-600"
+                onClick={() => handleCategoryClick(singleBlog?.category)}
+              >
                 {singleBlog?.category?.name}
               </button>
             </div>

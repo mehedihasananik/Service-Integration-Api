@@ -1,11 +1,12 @@
-"use client";
+"use client"
 import React, { useState, useEffect } from "react";
-import { Search, ChevronLeft, ChevronRight } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import BlogSideBar from "../Utilites/BlogSection/BlogSideBar/BlogSideBar";
 import BlogCard from "../Utilites/BlogSection/BlogCard/BlogCard";
 import ElegantSubscribeModal from "../Utilites/BlogSection/ElegantSubscribeModal/ElegantSubscribeModal";
+import { Search, ChevronLeft, ChevronRight } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 const BlogPageContent = ({ blogs, categories, recommended, popular, tags }) => {
   const [openModal, setOpenModal] = useState(false);
@@ -16,24 +17,33 @@ const BlogPageContent = ({ blogs, categories, recommended, popular, tags }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const blogsPerPage = 2;
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setOpenModal(true);
-    }, 12000);
+  const searchParams = useSearchParams();
+  const categoryParam = searchParams.get("category");
 
-    return () => clearTimeout(timer);
-  }, []);
+  useEffect(() => {
+    if (categoryParam) {
+      const selectedCategory = categories.find(
+        (cat) => cat.id === parseInt(categoryParam)
+      );
+      if (selectedCategory) {
+        setSelectedCategory(selectedCategory);
+        setSelectedTag(null);
+      }
+    }
+  }, [categoryParam, categories]);
 
   useEffect(() => {
     const filterBlogs = () => {
       let filtered = blogs;
 
       if (selectedCategory) {
-        filtered = filtered.filter(blog => blog.category.id === selectedCategory.id);
+        filtered = filtered.filter(
+          (blog) => blog.category.id === selectedCategory.id
+        );
       }
 
       if (selectedTag) {
-        filtered = filtered.filter(blog => {
+        filtered = filtered.filter((blog) => {
           const blogTags = Object.values(blog.tags);
           return blogTags.includes(selectedTag.name);
         });
@@ -41,9 +51,10 @@ const BlogPageContent = ({ blogs, categories, recommended, popular, tags }) => {
 
       if (searchTerm.trim() !== "") {
         const lowercasedSearchTerm = searchTerm.toLowerCase();
-        filtered = filtered.filter(blog =>
-          blog.title.toLowerCase().includes(lowercasedSearchTerm) ||
-          blog.content.toLowerCase().includes(lowercasedSearchTerm)
+        filtered = filtered.filter(
+          (blog) =>
+            blog.title.toLowerCase().includes(lowercasedSearchTerm) ||
+            blog.content.toLowerCase().includes(lowercasedSearchTerm)
         );
       }
 
@@ -121,28 +132,31 @@ const BlogPageContent = ({ blogs, categories, recommended, popular, tags }) => {
       <div className="bg-gradient-to-b from-gray-100 to-white py-5 lg:py-8 md:mt-5">
         <div className="max-w-[1520px] mx-auto px-[6%] md:px-[4%] xl:px-[4%] 4xl:px-[4%]">
           <h1 className="text-[30px] md:text-[30px] lg:text-[48px] font-Raleway font-bold text-center pb-4 lg:pb-10">
-            <span className="text-[#133490]">Our</span> <span className="text-[#FF693B]">Blogs</span>
+            <span className="text-[#133490]">Our</span>{" "}
+            <span className="text-[#FF693B]">Blogs</span>
           </h1>
 
           {/* search for small device */}
           <div className="block lg:hidden">
             {/* search */}
-            {handleSearch && <div className="mb-5 bg-white rounded-lg shadow-lg p-4">
-              <div className="w-full md:w-[100%] lg:w-[100%]">
-                <div className="relative">
-                  <input
-                    type="text"
-                    placeholder="Search blogs..."
-                    className="w-full py-4 text-gray-800 bg-gray-100 border border-gray-300 rounded-lg focus:border-gray-300 focus:outline-none transition-all duration-300"
-                    value={searchTerm}
-                    onChange={handleSearch}
-                  />
-                  <button className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-[#FF693B] p-2 rounded-md shadow-md hover:bg-[#e55931] transition-colors duration-300">
-                    <Search size={20} className="text-white" />
-                  </button>
+            {handleSearch && (
+              <div className="mb-5 bg-white rounded-lg shadow-lg p-4">
+                <div className="w-full md:w-[100%] lg:w-[100%]">
+                  <div className="relative">
+                    <input
+                      type="text"
+                      placeholder="Search blogs..."
+                      className="w-full py-4 text-gray-800 bg-gray-100 border border-gray-300 rounded-lg focus:border-gray-300 focus:outline-none transition-all duration-300"
+                      value={searchTerm}
+                      onChange={handleSearch}
+                    />
+                    <button className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-[#FF693B] p-2 rounded-md shadow-md hover:bg-[#e55931] transition-colors duration-300">
+                      <Search size={20} className="text-white" />
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>}
+            )}
           </div>
 
           <div className="flex flex-col xl:flex-row gap-12">
