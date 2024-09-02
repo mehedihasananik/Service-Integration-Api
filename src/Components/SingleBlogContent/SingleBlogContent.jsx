@@ -18,9 +18,8 @@ const SingleBlogContent = ({ singleBlog, categories, recommended, popular, tags,
   const router = useRouter();
 
   const handleCategoryClick = (category) => {
-    router.push(`/blogs?category=${category.id}`);
+    router.push(`/blogs?category=${category.slug}`);
   };
-  console.log(singleBlog?.category)
 
   return (
     <div className="relative">

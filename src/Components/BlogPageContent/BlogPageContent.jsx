@@ -1,12 +1,13 @@
 "use client"
-import React, { useState, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import BlogSideBar from "../Utilites/BlogSection/BlogSideBar/BlogSideBar";
-import BlogCard from "../Utilites/BlogSection/BlogCard/BlogCard";
 import ElegantSubscribeModal from "../Utilites/BlogSection/ElegantSubscribeModal/ElegantSubscribeModal";
-import { Search, ChevronLeft, ChevronRight } from "lucide-react";
-import Image from "next/image";
+import { ChevronLeft, ChevronRight, Search } from "lucide-react";
 import Link from "next/link";
+import BlogCard from "../Utilites/BlogSection/BlogCard/BlogCard";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import { TbCategoryPlus } from "react-icons/tb";
 
 const BlogPageContent = ({ blogs, categories, recommended, popular, tags }) => {
   const [openModal, setOpenModal] = useState(false);
@@ -17,13 +18,21 @@ const BlogPageContent = ({ blogs, categories, recommended, popular, tags }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const blogsPerPage = 2;
 
+  const router = useRouter();
   const searchParams = useSearchParams();
   const categoryParam = searchParams.get("category");
+  const pathname = usePathname();
+
+  const displayedCategory = categoryParam || "";
+
+  const currentUrl = categoryParam
+    ? `${pathname}?category=${categoryParam}`
+    : pathname;
 
   useEffect(() => {
     if (categoryParam) {
       const selectedCategory = categories.find(
-        (cat) => cat.id === parseInt(categoryParam)
+        (cat) => cat.slug === categoryParam
       );
       if (selectedCategory) {
         setSelectedCategory(selectedCategory);
@@ -38,7 +47,7 @@ const BlogPageContent = ({ blogs, categories, recommended, popular, tags }) => {
 
       if (selectedCategory) {
         filtered = filtered.filter(
-          (blog) => blog.category.id === selectedCategory.id
+          (blog) => blog.category.slug === selectedCategory.slug
         );
       }
 
@@ -68,8 +77,14 @@ const BlogPageContent = ({ blogs, categories, recommended, popular, tags }) => {
   }, [selectedCategory, selectedTag, blogs, searchTerm]);
 
   const handleCategorySelect = (category) => {
-    setSelectedCategory(category);
-    setSelectedTag(null);
+    if (category === null) {
+      setSelectedCategory(null);
+      router.push("/blogs"); // Remove the category slug from the URL
+    } else {
+      setSelectedCategory(category);
+      setSelectedTag(null);
+      router.push(`/blogs?category=${category.slug}`);
+    }
   };
 
   const handleTagSelect = (tag) => {
@@ -131,10 +146,21 @@ const BlogPageContent = ({ blogs, categories, recommended, popular, tags }) => {
     <div>
       <div className="bg-gradient-to-b from-gray-100 to-white py-5 lg:py-8 md:mt-5">
         <div className="max-w-[1520px] mx-auto px-[6%] md:px-[4%] xl:px-[4%] 4xl:px-[4%]">
-          <h1 className="text-[30px] md:text-[30px] lg:text-[48px] font-Raleway font-bold text-center pb-4 lg:pb-10">
+          <h1 className="text-[30px] md:text-[30px] lg:text-[48px] font-Raleway font-bold text-center pb-4 lg:pb-4">
             <span className="text-[#133490]">Our</span>{" "}
             <span className="text-[#FF693B]">Blogs</span>
           </h1>
+
+          {
+            displayedCategory && <div className="flex items-center justify-center  rounded-md px-2 py-2  mb-6">
+              <TbCategoryPlus className="w-5 h-5 text-indigo-500 mr-2" />
+              <span className="font-medium text-gray-700">Category:</span>
+              <span className="ml-2 text-indigo-600 font-semibold tracking-wide">
+                {displayedCategory}
+              </span>
+            </div>
+
+          }
 
           {/* search for small device */}
           <div className="block lg:hidden">
@@ -160,7 +186,9 @@ const BlogPageContent = ({ blogs, categories, recommended, popular, tags }) => {
           </div>
 
           <div className="flex flex-col xl:flex-row gap-12">
+
             <div className="w-full xl:w-[73%]">
+
               {currentBlogs.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   {currentBlogs.map((item) => (
