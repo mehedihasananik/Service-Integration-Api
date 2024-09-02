@@ -25,7 +25,7 @@ const RelevantBlogs = ({ singleBlog }) => {
     <div>
 
       {relevantItems.length > 0 && <>
-        <h3 className="text-[32px] font-bold md:text-[48px] pb-6 text-center">Relevant Blogs</h3>
+        <h3 className="text-[32px] font-bold md:text-[48px] pb-6 text-center md:my-8">Relevant Blogs</h3>
 
         <Swiper
           breakpoints={breakpoints}

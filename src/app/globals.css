@@ -585,9 +585,10 @@ textarea:focus {
 [type="radio"] {
   color: #ff693b !important;
 }
-.ql-editor p {
+.ql-editor, .ql-editor p {
   padding: 5px 0 !important;
 }
+
 
 @media only screen and (max-width: 2500px) {
   .image-gallery-left-nav .image-gallery-svg,
