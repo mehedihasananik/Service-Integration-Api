@@ -66,101 +66,50 @@ const ServicePortolio = ({ portfolios }) => {
               breakpoints={breakpoints}
               className="mySwiper "
               modules={[Autoplay]}
-              // autoplay={{ delay: 3000, disableOnInteraction: false }}
+            // autoplay={{ delay: 3000, disableOnInteraction: false }}
             >
               {portfolios?.map((portfolio) => {
                 // console.log(portfolio);
                 return (
                   <SwiperSlide key={portfolio.id} className="">
                     <Link href={`/portfolio/${portfolio.slug}`}>
-                      <div className="group rounded-[10px] overflow-hidden hidden xl:block border border-[#CBD5E1]  w-[620px]">
-                        <div className="portfolio-bgHover h-auto lg:h-[380px]  w-[100%] cursor-pointer flex bg-[#FFFFFF] rounded-[10px]">
-                          <div className="w-1/2 h-full">
-                            <Image
-                              width={800}
-                              height={500}
-                                 className="w-[330px] h-[380px]  rounded-l-[10px]"
-                              src={portfolio?.image}
-                              alt=""
-                            />
-                          </div>
-                          <div className="w-1/2 h-[500px] flex flex-col justify-start items-center mt-10 p-0 md:py-0 xll:px-8 2xl:px-12 4xl:px-0">
-                            <div className="text-center">
-                              <h4 className="text-[14px] text-[#999999] pt-3 pb-3 md:pt-0 md:pb-6 portfolio-textHover">
-                                {portfolio?.service_name}
-                              </h4>
-                              <div className="text-[16px] px-[10%] w-[380px] h-[65px] font-bold font-Raleway text-[#333333] portfolio-textHover line-clamp-3">
-                                {portfolio?.heading
-                                  .split(" ")
-                                  .slice(0, 12)
-                                  .join(" ")}
-                                {portfolio?.heading.split(" ").length > 12
-                                  ? "..."
-                                  : ""}
-                              </div>
-                              <div>
-                                <p className="w-[370px] px-[13%] h-[155px] flex justify-center text-center text-[14px] text-[#666666] py-3 portfolio-textHover pt-3.5">
-                                {portfolio?.portfolio_summery?.slice(0,250)}
-                                </p>
-                                <div className="pt-5 group flex justify-center items-center gap-2 text-[#FF693B] font-bold portfolio-textHover pb-6 lg:pb-0">
-                                  <button className="text-[14px]">
-                                    Read More
-                                  </button>
-                                  <span className="w-[19px] font-bold">
-                                    <HiArrowSmallRight className="text-xl" />
-                                  </span>
-                                </div>
-                              </div>
+                      <div className="group rounded-lg overflow-hidden border border-[#CBD5E1]">
+                        <div className="portfolio-bgHover w-full cursor-pointer flex flex-col xl:flex-row bg-white rounded-lg">
+                          <div className="w-full xl:w-1/2">
+                            <div className="relative w-full aspect-[16/9] lg:aspect-[330/370] overflow-hidden">
+                              <Image
+                                src={portfolio?.image}
+                                layout="fill"
+                                objectFit="cover"
+                                quality={80}
+                                className="rounded-t-lg xl:rounded-l-lg lg:rounded-tr-none"
+                                alt={portfolio?.title || "Portfolio image"}
+                              />
                             </div>
                           </div>
-                        </div>
-                      </div>
 
-                      {/* small design */}
-
-                      <div className="group h-auto rounded-[10px] overflow-hidden block xl:hidden">
-                        <div className="border border-[#CBD5E1] portfolio-bgHover h-auto w-full cursor-pointer flex flex-col bg-[#FFFFFF] rounded-[10px]">
-                          <div className="w-full h-[250px]">
-                            <Image
-                              width={800}
-                              height={500}
-                              className="w-full h-full object-cover"
-                              src={portfolio?.image}
-                              alt=""
-                            />
-                          </div>
-                          <div className="w-full h-auto flex flex-col justify-start items-center p-4">
-                            <div className="text-center">
-                              <h4 className="text-[14px] text-[#999999] pt-0 pb-2 portfolio-textHover">
-                                {portfolio?.service_name[0]?.service_name}
-                              </h4>
-                              <div className="text-[16px] px-[5%] w-full h-[67px] font-bold font-Raleway text-[#333333] portfolio-textHover line-clamp-3">
-                                {portfolio?.heading
-                                  .split(" ")
-                                  .slice(0, 12)
-                                  .join(" ")}
-                                {portfolio?.heading.split(" ").length > 12
-                                  ? "..."
-                                  : ""}
+                          <div className="w-full xl:w-1/2 p-4 lg:p-6 flex flex-col justify-center items-center">
+                            <div className="text-center w-full">
+                              {
+                                portfolio?.service_name?.map((service, index) => (
+                                  service && (
+                                    <h4 key={index} className="text-[14px] text-[#999999]  portfolio-textHover">
+                                      {service}
+                                    </h4>
+                                  )
+                                ))
+                              }
+                              <div className="text-base lg:text-lg font-bold font-Raleway text-[#333333] portfolio-textHover line-clamp-2 lg:line-clamp-3 mb-3">
+                                {portfolio?.heading?.slice(0, 120)}
                               </div>
-                              <div>
-                                <p className="w-full px-[5%] flex justify-center text-center text-[14px] text-[#666666] py-3 portfolio-textHover pt-3.5">
-                                  <span>
-                                    {portfolio?.portfolio_summery?.slice(
-                                      0,
-                                      150
-                                    )}
-                                    ...
-                                  </span>
-                                </p>
-                                <div className="pt-2 pb-0 group flex justify-center items-center gap-2 text-[#FF693B] font-bold portfolio-textHover ">
-                                  <button className="text-[14px]">
-                                    Read More
-                                  </button>
-                                  <span className="w-[19px] font-bold">
-                                    <HiArrowSmallRight className="text-xl" />
-                                  </span>
-                                </div>
+                              <p className="text-sm text-[#666666] portfolio-textHover mb-4 line-clamp-3 lg:line-clamp-6">
+                                {portfolio.portfolio_summery}
+                              </p>
+                              <div className="flex justify-center items-center gap-2 text-[#FF693B] font-bold portfolio-textHover">
+                                <button className="text-sm lg:text-base">Read More</button>
+                                <span className="w-5">
+                                  <HiArrowSmallRight className="text-xl" />
+                                </span>
                               </div>
                             </div>
                           </div>

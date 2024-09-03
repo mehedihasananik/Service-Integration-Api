@@ -1,13 +1,17 @@
 "use client";
+
 import React, { useState, useEffect } from "react";
 import Accordion from "@/Components/Accordion/Accordion";
 import { faqApi } from "@/config/apis";
+import UserLoading from "@/Components/Utilites/UserLoading/UserLoading";
 
 const Questions = ({ className, title }) => {
   const [questions, setQuestions] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchQuestions = async () => {
+      setIsLoading(true);
       try {
         const res = await fetch(`${faqApi}`);
         if (!res.ok) {
@@ -17,15 +21,16 @@ const Questions = ({ className, title }) => {
         setQuestions(data);
       } catch (error) {
         console.error("Error fetching questions:", error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
     fetchQuestions();
   }, []);
-  // console.log(questions.FaqDataArray);
 
   return (
-    <div className="max-w-[1520px] mx-auto px-[0%] md:px-[4%] lg:px-[8%] 4xl:px-[4%]  md:mt-0">
+    <div className="max-w-[1520px] mx-auto px-[0%] md:px-[4%] lg:px-[8%] 4xl:px-[4%] md:mt-0">
       <div className={`md:py-6 md:pt-0 md:pb-6 ${className}`}>
         <div className="max-w-[1680px] mx-auto">
           <div className="text-center">
@@ -43,13 +48,17 @@ const Questions = ({ className, title }) => {
           </div>
           <div className="py-4 md:py-8">
             <div className="rounded-lg">
-              {questions?.FaqDataArray?.map((question) => (
-                <Accordion
-                  key={question.id}
-                  title={question.title}
-                  answer={question.details}
-                />
-              ))}
+              {isLoading ? (
+                <UserLoading />
+              ) : (
+                questions?.FaqDataArray?.map((question) => (
+                  <Accordion
+                    key={question.id}
+                    title={question.title}
+                    answer={question.details}
+                  />
+                ))
+              )}
             </div>
           </div>
         </div>

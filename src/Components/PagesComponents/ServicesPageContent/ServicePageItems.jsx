@@ -28,8 +28,8 @@ const ServicePageItems = ({
               <h3 className="text-[20px] md:text-[18px] font-bold font-Raleway pt-5 pb-2 whitespace-nowrap group-hover:text-white transition-all duration-300">
                 {title}
               </h3>
-              <p className="text-[14px] text-[#475569] group-hover:text-white transition-all duration-300">
-                {service_summery.slice(0, 195)}...
+              <p className="text-[14px] text-[#475569] group-hover:text-white transition-all duration-300 line-clamp-4">
+                {service_summery}
               </p>
             </div>
             <div className="flex items-center justify-between px-3 h-[50px] pt-10 pb-12 group-hover:bg-[#FF693B] transition-all duration-300">

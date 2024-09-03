@@ -19,14 +19,12 @@ const RecommendedBlogs = ({ recommended }) => {
                                         alt={feed?.alt_text}
                                         width={100} // Increased width
                                         height={180} // Increased height
-                                        className="mr-4 w-[100px] h-[60px]" // Removed rounded-lg
+                                        className="mr-4 w-[100px] h-[60px]  rounded-[3px]" // Removed rounded-lg
                                     />
                                 </div>
                                 <div className='w-[70%]'>
-                                    <h4 className="text-md font-medium">
-                                        {feed?.title && feed.title.length > 35
-                                            ? feed.title.slice(0, 35) + '...'
-                                            : feed?.title}
+                                    <h4 className="text-md font-medium line-clamp-2">
+                                        {feed?.title}
                                     </h4>
                                     <span className="text-sm text-gray-500 flex items-center">
                                         <span className="mr-1 text-orange-500">&#x1F4C5;</span> {/* Using date icon */}

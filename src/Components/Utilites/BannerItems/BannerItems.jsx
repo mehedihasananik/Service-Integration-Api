@@ -6,6 +6,17 @@ import GlobalButtonColored from "../GlobalButton/GlobalButtonColored";
 import GlobalButtonHovered from "../GlobalButton/GlobalButtonHovered";
 
 const BannerItems = ({ banner }) => {
+  const smoothScroll = (e, target) => {
+    e.preventDefault();
+    const element = document.querySelector(target);
+    if (element) {
+      window.scrollTo({
+        top: element.offsetTop,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <div className="flex flex-col lg:flex-row items-center justify-between animate-fade-in space-y-3 md:space-y-0 md:gap-11 pt-5 xl:pt-10 pb-10">
       <div className="flex flex-col">
@@ -14,18 +25,19 @@ const BannerItems = ({ banner }) => {
           <span className="custom-rotate">Development </span> <br />
           for your product
         </h3>
-        <p className="w-[300px] xs:w-full lg:w-[450px]  mx-auto  pt-4 text-[16px] xs:px-3 md:px-0">
+        <p className="w-[300px] xs:w-full lg:w-[450px]  mx-auto  pt-4 text-[16px] xs:px-3 md:px-0 line-clamp-5">
           {banner[0].details}
         </p>
         <div className="flex flex-col xs:flex-row  justify-center lg:justify-start gap-4 md:gap-6 py-6">
           <GlobalButtonColored
-            path={"#projectDetails"}
-            title={"Get a Quote"}
-            className="btn btn-primary md:w-[50%] text-center "
+            path="#projectDetails"
+            title="Get a Quote"
+            className="btn btn-primary md:w-[50%] text-center"
+            onClick={(e) => smoothScroll(e, "#projectDetails")}
           />
           <GlobalButtonHovered
-            path={"/services"}
-            title={"Our Services"}
+            path="/services"
+            title="Our Services"
             className="btn btn-secondary md:w-[50%] text-center"
           />
         </div>

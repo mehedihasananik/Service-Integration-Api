@@ -35,7 +35,7 @@ const WhyChooseUs = async () => {
               <h2 className="text-[20px] md:text-[24px] text-[#333333] font-bold">
                 {data[0]?.heading}
               </h2>
-              <p className="text-[16px] text-[#666666] text-justify">
+              <p className="text-[16px] text-[#666666] text-justify line-clamp-5">
                 {data[0]?.text}
               </p>
             </div>
@@ -52,7 +52,7 @@ const WhyChooseUs = async () => {
                 <h2 className="text-[20px] md:text-[24px] text-[#333333] font-bold">
                   {data[1]?.heading}
                 </h2>
-                <p className="text-[16px] text-[#666666] text-justify">
+                <p className="text-[16px] text-[#666666] text-justify line-clamp-5">
                   {data[1]?.text}
                 </p>
               </div>
@@ -80,7 +80,7 @@ const WhyChooseUs = async () => {
                 <h2 className="text-[20px] md:text-[24px] text-[#333333] font-bold">
                   {data[2]?.heading}
                 </h2>
-                <p className="text-[16px] text-[#666666] text-justify">
+                <p className="text-[16px] text-[#666666] text-justify line-clamp-5">
                   {data[2]?.text}
                 </p>
               </div>
@@ -106,14 +106,14 @@ const WhyChooseUs = async () => {
               <h2 className="text-[20px] md:text-[24px] text-[#333333] font-bold">
                 {data[3]?.heading}
               </h2>
-              <p className="text-[16px] text-[#666666] text-justify">
+              <p className="text-[16px] text-[#666666] text-justify line-clamp-5">
                 {data[3]?.text}
               </p>
             </div>
           </div>
         </div>
-      </Container>
-    </div>
+      </Container >
+    </div >
   );
 };
 

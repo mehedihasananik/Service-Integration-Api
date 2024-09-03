@@ -1,17 +1,25 @@
-import React from 'react';
+"use client"
+import React, { useState } from 'react';
 
 const BlogTags = ({ tags, selectedTag, onTagSelect, singleBlogTags }) => {
+    const [showAllTags, setShowAllTags] = useState(false);
 
     const transformedTags = Object.entries(singleBlogTags || {}).map(([id, name]) => ({
         id,
         name
     }));
 
+    const displayTags = showAllTags ? tags : tags?.slice(0, 20);
+    const displayTransformedTags = showAllTags ? transformedTags : transformedTags.slice(0, 20);
+
+    const handleShowMore = () => {
+        setShowAllTags(true);
+    };
 
     return (
         <div>
-            {
-                tags?.length > 0 && <div className="p-6 bg-white border border-gray-200 rounded-lg">
+            {tags?.length > 0 && (
+                <div className="p-6 bg-white border border-gray-200 rounded-lg">
                     <h2 className="text-lg font-semibold mb-4">Tags</h2>
                     <div className="flex flex-wrap gap-2">
                         <button
@@ -23,7 +31,7 @@ const BlogTags = ({ tags, selectedTag, onTagSelect, singleBlogTags }) => {
                         >
                             All
                         </button>
-                        {tags?.map((tag) => (
+                        {displayTags?.map((tag) => (
                             <button
                                 key={tag?.id}
                                 onClick={() => onTagSelect(tag)}
@@ -35,18 +43,24 @@ const BlogTags = ({ tags, selectedTag, onTagSelect, singleBlogTags }) => {
                                 {tag?.name}
                             </button>
                         ))}
+                        {!showAllTags && tags?.length > 20 && (
+                            <button
+                                onClick={handleShowMore}
+                                className="px-4 py-2 rounded-md text-sm font-medium bg-[#FF693B] text-white  hover:bg-[#FF693B] hover:text-white"
+                            >
+                                Show More
+                            </button>
+                        )}
                     </div>
                 </div>
-            }
-            {
-                transformedTags.length > 0 && <div className="p-6 bg-white border border-gray-200 rounded-lg">
+            )}
+            {transformedTags.length > 0 && (
+                <div className="p-6 bg-white border border-gray-200 rounded-lg">
                     <h2 className="text-lg font-semibold mb-4">Tags</h2>
-                    <div className="flex flex-wrap gap-2">
-
-                        {transformedTags.map((tag) => (
+                    <div className="flex justify-center flex-wrap gap-2">
+                        {displayTransformedTags.map((tag) => (
                             <span
                                 key={tag.id}
-
                                 className={`px-4 py-2 rounded-md text-sm font-medium transition-all delay-75 ${selectedTag?.id === tag.id
                                     ? "bg-[#FF693B] text-white"
                                     : "bg-indigo-100 text-indigo-800 hover:bg-[#FF693B] hover:text-white"
@@ -55,10 +69,17 @@ const BlogTags = ({ tags, selectedTag, onTagSelect, singleBlogTags }) => {
                                 {tag.name}
                             </span>
                         ))}
+                        {!showAllTags && transformedTags.length > 20 && (
+                            <button
+                                onClick={handleShowMore}
+                                className="px-4 py-2 rounded-md text-sm font-medium bg-[#FF693B] text-white  hover:bg-[#FF693B] hover:text-white"
+                            >
+                                Show More
+                            </button>
+                        )}
                     </div>
                 </div>
-            }
-
+            )}
         </div>
     );
 };

@@ -85,27 +85,31 @@ const SingleBlogContent = ({ singleBlog, categories, recommended, popular, tags,
                 <div className="servicePage_content">
                   <Global_PageHtml serviceDetails={singleBlog.content} />
                 </div>
-                <div className="">
+                {/* <div className="">
                   <RelevantBlogs singleBlog={singleBlog} />
-                </div>
+                </div> */}
                 <div className="block xl:hidden">
                   <BlogSocialShare />
                 </div>
               </div>
 
-              <div className="space-y-10">
-                <BlogComments id={singleBlog?.id} comments={comments} />
-                <BlogContact />
-              </div>
+
             </div>
             <div className="w-full xl:w-[27%] pt-[6%]">
               <BlogSideBar recommended={recommended} popular={popular} singleBlogTags={singleBlog?.tags} />
             </div>
           </div>
+          <div className="">
+            <RelevantBlogs singleBlog={singleBlog} />
+            <div className="space-y-10 pt-5">
+              <BlogComments id={singleBlog?.id} comments={comments} />
+              <BlogContact />
+            </div>
+          </div>
         </div>
         <BlogViewCount params={params} />
       </div>
-    </div>
+    </div >
   );
 };
 

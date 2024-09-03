@@ -1,12 +1,12 @@
-"use client"
+"use client";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import BlogSideBar from "../Utilites/BlogSection/BlogSideBar/BlogSideBar";
 import ElegantSubscribeModal from "../Utilites/BlogSection/ElegantSubscribeModal/ElegantSubscribeModal";
-import { ChevronLeft, ChevronRight, Search } from "lucide-react";
-import Link from "next/link";
 import BlogCard from "../Utilites/BlogSection/BlogCard/BlogCard";
+import { ChevronLeft, ChevronRight, Search } from "lucide-react";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import Link from "next/link";
 import { TbCategoryPlus } from "react-icons/tb";
 
 const BlogPageContent = ({ blogs, categories, recommended, popular, tags }) => {
@@ -16,74 +16,48 @@ const BlogPageContent = ({ blogs, categories, recommended, popular, tags }) => {
   const [filteredBlogs, setFilteredBlogs] = useState(blogs);
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const blogsPerPage = 2;
+  const blogsPerPage = 12;
 
   const router = useRouter();
   const searchParams = useSearchParams();
   const categoryParam = searchParams.get("category");
   const pathname = usePathname();
 
-  const displayedCategory = categoryParam || "";
-
-  const currentUrl = categoryParam
-    ? `${pathname}?category=${categoryParam}`
-    : pathname;
-
   useEffect(() => {
     if (categoryParam) {
       const selectedCategory = categories.find(
         (cat) => cat.slug === categoryParam
       );
-      if (selectedCategory) {
-        setSelectedCategory(selectedCategory);
-        setSelectedTag(null);
-      }
+      setSelectedCategory(selectedCategory || null);
+      setSelectedTag(null);
     }
   }, [categoryParam, categories]);
 
   useEffect(() => {
-    const filterBlogs = () => {
-      let filtered = blogs;
+    const lowercasedSearchTerm = searchTerm.trim().toLowerCase();
+    const filtered = blogs.filter((blog) => {
+      const matchesCategory =
+        !selectedCategory || blog.category.slug === selectedCategory.slug;
+      const matchesTag =
+        !selectedTag ||
+        Object.values(blog.tags).some((tag) => tag === selectedTag.name);
+      const matchesSearch =
+        !lowercasedSearchTerm ||
+        blog.title.toLowerCase().includes(lowercasedSearchTerm) ||
+        blog.content.toLowerCase().includes(lowercasedSearchTerm);
+      return matchesCategory && matchesTag && matchesSearch;
+    });
 
-      if (selectedCategory) {
-        filtered = filtered.filter(
-          (blog) => blog.category.slug === selectedCategory.slug
-        );
-      }
-
-      if (selectedTag) {
-        filtered = filtered.filter((blog) => {
-          const blogTags = Object.values(blog.tags);
-          return blogTags.includes(selectedTag.name);
-        });
-      }
-
-      if (searchTerm.trim() !== "") {
-        const lowercasedSearchTerm = searchTerm.toLowerCase();
-        filtered = filtered.filter(
-          (blog) =>
-            blog.title.toLowerCase().includes(lowercasedSearchTerm) ||
-            blog.content.toLowerCase().includes(lowercasedSearchTerm)
-        );
-      }
-
-      setFilteredBlogs(filtered);
-      setCurrentPage(1); // Reset to first page when filters change
-    };
-
-    const debounceTimer = setTimeout(filterBlogs, 300);
-
-    return () => clearTimeout(debounceTimer);
+    setFilteredBlogs(filtered);
+    setCurrentPage(1); // Reset to first page when filters change
   }, [selectedCategory, selectedTag, blogs, searchTerm]);
 
   const handleCategorySelect = (category) => {
-    if (category === null) {
+    if (category) {
+      router.push(`/blogs?category=${category.slug}`);
+    } else {
       setSelectedCategory(null);
       router.push("/blogs"); // Remove the category slug from the URL
-    } else {
-      setSelectedCategory(category);
-      setSelectedTag(null);
-      router.push(`/blogs?category=${category.slug}`);
     }
   };
 
@@ -104,43 +78,36 @@ const BlogPageContent = ({ blogs, categories, recommended, popular, tags }) => {
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  const PaginationControls = () => {
-    const pageNumbers = [];
-    for (let i = 1; i <= totalPages; i++) {
-      pageNumbers.push(i);
-    }
-
-    return (
-      <div className="flex justify-center items-center space-x-2 mt-8">
+  const PaginationControls = () => (
+    <div className="flex justify-center items-center space-x-2 mt-8">
+      <button
+        onClick={() => paginate(currentPage - 1)}
+        disabled={currentPage === 1}
+        className="px-4 py-2 rounded-full bg-gray-100 text-gray-500 disabled:opacity-50 hover:bg-gray-200 transition-all duration-300"
+      >
+        <ChevronLeft size={20} />
+      </button>
+      {Array.from({ length: totalPages }, (_, i) => i + 1).map((number) => (
         <button
-          onClick={() => paginate(currentPage - 1)}
-          disabled={currentPage === 1}
-          className="px-4 py-2 rounded-full bg-gray-100 text-gray-500 disabled:opacity-50 hover:bg-gray-200 transition-all duration-300"
+          key={number}
+          onClick={() => paginate(number)}
+          className={`px-4 py-2 rounded-full transition-all duration-300 ${currentPage === number
+            ? "bg-gradient-to-r from-[#FF693B] to-[#FF9A6B] text-white shadow-lg"
+            : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+            }`}
         >
-          <ChevronLeft size={20} />
+          {number}
         </button>
-        {pageNumbers.map((number) => (
-          <button
-            key={number}
-            onClick={() => paginate(number)}
-            className={`px-4 py-2 rounded-full transition-all duration-300 ${currentPage === number
-              ? "bg-gradient-to-r from-[#FF693B] to-[#FF9A6B] text-white shadow-lg"
-              : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-              }`}
-          >
-            {number}
-          </button>
-        ))}
-        <button
-          onClick={() => paginate(currentPage + 1)}
-          disabled={currentPage === totalPages}
-          className="px-4 py-2 rounded-full bg-gray-100 text-gray-500 disabled:opacity-50 hover:bg-gray-200 transition-all duration-300"
-        >
-          <ChevronRight size={20} />
-        </button>
-      </div>
-    );
-  };
+      ))}
+      <button
+        onClick={() => paginate(currentPage + 1)}
+        disabled={currentPage === totalPages}
+        className="px-4 py-2 rounded-full bg-gray-100 text-gray-500 disabled:opacity-50 hover:bg-gray-200 transition-all duration-300"
+      >
+        <ChevronRight size={20} />
+      </button>
+    </div>
+  );
 
   return (
     <div>
@@ -151,44 +118,36 @@ const BlogPageContent = ({ blogs, categories, recommended, popular, tags }) => {
             <span className="text-[#FF693B]">Blogs</span>
           </h1>
 
-          {
-            displayedCategory && <div className="flex items-center justify-center  rounded-md px-2 py-2  mb-6">
+          {categoryParam && (
+            <div className="flex items-center justify-start rounded-md px-2 py-2 mb-6">
               <TbCategoryPlus className="w-5 h-5 text-indigo-500 mr-2" />
               <span className="font-medium text-gray-700">Category:</span>
               <span className="ml-2 text-indigo-600 font-semibold tracking-wide">
-                {displayedCategory}
+                {categoryParam}
               </span>
             </div>
+          )}
 
-          }
-
-          {/* search for small device */}
+          {/* Search for small devices */}
           <div className="block lg:hidden">
-            {/* search */}
-            {handleSearch && (
-              <div className="mb-5 bg-white rounded-lg shadow-lg p-4">
-                <div className="w-full md:w-[100%] lg:w-[100%]">
-                  <div className="relative">
-                    <input
-                      type="text"
-                      placeholder="Search blogs..."
-                      className="w-full py-4 text-gray-800 bg-gray-100 border border-gray-300 rounded-lg focus:border-gray-300 focus:outline-none transition-all duration-300"
-                      value={searchTerm}
-                      onChange={handleSearch}
-                    />
-                    <button className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-[#FF693B] p-2 rounded-md shadow-md hover:bg-[#e55931] transition-colors duration-300">
-                      <Search size={20} className="text-white" />
-                    </button>
-                  </div>
-                </div>
+            <div className="mb-5 bg-white rounded-lg shadow-lg p-4">
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder="Search blogs..."
+                  className="w-full py-4 text-gray-800 bg-gray-100 border border-gray-300 rounded-lg focus:border-gray-300 focus:outline-none transition-all duration-300"
+                  value={searchTerm}
+                  onChange={handleSearch}
+                />
+                <button className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-[#FF693B] p-2 rounded-md shadow-md hover:bg-[#e55931] transition-colors duration-300">
+                  <Search size={20} className="text-white" />
+                </button>
               </div>
-            )}
+            </div>
           </div>
 
           <div className="flex flex-col xl:flex-row gap-12">
-
             <div className="w-full xl:w-[73%]">
-
               {currentBlogs.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   {currentBlogs.map((item) => (
@@ -204,7 +163,7 @@ const BlogPageContent = ({ blogs, categories, recommended, popular, tags }) => {
                     layout="fill"
                     objectFit="contain"
                     quality={80}
-                    alt="banner image"
+                    alt="No blogs found"
                   />
                 </div>
               )}

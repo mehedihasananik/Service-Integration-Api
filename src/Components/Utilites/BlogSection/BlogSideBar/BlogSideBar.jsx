@@ -53,8 +53,8 @@ const BlogSideBar = ({
                 <button
                   onClick={() => onCategorySelect(null)}
                   className={`px-3 py-1 rounded-full text-sm font-medium transition-all duration-300 ${selectedCategory === null
-                      ? "bg-[#FF693B] text-white"
-                      : "bg-gray-200 text-gray-800 hover:bg-gray-300"
+                    ? "bg-[#FF693B] text-white"
+                    : "bg-gray-200 text-gray-800 hover:bg-gray-300"
                     }`}
                 >
                   All
@@ -64,8 +64,8 @@ const BlogSideBar = ({
                     key={category.id}
                     onClick={() => onCategorySelect(category)}
                     className={`px-3 py-1 rounded-full text-sm font-medium transition-all duration-300 ${selectedCategory?.slug === category.slug
-                        ? "bg-[#FF693B] text-white"
-                        : "bg-gray-200 text-gray-800 hover:bg-gray-300"
+                      ? "bg-[#FF693B] text-white"
+                      : "bg-gray-200 text-gray-800 hover:bg-gray-300"
                       }`}
                   >
                     {category.name}
@@ -101,8 +101,8 @@ const BlogSideBar = ({
                 <button
                   onClick={() => onCategorySelect(null)}
                   className={`px-3 py-1 rounded-full text-sm font-medium transition-all duration-300 ${selectedCategory === null
-                      ? "bg-[#FF693B] text-white"
-                      : "bg-gray-200 text-gray-800 hover:bg-gray-300"
+                    ? "bg-[#FF693B] text-white"
+                    : "bg-gray-200 text-gray-800 hover:bg-gray-300"
                     }`}
                 >
                   All
@@ -112,8 +112,8 @@ const BlogSideBar = ({
                     key={category.id}
                     onClick={() => onCategorySelect(category)}
                     className={`px-3 py-1 rounded-full text-sm font-medium transition-all duration-300 ${selectedCategory?.slug === category.slug
-                        ? "bg-[#FF693B] text-white"
-                        : "bg-gray-200 text-gray-800 hover:bg-gray-300"
+                      ? "bg-[#FF693B] text-white"
+                      : "bg-gray-200 text-gray-800 hover:bg-gray-300"
                       }`}
                   >
                     {category.name}

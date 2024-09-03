@@ -585,8 +585,18 @@ textarea:focus {
 [type="radio"] {
   color: #ff693b !important;
 }
-.ql-editor, .ql-editor p {
+.ql-editor {
   padding: 5px 0 !important;
+}
+.ql-editor p {
+  padding: 5px 0 !important;
+
+  line-height: 1.6;
+  font-family: 'Nunito', Helvetica, Arial, Lucida, sans-serif !important;
+}
+.ql-editor p, .ql-editor ol, .ql-editor ul, .ql-editor pre, .ql-editor blockquote, .ql-editor h1, .ql-editor h2, .ql-editor h3, .ql-editor h4, .ql-editor h5, .ql-editor h6 {
+  margin: 8px 0 !important;
+  
 }
 
 
@@ -607,6 +617,9 @@ textarea:focus {
   } */
   .mySwiper_serviceSlider {
     height: 591px !important;
+  }
+  .mySwiper_blogSlider {
+    height: 450px !important;
   }
 }
 @media only screen and (max-width: 1500px) {

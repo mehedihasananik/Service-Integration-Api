@@ -18,8 +18,8 @@ const RelevantBlogs = ({ singleBlog }) => {
     1336: { slidesPerView: 2.3, spaceBetween: 30 },
     1440: { slidesPerView: 2.4, spaceBetween: 30 },
     1680: { slidesPerView: 2.8, spaceBetween: 30 },
-    1700: { slidesPerView: 2.8, spaceBetween: 30 },
-    1920: { slidesPerView: 2.7, spaceBetween: 30 },
+    1700: { slidesPerView: 3, spaceBetween: 30 },
+    1920: { slidesPerView: 3, spaceBetween: 30 },
   };
   return (
     <div>
@@ -29,7 +29,7 @@ const RelevantBlogs = ({ singleBlog }) => {
 
         <Swiper
           breakpoints={breakpoints}
-          className="mySwiper mySwiper_serviceSlider"
+          className="mySwiper mySwiper_blogSlider"
           pagination={{
             clickable: true,
           }}

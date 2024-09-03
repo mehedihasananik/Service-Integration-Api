@@ -8,23 +8,28 @@ const BlogCard = ({ item }) => {
   // console.log(item.title)
 
   return (
-    <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+    <div className="bg-white rounded-lg shadow-lg overflow-hidden ">
       <div className="">
-        <div className="relative w-full h-[400px]">
+        <div className="relative w-full h-auto">
           <Image
             src={item.featured_image}
             alt={item.alt_text}
-            layout="fill"
+            layout="responsive"
+            width={100}
+            height={100}
             objectFit="cover"
-            quality={80}
+            className="w-full h-[auto]"
           />
-          <span className="absolute top-4 left-4 bg-[#FF693B] text-white px-3 py-1 rounded-full text-xs font-semibold">
-            {item?.category?.name}
-          </span>
+          {item?.category?.name && (
+            <span className="absolute top-4 left-4 bg-[#FF693B] text-white px-3 py-1 rounded-full text-xs font-semibold">
+              {item.category.name}
+            </span>
+          )}
         </div>
 
+
       </div>
-      <div className="p-6 h-[260px]">
+      <div className="p-6 h-[240px]">
         <div className="flex items-center text-gray-500 mb-2 gap-x-5">
           <div className="flex items-center text-gray-500 mb-2">
             <Calendar size={16} className="mr-2" />

@@ -38,7 +38,7 @@ const DigitalBusinessConsiderations2 = async () => {
     <div className="max-w-[1520px] mx-auto px-[6%] md:px-[4%] xl:px-[8%] 4xl:px-[4%] md:pt-8  md:pb-3 ">
       <div className="mb-6 md:mb-10">
         <h3 className="text-[20px] md:text-[30px] lg:text-[48px] font-Raleway font-bold text-center pb-1 md:pb-2">
-          Before starting a business consider a few things
+          Before Starting A Business Consider A Few Things
         </h3>
         <p className="text-[16px] md:text-xl text-gray-700 mb-4 md:mb-8 text-center">
           In today&apos;s fast-paced digital landscape, ensure your business has
@@ -53,7 +53,7 @@ const DigitalBusinessConsiderations2 = async () => {
                     backgroundColor: cardColors[index % cardColors.length],
                     transition: "all 0.3s ease",
                   }}
-                  className="rounded-lg shadow-md overflow-hidden cursor-pointer hover:scale-[1.03] hover:bg-white hover:shadow-lg"
+                  className="rounded-lg shadow-md overflow-hidden cursor-pointer hover:scale-[1.03] hover:bg-white hover:shadow-lg h-[220px]"
                 >
                   <div className="h-2 bg-gradient-to-r from-orange-400 to-red-500"></div>
                   <div className="p-6 relative">
@@ -64,7 +64,7 @@ const DigitalBusinessConsiderations2 = async () => {
                     <h4 className="text-lg font-semibold mb-2 text-gray-800">
                       {item.title}
                     </h4>
-                    <p className="text-sm text-gray-600 mb-4">
+                    <p className="text-sm text-gray-600 mb-4 line-clamp-2">
                       {item.description}
                     </p>
                     <div className="flex items-center text-orange-500 text-sm font-medium group">
