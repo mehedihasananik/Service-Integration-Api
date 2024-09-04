@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 import { MessageCircle, Send } from 'lucide-react';
 import { toast } from 'react-hot-toast';
 import { apiEndpoint } from '@/config/config';
+import ReCAPTCHA from "react-google-recaptcha";
 
 const validationSchema = Yup.object().shape({
     name: Yup.string()
@@ -23,9 +24,10 @@ const validationSchema = Yup.object().shape({
         .max(2000, 'Comment must not exceed 2000 characters'),
 });
 
-const BlogContactForm = ({ id }) => {  // Destructure id from props
-    console.log(id)
+const BlogContactForm = ({ id }) => {
+    console.log(id);
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [captchaVerified, setCaptchaVerified] = useState(false);
     const {
         register,
         handleSubmit,
@@ -33,7 +35,16 @@ const BlogContactForm = ({ id }) => {  // Destructure id from props
         reset,
     } = useForm();
 
+    const handleCaptchaChange = (value) => {
+        setCaptchaVerified(!!value);
+    };
+
     const onSubmit = async (data) => {
+        if (!captchaVerified) {
+            toast.error("Please complete the reCAPTCHA verification before submitting.");
+            return;
+        }
+
         try {
             await validationSchema.validate(data, { abortEarly: false });
 
@@ -43,8 +54,8 @@ const BlogContactForm = ({ id }) => {  // Destructure id from props
                 content: data.comment,
                 user_name: data.name,
                 user_email: data.email,
-                website: data.website || '',  // Optional field
-                post_id: id,  // Use the id prop
+                website: data.website || '',
+                post_id: id,
             };
 
             const response = await fetch(`${apiEndpoint}/blog/comment`, {
@@ -58,6 +69,7 @@ const BlogContactForm = ({ id }) => {  // Destructure id from props
             if (response.ok) {
                 toast.success('You have successfully submitted a comment & we will get back to you');
                 reset();
+                setCaptchaVerified(false);
             } else {
                 const errorData = await response.json();
                 toast.error(errorData.message || 'Failed to send message');
@@ -122,6 +134,7 @@ const BlogContactForm = ({ id }) => {  // Destructure id from props
                 <div>
                     <label htmlFor="comment" className="block text-sm font-medium text-gray-700 mb-1">Your Message</label>
                     <textarea
+                        required
                         id="comment"
                         {...register('comment')}
                         rows="4"
@@ -129,6 +142,12 @@ const BlogContactForm = ({ id }) => {  // Destructure id from props
                         placeholder="Write your message here..."
                     ></textarea>
                     {errors.comment && <p className="mt-1 text-sm text-red-500">{errors.comment.message}</p>}
+                </div>
+                <div>
+                    <ReCAPTCHA
+                        sitekey="6LeHdPIpAAAAAJoof-1ewzeYES0jvTrJ9_g09hBQ"
+                        onChange={handleCaptchaChange}
+                    />
                 </div>
                 <button
                     type="submit"
