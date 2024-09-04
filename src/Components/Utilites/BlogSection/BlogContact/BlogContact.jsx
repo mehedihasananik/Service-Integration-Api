@@ -1,9 +1,10 @@
-"use client"
+"use client";
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
-import { MessageCircle, Mail, Globe, Send } from 'lucide-react';
+import { MessageCircle, Send } from 'lucide-react';
 import { toast } from 'react-hot-toast';
+import { apiEndpoint } from '@/config/config';
 
 const validationSchema = Yup.object().shape({
     name: Yup.string()
@@ -12,6 +13,7 @@ const validationSchema = Yup.object().shape({
         .matches(/^[a-zA-Z][a-zA-Z\s]*\d*$/, 'Name cannot start with special characters or numbers'),
     email: Yup.string()
         .email('Invalid email')
+        .required('Email is required')
         .matches(/^[^\d].*\.com$/, "Email can't start with a number & must end with .com"),
     website: Yup.string()
         .optional()
@@ -21,7 +23,8 @@ const validationSchema = Yup.object().shape({
         .max(2000, 'Comment must not exceed 2000 characters'),
 });
 
-const BlogContactForm = () => {
+const BlogContactForm = ({ id }) => {  // Destructure id from props
+    console.log(id)
     const [isSubmitting, setIsSubmitting] = useState(false);
     const {
         register,
@@ -33,12 +36,32 @@ const BlogContactForm = () => {
     const onSubmit = async (data) => {
         try {
             await validationSchema.validate(data, { abortEarly: false });
+
             setIsSubmitting(true);
-            // Simulating API call
-            await new Promise(resolve => setTimeout(resolve, 1000));
-            console.log('Form submitted:', data);
-            toast.success('Message sent successfully!');
-            reset();
+
+            const payload = {
+                content: data.comment,
+                user_name: data.name,
+                user_email: data.email,
+                website: data.website || '',  // Optional field
+                post_id: id,  // Use the id prop
+            };
+
+            const response = await fetch(`${apiEndpoint}/blog/comment`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(payload),
+            });
+
+            if (response.ok) {
+                toast.success('You have successfully submitted a comment & we will get back to you');
+                reset();
+            } else {
+                const errorData = await response.json();
+                toast.error(errorData.message || 'Failed to send message');
+            }
         } catch (error) {
             if (error instanceof Yup.ValidationError) {
                 error.inner.forEach((err) => {

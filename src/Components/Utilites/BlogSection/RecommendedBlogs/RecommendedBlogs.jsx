@@ -1,4 +1,4 @@
-import { ArrowRight, Calendar } from 'lucide-react'
+
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -13,15 +13,18 @@ const RecommendedBlogs = ({ recommended }) => {
                     return <div key={feed.id} >
                         <Link href={`/blogs/${feed?.slug}`}>
                             <div className="flex items-center mb-4 gap-x-4 cursor-pointer">
-                                <div className='w-[30%] flex items-center'>
-                                    <Image
-                                        src={feed?.featured_image}
-                                        alt={feed?.alt_text}
-                                        width={100} // Increased width
-                                        height={180} // Increased height
-                                        className="mr-4 w-[100px] h-[60px]  rounded-[3px]" // Removed rounded-lg
-                                    />
+                                <div className="w-[30%] flex items-center">
+                                    <div className="relative w-full aspect-[3/2]">
+                                        <Image
+                                            src={feed?.featured_image}
+                                            alt={feed?.alt_text}
+                                            layout="fill"
+                                            objectFit="cover"
+                                            className="rounded-[3px]"
+                                        />
+                                    </div>
                                 </div>
+
                                 <div className='w-[70%]'>
                                     <h4 className="text-md font-medium line-clamp-2">
                                         {feed?.title}

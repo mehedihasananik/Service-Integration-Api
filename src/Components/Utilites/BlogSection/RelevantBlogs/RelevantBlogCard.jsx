@@ -6,15 +6,14 @@ const RelevantBlogCard = ({ item }) => {
     return (
         <div className="bg-white rounded-lg shadow-lg overflow-hidden pb-0 ">
             <div className="">
-                <div className="relative w-full h-auto">
+
+                <div className="relative w-full aspect-[3/2]">
                     <Image
                         src={item.featured_image}
                         alt={item.alt_text}
-                        layout="responsive"
-                        width={100}
-                        height={100}
+                        layout="fill"
                         objectFit="cover"
-                        className="w-full h-[auto]"
+                        className=""
                     />
                     {item?.category?.name && (
                         <span className="absolute top-4 left-4 bg-[#FF693B] text-white px-3 py-1 rounded-full text-xs font-semibold">
@@ -22,6 +21,7 @@ const RelevantBlogCard = ({ item }) => {
                         </span>
                     )}
                 </div>
+
 
             </div>
             <div className="px-6 pb-0 pt-3 h-[140px]">

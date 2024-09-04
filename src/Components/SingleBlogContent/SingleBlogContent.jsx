@@ -2,7 +2,6 @@
 import Image from "next/image";
 import { Eye } from "lucide-react";
 import { TbCategoryPlus } from "react-icons/tb";
-import Container from "../Container/Container";
 import BlogSideBar from "../Utilites/BlogSection/BlogSideBar/BlogSideBar";
 import Global_PageHtml from "../Utilites/Global_PageHtml/Global_PageHtml";
 import BlogContact from "../Utilites/BlogSection/BlogContact/BlogContact";
@@ -12,9 +11,13 @@ import BlogViewCount from "../Utilites/BlogSection/BlogViewCount/BlogViewCount";
 import RelevantBlogs from "../Utilites/BlogSection/RelevantBlogs/RelevantBlogs";
 import BlogBreadCrumb from "../Utilites/BlogSection/BlogBreadCrumb/BlogBreadCrumb";
 import { useRouter } from "next/navigation";
+import BlogTags from "../Utilites/BlogSection/BlogTags/BlogTags";
+import ElegantSubscribeModal from "../Utilites/BlogSection/ElegantSubscribeModal/ElegantSubscribeModal";
+import { useState } from "react";
 
 const SingleBlogContent = ({ singleBlog, categories, recommended, popular, tags, params, comments }) => {
   // console.log(singleBlog?.id)
+  const [openModal, setOpenModal] = useState(false);
   const router = useRouter();
 
   const handleCategoryClick = (category) => {
@@ -79,8 +82,14 @@ const SingleBlogContent = ({ singleBlog, categories, recommended, popular, tags,
 
               {/* Image & Description */}
               <div>
-                <div>
-                  <Image className="rounded-[8px]" src={singleBlog?.featured_image} height={1000} width={1000} alt="" />
+                <div className="relative w-full aspect-[3/2] mt-4">
+                  <Image
+                    src={singleBlog?.featured_image}
+                    alt=""
+                    layout="fill"
+                    objectFit="cover"
+                    className=""
+                  />
                 </div>
                 <div className="servicePage_content">
                   <Global_PageHtml serviceDetails={singleBlog.content} />
@@ -96,18 +105,22 @@ const SingleBlogContent = ({ singleBlog, categories, recommended, popular, tags,
 
             </div>
             <div className="w-full xl:w-[27%] pt-[6%]">
-              <BlogSideBar recommended={recommended} popular={popular} singleBlogTags={singleBlog?.tags} />
+              <BlogSideBar recommended={recommended} popular={popular} />
             </div>
+          </div>
+          <div>
+            <BlogTags singleBlogTags={singleBlog?.tags} />
           </div>
           <div className="">
             <RelevantBlogs singleBlog={singleBlog} />
             <div className="space-y-10 pt-5">
               <BlogComments id={singleBlog?.id} comments={comments} />
-              <BlogContact />
+              <BlogContact id={singleBlog?.id} />
             </div>
           </div>
         </div>
         <BlogViewCount params={params} />
+        <ElegantSubscribeModal isOpen={openModal} setOpenModal={setOpenModal} />
       </div>
     </div >
   );

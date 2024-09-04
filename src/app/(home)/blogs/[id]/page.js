@@ -1,11 +1,8 @@
-
 import SingleBlogContent from "@/Components/SingleBlogContent/SingleBlogContent";
 import JsonLd from "@/Components/Utilites/JsonLd/JsonLd";
+import UserLoading from "@/Components/Utilites/UserLoading/UserLoading";
 import { apiEndpoint } from "@/config/config";
-import React from "react";
-
-
-
+import React, { Suspense } from "react";
 
 export async function generateMetadata({ params, searchParams }, parent) {
   const id = params.id;
@@ -78,14 +75,6 @@ export async function generateMetadata({ params, searchParams }, parent) {
 }
 
 
-
-
-
-
-
-
-
-
 async function fetchData(url) {
   const res = await fetch(url, {
     next: { revalidate: 10 }
@@ -111,15 +100,17 @@ const SingleBlog = async ({ params }) => {
   return (
     <div>
       <JsonLd data={singleBlog?.data?.meta?.json_ld} />
-      <SingleBlogContent
-        singleBlog={singleBlog?.data?.formattedBlog}
-        categories={categories?.data}
-        recommended={recommended?.data}
-        popular={popular?.data?.popular_blogs}
-        tags={tags?.data}
-        params={params}
-        comments={singleBlog?.data?.formattedBlog?.comments}
-      />
+      <Suspense fallback={<UserLoading />}>
+        <SingleBlogContent
+          singleBlog={singleBlog?.data?.formattedBlog}
+          categories={categories?.data}
+          recommended={recommended?.data}
+          popular={popular?.data?.popular_blogs}
+          tags={tags?.data}
+          params={params}
+          comments={singleBlog?.data?.formattedBlog?.comments}
+        />
+      </Suspense>
     </div>
   );
 }

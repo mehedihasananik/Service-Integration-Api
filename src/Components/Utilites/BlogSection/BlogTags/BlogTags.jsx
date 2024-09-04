@@ -43,10 +43,13 @@ const BlogTags = ({ tags, selectedTag, onTagSelect, singleBlogTags }) => {
                                 {tag?.name}
                             </button>
                         ))}
+
+                    </div>
+                    <div className='flex justify-center pt-8'>
                         {!showAllTags && tags?.length > 20 && (
                             <button
                                 onClick={handleShowMore}
-                                className="px-4 py-2 rounded-md text-sm font-medium bg-[#FF693B] text-white  hover:bg-[#FF693B] hover:text-white"
+                                className="px-4 py-2 rounded-md text-sm font-medium bg-[#0C2E87] text-white  hover:bg-[#FF693B] hover:text-white transition-all delay-100"
                             >
                                 Show More
                             </button>
@@ -54,10 +57,13 @@ const BlogTags = ({ tags, selectedTag, onTagSelect, singleBlogTags }) => {
                     </div>
                 </div>
             )}
+
+
+
             {transformedTags.length > 0 && (
-                <div className="p-6 bg-white border border-gray-200 rounded-lg">
+                <div className="py-6 ">
                     <h2 className="text-lg font-semibold mb-4">Tags</h2>
-                    <div className="flex justify-center flex-wrap gap-2">
+                    <div className="flex  flex-wrap gap-2">
                         {displayTransformedTags.map((tag) => (
                             <span
                                 key={tag.id}

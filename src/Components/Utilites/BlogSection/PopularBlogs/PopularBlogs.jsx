@@ -16,15 +16,18 @@ const PopularBlogs = ({ popular }) => {
                     >
                         <Link href={`/blogs/${item?.slug}`}>
                             <div className="flex justify-start gap-x-4 cursor-pointer">
-                                <div className='w-[30%] flex items-center'>
-                                    <Image
-                                        src={item?.featured_image}
-                                        alt={item?.alt_text}
-                                        width={100} // Increased width
-                                        height={180} // Increased height
-                                        className="w-[100px] h-[60px] rounded-[3px]" // Removed rounded-lg
-                                    />
+                                <div className="w-[30%] flex items-center">
+                                    <div className="relative w-full aspect-[3/2]">
+                                        <Image
+                                            src={item?.featured_image}
+                                            alt={item?.alt_text}
+                                            layout="fill"
+                                            objectFit="cover"
+                                            className="rounded-[3px]"
+                                        />
+                                    </div>
                                 </div>
+
                                 <div className='w-[70%]'>
                                     <h4 className="text-md font-medium line-clamp-2" >
                                         {item?.title}

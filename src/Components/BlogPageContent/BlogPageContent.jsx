@@ -21,7 +21,6 @@ const BlogPageContent = ({ blogs, categories, recommended, popular, tags }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const categoryParam = searchParams.get("category");
-  const pathname = usePathname();
 
   useEffect(() => {
     if (categoryParam) {

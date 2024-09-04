@@ -75,8 +75,6 @@ export async function generateMetadata() {
 }
 
 
-
-
 async function fetchData(url) {
   const res = await fetch(url, {
     next: { revalidate: 10 }
@@ -96,7 +94,7 @@ const BlogPage = async () => {
     fetchData(`${apiEndpoint}/popular/blogs`),
     fetchData(`${apiEndpoint}/blogs/tags`)
   ]);
-  console.log(blogs?.data?.formattedBlogs)
+  // console.log(blogs?.data?.formattedBlogs)
 
   return (
     <>

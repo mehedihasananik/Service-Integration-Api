@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 import Link from 'next/link';
@@ -32,6 +32,13 @@ const ElegantSubscribeModal = () => {
 
   useEffect(() => {
     const hasSeenModal = sessionStorage.getItem('hasSeenSubscribeModal');
+    const lastSubmitted = localStorage.getItem('lastSubscribedTime');
+    const currentTime = new Date().getTime();
+
+    // Check if the user submitted the form and it's within 2 days
+    if (lastSubmitted && currentTime - lastSubmitted < 2 * 24 * 60 * 60 * 1000) {
+      return; // Don't show the modal if within 2 days of submission
+    }
 
     if (!hasSeenModal) {
       const timer = setTimeout(() => {
@@ -47,6 +54,10 @@ const ElegantSubscribeModal = () => {
   const handleClose = () => {
     setModalVisible(false);
     setTimeout(() => setModalOpen(false), 300);
+  };
+
+  const handleOutsideClick = () => {
+    // Don't close the modal when clicking outside
   };
 
   const handleSubscribe = async (e) => {
@@ -70,7 +81,8 @@ const ElegantSubscribeModal = () => {
         toast.success('Thank you for subscribing!');
         setName('');
         setEmail('');
-        handleClose();// Close modal after a delay
+        localStorage.setItem('lastSubscribedTime', new Date().getTime()); // Save the current time
+        handleClose(); // Close modal after a delay
       } else {
         const errorData = await response.json();
         setError(`Error: ${errorData.errors?.email?.[0] || 'Failed to subscribe.'}`);
@@ -96,8 +108,11 @@ const ElegantSubscribeModal = () => {
       <div
         className={`fixed inset-0 bg-black transition-all duration-300 ease-in-out flex items-center justify-center z-50 p-4 ${modalVisible ? 'bg-opacity-50 backdrop-blur-sm' : 'bg-opacity-0'
           }`}
-        onClick={handleClose}
       >
+        <div
+          className="absolute inset-0"
+          onClick={handleOutsideClick}
+        />
         <div
           className={`bg-white rounded-2xl shadow-2xl overflow-hidden max-w-md w-full mx-auto transform transition-all duration-300 ease-in-out ${modalVisible ? 'scale-100 opacity-100' : 'scale-95 opacity-0'
             }`}

@@ -17,7 +17,7 @@ const ServiceCard = ({ service }) => {
             />
           </div>
           <div className="px-5 h-[155px] group-hover:bg-[#FF693B] group-hover:h-[155px] transition-all duration-300 flex-grow">
-            <h3 className="line-clamp-1 text-[20px] font-bold text-[#1E293B] font-Raleway whitespace-nowrap pt-5 group-hover:text-white transition-all duration-300">
+            <h3 className="line-clamp-1 text-[20px] md:text-[18px] font-bold text-[#1E293B] font-Raleway whitespace-nowrap pt-5 group-hover:text-white transition-all duration-300">
               {service.title}
             </h3>
             <p className="text-[14px] line-clamp-5 text-[#475569] group-hover:text-white transition-all duration-300">

@@ -64,22 +64,19 @@ const PortfolioDetails = ({ singlePortfolioItem }) => {
           {details.map((portfolio) => (
             <div key={portfolio?.id} className="relative">
               <div
-                className={`aspect-w-16 aspect-h-9  ${
-                  !imagesLoaded[portfolio.id] ? "bg-gray-200 animate-pulse" : ""
-                }`}
+                className={`aspect-w-16 aspect-h-9  ${!imagesLoaded[portfolio.id] ? "bg-gray-200 animate-pulse" : ""
+                  }`}
               >
                 <Image
                   height={800}
                   width={1000}
                   onContextMenu={handleContextMenu}
-                  className={`transition-opacity duration-300 md:w-full md:h-[auto] ${
-                    imagesLoaded[portfolio.id] ? "opacity-100" : "opacity-0"
-                  }`}
+                  className={`transition-opacity duration-300 md:w-full md:h-[auto] ${imagesLoaded[portfolio.id] ? "opacity-100" : "opacity-0"
+                    }`}
                   alt="image"
                   src={portfolio.image}
-                  objectFit="cover"
                   onLoad={() => handleImageLoad(portfolio.id)}
-                  quality={80}
+                  quality={100}
                 />
               </div>
               <h3 className="text-gray-500 text-[18px] md:text-[20px] font-Raleway font-semibold text-center py-4 md:py-5 md:pb-3">

@@ -590,16 +590,25 @@ textarea:focus {
 }
 .ql-editor p {
   padding: 5px 0 !important;
-
   line-height: 1.6;
   font-family: 'Nunito', Helvetica, Arial, Lucida, sans-serif !important;
+  font-size:17px;
 }
-.ql-editor p, .ql-editor ol, .ql-editor ul, .ql-editor pre, .ql-editor blockquote, .ql-editor h1, .ql-editor h2, .ql-editor h3, .ql-editor h4, .ql-editor h5, .ql-editor h6 {
+.ql-editor p, .ql-editor ol, .ql-editor ul, .ql-editor pre, .ql-editor blockquote, .ql-editor h1,, .ql-editor h3, .ql-editor h4, .ql-editor h5, .ql-editor h6 {
   margin: 8px 0 !important;
   
 }
+.ql-editor h2{
+  margin: 10px 0 !important;
+  font-size: 26px !important;
 
+}
 
+input:focus {
+  outline: none;
+  border-color: #ccc; /* or any other color you prefer */
+  box-shadow: none;
+}
 @media only screen and (max-width: 2500px) {
   .image-gallery-left-nav .image-gallery-svg,
   .image-gallery-right-nav .image-gallery-svg {

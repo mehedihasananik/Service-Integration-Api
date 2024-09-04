@@ -15,13 +15,14 @@ const ServicePageItems = ({
           <div className="bg-[#E2E8F0]">
             <div>
               <Image
-                width={330}
-                height={305}
-                className="w-full h-[305px] object-cover rounded-t-md"
+                width={700}
+                height={700}
+                className="w-[330px] h-[305px]  overflow-hidden rounded-t-md"
                 src={image}
                 alt=""
               />
             </div>
+
           </div>
           <div className="flex flex-col h-full">
             <div className="px-3 flex-grow group-hover:bg-[#FF693B] transition-all duration-300">

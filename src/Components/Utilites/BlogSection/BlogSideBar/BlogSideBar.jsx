@@ -85,7 +85,6 @@ const BlogSideBar = ({
               tags={tags}
               selectedTag={selectedTag}
               onTagSelect={onTagSelect}
-              singleBlogTags={singleBlogTags}
             />
           </div>
         </div>
