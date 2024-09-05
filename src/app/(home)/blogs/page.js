@@ -94,7 +94,7 @@ const BlogPage = async () => {
     fetchData(`${apiEndpoint}/popular/blogs`),
     fetchData(`${apiEndpoint}/blogs/tags`)
   ]);
-  // console.log(blogs?.data?.formattedBlogs)
+  console.log(blogs?.data?.formattedBlogs)
 
   return (
     <>
