@@ -16,7 +16,7 @@ const BlogPageContent = ({ blogs, categories, recommended, popular, tags }) => {
   const [filteredBlogs, setFilteredBlogs] = useState(blogs);
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const blogsPerPage = 12;
+  const blogsPerPage = 2;
 
   const router = useRouter();
   const searchParams = useSearchParams();

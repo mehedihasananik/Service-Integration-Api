@@ -3,7 +3,8 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Container from "@/Components/Container/Container";
 
-const AboutUsContent = ({ aboutDetails, singleAboutDetails }) => {
+const AboutUsContent = ({ aboutDetails, singleAboutDetails, aboutTeam }) => {
+
   const [animate, setAnimate] = useState(false);
   const {
     title1,
@@ -36,6 +37,10 @@ const AboutUsContent = ({ aboutDetails, singleAboutDetails }) => {
         />
         <Values title4={title4} details4={details4} />
         <AboutDetailsSection singleAboutDetails={singleAboutDetails} />
+        <div className="flex flex-col justify-start items-center md:pt-5">
+          <h3 className="text-[#0F172A] text-[20px] md:text-[32px] font-bold font-Raleway text-center lg:text-left">{aboutTeam.title}</h3>
+          <p className="text-[#334155] text-[18px] space-y-5 pt-2 md:pt-3 text-left whitespace-pre-wrap"> {aboutTeam.details}</p>
+        </div>
       </div>
     </Container>
   );
@@ -99,15 +104,18 @@ const AboutDetailsSection = ({ singleAboutDetails }) => (
     {singleAboutDetails.map((detail) => (
       <AboutDetailItem key={detail.id} detail={detail} />
     ))}
+
   </>
 );
 
-const AboutDetailItem = ({ detail }) => {
+const AboutDetailItem = ({ detail, }) => {
   const isRightImage = detail.image_positions === "rignt";
   const flexDirection = isRightImage ? "lg:flex-row" : "lg:flex-row-reverse";
   const textAlignment = isRightImage
     ? "text-center"
     : "text-center lg:text-left";
+
+
 
   return (
     <div
@@ -138,6 +146,7 @@ const AboutDetailItem = ({ detail }) => {
           />
         </div>
       </div>
+
     </div>
   );
 };

@@ -9,8 +9,8 @@ const BlogTags = ({ tags, selectedTag, onTagSelect, singleBlogTags }) => {
         name
     }));
 
-    const displayTags = showAllTags ? tags : tags?.slice(0, 20);
-    const displayTransformedTags = showAllTags ? transformedTags : transformedTags.slice(0, 20);
+    const displayTags = showAllTags ? tags : tags?.slice(0, 12);
+
 
     const handleShowMore = () => {
         setShowAllTags(true);
@@ -58,13 +58,11 @@ const BlogTags = ({ tags, selectedTag, onTagSelect, singleBlogTags }) => {
                 </div>
             )}
 
-
-
             {transformedTags.length > 0 && (
                 <div className="py-6 ">
                     <h2 className="text-lg font-semibold mb-4">Tags</h2>
                     <div className="flex  flex-wrap gap-2">
-                        {displayTransformedTags.map((tag) => (
+                        {transformedTags.map((tag) => (
                             <span
                                 key={tag.id}
                                 className={`px-4 py-2 rounded-md text-sm font-medium transition-all delay-75 ${selectedTag?.id === tag.id
@@ -75,14 +73,6 @@ const BlogTags = ({ tags, selectedTag, onTagSelect, singleBlogTags }) => {
                                 {tag.name}
                             </span>
                         ))}
-                        {!showAllTags && transformedTags.length > 20 && (
-                            <button
-                                onClick={handleShowMore}
-                                className="px-4 py-2 rounded-md text-sm font-medium bg-[#FF693B] text-white  hover:bg-[#FF693B] hover:text-white"
-                            >
-                                Show More
-                            </button>
-                        )}
                     </div>
                 </div>
             )}

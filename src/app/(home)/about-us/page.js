@@ -97,13 +97,15 @@ const AboutUsPage = async () => {
   const aboutDetails = await getAboutPage();
   const singleAboutDetails = await getAbout_item();
   // console.log(aboutDetails.aboutUs);
+  // console.log(aboutDetails.ourTeam)
 
   return (
     <>
       <JsonLd data={aboutDetails?.meta?.json_ld} />
       <AboutUsContent
-        aboutDetails={aboutDetails.aboutUs}
+        aboutDetails={aboutDetails?.aboutUs}
         singleAboutDetails={singleAboutDetails}
+        aboutTeam={aboutDetails?.ourTeam}
       />
     </>
   );

@@ -32,7 +32,7 @@
     margin: 2rem auto;
   }
   .btn {
-    @apply text-[14px] md:text-[16px] whitespace-nowrap px-4  py-2.5 md:px-10 md:py-4 font-[600] rounded-lg transition-all duration-300;
+    @apply text-[14px] md:text-[16px] whitespace-nowrap px-7 py-2.5 md:px-10 md:py-4 font-[600] rounded-lg transition-all duration-300;
   }
 
   .btn-primary {
@@ -699,15 +699,16 @@ input:focus {
   }
 
   .custom-content-container h2 {
-    font-size: 18px;
-    padding: 8px 0 !important;
+    font-size: 18px !important;
+    padding: 0px 0 !important;
+    margin: 4px 0 !important;
   }
 
   .custom-content-container h3 {
     font-size: 18px;
   }
   .custom-content-container p {
-    padding: 25px 0 !important;
+    padding: 10px 0 !important;
   }
 
   /* Add more selectors as needed */

@@ -41,27 +41,25 @@ const WebsiteScore = () => {
     let newErrors = {};
     Object.keys(formData).forEach((field) => {
       if (!formData[field].trim())
-        newErrors[field] = `${
-          field.charAt(0).toUpperCase() + field.slice(1)
-        } is required`;
+        newErrors[field] = `${field.charAt(0).toUpperCase() + field.slice(1)
+          } is required`;
     });
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
+
   const handleSubmit = async () => {
     if (validateForm()) {
       setIsSubmitting(true);
       try {
-        const response = await fetch(business_webscore,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(formData),
-          }
-        );
+        const response = await fetch(business_webscore, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        });
 
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -87,12 +85,12 @@ const WebsiteScore = () => {
     <>
       <div className="flex justify-center items-center px-4 pb-3">
         <button
-          className="relative overflow-hidden group bg-gradient-to-r from-[#FF693B] via-[#FF8C39] to-[#FF693B] text-white font-bold py-4 px-6 md:py-6 md:px-10 lg:py-8 lg:px-12 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 ease-out transform hover:-translate-y-1 hover:scale-105"
+          className="relative overflow-hidden group bg-gradient-to-r from-[#FF693B] via-[#FF8C39] to-[#FF693B] text-white font-bold py-3 px-4 sm:py-4 sm:px-6 md:py-6 md:px-10 lg:py-8 lg:px-12 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 ease-out transform hover:-translate-y-1 hover:scale-105"
           onClick={() => setOpenModal(true)}
         >
           <span className="relative z-10 flex items-center">
-            <Rocket className="w-6 h-6 mr-3 animate-launch md:w-6 md:h-6" />
-            <span className="animate-pulse text-sm md:text-base lg:text-lg">
+            <Rocket className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3 animate-launch" />
+            <span className="animate-pulse text-sm sm:text-base lg:text-lg">
               Check Your Website Score
             </span>
           </span>
@@ -106,11 +104,17 @@ const WebsiteScore = () => {
       </div>
 
       {/* Form Modal */}
-      <Modal show={openModal} size="2xl" onClose={onCloseModal} popup>
-        <Modal.Body className="p-8 bg-gradient-to-br from-white to-gray-100">
-          <div className="space-y-8">
+      <Modal
+        show={openModal}
+        size="2xl"
+        onClose={onCloseModal}
+        popup
+        className="max-w-full "
+      >
+        <Modal.Body className="p-4 sm:p-8 bg-gradient-to-br from-white to-gray-100 ">
+          <div className="space-y-2 md:space-y-5">
             <div className="flex justify-between items-center">
-              <h3 className="text-[30px] font-bold text-gray-800">
+              <h3 className="text-lg sm:text-[30px] font-bold text-gray-800">
                 Discover Your Website&apos;s Potential
               </h3>
               <button
@@ -120,12 +124,12 @@ const WebsiteScore = () => {
                 <X size={24} />
               </button>
             </div>
-            <p className="text-gray-600 italic">
+            <p className="text-gray-600 italic text-sm sm:text-base">
               Take the first step towards enhancing your digital footprint with
               a free website audit from our expert team at Envobyte. Submit your
-              site now and let us help you unlock its full potential!
+              site now and let us help you unlock its full potential!
             </p>
-            <form className="space-y-6">
+            <form className="space-y-4 sm:space-y-6">
               <div className="space-y-2">
                 <label
                   htmlFor="name"
@@ -215,14 +219,15 @@ const WebsiteScore = () => {
                   type="button"
                   onClick={handleSubmit}
                   disabled={isSubmitting}
-                  className="w-full bg-gradient-to-r from-[#FF693B] to-[#FF8C39] text-white font-bold py-3 px-6 rounded-3xl shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-102 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#FF693B] disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full bg-gradient-to-r from-[#FF693B] to-[#FF8C39] text-white font-bold py-
+px-3 sm:px-6 py-2 sm:py-3 rounded-3xl shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-102 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#FF693B] disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <span className="flex items-center justify-center">
                     {isSubmitting ? (
                       "Submitting..."
                     ) : (
                       <>
-                        <Rocket className="w-5 h-5 mr-2" />
+                        <Rocket className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                         Get Website Score
                       </>
                     )}
@@ -248,7 +253,7 @@ const WebsiteScore = () => {
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.5, y: 100 }}
               transition={{ type: "spring", damping: 15 }}
-              className="bg-white rounded-3xl p-8 max-w-md w-full mx-4"
+              className="bg-white rounded-3xl p-6 sm:p-8 max-w-full sm:max-w-md w-full mx-4"
             >
               <div className="text-center">
                 <motion.div
@@ -256,13 +261,13 @@ const WebsiteScore = () => {
                   animate={{ scale: 1 }}
                   transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
                 >
-                  <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
+                  <CheckCircle className="w-12 h-12 sm:w-16 sm:h-16 text-green-500 mx-auto mb-4" />
                 </motion.div>
                 <motion.h3
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
-                  className="mb-5 text-2xl font-bold text-gray-800"
+                  className="mb-3 sm:mb-5 text-xl sm:text-2xl font-bold text-gray-800"
                 >
                   Submitted!
                 </motion.h3>
@@ -270,20 +275,20 @@ const WebsiteScore = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 }}
-                  className="text-gray-600"
+                  className="text-gray-600 text-sm sm:text-base"
                 >
                   Thanks for submitting your website. We will audit your website
-                  and get back to you soon.
+                  and get back to you soon.
                 </motion.p>
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 }}
-                  className="mt-6"
+                  className="mt-4 sm:mt-6"
                 >
                   <button
                     onClick={onCloseFeedbackModal}
-                    className="px-4 py-2 bg-[#FF693B] text-white rounded-3xl hover:bg-[#FF8C39] transition-colors duration-300"
+                    className="px-4 py-2 sm:px-6 sm:py-3 bg-[#FF693B] text-white rounded-3xl hover:bg-[#FF8C39] transition-colors duration-300"
                   >
                     Close
                   </button>

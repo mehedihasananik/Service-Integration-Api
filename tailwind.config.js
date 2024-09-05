@@ -25,6 +25,7 @@ module.exports = {
         xll: "1440px",
         "2xl": "1536px",
         "3xl": "1680px",
+        "3xll": "1739px",
         "4xl": "1920px",
         "6xl": "2500px",
       },

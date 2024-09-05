@@ -181,7 +181,7 @@ const PortfolioHomeItems = ({
             ))}
           </div>
         )}
-        <div className="text-center   md:mt-10 md:mb-8">
+        <div className="text-center mt-3 mb-6   md:mt-10 md:mb-8">
           <GlobalButtonColored
             path={"/portfolio"}
             title={"View All Portfolio"}

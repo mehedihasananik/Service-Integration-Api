@@ -14,6 +14,7 @@ import { useRouter } from "next/navigation";
 import BlogTags from "../Utilites/BlogSection/BlogTags/BlogTags";
 import ElegantSubscribeModal from "../Utilites/BlogSection/ElegantSubscribeModal/ElegantSubscribeModal";
 import { useState } from "react";
+import BlogFixedModal from "../Utilites/BlogSection/BlogFixedModal/BlogFixedModal";
 
 const SingleBlogContent = ({ singleBlog, categories, recommended, popular, tags, params, comments }) => {
   // console.log(singleBlog?.id)
@@ -52,7 +53,7 @@ const SingleBlogContent = ({ singleBlog, categories, recommended, popular, tags,
               </button>
             </div>
           </div>
-          <div className="flex flex-col xl:flex-row gap-12">
+          <div className="flex flex-col gap-0 xl:flex-row xl:gap-12">
             <div className="w-full xl:w-[73%]">
               {/* Header Section */}
 
@@ -97,15 +98,14 @@ const SingleBlogContent = ({ singleBlog, categories, recommended, popular, tags,
                 {/* <div className="">
                   <RelevantBlogs singleBlog={singleBlog} />
                 </div> */}
-                <div className="block xl:hidden">
+                <div className="block xl:hidden pt-2">
                   <BlogSocialShare />
                 </div>
               </div>
-
-
             </div>
-            <div className="w-full xl:w-[27%] pt-[6%]">
+            <div className="w-full xl:w-[27%] md:pt-[6%]">
               <BlogSideBar recommended={recommended} popular={popular} />
+              <BlogFixedModal />
             </div>
           </div>
           <div>

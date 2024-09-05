@@ -38,7 +38,7 @@ const ServicesHomeItems = ({ services, details }) => {
 
   return (
     <div id="serviceSlider" className="serviceSlider md:px-0  xl:px-0">
-      <div className=" 4xl:px-[0]  xl:pl-[8%] 2xl:pl-[14%] 4xl:pl-[15%]">
+      <div className=" 4xl:px-[0]  xl:pl-[9.5%] 3xl:pl-[12.5%] 3xll:pl-[14%] 4xl:pl-[15.5%]">
         <div className="md:py-5 xl:pt-10">
           <div className="flex flex-col xl:flex-row items-center justify-center  md:gap-0 lg:gap-4 xl:gap-12 xl:pt-8 xl:pb-3 ">
             <div className="w-full flex flex-col items-center text-center xl:block  xl:text-left xl:w-[30%]">

@@ -31,19 +31,17 @@ const ElegantSubscribeModal = () => {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    const hasSeenModal = sessionStorage.getItem('hasSeenSubscribeModal');
-    const lastSubmitted = localStorage.getItem('lastSubscribedTime');
-    const currentTime = new Date().getTime();
-
-    // Check if the user submitted the form and it's within 2 days
-    if (lastSubmitted && currentTime - lastSubmitted < 2 * 24 * 60 * 60 * 1000) {
-      return; // Don't show the modal if within 2 days of submission
+    const subscriptionData = localStorage.getItem('subscriptionData');
+    if (subscriptionData) {
+      // User has already subscribed, don't show the modal
+      return;
     }
 
+    const hasSeenModal = sessionStorage.getItem('hasSeenSubscribeModal');
     if (!hasSeenModal) {
       const timer = setTimeout(() => {
         setModalOpen(true);
-        setTimeout(() => setModalVisible(true), 3000);
+        setTimeout(() => setModalVisible(true), 300);
         sessionStorage.setItem('hasSeenSubscribeModal', 'true');
       }, 2000); // Delay before showing the modal
 
@@ -78,10 +76,16 @@ const ElegantSubscribeModal = () => {
       });
 
       if (response.ok) {
+        // Save subscription data to localStorage
+        localStorage.setItem('subscriptionData', JSON.stringify({
+          name,
+          email,
+          subscribedAt: new Date().toISOString()
+        }));
+
         toast.success('Thank you for subscribing!');
         setName('');
         setEmail('');
-        localStorage.setItem('lastSubscribedTime', new Date().getTime()); // Save the current time
         handleClose(); // Close modal after a delay
       } else {
         const errorData = await response.json();
