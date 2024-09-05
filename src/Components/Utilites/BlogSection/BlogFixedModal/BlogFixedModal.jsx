@@ -96,6 +96,7 @@ const BlogFixedModal = () => {
                                 value={name}
                                 onChange={handleNameChange}
                                 className="block w-[100%] p-2 mb-4 rounded-md border border-gray-300 text-gray-700"
+                                required
                             />
                             <input
                                 type="email"
@@ -103,6 +104,7 @@ const BlogFixedModal = () => {
                                 value={email}
                                 onChange={handleEmailChange}
                                 className="block w-[100%] p-2 mb-4 rounded-md border border-gray-300 text-gray-700"
+                                required
                             />
                             <button
                                 type="submit"

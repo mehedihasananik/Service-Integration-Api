@@ -3,7 +3,7 @@ import { HiArrowLeft, HiArrowRight } from "react-icons/hi";
 
 const NavigationButtons = ({ onPrev, onNext }) => {
   return (
-    <div className="flex justify-center items-center lg:justify-start lg:items-start gap-6 py-4">
+    <div className="flex justify-center items-center lg:justify-start lg:items-start gap-6 py-4 md:mb-4">
       <button
         className="group bg-[#FF9F711A] hover:bg-[#FF693B] px-5 py-5 rounded-lg transition-all duration-300"
         onClick={onPrev}

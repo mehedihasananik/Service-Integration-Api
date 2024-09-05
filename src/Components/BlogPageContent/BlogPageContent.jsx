@@ -16,7 +16,8 @@ const BlogPageContent = ({ blogs, categories, recommended, popular, tags }) => {
   const [filteredBlogs, setFilteredBlogs] = useState(blogs);
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const blogsPerPage = 2;
+  const [animate, setAnimate] = useState(false);
+  const blogsPerPage = 12;
 
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -107,9 +108,16 @@ const BlogPageContent = ({ blogs, categories, recommended, popular, tags }) => {
       </button>
     </div>
   );
+  useEffect(() => {
+    setAnimate(true);
+    const timer = setTimeout(() => setAnimate(false), 500);
+    return () => clearTimeout(timer);
+  }, []);
+
+
 
   return (
-    <div>
+    <div className={`${animate ? "fade-in" : ""}`}>
       <div className="bg-gradient-to-b from-gray-100 to-white py-5 lg:py-8 md:mt-5">
         <div className="max-w-[1520px] mx-auto px-[6%] md:px-[4%] xl:px-[4%] 4xl:px-[4%]">
           <h1 className="text-[30px] md:text-[30px] lg:text-[48px] font-Raleway font-bold text-center pb-4 lg:pb-4">
