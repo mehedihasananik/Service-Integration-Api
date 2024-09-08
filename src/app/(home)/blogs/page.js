@@ -2,7 +2,6 @@ import BlogPageContent from "@/Components/BlogPageContent/BlogPageContent";
 import JsonLd from "@/Components/Utilites/JsonLd/JsonLd";
 import UserLoading from "@/Components/Utilites/UserLoading/UserLoading";
 import { apiEndpoint } from "@/config/config";
-import { data } from "autoprefixer";
 import { Suspense } from "react";
 
 
@@ -38,9 +37,6 @@ export async function generateMetadata() {
       "google-site-verification":
         service?.meta?.seo_meta?.["google-site-verification"],
       "msvalidate.01": service?.meta?.seo_meta?.["msvalidate.01"],
-      alexaVerifyID: service?.meta?.seo_meta?.alexaVerifyID,
-      pinterest: service?.meta?.seo_meta?.pinterest,
-      "yandex-verification": service?.meta?.seo_meta?.["yandex-verification"],
       baidu: service?.meta?.seo_meta?.baidu,
       facebook: service?.meta?.seo_meta?.facebook,
       "article:published_time":
