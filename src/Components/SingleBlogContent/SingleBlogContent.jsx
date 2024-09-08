@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { Eye } from "lucide-react";
 import { TbCategoryPlus } from "react-icons/tb";
+import { useState, useCallback } from "react";
 import BlogSideBar from "../Utilites/BlogSection/BlogSideBar/BlogSideBar";
 import Global_PageHtml from "../Utilites/Global_PageHtml/Global_PageHtml";
 import BlogContact from "../Utilites/BlogSection/BlogContact/BlogContact";
@@ -13,17 +14,20 @@ import BlogBreadCrumb from "../Utilites/BlogSection/BlogBreadCrumb/BlogBreadCrum
 import { useRouter } from "next/navigation";
 import BlogTags from "../Utilites/BlogSection/BlogTags/BlogTags";
 import ElegantSubscribeModal from "../Utilites/BlogSection/ElegantSubscribeModal/ElegantSubscribeModal";
-import { useState } from "react";
 import BlogFixedModal from "../Utilites/BlogSection/BlogFixedModal/BlogFixedModal";
 
 const SingleBlogContent = ({ singleBlog, categories, recommended, popular, tags, params, comments }) => {
-  // console.log(singleBlog?.id)
   const [openModal, setOpenModal] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
   const router = useRouter();
 
   const handleCategoryClick = (category) => {
     router.push(`/blogs?category=${category.slug}`);
   };
+
+  const handleImageLoad = useCallback(() => {
+    setImageLoaded(true);
+  }, []);
 
   return (
     <div className="relative">
@@ -33,7 +37,6 @@ const SingleBlogContent = ({ singleBlog, categories, recommended, popular, tags,
       </div>
 
       <div className="bg-gradient-to-b from-gray-100 to-white md:pt-10 md:pb-10 md:mt-4">
-
         <div className="max-w-[1520px] mx-auto px-[6%] md:px-[4%] xl:px-[3.5%] xxl:px-[5%] 4xl:px-[4%]">
           <BlogBreadCrumb />
           <header className="pt-2 pb-2">
@@ -55,9 +58,6 @@ const SingleBlogContent = ({ singleBlog, categories, recommended, popular, tags,
           </div>
           <div className="flex flex-col gap-0 xl:flex-row xl:gap-12">
             <div className="w-full xl:w-[73%]">
-              {/* Header Section */}
-
-
               {/* Author Section */}
               <section className="flex items-center mb-8">
                 <Image
@@ -84,20 +84,19 @@ const SingleBlogContent = ({ singleBlog, categories, recommended, popular, tags,
               {/* Image & Description */}
               <div>
                 <div className="relative w-full aspect-[3/2] mt-4">
+                  <div className={`absolute inset-0 bg-gray-200 animate-pulse ${imageLoaded ? 'hidden' : 'block'}`}></div>
                   <Image
                     src={singleBlog?.featured_image}
-                    alt=""
+                    alt={singleBlog?.title || "Blog featured image"}
                     layout="fill"
                     objectFit="cover"
-                    className=""
+                    className={`transition-opacity duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+                    onLoad={handleImageLoad}
                   />
                 </div>
                 <div className="servicePage_content">
                   <Global_PageHtml serviceDetails={singleBlog.content} />
                 </div>
-                {/* <div className="">
-                  <RelevantBlogs singleBlog={singleBlog} />
-                </div> */}
                 <div className="block xl:hidden pt-2">
                   <BlogSocialShare />
                 </div>
@@ -122,7 +121,7 @@ const SingleBlogContent = ({ singleBlog, categories, recommended, popular, tags,
         <BlogViewCount params={params} />
         <ElegantSubscribeModal isOpen={openModal} setOpenModal={setOpenModal} />
       </div>
-    </div >
+    </div>
   );
 };
 

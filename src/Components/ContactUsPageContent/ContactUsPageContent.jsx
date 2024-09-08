@@ -137,7 +137,7 @@ const ContactUsPageContent = ({ userContact }) => {
           className="text-center mb-8 lg:mb-20 mt-4"
         >
           <div className="flex flex-col lg:flex-row justify-center items-center">
-            <div className="relative top-0 lg:top-5 mb-4 lg:mb-0">
+            <div className="relative top-0 lg:top-0 mb-4 lg:mb-0">
               <motion.img
                 variants={fadeInUp}
                 whileHover={{ scale: 1.1, rotate: 360 }}
