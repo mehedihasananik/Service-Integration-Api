@@ -175,7 +175,7 @@ const BlogPageContent = ({ blogs, categories, recommended, popular, tags }) => {
                 </div>
               )}
               <div className="lg:pt-10">
-                <PaginationControls />
+                {blogsPerPage > 12 && <PaginationControls />}
               </div>
             </div>
             <div className="w-full xl:w-[27%]">
