@@ -31,12 +31,7 @@ const ScheduleMeeting = () => {
         className="meetings-iframe-container"
         data-src="https://meetings.hubspot.com/envobyte?embed=true"
       ></div>
-      <div className="mt-0 text-center text-gray-600 text-sm font-bold">
-        Need help? Contact{" "}
-        <a href="mailto:support@envobyte.com" className="text-[#FF693B]">
-          support@envobyte.com
-        </a>{" "}
-      </div>
+
     </Container>
   );
 };

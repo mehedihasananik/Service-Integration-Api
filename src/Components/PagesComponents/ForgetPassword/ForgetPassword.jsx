@@ -7,6 +7,7 @@ import { HiMail } from "react-icons/hi";
 import Link from "next/link";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { apiEndpoint } from "@/config/config";
 
 const ForgetPassword = () => {
   const [email, setEmail] = useState("");
@@ -18,7 +19,7 @@ const ForgetPassword = () => {
 
     try {
       const response = await axios.post(
-        "https://v2admin.envobyte.com/api/reset_password",
+        `${apiEndpoint}/reset_password`,
         {
           email,
         }

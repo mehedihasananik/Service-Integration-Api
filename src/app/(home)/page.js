@@ -2,9 +2,10 @@ import HomePage from "@/Components/Home/HomePage";
 import JsonLd from "@/Components/Utilites/JsonLd/JsonLd";
 import { apiEndpoint } from "@/config/config";
 
+
 async function getMetadata() {
   const service = await fetch(
-    "https://admin.envobyte.com/api/home_banner"
+    `${apiEndpoint}/home_banner`
   ).then((res) => res?.json());
 
   return service;
@@ -65,7 +66,7 @@ export async function generateMetadata() {
 }
 
 async function getServiceItems() {
-  const res = await fetch("https://admin.envobyte.com/api/home_banner", {
+  const res = await fetch(`${apiEndpoint}/home_banner`, {
     next: { revalidate: 10 },
   });
 

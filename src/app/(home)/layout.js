@@ -9,6 +9,7 @@ import GoogleTagManagerScript from "../GoogleTagManager/GoogleTagManagerScript";
 import GoogleTagManagerNoScript from "../GoogleTagManager/GoogleTagManagerNoScript";
 import Analytics from "../Analytics/Analytics";
 import HubSpotScript from "@/Components/HubSpot/HubSpot";
+import HotJar from "../Hotjar/Hotjar";
 
 
 
@@ -31,6 +32,7 @@ export default function RootLayout({ children }) {
         />
         <GoogleTagManagerScript />
         <Analytics />
+        <HotJar />
       </head>
       <body className={inter.className}>
         <GoogleTagManagerNoScript />

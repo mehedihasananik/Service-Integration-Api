@@ -9,6 +9,7 @@ import { FiArrowRight, FiEye, FiEyeOff } from "react-icons/fi";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import { apiEndpoint } from "@/config/config";
 
 const ResetPassword = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -42,7 +43,7 @@ const ResetPassword = () => {
     }
     try {
       const response = await axios.post(
-        "https://v2admin.envobyte.com/api/new-password",
+        `${apiEndpoint}/api/new-password`,
         {
           email,
           password,

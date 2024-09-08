@@ -4,6 +4,7 @@ import { X } from 'lucide-react';
 import Link from 'next/link';
 import * as Yup from 'yup';
 import toast, { Toaster } from 'react-hot-toast';
+import { apiEndpoint } from '@/config/config';
 
 // Validation schema using Yup
 const validationSchema = Yup.object().shape({
@@ -67,7 +68,7 @@ const ElegantSubscribeModal = () => {
       // Validate the form data using the Yup validation schema
       await validationSchema.validate(formData, { abortEarly: false });
 
-      const response = await fetch('https://v2admin.envobyte.com/api/subscribe/newsletter', {
+      const response = await fetch(`${apiEndpoint}/subscribe/newsletter`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
