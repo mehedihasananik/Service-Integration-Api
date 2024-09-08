@@ -18,7 +18,7 @@ const ForgetPassword = () => {
 
     try {
       const response = await axios.post(
-        "http://192.168.5.239:8000/api/reset_password",
+        "https://v2admin.envobyte.com/api/reset_password",
         {
           email,
         }

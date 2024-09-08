@@ -1,7 +1,7 @@
 const nextConfig = {
   reactStrictMode: false,
   swcMinify: false,
-  // trailingSlash: true,
+  trailingSlash: true,
 
   eslint: {
     ignoreDuringBuilds: true,
@@ -23,7 +23,7 @@ const nextConfig = {
       "v2admin.envobyte.com",
       "192.168.10.222",
       "admin.envobyte.com",
-      
+
     ],
   },
 };

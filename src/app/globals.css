@@ -578,6 +578,9 @@ textarea:focus {
 }
 
 /* ----------- */
+.ql-editor p > img, video {
+  width: 100% !important;
+}
 .ql-container.ql-snow {
   border: none !important;
 }

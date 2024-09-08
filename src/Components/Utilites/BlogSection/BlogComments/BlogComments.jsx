@@ -18,13 +18,13 @@ const BlogComments = ({ id, comments }) => {
                         <div key={comment.id} className="space-y-4">
                             <div className="bg-gray-50 p-6 rounded-lg transition-all duration-300 hover:bg-gray-100 ">
                                 <div className="flex space-x-4">
-                                    <div className="w-12 h-12 rounded-full bg-gradient-to-r from-purple-400 to-indigo-500 flex items-center justify-center text-white font-bold text-lg">
+                                    <div className="w-8 h-8 md:w-12 md:h-12 rounded-full bg-gradient-to-r from-purple-400 to-indigo-500 flex items-center justify-center text-white font-bold text-sm md:text-lg">
                                         {comment.user_name[0]}
                                     </div>
                                     <div className="flex-1">
-                                        <div className="flex flex-col mb-2">
-                                            <span className="font-bold text-gray-800 text-lg">{comment.user_name}</span>
-                                            <span className="text-sm text-gray-500 flex items-center">
+                                        <div className="flex space-x-2 mb-2">
+                                            <span className="font-bold text-gray-800 text-sm md:text-lg">{comment.user_name}</span>
+                                            <span className="text-xs md:text-sm text-gray-500 flex items-center ">
                                                 <Clock className="mr-1" size={14} />
                                                 {new Date(comment.created_at).toLocaleDateString('en-US', {
                                                     year: 'numeric',
@@ -40,7 +40,7 @@ const BlogComments = ({ id, comments }) => {
 
                             {/* Replies */}
                             {comment.replies.length > 0 && (
-                                <div className="ml-12 space-y-4">
+                                <div className="md:ml-12 space-y-4">
                                     {comment.replies.map((reply, index) => (
                                         <div key={index} className="bg-blue-50 p-4 rounded-lg transition-all duration-300 hover:bg-blue-100 ">
                                             <div className="flex items-start space-x-3">

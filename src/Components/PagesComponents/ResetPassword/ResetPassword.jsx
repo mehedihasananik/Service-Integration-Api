@@ -42,7 +42,7 @@ const ResetPassword = () => {
     }
     try {
       const response = await axios.post(
-        "http://192.168.5.239:8000/api/new-password",
+        "https://v2admin.envobyte.com/api/new-password",
         {
           email,
           password,

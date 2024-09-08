@@ -89,7 +89,7 @@ const BlogContactForm = ({ id }) => {
     };
 
     return (
-        <div className="w-full p-8 bg-white rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl">
+        <div className="w-full p-2 pb-8 md:p-8 bg-white rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl">
             <h3 className="text-2xl font-bold mb-6 text-gray-800 flex items-center">
                 <MessageCircle className="mr-2 text-indigo-600" size={24} />
                 Add A Comment
