@@ -163,7 +163,21 @@ const PortfolioPage = ({
               id="search"
               value={searchQuery}
               onChange={handleSearchInputChange}
-              className="text-[#C1C1C1] py-[13px] px-[10px] border border-gray-300 text-sm rounded-lg focus:ring-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="
+              text-dark-800 
+              placeholder-slate-950 
+              bg-white 
+              border border-gray-300
+              text-sm rounded-lg 
+              focus:ring-blue-500 focus:border-blue-500 
+              block w-full 
+              pt-[18px] pb-[18px] px-[10px] 
+              dark:bg-blue-900 
+              dark:border-blue-600 
+              dark:placeholder-blue-300 
+              dark:text-blue-100 
+              dark:focus:ring-blue-500 
+              dark:focus:border-blue-400"
               required
             />
             <button
@@ -197,9 +211,8 @@ const PortfolioPage = ({
           </div>
         ) : (
           <div
-            className={`grid grid-cols-1 md:grid-cols-2 gap-8 4xl:gap-10 justify-between pt-5 md:pt-10 pb-5 ${
-              animate ? "fade-in" : ""
-            }`}
+            className={`grid grid-cols-1 md:grid-cols-2 gap-8 4xl:gap-10 justify-between pt-5 md:pt-10 pb-5 ${animate ? "fade-in" : ""
+              }`}
           >
             {displayedPortfolio.map((portfolio) => (
               <Link

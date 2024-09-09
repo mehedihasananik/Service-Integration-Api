@@ -21,7 +21,7 @@ export async function generateMetadata() {
 
   return {
     title: `${service?.meta?.seo_meta?.title || service?.basic?.title
-      } || Envobyte`,
+      } | Envobyte`,
     description: service?.meta?.seo_meta?.description,
     keywords: service?.meta?.seo_meta?.keywords,
     authors: [{ name: service?.meta?.seo_meta?.author }],
@@ -90,7 +90,7 @@ const BlogPage = async () => {
     fetchData(`${apiEndpoint}/popular/blogs`),
     fetchData(`${apiEndpoint}/blogs/tags`)
   ]);
-  console.log(blogs?.data?.formattedBlogs)
+  // console.log(blogs?.data?.formattedBlogs)
 
   return (
     <>
