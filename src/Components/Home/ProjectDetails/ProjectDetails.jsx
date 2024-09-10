@@ -268,13 +268,14 @@ const ProjectDetails = ({ userContact }) => {
                       Phone/WhatsApp:
                     </label>
                     <PhoneInput
-                      name="user_phone"
-                      defaultCountry="usa"
-                      value={phone}
-                      onChange={handlePhoneOnChange}
-                      searchPlaceholder="Search country"
-                      placeholder="Enter phone number"
-                      required
+                        name="user_phone"
+                        defaultCountry="us"
+                        value={phone}
+                        onChange={handlePhoneOnChange}
+                        searchPlaceholder="Search country"
+                        placeholder="Enter phone number"
+                        required
+                       
                     />
                   </div>
                   <div className="w-full lg:w-[50%]">
