@@ -9,7 +9,8 @@ import GoogleTagManagerScript from "../GoogleTagManager/GoogleTagManagerScript";
 import GoogleTagManagerNoScript from "../GoogleTagManager/GoogleTagManagerNoScript";
 import Analytics from "../Analytics/Analytics";
 import HubSpotScript from "@/Components/HubSpot/HubSpot";
-import HotJar from "../Hotjar/Hotjar";
+import HotJar from "../Hotjar/HotJar";
+
 
 
 
