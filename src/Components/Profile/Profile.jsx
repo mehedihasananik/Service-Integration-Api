@@ -62,7 +62,7 @@ const Profile = () => {
   const updateProfile = async (event) => {
     event.preventDefault(); // Prevent form from refreshing the page
 
-    // console.log(event.target.date_birth.value);
+
     try {
       const formData = new FormData();
       formData.append("user_id", userData.id);
