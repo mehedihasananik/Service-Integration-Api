@@ -10,6 +10,7 @@ import "react-international-phone/style.css";
 import { Checkbox, Label } from "flowbite-react";
 import Link from "next/link";
 import { user_feedbackApi } from "@/config/apis";
+import Image from "next/image";
 
 const ProjectDetails = ({ userContact }) => {
   const [phone, setPhone] = useState("");
@@ -141,10 +142,11 @@ const ProjectDetails = ({ userContact }) => {
       <Container>
         <div className="flex md:flex-row justify-center items-center pt-6">
           <div>
-            <img
-              className="w-[50px] md:w-full"
-              src="/assets/projectLogo.svg"
-              alt=""
+            <Image
+            width={76}
+            height={76}
+            src="/assets/projectLogo.svg"
+            alt=""
             />
           </div>
           <div id="projectDetails">
@@ -171,8 +173,10 @@ const ProjectDetails = ({ userContact }) => {
                 className="flex items-center gap-6"
               >
                 <div className="bg-[#FFF5F1] p-4 rounded-lg">
-                  <img
-                    className="w-6 h-6"
+                  <Image
+                     width={24}
+                     height={24}
+                   
                     src="https://i.ibb.co/hVTCYCp/Email.png"
                     alt=""
                   />
@@ -193,7 +197,10 @@ const ProjectDetails = ({ userContact }) => {
                 className="flex items-center gap-6"
               >
                 <div className="bg-[#FFF5F1] p-4 rounded-lg">
-                  <img src="/assets/whatsapp.svg" alt="" />
+                  <Image  
+                  width={24}
+                  height={24} 
+                  src="/assets/whatsapp.svg" alt="" />
                 </div>
                 <div>
                   <h3 className="text-[16px] text-[#94A3B8]">WhatsApp</h3>

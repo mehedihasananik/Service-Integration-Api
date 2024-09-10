@@ -43,15 +43,17 @@ const BannerItems = ({ banner }) => {
         </div>
       </div>
 
-      <div className="relative w-full max-w-[742px] aspect-[742/554]">
+      <div className="relative max-w-[742px] w-full aspect-[742/554]">
         <Image
           src={banner[0].banner_image}
-          layout="fill"
-          objectFit="contain"
+          alt={banner[0].alt_text || "Banner image"}
+          width={742}
+          height={554}
+          priority
           quality={80}
-          alt="banner image"
         />
       </div>
+      
     </div>
   );
 };

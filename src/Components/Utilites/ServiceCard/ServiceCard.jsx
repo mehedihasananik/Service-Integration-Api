@@ -8,13 +8,17 @@ const ServiceCard = ({ service }) => {
       <div className="w-[330px] h-[550px]  group shadow-lg rounded-md border border-[#E2E8F0] cursor-pointer hover:bg-[#FF693B] hover:text-white">
         <div className="flex flex-col h-full">
           <div className="bg-[#E2E8F0] transition-all duration-300">
-            <Image
-              width={700}
-              height={700}
-              className="w-[330px] h-[305px] overflow-hidden rounded-t-md"
-              src={service?.image}
-              alt={service.title}
-            />
+          <div className="relative w-full max-w-[330px] aspect-[330/305] overflow-hidden rounded-t-md">
+              <Image
+                src={service?.image}
+                fill
+                sizes="(max-width: 768px) 100vw, 330px"
+                style={{ objectFit: "cover" }}
+                quality={80}
+                className="rounded-t-md"
+                alt={service?.title || "Service image"}
+              />
+            </div>
           </div>
           <div className="px-5 h-[155px] group-hover:bg-[#FF693B] group-hover:h-[155px] transition-all duration-300 flex-grow">
             <h3 className="line-clamp-1 text-[20px] md:text-[18px] font-bold text-[#1E293B] font-Raleway whitespace-nowrap pt-5 group-hover:text-white transition-all duration-300">

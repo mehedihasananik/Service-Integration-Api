@@ -25,7 +25,7 @@ const Header = async () => {
     return <HeaderItems headers={headers} />;
   } catch (error) {
     console.error("Error in Header component:", error);
-    return <div>Error loading header. Please try again later.</div>;
+    return <></>;
   }
 };
 

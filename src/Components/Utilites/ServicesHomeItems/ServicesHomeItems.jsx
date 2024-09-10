@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/swiper-bundle.css";
 import SlideCounter from "../SlideCounter/SlideCounter";
 import NavigationButtons from "../NavigationButtons/NavigationButtons";
@@ -13,6 +13,9 @@ const ServicesHomeItems = ({ services, details }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [previousSlide, setPreviousSlide] = useState(null);
   const swiperRef = useRef(null);
+
+  // Filter services to only include those with "featured": "1"
+  const featuredServices = services.filter(service => service.featured === "1");
 
   const handlePrevSlide = () => {
     swiperRef.current?.swiper.slidePrev();
@@ -38,26 +41,26 @@ const ServicesHomeItems = ({ services, details }) => {
   };
 
   return (
-    <div id="serviceSlider" className="serviceSlider md:px-0  xl:px-0">
-      <div className=" 4xl:px-[0]  xl:pl-[9.5%] 3xl:pl-[12.5%] 3xll:pl-[14%] 4xl:pl-[15.5%]">
+    <div id="serviceSlider" className="serviceSlider md:px-0 xl:px-0">
+      <div className="4xl:px-[0] xl:pl-[9.5%] 3xl:pl-[12.5%] 3xll:pl-[14%] 4xl:pl-[15.5%]">
         <div className="md:py-5 xl:pt-10">
-          <div className="flex flex-col xl:flex-row items-center justify-center  md:gap-0 lg:gap-4 xl:gap-12 xl:pt-8 xl:pb-3 ">
-            <div className="w-full flex flex-col items-center text-center xl:block  xl:text-left xl:w-[30%]">
-              <h2 className="text-center md:text-left text-[20px] md:text-[42px] lg:text-[48px] font-bold font-Raleway text-[#0F172A] xl:w-[400px]">
+          <div className="flex flex-col xl:flex-row items-center justify-center md:gap-0 lg:gap-4 xl:gap-12 xl:pt-8 xl:pb-3">
+            <div className="w-full flex flex-col items-center text-center xl:block xl:text-left xl:w-[30%]">
+              <h1 className="text-center md:text-left text-[20px] md:text-[42px] lg:text-[48px] font-bold font-Raleway text-[#0F172A] xl:w-[400px]">
                 {details?.title}
-              </h2>
-              <p className="line-clamp-3 pt-4  text-center md:text-left text-[16px] text-[#666666] font-normal w-[100%] px-4 md:px-0 md:w-[700px] xl:w-[380px] 4xl:w-[500px]">
+              </h1>
+              <p className="line-clamp-3 pt-4 text-center md:text-left text-[16px] text-[#666666] font-normal w-[100%] px-4 md:px-0 md:w-[700px] xl:w-[380px] 4xl:w-[500px]">
                 {details?.details}
               </p>
               <SlideCounter
                 currentSlide={currentSlide}
-                totalSlides={services.length}
+                totalSlides={featuredServices.length}
               />
               <NavigationButtons
                 onPrev={handlePrevSlide}
                 onNext={handleNextSlide}
               />
-              <div className="hidden xl:block my-5 mb-7  md:mt-10 md:mb-10 md:my-0">
+              <div className="hidden xl:block my-5 mb-7 md:mt-10 md:mb-10 md:my-0">
                 <GlobalButtonColored
                   path={"/services"}
                   title={"View All"}
@@ -77,9 +80,10 @@ const ServicesHomeItems = ({ services, details }) => {
                 pagination={{
                   clickable: true,
                 }}
-                modules={[Pagination]}
+                modules={[Pagination,Autoplay]}
+                autoplay={{ delay: 2000, disableOnInteraction: false }}
               >
-                {services.map((service, index) => (
+                {featuredServices.map((service, index) => (
                   <SwiperSlide
                     key={service.id}
                     className={`transition-all duration-500 ${index === previousSlide &&
@@ -97,7 +101,7 @@ const ServicesHomeItems = ({ services, details }) => {
                 <ViewAllButton />
               </div>
             </div>
-            <div className=" xl:hidden my-5 mb-10 md:mt-5 md:mb-4 md:my-0 text-center ">
+            <div className="xl:hidden my-5 mb-10 md:mt-5 md:mb-4 md:my-0 text-center">
               <GlobalButtonColored
                 path={"/services"}
                 title={"View All"}

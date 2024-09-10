@@ -3,7 +3,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
 import { HiArrowLeft, HiArrowRight } from "react-icons/hi";
-import { Pagination } from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
+import Image from "next/image";
 
 const TestimonialHomeItems = ({ testimonials, details }) => {
   const [loading, setLoading] = useState(true);
@@ -144,24 +145,31 @@ const TestimonialHomeItems = ({ testimonials, details }) => {
                   breakpoints={breakpoints}
                   className="mySwiper testimonial_mySwiper mx-auto"
                   onSlideChange={handleSlideChange}
-                  pagination={true}
-                  modules={[Pagination]}
+                  pagination={{
+                    clickable: true,
+                  }}
+                  modules={[Pagination,Autoplay]}
+                  autoplay={{ delay: 2000, disableOnInteraction: false }}
                 >
                   {testimonials?.map((testimonial) => (
                     <SwiperSlide key={testimonial.id}>
                       <div className="h-[400px] pl-4 mt-10 bg-[#F8FAFC] lg:hover:bg-[#1E293B] group  rounded-md transition-all duration-300 ">
                         <div className="relative">
                           <div className="absolute top-[-25px] left-[140px] md:left-[120px] lg:left-0">
-                            <img
-                              className="w-[56px] h-[56px] rounded-full"
-                              src={testimonial?.image}
-                              alt=""
-                            />
+                              <div className="relative w-[56px] h-[56px] rounded-full overflow-hidden">
+                                <Image
+                                  src={testimonial?.image}
+                                  alt={testimonial?.name || "Testimonial avatar"}
+                                  layout="fill"
+                                  objectFit="cover"
+                                  className="rounded-full"
+                                />
+                              </div>
                           </div>
                           <div className="pt-14 pb-4">
-                            <h2 className="text-[24px] text-[#333333] lg:group-hover:text-[#fff] font-Raleway font-bold">
+                            <h3 className="text-[24px] text-[#333333] lg:group-hover:text-[#fff] font-Raleway font-bold">
                               {testimonial?.name}
-                            </h2>
+                            </h3>
                             <p className="text-[14px] text-[#999999] pt-3 lg:group-hover:text-[#fff]">
                               {testimonial?.designation}
                             </p>

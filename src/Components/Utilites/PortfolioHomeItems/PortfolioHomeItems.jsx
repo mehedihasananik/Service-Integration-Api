@@ -80,9 +80,9 @@ const PortfolioHomeItems = ({
   return (
     <div className="pt-4 lg:pt-3 ">
       <div className="text-center">
-        <h1 className="text-[20px] md:text-[30px] lg:text-[48px] font-Raleway font-bold text-center pb-2 md:pb-2">
+        <h2 className="text-[20px] md:text-[30px] lg:text-[48px] font-Raleway font-bold text-center pb-2 md:pb-2">
           Our Amazing Portfolio
-        </h1>
+        </h2>
         <div>Our beautiful work you need to know!</div>
       </div>
       <div className="flex justify-center pt-4">

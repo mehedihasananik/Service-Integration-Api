@@ -39,7 +39,7 @@ const AboutUsContent = ({ aboutDetails, singleAboutDetails, aboutTeam }) => {
         <AboutDetailsSection singleAboutDetails={singleAboutDetails} />
         <div className="flex flex-col justify-start items-center md:pt-5">
           <h3 className="text-[#0F172A] text-[20px] md:text-[32px] font-bold font-Raleway text-center lg:text-left">{aboutTeam.title}</h3>
-          <p className="text-[#334155] text-[18px] space-y-5 pt-2 md:pt-3 text-left whitespace-pre-wrap"> {aboutTeam.details}</p>
+          <p className="text-[#334155] text-[18px] space-y-5 pt-2 md:pt-3 text-left "> {aboutTeam.details}</p>
         </div>
       </div>
     </Container>
@@ -81,7 +81,7 @@ const MissionVision = ({ image, title2, details2, title3, details3 }) => (
 const MissionVisionItem = ({ title, details, logoSrc }) => (
   <div className="space-y-3 text-center lg:text-left lg:pt-[8%]">
     <h3 className="text-[18px] md:text-[32px] font-semibold">{title}</h3>
-    <p className="text-[16px]">{details}</p>
+    <p className="text-[17px] line-clamp-[12]">{details}</p>
   </div>
 );
 
@@ -91,10 +91,16 @@ const Values = ({ title4, details4 }) => (
       Our Values
     </h3>
     <div className="w-full lg:w-[70%] text-center lg:text-left space-y-3">
-      <h2 className="text-[#0F172A] text-[20px] lg:text-[48px] font-bold font-Raleway leading-tight">
-        {title4}
-      </h2>
-      <p className="text-[#334155] text-[16px]">{details4}</p>
+        <div>
+        <h2 className="text-[#0F172A] text-[20px] lg:text-[48px] font-bold font-Raleway leading-tight">
+              {title4}
+            </h2>
+        </div>
+     <div>
+    <div className="w-[80%] text-justify">
+         <p className="text-[#334155] text-[17px]">{details4}</p>
+    </div>
+     </div>
     </div>
   </div>
 );

@@ -24,11 +24,10 @@
   }
 }
 @layer components {
-  .featureImageWrapper{
-
-    width:100%;
-    max-width:700px;
-    aspect-radio:70/45;
+  .featureImageWrapper {
+    width: 100%;
+    max-width: 700px;
+    aspect-radio: 70/45;
     margin: 2rem auto;
   }
   .btn {
@@ -578,7 +577,8 @@ textarea:focus {
 }
 
 /* ----------- */
-.ql-editor p > img, video {
+.ql-editor p > img,
+video {
   width: 100% !important;
 }
 .ql-container.ql-snow {
@@ -594,17 +594,25 @@ textarea:focus {
 .ql-editor p {
   padding: 5px 0 !important;
   line-height: 1.6;
-  font-family: 'Nunito', Helvetica, Arial, Lucida, sans-serif !important;
-  font-size:17px;
+  font-family: "Nunito", Helvetica, Arial, Lucida,  sans-serif !important;
+  font-size: 17px;
 }
-.ql-editor p, .ql-editor ol, .ql-editor ul, .ql-editor pre, .ql-editor blockquote, .ql-editor h1,, .ql-editor h3, .ql-editor h4, .ql-editor h5, .ql-editor h6 {
+.ql-editor p,
+.ql-editor ol,
+.ql-editor ul,
+.ql-editor pre,
+.ql-editor blockquote,
+.ql-editor h1,
+,
+.ql-editor h3,
+.ql-editor h4,
+.ql-editor h5,
+.ql-editor h6 {
   margin: 8px 0 !important;
-  
 }
-.ql-editor h2{
+.ql-editor h2 {
   margin: 10px 0 !important;
   font-size: 26px !important;
-
 }
 
 input:focus {
@@ -739,7 +747,10 @@ input:focus {
   /* .single_description h2 {
   font-size: 45px !important;
   font-weight: 500 !important;
-  margin: 5px 0 !important;
+  margin: 5px 0 !important; */
+  .testimonial_mySwiper {
+    height: 420px !important;
+  }
 }
 
 .single_description h3 {
@@ -796,12 +807,11 @@ input:focus {
 .pageHtml ol li {
   font-size: 16px !important;
   color: #333333;
-} */
-  .ql-editor p {
-    padding: 2px 0 !important;
-  }
-  .ql-editor ol li:not(.ql-direction-rtl),
-  .ql-editor ul li:not(.ql-direction-rtl) {
-    padding-left: 0.5em !important;
-  }
+}
+.ql-editor p {
+  padding: 2px 0 !important;
+}
+.ql-editor ol li:not(.ql-direction-rtl),
+.ql-editor ul li:not(.ql-direction-rtl) {
+  padding-left: 0.5em !important;
 }

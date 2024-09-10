@@ -9,38 +9,38 @@ import React, { useEffect, useState } from "react";
 
 const HeaderItems = ({ headers }) => {
   const pathname = usePathname();
-  const [userData, setUserData] = useState(null);
-  const [isClient, setIsClient] = useState(false);
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
+  // const [userData, setUserData] = useState(null);
+  // const [isClient, setIsClient] = useState(false);
 
   const handleMenuItemClick = () => {
     setIsNavbarOpen(false);
   };
 
-  useEffect(() => {
-    setIsClient(true);
-    const storedUserData = localStorage.getItem("userData");
-    if (storedUserData) {
-      setUserData(JSON.parse(storedUserData));
-    }
-  }, []);
+  // useEffect(() => {
+  //   setIsClient(true);
+  //   const storedUserData = localStorage.getItem("userData");
+  //   if (storedUserData) {
+  //     setUserData(JSON.parse(storedUserData));
+  //   }
+  // }, []);
 
-  useEffect(() => {
-    const handleStorageChange = () => {
-      const storedUserData = localStorage.getItem("userData");
-      if (storedUserData) {
-        setUserData(JSON.parse(storedUserData));
-      } else {
-        setUserData(null);
-      }
-    };
+  // useEffect(() => {
+  //   const handleStorageChange = () => {
+  //     const storedUserData = localStorage.getItem("userData");
+  //     if (storedUserData) {
+  //       setUserData(JSON.parse(storedUserData));
+  //     } else {
+  //       setUserData(null);
+  //     }
+  //   };
 
-    window.addEventListener("storage", handleStorageChange);
+  //   window.addEventListener("storage", handleStorageChange);
 
-    return () => {
-      window.removeEventListener("storage", handleStorageChange);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener("storage", handleStorageChange);
+  //   };
+  // }, []);
 
   const { logo, menu } = headers || {};
 
@@ -75,7 +75,9 @@ const HeaderItems = ({ headers }) => {
             {menu?.map((item, index) => (
               <Link
                 className={
-                  isLinkActive(item.menu_link)
+                  item.menu_name === "Book An Appointment"
+                    ? "bg-[#FF693B] border border-[#FF693B] text-white font-medium px-6 py-2 rounded-lg hover:bg-white hover:text-[#FF693B] transition-all duration-300"
+                    : isLinkActive(item.menu_link)
                     ? "text-[16px] text-[#FF0000] font-normal"
                     : "text-[16px] text-[#0F172A] cursor-pointer font-normal hover:text-[#FF693B] transition-colors duration-300"
                 }
@@ -85,57 +87,49 @@ const HeaderItems = ({ headers }) => {
                 {item.menu_name}
               </Link>
             ))}
-
-            <Link
-              href="/schedule-meeting"
-              className={`bg-[#FF693B] border border-[#FF693B] text-white font-medium px-6 py-2 rounded-lg hover:bg-white hover:text-[#FF693B] transition-all duration-300`}
-            >
-              Book An Appointment
-            </Link>
           </div>
         </nav>
       </Container>
 
       {/* Navbar for small devices */}
-      <div className="lg:hidden">
-        <Navbar fluid rounded>
-          <Navbar.Brand as={Link} href="/">
-            <Image
-              src={logo?.logo || "/assets/logo.png"}
-              width={100}
-              height={49}
-              alt="Logo"
-              priority={false}
-            />
-          </Navbar.Brand>
-          <Navbar.Toggle onClick={() => setIsNavbarOpen(!isNavbarOpen)} />
-          <Navbar.Collapse className={isNavbarOpen ? "block" : "hidden"}>
-            {menu?.map((item, index) => (
-              <Navbar.Link
-                as={Link}
-                href={item.menu_link}
-                key={index}
-                onClick={handleMenuItemClick}
-                className={
-                  isLinkActive(item.menu_link)
-                    ? "text-[16px] text-[#FF0000] font-normal pb-1 transition delay-700 duration-300 ease-in-out"
-                    : "text-[16px] text-[#0F172A] cursor-pointer font-normal hover:text-[#FF693B] pb-1 transition delay-700 duration-300 ease-in-out"
-                }
-              >
-                {item.menu_name}
-              </Navbar.Link>
-            ))}
-            <Navbar.Link
-              as={Link}
-              href="/schedule-meeting"
-              onClick={handleMenuItemClick}
-              className={`w-[53%] text-white bg-[#FF693B] text-[16px] cursor-pointer font-normal pb-1 transition delay-700 duration-300 ease-in-out  border border-[#FF693B] hover:bg-white hover:text-[#FF693B] px-3 py-1 rounded-md mt-2`}
-            >
-              Book An Appointment
-            </Navbar.Link>
-          </Navbar.Collapse>
-        </Navbar>
+      <div className="lg:hidden pt-5">
+  <Navbar fluid rounded className="bg-white ">
+    <Navbar.Brand as={Link} href="/">
+      <Image
+        src={logo?.logo || "/assets/logo.png"}
+        width={100}
+        height={49}
+        alt="Logo"
+        priority={false}
+      />
+    </Navbar.Brand>
+    <Navbar.Toggle 
+      onClick={() => setIsNavbarOpen(!isNavbarOpen)} 
+      className="focus:ring-2 focus:ring-[#FF693B]"
+    />
+    <Navbar.Collapse className={`${isNavbarOpen ? "block" : "hidden"} md:block`}>
+      <div className="flex flex-col md:flex-row md:items-center md:space-x-4 mt-4 md:mt-0">
+        {menu?.map((item, index) => (
+          <Navbar.Link
+            as={Link}
+            href={item.menu_link}
+            key={index}
+            onClick={handleMenuItemClick}
+            className={
+              item.menu_name === "Book An Appointment"
+                ? "bg-[#FF693B] border border-[#FF693B] text-white md:p-[10px] font-medium px-4 py-1 rounded-lg hover:bg-white hover:text-[#FF693B] transition-all duration-300 text-center mb-2 md:mb-0 md:inline-block md:text-sm"
+                : isLinkActive(item.menu_link)
+                ? "text-[16px] text-[#FF0000] font-normal pb-1 transition duration-300 ease-in-out mb-2 md:mb-0"
+                : "text-[16px] text-[#0F172A] cursor-pointer font-normal hover:text-[#FF693B] pb-1 transition duration-300 ease-in-out mb-2 md:mb-0"
+            }
+          >
+            {item.menu_name}
+          </Navbar.Link>
+        ))}
       </div>
+    </Navbar.Collapse>
+  </Navbar>
+</div>
     </>
   );
 };

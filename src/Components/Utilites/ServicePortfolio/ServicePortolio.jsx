@@ -91,7 +91,7 @@ const ServicePortolio = ({ portfolios }) => {
                           <div className="w-full xl:w-1/2 p-4 lg:p-6 flex flex-col justify-center items-center">
                             <div className="text-center w-full">
                               {
-                                portfolio?.service_name?.map((service, index) => (
+                                portfolio?.service_name?.slice(0,3).map((service, index) => (
                                   service && (
                                     <h4 key={index} className="text-[14px] text-[#999999]  portfolio-textHover">
                                       {service}
