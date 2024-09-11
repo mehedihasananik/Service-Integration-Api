@@ -32,7 +32,7 @@ const BrandCarousel = ({ brands }) => {
       >
         {duplicatedBrands.map((brand, index) => (
           <SwiperSlide key={index} className="flex justify-center items-center h-[100px]">
-            <div className="relative w-[100px] h-[100px]">
+            <div className="relative w-[100px] h-[78px]">
               <Image
                 fill
                 src={brand.logo}
