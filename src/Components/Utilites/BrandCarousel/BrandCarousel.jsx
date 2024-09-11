@@ -28,13 +28,13 @@ const BrandCarousel = ({ brands }) => {
         slidesPerGroup={1}
         spaceBetween={200}
         breakpoints={breakpoints}
-        modules={[Autoplay]}
-        autoplay={{ delay: 2000, disableOnInteraction: false }}
+        // modules={[Autoplay]}
+        // autoplay={{ delay: 2000, disableOnInteraction: false }}
         className="mySwiper space-x-4"
       >
         {duplicatedBrands.map((brand, index) => (
           <SwiperSlide key={index} className="flex justify-end">
-            <img
+            <Image
               width={101}
               height={70}
               className="w-[60px] h-[50px] md:w-[101px] md:h-[70px]"
