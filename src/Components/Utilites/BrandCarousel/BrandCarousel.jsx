@@ -19,8 +19,6 @@ const breakpoints = {
 const BrandCarousel = ({ brands }) => {
   const duplicatedBrands = [...brands, ...brands];
 
-  // console.log(duplicatedBrands);
-
   return (
     <div className="overflow-hidden">
       <Swiper
@@ -33,14 +31,15 @@ const BrandCarousel = ({ brands }) => {
         className="mySwiper space-x-4"
       >
         {duplicatedBrands.map((brand, index) => (
-          <SwiperSlide key={index} className="flex justify-end">
-            <Image
-              width={101}
-              height={70}
-              className="w-[60px] h-[50px] md:w-[101px] md:h-[70px]"
-              src={brand.logo}
-              alt={`Brand logo`}
-            />
+          <SwiperSlide key={index} className="flex justify-center items-center h-[100px]">
+            <div className="relative w-[100px] h-[100px]">
+              <Image
+                fill
+                src={brand.logo}
+                alt={`Brand logo`}
+                className="object-contain"
+              />
+            </div>
           </SwiperSlide>
         ))}
       </Swiper>
