@@ -92,7 +92,7 @@ const HeaderItems = ({ headers }) => {
       </Container>
 
       {/* Navbar for small devices */}
-      <div className="lg:hidden pt-5">
+      <div className="lg:hidden">
   <Navbar fluid rounded className="bg-white ">
     <Navbar.Brand as={Link} href="/">
       <Image

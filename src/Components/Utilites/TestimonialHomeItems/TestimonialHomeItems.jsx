@@ -61,7 +61,7 @@ const TestimonialHomeItems = ({ testimonials, details }) => {
   };
 
   return (
-    <div id="testimonial" className="overflow-hidden ">
+    <div id="testimonial" className="overflow-hidden pt-4 md:pt-0">
       <div className=" max-w-[1680px] mx-auto 4xl:px-[0] 4xl:max-w-[1920px] xl:pl-[8%] 2xl:pl-[8%] 3xl:pl-[12.5%] 4xl:pl-[14%]">
         <div className="pb-0 xl:pt-0">
           <div className="flex flex-col xl:flex-row items-center justify-between md:gap-0 xl:gap-12 pt-0 pb-5 md:pt-8 md:pb-0">

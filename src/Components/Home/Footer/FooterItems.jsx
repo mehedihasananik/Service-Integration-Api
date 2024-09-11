@@ -61,13 +61,12 @@ const FooterItems = ({ footer, userContact }) => {
             <h3 className="text-[18px] font-Raleway text-[#444444] font-bold">
               Get in Touch
             </h3>
-            <ul className="flex flex-col gap-2 pt-5 text-[16px] text-[#444444]  ">
-              <li className="flex items-center gap-3">
-                <img
-                  className="w-[20px] h-[20px]"
-                  src="/assets/Email.png"
-                  alt=""
-                />
+            <div className="flex flex-col gap-2 pt-5 text-[16px] text-[#444444]  ">
+              <div className="flex items-center gap-3">
+                 <Image  
+                  width={24}
+                  height={24} 
+                  src="/assets/Email.png" alt="" />
                 <span className="cursor-pointer hover:text-[#FF693B] transition-all duration-200">
                   {" "}
                   <a
@@ -78,12 +77,14 @@ const FooterItems = ({ footer, userContact }) => {
                     {userContact?.email}
                   </a>
                 </span>
-              </li>
-              <li className="flex items-center gap-3">
+              </div>
+              <div className="flex items-center gap-3">
                 {" "}
-                <span>
-                  <img src="/assets/whatsapp.svg" alt="" />
-                </span>{" "}
+                <Image  
+                  width={24}
+                  height={24} 
+                  src="/assets/whatsapp.svg" alt="" />
+           
                 <span className="cursor-pointer hover:text-[#FF693B] transition-all duration-200">
                   {" "}
                   <a
@@ -94,7 +95,7 @@ const FooterItems = ({ footer, userContact }) => {
                     {userContact?.phone_number}
                   </a>
                 </span>
-              </li>
+              </div>
               <div className="flex gap-4 pt-4">
                 {footer?.social?.map((item) => {
                   return (
@@ -110,7 +111,7 @@ const FooterItems = ({ footer, userContact }) => {
                   );
                 })}
               </div>
-            </ul>
+            </div>
           </div>
         </div>
       </div>

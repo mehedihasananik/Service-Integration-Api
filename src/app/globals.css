@@ -751,6 +751,9 @@ input:focus {
   .testimonial_mySwiper {
     height: 420px !important;
   }
+  .mySwiper_serviceSlider {
+    height: 550px !important;
+  }
 }
 
 .single_description h3 {

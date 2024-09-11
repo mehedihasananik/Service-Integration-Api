@@ -26,8 +26,8 @@ const BrandCarousel = ({ brands }) => {
         slidesPerGroup={1}
         spaceBetween={200}
         breakpoints={breakpoints}
-        // modules={[Autoplay]}
-        // autoplay={{ delay: 2000, disableOnInteraction: false }}
+        modules={[Autoplay]}
+        autoplay={{ delay: 2000, disableOnInteraction: false }}
         className="mySwiper space-x-4"
       >
         {duplicatedBrands.map((brand, index) => (
