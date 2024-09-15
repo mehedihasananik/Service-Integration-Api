@@ -4,7 +4,6 @@ import { Autoplay } from "swiper/modules";
 import Image from "next/image";
 import "swiper/css";
 import "swiper/css/autoplay";
-import "../../../app/globals.css";
 
 const breakpoints = {
   320: { slidesPerView: 4, spaceBetween: 10 },
@@ -17,10 +16,11 @@ const breakpoints = {
 };
 
 const BrandCarousel = ({ brands }) => {
-  const duplicatedBrands = [...brands, ...brands];
+  const duplicatedBrands = [...brands, ...brands]
 
   return (
     <div className="overflow-hidden">
+   
       <Swiper
         slidesPerView={5}
         slidesPerGroup={1}
@@ -31,19 +31,20 @@ const BrandCarousel = ({ brands }) => {
         className="mySwiper space-x-4"
       >
         {duplicatedBrands.map((brand, index) => (
-          <SwiperSlide key={index} className="flex justify-center items-center h-[100px]">
-            <div className="relative w-[100px] h-[78px]">
-              <Image
-                fill
-                src={brand.logo}
-                alt={`Brand logo`}
-                className="object-contain"
-              />
-            </div>
+          <SwiperSlide key={index} className="flex justify-end items-center ">
+            <Image
+              width={101}
+              height={70}
+              src={brand.logo}
+              alt={`Brand logo`}
+              className="h-[70px]"
+            />
           </SwiperSlide>
         ))}
       </Swiper>
+      
     </div>
+    
   );
 };
 

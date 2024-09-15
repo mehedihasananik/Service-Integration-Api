@@ -1,9 +1,15 @@
 import Container from "@/Components/Container/Container";
 import ServiceIndustriesContent from "@/Components/ServiceIndustriesContent/ServiceIndustriesContent";
-import React from "react";
+import { apiEndpoint } from "@/config/config";
+
+export const metadata = {
+  title: "Service Industries | Envobyte",
+  description:
+    "Discover Envobyte's tailored solutions for service industries. From technology and digital transformation to marketing and customer support, we empower businesses to excel",
+};
 
 async function fetchIndustries() {
-  const res = await fetch("https://admin.envobyte.com/api/service-industry", {
+  const res = await fetch(`${apiEndpoint}/service-industry`, {
     next: { revalidate: 10 },
   });
   if (!res.ok) throw new Error("Failed to fetch brands");

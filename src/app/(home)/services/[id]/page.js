@@ -15,13 +15,14 @@ export async function generateMetadata({ params, searchParams }, parent) {
   const service = await fetch(`${singeServiceDetails}/${id}`).then((res) =>
     res.json()
   );
+  console.log(service);
 
   // Optionally access and extend (rather than replace) metadata
   const previousImages = (await parent).openGraph?.images || [];
 
   return {
-    title: `${service.service_details[0].sevice_items_name} || Services`,
-    description: service.description,
+    title: `${service?.meta.seo_meta?.title}`,
+    description: `${service?.meta.seo_meta?.description}`,
     keywords: service?.meta?.seo_meta?.keywords,
     authors: [{ name: service?.meta?.seo_meta?.author }],
     robots: service?.meta?.seo_meta?.robots,
@@ -54,13 +55,13 @@ export async function generateMetadata({ params, searchParams }, parent) {
         ...previousImages,
         ...(service?.meta?.og?.image
           ? [
-            {
-              url: service.meta.og.image,
-              width: 800,
-              height: 600,
-              alt: service.meta.og.title,
-            },
-          ]
+              {
+                url: service.meta.og.image,
+                width: 800,
+                height: 600,
+                alt: service.meta.og.title,
+              },
+            ]
           : []),
       ],
     },

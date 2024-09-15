@@ -9,6 +9,20 @@ import ServiceCard from "../ServiceCard/ServiceCard";
 import ViewAllButton from "../ViewAllButton/ViewAllButton";
 import GlobalButtonColored from "../GlobalButton/GlobalButtonColored";
 
+
+const breakpoints = {
+  320: { slidesPerView: 1, spaceBetween: 10 },
+  768: { slidesPerView: 2.2, spaceBetween: 20 },
+  1024: { slidesPerView: 3, spaceBetween: 30 },
+  1280: { slidesPerView: 2.3, spaceBetween: 30 },
+  1336: { slidesPerView: 2.5, spaceBetween: 30 },
+  1440: { slidesPerView: 2.6, spaceBetween: 30 },
+  1536: { slidesPerView: 2.8, spaceBetween: 30 },
+  1680: { slidesPerView: 2.8, spaceBetween: 30 },
+  1700: { slidesPerView: 2.8, spaceBetween: 30 },
+  1920: { slidesPerView: 3, spaceBetween: 30 },
+};
+
 const ServicesHomeItems = ({ services, details }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [previousSlide, setPreviousSlide] = useState(null);
@@ -27,18 +41,7 @@ const ServicesHomeItems = ({ services, details }) => {
     setPreviousSlide(currentSlide);
   };
 
-  const breakpoints = {
-    320: { slidesPerView: 1, spaceBetween: 10 },
-    768: { slidesPerView: 2.2, spaceBetween: 20 },
-    1024: { slidesPerView: 3, spaceBetween: 30 },
-    1280: { slidesPerView: 2.3, spaceBetween: 30 },
-    1336: { slidesPerView: 2.5, spaceBetween: 30 },
-    1440: { slidesPerView: 2.6, spaceBetween: 30 },
-    1536: { slidesPerView: 2.8, spaceBetween: 30 },
-    1680: { slidesPerView: 2.8, spaceBetween: 30 },
-    1700: { slidesPerView: 2.8, spaceBetween: 30 },
-    1920: { slidesPerView: 3, spaceBetween: 30 },
-  };
+  
 
   return (
     <div id="serviceSlider" className="serviceSlider md:px-0 xl:px-0">

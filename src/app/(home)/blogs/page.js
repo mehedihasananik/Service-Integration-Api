@@ -4,24 +4,18 @@ import UserLoading from "@/Components/Utilites/UserLoading/UserLoading";
 import { apiEndpoint } from "@/config/config";
 import { Suspense } from "react";
 
-
 async function getMetadata() {
-  const service = await fetch(`${apiEndpoint}/blogs`).then((res) =>
-    res.json()
-  );
-
+  const service = await fetch(`${apiEndpoint}/blogs`).then((res) => res.json());
 
   return service?.data;
 }
-
 
 export async function generateMetadata() {
   const service = await getMetadata();
   // console.log(service?.meta?.seo_meta?.owner);
 
   return {
-    title: `${service?.meta?.seo_meta?.title || service?.basic?.title
-      } | Envobyte`,
+    title: `${service?.meta?.seo_meta?.title}`,
     description: service?.meta?.seo_meta?.description,
     keywords: service?.meta?.seo_meta?.keywords,
     authors: [{ name: service?.meta?.seo_meta?.author }],
@@ -70,10 +64,9 @@ export async function generateMetadata() {
   };
 }
 
-
 async function fetchData(url) {
   const res = await fetch(url, {
-    next: { revalidate: 10 }
+    next: { revalidate: 10 },
   });
   if (!res.ok) {
     throw new Error(`Failed to fetch data from ${url}`);
@@ -82,13 +75,12 @@ async function fetchData(url) {
 }
 
 const BlogPage = async () => {
-
   const [blogs, categories, recommended, popular, tags] = await Promise.all([
     fetchData(`${apiEndpoint}/blogs`),
     fetchData(`${apiEndpoint}/blogs/categories`),
     fetchData(`${apiEndpoint}/blogs/recommended`),
     fetchData(`${apiEndpoint}/popular/blogs`),
-    fetchData(`${apiEndpoint}/blogs/tags`)
+    fetchData(`${apiEndpoint}/blogs/tags`),
   ]);
   // console.log(blogs?.data?.formattedBlogs)
 
@@ -106,7 +98,6 @@ const BlogPage = async () => {
       </Suspense>
     </>
   );
-}
-
+};
 
 export default BlogPage;

@@ -1,4 +1,3 @@
-import Container from "@/Components/Container/Container";
 import Global_PageHtml from "@/Components/Utilites/Global_PageHtml/Global_PageHtml";
 import JsonLd from "@/Components/Utilites/JsonLd/JsonLd";
 import { apiEndpoint } from "@/config/config";
@@ -17,8 +16,7 @@ export async function generateMetadata() {
   // console.log(service?.meta?.seo_meta?.owner);
 
   return {
-    title: `${service?.meta?.seo_meta?.title || service.basic.title
-      } || Envobyte`,
+    title: `${service?.meta?.seo_meta?.title}`,
     description: service?.meta?.seo_meta?.description,
     keywords: service?.meta?.seo_meta?.keywords,
     authors: [{ name: service?.meta?.seo_meta?.author }],

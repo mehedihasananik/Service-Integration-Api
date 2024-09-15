@@ -2,6 +2,12 @@ import ContactUsPageContent from "@/Components/ContactUsPageContent/ContactUsPag
 import { user_contactApi } from "@/config/apis";
 import React from "react";
 
+export const metadata = {
+  title: "Contact Us | Envobyte",
+  description:
+    "Reach out to Envobyte today! Contact us for inquiries, support, or to discuss our customized tech solutions designed to advance your business.",
+};
+
 async function getUserContactContent() {
   const res = await fetch(`${user_contactApi}`, {
     next: { revalidate: 10 },

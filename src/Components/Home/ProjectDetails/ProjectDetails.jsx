@@ -167,7 +167,7 @@ const ProjectDetails = ({ userContact }) => {
           <div className="w-full md:w-[80%] lg:w-[40%] flex flex-col gap-5 md:gap-10 md:pl-10 2xl:pl-0">
             <div className="flex items-center gap-6 bg-[#FFFFFF] py-8 rounded-lg pl-5">
               <a
-                href={`mailto:${userContact.email}`}
+                href={`mailto:${userContact?.email}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-6"
@@ -184,14 +184,14 @@ const ProjectDetails = ({ userContact }) => {
                 <div>
                   <h3 className="text-[16px] text-[#94A3B8]">Email us</h3>
                   <span className="text-[#475569] text-[16px] pt-1">
-                    {userContact.email}
+                    {userContact?.email}
                   </span>
                 </div>
               </a>
             </div>
             <div className="flex items-center gap-6 bg-[#FFFFFF] py-8 rounded-lg pl-5 pr-14">
               <a
-                href={`https://wa.me/${userContact.phone_number}`}
+                href={`https://wa.me/${userContact?.phone_number}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-6"
@@ -205,7 +205,7 @@ const ProjectDetails = ({ userContact }) => {
                 <div>
                   <h3 className="text-[16px] text-[#94A3B8]">WhatsApp</h3>
                   <span className="text-[#475569] text-[16px] pt-1">
-                    {userContact.phone_number}
+                    {userContact?.phone_number}
                   </span>
                 </div>
               </a>
