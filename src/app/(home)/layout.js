@@ -11,10 +11,6 @@ import Analytics from "../Analytics/Analytics";
 import HubSpotScript from "@/Components/HubSpot/HubSpot";
 import HotJar from "../Hotjar/HotJar";
 
-
-
-
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -42,8 +38,8 @@ export default function RootLayout({ children }) {
           <SocialProvider>
             <Header />
             {children}
-            <HubSpotScript />
             <Footer />
+            <HubSpotScript />
           </SocialProvider>
         </AuthProviders>
       </body>

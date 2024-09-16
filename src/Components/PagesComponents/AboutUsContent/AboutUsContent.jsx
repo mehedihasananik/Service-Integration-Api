@@ -55,7 +55,7 @@ const Header = ({ title, details }) => (
     <h1 className="text-[30px] lg:text-[48px] text-[#0F172A] font-bold font-Raleway text-center lg:text-left">
       {title}
     </h1>
-    <p className="text-[18px] text-justify">{details}</p>
+    <p className="text-[18px] text-justify whitespace-pre-wrap">{details}</p>
   </div>
 );
 

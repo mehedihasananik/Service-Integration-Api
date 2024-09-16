@@ -1,21 +1,21 @@
 import ServiceDetails from "@/Components/PagesComponents/ServiceDetails/ServiceDetails";
 import JsonLd from "@/Components/Utilites/JsonLd/JsonLd";
-import UserLoading from "@/Components/Utilites/UserLoading/UserLoading";
+
 import {
   singeServiceDetails,
   singleService_package,
   singleSliderPageDetails,
 } from "@/config/apis";
 import { Suspense } from "react";
+import Loading from "./loading";
 
 export async function generateMetadata({ params, searchParams }, parent) {
   const id = params.id;
 
   // Fetch data for generating metadata
-  const service = await fetch(`${singeServiceDetails}/${id}`).then((res) =>
-    res.json()
-  );
-  console.log(service);
+  const service = await fetch(`${singeServiceDetails}/${id}`, {
+    cache: "no-store",
+  }).then((res) => res.json());
 
   // Optionally access and extend (rather than replace) metadata
   const previousImages = (await parent).openGraph?.images || [];
@@ -83,24 +83,23 @@ export async function generateMetadata({ params, searchParams }, parent) {
 }
 
 const SinglePage = async ({ params }) => {
-  // console.log(params.id);
   // Fetch data for the page
-  const service = await fetch(`${singeServiceDetails}/${params?.id}`).then(
-    (res) => res?.json()
-  );
-  const sliders = await fetch(`${singleSliderPageDetails}/${params?.id}`).then(
-    (res) => res?.json()
-  );
-  const packages = await fetch(`${singleService_package}/${params?.id}`).then(
-    (res) => res?.json()
-  );
+  const service = await fetch(`${singeServiceDetails}/${params?.id}`, {
+    cache: "no-store",
+  }).then((res) => res?.json());
 
-  // console.log(service);
+  const sliders = await fetch(`${singleSliderPageDetails}/${params?.id}`, {
+    cache: "no-store",
+  }).then((res) => res?.json());
+
+  const packages = await fetch(`${singleService_package}/${params?.id}`, {
+    cache: "no-store",
+  }).then((res) => res?.json());
 
   return (
     <>
       <JsonLd data={service?.meta?.json_ld} />
-      <Suspense fallback={<UserLoading />}>
+      <Suspense fallback={<Loading />}>
         <ServiceDetails
           service={service}
           sliders={sliders}

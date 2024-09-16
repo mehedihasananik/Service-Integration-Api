@@ -1,6 +1,8 @@
 import PortfolioDetails from "@/Components/PagesComponents/PortfolioDetails/PortfolioDetails";
 import JsonLd from "@/Components/Utilites/JsonLd/JsonLd";
 import { apiEndpoint } from "@/config/config";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 export async function generateMetadata({ params, searchParams }, parent) {
   const id = params.id;
@@ -50,13 +52,13 @@ export async function generateMetadata({ params, searchParams }, parent) {
         ...previousImages,
         ...(service?.meta?.og?.image
           ? [
-            {
-              url: service.meta.og.image,
-              width: 800,
-              height: 600,
-              alt: service.meta.og.title,
-            },
-          ]
+              {
+                url: service.meta.og.image,
+                width: 800,
+                height: 600,
+                alt: service.meta.og.title,
+              },
+            ]
           : []),
       ],
     },
@@ -79,13 +81,16 @@ export async function generateMetadata({ params, searchParams }, parent) {
 
 const SinglePage = async ({ params }) => {
   const singlePortfolioItem = await fetch(
-    `${apiEndpoint}/portfolio_details/${params?.id}`
+    `${apiEndpoint}/portfolio_details/${params?.id}`,
+    { cache: "no-store" }
   ).then((res) => res?.json());
 
   return (
     <div>
       <JsonLd data={singlePortfolioItem?.meta?.json_ld} />
-      <PortfolioDetails singlePortfolioItem={singlePortfolioItem} />
+      <Suspense fallback={<Loading />}>
+        <PortfolioDetails singlePortfolioItem={singlePortfolioItem} />
+      </Suspense>
     </div>
   );
 };

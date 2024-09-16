@@ -12,7 +12,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 import { fetchData } from "@/config/apiRequests.js";
 import axios from "axios";
 import UserLoading from "@/Components/Utilites/UserLoading/UserLoading";
-import { signIn, useSession } from "next-auth/react";
+// import { signIn, useSession } from "next-auth/react";
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
@@ -20,50 +20,50 @@ const Login = () => {
   const [captchaVerified, setCaptchaVerified] = useState(false);
   const router = useRouter();
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    const formData = new FormData(e.target);
-    const email = formData.get("email");
-    const password = formData.get("password");
+  // const handleLogin = async (e) => {
+  //   e.preventDefault();
+  //   setLoading(true);
+  //   const formData = new FormData(e.target);
+  //   const email = formData.get("email");
+  //   const password = formData.get("password");
 
-    const requestData = {
-      email,
-      password,
-    };
+  //   const requestData = {
+  //     email,
+  //     password,
+  //   };
 
-    try {
-      const data = await fetchData(
-        "https://admin.envobyte.com/api/user_login",
-        "POST",
-        requestData
-      );
+  //   try {
+  //     const data = await fetchData(
+  //       "https://admin.envobyte.com/api/user_login",
+  //       "POST",
+  //       requestData
+  //     );
 
-      if (data.success) {
-        toast.success("Logged in successfully");
-        localStorage.setItem("userData", JSON.stringify(data));
-        router.push("/dashboard");
-      } else {
-        router.push("/");
-      }
+  //     if (data.success) {
+  //       toast.success("Logged in successfully");
+  //       localStorage.setItem("userData", JSON.stringify(data));
+  //       router.push("/dashboard");
+  //     } else {
+  //       router.push("/");
+  //     }
 
-      if (data.ErrorMessage) {
-        toast.error(data.ErrorMessage);
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      toast.error("Login failed. Please try again later.");
-    }
+  //     if (data.ErrorMessage) {
+  //       toast.error(data.ErrorMessage);
+  //     }
+  //   } catch (error) {
+  //     console.error("Error:", error);
+  //     toast.error("Login failed. Please try again later.");
+  //   }
 
-    setLoading(false);
-  };
+  //   setLoading(false);
+  // };
 
-  const handleCaptchaChange = (value) => {
-    setCaptchaVerified(true);
-  };
+  // const handleCaptchaChange = (value) => {
+  //   setCaptchaVerified(true);
+  // };
 
-  const session = useSession();
-  console.log(session?.data?.user);
+  // const session = useSession();
+  // console.log(session?.data?.user);
 
   return (
     <div className="login_singUp overflow-hidden  md:my-5 md:py-5">
@@ -84,7 +84,7 @@ const Login = () => {
                 Please log in to your account
               </p>
             </div>
-            <div className="flex flex-col md:flex-row pb-4 gap-y-4 md:gap-10  lg:pb-12">
+            {/* <div className="flex flex-col md:flex-row pb-4 gap-y-4 md:gap-10  lg:pb-12">
               <button
                 type="button"
                 onClick={() => signIn("facebook")}
@@ -106,7 +106,7 @@ const Login = () => {
                   Continue with Google
                 </span>
               </button>
-            </div>
+            </div> */}
             <div className="flex items-center gap-x-5  md:pt-0">
               <span className="w-[50%] h-[1px] border"></span>{" "}
               <span className="text-[14px] font-Raleway text-[#032333] font-medium">

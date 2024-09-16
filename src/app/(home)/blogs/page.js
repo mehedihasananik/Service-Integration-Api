@@ -1,18 +1,16 @@
 import BlogPageContent from "@/Components/BlogPageContent/BlogPageContent";
 import JsonLd from "@/Components/Utilites/JsonLd/JsonLd";
-import UserLoading from "@/Components/Utilites/UserLoading/UserLoading";
 import { apiEndpoint } from "@/config/config";
 import { Suspense } from "react";
+import Loading from "./loading";
 
 async function getMetadata() {
   const service = await fetch(`${apiEndpoint}/blogs`).then((res) => res.json());
-
   return service?.data;
 }
 
 export async function generateMetadata() {
   const service = await getMetadata();
-  // console.log(service?.meta?.seo_meta?.owner);
 
   return {
     title: `${service?.meta?.seo_meta?.title}`,
@@ -66,7 +64,7 @@ export async function generateMetadata() {
 
 async function fetchData(url) {
   const res = await fetch(url, {
-    next: { revalidate: 10 },
+    cache: "no-store",
   });
   if (!res.ok) {
     throw new Error(`Failed to fetch data from ${url}`);
@@ -82,12 +80,11 @@ const BlogPage = async () => {
     fetchData(`${apiEndpoint}/popular/blogs`),
     fetchData(`${apiEndpoint}/blogs/tags`),
   ]);
-  // console.log(blogs?.data?.formattedBlogs)
 
   return (
     <>
       <JsonLd data={blogs?.data?.meta?.json_ld} />
-      <Suspense fallback={<UserLoading />}>
+      <Suspense fallback={<Loading />}>
         <BlogPageContent
           blogs={blogs?.data?.formattedBlogs}
           categories={categories?.data}

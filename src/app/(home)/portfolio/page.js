@@ -1,6 +1,8 @@
 import PortfolioPage from "@/Components/PagesComponents/PortfolioPage/PortfolioPage";
 import JsonLd from "@/Components/Utilites/JsonLd/JsonLd";
 import { apiEndpoint } from "@/config/config";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 async function getMetadata() {
   const service = await fetch(`${apiEndpoint}/sevice_portfolio_update`).then(
@@ -12,7 +14,6 @@ async function getMetadata() {
 
 export async function generateMetadata() {
   const service = await getMetadata();
-  // console.log(service?.meta?.seo_meta?.owner);
 
   return {
     title: `${service?.meta?.seo_meta?.title}`,
@@ -66,7 +67,7 @@ export async function generateMetadata() {
 
 async function portfolioServices() {
   const res = await fetch(`${apiEndpoint}/sevice_portfolio_update`, {
-    next: { revalidate: 10 },
+    cache: "no-store",
   });
 
   if (!res.ok) {
@@ -74,9 +75,10 @@ async function portfolioServices() {
   }
   return res.json();
 }
+
 async function portfoliosCategoriesApi() {
   const res = await fetch(`${apiEndpoint}/category`, {
-    next: { revalidate: 10 },
+    cache: "no-store",
   });
 
   if (!res.ok) {
@@ -84,9 +86,10 @@ async function portfoliosCategoriesApi() {
   }
   return res.json();
 }
+
 async function servicesApi() {
   const res = await fetch(`${apiEndpoint}/search_sevice_category/all`, {
-    next: { revalidate: 10 },
+    cache: "no-store",
   });
 
   if (!res.ok) {
@@ -97,21 +100,21 @@ async function servicesApi() {
 
 const Portfolio = async () => {
   // Fetch data for the page
-
   const portfolios = await portfolioServices();
   const portfoliosCategories = await portfoliosCategoriesApi();
   const services = await servicesApi();
-  // console.log(portfolios.page_content);
 
   return (
     <div className="max-w-[1520px] mx-auto px-[6%] md:px-[4%] lg:px-[2%] 4xl:px-[2%]">
       <JsonLd data={portfolios?.meta?.json_ld} />
-      <PortfolioPage
-        portfolios={portfolios.ServiceportfolioArray}
-        portfoliosCategories={portfoliosCategories}
-        services={services}
-        serviceDetails={portfolios.page_content}
-      />
+      <Suspense fallback={<Loading />}>
+        <PortfolioPage
+          portfolios={portfolios.ServiceportfolioArray}
+          portfoliosCategories={portfoliosCategories}
+          services={services}
+          serviceDetails={portfolios.page_content}
+        />
+      </Suspense>
     </div>
   );
 };
