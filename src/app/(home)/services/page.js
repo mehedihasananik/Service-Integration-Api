@@ -1,6 +1,5 @@
 import ServicesPageContent from "@/Components/PagesComponents/ServicesPageContent/ServicesPageContent";
 import JsonLd from "@/Components/Utilites/JsonLd/JsonLd";
-import UserLoading from "@/Components/Utilites/UserLoading/UserLoading";
 import { allsServiceItemsApi, serviceListApi } from "@/config/apis";
 import { apiEndpoint } from "@/config/config";
 import React, { Suspense } from "react";

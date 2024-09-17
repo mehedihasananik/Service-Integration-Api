@@ -83,31 +83,37 @@ export async function generateMetadata({ params, searchParams }, parent) {
 }
 
 const SinglePage = async ({ params }) => {
-  // Fetch data for the page
-  const service = await fetch(`${singeServiceDetails}/${params?.id}`, {
-    cache: "no-store",
-  }).then((res) => res?.json());
+  try {
+    const [serviceRes, slidersRes, packagesRes] = await Promise.all([
+      fetch(`${singeServiceDetails}/${params?.id}`, { cache: "no-store" }),
+      fetch(`${singleSliderPageDetails}/${params?.id}`, { cache: "no-store" }),
+      fetch(`${singleService_package}/${params?.id}`, { cache: "no-store" }),
+    ]);
 
-  const sliders = await fetch(`${singleSliderPageDetails}/${params?.id}`, {
-    cache: "no-store",
-  }).then((res) => res?.json());
+    if (!serviceRes.ok || !slidersRes.ok || !packagesRes.ok) {
+      throw new Error("Failed to fetch data");
+    }
 
-  const packages = await fetch(`${singleService_package}/${params?.id}`, {
-    cache: "no-store",
-  }).then((res) => res?.json());
+    const service = await serviceRes.json();
+    const sliders = await slidersRes.json();
+    const packages = await packagesRes.json();
 
-  return (
-    <>
-      <JsonLd data={service?.meta?.json_ld} />
-      <Suspense fallback={<Loading />}>
-        <ServiceDetails
-          service={service}
-          sliders={sliders}
-          packages={packages}
-        />
-      </Suspense>
-    </>
-  );
+    return (
+      <>
+        <JsonLd data={service?.meta?.json_ld} />
+        <Suspense fallback={<Loading />}>
+          <ServiceDetails
+            service={service}
+            sliders={sliders}
+            packages={packages}
+          />
+        </Suspense>
+      </>
+    );
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return <div>Error loading page. Please try again later.</div>;
+  }
 };
 
 export default SinglePage;

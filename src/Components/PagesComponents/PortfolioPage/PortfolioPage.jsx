@@ -211,8 +211,9 @@ const PortfolioPage = ({
           </div>
         ) : (
           <div
-            className={`grid grid-cols-1 md:grid-cols-2 gap-8 4xl:gap-10 justify-between pt-5 md:pt-10 pb-5 ${animate ? "fade-in" : ""
-              }`}
+            className={`grid grid-cols-1 md:grid-cols-2 gap-8 4xl:gap-10 justify-between pt-5 md:pt-10 pb-5 ${
+              animate ? "fade-in" : ""
+            }`}
           >
             {displayedPortfolio.map((portfolio) => (
               <Link
