@@ -8,7 +8,7 @@ import { Sidebar } from "flowbite-react";
 import { RiBarChartHorizontalLine } from "react-icons/ri";
 import { AuthContext } from "@/providers/AuthProviders";
 import { usePathname, useRouter } from "next/navigation";
-import { useSession, signOut } from "next-auth/react";
+// import { useSession, signOut } from "next-auth/react";
 
 const DashBoardSideNav = ({ height }) => {
   const pathname = usePathname();
@@ -26,7 +26,7 @@ const DashBoardSideNav = ({ height }) => {
   const clearSession = () => {
     // Remove the userData from localStorage
     localStorage.removeItem("userData");
-    signOut();
+    // signOut();
     // Set the state to indicate that session has been cleared
     setCleared(true);
     router.push("/");

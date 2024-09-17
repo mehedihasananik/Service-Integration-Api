@@ -4,7 +4,6 @@ import { Footer } from "@/Components";
 import Header from "@/Components/Home/Navbar/Header";
 import { Toaster } from "react-hot-toast";
 import AuthProviders, { ThemeProvider } from "@/providers/AuthProviders";
-import SocialProvider from "@/Components/SocialProvider/SocialProvider";
 import GoogleTagManagerScript from "../GoogleTagManager/GoogleTagManagerScript";
 import GoogleTagManagerNoScript from "../GoogleTagManager/GoogleTagManagerNoScript";
 import Analytics from "../Analytics/Analytics";
@@ -35,12 +34,10 @@ export default function RootLayout({ children }) {
         <GoogleTagManagerNoScript />
         <Toaster />
         <AuthProviders>
-          <SocialProvider>
-            <Header />
-            {children}
-            <Footer />
-            <HubSpotScript />
-          </SocialProvider>
+          <Header />
+          {children}
+          <Footer />
+          <HubSpotScript />
         </AuthProviders>
       </body>
     </html>

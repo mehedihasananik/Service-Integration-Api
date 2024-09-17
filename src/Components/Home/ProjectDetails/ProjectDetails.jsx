@@ -143,10 +143,10 @@ const ProjectDetails = ({ userContact }) => {
         <div className="flex md:flex-row justify-center items-center pt-6">
           <div>
             <Image
-            width={76}
-            height={76}
-            src="/assets/projectLogo.svg"
-            alt=""
+              width={76}
+              height={76}
+              src="/assets/projectLogo.svg"
+              alt=""
             />
           </div>
           <div id="projectDetails">
@@ -174,9 +174,8 @@ const ProjectDetails = ({ userContact }) => {
               >
                 <div className="bg-[#FFF5F1] p-4 rounded-lg">
                   <Image
-                     width={24}
-                     height={24}
-                   
+                    width={24}
+                    height={24}
                     src="https://i.ibb.co/hVTCYCp/Email.png"
                     alt=""
                   />
@@ -191,16 +190,21 @@ const ProjectDetails = ({ userContact }) => {
             </div>
             <div className="flex items-center gap-6 bg-[#FFFFFF] py-8 rounded-lg pl-5 pr-14">
               <a
-                href={`https://wa.me/${userContact?.phone_number}`}
+                href={`https://wa.me/${userContact?.phone_number.replace(
+                  /[^\d+]/g,
+                  ""
+                )}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-6"
               >
                 <div className="bg-[#FFF5F1] p-4 rounded-lg">
-                  <Image  
-                  width={24}
-                  height={24} 
-                  src="/assets/whatsapp.svg" alt="" />
+                  <Image
+                    width={24}
+                    height={24}
+                    src="/assets/whatsapp.svg"
+                    alt=""
+                  />
                 </div>
                 <div>
                   <h3 className="text-[16px] text-[#94A3B8]">WhatsApp</h3>
@@ -268,14 +272,13 @@ const ProjectDetails = ({ userContact }) => {
                       Phone/WhatsApp:
                     </label>
                     <PhoneInput
-                        name="user_phone"
-                        defaultCountry="us"
-                        value={phone}
-                        onChange={handlePhoneOnChange}
-                        searchPlaceholder="Search country"
-                        placeholder="Enter phone number"
-                        required
-                       
+                      name="user_phone"
+                      defaultCountry="us"
+                      value={phone}
+                      onChange={handlePhoneOnChange}
+                      searchPlaceholder="Search country"
+                      placeholder="Enter phone number"
+                      required
                     />
                   </div>
                   <div className="w-full lg:w-[50%]">
