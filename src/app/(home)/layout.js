@@ -21,6 +21,13 @@ export const metadata = {
       { url: "/favicon.ico", sizes: "16x16" },
     ],
     apple: [{ url: "/assets/Appsuitelogo_small.jpg", sizes: "180x180" }],
+    other: [
+      {
+        rel: "mask-icon",
+        url: "/assets/Product-24.svg",
+        color: "#5bbad5", // Replace with your brand color
+      },
+    ],
   },
 };
 
