@@ -8,7 +8,7 @@ const AppHeader = () => {
     <Container>
       {" "}
       <Navbar fluid rounded>
-        <Navbar.Brand href="https://flowbite-react.com">
+        <Navbar.Brand href="/app">
           <img
             src="/assets/footer.png"
             className="mr-3 h-6 sm:h-9"
@@ -22,7 +22,9 @@ const AppHeader = () => {
           <Navbar.Link href="#experience">Experience</Navbar.Link>
           <Navbar.Link href="#apps">Apps</Navbar.Link>
           <Navbar.Link href="#services">Services</Navbar.Link>
-          <Navbar.Link href="#">Contact</Navbar.Link>
+          <Navbar.Link href="#businessConsulting">
+            Business Consulting
+          </Navbar.Link>
         </Navbar.Collapse>
       </Navbar>
     </Container>

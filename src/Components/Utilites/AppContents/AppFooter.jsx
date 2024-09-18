@@ -1,31 +1,60 @@
 "use client";
 
+import React from "react";
 import Container from "@/Components/Container/Container";
-import { Footer } from "flowbite-react";
+import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram } from "react-icons/fa";
+
+const SocialIcon = ({ Icon, label, link }) => {
+  return (
+    <a
+      href={link}
+      aria-label={label}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="bg-white p-3 rounded-full shadow-md text-gray-600 hover:text-blue-500 transition-all duration-300 transform hover:scale-110 hover:shadow-lg"
+    >
+      <Icon className="text-xl" />
+    </a>
+  );
+};
 
 const AppFooter = () => {
   return (
-    <Container>
-      <Footer style={{ boxShadow: "none" }} container className="border-none">
-        <div className="w-full text-center">
-          <div className="w-full justify-between sm:flex sm:items-center sm:justify-between">
-            <Footer.Brand
-              href="https://flowbite.com"
-              src="/assets/footer.png"
-              alt="Flowbite Logo"
-            />
-            <Footer.LinkGroup>
-              <Footer.Link href="#">About</Footer.Link>
-              <Footer.Link href="#">Privacy Policy</Footer.Link>
-              <Footer.Link href="#">Licensing</Footer.Link>
-              <Footer.Link href="#">Contact</Footer.Link>
-            </Footer.LinkGroup>
+    <footer className="bg-[#fff]">
+      <Container>
+        <div className="pt-6 pb-2 px-4 mx-auto max-w-screen-xl">
+          <div className="flex flex-col items-center">
+            <div className="flex space-x-8 mb-8">
+              <SocialIcon
+                Icon={FaFacebook}
+                label="Facebook"
+                link="https://www.facebook.com/AppSuiteCo/"
+              />
+              <SocialIcon
+                Icon={FaTwitter}
+                label="Twitter"
+                link="https://x.com/appsuite"
+              />
+              <SocialIcon
+                Icon={FaLinkedin}
+                label="LinkedIn"
+                link="https://www.linkedin.com/company/appsuite-llc/"
+              />
+              <SocialIcon
+                Icon={FaInstagram}
+                label="Instagram"
+                link="https://www.facebook.com/AppSuiteCo/"
+              />
+            </div>
+            <div className="text-center">
+              <p className="text-sm text-gray-600 font-light tracking-wider">
+                © 2024 Appsuite. All Rights Reserved.
+              </p>
+            </div>
           </div>
-          <Footer.Divider />
-          <Footer.Copyright href="#" by="Envobyte" year={2024} />
         </div>
-      </Footer>
-    </Container>
+      </Container>
+    </footer>
   );
 };
 

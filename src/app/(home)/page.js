@@ -2,11 +2,10 @@ import HomePage from "@/Components/Home/HomePage";
 import JsonLd from "@/Components/Utilites/JsonLd/JsonLd";
 import { apiEndpoint } from "@/config/config";
 
-
 async function getMetadata() {
-  const service = await fetch(
-    `${apiEndpoint}/home_banner`
-  ).then((res) => res?.json());
+  const service = await fetch(`${apiEndpoint}/home_banner`).then((res) =>
+    res?.json()
+  );
 
   return service;
 }

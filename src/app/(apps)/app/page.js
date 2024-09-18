@@ -1,6 +1,5 @@
 import AppPageContent from "@/Components/AppPageContent/AppPageContent";
 import Container from "@/Components/Container/Container";
-import React from "react";
 
 const AppPage = () => {
   return (

@@ -3,7 +3,7 @@ import AppBanner from "../Utilites/AppContents/AppBanner";
 import StatsSection from "../Utilites/AppContents/StatsSection";
 import AppSection from "../Utilites/AppContents/AppSection";
 import ServicePromotion from "../Utilites/AppContents/ServicePromotion";
-import KeyFeatures from "../Utilites/AppContents/KeyFeatures";
+import BusinessConsultingHero from "../Utilites/AppContents/BusinessConsultingHero";
 
 const AppPageContent = () => {
   return (
@@ -12,7 +12,7 @@ const AppPageContent = () => {
       <StatsSection />
       <AppSection />
       <ServicePromotion />
-      <KeyFeatures />
+      <BusinessConsultingHero />
     </div>
   );
 };

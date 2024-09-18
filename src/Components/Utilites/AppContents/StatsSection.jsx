@@ -22,7 +22,7 @@ const StatsSection = () => {
         >
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-gray-800">
             Elevating Mobile
-            <span className=" px-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
+            <span className=" px-4 text-transparent bg-clip-text bg-[#173792]">
               Experiences
             </span>
           </h2>
@@ -46,7 +46,7 @@ const StatsSection = () => {
                 duration={2.5}
                 separator=","
                 suffix={stat.suffix}
-                className="text-5xl font-bold text-blue-600"
+                className="text-5xl font-bold text-[#173792]"
               />
               <p className="text-xl mt-4 text-gray-600 font-medium">
                 {stat.label}
@@ -63,7 +63,7 @@ const StatsSection = () => {
         >
           <Link
             href="https://play.google.com/store/apps/dev?id=8045723784298228141"
-            className="inline-block bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold py-4 px-10 rounded-md text-lg transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1 hover:from-blue-600 hover:to-purple-700"
+            className="inline-block bg-gradient-to-r from-blue-800 to-purple-600 text-white font-semibold py-4 px-10 rounded-md text-lg transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1 hover:from-blue-600 hover:to-purple-700"
           >
             Explore Our Apps
           </Link>

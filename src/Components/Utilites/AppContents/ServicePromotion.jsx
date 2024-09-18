@@ -1,3 +1,4 @@
+import { link } from "fs";
 import Link from "next/link";
 import React from "react";
 import {
@@ -8,7 +9,7 @@ import {
   FaGlobe,
 } from "react-icons/fa";
 
-const ServiceCard = ({ icon, title, description, color }) => (
+const ServiceCard = ({ icon, title, description, color, link }) => (
   <div className="bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 group border border-gray-100">
     <div className="p-8 h-full flex flex-col">
       <div className="flex items-center mb-6">
@@ -17,13 +18,15 @@ const ServiceCard = ({ icon, title, description, color }) => (
         >
           {icon}
         </div>
-        <h3 className="text-xl font-bold ml-4 text-gray-800 group-hover:text-blue-600 transition-colors duration-300">
+        <h3
+          className={`text-xl font-bold ml-4 text-gray-800 group-hover:text-${color} transition-colors duration-300`}
+        >
           {title}
         </h3>
       </div>
       <p className="text-gray-600 mb-6 flex-grow">{description}</p>
       <Link
-        href="/services"
+        href={`${link}`}
         className={`${color.replace(
           "bg-",
           "text-"
@@ -43,7 +46,8 @@ const ServicePromotion = () => {
       title: "WordPress Development",
       description:
         "Custom, feature-rich WordPress websites tailored to your needs.",
-      color: "bg-blue-500",
+      color: "bg-blue-600",
+      link: `https://www.envobyte.com/services/wordpress-website-development-service/`,
     },
     {
       icon: <FaAndroid className="text-3xl" />,
@@ -51,6 +55,7 @@ const ServicePromotion = () => {
       description:
         "High-quality, user-friendly Android apps that drive results.",
       color: "bg-green-500",
+      link: `https://www.envobyte.com/services/android-app-development-company/`,
     },
     {
       icon: <FaPaintBrush className="text-3xl" />,
@@ -58,6 +63,7 @@ const ServicePromotion = () => {
       description:
         "Captivating logos that elevate your brand and leave a lasting impression.",
       color: "bg-purple-500",
+      link: `https://www.envobyte.com/services/logo-design-services/`,
     },
     {
       icon: <FaGlobe className="text-3xl" />,
@@ -65,6 +71,7 @@ const ServicePromotion = () => {
       description:
         "Tailored websites that combine cutting-edge design with seamless functionality.",
       color: "bg-indigo-500",
+      link: `https://www.envobyte.com/services/custom-website-development-service/`,
     },
   ];
 
@@ -74,7 +81,7 @@ const ServicePromotion = () => {
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-extrabold mb-6 text-gray-800">
             Discover Our
-            <span className="text-blue-600 mx-3 relative">
+            <span className="text-[#123390] mx-3 relative">
               Services
               <span className="absolute bottom-0 left-0 w-full h-3 bg-blue-200 -z-10 transform -skew-x-12"></span>
             </span>
@@ -92,7 +99,7 @@ const ServicePromotion = () => {
         <div className="text-center mt-16">
           <Link
             href="/services"
-            className="inline-block bg-blue-600 text-white py-4 px-10 rounded-full font-semibold text-lg hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+            className="inline-block bg-[#123390] text-white py-4 px-10 rounded-full font-semibold text-lg hover:bg-[#FF693B] transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
           >
             View All Services
           </Link>

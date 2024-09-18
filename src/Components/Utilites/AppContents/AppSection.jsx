@@ -1,7 +1,13 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { FaStar, FaRegStar, FaRocket, FaGooglePlay } from "react-icons/fa";
+import {
+  FaStar,
+  FaRegStar,
+  FaRocket,
+  FaGooglePlay,
+  FaDownload,
+} from "react-icons/fa";
 
 const StarRating = ({ rating }) => {
   const fullStars = Math.floor(rating);
@@ -36,7 +42,7 @@ const StarRating = ({ rating }) => {
   );
 };
 
-const AppCard = ({ title, description, rating, imageUrl, slug }) => (
+const AppCard = ({ title, description, rating, imageUrl, slug, downloads }) => (
   <Link href={`${slug}`}>
     <div className="bg-white shadow-lg rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 group">
       <div className="w-full h-64 relative">
@@ -47,11 +53,20 @@ const AppCard = ({ title, description, rating, imageUrl, slug }) => (
           {title}
         </h3>
         <p className="text-gray-600 mb-4 line-clamp-2">{description}</p>
-        <div className="flex justify-between items-center">
-          <StarRating rating={rating} />
-          <button className="bg-blue-600 text-white py-2 px-4 rounded-full text-sm hover:bg-blue-700 transition-all duration-300 flex items-center transform hover:scale-105 shadow-md hover:shadow-lg">
-            <FaGooglePlay className="mr-2" /> Get App
-          </button>
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center space-y-4 sm:space-y-0">
+          <div className="flex items-center w-full justify-between ">
+            <div>
+              <StarRating rating={rating} />
+            </div>
+
+            <div className="flex items-center justify-between text-gray-600 ">
+              <span>
+                {" "}
+                <FaDownload className=" w-4 h-4 mr-1 text-blue-500" />
+              </span>
+              <span className="text-sm font-medium ">{downloads}k+ </span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -67,6 +82,7 @@ const AppSection = () => {
       rating: 4.2,
       imageUrl: "/assets/square-photo-editor.png",
       slug: "https://play.google.com/store/apps/details?id=com.envobyte.square.photo.editor.nocrop",
+      downloads: 10,
     },
     {
       title: "TTBoost: Get Likes & Followers",
@@ -75,6 +91,7 @@ const AppSection = () => {
       rating: 4.6,
       imageUrl: "/assets/ttboost.png",
       slug: "https://play.google.com/store/apps/details?id=com.ttboost.tik.tok.followers.likes",
+      downloads: 100,
     },
     {
       title: "Video Downloader - Reels Saver",
@@ -83,6 +100,7 @@ const AppSection = () => {
       rating: 4.5,
       imageUrl: "/assets/video-downloader.png",
       slug: "https://play.google.com/store/apps/details?id=com.ig.video.downloader.instagram.reels.story.saver",
+      downloads: 100,
     },
     {
       title: "Automatic Background Remover",
@@ -91,6 +109,7 @@ const AppSection = () => {
       rating: 4.3,
       imageUrl: "/assets/background-remover.png",
       slug: "https://play.google.com/store/apps/details?id=com.automatic.background.remover",
+      downloads: 10,
     },
     {
       title: "Compress Video - Size Reducer",
@@ -99,6 +118,7 @@ const AppSection = () => {
       rating: 4.4,
       imageUrl: "/assets/video-compressor.png",
       slug: "https://play.google.com/store/apps/details?id=com.compress.video.compressor.size.reducer",
+      downloads: 50,
     },
     {
       title: "World VPN - Global Fast Secure",
@@ -107,6 +127,7 @@ const AppSection = () => {
       rating: 4.5,
       imageUrl: "/assets/world-vpn.png",
       slug: "https://play.google.com/store/apps/details?id=com.envobyte.world.vpn.global",
+      downloads: 5,
     },
     {
       title: "JPEG Image Compressor & Resize",
@@ -115,6 +136,7 @@ const AppSection = () => {
       rating: 4.2,
       imageUrl: "/assets/jpeg-compressor.png",
       slug: "https://play.google.com/store/apps/details?id=com.jpeg.image.compressor",
+      downloads: 100,
     },
   ];
 
@@ -126,12 +148,12 @@ const AppSection = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-extrabold text-gray-800 mb-4">
-            Our <span className="text-blue-600">Innovative</span> Apps
+            Our <span className="text-[#FF693B]">Innovative</span> Apps
           </h2>
           <div className="flex justify-center items-center mb-4">
-            <div className="h-1 w-20 bg-blue-600 rounded-full mr-2"></div>
-            <FaRocket className="text-blue-600 text-2xl" />
-            <div className="h-1 w-20 bg-blue-600 rounded-full ml-2"></div>
+            <div className="h-1 w-20 bg-[#173792] rounded-full mr-2"></div>
+            <FaRocket className="text-[#173792] text-2xl" />
+            <div className="h-1 w-20 bg-[#173792] rounded-full ml-2"></div>
           </div>
           <p className="text-gray-600 mt-4 max-w-2xl mx-auto text-lg">
             Discover our collection of powerful and user-friendly applications
