@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Checkbox, Label, TextInput } from "flowbite-react";
 import Container from "@/Components/Container/Container";
 import { FiArrowRight, FiEye, FiEyeOff } from "react-icons/fi"; // Import eye icons
@@ -10,9 +10,7 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import ReCAPTCHA from "react-google-recaptcha";
 import { fetchData } from "@/config/apiRequests.js";
-import axios from "axios";
 import UserLoading from "@/Components/Utilites/UserLoading/UserLoading";
-// import { signIn, useSession } from "next-auth/react";
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
@@ -20,47 +18,47 @@ const Login = () => {
   const [captchaVerified, setCaptchaVerified] = useState(false);
   const router = useRouter();
 
-  // const handleLogin = async (e) => {
-  //   e.preventDefault();
-  //   setLoading(true);
-  //   const formData = new FormData(e.target);
-  //   const email = formData.get("email");
-  //   const password = formData.get("password");
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    const formData = new FormData(e.target);
+    const email = formData.get("email");
+    const password = formData.get("password");
 
-  //   const requestData = {
-  //     email,
-  //     password,
-  //   };
+    const requestData = {
+      email,
+      password,
+    };
 
-  //   try {
-  //     const data = await fetchData(
-  //       "https://admin.envobyte.com/api/user_login",
-  //       "POST",
-  //       requestData
-  //     );
+    try {
+      const data = await fetchData(
+        "https://admin.envobyte.com/api/user_login",
+        "POST",
+        requestData
+      );
 
-  //     if (data.success) {
-  //       toast.success("Logged in successfully");
-  //       localStorage.setItem("userData", JSON.stringify(data));
-  //       router.push("/dashboard");
-  //     } else {
-  //       router.push("/");
-  //     }
+      if (data.success) {
+        toast.success("Logged in successfully");
+        localStorage.setItem("userData", JSON.stringify(data));
+        router.push("/dashboard");
+      } else {
+        router.push("/");
+      }
 
-  //     if (data.ErrorMessage) {
-  //       toast.error(data.ErrorMessage);
-  //     }
-  //   } catch (error) {
-  //     console.error("Error:", error);
-  //     toast.error("Login failed. Please try again later.");
-  //   }
+      if (data.ErrorMessage) {
+        toast.error(data.ErrorMessage);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      toast.error("Login failed. Please try again later.");
+    }
 
-  //   setLoading(false);
-  // };
+    setLoading(false);
+  };
 
-  // const handleCaptchaChange = (value) => {
-  //   setCaptchaVerified(true);
-  // };
+  const handleCaptchaChange = (value) => {
+    setCaptchaVerified(true);
+  };
 
   // const session = useSession();
   // console.log(session?.data?.user);

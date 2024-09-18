@@ -36,8 +36,8 @@ export default function RootLayout({ children }) {
         <AuthProviders>
           <Header />
           {children}
-          <Footer />
           <HubSpotScript />
+          <Footer />
         </AuthProviders>
       </body>
     </html>

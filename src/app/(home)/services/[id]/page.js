@@ -1,21 +1,21 @@
 import ServiceDetails from "@/Components/PagesComponents/ServiceDetails/ServiceDetails";
 import JsonLd from "@/Components/Utilites/JsonLd/JsonLd";
-
+import UserLoading from "@/Components/Utilites/UserLoading/UserLoading";
 import {
   singeServiceDetails,
   singleService_package,
   singleSliderPageDetails,
 } from "@/config/apis";
 import { Suspense } from "react";
-import Loading from "./loading";
 
 export async function generateMetadata({ params, searchParams }, parent) {
   const id = params.id;
 
   // Fetch data for generating metadata
-  const service = await fetch(`${singeServiceDetails}/${id}`, {
-    cache: "no-store",
-  }).then((res) => res.json());
+  const service = await fetch(`${singeServiceDetails}/${id}`).then((res) =>
+    res.json()
+  );
+  console.log(service);
 
   // Optionally access and extend (rather than replace) metadata
   const previousImages = (await parent).openGraph?.images || [];
@@ -83,37 +83,32 @@ export async function generateMetadata({ params, searchParams }, parent) {
 }
 
 const SinglePage = async ({ params }) => {
-  try {
-    const [serviceRes, slidersRes, packagesRes] = await Promise.all([
-      fetch(`${singeServiceDetails}/${params?.id}`, { cache: "no-store" }),
-      fetch(`${singleSliderPageDetails}/${params?.id}`, { cache: "no-store" }),
-      fetch(`${singleService_package}/${params?.id}`, { cache: "no-store" }),
-    ]);
+  // console.log(params.id);
+  // Fetch data for the page
+  const service = await fetch(`${singeServiceDetails}/${params?.id}`).then(
+    (res) => res?.json()
+  );
+  const sliders = await fetch(`${singleSliderPageDetails}/${params?.id}`).then(
+    (res) => res?.json()
+  );
+  const packages = await fetch(`${singleService_package}/${params?.id}`).then(
+    (res) => res?.json()
+  );
 
-    if (!serviceRes.ok || !slidersRes.ok || !packagesRes.ok) {
-      throw new Error("Failed to fetch data");
-    }
+  // console.log(service);
 
-    const service = await serviceRes.json();
-    const sliders = await slidersRes.json();
-    const packages = await packagesRes.json();
-
-    return (
-      <>
-        <JsonLd data={service?.meta?.json_ld} />
-        <Suspense fallback={<Loading />}>
-          <ServiceDetails
-            service={service}
-            sliders={sliders}
-            packages={packages}
-          />
-        </Suspense>
-      </>
-    );
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    return <div>Error loading page. Please try again later.</div>;
-  }
+  return (
+    <>
+      <JsonLd data={service?.meta?.json_ld} />
+      <Suspense fallback={<UserLoading />}>
+        <ServiceDetails
+          service={service}
+          sliders={sliders}
+          packages={packages}
+        />
+      </Suspense>
+    </>
+  );
 };
 
 export default SinglePage;

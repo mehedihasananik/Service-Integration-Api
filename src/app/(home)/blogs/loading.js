@@ -1,6 +1,12 @@
-import UserLoading from "@/Components/Utilites/UserLoading/UserLoading";
+import Loading from '@/Components/Utilites/Loading/Loading'
 
-export default function Loading() {
-  // You can add any UI inside Loading, including a Skeleton.
-  return <UserLoading />;
+
+const loading = () => {
+    return (
+        <div className='text-4xl'>
+            <Loading />
+        </div>
+    )
 }
+
+export default loading

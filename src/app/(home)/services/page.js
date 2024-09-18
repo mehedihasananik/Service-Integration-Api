@@ -1,19 +1,21 @@
 import ServicesPageContent from "@/Components/PagesComponents/ServicesPageContent/ServicesPageContent";
 import JsonLd from "@/Components/Utilites/JsonLd/JsonLd";
+import UserLoading from "@/Components/Utilites/UserLoading/UserLoading";
 import { allsServiceItemsApi, serviceListApi } from "@/config/apis";
 import { apiEndpoint } from "@/config/config";
 import React, { Suspense } from "react";
-import Loading from "./loading";
 
 async function getMetadata() {
   const service = await fetch(`${apiEndpoint}/sevice_items`).then((res) =>
     res.json()
   );
+
   return service;
 }
 
 export async function generateMetadata() {
   const service = await getMetadata();
+  // console.log(service?.meta?.seo_meta?.owner);
 
   return {
     title: `${service?.meta?.seo_meta?.title}`,
@@ -67,9 +69,9 @@ export async function generateMetadata() {
 
 async function getServices() {
   try {
-    const [res1, res2] = await Promise.all([
-      fetch(`${serviceListApi}`, { cache: "no-store" }),
-      fetch(`${allsServiceItemsApi}`, { cache: "no-store" }),
+    const [res1, res2] = await Promise?.all([
+      fetch(`${serviceListApi}`, { next: { revalidate: 10 } }),
+      fetch(`${allsServiceItemsApi}`, { next: { revalidate: 10 } }),
     ]);
 
     if (!res1?.ok || !res2?.ok) {
@@ -88,11 +90,12 @@ async function getServices() {
 
 export default async function ServicesPage() {
   const { serviceCategories, services } = await getServices();
+  // console.log(services)
 
   return (
     <>
       <JsonLd data={services?.meta?.json_ld} />
-      <Suspense fallback={<Loading />}>
+      <Suspense fallback={<UserLoading />}>
         <ServicesPageContent
           serviceCategories={serviceCategories}
           services={services.ServiceItemsArray}
