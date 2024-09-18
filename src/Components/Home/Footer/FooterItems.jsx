@@ -63,10 +63,7 @@ const FooterItems = ({ footer, userContact }) => {
             </h3>
             <div className="flex flex-col gap-2 pt-5 text-[16px] text-[#444444]  ">
               <div className="flex items-center gap-3">
-                 <Image  
-                  width={24}
-                  height={24} 
-                  src="/assets/Email.png" alt="" />
+                <Image width={24} height={24} src="/assets/Email.png" alt="" />
                 <span className="cursor-pointer hover:text-[#FF693B] transition-all duration-200">
                   {" "}
                   <a
@@ -80,16 +77,20 @@ const FooterItems = ({ footer, userContact }) => {
               </div>
               <div className="flex items-center gap-3">
                 {" "}
-                <Image  
+                <Image
                   width={24}
-                  height={24} 
-                  src="/assets/whatsapp.svg" alt="" />
-           
+                  height={24}
+                  src="/assets/whatsapp.svg"
+                  alt=""
+                />
                 <span className="cursor-pointer hover:text-[#FF693B] transition-all duration-200">
                   {" "}
                   <a
                     target="_blank"
-                    href={`https://wa.me/${userContact?.phone_number} `}
+                    href={`https://wa.me/${userContact?.phone_number.replace(
+                      /[^\d+]/g,
+                      ""
+                    )} `}
                     className="text-[#475569] text-[16px] pt-1"
                   >
                     {userContact?.phone_number}

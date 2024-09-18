@@ -166,15 +166,15 @@ const ContactUsPageContent = ({ userContact }) => {
 
         <motion.div
           variants={stagger}
-          className="flex flex-col lg:flex-row gap-8 lg:gap-16 md:px-4"
+          className="flex flex-col justify-center items-center xl:flex-row xl:items-start gap-8 lg:gap-16 md:px-4"
         >
           <motion.div
             variants={fadeInUp}
-            className="w-full lg:w-1/3 space-y-4 lg:space-y-8"
+            className="w-full lg:1/3 xl:w-1/2 space-y-4 lg:space-y-8"
           >
             {[
               {
-                icon: "https://i.ibb.co/hVTCYCp/Email.png",
+                icon: "/assets/Email.png",
                 title: "Email us",
                 value: userContact.email,
                 link: `mailto:${userContact.email}`,
@@ -204,12 +204,14 @@ const ContactUsPageContent = ({ userContact }) => {
                     src={item.icon}
                     alt={item.title}
                     className="w-6 h-6 lg:w-10 lg:h-10"
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = "/assets/fallback-icon.png"; // Provide a fallback icon
+                    }}
                   />
                 </motion.div>
                 <div>
-                  <h3 className="text-lg lg:text-xl text-[#7F8C8D] mb-1">
-                    {item.title}
-                  </h3>
+                  <h3 className="text-lg lg:text-xl mb-1">{item.title}</h3>
                   <span className="text-base lg:text-2xl font-semibold text-[#2C3E50]">
                     {item.value}
                   </span>
@@ -315,7 +317,7 @@ const ContactUsPageContent = ({ userContact }) => {
                   boxShadow: "0px 0px 8px rgb(63,105,219)",
                 }}
                 whileTap={{ scale: 0.95 }}
-                className="mt-8 lg:mt-10 w-full lg:w-[35%] bg-[#FF693B] text-white font-bold py-3 lg:py-5 px-4 lg:px-8 rounded-lg hover:bg-[#3d5bab] transition-all duration-300"
+                className="mt-8 lg:mt-10 w-full lg:w-[50%] bg-[#FF693B] text-white font-bold py-3 lg:py-5 px-4 lg:px-8 rounded-lg hover:bg-[#3d5bab] transition-all duration-300"
                 type="submit"
               >
                 Send Project Details
