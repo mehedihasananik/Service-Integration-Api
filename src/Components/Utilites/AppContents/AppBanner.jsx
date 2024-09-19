@@ -6,8 +6,8 @@ import GlobalButtonHovered from "../GlobalButton/GlobalButtonHovered";
 
 const AppBanner = () => {
   return (
-    <div className=" min-h-[80vh] flex  justify-center items-center">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div className=" h-full pt-8 md:pt-0 lg:min-h-[80vh] flex  justify-center items-center">
+      <div className="container mx-auto px-0 lg:px-8">
         <div className="flex flex-col-reverse md:flex-row items-center md:items-start gap-8 md:gap-12">
           <div className="w-full md:w-1/2 order-2 md:order-1 text-center md:text-left ">
             <p className="text-[#173792] font-semibold mb-3 sm:mb-4 text-lg sm:text-xl md:text-2xl">
@@ -27,7 +27,7 @@ const AppBanner = () => {
               fun. Our apps help you do things better, from work to play. Try
               our apps today and see how they can improve your daily life!
             </p>
-            <div className="flex flex-col xs:flex-row  justify-center lg:justify-start gap-4 md:gap-6 py-6">
+            <div className="flex flex-col xs:flex-row  justify-center lg:justify-start gap-4 md:gap-6 lg:py-6">
               <GlobalButtonColored
                 path="https://play.google.com/store/apps/dev?id=8045723784298228141"
                 title="Playstore"
@@ -41,7 +41,7 @@ const AppBanner = () => {
             </div>
           </div>
           <div className="w-full md:w-1/2 order-1 md:order-2 flex justify-center md:justify-end mb-8 md:mb-0 pt-[5%]">
-            <div className="relative w-full max-w-[300px] sm:max-w-[400px] md:max-w-full aspect-[3/2] rounded-2xl overflow-hidden shadow-xl">
+            <div className="relative w-full md:max-w-full   aspect-[3/2] rounded-2xl overflow-hidden shadow-xl">
               <Image
                 src="/assets/app_banner.png"
                 alt="Friends connecting online"

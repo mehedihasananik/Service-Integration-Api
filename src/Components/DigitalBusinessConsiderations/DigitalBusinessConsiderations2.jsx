@@ -6,7 +6,7 @@ import { apiEndpoint } from "@/config/config";
 
 async function fetchConsiderations() {
   const res = await fetch(`${apiEndpoint}/businessdev`, {
-    next: { revalidate: 10 },
+    next: { revalidate: 120 },
   });
   if (!res.ok) throw new Error("Failed to fetch brands");
   return res.json();

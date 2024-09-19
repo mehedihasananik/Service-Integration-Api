@@ -20,9 +20,9 @@ const StatsSection = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-8"
         >
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-gray-800">
+          <h2 className="text-3xl lg:text-6xl font-bold mb-6 leading-tight text-gray-800">
             Elevating Mobile
-            <span className=" px-4 text-transparent bg-clip-text bg-[#173792]">
+            <span className="px-1 md:px-4 text-transparent bg-clip-text bg-[#173792]">
               Experiences
             </span>
           </h2>
@@ -32,14 +32,14 @@ const StatsSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-16">
+        <div className="w-full grid grid-cols-1 justify-center lg:grid-cols-3 gap-8 mb-16">
           {stats.map((stat, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-200"
+              className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-200 text-center"
             >
               <CountUp
                 end={stat.value}

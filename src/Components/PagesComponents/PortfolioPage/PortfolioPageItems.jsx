@@ -17,8 +17,8 @@ const PortfolioPageItems = ({ portfolio }) => {
             <div className="relative w-full aspect-[16/9] lg:aspect-[330/370] overflow-hidden">
               <Image
                 src={portfolio?.image}
-                layout="fill"
-                objectFit="cover"
+                fill
+                style={{ objectFit: "fill" }}
                 quality={80}
                 className="rounded-t-lg xl:rounded-l-lg lg:rounded-tr-none"
                 alt={portfolio?.title || "Portfolio image"}

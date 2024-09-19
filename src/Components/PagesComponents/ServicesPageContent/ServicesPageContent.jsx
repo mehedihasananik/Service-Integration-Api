@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Container from "@/Components/Container/Container";
 import Image from "next/image";
 import Link from "next/link";
 import Global_PageHtml from "@/Components/Utilites/Global_PageHtml/Global_PageHtml";
@@ -139,8 +138,9 @@ const ServicesPageContent = ({
             </div>
           ) : (
             <div
-              className={`grid grid-cols-1 md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 xll:grid-cols-4 justify-items-center place-items-center gap-x-8 pb-4 lg:gap-y-0 lg:gap-x-0 xxl:gap-x-40 4xl:gap-x-16 mt-5 md:mt-10 ${animate ? "fade-in" : ""
-                }`}
+              className={`grid grid-cols-1 md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 xll:grid-cols-4 justify-items-center place-items-center gap-x-8 pb-4 lg:gap-y-0 lg:gap-x-0 xxl:gap-x-40 4xl:gap-x-16 mt-5 md:mt-10 ${
+                animate ? "fade-in" : ""
+              }`}
             >
               {serviceItems.map((service, index) => (
                 <Link key={index} href={`/services/${service?.slug}`}>

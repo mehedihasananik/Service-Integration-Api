@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Image from "next/image";
 import { Eye } from "lucide-react";
 import { TbCategoryPlus } from "react-icons/tb";
@@ -7,7 +7,7 @@ import BlogSideBar from "../Utilites/BlogSection/BlogSideBar/BlogSideBar";
 import Global_PageHtml from "../Utilites/Global_PageHtml/Global_PageHtml";
 import BlogContact from "../Utilites/BlogSection/BlogContact/BlogContact";
 import BlogComments from "../Utilites/BlogSection/BlogComments/BlogComments";
-import BlogSocialShare from '../Utilites/BlogSection/BlogSocialShare/BlogSocialShare';
+import BlogSocialShare from "../Utilites/BlogSection/BlogSocialShare/BlogSocialShare";
 import BlogViewCount from "../Utilites/BlogSection/BlogViewCount/BlogViewCount";
 import RelevantBlogs from "../Utilites/BlogSection/RelevantBlogs/RelevantBlogs";
 import BlogBreadCrumb from "../Utilites/BlogSection/BlogBreadCrumb/BlogBreadCrumb";
@@ -16,7 +16,15 @@ import BlogTags from "../Utilites/BlogSection/BlogTags/BlogTags";
 import ElegantSubscribeModal from "../Utilites/BlogSection/ElegantSubscribeModal/ElegantSubscribeModal";
 import BlogFixedModal from "../Utilites/BlogSection/BlogFixedModal/BlogFixedModal";
 
-const SingleBlogContent = ({ singleBlog, categories, recommended, popular, tags, params, comments }) => {
+const SingleBlogContent = ({
+  singleBlog,
+  categories,
+  recommended,
+  popular,
+  tags,
+  params,
+  comments,
+}) => {
   const [openModal, setOpenModal] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const router = useRouter();
@@ -73,7 +81,7 @@ const SingleBlogContent = ({ singleBlog, categories, recommended, popular, tags,
                     <p className="text-gray-500">
                       Published in {singleBlog?.created_at}
                     </p>
-                    <div className="flex items-center text-gray-500 gap-x-1 ">
+                    <div className="flex flex-wrap justify-center items-center text-gray-500 gap-x-1 ">
                       <Eye size={16} className="mr-0" />
                       <span className="text-sm">{singleBlog?.views} views</span>
                     </div>
@@ -84,13 +92,19 @@ const SingleBlogContent = ({ singleBlog, categories, recommended, popular, tags,
               {/* Image & Description */}
               <div>
                 <div className="relative w-full aspect-[3/2] mt-4">
-                  <div className={`absolute inset-0 bg-gray-200 animate-pulse ${imageLoaded ? 'hidden' : 'block'}`}></div>
+                  <div
+                    className={`absolute inset-0 bg-gray-200 animate-pulse ${
+                      imageLoaded ? "hidden" : "block"
+                    }`}
+                  ></div>
                   <Image
                     src={singleBlog?.featured_image}
                     alt={singleBlog?.title || "Blog featured image"}
                     layout="fill"
                     objectFit="cover"
-                    className={`transition-opacity duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+                    className={`transition-opacity duration-300 ${
+                      imageLoaded ? "opacity-100" : "opacity-0"
+                    }`}
                     onLoad={handleImageLoad}
                   />
                 </div>

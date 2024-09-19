@@ -4,7 +4,7 @@ import React from "react";
 
 async function getTestimonialContent() {
   const res = await fetch(`${testimonials_itemsApi}`, {
-    next: { revalidate: 10 },
+    next: { revalidate: 120 },
   });
 
   if (!res.ok) {

@@ -141,11 +141,8 @@ const AppSection = () => {
   ];
 
   return (
-    <section
-      id="apps"
-      className="bg-gradient-to-b from-gray-100 to-white py-20"
-    >
-      <div className="container mx-auto px-4">
+    <section className="bg-gradient-to-b from-gray-100 to-white py-20">
+      <div id="apps" className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-extrabold text-gray-800 mb-4">
             Our <span className="text-[#FF693B]">Innovative</span> Apps
@@ -160,7 +157,7 @@ const AppSection = () => {
             designed to enhance your digital experience.
           </p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {apps.map((app) => (
             <AppCard key={app.slug} {...app} />
           ))}

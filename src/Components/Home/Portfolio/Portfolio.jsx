@@ -1,10 +1,9 @@
-import Container from "@/Components/Container/Container";
 import PortfolioHomeItems from "@/Components/Utilites/PortfolioHomeItems/PortfolioHomeItems";
 import { apiEndpoint } from "@/config/config";
 
 async function portfolioServices() {
   const res = await fetch(`${apiEndpoint}/sevice_portfolio_update`, {
-    next: { revalidate: 10 },
+    next: { revalidate: 120 },
   });
 
   if (!res.ok) {
@@ -15,7 +14,7 @@ async function portfolioServices() {
 
 async function portfoliosCategoriesApi() {
   const res = await fetch(`${apiEndpoint}/category`, {
-    next: { revalidate: 10 },
+    next: { revalidate: 120 },
   });
 
   if (!res.ok) {
@@ -26,7 +25,7 @@ async function portfoliosCategoriesApi() {
 
 async function servicesApi() {
   const res = await fetch(`${apiEndpoint}/search_sevice_category/all`, {
-    next: { revalidate: 10 },
+    next: { revalidate: 120 },
   });
 
   if (!res.ok) {

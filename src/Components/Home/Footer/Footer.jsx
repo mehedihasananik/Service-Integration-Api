@@ -20,7 +20,7 @@ async function fetchWithRetry(url, options, retries = 3) {
 async function getFooterDataContent() {
   try {
     const res = await fetchWithRetry(`${footer}`, {
-      next: { revalidate: 10 },
+      next: { revalidate: 120 },
     });
     return res.json();
   } catch (error) {
@@ -33,7 +33,7 @@ async function getFooterDataContent() {
 async function getUserContactContent() {
   try {
     const res = await fetchWithRetry(`${user_contactApi}`, {
-      next: { revalidate: 10 },
+      next: { revalidate: 120 },
     });
     return res.json();
   } catch (error) {

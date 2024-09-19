@@ -15,7 +15,7 @@ import HomePageFaqs from "../Utilites/HomePageFaqs/HomePageFaqs";
 
 async function getUserContactContent() {
   const res = await fetch(`${user_contactApi}`, {
-    next: { revalidate: 10 },
+    next: { revalidate: 120 },
   });
 
   if (!res.ok) {

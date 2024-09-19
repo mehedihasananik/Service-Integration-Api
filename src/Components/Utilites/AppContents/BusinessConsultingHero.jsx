@@ -6,7 +6,7 @@ import GlobalButtonHovered from "../GlobalButton/GlobalButtonHovered";
 const BusinessConsultingHero = () => {
   return (
     <div
-      id="businessConsulting"
+      id="businessconsulting"
       className="bg-gradient-to-br from-blue-600 to-blue-700 py-20 px-4 sm:px-6 lg:px-8 rounded-[3px]"
     >
       <div className="container mx-auto flex flex-col lg:flex-row items-center justify-between">

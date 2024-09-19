@@ -13,15 +13,27 @@ import { HiArrowSmallRight } from "react-icons/hi2";
 import Link from "next/link";
 import { Autoplay } from "swiper/modules";
 import { sevice_portfolioApi } from "@/config/apis";
+import UserLoading from "../UserLoading/UserLoading";
 
 const ServicePortolio = ({ portfolios }) => {
   const [loading, setLoading] = useState(true);
 
   const swiperRef = useRef(null);
 
+  // Simulate content loading effect for demo purpose
+  useEffect(() => {
+    // Assuming you're fetching data and after fetching is done, set loading to false
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000); // Simulated loading delay
+  }, []);
+
   const breakpoints = {
-    // when window width is >= 1024px (lg)
     1920: {
+      slidesPerView: 2.8,
+      spaceBetween: 50,
+    },
+    1680: {
       slidesPerView: 2.8,
       spaceBetween: 50,
     },
@@ -37,12 +49,10 @@ const ServicePortolio = ({ portfolios }) => {
       slidesPerView: 2,
       spaceBetween: 30,
     },
-    // when window width is >= 768px (md)
     768: {
       slidesPerView: 2,
       spaceBetween: 20,
     },
-    // when window width is >= 320px (sm)
     320: {
       slidesPerView: 1,
       spaceBetween: 10,
@@ -51,8 +61,12 @@ const ServicePortolio = ({ portfolios }) => {
 
   return (
     <>
-      {portfolios?.length > 0 ? (
-        <div className="lg:px-[0%] xxl:px-[0%] 4xl:px-[1%]">
+      {loading ? (
+        <div className="py-10">
+          <UserLoading />
+        </div>
+      ) : portfolios?.length > 0 ? (
+        <div className="lg:px-[0%] xxl:px-[0%] 3xll:p-[.5%]">
           <div className="text-center py-3 md:pt-0 md:pb-5">
             <h2 className="text-[32px] md:text-[48px] text-[#0F172A] font-bold font-Raleway">
               Portfolio&apos;s{" "}
@@ -64,12 +78,10 @@ const ServicePortolio = ({ portfolios }) => {
               slidesPerView={3}
               spaceBetween={30}
               breakpoints={breakpoints}
-              className="mySwiper "
+              className="mySwiper"
               modules={[Autoplay]}
-            // autoplay={{ delay: 3000, disableOnInteraction: false }}
             >
               {portfolios?.map((portfolio) => {
-                // console.log(portfolio);
                 return (
                   <SwiperSlide key={portfolio.id} className="">
                     <Link href={`/portfolio/${portfolio.slug}`}>
@@ -79,8 +91,8 @@ const ServicePortolio = ({ portfolios }) => {
                             <div className="relative w-full aspect-[16/9] lg:aspect-[330/370] overflow-hidden">
                               <Image
                                 src={portfolio?.image}
-                                layout="fill"
-                                objectFit="cover"
+                                fill
+                                style={{ objectFit: "fill" }}
                                 quality={80}
                                 className="rounded-t-lg xl:rounded-l-lg lg:rounded-tr-none"
                                 alt={portfolio?.title || "Portfolio image"}
@@ -90,15 +102,17 @@ const ServicePortolio = ({ portfolios }) => {
 
                           <div className="w-full xl:w-1/2 p-4 lg:p-6 flex flex-col justify-center items-center">
                             <div className="text-center w-full">
-                              {
-                                portfolio?.service_name?.slice(0,3).map((service, index) => (
+                              {portfolio?.service_name?.slice(0, 3).map(
+                                (service, index) =>
                                   service && (
-                                    <h4 key={index} className="text-[14px] text-[#999999]  portfolio-textHover">
+                                    <h4
+                                      key={index}
+                                      className="text-[14px] text-[#999999] portfolio-textHover"
+                                    >
                                       {service}
                                     </h4>
                                   )
-                                ))
-                              }
+                              )}
                               <div className="text-base lg:text-lg font-bold font-Raleway text-[#333333] portfolio-textHover line-clamp-2 lg:line-clamp-3 mb-3">
                                 {portfolio?.heading?.slice(0, 120)}
                               </div>
@@ -106,7 +120,9 @@ const ServicePortolio = ({ portfolios }) => {
                                 {portfolio.portfolio_summery}
                               </p>
                               <div className="flex justify-center items-center gap-2 text-[#FF693B] font-bold portfolio-textHover">
-                                <button className="text-sm lg:text-base">Read More</button>
+                                <button className="text-sm lg:text-base">
+                                  Read More
+                                </button>
                                 <span className="w-5">
                                   <HiArrowSmallRight className="text-xl" />
                                 </span>

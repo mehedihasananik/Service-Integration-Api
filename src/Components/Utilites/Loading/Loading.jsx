@@ -1,8 +1,4 @@
-"use client"
-import React, { useState } from "react";
-
 const Loading = () => {
-  const [loading, setLoading] = useState([]);
   return (
     <div
       aria-label="Loading..."

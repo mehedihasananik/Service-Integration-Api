@@ -1,14 +1,12 @@
-import React from "react";
-
 const UserLoading = () => {
   return (
     <div
       aria-label="Loading..."
       role="status"
-      className="flex justify-center items-center space-x-2 h-full"
+      className="flex justify-center items-center space-x-2 "
     >
       <svg
-        className="h-12 w-32 animate-spin stroke-[#0A2C8C]"
+        className="h-24 w-32 animate-spin stroke-[#0A2C8C]"
         viewBox="0 0 256 256"
       >
         <line
@@ -84,6 +82,7 @@ const UserLoading = () => {
           strokeWidth="24"
         ></line>
       </svg>
+      <span className="text-4xl font-medium text-gray-500">Loading...</span>
     </div>
   );
 };
