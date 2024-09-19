@@ -16,9 +16,6 @@ const AppHeader = () => {
           />
         </Navbar.Brand>
         <Navbar.Collapse>
-          <Navbar.Link href="/app" active>
-            Home
-          </Navbar.Link>
           <Navbar.Link href="#experience">Experience</Navbar.Link>
           <Navbar.Link href="#apps">Apps</Navbar.Link>
           <Navbar.Link href="#services">Services</Navbar.Link>

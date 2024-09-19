@@ -28,27 +28,27 @@ const AppFooter = () => {
               <SocialIcon
                 Icon={FaFacebook}
                 label="Facebook"
-                link="https://www.facebook.com/AppSuiteCo/"
+                link="https://www.facebook.com/envobyte"
               />
               <SocialIcon
                 Icon={FaTwitter}
                 label="Twitter"
-                link="https://x.com/appsuite"
+                link="https://x.com/envobyte"
               />
               <SocialIcon
                 Icon={FaLinkedin}
                 label="LinkedIn"
-                link="https://www.linkedin.com/company/appsuite-llc/"
+                link="https://www.linkedin.com/company/envobyte/mycompany/"
               />
               <SocialIcon
                 Icon={FaInstagram}
                 label="Instagram"
-                link="https://www.facebook.com/AppSuiteCo/"
+                link="https://www.instagram.com/envobyte/"
               />
             </div>
             <div className="text-center">
               <p className="text-sm text-gray-600 font-light tracking-wider">
-                © 2024 Appsuite. All Rights Reserved.
+                © 2024 Envobyte. All Rights Reserved.
               </p>
             </div>
           </div>

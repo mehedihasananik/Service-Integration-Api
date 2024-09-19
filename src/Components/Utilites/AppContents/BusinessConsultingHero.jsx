@@ -18,7 +18,7 @@ const BusinessConsultingHero = () => {
             <span className="text-[#FF693B]">Consulting App</span>
           </h1>
           <p className="text-xl mb-8 leading-relaxed text-blue-100">
-            Discover unparalleled expertise with AppSuite's business consulting
+            Discover unparalleled expertise with Envobyte's business consulting
             services. Our team offers strategic insights and tailored solutions
             to help your business thrive. Whether you're looking to optimize
             operations or drive growth, we have the skills and experience to
@@ -40,13 +40,13 @@ const BusinessConsultingHero = () => {
 
         {/* Right column */}
         <div className="lg:w-1/2 flex justify-center lg:justify-center">
-          <div className="relative w-full max-w-md aspect-[3/4] rounded-2xl overflow-hidden shadow-xl">
+          <div className="relative w-full max-w-md aspect-[3/4]  overflow-hidden shadow-xl">
             <Image
-              src="/assets/appsuite.jpeg"
+              src="/assets/appsuite.webp"
               alt="Business Consulting App"
               layout="fill"
               objectFit="cover"
-              className="rounded-2xl"
+              className="rounded-sm"
             />
           </div>
         </div>

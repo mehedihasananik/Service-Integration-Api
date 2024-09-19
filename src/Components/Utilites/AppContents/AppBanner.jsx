@@ -13,19 +13,19 @@ const AppBanner = () => {
             <p className="text-[#173792] font-semibold mb-3 sm:mb-4 text-lg sm:text-xl md:text-2xl">
               Join 1 Million users worldwide!
             </p>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-tight sm:leading-tight md:leading-tight lg:leading-[1.2]">
-              Connect With Our
-              <span className="text-[#FF693B] relative"> Apps</span> Share
-              <br className="hidden sm:inline" /> your{" "}
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl font-bold text-gray-900 leading-tight sm:leading-tight md:leading-tight lg:leading-[1.2]">
+              Unleash
+              <span className="text-[#FF693B] relative"> Digital</span>
+              <br className="hidden sm:inline" /> Innovation & Creativity with{" "}
               <span className="text-[#173792] relative">
-                Thoughts
+                Apps
                 <span className="absolute bottom-0 left-0 w-full h-3 bg-indigo-200 -z-10 transform -skew-x-12"></span>
               </span>
             </h1>
             <p className="text-gray-700 text-lg sm:text-xl md:text-2xl mb-8 mt-6 sm:mt-8 max-w-2xl mx-auto md:mx-0">
-              Solve your problems, make your life easier and more enjoyable, or
-              provide you with greater facilities through innovative app
-              development.
+              Envobyte brings you great apps to make your life easier and more
+              fun. Our apps help you do things better, from work to play. Try
+              our apps today and see how they can improve your daily life!
             </p>
             <div className="flex flex-col xs:flex-row  justify-center lg:justify-start gap-4 md:gap-6 py-6">
               <GlobalButtonColored
@@ -43,7 +43,7 @@ const AppBanner = () => {
           <div className="w-full md:w-1/2 order-1 md:order-2 flex justify-center md:justify-end mb-8 md:mb-0 pt-[5%]">
             <div className="relative w-full max-w-[300px] sm:max-w-[400px] md:max-w-full aspect-[3/2] rounded-2xl overflow-hidden shadow-xl">
               <Image
-                src="/assets/app_banner.jpeg"
+                src="/assets/app_banner.png"
                 alt="Friends connecting online"
                 layout="fill"
                 objectFit="cover"

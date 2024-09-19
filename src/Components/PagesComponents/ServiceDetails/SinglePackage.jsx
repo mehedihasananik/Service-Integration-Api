@@ -5,6 +5,7 @@ import { FaRegClock } from "react-icons/fa6";
 import { Tooltip } from "flowbite-react";
 import { VscQuestion } from "react-icons/vsc";
 import Link from "next/link";
+import GlobalButtonHovered from "@/Components/Utilites/GlobalButton/GlobalButtonHovered";
 
 const SinglePackage = ({ item, setOpenModal, height, serviceName }) => {
   const [userData, setUserData] = useState(null);
@@ -109,12 +110,17 @@ const SinglePackage = ({ item, setOpenModal, height, serviceName }) => {
         </div>
         {/* order button */}
         <div className="py-4 mt-4 md:mt-0 md:pb-8 flex justify-center px-4 md:px-4">
-          <button
+          {/* <button
             onClick={orderWithLogin}
             className="text-[16px] font-medium text-[#FF693B] border border-[#FF693B] px-6 py-2 w-full rounded-md hover:text-white hover:bg-[#FF693B] transition-all duration-300"
           >
             Contact For Order
-          </button>
+          </button> */}
+          <GlobalButtonHovered
+            path={"/schedule-meeting"}
+            title={"Book Now"}
+            className="btn btn-secondary md:w-[100%] text-center py-2.5"
+          />
         </div>
         {/* order details */}
         <div className="space-y-5 md:h-[150px] pl-3 md:pl-8">

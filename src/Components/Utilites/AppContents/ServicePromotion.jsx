@@ -10,33 +10,36 @@ import {
 } from "react-icons/fa";
 
 const ServiceCard = ({ icon, title, description, color, link }) => (
-  <div className="bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 group border border-gray-100">
-    <div className="p-8 h-full flex flex-col">
-      <div className="flex items-center mb-6">
-        <div
-          className={`p-4 rounded-full ${color} text-white group-hover:scale-110 transition-all duration-300`}
-        >
-          {icon}
+  <Link href={`${link}`}>
+    <div className="bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 group border border-gray-100">
+      <div className="p-8 h-full flex flex-col">
+        <div className="flex items-center mb-6">
+          <div
+            className={`p-4 rounded-full ${color} text-white group-hover:scale-110 transition-all duration-300`}
+          >
+            {icon}
+          </div>
+          <h3
+            className={`text-xl font-bold ml-4 text-gray-800 group-hover:text-${color} transition-colors duration-300`}
+          >
+            {title}
+          </h3>
         </div>
-        <h3
-          className={`text-xl font-bold ml-4 text-gray-800 group-hover:text-${color} transition-colors duration-300`}
+        <p className="text-gray-600 mb-6 flex-grow line-clamp-2">
+          {description}
+        </p>
+        <button
+          className={`${color.replace(
+            "bg-",
+            "text-"
+          )} font-semibold flex items-center transition-all duration-300 group-hover:translate-x-2`}
         >
-          {title}
-        </h3>
+          Learn More
+          <FaArrowRight className="ml-2 transition-transform duration-300 group-hover:translate-x-1" />
+        </button>
       </div>
-      <p className="text-gray-600 mb-6 flex-grow">{description}</p>
-      <Link
-        href={`${link}`}
-        className={`${color.replace(
-          "bg-",
-          "text-"
-        )} font-semibold flex items-center transition-all duration-300 group-hover:translate-x-2`}
-      >
-        Learn More
-        <FaArrowRight className="ml-2 transition-transform duration-300 group-hover:translate-x-1" />
-      </Link>
     </div>
-  </div>
+  </Link>
 );
 
 const ServicePromotion = () => {
