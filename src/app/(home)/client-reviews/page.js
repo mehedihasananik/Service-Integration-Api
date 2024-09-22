@@ -1,19 +1,31 @@
+import ClientReviewsContent1 from "@/Components/ClientReviewsContent/ClientReviewsContent1";
+import ClientReviewsContent3 from "@/Components/ClientReviewsContent/ClientReviewsContent3";
 import Container from "@/Components/Container/Container";
-import React from "react";
+import { testimonials_itemsApi } from "@/config/apis";
 
-const Client_Reviews = () => {
-  async function getTestimonialContent() {
-    const res = await fetch(`${testimonials_itemsApi}`, {
-      next: { revalidate: 120 },
-    });
+async function getTestimonialContent() {
+  const res = await fetch(testimonials_itemsApi, {
+    next: { revalidate: 120 },
+  });
 
-    if (!res.ok) {
-      throw new Error("Failed to fetch data");
-    }
-    return res.json();
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
   }
+  return res.json();
+}
 
-  return <Container>Client_Reviews</Container>;
+const ClientReviews = async () => {
+  const testimonial = await getTestimonialContent();
+  // console.log(testimonial.items);
+  return (
+    <div className=" bg-gray-50">
+      <Container>
+        <ClientReviewsContent1 testimonials={testimonial.items} />
+
+        <ClientReviewsContent3 testimonials={testimonial.items} />
+      </Container>
+    </div>
+  );
 };
 
-export default Client_Reviews;
+export default ClientReviews;
