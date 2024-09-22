@@ -15,75 +15,98 @@ export async function generateMetadata({ params, searchParams }, parent) {
   const service = await fetch(`${singeServiceDetails}/${id}`).then((res) =>
     res.json()
   );
-  console.log(service);
 
   // Optionally access and extend (rather than replace) metadata
   const previousImages = (await parent).openGraph?.images || [];
 
   return {
-    title: `${service?.meta.seo_meta?.title}`,
-    description: `${service?.meta.seo_meta?.description}`,
+    title: service?.meta.seo_meta?.title,
+    description: service?.meta.seo_meta?.description,
     keywords: service?.meta?.seo_meta?.keywords,
-    authors: [{ name: service?.meta?.seo_meta?.author }],
+    authors: [{ name: service?.meta?.seo_meta?.pagename }],
     robots: service?.meta?.seo_meta?.robots,
+    viewport: "width=device-width, initial-scale=1.0, shrink-to-fit=no",
+    charSet: "UTF-8",
     other: {
-      googlebot: service?.meta?.seo_meta?.googlebot,
-      language: service?.meta?.seo_meta?.language,
-      copyright: service?.meta?.seo_meta?.copyright,
-      distribution: service?.meta?.seo_meta?.distribution,
-      coverage: service?.meta?.seo_meta?.coverage,
-      rating: service?.meta?.seo_meta?.rating,
-      owner: service?.meta?.seo_meta?.owner,
-      "google-site-verification":
-        service?.meta?.seo_meta?.["google-site-verification"],
-      "msvalidate.01": service?.meta?.seo_meta?.["msvalidate.01"],
-
-      facebook: service?.meta?.seo_meta?.facebook,
-      "article:published_time":
-        service?.meta?.seo_meta?.["article:published_time"],
+      revised: service?.meta?.seo_meta?.revised,
+      pagename: service?.meta?.seo_meta?.pagename,
+      "twitter:widgets:csp": service?.meta?.seo_meta?.["twitter:widgets:csp"],
+      "envobytemeta:currency":
+        service?.meta?.seo_meta?.["envobytemeta:currency"],
+      "envobytemeta:locale": service?.meta?.seo_meta?.["envobytemeta:locale"],
+      app_environment: service?.meta?.seo_meta?.app_environment,
+      es6_browser: service?.meta?.seo_meta?.es6_browser,
+      "geo.position": service?.meta?.seo_meta?.["geo.position"],
+      "geo.placename": service?.meta?.seo_meta?.["geo.placename"],
+      "geo.region": service?.meta?.seo_meta?.["geo.region"],
+      "X-UA-Compatible": "IE=edge",
+      "Content-Type": "text/html; charset=utf-8",
+      "x-dns-prefetch-control": "on",
+      "Content-Security-Policy": "default-src 'self'",
+      referrer: "no-referrer-when-downgrade",
+      HandheldFriendly: "true",
+      MobileOptimized: "320",
+      "apple-mobile-web-app-capable": "yes",
+      "apple-mobile-web-app-status-bar-style": "black",
+      author: "Envobyte Ltd",
+      googlebot: "index, follow",
+      bingbot: "index, follow",
+      yandex: "index, follow",
+      baiduspider: "index, follow",
+      slurp: "index, follow",
+      rating: "General",
+      distribution: "Global",
+      coverage: "Worldwide",
+      copyright: "Copyright © 2024 Envobyte Ltd. All rights reserved.",
+      "theme-color": "#ffffff",
     },
     openGraph: {
-      title:
-        service?.meta?.og?.title ||
-        `${service.service_details[0].sevice_items_name} || Services`,
-      description: service?.meta?.og?.description || service.description,
+      title: service?.meta?.og?.title,
+      description: service?.meta?.og?.description,
       type: service?.meta?.og?.type,
+      locale: service?.meta?.og?.locale,
+      "image:width": service?.meta?.og?.["image:width"],
+      "image:height": service?.meta?.og?.["image:height"],
       siteName: service?.meta?.og?.site_name,
       url: service?.meta?.og?.url,
       images: [
         "/some-specific-page-image.jpg",
         ...previousImages,
-        ...(service?.meta?.og?.image
-          ? [
-              {
-                url: service.meta.og.image,
-                width: 800,
-                height: 600,
-                alt: service.meta.og.title,
-              },
-            ]
-          : []),
+        {
+          url: service?.meta?.og?.image,
+          width: parseInt(service?.meta?.og?.["image:width"]) || 1200,
+          height: parseInt(service?.meta?.og?.["image:height"]) || 630,
+          alt: service?.meta?.og?.title,
+        },
       ],
     },
     twitter: {
       card: service?.meta?.twitter?.card,
       site: service?.meta?.twitter?.site,
-      title:
-        service?.meta?.twitter?.title ||
-        `${service.service_details[0].sevice_items_name} || Services`,
-      description: service?.meta?.twitter?.description || service.description,
-      images: service?.meta?.twitter?.image
-        ? [service.meta.twitter.image]
+      title: service?.meta?.twitter?.title,
+      description: service?.meta?.twitter?.description,
+      creator: service?.meta?.twitter?.creator,
+      images: service?.meta?.twitter?.images0
+        ? [service?.meta?.twitter?.images0]
         : undefined,
     },
     alternates: {
-      canonical: service?.meta?.seo_meta?.canonical,
+      canonical: `https://www.envobyte.com/services/${service?.meta?.seo_meta?.canonical}`,
     },
+    icons: {
+      icon: [
+        { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+        { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      ],
+      apple: [
+        { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+      ],
+    },
+    manifest: "/site.webmanifest",
   };
 }
 
 const SinglePage = async ({ params }) => {
-  // console.log(params.id);
   // Fetch data for the page
   const service = await fetch(`${singeServiceDetails}/${params?.id}`).then(
     (res) => res?.json()
@@ -94,8 +117,6 @@ const SinglePage = async ({ params }) => {
   const packages = await fetch(`${singleService_package}/${params?.id}`).then(
     (res) => res?.json()
   );
-
-  // console.log(service);
 
   return (
     <>

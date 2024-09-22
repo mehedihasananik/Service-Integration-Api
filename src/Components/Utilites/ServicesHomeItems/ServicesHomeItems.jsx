@@ -9,7 +9,6 @@ import ServiceCard from "../ServiceCard/ServiceCard";
 import ViewAllButton from "../ViewAllButton/ViewAllButton";
 import GlobalButtonColored from "../GlobalButton/GlobalButtonColored";
 
-
 const breakpoints = {
   320: { slidesPerView: 1, spaceBetween: 10 },
   768: { slidesPerView: 2.2, spaceBetween: 20 },
@@ -29,7 +28,9 @@ const ServicesHomeItems = ({ services, details }) => {
   const swiperRef = useRef(null);
 
   // Filter services to only include those with "featured": "1"
-  const featuredServices = services.filter(service => service.featured === "1");
+  const featuredServices = services.filter(
+    (service) => service.featured === "1"
+  );
 
   const handlePrevSlide = () => {
     swiperRef.current?.swiper.slidePrev();
@@ -40,9 +41,7 @@ const ServicesHomeItems = ({ services, details }) => {
     swiperRef.current?.swiper.slideNext();
     setPreviousSlide(currentSlide);
   };
-
-  
-
+  console.log(featuredServices);
   return (
     <div id="serviceSlider" className="serviceSlider md:px-0 xl:px-0">
       <div className="4xl:px-[0] xl:pl-[9.5%] 3xl:pl-[12.5%] 3xll:pl-[14%] 4xl:pl-[15.5%]">
@@ -83,18 +82,19 @@ const ServicesHomeItems = ({ services, details }) => {
                 pagination={{
                   clickable: true,
                 }}
-                modules={[Pagination,Autoplay]}
+                modules={[Pagination, Autoplay]}
                 autoplay={{ delay: 2000, disableOnInteraction: false }}
               >
                 {featuredServices.map((service, index) => (
                   <SwiperSlide
                     key={service.id}
-                    className={`transition-all duration-500 ${index === previousSlide &&
+                    className={`transition-all duration-500 ${
+                      index === previousSlide &&
                       index !== currentSlide &&
                       currentSlide !== previousSlide - 1
-                      ? ""
-                      : ""
-                      }`}
+                        ? ""
+                        : ""
+                    }`}
                   >
                     <ServiceCard service={service} />
                   </SwiperSlide>
