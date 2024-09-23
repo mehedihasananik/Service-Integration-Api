@@ -1,119 +1,50 @@
 import PortfolioPage from "@/Components/PagesComponents/PortfolioPage/PortfolioPage";
 import JsonLd from "@/Components/Utilites/JsonLd/JsonLd";
 import { apiEndpoint } from "@/config/config";
+import { fetchMultipleData } from "@/config/fetchData";
+import { generateCommonMetadata } from "@/config/generateMetadata";
 
-async function getMetadata() {
-  const service = await fetch(`${apiEndpoint}/sevice_portfolio_update`).then(
-    (res) => res.json()
-  );
+// This function fetches all required data for the portfolio page
+async function getPageData() {
+  try {
+    const [portfolios, portfoliosCategories, services] =
+      await fetchMultipleData([
+        "/sevice_portfolio_update",
+        "/category",
+        "/search_sevice_category/all",
+      ]);
 
-  return service;
-}
-
-export async function generateMetadata() {
-  const service = await getMetadata();
-  // console.log(service?.meta?.seo_meta?.owner);
-
-  return {
-    title: `${service?.meta?.seo_meta?.title}`,
-    description: service?.meta?.seo_meta?.description,
-    keywords: service?.meta?.seo_meta?.keywords,
-    authors: [{ name: service?.meta?.seo_meta?.author }],
-    robots: service?.meta?.seo_meta?.robots,
-    other: {
-      googlebot: service?.meta?.seo_meta?.googlebot,
-      language: service?.meta?.seo_meta?.language,
-      copyright: service?.meta?.seo_meta?.copyright,
-      distribution: service?.meta?.seo_meta?.distribution,
-      coverage: service?.meta?.seo_meta?.coverage,
-      rating: service?.meta?.seo_meta?.rating,
-      owner: service?.meta?.seo_meta?.owner,
-      "google-site-verification":
-        service?.meta?.seo_meta?.["google-site-verification"],
-      "msvalidate.01": service?.meta?.seo_meta?.["msvalidate.01"],
-
-      facebook: service?.meta?.seo_meta?.facebook,
-      "article:published_time":
-        service?.meta?.seo_meta?.["article:published_time"],
-    },
-    openGraph: {
-      title: service?.meta?.og?.title,
-      description: service?.meta?.og?.description,
-      type: service?.meta?.og?.type,
-      siteName: service?.meta?.og?.site_name,
-      url: service?.meta?.og?.url,
-      images: [
-        {
-          url: service?.meta?.og?.image,
-          width: 800,
-          height: 600,
-          alt: service?.meta?.og?.title,
-        },
-      ],
-    },
-    twitter: {
-      card: service?.meta?.twitter?.card,
-      site: service?.meta?.twitter?.site,
-      title: service?.meta?.twitter?.title,
-      description: service?.meta?.twitter?.description,
-      images: [service?.meta?.twitter?.image],
-    },
-    alternates: {
-      canonical: service?.meta?.seo_meta?.canonical,
-    },
-  };
-}
-
-async function portfolioServices() {
-  const res = await fetch(`${apiEndpoint}/sevice_portfolio_update`, {
-    next: { revalidate: 10 },
-  });
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
+    return { portfolios, portfoliosCategories, services };
+  } catch (error) {
+    console.error("Error fetching page data:", error);
+    throw error;
   }
-  return res.json();
 }
-async function portfoliosCategoriesApi() {
-  const res = await fetch(`${apiEndpoint}/category`, {
-    next: { revalidate: 10 },
-  });
 
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
-  return res.json();
-}
-async function servicesApi() {
-  const res = await fetch(`${apiEndpoint}/search_sevice_category/all`, {
-    next: { revalidate: 10 },
-  });
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
-  return res.json();
+export async function generateMetadata(parent) {
+  const { portfolios } = await getPageData();
+  return generateCommonMetadata(portfolios, parent);
 }
 
 const Portfolio = async () => {
-  // Fetch data for the page
+  try {
+    const { portfolios, portfoliosCategories, services } = await getPageData();
 
-  const portfolios = await portfolioServices();
-  const portfoliosCategories = await portfoliosCategoriesApi();
-  const services = await servicesApi();
-  // console.log(portfolios.page_content);
-
-  return (
-    <div className="max-w-[1520px] mx-auto px-[6%] md:px-[4%] lg:px-[2%] 4xl:px-[2%]">
-      <JsonLd data={portfolios?.meta?.json_ld} />
-      <PortfolioPage
-        portfolios={portfolios.ServiceportfolioArray}
-        portfoliosCategories={portfoliosCategories}
-        services={services}
-        serviceDetails={portfolios.page_content}
-      />
-    </div>
-  );
+    return (
+      <div className="max-w-[1520px] mx-auto px-[6%] md:px-[4%] lg:px-[2%] 4xl:px-[2%]">
+        <JsonLd data={portfolios?.meta?.json_ld} />
+        <PortfolioPage
+          portfolios={portfolios.ServiceportfolioArray}
+          portfoliosCategories={portfoliosCategories}
+          services={services}
+          serviceDetails={portfolios.page_content}
+        />
+      </div>
+    );
+  } catch (error) {
+    console.error("Error rendering portfolio page:", error);
+    return <div>Error loading portfolio. Please try again later.</div>;
+  }
 };
 
 export default Portfolio;

@@ -41,7 +41,7 @@ const ServicesHomeItems = ({ services, details }) => {
     swiperRef.current?.swiper.slideNext();
     setPreviousSlide(currentSlide);
   };
-  console.log(featuredServices);
+  // console.log(featuredServices);
   return (
     <div id="serviceSlider" className="serviceSlider md:px-0 xl:px-0">
       <div className="4xl:px-[0] xl:pl-[9.5%] 3xl:pl-[12.5%] 3xll:pl-[14%] 4xl:pl-[15.5%]">

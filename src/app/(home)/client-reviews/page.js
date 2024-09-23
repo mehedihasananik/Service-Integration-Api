@@ -21,7 +21,6 @@ const ClientReviews = async () => {
     <div className=" bg-gray-50">
       <Container>
         <ClientReviewsContent1 testimonials={testimonial.items} />
-
         <ClientReviewsContent3 testimonials={testimonial.items} />
       </Container>
     </div>

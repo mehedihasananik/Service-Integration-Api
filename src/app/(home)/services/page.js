@@ -2,106 +2,48 @@ import ServicesPageContent from "@/Components/PagesComponents/ServicesPageConten
 import JsonLd from "@/Components/Utilites/JsonLd/JsonLd";
 import UserLoading from "@/Components/Utilites/UserLoading/UserLoading";
 import { allsServiceItemsApi, serviceListApi } from "@/config/apis";
-import { apiEndpoint } from "@/config/config";
+import { fetchMultipleData } from "@/config/fetchData";
+
+import { generateCommonMetadata } from "@/config/generateMetadata";
 import React, { Suspense } from "react";
 
-async function getMetadata() {
-  const service = await fetch(`${apiEndpoint}/sevice_items`).then((res) =>
-    res.json()
-  );
-
-  return service;
-}
-
-export async function generateMetadata() {
-  const service = await getMetadata();
-  // console.log(service?.meta?.seo_meta?.owner);
-
-  return {
-    title: `${service?.meta?.seo_meta?.title}`,
-    description: service?.meta?.seo_meta?.description,
-    keywords: service?.meta?.seo_meta?.keywords,
-    authors: [{ name: service?.meta?.seo_meta?.author }],
-    robots: service?.meta?.seo_meta?.robots,
-    other: {
-      googlebot: service?.meta?.seo_meta?.googlebot,
-      language: service?.meta?.seo_meta?.language,
-      copyright: service?.meta?.seo_meta?.copyright,
-      distribution: service?.meta?.seo_meta?.distribution,
-      coverage: service?.meta?.seo_meta?.coverage,
-      rating: service?.meta?.seo_meta?.rating,
-      owner: service?.meta?.seo_meta?.owner,
-      "google-site-verification":
-        service?.meta?.seo_meta?.["google-site-verification"],
-      "msvalidate.01": service?.meta?.seo_meta?.["msvalidate.01"],
-
-      facebook: service?.meta?.seo_meta?.facebook,
-      "article:published_time":
-        service?.meta?.seo_meta?.["article:published_time"],
-    },
-    openGraph: {
-      title: service?.meta?.og?.title,
-      description: service?.meta?.og?.description,
-      type: service?.meta?.og?.type,
-      siteName: service?.meta?.og?.site_name,
-      url: service?.meta?.og?.url,
-      images: [
-        {
-          url: service?.meta?.og?.image,
-          width: 800,
-          height: 600,
-          alt: service?.meta?.og?.title,
-        },
-      ],
-    },
-    twitter: {
-      card: service?.meta?.twitter?.card,
-      site: service?.meta?.twitter?.site,
-      title: service?.meta?.twitter?.title,
-      description: service?.meta?.twitter?.description,
-      images: [service?.meta?.twitter?.image],
-    },
-    alternates: {
-      canonical: service?.meta?.seo_meta?.canonical,
-    },
-  };
-}
-
-async function getServices() {
+// This function fetches all required data for the services page
+async function getPageData() {
   try {
-    const [res1, res2] = await Promise?.all([
-      fetch(`${serviceListApi}`, { next: { revalidate: 10 } }),
-      fetch(`${allsServiceItemsApi}`, { next: { revalidate: 10 } }),
+    const [serviceCategories, servicesData] = await fetchMultipleData([
+      serviceListApi,
+      allsServiceItemsApi,
     ]);
 
-    if (!res1?.ok || !res2?.ok) {
-      throw new Error("Failed to fetch data");
-    }
-
-    const serviceCategories = await res1?.json();
-    const services = await res2?.json();
-
-    return { serviceCategories, services };
+    return { serviceCategories, servicesData };
   } catch (error) {
-    console.error("Error fetching datas:", error);
+    console.error("Error fetching page data:", error);
     throw error;
   }
 }
 
-export default async function ServicesPage() {
-  const { serviceCategories, services } = await getServices();
-  // console.log(services)
+export async function generateMetadata(parent) {
+  const { servicesData } = await getPageData();
+  return generateCommonMetadata(servicesData, parent);
+}
 
-  return (
-    <>
-      <JsonLd data={services?.meta?.json_ld} />
-      <Suspense fallback={<UserLoading />}>
-        <ServicesPageContent
-          serviceCategories={serviceCategories}
-          services={services.ServiceItemsArray}
-          serviceDetails={services?.page_content}
-        />
-      </Suspense>
-    </>
-  );
+export default async function ServicesPage() {
+  try {
+    const { serviceCategories, servicesData } = await getPageData();
+    return (
+      <>
+        <JsonLd data={servicesData?.meta?.json_ld} />
+        <Suspense fallback={<UserLoading />}>
+          <ServicesPageContent
+            serviceCategories={serviceCategories}
+            services={servicesData.ServiceItemsArray}
+            serviceDetails={servicesData?.page_content}
+          />
+        </Suspense>
+      </>
+    );
+  } catch (error) {
+    console.error("Error rendering services page:", error);
+    return <div>Error loading services. Please try again later.</div>;
+  }
 }

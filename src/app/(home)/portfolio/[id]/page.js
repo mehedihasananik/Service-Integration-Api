@@ -1,93 +1,37 @@
 import PortfolioDetails from "@/Components/PagesComponents/PortfolioDetails/PortfolioDetails";
 import JsonLd from "@/Components/Utilites/JsonLd/JsonLd";
-import { apiEndpoint } from "@/config/config";
+import { fetchData } from "@/config/fetchData";
+import { generateCommonMetadata } from "@/config/generateMetadata";
 
-export async function generateMetadata({ params, searchParams }, parent) {
-  const id = params.id;
+// This function fetches the portfolio item data
+async function getPortfolioItemData(id) {
+  try {
+    return await fetchData(`/portfolio_details/${id}`);
+  } catch (error) {
+    console.error("Error fetching portfolio item data:", error);
+    throw error;
+  }
+}
 
-  // Fetch data for generating metadata
-  const service = await fetch(`${apiEndpoint}/portfolio_details/${id}`).then(
-    (res) => res.json()
-  );
-
-  // Optionally access and extend (rather than replace) metadata
-  const previousImages = (await parent).openGraph?.images || [];
-
-  console.log(service.meta.seo_meta.title);
-
-  return {
-    title: `${service.meta.seo_meta.title} || Portfolios`,
-    description: service.meta.seo_meta.description,
-    keywords: service?.meta?.seo_meta?.keywords,
-    authors: [{ name: service?.meta?.seo_meta?.author }],
-    robots: service?.meta?.seo_meta?.robots,
-    other: {
-      googlebot: service?.meta?.seo_meta?.googlebot,
-      language: service?.meta?.seo_meta?.language,
-      copyright: service?.meta?.seo_meta?.copyright,
-      distribution: service?.meta?.seo_meta?.distribution,
-      coverage: service?.meta?.seo_meta?.coverage,
-      rating: service?.meta?.seo_meta?.rating,
-      owner: service?.meta?.seo_meta?.owner,
-      "google-site-verification":
-        service?.meta?.seo_meta?.["google-site-verification"],
-      "msvalidate.01": service?.meta?.seo_meta?.["msvalidate.01"],
-
-      facebook: service?.meta?.seo_meta?.facebook,
-      "article:published_time":
-        service?.meta?.seo_meta?.["article:published_time"],
-    },
-    openGraph: {
-      title:
-        service?.meta?.og?.title ||
-        `${service.service_details[0].sevice_items_name} || Services`,
-      description: service?.meta?.og?.description || service.description,
-      type: service?.meta?.og?.type,
-      siteName: service?.meta?.og?.site_name,
-      url: service?.meta?.og?.url,
-      images: [
-        "/some-specific-page-image.jpg",
-        ...previousImages,
-        ...(service?.meta?.og?.image
-          ? [
-            {
-              url: service.meta.og.image,
-              width: 800,
-              height: 600,
-              alt: service.meta.og.title,
-            },
-          ]
-          : []),
-      ],
-    },
-    twitter: {
-      card: service?.meta?.twitter?.card,
-      site: service?.meta?.twitter?.site,
-      title:
-        service?.meta?.twitter?.title ||
-        `${service.service_details[0].sevice_items_name} || Services`,
-      description: service?.meta?.twitter?.description || service.description,
-      images: service?.meta?.twitter?.image
-        ? [service.meta.twitter.image]
-        : undefined,
-    },
-    alternates: {
-      canonical: service?.meta?.seo_meta?.canonical,
-    },
-  };
+export async function generateMetadata({ params }, parent) {
+  const portfolioItem = await getPortfolioItemData(params.id);
+  return generateCommonMetadata(portfolioItem, parent);
 }
 
 const SinglePage = async ({ params }) => {
-  const singlePortfolioItem = await fetch(
-    `${apiEndpoint}/portfolio_details/${params?.id}`
-  ).then((res) => res?.json());
+  try {
+    const singlePortfolioItem = await getPortfolioItemData(params.id);
 
-  return (
-    <div>
-      <JsonLd data={singlePortfolioItem?.meta?.json_ld} />
-      <PortfolioDetails singlePortfolioItem={singlePortfolioItem} />
-    </div>
-  );
+    return (
+      <div>
+        <JsonLd data={singlePortfolioItem?.meta?.json_ld} />
+        <PortfolioDetails singlePortfolioItem={singlePortfolioItem} />
+      </div>
+    );
+  } catch (error) {
+    console.error("Error rendering portfolio item page:", error);
+    return <div>Error loading portfolio item. Please try again later.</div>;
+  }
 };
 
 export default SinglePage;

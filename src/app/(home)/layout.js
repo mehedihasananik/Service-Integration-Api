@@ -24,7 +24,7 @@ export default function RootLayout({ children }) {
         <link
           rel="icon"
           href="https://i.ibb.co/nM2nH6n/android-chrome-256x256.png"
-          sizes="any"
+          sizes="16x16"
         />
         <GoogleTagManagerScript />
         <Analytics />

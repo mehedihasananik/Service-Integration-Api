@@ -1,8 +1,6 @@
-import { ArrowRight, Calendar, Eye } from 'lucide-react';
-import Image from 'next/image';
-import React from 'react'
-
-
+import { ArrowRight, Calendar, Eye } from "lucide-react";
+import Image from "next/image";
+import React from "react";
 
 const BlogCard = ({ item }) => {
   // console.log(item.title)
@@ -12,7 +10,7 @@ const BlogCard = ({ item }) => {
       <div className="">
         <div className="relative w-full aspect-[3/2]">
           <Image
-            src={item.featured_image}
+            src={item.image}
             alt={item.alt_text}
             layout="fill"
             objectFit="cover"
@@ -24,9 +22,6 @@ const BlogCard = ({ item }) => {
             </span>
           )}
         </div>
-
-
-
       </div>
       <div className="p-6 h-[250px]">
         <div className="flex items-center text-gray-500 mb-2 gap-x-5">
@@ -40,9 +35,7 @@ const BlogCard = ({ item }) => {
           </div>
         </div>
         <h2 className="text-xl font-bold mb-2 text-gray-800 line-clamp-2 hover:text-[#FF693B] transition-colors">
-
           {item.title}
-
         </h2>
         <div>
           <p className="text-gray-600 line-clamp-3">{item.excerpt}</p>
@@ -52,7 +45,7 @@ const BlogCard = ({ item }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default BlogCard
+export default BlogCard;

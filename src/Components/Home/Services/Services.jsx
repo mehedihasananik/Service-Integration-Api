@@ -2,18 +2,8 @@ import ServicesHomeItems from "@/Components/Utilites/ServicesHomeItems/ServicesH
 import { servicesApi } from "@/config/apis";
 
 // data fetching from server side
-// async function getServiceItems() {
-//   const res = await fetch(`https://v2admin.envobyte.com/api/sevice_items`, {
-//     next: { revalidate: 120 },
-//   });
-
-//   if (!res.ok) {
-//     throw new Error("Failed to fetch data");
-//   }
-//   return res.json();
-// }
 async function getServiceItems() {
-  const res = await fetch(`${servicesApi}`, {
+  const res = await fetch(`https://v2admin.envobyte.com/api/sevice_items`, {
     next: { revalidate: 120 },
   });
 
@@ -22,6 +12,16 @@ async function getServiceItems() {
   }
   return res.json();
 }
+// async function getServiceItems() {
+//   const res = await fetch(`${servicesApi}`, {
+//     next: { revalidate: 120 },
+//   });
+
+//   if (!res.ok) {
+//     throw new Error("Failed to fetch data");
+//   }
+//   return res.json();
+// }
 
 const Services = async () => {
   // getting the server data

@@ -14,8 +14,22 @@ const ClientReviewsContent1 = ({ testimonials }) => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
         {testimonials?.map((testimonial) => (
           <div key={testimonial.id} className="flex flex-col h-full">
-            <div className="group h-full flex flex-col p-8 bg-white rounded-xl transition-all duration-700 border border-gray-200 hover:border-[#FF693B] hover:scale-105 shadow-lg hover:shadow-2xl hover:border-transparent hover:bg-gradient-to-br from-[#f0f4f8] to-white">
-              <div className="relative flex-grow w-full">
+            <div className="group h-full flex flex-col p-8 bg-white rounded-xl transition-all duration-700 border border-gray-200 shadow-lg hover:shadow-2xl relative overflow-hidden">
+              {/* Pseudo-element for hover border */}
+              <div className="absolute inset-0 rounded-xl border-2 border-[#FF693B] opacity-0 transition-opacity duration-700 group-hover:opacity-100"></div>
+
+              {/* Fiverr image in the top right corner */}
+              <div className="absolute top-8 right-4 w-10 z-10">
+                <Image
+                  src="/assets/fiver.png"
+                  alt="Fiverr"
+                  width={30}
+                  height={25}
+                  className="opacity-70 transition-opacity duration-300 group-hover:opacity-100"
+                />
+              </div>
+
+              <div className="relative flex-grow w-full z-10">
                 <div className="flex flex-col w-full mb-6">
                   <div className="flex items-center w-full">
                     <div className="relative w-20 h-20 rounded-full overflow-hidden border-2 border-[#123390] mr-4 flex-shrink-0 shadow-md">
@@ -24,7 +38,7 @@ const ClientReviewsContent1 = ({ testimonials }) => {
                         alt={testimonial?.name || "Testimonial avatar"}
                         layout="fill"
                         objectFit="cover"
-                        className="rounded-full transition-transform duration-300 transform group-hover:scale-110"
+                        className="rounded-full"
                       />
                     </div>
                     <div className="flex-grow">
@@ -35,15 +49,6 @@ const ClientReviewsContent1 = ({ testimonials }) => {
                         <p className="text-sm text-gray-600 ">
                           {testimonial?.designation}
                         </p>
-                        <div className="w-10">
-                          <Image
-                            src="/assets/fiver.png"
-                            alt="Fiverr"
-                            width={30}
-                            height={25}
-                            className="opacity-70 transition-opacity duration-300 group-hover:opacity-100"
-                          />
-                        </div>
                       </div>
                       <div className="flex items-center mt-2 space-x-1">
                         {[...Array(5)].map((_, i) => (
@@ -57,10 +62,8 @@ const ClientReviewsContent1 = ({ testimonials }) => {
                   </div>
                 </div>
                 <div className="flex-grow">
-                  <p className="text-base text-gray-700 italic leading-relaxed transition-all duration-300 group-hover:text-gray-900">
-                    {testimonial?.message?.length > 150
-                      ? `${testimonial?.message?.slice(0, 150)}...`
-                      : testimonial?.message}
+                  <p className="text-[17px] text-gray-700 italic leading-relaxed transition-all duration-300 group-hover:text-gray-900 line-clamp-5">
+                    {testimonial?.message}
                   </p>
                 </div>
               </div>

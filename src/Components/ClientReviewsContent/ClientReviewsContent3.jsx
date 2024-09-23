@@ -18,12 +18,12 @@ const ClientReviewsContent3 = ({ testimonials }) => {
         {testimonials?.map((testimonial) => (
           <div
             key={testimonial.id}
-            className="flex flex-col h-full p-6 bg-white rounded-xl border border-gray-200 shadow-lg transition-all duration-700 transform hover:scale-105 hover:shadow-2xl hover:border-transparent hover:bg-gradient-to-br from-[#f0f4f8] to-white"
+            className="flex flex-col h-full p-6 bg-white rounded-xl border border-gray-200 shadow-lg transition-all duration-700 transform hover:shadow-2xl hover:border-transparent hover:bg-gradient-to-br from-[#f0f4f8] to-white"
           >
             {/* Card Inner Content */}
             <div className="relative flex flex-col items-center text-center">
               {/* Client Avatar */}
-              <div className="relative w-24 h-24 mb-4 rounded-full border-4 border-[#123390] shadow-lg transition-all duration-300 transform hover:scale-110 hover:shadow-xl">
+              <div className="relative w-24 h-24 mb-4 rounded-full border-4 border-[#123390] shadow-lg transition-all duration-300 transform hover:shadow-xl">
                 <Image
                   src={testimonial?.image}
                   alt={testimonial?.name || "Testimonial avatar"}
@@ -34,7 +34,7 @@ const ClientReviewsContent3 = ({ testimonials }) => {
               </div>
 
               {/* Client Info and Rating */}
-              <div className="flex justify-center items-center space-x-4 w-full mb-4">
+              <div className="flex justify-center items-center space-x-4 w-full mb-4 ml-[10%]">
                 {/* Stars */}
                 <div className="flex">
                   {[...Array(5)].map((_, i) => (
@@ -50,7 +50,7 @@ const ClientReviewsContent3 = ({ testimonials }) => {
                   <Image
                     src="/assets/fiver.png"
                     alt="Fiverr"
-                    width={50}
+                    width={30}
                     height={25}
                     className="opacity-80 hover:opacity-100 transition-opacity duration-300"
                   />
@@ -61,17 +61,14 @@ const ClientReviewsContent3 = ({ testimonials }) => {
               <h3 className="text-xl font-semibold text-[#123390] mb-1">
                 {testimonial?.name}
               </h3>
-              <p className="text-sm text-gray-500 mb-4">
+              <p className="text-sm text-gray-500 mb-2">
                 {testimonial?.designation}
               </p>
 
               {/* Testimonial Message */}
               <div className="relative">
-                <FaQuoteLeft className="text-5xl text-[#FF693B] opacity-10 absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-8" />
-                <p className="text-lg italic text-gray-700 px-4 leading-relaxed">
-                  {testimonial?.message?.length > 150
-                    ? `${testimonial?.message?.slice(0, 150)}...`
-                    : testimonial?.message}
+                <p className="text-[17px] text-gray-700 italic leading-relaxed transition-all duration-300 group-hover:text-gray-900 line-clamp-5">
+                  {testimonial?.message}
                 </p>
               </div>
             </div>

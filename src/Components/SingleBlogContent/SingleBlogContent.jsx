@@ -98,7 +98,7 @@ const SingleBlogContent = ({
                     }`}
                   ></div>
                   <Image
-                    src={singleBlog?.featured_image}
+                    src={singleBlog?.image}
                     alt={singleBlog?.title || "Blog featured image"}
                     layout="fill"
                     objectFit="cover"
