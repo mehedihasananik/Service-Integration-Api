@@ -3,11 +3,15 @@ import Container from "@/Components/Container/Container";
 import BrandCarousel from "@/Components/Utilites/BrandCarousel/BrandCarousel";
 import UserLoading from "@/Components/Utilites/UserLoading/UserLoading";
 import { brandsApi } from "@/config/apis";
+import { fetchData } from "@/config/fetchData";
 
 async function fetchBrands() {
-  const res = await fetch(brandsApi, { next: { revalidate: 120 } });
-  if (!res.ok) throw new Error("Failed to fetch brands");
-  return res?.json();
+  try {
+    return await fetchData(brandsApi);
+  } catch (error) {
+    console.error("Failed to fetch brands", error);
+    throw error;
+  }
 }
 
 const Brands = async () => {

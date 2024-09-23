@@ -148,7 +148,7 @@ const TestimonialHomeItems = ({ testimonials, details }) => {
                   pagination={{
                     clickable: true,
                   }}
-                  modules={[Pagination,Autoplay]}
+                  modules={[Pagination, Autoplay]}
                   autoplay={{ delay: 2000, disableOnInteraction: false }}
                 >
                   {testimonials?.map((testimonial) => (
@@ -156,15 +156,15 @@ const TestimonialHomeItems = ({ testimonials, details }) => {
                       <div className="h-[400px] pl-4 mt-10 bg-[#F8FAFC] lg:hover:bg-[#1E293B] group  rounded-md transition-all duration-300 ">
                         <div className="relative">
                           <div className="absolute top-[-25px] left-[140px] md:left-[120px] lg:left-0">
-                              <div className="relative w-[56px] h-[56px] rounded-full overflow-hidden">
-                                <Image
-                                  src={testimonial?.image}
-                                  alt={testimonial?.name || "Testimonial avatar"}
-                                  layout="fill"
-                                  objectFit="cover"
-                                  className="rounded-full"
-                                />
-                              </div>
+                            <div className="relative w-[56px] h-[56px] rounded-full overflow-hidden">
+                              <Image
+                                src={testimonial?.image}
+                                alt={testimonial?.name || "Testimonial avatar"}
+                                layout="fill"
+                                objectFit="cover"
+                                className="rounded-full"
+                              />
+                            </div>
                           </div>
                           <div className="pt-14 pb-4">
                             <h3 className="text-[24px] text-[#333333] lg:group-hover:text-[#fff] font-Raleway font-bold">

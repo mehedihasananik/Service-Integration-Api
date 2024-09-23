@@ -2,18 +2,17 @@ import Container from "@/Components/Container/Container";
 import BannerItems from "@/Components/Utilites/BannerItems/BannerItems";
 import UserLoading from "@/Components/Utilites/UserLoading/UserLoading";
 import { bannerApi } from "@/config/apis";
+import { fetchData } from "@/config/fetchData";
 import { Suspense } from "react";
 
-// api fetching from sever side
+// api fetching from server side
 async function getBannerContent() {
-  const res = await fetch(`${bannerApi}`, {
-    next: { revalidate: 120 },
-  });
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
+  try {
+    return await fetchData(bannerApi);
+  } catch (error) {
+    console.error("Failed to fetch banner data:", error);
+    throw error;
   }
-  return res.json();
 }
 
 const Banner = async () => {

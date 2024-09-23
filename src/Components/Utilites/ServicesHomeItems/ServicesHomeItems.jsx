@@ -29,7 +29,7 @@ const ServicesHomeItems = ({ services, details }) => {
 
   // Filter services to only include those with "featured": "1"
   const featuredServices = services.filter(
-    (service) => service.featured === "1"
+    (service) => service.featured === "1" || service.featured === 1
   );
 
   const handlePrevSlide = () => {
