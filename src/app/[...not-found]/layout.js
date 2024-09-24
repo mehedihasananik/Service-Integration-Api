@@ -1,4 +1,4 @@
-import "../globals.css";
+import "/src/styles/globals.css";
 
 export const metadata = {
   title: "Not Found | Envobyte Ltd ",

@@ -1,5 +1,5 @@
 import AppHeader from "@/Components/Utilites/AppContents/AppHeader";
-import "../globals.css";
+import "/src/styles/globals.css";
 import AppFooter from "@/Components/Utilites/AppContents/AppFooter";
 
 export const metadata = {

@@ -1,0 +1,101 @@
+@media only screen and (max-width: 2500px) {
+  .image-gallery-left-nav .image-gallery-svg,
+  .image-gallery-right-nav .image-gallery-svg {
+    height: 50px !important;
+    width: 50px !important;
+    background: #fff !important;
+    color: black;
+    border-radius: 100%;
+  }
+  .mySwiper_serviceSlider {
+    height: 591px !important;
+  }
+  .mySwiper_blogSlider {
+    height: 450px !important;
+  }
+}
+
+@media only screen and (max-width: 1500px) {
+  .custom-margin,
+  .no-margin,
+  .no-margin2 {
+    margin-left: 0% !important;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .project_title {
+    display: block;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .image-gallery-left-nav .image-gallery-svg,
+  .image-gallery-right-nav .image-gallery-svg {
+    height: 30px !important;
+    width: 30px !important;
+    background: #fff !important;
+    color: black;
+    border-radius: 100%;
+  }
+  .swiper-slide {
+    display: flex !important;
+    justify-content: center !important;
+  }
+
+  .testimonial_mySwiper {
+    height: 390px !important;
+  }
+  .image-gallery-thumbnails {
+    padding: 12px 0 !important;
+  }
+  .image-gallery-thumbnail .image-gallery-thumbnail-image,
+  .blur_thumb {
+    height: 40px !important;
+  }
+  .react-international-phone-country-selector-dropdown {
+    margin-top: 18px !important;
+    width: 308px !important;
+  }
+  .project_title {
+    display: inline;
+  }
+  .custom-content-container {
+    font-size: 16px;
+  }
+  .custom-content-container h1 {
+    font-size: 24px;
+  }
+  .custom-content-container h2 {
+    font-size: 18px !important;
+    padding: 0 !important;
+    margin: 4px 0 !important;
+  }
+  .custom-content-container h3 {
+    font-size: 18px;
+  }
+  .custom-content-container p {
+    padding: 10px 0 !important;
+  }
+  .custom-content-container [style*="font-size:"] {
+    font-size: inherit !important;
+  }
+  .ql-editor .ql-indent-2:not(.ql-direction-rtl) {
+    padding-left: 0 !important;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .service_section {
+    background-image: none;
+  }
+  .login_singUp {
+    background-image: none;
+  }
+  .testimonial_mySwiper {
+    height: 420px !important;
+  }
+  .mySwiper_serviceSlider {
+    height: 550px !important;
+  }
+}

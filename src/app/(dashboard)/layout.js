@@ -1,5 +1,5 @@
 import { Inter } from "next/font/google";
-import "../globals.css";
+import "/src/styles/globals.css";
 import { Toaster } from "react-hot-toast";
 import DashBoardSideNav from "@/Components/Dashboard/DashBoardSideNav";
 import DashBoardNav from "@/Components/Dashboard/DashBoardNav";
@@ -31,7 +31,7 @@ export default function RootLayout({ children }) {
                   <Suspense>
                     <DashBoardNav />
                   </Suspense>
-                  <div className="bg-[#fff] px-[5%] md:px-0 w-full">
+                  <div className="bg-[#000] px-[5%] md:px-0 w-full">
                     {children}
                   </div>
                 </div>

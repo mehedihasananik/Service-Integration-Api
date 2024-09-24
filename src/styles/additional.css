@@ -1,0 +1,63 @@
+.single_description h3 {
+  font-size: 25px !important;
+  margin: 5px 0 !important;
+  font-weight: 500;
+}
+.single_description h4 {
+  font-size: 16px !important;
+  font-weight: 500;
+}
+.single_description p {
+  font-size: 16px !important;
+  color: #333333;
+  padding: 3px 0 !important;
+}
+.single_description ol li,
+.servicePage_content ol li {
+  font-size: 15px !important;
+  color: #333333;
+}
+.single_description ul li,
+.servicePage_content ul li {
+  font-size: 14px !important;
+  color: #333333;
+}
+.servicePage_content p {
+  font-size: 14px !important;
+  color: #333333;
+}
+.pageHtml h1 {
+  font-size: 40px !important;
+  padding-bottom: 10px !important;
+}
+.pageHtml p {
+  font-size: 16px !important;
+  margin: 5px !important;
+}
+.pageHtml h2 {
+  font-size: 25px !important;
+  margin: 5px 0 !important;
+}
+.pageHtml h3 {
+  font-size: 20px !important;
+  margin: 5px 0 !important;
+}
+.pageHtml ul li {
+  font-size: 16px !important;
+  color: #333333;
+  margin: 5px 0 !important;
+}
+.pageHtml ol li {
+  font-size: 16px !important;
+  color: #333333;
+}
+.ql-editor p {
+  padding: 2px 0 !important;
+}
+.ql-editor ol li:not(.ql-direction-rtl),
+.ql-editor ul li:not(.ql-direction-rtl) {
+  padding-left: 0.5em !important;
+}
+.testimonial_mySwiper {
+  height: 500px !important;
+}

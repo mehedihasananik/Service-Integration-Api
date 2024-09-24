@@ -62,7 +62,7 @@ const ClientReviewsContent1 = ({ testimonials }) => {
                   </div>
                 </div>
                 <div className="flex-grow">
-                  <p className="text-[17px] text-gray-700 italic leading-relaxed transition-all duration-300 group-hover:text-gray-900 line-clamp-5">
+                  <p className="text-[17px] text-gray-700 italic leading-relaxed transition-all duration-300 group-hover:text-gray-900 line-clamp-[7]">
                     {testimonial?.message}
                   </p>
                 </div>
