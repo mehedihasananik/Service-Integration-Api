@@ -21,3 +21,15 @@
     transform: translateY(0);
   }
 }
+.slide-in {
+  animation: customSlideIn 1s ease-in-out;
+}
+
+@keyframes customSlideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}

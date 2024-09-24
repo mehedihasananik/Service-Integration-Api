@@ -52,12 +52,12 @@ const ProjectDetails = ({ userContact }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (!captchaVerified) {
-      toast.error(
-        "Please complete the reCAPTCHA verification before submitting."
-      );
-      return;
-    }
+    // if (!captchaVerified) {
+    //   toast.error(
+    //     "Please complete the reCAPTCHA verification before submitting."
+    //   );
+    //   return;
+    // }
 
     try {
       await validationSchema.validate(formData, { abortEarly: false });
@@ -364,10 +364,10 @@ const ProjectDetails = ({ userContact }) => {
                   </label>
                 </div>
                 <div>
-                  <ReCAPTCHA
+                  {/* <ReCAPTCHA
                     sitekey="6LeHdPIpAAAAAJoof-1ewzeYES0jvTrJ9_g09hBQ"
                     onChange={handleCaptchaChange}
-                  />
+                  /> */}
                 </div>
                 <div className="pt-6">
                   <button
