@@ -1,5 +1,10 @@
 import React from "react";
 import TeamGrid from "./TeamGrid";
+import TeamGrid1 from "./TeamGrid1";
+import TeamGrid2 from "./TeamGrid2";
+import TeamGrid3 from "./TeamGrid3";
+import TeamGrid4 from "./TeamGrid4";
+import TeamGrid5 from "./TeamGrid5";
 
 const OurTeamContent = () => {
   const managementTeam = [
@@ -83,7 +88,14 @@ const OurTeamContent = () => {
         </p>
       </div>
       {/* <TeamGrid heading="Management Team" members={managementTeam} /> */}
-      <TeamGrid heading="Development Team" members={developmentTeam} />
+      <div className="space-y-10">
+        <TeamGrid />
+        <TeamGrid1 />
+        <TeamGrid2 />
+        <TeamGrid3 />
+        <TeamGrid4 />
+        <TeamGrid5 />
+      </div>
       {/* <TeamGrid heading="Sales & Marketing Team" members={marketingTeam} /> */}
     </div>
   );

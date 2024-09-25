@@ -1,59 +1,42 @@
-import { footer, user_contactApi } from "@/config/apis";
+import React from "react";
 import FooterItems from "./FooterItems";
 
-// Retry mechanism
-async function fetchWithRetry(url, options, retries = 3) {
-  for (let i = 0; i < retries; i++) {
-    try {
-      const response = await fetch(url, options);
-      if (response.ok) return response;
-    } catch (err) {
-      console.error(`Attempt ${i + 1} failed:`, err);
-      if (i === retries - 1) throw err;
-    }
-    await new Promise((resolve) => setTimeout(resolve, 1000 * (i + 1))); // Exponential backoff
-  }
-  throw new Error(`Failed to fetch after ${retries} retries`);
-}
+async function getFooterData() {
+  const res = await fetch("http://192.168.10.16:8000/api/footer", {
+    cache: "no-store",
+  });
 
-// API fetching from server side with improved error handling
-async function getFooterDataContent() {
-  try {
-    const res = await fetchWithRetry(`${footer}`, {
-      next: { revalidate: 120 },
-    });
-    return res.json();
-  } catch (error) {
-    console.error("Error fetching footer data:", error);
+  if (!res.ok) {
     throw new Error("Failed to fetch footer data");
   }
+
+  return res.json();
 }
 
-// Footer contacts with improved error handling
-async function getUserContactContent() {
-  try {
-    const res = await fetchWithRetry(`${user_contactApi}`, {
-      next: { revalidate: 120 },
-    });
-    return res.json();
-  } catch (error) {
-    console.error("Error fetching user contact data:", error);
-    throw new Error("Failed to fetch user contact data");
+async function getContactData() {
+  const res = await fetch("http://192.168.10.16:8000/api/contact", {
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch contact data");
   }
+
+  return res.json();
 }
 
 const Footer = async () => {
-  try {
-    const [footerData, userContact] = await Promise.all([
-      getFooterDataContent(),
-      getUserContactContent(),
-    ]);
+  const [footerData, contactData] = await Promise.all([
+    getFooterData(),
+    getContactData(),
+  ]);
 
-    return <FooterItems footer={footerData} userContact={userContact} />;
-  } catch (error) {
-    console.error("Error in Footer component:", error);
-    return <div>Error loading footer. Please try again later.</div>;
-  }
+  // Log the ContactArray from the contact API
+  // console.log("ContactArray:", contactData.ContactArray);
+
+  return (
+    <FooterItems footer={footerData} userContact={contactData.ContactArray} />
+  );
 };
 
 export default Footer;

@@ -26,7 +26,6 @@ async function getUserContactContent() {
 
 const HomePage = async () => {
   const userContact = await getUserContactContent();
-  // console.log(userContact);
 
   return (
     <div className="overflow-hidden">
@@ -39,7 +38,7 @@ const HomePage = async () => {
       <WhyChooseUs />
       <Testimonial />
       <HomePageFaqs title="Questions Looks Here" />
-      <ProjectDetails userContact={userContact} />
+      <ProjectDetails userContact={userContact.ContactArray} />
     </div>
   );
 };

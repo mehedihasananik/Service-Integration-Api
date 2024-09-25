@@ -4,7 +4,7 @@ import HeaderItems from "@/Components/Utilites/HeaderItems/HeaderItems";
 async function getHeaderContent() {
   try {
     const res = await fetch(`${headerApi}`, {
-      next: { revalidate: 10 },
+      next: { revalidate: 120 },
     });
 
     if (!res.ok) {

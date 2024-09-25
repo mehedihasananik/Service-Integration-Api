@@ -17,14 +17,14 @@ async function fetchIndustries() {
 }
 
 const ServiceIndustries = async () => {
-  const industries = await fetchIndustries();
-  console.log(industries[0].title);
+  const { service_industry } = await fetchIndustries();
+  // console.log(industries[0].title);
 
   return (
     <Container>
       <ServiceIndustriesContent
-        details={industries[0]}
-        industries={industries[0].items}
+        details={service_industry[0]}
+        industries={service_industry[0].items}
       />
     </Container>
   );

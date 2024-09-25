@@ -21,7 +21,7 @@ async function getUserContactContent() {
 
 const ContactUs = async () => {
   const userContact = await getUserContactContent();
-  console.log(userContact);
+  // console.log(userContact);
   return (
     <div className="mt-0">
       <ContactUsPageContent userContact={userContact} />
