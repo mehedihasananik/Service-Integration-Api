@@ -14,18 +14,16 @@ const AppBanner = () => {
               Join 1 Million users worldwide!
             </p>
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl font-bold text-gray-900 leading-tight sm:leading-tight md:leading-tight lg:leading-[1.2]">
-              Unleash
-              <span className="text-[#FF693B] relative"> Digital</span>
-              <br className="hidden sm:inline" /> Innovation & Creativity with{" "}
-              <span className="text-[#173792] relative">
-                Apps
-                <span className="absolute bottom-0 left-0 w-full h-3 bg-indigo-200 -z-10 transform -skew-x-12"></span>
-              </span>
+              Welcome to{" "}
+              <span className="text-[#FF693B] relative">Envobyte</span>: Your
+              One-Stop Solution for Custom App Development
             </h1>
             <p className="text-gray-700 text-lg sm:text-xl md:text-2xl mb-8 mt-6 sm:mt-8 max-w-2xl mx-auto md:mx-0">
-              Envobyte brings you great apps to make your life easier and more
-              fun. Our apps help you do things better, from work to play. Try
-              our apps today and see how they can improve your daily life!
+              Envobyte seamlessly develops your digital idea into a fully
+              functional, user-friendly mobile application. From Android app
+              development to UX/UI design of the highest class, our team strives
+              to deliver the most innovative solution according to your business
+              goals.
             </p>
             <div className="flex flex-col xs:flex-row  justify-center lg:justify-start gap-4 md:gap-6 lg:py-6">
               <GlobalButtonColored

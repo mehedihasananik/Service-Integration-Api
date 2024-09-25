@@ -10,6 +10,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <link
+          rel="icon"
+          href="https://i.ibb.co/nM2nH6n/android-chrome-256x256.png"
+          sizes="16x16"
+        />
+      </head>
       <body>
         <AppHeader />
         {children}

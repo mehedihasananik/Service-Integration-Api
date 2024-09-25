@@ -17,23 +17,19 @@ const BusinessConsultingHero = () => {
             <br />
             <span className="text-[#FF693B]">Consulting App</span>
           </h1>
+
           <p className="text-xl mb-8 leading-relaxed text-blue-100">
-            Discover unparalleled expertise with Envobyte's business consulting
-            services. Our team offers strategic insights and tailored solutions
-            to help your business thrive. Whether you're looking to optimize
-            operations or drive growth, we have the skills and experience to
-            guide you toward success.
+            Unlock unparalleled knowledge with the range of business consulting
+            services at Envobyte. A diversified team at Envobyte equips
+            businesses with strategic insights and customized solutions. Be it
+            optimization of operations or driving growth, we have the skill and
+            experience to lead you to success.
           </p>
           <div className="flex flex-col xs:flex-row justify-center lg:justify-start gap-4 md:gap-6 py-6">
             <GlobalButtonColored
-              path="https://play.google.com/store/apps/dev?id=8045723784298228141"
-              title="Playstore"
-              className="btn btn-primary md:w-[30%] text-center border-none"
-            />
-            <GlobalButtonHovered
               path="/services"
               title="Our Services"
-              className="btn btn-secondary md:w-[30%] text-center bg-[#fff] border-none"
+              className="btn btn-primary md:w-[30%] text-center  border-none"
             />
           </div>
         </div>

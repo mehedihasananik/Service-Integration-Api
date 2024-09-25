@@ -61,7 +61,7 @@ const OurTeamContent = () => {
 
   return (
     <div className="text-gray-800">
-      <OurTeamFounders
+      {/* <OurTeamFounders
         imagePosition="left"
         name="Md Sheikh Hasib Akter"
         title="Managing director"
@@ -71,20 +71,20 @@ const OurTeamContent = () => {
         imagePosition="right"
         name="Nodi Akter"
         title="Chairman"
-        imageSrc="/assets/chairman.jpeg"
-      />
+        imageSrc="/assets/chairmans.jpeg"
+      /> */}
       <div className="text-center mb-10">
         <h2 className="text-5xl font-bold mb-6 text-[#FF693B]">
-          Our Creative Talents
+          Our Dynamic Talents
         </h2>
         <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
           Great things in business are never done by one person. They`&apos;re
           done by a team of people. We have that dynamic group of individuals.
         </p>
       </div>
-      <TeamGrid heading="Management Team" members={managementTeam} />
+      {/* <TeamGrid heading="Management Team" members={managementTeam} /> */}
       <TeamGrid heading="Development Team" members={developmentTeam} />
-      <TeamGrid heading="Sales & Marketing Team" members={marketingTeam} />
+      {/* <TeamGrid heading="Sales & Marketing Team" members={marketingTeam} /> */}
     </div>
   );
 };
