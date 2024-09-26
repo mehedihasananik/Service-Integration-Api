@@ -16,7 +16,7 @@ async function getTestimonialContent() {
 
 const ClientReviews = async () => {
   const testimonial = await getTestimonialContent();
-  // console.log(testimonial.items);
+
   return (
     <div className=" bg-gray-50">
       <Container>
