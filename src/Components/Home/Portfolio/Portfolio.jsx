@@ -1,45 +1,14 @@
 import PortfolioHomeItems from "@/Components/Utilites/PortfolioHomeItems/PortfolioHomeItems";
 import { apiEndpoint } from "@/config/config";
-
-async function portfolioServices() {
-  const res = await fetch(`${apiEndpoint}/sevice_portfolio_update`, {
-    next: { revalidate: 120 },
-  });
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
-  return res?.json();
-}
-
-async function portfoliosCategoriesApi() {
-  const res = await fetch(`${apiEndpoint}/category`, {
-    next: { revalidate: 120 },
-  });
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
-  return res?.json();
-}
-
-async function servicesApi() {
-  const res = await fetch(`${apiEndpoint}/search_sevice_category/all`, {
-    next: { revalidate: 120 },
-  });
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
-  return res?.json();
-}
+import { fetchMultipleData } from "@/config/fetchData"; // Importing fetchMultipleData
 
 const Portfolio = async () => {
-  // Fetch data for the page
-  const portfolios = await portfolioServices();
-  const portfoliosCategories = await portfoliosCategoriesApi();
-  const services = await servicesApi();
-  // console.log(portfolios);
+  // Fetch data for the page using fetchMultipleData
+  const [portfolios, portfoliosCategories, services] = await fetchMultipleData([
+    `${apiEndpoint}/sevice_portfolio_update`,
+    `${apiEndpoint}/category`,
+    `${apiEndpoint}/search_sevice_category/all`,
+  ]);
 
   return (
     <div className="max-w-[1520px] mx-auto px-[6%] md:px-[4%] lg:px-[2%] xl:px-[2%] 4xl:px-[2%]">

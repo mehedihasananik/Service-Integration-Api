@@ -6,11 +6,14 @@
     "dev": "next dev",
     "build": "next build",
     "start": "set NODE_ENV=production && node server.js",
-    "lint": "next lint"
+    "lint": "next lint",
+    "analyze": "cross-env ANALYZE=true next build"
   },
   "dependencies": {
     "@emoji-mart/data": "^1.2.1",
     "@emoji-mart/react": "^1.1.1",
+    "@heroicons/react": "^2.1.5",
+    "@next/bundle-analyzer": "^14.2.13",
     "@next/third-parties": "^14.2.5",
     "@plaiceholder/next": "^3.0.0",
     "@virtuoso.dev/message-list": "^1.7.1",

@@ -10,8 +10,8 @@ import {
   Testimonial,
 } from "../index";
 import { user_contactApi } from "@/config/apis";
-import DigitalBusinessConsiderations2 from "../DigitalBusinessConsiderations/DigitalBusinessConsiderations2";
 import HomePageFaqs from "../Utilites/HomePageFaqs/HomePageFaqs";
+import DigitalBusinessConsiderations from "../DigitalBusinessConsiderations/DigitalBusinessConsiderations";
 
 async function getUserContactContent() {
   const res = await fetch(`${user_contactApi}`, {
@@ -34,7 +34,7 @@ const HomePage = async () => {
       <Services />
       <AboutUs />
       <Portfolio />
-      <DigitalBusinessConsiderations2 />
+      <DigitalBusinessConsiderations />
       <WhyChooseUs />
       <Testimonial />
       <HomePageFaqs title="Questions Looks Here" />

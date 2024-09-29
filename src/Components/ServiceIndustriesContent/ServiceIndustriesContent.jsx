@@ -58,7 +58,7 @@ const ServiceIndustriesContent = ({ industries, details }) => {
             </div>
             <Link
               href={`/contact-us`}
-              className="md:w-[35%] bg-white text-[#FF693B] text-nowrap font-semibold py-2 px-4 rounded-md text-center hover:bg-opacity-90 transition duration-300 mt-4 inline-block group-hover:bg-gray-100 group-hover:text-[#3B82F6]"
+              className="xxl:w-[35%] bg-white text-[#FF693B] text-nowrap font-semibold py-2 px-4 rounded-md text-center hover:bg-opacity-90 transition duration-300 mt-4 inline-block group-hover:bg-gray-100 group-hover:text-[#3B82F6]"
             >
               Learn More
             </Link>

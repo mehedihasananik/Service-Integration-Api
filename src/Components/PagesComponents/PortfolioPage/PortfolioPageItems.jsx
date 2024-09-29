@@ -14,7 +14,7 @@ const PortfolioPageItems = ({ portfolio }) => {
       <div className="group rounded-lg overflow-hidden border border-[#CBD5E1]">
         <div className="portfolio-bgHover w-full cursor-pointer flex flex-col xl:flex-row bg-white rounded-lg">
           <div className="w-full xl:w-1/2">
-            <div className="relative w-full aspect-[16/9] lg:aspect-[330/370] overflow-hidden">
+            <div className="relative w-full aspect-[3/2] lg:aspect-[330/370] overflow-hidden">
               <Image
                 src={portfolio?.image}
                 fill

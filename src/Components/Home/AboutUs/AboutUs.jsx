@@ -2,17 +2,16 @@ import Container from "@/Components/Container/Container";
 import AboutUsItems from "@/Components/Utilites/AboutUsItems/AboutUsItems";
 import { about_us_homeApi } from "@/config/apis";
 import Image from "next/image";
+import { fetchData } from "@/config/fetchData"; // Importing fetchData
 
 // fetching the aboutUs content
 async function getAboutUsContent() {
-  const res = await fetch(`${about_us_homeApi}`, {
-    next: { revalidate: 120 },
-  });
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
+  try {
+    return await fetchData(about_us_homeApi); // Using fetchData to get about us content
+  } catch (error) {
+    console.error("Failed to fetch data:", error);
+    throw error;
   }
-  return res.json();
 }
 
 const AboutUs = async () => {
@@ -21,10 +20,10 @@ const AboutUs = async () => {
   // console.log(about);
 
   return (
-    <div className="pb-5  md:pt-0 md:pb-0 xl:pb-10 overflow-hidden">
+    <div className="pb-5 md:pt-0 md:pb-0 xl:pb-10 overflow-hidden">
       <Container>
         {/* about us content */}
-        <div className="flex flex-col items-center xl:flex-row   md:gap-[6%] 2xl:gap-[10%]">
+        <div className="flex flex-col items-center xl:flex-row md:gap-[6%] 2xl:gap-[10%]">
           {/* left side image */}
           <div className="bg-[#DDFFFB] relative w-full max-w-[650px] aspect-square">
             <Image

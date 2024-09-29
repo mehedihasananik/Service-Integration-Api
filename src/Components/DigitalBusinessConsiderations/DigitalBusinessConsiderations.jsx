@@ -1,18 +1,16 @@
+// path/to/your/DigitalBusinessConsiderations.js
 import React from "react";
 import { CheckCircle, ArrowRight } from "lucide-react";
 import WebsiteScore from "../Utilites/WebsiteScore/WebsiteScore";
 import Link from "next/link";
 import { apiEndpoint } from "@/config/config";
+import { fetchData } from "@/config/fetchData"; // Importing fetchData
 
 async function fetchConsiderations() {
-  const res = await fetch(`${apiEndpoint}/businessdev`, {
-    next: { revalidate: 120 },
-  });
-  if (!res.ok) throw new Error("Failed to fetch brands");
-  return res.json();
+  return await fetchData(`${apiEndpoint}/businessdev`); // Using fetchData to fetch considerations
 }
 
-const DigitalBusinessConsiderations2 = async () => {
+const DigitalBusinessConsiderations = async () => {
   const considerations = await fetchConsiderations();
 
   // Array of background colors for cards
@@ -36,7 +34,7 @@ const DigitalBusinessConsiderations2 = async () => {
   ];
 
   return (
-    <div className="max-w-[1520px] mx-auto px-[6%] md:px-[4%] xl:px-[8%] 4xl:px-[4%] pt-4 md:pt-8  md:pb-3 ">
+    <div className="max-w-[1520px] mx-auto px-[6%] md:px-[4%] xl:px-[8%] 4xl:px-[4%] pt-4 md:pt-8 md:pb-3 ">
       <div className="mb-6 md:mb-10">
         <h3 className="text-[20px] md:text-[30px] lg:text-[48px] font-Raleway font-bold text-center pb-1 md:pb-2">
           Before Starting A Business Consider A Few Things
@@ -86,4 +84,4 @@ const DigitalBusinessConsiderations2 = async () => {
   );
 };
 
-export default DigitalBusinessConsiderations2;
+export default DigitalBusinessConsiderations;

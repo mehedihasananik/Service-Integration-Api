@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { FaStar, FaQuoteLeft } from "react-icons/fa";
+import { BeakerIcon, StarIcon } from "@heroicons/react/24/solid";
 
 const ClientReviewsContent1 = ({ testimonials }) => {
   return (
@@ -52,9 +53,9 @@ const ClientReviewsContent1 = ({ testimonials }) => {
                       </div>
                       <div className="flex items-center mt-2 space-x-1">
                         {[...Array(5)].map((_, i) => (
-                          <FaStar
+                          <StarIcon
                             key={i}
-                            className="text-yellow-400 text-[14px] transition-transform duration-300 transform hover:scale-110 hover:text-yellow-500"
+                            className="text-yellow-400 size-5 transition-transform duration-300 transform hover:scale-110 hover:text-yellow-500"
                           />
                         ))}
                       </div>

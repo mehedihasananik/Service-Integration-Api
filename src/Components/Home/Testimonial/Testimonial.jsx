@@ -1,16 +1,11 @@
+// path/to/your/Testimonial.js
 import TestimonialHomeItems from "@/Components/Utilites/TestimonialHomeItems/TestimonialHomeItems";
 import { testimonials_itemsApi } from "@/config/apis";
 import React from "react";
+import { fetchData } from "@/config/fetchData"; // Importing fetchData
 
 async function getTestimonialContent() {
-  const res = await fetch(`${testimonials_itemsApi}`, {
-    next: { revalidate: 120 },
-  });
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
-  return res.json();
+  return await fetchData(`${testimonials_itemsApi}`); // Using fetchData with template literal
 }
 
 const Testimonial = async () => {

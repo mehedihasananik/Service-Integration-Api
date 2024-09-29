@@ -1,7 +1,6 @@
 import BlogPageContent from "@/Components/BlogPageContent/BlogPageContent";
 import JsonLd from "@/Components/Utilites/JsonLd/JsonLd";
 import UserLoading from "@/Components/Utilites/UserLoading/UserLoading";
-import { apiEndpoint } from "@/config/config";
 import { fetchMultipleData } from "@/config/fetchData";
 import { generateCommonMetadata } from "@/config/generateMetadata";
 import { Suspense } from "react";

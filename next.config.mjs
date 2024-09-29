@@ -1,4 +1,10 @@
-const nextConfig = {
+import bundleAnalyzer from "@next/bundle-analyzer";
+
+const withBundleAnalyzer = bundleAnalyzer({
+  enabled: process.env.ANALYZE === "true",
+});
+
+const nextConfig = withBundleAnalyzer({
   reactStrictMode: false,
   swcMinify: false,
   trailingSlash: true,
@@ -7,7 +13,6 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   images: {
-    // format: ["image/avif", "images/webp"],
     domains: [
       "192.168.10.14",
       "admin.envobyte.com",
@@ -26,6 +31,6 @@ const nextConfig = {
       "site.sociolib.com",
     ],
   },
-};
+});
 
 export default nextConfig;

@@ -1,3 +1,4 @@
+// path/to/your/Banner.js
 import Container from "@/Components/Container/Container";
 import BannerItems from "@/Components/Utilites/BannerItems/BannerItems";
 import UserLoading from "@/Components/Utilites/UserLoading/UserLoading";
@@ -8,7 +9,7 @@ import { Suspense } from "react";
 // api fetching from server side
 async function getBannerContent() {
   try {
-    return await fetchData(bannerApi);
+    return await fetchData(bannerApi); // Using fetchData to get banner content
   } catch (error) {
     console.error("Failed to fetch banner data:", error);
     throw error;
