@@ -69,3 +69,129 @@
   transform: translateY(-10px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
+
+/* project details */
+
+/* react phone input */
+.react-international-phone-input-container
+  .react-international-phone-country-selector-button {
+  height: 58px !important;
+  border: 1px solid #ced2d4 !important;
+  border-right: none !important;
+  width: 50px;
+  border-radius: 8px 0px 0px 8px !important;
+}
+
+#project_details_input [type="text"]:focus,
+[type="email"]:focus,
+[type="url"]:focus,
+[type="password"]:focus,
+[type="number"]:focus,
+[type="date"]:focus,
+[type="datetime-local"]:focus,
+[type="month"]:focus,
+[type="search"]:focus,
+[type="tel"]:focus,
+[type="time"]:focus,
+[type="week"]:focus,
+[multiple]:focus,
+textarea:focus,
+select:focus {
+  box-shadow: none;
+  border: 1px solid #ced2d4 !important;
+}
+
+.react-international-phone-input-container .react-international-phone-input {
+  height: var(--react-international-phone-height, 58px) !important;
+  width: 100% !important;
+  border: 1px solid #ced2d4 !important;
+  font-size: 17px !important;
+  border-radius: 0px 8px 8px 0px !important;
+}
+
+.react-international-phone-input-container
+  .react-international-phone-input:focus {
+  border: 1px solid #ced2d4 !important;
+}
+
+.react-international-phone-input-container {
+  display: flex;
+  margin-top: 0px !important;
+}
+
+.react-international-phone-country-selector-dropdown {
+  margin-top: 18px !important;
+  width: 425px !important;
+}
+
+[type="text"]:focus,
+[type="email"]:focus,
+[type="url"]:focus,
+[type="password"]:focus,
+[type="number"]:focus,
+[type="date"]:focus,
+[type="datetime-local"]:focus,
+[type="month"]:focus,
+[type="search"]:focus,
+[type="tel"]:focus,
+[type="time"]:focus,
+[type="week"]:focus,
+[multiple]:focus,
+textarea:focus,
+select:focus {
+  box-shadow: none;
+  border: 2px solid #787777 !important;
+}
+
+[type="tel"]:focus {
+  box-shadow: none;
+}
+
+[type="date"]:focus {
+  cursor: pointer;
+}
+
+select {
+  cursor: pointer;
+}
+
+.css-13cymwt-control {
+  cursor: pointer !important;
+}
+.css-t3ipsp-control:hover {
+  border-color: none !important;
+  box-shadow: none !important;
+}
+
+.css-t3ipsp-control {
+  border: 2px solid #4b4b4b !important;
+}
+.example::-webkit-scrollbar {
+  display: none;
+}
+/* project details component */
+
+#projectDetails
+  .react-international-phone-input-container
+  .react-international-phone-input {
+  border: 1px solid #cbd5e1 !important;
+}
+
+#projectDetails
+  .react-international-phone-input-container
+  .react-international-phone-country-selector-button {
+  height: 58px !important;
+  border: 1px solid #cbd5e1 !important;
+  border-right: none !important;
+  width: 50px;
+}
+
+#projectDetails .react-international-phone-input-container {
+  margin-top: 0px !important;
+}
+
+#projectDetails [type="text"]:focus,
+[type="email"]:focus,
+[type="password"]:focus {
+  border: 2px solid #dedcdc !important;
+}

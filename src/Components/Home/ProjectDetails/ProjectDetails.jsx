@@ -65,7 +65,7 @@ const ProjectDetails = ({ userContact }) => {
       // Convert service_categories array to comma-separated string
       const submissionData = {
         ...formData,
-        service_categories: formData?.service_categories?.join(", "),
+        service_categories: formData.service_categories.join(", "),
       };
 
       const response = await axios.post(user_feedbackApi, submissionData);

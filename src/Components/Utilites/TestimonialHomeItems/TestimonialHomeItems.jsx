@@ -124,7 +124,7 @@ const TestimonialHomeItems = ({ testimonials, details }) => {
                   /{totalSlides}
                 </span>
               </div> */}
-              <div className="mt-[5%]">
+              <div className="hidden md:block mt-[5%]">
                 <GlobalButtonColored
                   path="client-reviews"
                   title="View All"
@@ -213,6 +213,14 @@ const TestimonialHomeItems = ({ testimonials, details }) => {
                   ))}
                 </Swiper>
               )}
+              <div className="block  md:hidden mt-[5%] text-center my-4">
+                <GlobalButtonColored
+                  path="client-reviews"
+                  title="View All"
+                  className="btn btn-primary md:w-[50%] text-center px-[10%]"
+                  onClick={(e) => smoothScroll(e, "#projectDetails")}
+                />
+              </div>
             </div>
           </div>
         </div>

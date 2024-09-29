@@ -41,13 +41,13 @@ const WebsiteScore = () => {
     let newErrors = {};
     Object.keys(formData).forEach((field) => {
       if (!formData[field].trim())
-        newErrors[field] = `${field.charAt(0).toUpperCase() + field.slice(1)
-          } is required`;
+        newErrors[field] = `${
+          field.charAt(0).toUpperCase() + field.slice(1)
+        } is required`;
     });
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
-
 
   const handleSubmit = async () => {
     if (validateForm()) {
@@ -85,7 +85,7 @@ const WebsiteScore = () => {
     <>
       <div className="flex justify-center items-center px-4 pb-3">
         <button
-          className="relative overflow-hidden group bg-gradient-to-r from-[#FF693B] via-[#FF8C39] to-[#FF693B] text-white font-bold py-3 px-4 sm:py-4 sm:px-6 md:py-6 md:px-10 lg:py-8 lg:px-12 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 ease-out transform hover:-translate-y-1 hover:scale-105"
+          className="relative overflow-hidden group bg-gradient-to-r from-[#FF693B] via-[#FF8C39] to-[#FF693B] text-white font-bold  py-5 px-10 md:py-6 md:px-10 lg:py-8 lg:px-12 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 ease-out transform hover:-translate-y-1 hover:scale-105"
           onClick={() => setOpenModal(true)}
         >
           <span className="relative z-10 flex items-center">

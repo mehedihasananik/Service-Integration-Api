@@ -104,7 +104,7 @@ const ServicesHomeItems = ({ services, details }) => {
                 <ViewAllButton />
               </div>
             </div>
-            <div className="xl:hidden my-5 mb-10 md:mt-5 md:mb-4 md:my-0 text-center">
+            <div className="xl:hidden my-2 mb-12 md:mt-5 md:mb-4 md:my-0 text-center">
               <GlobalButtonColored
                 path={"/services"}
                 title={"View All"}

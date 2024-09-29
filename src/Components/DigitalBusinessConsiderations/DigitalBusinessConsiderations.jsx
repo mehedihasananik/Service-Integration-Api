@@ -1,13 +1,11 @@
-// path/to/your/DigitalBusinessConsiderations.js
 import React from "react";
 import { CheckCircle, ArrowRight } from "lucide-react";
 import WebsiteScore from "../Utilites/WebsiteScore/WebsiteScore";
 import Link from "next/link";
 import { apiEndpoint } from "@/config/config";
-import { fetchData } from "@/config/fetchData"; // Importing fetchData
-
+import { fetchData } from "@/config/fetchData";
 async function fetchConsiderations() {
-  return await fetchData(`${apiEndpoint}/businessdev`); // Using fetchData to fetch considerations
+  return await fetchData(`${apiEndpoint}/businessdev`);
 }
 
 const DigitalBusinessConsiderations = async () => {
@@ -39,7 +37,7 @@ const DigitalBusinessConsiderations = async () => {
         <h3 className="text-[20px] md:text-[30px] lg:text-[48px] font-Raleway font-bold text-center pb-1 md:pb-2">
           Before Starting A Business Consider A Few Things
         </h3>
-        <p className="text-[16px] md:text-xl text-gray-700 mb-4 md:mb-8 text-center">
+        <p className="text-[16px] md:text-xl text-gray-700 mb-6 md:mb-8 text-center">
           In today&apos;s fast-paced digital landscape, ensure your business has
           a strong foundation with these key considerations:
         </p>
