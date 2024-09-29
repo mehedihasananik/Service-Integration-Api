@@ -2,21 +2,11 @@ import Container from "@/Components/Container/Container";
 import AboutUsItems from "@/Components/Utilites/AboutUsItems/AboutUsItems";
 import { about_us_homeApi } from "@/config/apis";
 import Image from "next/image";
-import { fetchData } from "@/config/fetchData"; // Importing fetchData
-
-// fetching the aboutUs content
-async function getAboutUsContent() {
-  try {
-    return await fetchData(about_us_homeApi); // Using fetchData to get about us content
-  } catch (error) {
-    console.error("Failed to fetch data:", error);
-    throw error;
-  }
-}
+import { fetchData } from "@/config/fetchData";
 
 const AboutUs = async () => {
   // getting aboutContent
-  const about = await getAboutUsContent();
+  let about = await fetchData(about_us_homeApi);
   // console.log(about);
 
   return (

@@ -79,6 +79,7 @@ const SinglePackage = ({ item, setOpenModal, height, serviceName }) => {
   return (
     <div className="md:mx-[10%] lg:mx-0 overflow-hidden">
       <div
+        id={item?.package_name?.toLowerCase().replace(/\s+/g, "-")}
         key={item?.id}
         className={`border ${heightClass} border-[#CBD5E1] transition-all duration-300 hover:border-[#FF693B] pt-5 pb-11 rounded-3xl 6xl:w-[400px] 6xl:gap-x-20`}
       >

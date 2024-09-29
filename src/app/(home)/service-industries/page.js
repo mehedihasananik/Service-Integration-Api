@@ -1,33 +1,48 @@
 import Container from "@/Components/Container/Container";
 import ServiceIndustriesContent from "@/Components/ServiceIndustriesContent/ServiceIndustriesContent";
+import JsonLd from "@/Components/Utilites/JsonLd/JsonLd";
+import UserLoading from "@/Components/Utilites/UserLoading/UserLoading";
 import { apiEndpoint } from "@/config/config";
+import { generateCommonMetadata } from "@/config/generateMetadata";
+import React, { Suspense } from "react";
 
-export const metadata = {
-  title: "Service Industries | Envobyte",
-  description:
-    "Discover Envobyte's tailored solutions for service industries. From technology and digital transformation to marketing and customer support, we empower businesses to excel",
-};
-
-async function fetchIndustries() {
-  const res = await fetch(`${apiEndpoint}/service-industry`, {
-    next: { revalidate: 10 },
-  });
-  if (!res.ok) throw new Error("Failed to fetch brands");
-  return res.json();
+async function getPageData() {
+  try {
+    const res = await fetch(`${apiEndpoint}/service-industry`, {
+      next: { revalidate: 120 },
+    });
+    if (!res.ok) throw new Error("Failed to fetch service industries");
+    return res.json();
+  } catch (error) {
+    console.error("Error fetching page data:", error);
+    throw error;
+  }
 }
 
-const ServiceIndustries = async () => {
-  const { service_industry } = await fetchIndustries();
-  // console.log(industries[0].title);
+export async function generateMetadata(parent) {
+  const industriesData = await getPageData();
+  return generateCommonMetadata(industriesData, parent);
+}
 
-  return (
-    <Container>
-      <ServiceIndustriesContent
-        details={service_industry[0]}
-        industries={service_industry[0].items}
-      />
-    </Container>
-  );
-};
+export default async function ServiceIndustries() {
+  try {
+    const industriesData = await getPageData();
 
-export default ServiceIndustries;
+    return (
+      <>
+        <JsonLd data={industriesData?.meta?.json_ld} />
+        <Suspense fallback={<UserLoading />}>
+          <Container>
+            <ServiceIndustriesContent
+              details={industriesData.service_industry[0]}
+              industries={industriesData.service_industry[0].items}
+            />
+          </Container>
+        </Suspense>
+      </>
+    );
+  } catch (error) {
+    console.error("Error rendering service industries page:", error);
+    return <div></div>;
+  }
+}

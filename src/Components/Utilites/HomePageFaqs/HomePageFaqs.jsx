@@ -5,7 +5,7 @@ import UserLoading from "@/Components/Utilites/UserLoading/UserLoading";
 import { fetchData } from "@/config/fetchData"; // Import fetchData
 
 const HomePageFaqs = async ({ className, title }) => {
-  const data = await fetchData(`${faqApi}`); // Use fetchData instead
+  const data = await fetchData(faqApi); // Use fetchData instead
 
   // Filter the questions to include those with featured: "1" or 1
   const questions = data.FaqDataArray.filter(

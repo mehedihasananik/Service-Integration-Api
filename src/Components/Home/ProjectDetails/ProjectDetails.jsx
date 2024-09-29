@@ -23,6 +23,7 @@ const ProjectDetails = ({ userContact }) => {
     service_categories: [],
   });
   const [captchaVerified, setCaptchaVerified] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); // Add loading state
 
   const validationSchema = Yup.object().shape({
     first_name: Yup.string()
@@ -45,7 +46,7 @@ const ProjectDetails = ({ userContact }) => {
     message: Yup.string()
       .required("Message is required")
       .max(2000, "Message must not exceed 2000 characters"),
-    website: Yup.string().required("Need a  URL"),
+    website: Yup.string().required("Need a URL"),
     service_categories: Yup.array().min(1, "Select at least one service"),
   });
 
@@ -60,6 +61,7 @@ const ProjectDetails = ({ userContact }) => {
     }
 
     try {
+      setIsLoading(true); // Set loading state to true
       await validationSchema.validate(formData, { abortEarly: false });
 
       // Convert service_categories array to comma-separated string
@@ -97,6 +99,8 @@ const ProjectDetails = ({ userContact }) => {
       } else {
         toast.error("Something went wrong. Please try again later.");
       }
+    } finally {
+      setIsLoading(false); // Reset loading state
     }
   };
 
@@ -245,7 +249,7 @@ const ProjectDetails = ({ userContact }) => {
                   <div className="w-full lg:w-[50%]">
                     <div className="flex flex-col gap-3">
                       <label
-                        className="text-[16px] font-Roboto mt-3 md:mt-0"
+                        className="text-[16px] font-Roboto mt-3 md:mt-5  lg:mt-0"
                         htmlFor="user_email"
                       >
                         Email:
@@ -266,7 +270,7 @@ const ProjectDetails = ({ userContact }) => {
                 <div className="flex flex-col gap-5 lg:flex-row md:gap-x-10">
                   <div className="flex flex-col gap-3 lg:w-[50%] sm:w-[100%]">
                     <label
-                      className="text-[16px] mt-3 lg:mt-0 font-Roboto"
+                      className="text-[16px] mt-3 md:mt-0 lg:mt-0 font-Roboto"
                       htmlFor="user_phone"
                     >
                       Phone/WhatsApp:
@@ -336,7 +340,7 @@ const ProjectDetails = ({ userContact }) => {
                       How may we help you?
                     </label>
                     <textarea
-                      className="w-full lg:w-[100%] py-4 border border-[#CBD5E1] px-4 shadow-sm"
+                      className="w-full lg:w-[100%] py-4 border border-[#CBD5E1] px-4 shadow-sm outline-none"
                       id="message"
                       name="message"
                       placeholder="Write your project details..."
@@ -373,8 +377,12 @@ const ProjectDetails = ({ userContact }) => {
                   <button
                     className="text-[16px] bg-[#FF693B] px-8 py-2 md:py-4 text-white rounded-lg border border-[#FF693B] hover:bg-white hover:text-[#FF693B] transition-all duration-300"
                     type="submit"
+                    disabled={isLoading} // Disable button while loading
                   >
-                    Send project details
+                    {isLoading
+                      ? "Sending requirements..."
+                      : "Send project details"}{" "}
+                    {/* Conditional text */}
                   </button>
                 </div>
               </div>

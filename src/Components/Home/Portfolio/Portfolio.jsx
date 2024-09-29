@@ -1,9 +1,8 @@
 import PortfolioHomeItems from "@/Components/Utilites/PortfolioHomeItems/PortfolioHomeItems";
 import { apiEndpoint } from "@/config/config";
-import { fetchMultipleData } from "@/config/fetchData"; // Importing fetchMultipleData
+import { fetchMultipleData } from "@/config/fetchData";
 
 const Portfolio = async () => {
-  // Fetch data for the page using fetchMultipleData
   const [portfolios, portfoliosCategories, services] = await fetchMultipleData([
     `${apiEndpoint}/sevice_portfolio_update`,
     `${apiEndpoint}/category`,

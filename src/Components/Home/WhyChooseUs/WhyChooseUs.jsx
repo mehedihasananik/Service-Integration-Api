@@ -1,16 +1,11 @@
-// path/to/your/WhyChooseUs.js
 import Container from "@/Components/Container/Container";
 import { whyChoose_us } from "@/config/apis";
 import Image from "next/image";
 import React from "react";
 import { fetchData } from "@/config/fetchData"; // Importing fetchData
 
-async function getWhyChooseContent() {
-  return await fetchData(`${whyChoose_us}`); // Using fetchData to fetch why choose us content
-}
-
 const WhyChooseUs = async () => {
-  const data = await getWhyChooseContent();
+  const data = await fetchData(whyChoose_us);
 
   return (
     <div className="pb-5 lg:py-5 overflow-hidden">

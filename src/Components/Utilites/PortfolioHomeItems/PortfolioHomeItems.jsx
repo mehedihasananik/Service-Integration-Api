@@ -89,10 +89,11 @@ const PortfolioHomeItems = ({
         <div className="grid grid-cols-2 md:grid-cols-6  lg:grid-cols-6 gap-5 md:gap-2">
           <button
             onClick={() => handleCategoryChange(0)}
-            className={`px-4 py-2 rounded-lg xl:rounded-full text-[14px] md:text-[16px] ${selectedCategoryId === 0
-              ? "bg-[#FF693B] text-white"
-              : "bg-gray-200 text-gray-700"
-              }`}
+            className={`px-4 py-2 rounded-lg xl:rounded-full text-[14px] md:text-[16px] ${
+              selectedCategoryId === 0
+                ? "bg-[#FF693B] text-white"
+                : "bg-gray-200 text-gray-700"
+            }`}
           >
             All Categories
           </button>
@@ -101,10 +102,11 @@ const PortfolioHomeItems = ({
             <button
               key={category.category_id}
               onClick={() => handleCategoryChange(category.category_id)}
-              className={`px-4 py-2 rounded-lg xl:rounded-full text-[14px] md:text-[16px]  ${selectedCategoryId === category.category_id
-                ? "bg-[#FF693B] text-white"
-                : "bg-gray-200 text-gray-700"
-                }`}
+              className={`px-4 py-2 rounded-lg xl:rounded-full text-[14px] md:text-[16px]  ${
+                selectedCategoryId === category.category_id
+                  ? "bg-[#FF693B] text-white"
+                  : "bg-gray-200 text-gray-700"
+              }`}
             >
               {category.category_name}
             </button>
@@ -118,8 +120,9 @@ const PortfolioHomeItems = ({
           </div>
         ) : (
           <div
-            className={`grid grid-cols-1 md:grid-cols-2  gap-8 4xl:gap-10 justify-between pt-10 pb-5 ${animate ? "fade-in" : ""
-              }`}
+            className={`grid grid-cols-1 md:grid-cols-2  gap-8 4xl:gap-10 justify-between pt-10 pb-5 ${
+              animate ? "fade-in" : ""
+            }`}
           >
             {filteredPortfolio.slice(0, 4).map((portfolio) => (
               <Link
@@ -130,7 +133,7 @@ const PortfolioHomeItems = ({
                   <div className="group rounded-lg overflow-hidden border border-[#CBD5E1]">
                     <div className="portfolio-bgHover w-full cursor-pointer flex flex-col xl:flex-row bg-white rounded-lg">
                       <div className="w-full xl:w-1/2">
-                        <div className="relative w-full aspect-[16/9] lg:aspect-[330/370] overflow-hidden">
+                        <div className="relative w-full lg:aspect-[330/370] h-[270px] md:h-[400px] lg:h-auto overflow-hidden">
                           <Image
                             src={portfolio?.image}
                             layout="fill"
@@ -161,7 +164,7 @@ const PortfolioHomeItems = ({
                           <div className="text-base lg:text-lg font-bold font-Raleway text-[#333333] portfolio-textHover line-clamp-2 lg:line-clamp-3 mb-3">
                             {portfolio?.heading?.slice(0, 120)}
                           </div>
-                          <p className="text-sm text-[#666666] portfolio-textHover mb-4 line-clamp-3 lg:line-clamp-[10]">
+                          <p className="text-sm text-[#666666] portfolio-textHover mb-4 line-clamp-4 lg:line-clamp-[8]">
                             {portfolio.portfolio_summery}
                           </p>
                           <div className="flex justify-center items-center gap-2 text-[#FF693B] font-bold portfolio-textHover">

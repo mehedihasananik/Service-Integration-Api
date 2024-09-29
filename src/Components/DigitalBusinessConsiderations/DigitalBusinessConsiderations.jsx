@@ -4,12 +4,9 @@ import WebsiteScore from "../Utilites/WebsiteScore/WebsiteScore";
 import Link from "next/link";
 import { apiEndpoint } from "@/config/config";
 import { fetchData } from "@/config/fetchData";
-async function fetchConsiderations() {
-  return await fetchData(`${apiEndpoint}/businessdev`);
-}
 
 const DigitalBusinessConsiderations = async () => {
-  const considerations = await fetchConsiderations();
+  let considerations = await fetchData(`${apiEndpoint}/businessdev`);
 
   // Array of background colors for cards
   const cardColors = [

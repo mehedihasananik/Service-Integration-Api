@@ -2,15 +2,8 @@ import ServicesHomeItems from "@/Components/Utilites/ServicesHomeItems/ServicesH
 import { servicesApi } from "@/config/apis";
 import { fetchData } from "@/config/fetchData";
 
-// data fetching from server side
-async function getServiceItems() {
-  return fetchData(`${servicesApi}`); // Use fetchData instead
-}
-
 const Services = async () => {
-  // getting the server data
-  const serviceItems = await getServiceItems();
-  // console.log(serviceItems.ServiceItemsArray);
+  let serviceItems = await fetchData(servicesApi);
 
   return (
     <div className="overflow-hidden pt-4 md:pt-0 ">

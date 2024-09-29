@@ -5,17 +5,8 @@ import UserLoading from "@/Components/Utilites/UserLoading/UserLoading";
 import { brandsApi } from "@/config/apis";
 import { fetchData } from "@/config/fetchData";
 
-async function fetchBrands() {
-  try {
-    return await fetchData(brandsApi);
-  } catch (error) {
-    console.error("Failed to fetch brands", error);
-    throw error;
-  }
-}
-
 const Brands = async () => {
-  const brands = await fetchBrands();
+  let brands = await fetchData(brandsApi);
   // console.log(brands);
 
   return (
