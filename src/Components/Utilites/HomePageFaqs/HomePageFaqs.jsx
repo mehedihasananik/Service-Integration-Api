@@ -1,37 +1,16 @@
-"use client";
-
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Accordion from "@/Components/Accordion/Accordion";
 import { faqApi } from "@/config/apis";
 import UserLoading from "@/Components/Utilites/UserLoading/UserLoading";
+import { fetchData } from "@/config/fetchData"; // Import fetchData
 
-const HomePageFaqs = ({ className, title }) => {
-  const [questions, setQuestions] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+const HomePageFaqs = async ({ className, title }) => {
+  const data = await fetchData(`${faqApi}`); // Use fetchData instead
 
-  useEffect(() => {
-    const fetchQuestions = async () => {
-      setIsLoading(true);
-      try {
-        const res = await fetch(`${faqApi}`);
-        if (!res.ok) {
-          throw new Error("Failed to fetch data");
-        }
-        const data = await res.json();
-        // Filter the questions to include those with featured: "1" or 1
-        const featuredQuestions = data.FaqDataArray.filter(
-          (question) => question.featured === "1" || question.featured === 1
-        );
-        setQuestions(featuredQuestions);
-      } catch (error) {
-        console.error("Error fetching questions:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchQuestions();
-  }, []);
+  // Filter the questions to include those with featured: "1" or 1
+  const questions = data.FaqDataArray.filter(
+    (question) => question.featured === "1" || question.featured === 1
+  );
 
   return (
     <div className="max-w-[1520px] mx-auto px-[0%] md:px-[4%] lg:px-[8%] 4xl:px-[4%] md:mt-0">
@@ -52,7 +31,7 @@ const HomePageFaqs = ({ className, title }) => {
           </div>
           <div className="py-4 md:py-8">
             <div className="rounded-lg">
-              {isLoading ? (
+              {questions.length === 0 ? (
                 <UserLoading />
               ) : (
                 questions.map((question) => (

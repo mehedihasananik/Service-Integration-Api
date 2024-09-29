@@ -1,16 +1,10 @@
 import ServicesHomeItems from "@/Components/Utilites/ServicesHomeItems/ServicesHomeItems";
 import { servicesApi } from "@/config/apis";
+import { fetchData } from "@/config/fetchData";
 
 // data fetching from server side
 async function getServiceItems() {
-  const res = await fetch(`${servicesApi}`, {
-    next: { revalidate: 120 },
-  });
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
-  return res.json();
+  return fetchData(`${servicesApi}`); // Use fetchData instead
 }
 
 const Services = async () => {

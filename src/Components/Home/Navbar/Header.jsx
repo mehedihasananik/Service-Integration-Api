@@ -1,18 +1,10 @@
 import { headerApi } from "@/config/apis";
 import HeaderItems from "@/Components/Utilites/HeaderItems/HeaderItems";
+import { fetchData } from "@/config/fetchData";
 
 async function getHeaderContent() {
   try {
-    const res = await fetch(`${headerApi}`, {
-      next: { revalidate: 120 },
-    });
-
-    if (!res.ok) {
-      console.error(`HTTP error! status: ${res.status}`);
-      throw new Error(`Failed to fetch data: ${res.status} ${res.statusText}`);
-    }
-
-    return res.json();
+    return await fetchData(`${headerApi}`);
   } catch (error) {
     console.error("Error fetching header content:", error);
     throw error;

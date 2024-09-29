@@ -1,42 +1,25 @@
 import React from "react";
 import FooterItems from "./FooterItems";
-
-async function getFooterData() {
-  const res = await fetch("http://192.168.10.16:8000/api/footer", {
-    cache: "no-store",
-  });
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch footer data");
-  }
-
-  return res.json();
-}
-
-async function getContactData() {
-  const res = await fetch("http://192.168.10.16:8000/api/contact", {
-    cache: "no-store",
-  });
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch contact data");
-  }
-
-  return res.json();
-}
+import { fetchMultipleData } from "@/config/fetchData";
+import { footer, user_contactApi } from "@/config/apis";
 
 const Footer = async () => {
-  const [footerData, contactData] = await Promise.all([
-    getFooterData(),
-    getContactData(),
-  ]);
+  try {
+    const [footerData, contactData] = await fetchMultipleData([
+      `${footer}`,
+      `${user_contactApi}`,
+    ]);
 
-  // Log the ContactArray from the contact API
-  // console.log("ContactArray:", contactData.ContactArray);
+    // Log the ContactArray from the contact API
+    // console.log("ContactArray:", contactData.ContactArray);
 
-  return (
-    <FooterItems footer={footerData} userContact={contactData.ContactArray} />
-  );
+    return (
+      <FooterItems footer={footerData} userContact={contactData.ContactArray} />
+    );
+  } catch (error) {
+    console.error("Error fetching footer or contact data:", error);
+    return <></>; // Return an empty fragment in case of error
+  }
 };
 
 export default Footer;

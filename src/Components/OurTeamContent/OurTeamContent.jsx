@@ -66,7 +66,7 @@ const OurTeamContent = () => {
 
   return (
     <div className="text-gray-800">
-      {/* <OurTeamFounders
+      <OurTeamFounders
         imagePosition="left"
         name="Md Sheikh Hasib Akter"
         title="Managing director"
@@ -77,7 +77,7 @@ const OurTeamContent = () => {
         name="Nodi Akter"
         title="Chairman"
         imageSrc="/assets/chairmans.jpeg"
-      /> */}
+      />
       <div className="text-center mb-10">
         <h2 className="text-5xl font-bold mb-6 text-[#FF693B]">
           Our Dynamic Talents
