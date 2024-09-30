@@ -3,12 +3,6 @@ import React from "react";
 import { HiArrowSmallRight } from "react-icons/hi2";
 
 const PortfolioPageItems = ({ portfolio }) => {
-  const truncateText = (text, limit) => {
-    if (text.length <= limit) return text;
-    return text.slice(0, limit) + "...";
-  };
-  // console.log(portfolio);
-
   return (
     <>
       <div className="group rounded-lg overflow-hidden border border-[#CBD5E1]">
@@ -28,7 +22,7 @@ const PortfolioPageItems = ({ portfolio }) => {
 
           <div className="w-full xl:w-1/2 p-4 lg:p-6 flex flex-col justify-center items-center">
             <div className="text-center w-full">
-              <h4 className="text-sm text-[#999999] mb-2 portfolio-textHover">
+              <h4 className="text-headingCaption text-grayish mb-2 portfolio-textHover">
                 {portfolio?.service_name.slice(0, 3).map((service, index) => (
                   <span key={index}>
                     {index > 0 && (
@@ -40,13 +34,13 @@ const PortfolioPageItems = ({ portfolio }) => {
                   </span>
                 ))}
               </h4>
-              <div className="text-base lg:text-lg font-bold font-Raleway text-[#333333] portfolio-textHover line-clamp-2 lg:line-clamp-3 mb-3">
-                {portfolio?.heading?.slice(0, 120)}
-              </div>
-              <p className="text-sm text-[#666666] portfolio-textHover mb-4 line-clamp-3 lg:line-clamp-6">
+              <h2 className="text-headingText lg:text-subheading font-bold font-Raleway text-[#333333] portfolio-textHover line-clamp-2 lg:line-clamp-3 mb-3">
+                {portfolio?.heading}
+              </h2>
+              <p className="text-sm text-grayish portfolio-textHover mb-4 line-clamp-3 lg:line-clamp-6">
                 {portfolio.portfolio_summery}
               </p>
-              <div className="flex justify-center items-center gap-2 text-[#FF693B] font-bold portfolio-textHover">
+              <div className="flex justify-center items-center gap-2 text-primary font-bold portfolio-textHover">
                 <button className="text-sm lg:text-base">Read More</button>
                 <span className="w-5">
                   <HiArrowSmallRight className="text-xl" />

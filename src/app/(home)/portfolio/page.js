@@ -1,6 +1,5 @@
 import PortfolioPage from "@/Components/PagesComponents/PortfolioPage/PortfolioPage";
 import JsonLd from "@/Components/Utilites/JsonLd/JsonLd";
-import { apiEndpoint } from "@/config/config";
 import { fetchMultipleData } from "@/config/fetchData";
 import { generateCommonMetadata } from "@/config/generateMetadata";
 
@@ -43,7 +42,7 @@ const Portfolio = async () => {
     );
   } catch (error) {
     console.error("Error rendering portfolio page:", error);
-    return <div>Error loading portfolio. Please try again later.</div>;
+    return <div></div>;
   }
 };
 

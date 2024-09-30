@@ -7,6 +7,12 @@
     color: black;
     border-radius: 100%;
   }
+  /* .image-gallery-left-nav {
+    left: -1vw !important;
+  }
+  .image-gallery-right-nav {
+    right: -3vw !important;
+  } */
   .mySwiper_serviceSlider {
     height: 591px !important;
   }
@@ -48,11 +54,9 @@
   }
 
   .testimonial_mySwiper {
-    height: 500px !important;
+    height: 480px !important;
   }
-  .testimonial_mySwiper {
-    height: 390px !important;
-  }
+
   .image-gallery-thumbnails {
     padding: 12px 0 !important;
   }
@@ -109,7 +113,6 @@
   .login_singUp {
     background-image: none;
   }
-
   .ql-editor p {
     padding: 2px 0 !important;
   }

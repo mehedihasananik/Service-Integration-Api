@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { HiArrowSmallRight } from "react-icons/hi2";
 import Loading from "@/Components/Utilites/Loading/Loading";
 import Image from "next/image";
 import Link from "next/link";
@@ -108,8 +107,8 @@ const PortfolioPage = ({
   return (
     <div className="pt-8 lg:pt-8">
       <div className="text-center">
-        <h1 className="text-[30px] md:text-[30px] lg:text-[48px] font-Raleway font-bold">
-          Our Amazing Portfolio
+        <h1 className="headings">
+          Our Amazing <span className="text-primary">Portfolio</span>
         </h1>
       </div>
       <div className="grid grid-cols-1 md:space-x-3 lg:space-x-20 space-y-3 md:space-y-0 md:grid-cols-3 mt-10">
@@ -147,7 +146,7 @@ const PortfolioPage = ({
                 <option
                   key={service.id}
                   value={service.id}
-                  className="text-[#434348] text-[16px]"
+                  className="text-blackish text-[16px]"
                 >
                   {service.service_name}
                 </option>
@@ -158,7 +157,7 @@ const PortfolioPage = ({
         <div>
           <div className="relative w-full">
             <input
-              type="search"
+              type="text"
               placeholder="What are you looking for?"
               id="search"
               value={searchQuery}
@@ -211,8 +210,9 @@ const PortfolioPage = ({
           </div>
         ) : (
           <div
-            className={`grid grid-cols-1 md:grid-cols-2 gap-8 4xl:gap-10 justify-between pt-5 md:pt-10 pb-5 ${animate ? "fade-in" : ""
-              }`}
+            className={`grid grid-cols-1 md:grid-cols-2 gap-8 4xl:gap-10 justify-between pt-5 md:pt-10 pb-5 ${
+              animate ? "fade-in" : ""
+            }`}
           >
             {displayedPortfolio.map((portfolio) => (
               <Link
@@ -228,7 +228,7 @@ const PortfolioPage = ({
           <div className="flex justify-center mt-5">
             <button
               onClick={handleLoadMore}
-              className="bg-[#FF693B] text-white px-4 py-2 rounded-md hover:bg-[#e55a2f] transition-colors duration-300"
+              className="bg-primary text-white px-4 py-2 rounded-md hover:bg-primary transition-colors duration-300"
             >
               Load More
             </button>

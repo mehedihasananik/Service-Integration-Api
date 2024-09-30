@@ -23,7 +23,7 @@ const WhyChooseUs = async () => {
               <h2 className="text-[20px] md:text-[24px] text-[#333333] font-bold">
                 {data[0]?.heading}
               </h2>
-              <p className="text-[16px] text-[#666666] text-justify line-clamp-5">
+              <p className="text-paragraph text-[#666666] text-justify line-clamp-5">
                 {data[0]?.text}
               </p>
             </div>

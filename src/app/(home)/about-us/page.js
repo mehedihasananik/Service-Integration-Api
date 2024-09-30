@@ -41,7 +41,7 @@ const AboutUsPage = async () => {
     );
   } catch (error) {
     console.error("Error rendering about us page:", error);
-    return <div>Error loading about us page. Please try again later.</div>;
+    return <div></div>;
   }
 };
 

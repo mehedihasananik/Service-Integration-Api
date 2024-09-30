@@ -20,11 +20,11 @@ const BannerItems = ({ banner }) => {
   return (
     <div className="flex flex-col lg:flex-row items-center justify-between animate-fade-in space-y-3 md:space-y-0 md:gap-11 pt-5 xl:pt-10 pb-10">
       <div className="flex flex-col">
-        <h3 className="lg:w-[450px] headings xl:leading-[63.98px]  mx-auto xs:mx-0  lg:pt-14 xs:px-3 md:px-0">
+        <h2 className="lg:w-[450px] font-Raleway font-bold text-headingBase md:text-headingMedium xl:text-headingLarge xl:leading-[63.98px]  mx-auto xs:mx-0  lg:pt-14 xs:px-3 md:px-0">
           Creative Design <span className="line-break"></span> and{" "}
           <span className="custom-rotate">Development </span> <br />
           for your product
-        </h3>
+        </h2>
         <p className="w-[300px] xs:w-full lg:w-[450px] mx-auto text-paragraph  line-clamp-5 xs:px-3 md:px-0 pt-4">
           {banner[0].details}
         </p>
@@ -32,13 +32,13 @@ const BannerItems = ({ banner }) => {
           <GlobalButtonColored
             path="#projectDetails"
             title="Get a Quote"
-            className="btn btn-primary md:w-[50%] text-center"
+            className="btn btn-primary w-[45%] md:w-[50%] text-center"
             onClick={(e) => smoothScroll(e, "#projectDetails")}
           />
           <GlobalButtonHovered
             path="/services"
             title="Our Services"
-            className="md:w-[50%] btn btn-secondary text-center"
+            className="w-[45%] md:w-[50%] btn btn-secondary text-center"
           />
         </div>
       </div>

@@ -68,8 +68,8 @@ const ServicesPageContent = ({
       <div className="max-w-[1520px] mx-auto px-[6%] md:px-[4%] lg:px-0 xl:px-[8%] 4xl:px-[4%]">
         <div className="py-5 md:py-0 md:pt-8">
           <div className="text-center">
-            <h1 className="text-[30px] md:text-[30px] lg:text-[48px] font-Raleway font-bold">
-              Choose a <span className="text-[#FF693B]">service</span> that you
+            <h1 className="headings">
+              Choose a <span className="text-primary">service</span> that you
               need
             </h1>
           </div>
@@ -98,17 +98,17 @@ const ServicesPageContent = ({
               <div className="w-full md:w-[40%] lg:w-[25%]">
                 <div className="relative w-full">
                   <input
-                    type="search"
+                    type="text"
                     placeholder="What are you looking for?"
                     id="search"
-                    className="text-[#C1C1C1] py-[17px] px-[10px] border border-gray-300 text-sm rounded-lg focus:ring-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="text-grayish py-[17px] px-[10px] border border-gray-300 text-sm rounded-lg focus:ring-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     value={searchQuery}
                     onChange={handleSearchInputChange}
                     required
                   />
                   <button
                     type="submit"
-                    className="absolute top-0 end-0 h-full p-2.5 text-sm font-medium text-[#64748B]"
+                    className="absolute top-0 end-0 h-full p-2.5 text-sm font-medium text-grayish"
                   >
                     <svg
                       className="w-4 h-4"
@@ -133,7 +133,7 @@ const ServicesPageContent = ({
           </div>
 
           {serviceLoading ? (
-            <div className="flex justify-center text-center text-gray-600 mt-10">
+            <div className="flex justify-center text-center text-grayish mt-10">
               <Loading />
             </div>
           ) : (
@@ -151,7 +151,7 @@ const ServicesPageContent = ({
           )}
 
           {serviceItems.length === 0 && !loading && (
-            <div className="flex justify-center text-center text-gray-600 mt-0">
+            <div className="flex justify-center text-center text-grayish mt-0">
               <Image
                 src={"/assets/data.gif"}
                 width={500}

@@ -49,6 +49,7 @@ module.exports = {
         blackish: "#1E293B",
         grayish: "#666666",
         slateBlueGray: "#475569",
+        white: "#fff",
       },
       fontSize: {
         headingLarge: "48px",
@@ -58,7 +59,9 @@ module.exports = {
         subheading: "18px",
         headingText: "16px",
         headingCaption: "14px",
+        paragraphExtraLarge: "24px",
         paragraphLarge: "20px",
+        paragraphMedium: "18px",
         paragraph: "16px",
         paragraphSmall: "14px",
       },

@@ -19,7 +19,7 @@ const HomePageFaqs = async ({ className, title }) => {
           <div className="text-center">
             <h2 className="headings pb-3 md:pb-5 md:pt-5 lg:pt-0">{title}</h2>
             <div className="flex justify-center">
-              <p className="text-[#0F172A] text-[16px] md:text-[16px] w-full md:w-2/3 lg:w-1/2 px-4 md:px-0 ">
+              <p className="text-[#0F172A] text-paragraph w-full md:w-2/3 lg:w-1/2 px-4 md:px-0 ">
                 Here, you&apos;ll find answers to the most common questions and
                 concerns our clients have. We&apos;ve compiled this
                 comprehensive resource to provide you with the information you

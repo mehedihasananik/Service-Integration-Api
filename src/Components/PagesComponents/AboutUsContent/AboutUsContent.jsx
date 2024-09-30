@@ -37,10 +37,10 @@ const AboutUsContent = ({ aboutDetails, singleAboutDetails, aboutTeam }) => {
         <Values title4={title4} details4={details4} />
         <AboutDetailsSection singleAboutDetails={singleAboutDetails} />
         <div className="flex flex-col justify-start items-center md:pt-5">
-          <h3 className="text-[#0F172A] text-[20px] md:text-[32px] font-bold font-Raleway text-center lg:text-left">
+          <h3 className="text-blackish text-headingSmall md:text-headingBase font-bold font-Raleway text-center lg:text-left">
             {aboutTeam.title}
           </h3>
-          <p className="text-[#334155] text-[18px] space-y-5 pt-2 md:pt-3 text-left ">
+          <p className="text-[#334155] text-paragraphMedium space-y-5 pt-2 md:pt-3 text-left ">
             {" "}
             {aboutTeam.details}
           </p>

@@ -66,7 +66,7 @@ const ServicesHomeItems = ({ services, details }) => {
                 <GlobalButtonColored
                   path={"/services"}
                   title={"View All"}
-                  className="btn btn-primary px-12"
+                  className="btn btn-primary px-20"
                 />
               </div>
             </div>
@@ -108,7 +108,7 @@ const ServicesHomeItems = ({ services, details }) => {
               <GlobalButtonColored
                 path={"/services"}
                 title={"View All"}
-                className="btn btn-primary px-12"
+                className="btn btn-primary  px-10 py-3"
               />
             </div>
           </div>

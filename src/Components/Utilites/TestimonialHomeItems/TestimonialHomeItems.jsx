@@ -4,9 +4,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
 import { HiArrowLeft, HiArrowRight } from "react-icons/hi";
 import { Autoplay, Pagination } from "swiper/modules";
-import Image from "next/image";
-import { FaStar } from "react-icons/fa";
 import GlobalButtonColored from "../GlobalButton/GlobalButtonColored";
+import TestimonialCard from "./TestimonialCard";
 
 const TestimonialHomeItems = ({ testimonials, details }) => {
   const [loading, setLoading] = useState(true);
@@ -72,56 +71,28 @@ const TestimonialHomeItems = ({ testimonials, details }) => {
                 <h2 className="headings line-clamp-2">{details.heading}</h2>
               </div>
               <div className="pt-2 md:pt-4 xl:w-[380px]">
-                <p className=" text-[16px] text-[#666666]  xl:text-left font-normal px-4 md:px-0 line-clamp-4">
+                <p className=" text-paragraph text-grayish  xl:text-left font-normal px-4 md:px-0 line-clamp-4">
                   {details.text}
                 </p>
               </div>
               <div className="flex justify-center items-center xl:justify-start xl:items-start gap-6 py-4">
                 <div className="group text-center">
                   <button
-                    className=" bg-[#FF9F711A]  group-hover:bg-[#FF693B] px-5 py-5 rounded-lg transition-all duration-300"
+                    className=" bg-[#FF9F711A]  group-hover:bg-primary px-5 py-5 rounded-lg transition-all duration-300"
                     onClick={handlePrevSlide}
                   >
-                    <HiArrowLeft className="text-[#FF693B]  group-hover:text-[#fff] w-[24px] h-[24px]" />
+                    <HiArrowLeft className="text-primary  group-hover:text-white w-[24px] h-[24px]" />
                   </button>
                 </div>
                 <div className="group">
                   <button
-                    className=" bg-[#FF9F711A]  group-hover:bg-[#FF693B] px-5 py-5 rounded-lg transition-all duration-300"
+                    className=" bg-[#FF9F711A]  group-hover:bg-primary px-5 py-5 rounded-lg transition-all duration-300"
                     onClick={handleNextSlide}
                   >
-                    <HiArrowRight className="text-[#FF693B]  group-hover:text-[#fff] w-[24px] h-[24px]" />
+                    <HiArrowRight className="text-primary  group-hover:text-white w-[24px] h-[24px]" />
                   </button>
                 </div>
               </div>
-
-              {/* small device */}
-              {/* <div className="text-center lg:text-left md:hidden ">
-                <span className="text-[48px] font-Raleway text-[#0A2C8C] font-bold">
-                  {currentSlide + 1}
-                </span>
-                <span className="text-[16px] font-bold text-[#94A3B8] font-Raleway">
-                  /{totalSlides}
-                </span>
-              </div> */}
-              {/* md device */}
-              {/* <div className="text-center  hidden md:block xxl:hidden">
-                <span className="text-[48px] font-Raleway text-[#0A2C8C] font-bold">
-                  {currentSlide + 2}
-                </span>
-                <span className="text-[16px] font-bold text-[#94A3B8] font-Raleway">
-                  /{totalSlides}
-                </span>
-              </div> */}
-              {/* lg device */}
-              {/* <div className="text-center lg:text-left hidden xxl:block ">
-                <span className="text-[48px] font-Raleway text-[#0A2C8C] font-bold">
-                  {currentSlide + 3}
-                </span>
-                <span className="text-[16px] font-bold text-[#94A3B8] font-Raleway">
-                  /{totalSlides}
-                </span>
-              </div> */}
               <div className="hidden md:block mt-[5%]">
                 <GlobalButtonColored
                   path="client-reviews"
@@ -161,52 +132,7 @@ const TestimonialHomeItems = ({ testimonials, details }) => {
                 >
                   {testimonials?.map((testimonial) => (
                     <SwiperSlide key={testimonial.id}>
-                      <div className="h-[400px] pl-4 mt-10 bg-[#F8FAFC] lg:hover:bg-[#1E293B] group rounded-md transition-all duration-300 ">
-                        <div className="relative">
-                          <div className="absolute top-[-25px] left-[140px] md:left-[120px] lg:left-0">
-                            <div className="relative w-[56px] h-[56px] rounded-full overflow-hidden">
-                              <Image
-                                src={testimonial?.image}
-                                alt={testimonial?.name || "Testimonial avatar"}
-                                layout="fill"
-                                objectFit="cover"
-                                className="rounded-full"
-                              />
-                            </div>
-                          </div>
-                          <div className="absolute top-4 right-4">
-                            <Image
-                              src="/assets/fiver.png"
-                              alt="Fiverr"
-                              width={30}
-                              height={25}
-                              className="opacity-70 transition-opacity duration-300 group-hover:opacity-100"
-                            />
-                          </div>
-                          <div className="pt-14 pb-4">
-                            <h3 className="text-[24px] text-[#333333] lg:group-hover:text-[#fff] font-Raleway font-bold">
-                              {testimonial?.name}
-                            </h3>
-
-                            <p className="text-[14px] text-[#999999] pt-1 lg:group-hover:text-[#fff]">
-                              {testimonial?.designation}
-                            </p>
-                            <div className="flex items-center mt-2 space-x-1">
-                              {[...Array(5)].map((_, i) => (
-                                <FaStar
-                                  key={i}
-                                  className="text-yellow-400 text-[14px] transition-transform duration-300 transform hover:scale-110 hover:text-yellow-500"
-                                />
-                              ))}
-                            </div>
-                          </div>
-                          <div>
-                            <p className="w-full lg:w-[260px] 4xl:w-[300px] text-[16px] text-[#666666] pt-1 pb-12 lg:group-hover:text-[#fff] line-clamp-[7]">
-                              {testimonial?.message}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
+                      <TestimonialCard testimonial={testimonial} />
                     </SwiperSlide>
                   ))}
                 </Swiper>

@@ -1,3 +1,7 @@
+.animate-ripple {
+  animation: ripple 3s linear infinite;
+}
+
 .image-gallery-left-nav .image-gallery-svg,
 .image-gallery-right-nav .image-gallery-svg {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -248,6 +252,12 @@ select {
   width: 50px;
 }
 
+/* #projectDetails
+  .react-international-phone-input-container
+  .react-international-phone-input {
+  width: 69% !important;
+} */
+
 #projectDetails .react-international-phone-input-container {
   margin-top: 0px !important;
 }
@@ -296,7 +306,6 @@ select:not([size]) {
 textarea:focus {
   border: 1px solid #dedcdc !important;
 }
-
 .flowbite-tooltip {
   left: 420px !important;
 }
@@ -306,6 +315,11 @@ textarea:focus {
 
 .testimonial_mySwiper {
   height: 500px !important;
+}
+
+/* styles/globals.css */
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
 }
 .custom-justify {
   text-align: justify;

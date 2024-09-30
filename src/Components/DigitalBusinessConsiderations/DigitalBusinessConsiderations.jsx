@@ -58,10 +58,10 @@ const DigitalBusinessConsiderations = async () => {
                     <h4 className="text-lg font-semibold mb-2 text-gray-800">
                       {item.title}
                     </h4>
-                    <p className="text-sm text-gray-600 mb-4 line-clamp-2">
+                    <p className="text-sm text-grayish mb-4 line-clamp-2">
                       {item.description}
                     </p>
-                    <div className="flex items-center text-orange-500 text-sm font-medium group">
+                    <div className="flex items-center text-primary text-paragraphSmall font-medium group">
                       Learn more{" "}
                       <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                     </div>
@@ -72,7 +72,7 @@ const DigitalBusinessConsiderations = async () => {
           })}
         </div>
       </div>
-      <div className="py-3">
+      <div className="pt-3">
         <WebsiteScore />
       </div>
     </div>
