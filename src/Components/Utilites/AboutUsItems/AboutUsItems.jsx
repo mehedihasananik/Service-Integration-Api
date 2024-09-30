@@ -21,7 +21,7 @@ const AboutUsItems = ({ about }) => {
 
   const CountUpItem = ({ end, label, suffix = "" }) => (
     <div>
-      <h3 className="text-[30px] md:text-[48px] text-[#0A2C8C] font-bold">
+      <h3 className="text-[30px] md:text-[48px] text-secondary font-bold">
         <CountUp
           start={0}
           end={end}
@@ -39,17 +39,15 @@ const AboutUsItems = ({ about }) => {
         </CountUp>
         +
       </h3>
-      <p className="text-[16px] text-[#64748B] w-20">{label}</p>
+      <p className="text-[16px] text-grayish w-20">{label}</p>
     </div>
   );
 
   return (
     <div ref={ref}>
       <div className="w-full text-center xl:text-left xl:w-[544px]">
-        <h2 className="text-[20px] md:text-[38px] lg:text-[48px] font-bold font-Raleway text-[#0F172A] md:leading-[55px]">
-          {heading}
-        </h2>
-        <p className="text-[16px] text-[#666666] py-2 md:py-5">{text}</p>
+        <h2 className="headings md:leading-[55px]">{heading}</h2>
+        <p className="text-paragraph text-grayish py-2 md:py-5">{text}</p>
       </div>
 
       {(inView || shouldAnimate) && (

@@ -80,10 +80,10 @@ const PortfolioHomeItems = ({
   return (
     <div className="pt-4 lg:pt-3 ">
       <div className="text-center">
-        <h2 className="text-[20px] md:text-[30px] lg:text-[48px] font-Raleway font-bold text-center pb-2 md:pb-2">
+        <h2 className="headings text-center pb-2 md:pb-2">
           Our Amazing Portfolio
         </h2>
-        <div>Our beautiful work you need to know!</div>
+        <p className="text-paragraph">Our beautiful work you need to know!</p>
       </div>
       <div className="flex justify-center pt-4">
         <div className="grid grid-cols-2 md:grid-cols-6  lg:grid-cols-6 gap-5 md:gap-2">
@@ -147,7 +147,7 @@ const PortfolioHomeItems = ({
 
                       <div className="w-full xl:w-1/2 p-4 lg:p-6 flex flex-col justify-center items-center">
                         <div className="text-center w-full">
-                          <h4 className="text-sm text-[#999999] mb-2 portfolio-textHover">
+                          <h4 className="text-headingCaption text-[#999999] mb-2 portfolio-textHover">
                             {portfolio?.service_name
                               .slice(0, 3)
                               .map((service, index) => (
@@ -161,10 +161,10 @@ const PortfolioHomeItems = ({
                                 </span>
                               ))}
                           </h4>
-                          <div className="text-base lg:text-lg font-bold font-Raleway text-[#333333] portfolio-textHover line-clamp-2 lg:line-clamp-3 mb-3">
+                          <div className="text-base lg:text-lg font-bold font-Raleway text-[#333333] portfolio-textHover line-clamp-2 lg:line-clamp-2 mb-3">
                             {portfolio?.heading?.slice(0, 120)}
                           </div>
-                          <p className="text-sm text-[#666666] portfolio-textHover mb-4 line-clamp-4 lg:line-clamp-[8]">
+                          <p className="text-paragraphSmall text-grayish portfolio-textHover mb-4 line-clamp-4 lg:line-clamp-[8]">
                             {portfolio.portfolio_summery}
                           </p>
                           <div className="flex justify-center items-center gap-2 text-[#FF693B] font-bold portfolio-textHover">

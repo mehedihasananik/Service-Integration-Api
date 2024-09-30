@@ -154,10 +154,10 @@ const ProjectDetails = ({ userContact }) => {
             />
           </div>
           <div id="projectDetails">
-            <div className="text-[20px] md:text-[32px] lg:text-[48px] font-Raleway font-bold">
+            <h2 className="headings">
               Let&apos;s discuss your{" "}
               <span className="text-[#FF693B]"> project</span>
-            </div>
+            </h2>
           </div>
         </div>
         <div className="text-center py-2 pb-3 md:pb-0 md:py-5">

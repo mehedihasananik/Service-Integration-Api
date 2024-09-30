@@ -31,9 +31,9 @@ const DigitalBusinessConsiderations = async () => {
   return (
     <div className="max-w-[1520px] mx-auto px-[6%] md:px-[4%] xl:px-[8%] 4xl:px-[4%] pt-4 md:pt-8 md:pb-3 ">
       <div className="mb-6 md:mb-10">
-        <h3 className="text-[20px] md:text-[30px] lg:text-[48px] font-Raleway font-bold text-center pb-1 md:pb-2">
+        <h2 className="headings text-center pb-1 md:pb-2">
           Before Starting A Business Consider A Few Things
-        </h3>
+        </h2>
         <p className="text-[16px] md:text-xl text-gray-700 mb-6 md:mb-8 text-center">
           In today&apos;s fast-paced digital landscape, ensure your business has
           a strong foundation with these key considerations:

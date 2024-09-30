@@ -11,9 +11,7 @@ const WhyChooseUs = async () => {
     <div className="pb-5 lg:py-5 overflow-hidden">
       <Container>
         <div className="text-center pb-5 xl:pb-12">
-          <h2 className="text-[20px] text-[#1E293B] md:text-[48px] font-bold font-Raleway">
-            Why Choose Us
-          </h2>
+          <h2 className="headings">Why Choose Us</h2>
         </div>
         <div className="grid grid-cols-1 gap-y-10 gap-x-24 md:grid-cols-1 lg:grid-cols-2">
           {/* 1st CARD */}

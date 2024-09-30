@@ -17,9 +17,7 @@ const HomePageFaqs = async ({ className, title }) => {
       <div className={`md:py-6 md:pt-0 md:pb-6 ${className}`}>
         <div className="max-w-[1680px] mx-auto">
           <div className="text-center">
-            <h3 className="text-[#0F172A] text-[20px] md:text-[30px] lg:text-[48px] font-bold font-Raleway pb-3 md:pb-5 md:pt-5 lg:pt-0">
-              {title}
-            </h3>
+            <h2 className="headings pb-3 md:pb-5 md:pt-5 lg:pt-0">{title}</h2>
             <div className="flex justify-center">
               <p className="text-[#0F172A] text-[16px] md:text-[16px] w-full md:w-2/3 lg:w-1/2 px-4 md:px-0 ">
                 Here, you&apos;ll find answers to the most common questions and

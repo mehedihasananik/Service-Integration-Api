@@ -69,9 +69,7 @@ const TestimonialHomeItems = ({ testimonials, details }) => {
           <div className="flex flex-col xl:flex-row items-start justify-between md:gap-0 xl:gap-12 pt-0 pb-5 md:pt-8 md:pb-0">
             <div className="w-full text-center xl:text-left xl:w-[35%] px-4 md:px-0 md:mt-5">
               <div className="w-full xl:w-[400px]">
-                <h2 className="text-[20px] md:text-[42px] xl:text-[48px] font-bold font-Raleway text-[#0F172A] line-clamp-2">
-                  {details.heading}
-                </h2>
+                <h2 className="headings line-clamp-2">{details.heading}</h2>
               </div>
               <div className="pt-2 md:pt-4 xl:w-[380px]">
                 <p className=" text-[16px] text-[#666666]  xl:text-left font-normal px-4 md:px-0 line-clamp-4">
