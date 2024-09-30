@@ -7,6 +7,12 @@
     color: black;
     border-radius: 100%;
   }
+  /* .image-gallery-left-nav {
+    left: -1vw !important;
+  }
+  .image-gallery-right-nav {
+    right: -3vw !important;
+  } */
   .mySwiper_serviceSlider {
     height: 591px !important;
   }
@@ -14,10 +20,13 @@
     height: 450px !important;
   }
 }
-
 @media only screen and (max-width: 1500px) {
-  .custom-margin,
-  .no-margin,
+  .custom-margin {
+    margin-left: 0% !important;
+  }
+  .no-margin {
+    margin-left: 0% !important;
+  }
   .no-margin2 {
     margin-left: 0% !important;
   }
@@ -38,11 +47,21 @@
     color: black;
     border-radius: 100%;
   }
+  /* .image-gallery-left-nav {
+    left: -1vw !important;
+  }
+  .image-gallery-right-nav {
+    right: -3vw !important;
+  } */
+
   .swiper-slide {
     display: flex !important;
     justify-content: center !important;
   }
 
+  .testimonial_mySwiper {
+    height: 500px !important;
+  }
   .testimonial_mySwiper {
     height: 390px !important;
   }
@@ -61,22 +80,27 @@
     display: inline;
   }
   .custom-content-container {
-    font-size: 16px;
+    font-size: 16px; /* Adjust this value as needed */
   }
+
   .custom-content-container h1 {
     font-size: 24px;
   }
+
   .custom-content-container h2 {
-    font-size: 18px !important;
-    padding: 0 !important;
-    margin: 4px 0 !important;
+    font-size: 18px;
+    padding: 8px 0 !important;
   }
+
   .custom-content-container h3 {
     font-size: 18px;
   }
   .custom-content-container p {
-    padding: 10px 0 !important;
+    padding: 25px 0 !important;
   }
+
+  /* Add more selectors as needed */
+
   .custom-content-container [style*="font-size:"] {
     font-size: inherit !important;
   }
@@ -88,14 +112,81 @@
 @media only screen and (max-width: 425px) {
   .service_section {
     background-image: none;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: left;
+    z-index: -1;
+    width: 100%;
   }
   .login_singUp {
     background-image: none;
   }
-  .testimonial_mySwiper {
-    height: 420px !important;
+  /* .single_description h2 {
+  font-size: 45px !important;
+  font-weight: 500 !important;
+  margin: 5px 0 !important;
+}
+
+.single_description h3 {
+  font-size: 25px !important;
+  margin: 5px 0 !important;
+  font-weight: 500;
+}
+.single_description h4 {
+  font-size: 16px !important;
+
+  font-weight: 500;
+}
+.single_description p {
+  font-size: 16px !important;
+  color: #333333;
+  padding: 3px 0 !important;
+}
+.single_description ol li,
+.servicePage_content ol li {
+  font-size: 15px !important;
+  color: #333333;
+}
+.single_description ul li,
+.servicePage_content ul li {
+  font-size: 14px !important;
+  color: #333333;
+}
+
+.servicePage_content p {
+  font-size: 14px !important;
+  color: #333333;
+}
+.pageHtml h1 {
+  font-size: 40px !important;
+  padding-bottom: 10px !important;
+}
+.pageHtml p {
+  font-size: 16px !important;
+  margin: 5px !important;
+}
+.pageHtml h2 {
+  font-size: 25px !important;
+  margin: 5px 0 !important;
+}
+.pageHtml h3 {
+  font-size: 20px !important;
+  margin: 5px 0 !important;
+}
+.pageHtml ul li {
+  font-size: 16px !important;
+  color: #333333;
+  margin: 5px 0 !important;
+}
+.pageHtml ol li {
+  font-size: 16px !important;
+  color: #333333;
+} */
+  .ql-editor p {
+    padding: 2px 0 !important;
   }
-  .mySwiper_serviceSlider {
-    height: 590px !important;
+  .ql-editor ol li:not(.ql-direction-rtl),
+  .ql-editor ul li:not(.ql-direction-rtl) {
+    padding-left: 0.5em !important;
   }
 }

@@ -21,15 +21,11 @@
     transform: translateY(0);
   }
 }
-.slide-in {
-  animation: customSlideIn 1s ease-in-out;
+
+.animate-ripple {
+  animation: ripple 3s linear infinite;
 }
 
-@keyframes customSlideIn {
-  from {
-    transform: translateX(-100%);
-  }
-  to {
-    transform: translateX(0);
-  }
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
 }

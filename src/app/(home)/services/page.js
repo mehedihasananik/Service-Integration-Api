@@ -44,6 +44,6 @@ export default async function ServicesPage() {
     );
   } catch (error) {
     console.error("Error rendering services page:", error);
-    return <div>Error loading services. Please try again later.</div>;
+    return <div></div>;
   }
 }
