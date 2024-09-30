@@ -1,10 +1,10 @@
 import Script from "next/script";
 
 const HotJar = () => {
-    return (
-        <>
-            <Script id="hotjar-tracking-code" strategy="beforeInteractive">
-                {`
+  return (
+    <>
+      <Script id="hotjar-tracking-code" strategy="beforeInteractive">
+        {`
       (function(h,o,t,j,a,r){
         h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
         h._hjSettings={hjid:5127134,hjsv:6};
@@ -14,9 +14,9 @@ const HotJar = () => {
         a.appendChild(r);
     })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
         `}
-            </Script>
-        </>
-    );
+      </Script>
+    </>
+  );
 };
 
 export default HotJar;
