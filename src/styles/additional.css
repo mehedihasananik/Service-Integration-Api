@@ -248,12 +248,6 @@ select {
   width: 50px;
 }
 
-/* #projectDetails
-  .react-international-phone-input-container
-  .react-international-phone-input {
-  width: 69% !important;
-} */
-
 #projectDetails .react-international-phone-input-container {
   margin-top: 0px !important;
 }
@@ -303,7 +297,6 @@ textarea:focus {
   border: 1px solid #dedcdc !important;
 }
 
-/* kakon css end */
 .flowbite-tooltip {
   left: 420px !important;
 }

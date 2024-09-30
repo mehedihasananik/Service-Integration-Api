@@ -48,7 +48,7 @@ const ServicesHomeItems = ({ services, details }) => {
         <div className="md:py-5 xl:pt-10">
           <div className="flex flex-col xl:flex-row items-center justify-center md:gap-0 lg:gap-4 xl:gap-12 xl:pt-8 xl:pb-3">
             <div className="w-full flex flex-col items-center text-center xl:block xl:text-left xl:w-[30%]">
-              <h1 className="text-center md:text-left text-[20px] md:text-[42px] lg:text-[48px] font-bold font-Raleway text-[#0F172A] xl:w-[400px]">
+              <h1 className="text-center md:text-left text-[20px] md:text-[42px] lg:text-heading font-bold font-Raleway text-[#0F172A] xl:w-[400px]">
                 {details?.title}
               </h1>
               <p className="line-clamp-3 pt-4 text-center md:text-left text-[16px] text-[#666666] font-normal w-[100%] px-4 md:px-0 md:w-[700px] xl:w-[380px] 4xl:w-[500px]">

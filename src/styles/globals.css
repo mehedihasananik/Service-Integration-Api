@@ -4,5 +4,4 @@
 @import "./animations.css";
 @import "./media-queries.css";
 @import "./additional.css";
-
-/* styles/globals.css */
+@import "./custom-styles.css"; /* styles/globals.css */

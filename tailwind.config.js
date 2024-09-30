@@ -43,6 +43,14 @@ module.exports = {
           "100%": { opacity: "1" },
         },
       },
+      colors: {
+        primary: "#FF693B",
+        secondary: "#123390",
+        black: "#1E293B",
+      },
+      fontSize: {
+        heading: "48px",
+      },
     },
   },
   plugins: [require("flowbite/plugin")],

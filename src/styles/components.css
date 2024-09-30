@@ -7,17 +7,7 @@
     aspect-radio: 70/45;
     margin: 2rem auto;
   }
-  .btn {
-    @apply text-[14px] md:text-[16px] whitespace-nowrap px-4  py-2.5 md:px-10 md:py-4 font-[600] rounded-lg transition-all duration-300;
-  }
 
-  .btn-primary {
-    @apply text-white bg-[#FF693B] border border-[#FF693B] hover:bg-white hover:text-[#FF693B];
-  }
-
-  .btn-secondary {
-    @apply text-[#FF693B] border border-[#FF693B] hover:bg-[#FF693B] hover:text-white;
-  }
   .custom-rotate {
     background: linear-gradient(90deg, #2f4c9d 0%, #0a2c8c 100%);
     /* filter: drop-shadow(0px 4px 16px rgba(0, 0, 0, 0.10)); */
