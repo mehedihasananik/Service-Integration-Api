@@ -1,7 +1,13 @@
 import Image from "next/image";
 import React from "react";
 
-const ServicePageItems = ({ title, start_price, image, service_summery }) => {
+const ServicePageItems = ({
+  title,
+  start_price,
+  image,
+  service_summery,
+  alt_text,
+}) => {
   return (
     <div>
       <div className="group w-full md:w-[330px] h-[550px] shadow-lg rounded-md border border-[#E2E8F0] cursor-pointer mb-5 lg:mb-5 overflow-hidden">
@@ -13,7 +19,7 @@ const ServicePageItems = ({ title, start_price, image, service_summery }) => {
                 height={700}
                 className="w-[330px] h-[305px]  overflow-hidden rounded-t-md"
                 src={image}
-                alt=""
+                alt={alt_text}
               />
             </div>
           </div>

@@ -58,11 +58,11 @@ const RelevantPortfolio = ({ singlePortfolioItem }) => {
                           <div className="bg-[#E2E8F0]">
                             <div>
                               <Image
+                                alt={service?.alt_text}
                                 width={700}
                                 height={700}
                                 className="w-[330px] h-[305px] overflow-hidden rounded-t-md"
                                 src={service?.image}
-                                alt=""
                               />
                             </div>
                           </div>

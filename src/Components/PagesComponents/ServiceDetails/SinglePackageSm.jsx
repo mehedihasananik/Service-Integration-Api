@@ -47,10 +47,13 @@ const SinglePackageSm = ({ item, setOpenModal }) => {
         </div>
 
         {/* price */}
-        <div className="mb-4">
+        <div className="mb-4 flex">
           <h2 className="text-[20px] md:text-[32px] font-semibold font-Raleway flex items-center">
             $ <span>{item?.package_price}</span>
           </h2>
+          {item?.monthly_subscription === 1 && (
+            <div className="mt-4 font-semibold"> /monthly</div>
+          )}
         </div>
 
         {/* order button */}

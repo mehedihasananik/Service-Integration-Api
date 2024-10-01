@@ -15,7 +15,10 @@ const AboutUsContent = ({ aboutDetails, singleAboutDetails, aboutTeam }) => {
     details3,
     title4,
     details4,
+    alt_text,
   } = aboutDetails[0];
+
+  // console.log(alt_text);
 
   useEffect(() => {
     setAnimate(true);
@@ -28,6 +31,7 @@ const AboutUsContent = ({ aboutDetails, singleAboutDetails, aboutTeam }) => {
       <div className={`${animate ? "fade-in" : ""}`}>
         <Header title={title1} details={details1} />
         <MissionVision
+          alt={alt_text}
           image={image}
           title2={title2}
           details2={details2}
@@ -57,14 +61,14 @@ const Header = ({ title, details }) => (
   </div>
 );
 
-const MissionVision = ({ image, title2, details2, title3, details3 }) => (
+const MissionVision = ({ image, title2, details2, title3, details3, alt }) => (
   <div className="grid grid-cols-1 justify-items-center lg:justify-items-start gap-y-0 lg:gap-y-0 lg:grid-cols-3 pt-10 lg:pt-16 lg:gap-x-10">
     <Image
       className="w-[450px]"
       width={500}
       height={500}
       src={image}
-      alt=""
+      alt={alt}
       quality={80}
     />
     <MissionVisionItem
@@ -150,7 +154,7 @@ const AboutDetailItem = ({ detail }) => {
             objectFit="cover"
             quality={80}
             className="rounded-lg"
-            alt={detail.alt || "Detailed image"}
+            alt={detail.alt_text || "Detailed image"}
           />
         </div>
       </div>

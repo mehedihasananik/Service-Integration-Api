@@ -28,6 +28,7 @@ export async function generateMetadata(parent) {
 const AboutUsPage = async () => {
   try {
     const { aboutUsData, aboutUsItemData } = await getPageData();
+    // console.log(aboutUsData.aboutUs[0].alt_text);
 
     return (
       <>

@@ -22,6 +22,7 @@ const OrderSliderLg = ({ sliders }) => {
     const mappedImages = sliders.map((slider) => ({
       original: slider.slider_image,
       thumbnail: slider.thum_image,
+      alt_text: slider.alt_text,
     }));
     setImages(mappedImages);
   }, [sliders]);
@@ -174,12 +175,13 @@ const OrderSliderLg = ({ sliders }) => {
 
     return (
       <div
-        className={`${isFullscreen
-          ? currentImageHeight < 1000
-            ? "h-[100vh] flex items-center justify-center"
-            : "h-[100vh]"
-          : "max-h-[500px] 4xl:max-h-[600px] flex items-center justify-center"
-          }`}
+        className={`${
+          isFullscreen
+            ? currentImageHeight < 1000
+              ? "h-[100vh] flex items-center justify-center"
+              : "h-[100vh]"
+            : "max-h-[500px] 4xl:max-h-[600px] flex items-center justify-center"
+        }`}
         style={{
           width: "100%",
           overflowY: isFullscreen ? "auto" : "hidden",
@@ -190,14 +192,16 @@ const OrderSliderLg = ({ sliders }) => {
             maxHeight:
               isFullscreen && currentImageHeight > 900 ? "1900px" : "none",
           }}
-          className={`relative ${!imagesLoaded[currentIndex] ? "bg-gray-200 animate-pulse" : ""
-            }`}
+          className={`relative ${
+            !imagesLoaded[currentIndex] ? "bg-gray-200 animate-pulse" : ""
+          }`}
         >
           <img
-            className={`mx-auto transition-opacity duration-300 ${imagesLoaded[currentIndex] ? "opacity-100" : "opacity-0"
-              }`}
+            className={`mx-auto transition-opacity duration-300 ${
+              imagesLoaded[currentIndex] ? "opacity-100" : "opacity-0"
+            }`}
             src={item.original}
-            alt=""
+            alt={item.alt_text}
             style={{
               width: isFullscreen ? "100%" : "1280px",
               height: isFullscreen ? "auto" : "100%",

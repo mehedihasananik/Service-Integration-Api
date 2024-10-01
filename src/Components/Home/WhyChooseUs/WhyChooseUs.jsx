@@ -17,7 +17,12 @@ const WhyChooseUs = async () => {
           {/* 1st CARD */}
           <div className="bg-[#FFF9EE] xl:h-[300px] 2xl:h-[250px] flex flex-col items-center lg:flex-row gap-4 px-10 py-16">
             <div className="w-full flex justify-center lg:w-[550px] mt-4">
-              <Image height={121} width={121} src={data[0]?.icon} alt="" />
+              <Image
+                height={121}
+                width={121}
+                src={data[0]?.icon}
+                alt={data[0]?.alt_text}
+              />
             </div>
             <div className="text-center lg:text-left space-y-2 md:space-y-4">
               <h2 className="text-[20px] md:text-[24px] text-[#333333] font-bold">
@@ -39,7 +44,7 @@ const WhyChooseUs = async () => {
                   width={150}
                   className=""
                   src={data[1]?.icon}
-                  alt=""
+                  alt={data[1]?.alt_text}
                 />
               </div>
               <div className="text-center lg:text-left space-y-2 md:space-y-4">
@@ -72,7 +77,7 @@ const WhyChooseUs = async () => {
                   width={142}
                   className=""
                   src={data[2]?.icon}
-                  alt=""
+                  alt={data[2]?.alt_text}
                 />
               </div>
               <div className="text-center lg:text-left space-y-2 md:space-y-4">
@@ -103,7 +108,7 @@ const WhyChooseUs = async () => {
                 width={137}
                 className=""
                 src={data[3]?.icon}
-                alt=""
+                alt={data[3]?.alt_text}
               />
             </div>
             <div className="text-center lg:text-left space-y-2 md:space-y-4">

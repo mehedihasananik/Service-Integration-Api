@@ -16,11 +16,10 @@ const breakpoints = {
 };
 
 const BrandCarousel = ({ brands }) => {
-  const duplicatedBrands = [...brands, ...brands]
+  const duplicatedBrands = [...brands, ...brands];
 
   return (
     <div className="overflow-hidden">
-   
       <Swiper
         slidesPerView={5}
         slidesPerGroup={1}
@@ -35,16 +34,14 @@ const BrandCarousel = ({ brands }) => {
             <Image
               width={101}
               height={70}
-              src={brand.logo}
-              alt={`Brand logo`}
+              src={brand?.logo}
+              alt={brand?.alt_text}
               className="h-[70px]"
             />
           </SwiperSlide>
         ))}
       </Swiper>
-      
     </div>
-    
   );
 };
 

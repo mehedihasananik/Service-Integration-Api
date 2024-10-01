@@ -16,7 +16,7 @@ const ServiceCard = ({ service }) => {
                 style={{ objectFit: "cover" }}
                 quality={80}
                 className="rounded-t-md"
-                alt={service?.title || "Service image"}
+                alt={service?.alt_text || "Service image"}
               />
             </div>
           </div>

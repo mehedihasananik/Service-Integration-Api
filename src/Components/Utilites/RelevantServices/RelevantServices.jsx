@@ -62,7 +62,7 @@ const RelevantServices = ({ service }) => {
                             height={305}
                             className="w-full h-[305px] object-cover"
                             src={service?.image}
-                            alt=""
+                            alt={service?.alt_text}
                           />
                         </div>
                         <div className="flex flex-col justify-between flex-grow bg-white group-hover:bg-[#FF693B] transition-colors duration-200">

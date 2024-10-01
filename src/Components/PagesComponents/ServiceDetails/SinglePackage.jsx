@@ -97,17 +97,20 @@ const SinglePackage = ({ item, setOpenModal, height, serviceName }) => {
           </div>
         </div>
         {/* price */}
-        <div className="md:h-[50px] xl:h-[60px] xxl:h-[50px] mt-[20px] md:mt-0 px-4 md:px-4">
+        <div className="md:h-[50px] xl:h-[60px] xxl:h-[50px] mt-[20px] md:mt-0 px-4 md:px-4 flex">
           <div className="md:my-2 font-Raleway font-semibold flex items-center space-x-2">
-            <span className="text-[20px] md:text-[32px]  ">
-              ${item?.package_price}
-            </span>
             {item?.discount_price && (
               <span className="line-through text-gray-500 text-[16px] md:text-[20px] ">
                 ${item?.discount_price}
               </span>
-            )}{" "}
+            )}
+            <span className="text-[20px] md:text-[32px]  ">
+              ${item?.package_price}
+            </span>
           </div>
+          {item?.monthly_subscription === 1 && (
+            <div className="mt-4 font-semibold"> /monthly</div>
+          )}
         </div>
         {/* order button */}
         <div className="py-4 mt-4 md:mt-0 md:pb-8 flex justify-center px-4 md:px-4">

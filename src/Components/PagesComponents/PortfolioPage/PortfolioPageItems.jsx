@@ -15,7 +15,7 @@ const PortfolioPageItems = ({ portfolio }) => {
                 style={{ objectFit: "fill" }}
                 quality={80}
                 className="rounded-t-lg xl:rounded-l-lg lg:rounded-tr-none"
-                alt={portfolio?.title || "Portfolio image"}
+                alt={portfolio?.alt_text || "Portfolio image"}
               />
             </div>
           </div>

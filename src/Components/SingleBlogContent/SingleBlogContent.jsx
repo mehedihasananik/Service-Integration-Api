@@ -99,7 +99,7 @@ const SingleBlogContent = ({
                   ></div>
                   <Image
                     src={singleBlog?.image}
-                    alt={singleBlog?.title || "Blog featured image"}
+                    alt={singleBlog?.alt_text || "Blog featured image"}
                     layout="fill"
                     objectFit="cover"
                     className={`transition-opacity duration-300 ${

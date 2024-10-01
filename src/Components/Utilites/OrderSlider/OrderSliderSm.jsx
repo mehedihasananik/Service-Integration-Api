@@ -16,6 +16,7 @@ const OrderSliderSm = ({ sliders }) => {
     const mappedImages = sliders.map((slider) => ({
       original: slider.slider_image,
       thumbnail: slider.thum_image,
+      alt_text: slider.alt_text,
     }));
     setImages(mappedImages);
   }, [sliders]);
@@ -104,7 +105,7 @@ const OrderSliderSm = ({ sliders }) => {
         <div className={isFullscreen ? "min-h-screen flex items-center" : ""}>
           <img
             src={item.original}
-            alt=""
+            alt={item.alt_text}
             className={`w-full ${
               isFullscreen
                 ? "h-auto max-w-full object-contain"

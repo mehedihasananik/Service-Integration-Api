@@ -52,7 +52,7 @@ const ServiceDetails = ({ service, sliders, packages }) => {
               );
             })}
           </div>
-          {/* <div className=" grid-cols-1 lg:hidden space-y-5  ">
+          <div className=" grid-cols-1 lg:hidden space-y-5  ">
             {packages.map((item) => {
               return (
                 <SinglePackageSm
@@ -63,7 +63,7 @@ const ServiceDetails = ({ service, sliders, packages }) => {
                 />
               );
             })}
-          </div> */}
+          </div>
 
           {/* custom projects */}
 
