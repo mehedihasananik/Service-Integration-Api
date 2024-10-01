@@ -37,9 +37,9 @@ const AboutUsContent = ({ aboutDetails, singleAboutDetails, aboutTeam }) => {
         <Values title4={title4} details4={details4} />
         <AboutDetailsSection singleAboutDetails={singleAboutDetails} />
         <div className="flex flex-col justify-start items-center md:pt-5">
-          <h3 className="text-blackish text-headingSmall md:text-headingBase font-bold font-Raleway text-center lg:text-left">
+          <h2 className="text-blackish text-headingSmall md:text-headingBase font-bold font-Raleway text-center lg:text-left">
             {aboutTeam.title}
-          </h3>
+          </h2>
           <p className="text-[#334155] text-paragraphMedium space-y-5 pt-2 md:pt-3 text-left ">
             {" "}
             {aboutTeam.details}
@@ -52,10 +52,8 @@ const AboutUsContent = ({ aboutDetails, singleAboutDetails, aboutTeam }) => {
 
 const Header = ({ title, details }) => (
   <div className="pt-0 md:pt-10 lg:pt-7 space-y-2 md:space-y-4">
-    <h1 className="text-[30px] lg:text-[48px] text-[#0F172A] font-bold font-Raleway text-center lg:text-left">
-      {title}
-    </h1>
-    <p className="text-[18px] text-justify">{details}</p>
+    <h1 className="headings text-center lg:text-left">{title}</h1>
+    <p className="text-paragraphMedium text-justify">{details}</p>
   </div>
 );
 
@@ -84,25 +82,27 @@ const MissionVision = ({ image, title2, details2, title3, details3 }) => (
 
 const MissionVisionItem = ({ title, details, logoSrc }) => (
   <div className="space-y-3 text-center lg:text-left lg:pt-[8%]">
-    <h3 className="text-[18px] md:text-[32px] font-semibold">{title}</h3>
-    <p className="text-[17px] line-clamp-[12]">{details}</p>
+    <h2 className="text-paragraphMedium md:text-headingBase font-semibold">
+      {title}
+    </h2>
+    <p className="text-paragraphMedium line-clamp-[12]">{details}</p>
   </div>
 );
 
 const Values = ({ title4, details4 }) => (
   <div className="pt-4 lg:pt-20 lg:pb-4 space-y-3">
-    <h3 className="text-[20px] md:text-[32px] text-[#334155] text-center lg:text-left">
+    <h2 className="text-headingSmall md:text-headingBase text-[#334155] text-center lg:text-left">
       Our Values
-    </h3>
+    </h2>
     <div className="w-full lg:w-[70%] text-center lg:text-left space-y-3">
       <div>
-        <h2 className="text-[#0F172A] text-[20px] lg:text-[48px] font-bold font-Raleway leading-tight">
+        <h2 className="text-blackish text-headingSmall lg:text-headingLarge font-bold font-Raleway leading-tight">
           {title4}
         </h2>
       </div>
       <div>
         <div className="w-[80%] text-justify">
-          <p className="text-[#334155] text-[17px]">{details4}</p>
+          <p className="text-grayish text-paragraphMedium">{details4}</p>
         </div>
       </div>
     </div>
@@ -131,10 +131,10 @@ const AboutDetailItem = ({ detail }) => {
       <div
         className={`lg:w-[50%] ${textAlignment} flex flex-col justify-center`}
       >
-        <h2 className="text-[#0F172A] text-[20px] md:text-[32px] font-bold font-Raleway text-center lg:text-left">
+        <h2 className="text-blackish text-headingSmall md:text-headingBase font-bold font-Raleway text-center lg:text-left">
           {detail.title}
         </h2>
-        <div className="text-[#334155] text-[18px] space-y-5 pt-2 md:pt-5 text-left whitespace-pre-wrap">
+        <div className="text-slateBlueGray text-paragraphMedium space-y-5 pt-2 md:pt-5 text-left whitespace-pre-wrap">
           <p>{detail.details}</p>
         </div>
       </div>

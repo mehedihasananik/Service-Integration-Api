@@ -1,16 +1,15 @@
 import Image from "next/image";
 import React from "react";
-import { FaStar, FaQuoteLeft } from "react-icons/fa";
-import { BeakerIcon, StarIcon } from "@heroicons/react/24/solid";
+import { LiaStarSolid } from "react-icons/lia";
 
 const ClientReviewsContent1 = ({ testimonials }) => {
   return (
-    <div className="container mx-auto px-4 py-12">
-      <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-center mb-20 mt-6 relative">
+    <div className="container mx-auto px-4 py-6">
+      <h1 className="headings text-center mb-20 mt-0 relative">
         <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#123390] to-[#FF693B]">
           What Our Clients Say
         </span>
-        <span className="w-[50%] absolute -bottom-6 left-1/2 transform -translate-x-1/2 h-1 bg-gradient-to-r from-[#123390] to-[#FF693B] rounded-full"></span>
+        <span className="w-[33%] absolute -bottom-2 left-1/2 transform -translate-x-1/2 h-1 bg-gradient-to-r from-[#123390] to-[#FF693B] rounded-full"></span>
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
         {testimonials?.map((testimonial) => (
@@ -53,7 +52,7 @@ const ClientReviewsContent1 = ({ testimonials }) => {
                       </div>
                       <div className="flex items-center mt-2 space-x-1">
                         {[...Array(5)].map((_, i) => (
-                          <StarIcon
+                          <LiaStarSolid
                             key={i}
                             className="text-yellow-400 size-5 transition-transform duration-300 transform hover:scale-110 hover:text-yellow-500"
                           />

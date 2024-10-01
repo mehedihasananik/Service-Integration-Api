@@ -28,7 +28,7 @@ const HeaderItems = ({ headers }) => {
     <>
       <Container>
         {/* Navbar for large devices */}
-        <nav className="hidden lg:flex justify-between items-center pt-5">
+        <nav className="hidden lg:flex justify-between items-center pt-5 bg-[#FFFFFF]">
           {/* Logo */}
           <Link href="/">
             <div>

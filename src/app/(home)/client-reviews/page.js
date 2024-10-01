@@ -1,5 +1,4 @@
 import ClientReviewsContent1 from "@/Components/ClientReviewsContent/ClientReviewsContent1";
-import ClientReviewsContent3 from "@/Components/ClientReviewsContent/ClientReviewsContent3";
 import Container from "@/Components/Container/Container";
 import { testimonials_itemsApi } from "@/config/apis";
 
@@ -18,10 +17,9 @@ const ClientReviews = async () => {
   const testimonial = await getTestimonialContent();
 
   return (
-    <div className=" bg-gray-50">
+    <div>
       <Container>
         <ClientReviewsContent1 testimonials={testimonial.items} />
-        <ClientReviewsContent3 testimonials={testimonial.items} />
       </Container>
     </div>
   );

@@ -30,7 +30,7 @@ const SinglePage = async ({ params }) => {
     );
   } catch (error) {
     console.error("Error rendering portfolio item page:", error);
-    return <div>Error loading portfolio item. Please try again later.</div>;
+    return <div></div>;
   }
 };
 
