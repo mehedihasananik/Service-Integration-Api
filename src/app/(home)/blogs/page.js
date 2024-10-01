@@ -49,7 +49,7 @@ const BlogPage = async () => {
     );
   } catch (error) {
     console.error("Error rendering blog page:", error);
-    return <div>Error loading blog page. Please try again later.</div>;
+    return <div></div>;
   }
 };
 

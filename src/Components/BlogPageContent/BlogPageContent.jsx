@@ -1,5 +1,5 @@
 "use client";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import BlogSideBar from "../Utilites/BlogSection/BlogSideBar/BlogSideBar";
 import ElegantSubscribeModal from "../Utilites/BlogSection/ElegantSubscribeModal/ElegantSubscribeModal";
@@ -91,10 +91,11 @@ const BlogPageContent = ({ blogs, categories, recommended, popular, tags }) => {
         <button
           key={number}
           onClick={() => paginate(number)}
-          className={`px-4 py-2 rounded-full transition-all duration-300 ${currentPage === number
-            ? "bg-gradient-to-r from-[#FF693B] to-[#FF9A6B] text-white shadow-lg"
-            : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-            }`}
+          className={`px-4 py-2 rounded-full transition-all duration-300 ${
+            currentPage === number
+              ? "bg-gradient-to-r from-[#FF693B] to-[#FF9A6B] text-white shadow-lg"
+              : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+          }`}
         >
           {number}
         </button>
@@ -114,13 +115,11 @@ const BlogPageContent = ({ blogs, categories, recommended, popular, tags }) => {
     return () => clearTimeout(timer);
   }, []);
 
-
-
   return (
     <div className={`${animate ? "fade-in" : ""}`}>
       <div className="bg-gradient-to-b from-gray-100 to-white py-5 lg:py-8 md:mt-5">
         <div className="max-w-[1520px] mx-auto px-[6%] md:px-[4%] xl:px-[4%] 4xl:px-[4%]">
-          <h1 className="text-[30px] md:text-[30px] lg:text-[48px] font-Raleway font-bold text-center pb-4 lg:pb-4">
+          <h1 className="headings text-center pb-4 lg:pb-4">
             <span className="text-[#133490]">Our</span>{" "}
             <span className="text-[#FF693B]">Blogs</span>
           </h1>
