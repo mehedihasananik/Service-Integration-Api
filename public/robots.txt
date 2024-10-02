@@ -1,74 +1,62 @@
-# Global rules
 User-agent: *
-Allow: /
-Disallow: /api/
-Disallow: /_next/static/
-Disallow: /_next/image
-Disallow: /admin/
-Disallow: /config/
-Disallow: /database/
-Disallow: /resources/
-Disallow: /routes/
-Disallow: /storage/
-Disallow: /tests/
-Disallow: /*set_currency=*
-Disallow: /upload/
-Disallow: /imgs/
-Disallow: /assets/
+# Disallow all URLs from admin.envobyte.com
+Disallow: /admin.envobyte.com/
+Disallow: /admin.envobyte.com/login
+Disallow: /admin.envobyte.com/manage-order
+Disallow: /admin.envobyte.com/new-order
+Disallow: /admin.envobyte.com/profile
+Disallow: /admin.envobyte.com/registration
+Disallow: /admin.envobyte.com/message
 
-# Googlebot-specific rules
-User-agent: Googlebot
-Allow: /_next/static/
-Allow: /_next/image
-Disallow: /api/
-Disallow: /admin/
-Disallow: /config/
-Disallow: /database/
-Disallow: /resources/
-Disallow: /routes/
-Disallow: /storage/
-Disallow: /tests/
-Disallow: /upload/
-Disallow: /imgs/
-Disallow: /assets/
+# Disallow all URLs from v2admin.envobyte.com
+Disallow: /v2admin.envobyte.com/
+Disallow: /v2admin.envobyte.com/index
+Disallow: /v2admin.envobyte.com/login
 
-# Bing-specific rules
-User-agent: Bingbot
-Allow: /_next/static/
-Allow: /_next/image
-Disallow: /api/
-
-# Baidu-specific rules
-User-agent: Baiduspider
-Allow: /_next/static/
-Allow: /_next/image
-Disallow: /api/
-
-# Yandex-specific rules
-User-agent: Yandex
-Allow: /_next/static/
-Allow: /_next/image
-Disallow: /api/
-
-# DuckDuckGo-specific rules
-User-agent: DuckDuckBot
-Allow: /_next/static/
-Allow: /_next/image
-Disallow: /api/
-
-# Prevent access to external API
-Disallow: https://admin.envobyte.com/
-Disallow: https://envobyte.shop/
-
-# Block specific bots
-User-agent: VelenPublicWebCrawler
-Disallow: /
-
-# Specify the correct host
-Host: https://www.envobyte.com
-
-# Sitemap location
-Sitemap: https://www.envobyte.com/sitemap.xml
-
-# Crawl-delay for rate limiting
-Crawl-delay: 10
+# Disallow URLs from www.envobyte.com
+Disallow: /services/stunning-website-ui-design
+Disallow: /message
+Disallow: /new-order
+Disallow: /manage-order
+Disallow: /services/logo-design
+Disallow: /login
+Disallow: /registration
+Disallow: /services/facebook-ads
+Disallow: /services/facebook-ads-services
+Disallow: /blogs/profiling-php-laravel-applications
+Disallow: /blogs/mastering-the-art-of-client-commu
+Disallow: /services/brochure-design-services
+Disallow: /services/android-app-development-com
+Disallow: /services/social-media-management-packages
+Disallow: /services/google-ads
+Disallow: /services/search-engine-optimization
+Disallow: /services/wordpress-development
+Disallow: /services/hybrid-app-development
+Disallow: /services/android-app-development
+Disallow: /services/social-media-management
+Disallow: /order-delivery
+Disallow: /blogs/5-strategies-to-skyrocket-your-freelance-career-on-our-platform
+Disallow: /blogs/mastering-the-art-of-client-communication-in-the-digital-age-7-strategies-for-success
+Disallow: /services/android-app-development-company
+Disallow: /services/brochure-design-services
+Disallow: /robots.txt
+Disallow: /services/logo-design/
+Disallow: /new-order/
+Disallow: /manage-order/
+Disallow: /services/facebook-ads/
+Disallow: /services/android-app-development
+Disallow: /services/google-ads
+Disallow: /services/flyer-design
+Disallow: /blogs/profiling-php-laravel-applications-with-xhprof-finding-bottlenecks
+Disallow: /services/google-ads-management-service
+Disallow: /services/test-order-by
+Disallow: /services/facebook-ads-services/
+Disallow: /services/app-store-optimization
+Disallow: /portfolio/new-portfolio
+Disallow: /services/banner-ads-design
+Disallow: /services/best-android-app-development-company
+Disallow: /services/wordpress-website-development-service
+Disallow: /service/banner-ads-design
+Disallow: /order-delivery/
+Disallow: /services/search-engine-optimization/
+Disallow: /services/wordpress-development/

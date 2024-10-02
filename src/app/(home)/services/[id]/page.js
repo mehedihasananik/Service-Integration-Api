@@ -6,18 +6,29 @@ import {
   singleService_package,
   singleSliderPageDetails,
 } from "@/config/apis";
-import { fetchMultipleData } from "@/config/fetchData";
 import { generateCommonMetadata } from "@/config/generateMetadata";
 import { Suspense } from "react";
 
 // This function will fetch all required data for the page
 async function getPageData(id) {
   try {
-    const [service, sliders, packages] = await fetchMultipleData([
-      `${singeServiceDetails}/${id}`,
-      `${singleSliderPageDetails}/${id}`,
-      `${singleService_package}/${id}`,
-    ]);
+    const serviceResponse = await fetch(`${singeServiceDetails}/${id}`, {
+      cache: "no-store",
+    });
+    const slidersResponse = await fetch(`${singleSliderPageDetails}/${id}`, {
+      cache: "no-store",
+    });
+    const packagesResponse = await fetch(`${singleService_package}/${id}`, {
+      cache: "no-store",
+    });
+
+    if (!serviceResponse.ok || !slidersResponse.ok || !packagesResponse.ok) {
+      throw new Error("Failed to fetch one or more resources");
+    }
+
+    const service = await serviceResponse.json();
+    const sliders = await slidersResponse.json();
+    const packages = await packagesResponse.json();
 
     return { service, sliders, packages };
   } catch (error) {
