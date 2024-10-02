@@ -2,7 +2,7 @@
 
 export default function GlobalError({ error, reset }) {
   const handleRefreshAndNavigate = () => {
-    window.location.href = "/home"; // Refresh and navigate to "/home"
+    window.location.href = "/"; // Refresh and navigate to "/home"
   };
 
   return (
