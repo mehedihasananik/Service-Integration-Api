@@ -170,7 +170,7 @@ const PortfolioPage = ({
               text-sm rounded-lg 
               focus:ring-blue-500 focus:border-blue-500 
               block w-full 
-              pt-[18px] pb-[18px] px-[10px] 
+              pt-[15px] pb-[20px] px-[10px] 
               dark:bg-blue-900 
               dark:border-blue-600 
               dark:placeholder-blue-300 

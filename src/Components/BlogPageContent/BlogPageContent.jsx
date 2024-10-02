@@ -141,7 +141,7 @@ const BlogPageContent = ({ blogs, categories, recommended, popular, tags }) => {
                 <input
                   type="text"
                   placeholder="Search blogs..."
-                  className="w-full py-4 text-gray-800 bg-gray-100 border border-gray-300 rounded-lg focus:border-gray-300 focus:outline-none transition-all duration-300"
+                  className="outline-none w-full py-4 text-gray-800 bg-gray-100 border border-gray-300 rounded-lg"
                   value={searchTerm}
                   onChange={handleSearch}
                 />
