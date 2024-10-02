@@ -18,12 +18,14 @@ const AboutUs = async () => {
           <div className="bg-[#DDFFFB] relative w-full max-w-[650px] aspect-square">
             <Image
               src={about.image}
-              layout="fill"
-              objectFit="contain"
+              fill // Replaces layout="fill"
+              sizes="(max-width: 650px) 100vw, 650px" // Tells the browser how much space the image should occupy
+              style={{ objectFit: "contain" }} // Replaces objectFit="contain"
               quality={80}
               alt="about-img"
             />
           </div>
+
           {/* right side counters */}
           <div className="pt-4 md:pt-10">
             <AboutUsItems about={about} />

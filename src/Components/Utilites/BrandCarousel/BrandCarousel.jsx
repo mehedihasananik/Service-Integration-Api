@@ -34,8 +34,8 @@ const BrandCarousel = ({ brands }) => {
             <Image
               width={101}
               height={70}
-              src={brand?.logo}
-              alt={brand?.alt_text}
+              src={brand.logo}
+              alt={`Brand logo`}
               className="h-[70px]"
             />
           </SwiperSlide>

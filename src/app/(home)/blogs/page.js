@@ -1,6 +1,6 @@
 import BlogPageContent from "@/Components/BlogPageContent/BlogPageContent";
 import JsonLd from "@/Components/Utilites/JsonLd/JsonLd";
-import UserLoading from "@/Components/Utilites/UserLoading/UserLoading";
+import Loading from "@/Components/Utilites/Loading/Loading";
 import { fetchMultipleData } from "@/config/fetchData";
 import { generateCommonMetadata } from "@/config/generateMetadata";
 import { Suspense } from "react";
@@ -36,7 +36,7 @@ const BlogPage = async () => {
     return (
       <>
         <JsonLd data={blogs?.data?.meta?.json_ld} />
-        <Suspense fallback={<UserLoading />}>
+        <Suspense fallback={<Loading />}>
           <BlogPageContent
             blogs={blogs?.data?.formattedBlogs}
             categories={categories?.data}

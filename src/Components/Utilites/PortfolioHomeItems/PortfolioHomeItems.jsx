@@ -136,11 +136,12 @@ const PortfolioHomeItems = ({
                         <div className="relative w-full lg:aspect-[330/370] h-[270px] md:h-[400px] lg:h-auto overflow-hidden">
                           <Image
                             src={portfolio?.image}
-                            layout="fill"
-                            objectFit="cover"
+                            fill // Replaces layout="fill"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 100vw, 330px" // Sizes based on container dimensions and breakpoints
+                            style={{ objectFit: "cover" }} // Replaces objectFit="cover"
                             quality={80}
                             className="rounded-t-lg xl:rounded-l-lg lg:rounded-tr-none"
-                            alt={portfolio?.title || "Portfolio image"}
+                            alt={portfolio?.alt_text || "Portfolio image"}
                           />
                         </div>
                       </div>

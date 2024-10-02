@@ -102,11 +102,12 @@ const FooterItems = ({ footer, userContact }) => {
                   return (
                     <Link key={item?.id} href={item?.link} target="_blank">
                       <Image
-                        className="transform hover:scale-125 transition-all duration-300 h-[28px] w-[30px]"
+                        className="transform hover:scale-125 transition-all duration-300"
                         src={item?.social_icon}
                         alt="Instagram Logo"
                         width={30}
                         height={30}
+                        style={{ objectFit: "contain" }} // Ensures the image fits within the container without distortion
                       />
                     </Link>
                   );

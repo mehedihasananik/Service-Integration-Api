@@ -10,8 +10,9 @@ const TestimonialCard = ({ testimonial }) => {
             <Image
               src={testimonial?.image}
               alt={testimonial?.name || "Testimonial avatar"}
-              layout="fill"
-              objectFit="cover"
+              fill // Use fill for responsive images
+              sizes="56px" // Since the container is fixed at 56px, the image will always occupy 56px width and height
+              style={{ objectFit: "cover" }} // Ensures the image covers the container without distortion
               className="rounded-full"
             />
           </div>

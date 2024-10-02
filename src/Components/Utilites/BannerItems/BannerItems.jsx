@@ -42,14 +42,13 @@ const BannerItems = ({ banner }) => {
           />
         </div>
       </div>
-
-      <div className="relative w-full max-w-[742px]  aspect-[742/554]">
+      <div className="relative w-full max-w-[742px] aspect-[742/554]">
         <Image
           src={banner[0].banner_image}
           alt={banner[0].alt_text || "Banner image"}
-          width={742}
-          height={554}
-          priority
+          fill // Use fill for responsive images
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 742px" // Define sizes for responsive loading
+          style={{ objectFit: "cover" }} // Ensures the image covers the container without distortion
           quality={80}
         />
       </div>

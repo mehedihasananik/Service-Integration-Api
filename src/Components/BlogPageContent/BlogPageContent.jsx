@@ -117,7 +117,7 @@ const BlogPageContent = ({ blogs, categories, recommended, popular, tags }) => {
 
   return (
     <div className={`${animate ? "fade-in" : ""}`}>
-      <div className=" py-5 lg:py-8 md:mt-5">
+      <div className=" py-5 lg:py-8 md:mt-0">
         <div className="max-w-[1520px] mx-auto px-[6%] md:px-[4%] xl:px-[4%] 4xl:px-[4%]">
           <h1 className="headings text-center pb-4 lg:pb-4">
             <span className="text-[#133490]">Our</span>{" "}
