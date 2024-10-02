@@ -5,13 +5,6 @@ export async function generateCommonMetadata(pageData, parent) {
     title: pageData?.meta?.seo_meta?.title,
     description: pageData?.meta?.seo_meta?.description,
     keywords: pageData?.meta?.seo_meta?.keywords,
-    authors: [
-      {
-        name:
-          pageData?.meta?.seo_meta?.pagename ||
-          pageData?.meta?.seo_meta?.author,
-      },
-    ],
     robots: pageData?.meta?.seo_meta?.robots,
     // viewport: "width=device-width, initial-scale=1.0, shrink-to-fit=no",
     // charSet: "UTF-8",
