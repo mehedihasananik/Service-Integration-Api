@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Accordion from "@/Components/Accordion/Accordion";
 import { faqApi } from "@/config/apis";
-import UserLoading from "@/Components/Utilites/UserLoading/UserLoading";
+import Loading from "@/Components/Utilites/Loading/Loading";
 
 const Questions = ({ className, title }) => {
   const [questions, setQuestions] = useState([]);
@@ -50,7 +50,7 @@ const Questions = ({ className, title }) => {
           <div className="py-4 md:py-8">
             <div className="rounded-lg">
               {isLoading ? (
-                <UserLoading />
+                <Loading />
               ) : (
                 questions?.FaqDataArray?.map((question) => (
                   <Accordion
