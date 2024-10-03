@@ -55,14 +55,14 @@ const AboutUsContent = ({ aboutDetails, singleAboutDetails, aboutTeam }) => {
 };
 
 const Header = ({ title, details }) => (
-  <div className="pt-0 md:pt-10 lg:pt-7 space-y-2 md:space-y-4">
+  <div className=" space-y-2 md:space-y-4 heading-space">
     <h1 className="headings text-center lg:text-left">{title}</h1>
     <p className="text-paragraphMedium text-justify">{details}</p>
   </div>
 );
 
 const MissionVision = ({ image, title2, details2, title3, details3, alt }) => (
-  <div className="grid grid-cols-1 justify-items-center lg:justify-items-start gap-y-0 lg:gap-y-0 lg:grid-cols-3 pt-10 lg:pt-16 lg:gap-x-10">
+  <div className="grid grid-cols-1 justify-items-center lg:justify-items-start gap-y-0 lg:gap-y-0 lg:grid-cols-3 pt-10 lg:pt-10 lg:gap-x-10">
     <Image
       className="w-[450px]"
       width={500}

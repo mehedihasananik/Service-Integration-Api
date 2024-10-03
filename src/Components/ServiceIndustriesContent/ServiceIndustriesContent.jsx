@@ -5,9 +5,9 @@ import Link from "next/link";
 
 const ServiceIndustriesContent = ({ industries, details }) => {
   return (
-    <div className=" text-dark  px-0 mt-0 rounded-md  overflow-hidden relative text-center pt-2 md:pt-8 md:pb-20">
+    <div className=" text-dark  px-0 mt-0 rounded-md  overflow-hidden relative text-center ">
       <motion.h1
-        className="text-[20px] whitespace-nowrap md:text-[30px] lg:text-[48px] font-Raleway font-bold tracking-wide"
+        className="text-[20px] whitespace-nowrap md:text-[30px] lg:text-[48px] font-Raleway font-bold tracking-wide  "
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}

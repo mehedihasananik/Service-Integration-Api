@@ -66,7 +66,7 @@ const ServicesPageContent = ({
   return (
     <div className="service_section overflow-hidden">
       <div className="max-w-[1520px] mx-auto px-[6%] md:px-[4%] lg:px-0 xl:px-[8%] 4xl:px-[4%]">
-        <div className="py-5 md:py-0 md:pt-8">
+        <div className="heading-space">
           <div className="text-center">
             <h1 className="headings">
               Choose a <span className="text-primary">service</span> that you

@@ -134,7 +134,7 @@ const ContactUsPageContent = ({ userContact }) => {
       <Container>
         <motion.div
           variants={stagger}
-          className="text-center mb-8 lg:mb-20 mt-4"
+          className="text-center heading-space md:pb-10"
         >
           <div className="flex flex-col lg:flex-row justify-center items-center">
             <div className="relative top-0 lg:top-0 mb-4 lg:mb-0">

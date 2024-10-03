@@ -53,6 +53,9 @@
   .headings {
     @apply text-headingSmall md:text-headingMedium lg:text-headingLarge font-Raleway font-bold text-blackish;
   }
+  .heading-space {
+    @apply mt-3 mb-3 md:mt-3 md:mb-5;
+  }
 
   .custom-rotate {
     background: linear-gradient(90deg, #2f4c9d 0%, #0a2c8c 100%);

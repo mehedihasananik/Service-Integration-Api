@@ -105,13 +105,13 @@ const PortfolioPage = ({
   };
 
   return (
-    <div className="pt-8 lg:pt-8">
+    <div className="heading-space">
       <div className="text-center">
         <h1 className="headings">
           Our Amazing <span className="text-primary">Portfolio</span>
         </h1>
       </div>
-      <div className="grid grid-cols-1 md:space-x-3 lg:space-x-20 space-y-3 md:space-y-0 md:grid-cols-3 mt-10">
+      <div className="grid grid-cols-1 md:space-x-3 lg:space-x-20 space-y-3 md:space-y-0 md:grid-cols-3 mt-4 md:mt-10">
         <div>
           <form className="max-w-sm">
             <select

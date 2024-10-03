@@ -29,7 +29,7 @@ export default async function ServiceIndustries() {
     const industriesData = await getPageData();
 
     return (
-      <>
+      <div className="heading-space">
         <JsonLd data={industriesData?.meta?.json_ld} />
         <Suspense fallback={<UserLoading />}>
           <Container>
@@ -39,7 +39,7 @@ export default async function ServiceIndustries() {
             />
           </Container>
         </Suspense>
-      </>
+      </div>
     );
   } catch (error) {
     console.error("Error rendering service industries page:", error);
