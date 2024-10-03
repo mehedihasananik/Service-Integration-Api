@@ -44,7 +44,7 @@ const SingleBlogContent = ({
         <BlogSocialShare />
       </div>
 
-      <div className="bg-gradient-to-b from-gray-100 to-white md:pt-10 pt-4 md:pb-10 md:mt-4">
+      <div className=" heading-space md:pt-4">
         <div className="max-w-[1520px] mx-auto px-[6%] md:px-[4%] xl:px-[3.5%] xxl:px-[5%] 4xl:px-[4%]">
           <BlogBreadCrumb />
           <header className="pt-2 pb-2">

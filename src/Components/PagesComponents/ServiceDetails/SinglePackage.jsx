@@ -89,10 +89,8 @@ const SinglePackage = ({ item, setOpenModal, height, serviceName }) => {
             <h3 className="font-Raleway text-[16px] text-[#1E293B] font-bold">
               {item?.package_name}
             </h3>
-            <p className="text-[15px] text-[#334155] font-normal">
-              {item?.package_text.length > 80
-                ? item?.package_text.slice(0, 80) + "..."
-                : item?.package_text}
+            <p className="text-[15px] text-[#334155] font-normal line-clamp-2">
+              {item?.package_text}
             </p>
           </div>
         </div>

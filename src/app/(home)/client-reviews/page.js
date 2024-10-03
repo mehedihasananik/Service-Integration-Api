@@ -2,6 +2,10 @@ import ClientReviewsContent1 from "@/Components/ClientReviewsContent/ClientRevie
 import Container from "@/Components/Container/Container";
 import { testimonials_itemsApi } from "@/config/apis";
 
+export const metadata = {
+  title: "Client Reviews",
+  description: "This is client review page",
+};
 async function getTestimonialContent() {
   const res = await fetch(testimonials_itemsApi, {
     next: { revalidate: 120 },

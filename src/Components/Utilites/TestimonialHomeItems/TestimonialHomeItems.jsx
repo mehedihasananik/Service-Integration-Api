@@ -93,7 +93,7 @@ const TestimonialHomeItems = ({ testimonials, details }) => {
                   </button>
                 </div>
               </div>
-              <div className="hidden md:block mt-[5%]">
+              <div className="hidden  xl:block mt-[5%]">
                 <GlobalButtonColored
                   path="client-reviews"
                   title="View All"
@@ -137,7 +137,7 @@ const TestimonialHomeItems = ({ testimonials, details }) => {
                   ))}
                 </Swiper>
               )}
-              <div className="block  md:hidden mt-[5%] text-center my-4">
+              <div className="block  xl:hidden  mt-[5%] text-center my-4 lg:mb-[3%]">
                 <GlobalButtonColored
                   path="client-reviews"
                   title="View All"

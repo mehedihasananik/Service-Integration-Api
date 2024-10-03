@@ -53,7 +53,7 @@ const PortfolioDetails = ({ singlePortfolioItem }) => {
   return (
     <div className="bg-[#fff]]">
       <Container>
-        <div className="md:py-10 md:pb-0">
+        <div className="heading-space">
           <h1 className="text-[20px] md:text-[30px] lg:text-[54px] font-Raleway font-bold lg:leading-[63.4px] text-[#000000] text-center pb-3 lg:pb-0 pt-5 md:pt-0">
             {basic?.title}
           </h1>

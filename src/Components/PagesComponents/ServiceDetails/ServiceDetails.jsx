@@ -27,7 +27,7 @@ const ServiceDetails = ({ service, sliders, packages }) => {
     <>
       {" "}
       <Container>
-        <div className="pt-3 pb-4">
+        <div className="heading-space">
           {/* title */}
           <div className="text-center font-Raleway pb-[1.75rem]">
             <h1 className="text-[#10F172A] text-[32px] md:text-[48px] font-bold capitalize">

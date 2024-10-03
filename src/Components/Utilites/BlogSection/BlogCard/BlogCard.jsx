@@ -23,7 +23,7 @@ const BlogCard = ({ item }) => {
           )}
         </div>
       </div>
-      <div className="p-6 h-[250px]">
+      <div className="p-6 h-[260px]">
         <div className="flex items-center text-grayish mb-2 gap-x-5">
           <div className="flex items-center text-grayish mb-2">
             <Calendar size={16} className="mr-2" />

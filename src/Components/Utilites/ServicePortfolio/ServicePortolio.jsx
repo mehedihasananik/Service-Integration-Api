@@ -14,6 +14,7 @@ import Link from "next/link";
 import { Autoplay } from "swiper/modules";
 import { sevice_portfolioApi } from "@/config/apis";
 import UserLoading from "../UserLoading/UserLoading";
+import Loading from "../Loading/Loading";
 
 const ServicePortolio = ({ portfolios }) => {
   const [loading, setLoading] = useState(true);
@@ -63,7 +64,7 @@ const ServicePortolio = ({ portfolios }) => {
     <>
       {loading ? (
         <div className="py-10">
-          <UserLoading />
+          <Loading />
         </div>
       ) : portfolios?.length > 0 ? (
         <div className="lg:px-[0%] xxl:px-[0%] 3xll:p-[.5%]">
