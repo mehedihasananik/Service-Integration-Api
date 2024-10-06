@@ -3,51 +3,45 @@ import Image from "next/image";
 const TeamGrid = () => {
   const teamMembers = [
     {
-      name: "Mike Cannon-Brookes",
-      title: "Co-Founder & Co-CEO",
-      imgSrc: "/assets/myimg.png",
+      name: "Tanvir Hosen",
+      title: "Senior Marketing Executive",
+      imgSrc: "/assets/Tanvir.jpg",
       gradientFrom: "from-yellow-200",
       gradientTo: "to-yellow-400",
     },
     {
-      name: "Scott Farquhar",
-      title: "Co-Founder & Co-CEO",
-      imgSrc: "/assets/myimg.png",
+      name: "Minul Islam",
+      title: "Senior Marketing Executive",
+      imgSrc: "/assets/minul.jpg",
       gradientFrom: "from-green-200",
       gradientTo: "to-green-400",
     },
     {
-      name: "Anu Bharadwaj",
-      title: "President",
-      imgSrc: "/assets/myimg.png",
-      gradientFrom: "from-teal-200",
-      gradientTo: "to-teal-400",
+      name: "Md Al Amin",
+      title: "Marketing Expert",
+      imgSrc: "/assets/alamin.jpg",
+      gradientFrom: "from-blue-200",
+      gradientTo: "to-blue-400",
     },
     {
-      name: "Anu Bharadwaj",
-      title: "President",
-      imgSrc: "/assets/myimg.png",
-      gradientFrom: "from-teal-200",
-      gradientTo: "to-teal-400",
+      name: "Faisal Abedin",
+      title: "Marketing Expert",
+      imgSrc: "/assets/faysal.jpg",
+      gradientFrom: "from-red-200",
+      gradientTo: "to-red-400",
     },
     {
-      name: "Anu Bharadwaj",
-      title: "President",
-      imgSrc: "/assets/myimg.png",
-      gradientFrom: "from-teal-200",
-      gradientTo: "to-teal-400",
+      name: "Monir Ahmed",
+      title: "Marketing Expert",
+      imgSrc: "/assets/monir.jpg",
+      gradientFrom: "from-purple-200",
+      gradientTo: "to-purple-400",
     },
-    {
-      name: "Anu Bharadwaj",
-      title: "President",
-      imgSrc: "/assets/myimg.png",
-      gradientFrom: "from-teal-200",
-      gradientTo: "to-teal-400",
-    },
+    // Add more marketing team members with unique gradients...
   ];
 
   return (
-    <div className="grid grid-cols-3 justify-center gap-x-4 mt-24 gap-y-20 ">
+    <div className="grid grid-cols-3 justify-center gap-x-4 mt-24 gap-y-20">
       {teamMembers.map((member, index) => (
         <div key={index} className="relative w-[400px] h-52 group mt-20">
           {/* Card Container */}

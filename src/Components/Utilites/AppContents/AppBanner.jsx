@@ -1,6 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
-import React from "react";
 import GlobalButtonColored from "../GlobalButton/GlobalButtonColored";
 import GlobalButtonHovered from "../GlobalButton/GlobalButtonHovered";
 
