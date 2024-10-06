@@ -51,7 +51,7 @@
     @apply text-[14px] bg-[#FF693B] rounded-md px-8 py-[5px] text-white border border-[#ff693B] group-hover:bg-white group-hover:text-[#FF693B] transition-all duration-300;
   }
   .headings {
-    @apply text-headingSmall md:text-headingMedium lg:text-headingLarge font-Raleway font-bold text-blackish;
+    @apply text-headingBaseSmall md:text-headingMedium lg:text-headingLarge font-Raleway font-bold text-blackish;
   }
   .heading-space {
     @apply mt-3 mb-3 md:mt-3 md:mb-5;

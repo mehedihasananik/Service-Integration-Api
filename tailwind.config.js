@@ -55,6 +55,7 @@ module.exports = {
         headingLarge: "48px",
         headingMedium: "42px",
         headingBase: "30px",
+        headingBaseSmall: "25px",
         headingSmall: "20px",
         subheading: "18px",
         headingText: "16px",

@@ -76,7 +76,7 @@ const HeaderItems = ({ headers }) => {
 
       {/* Navbar for small devices */}
       <div className="lg:hidden">
-        <Navbar fluid rounded className="bg-white ">
+        <Navbar fluid className="bg-white ">
           <Navbar.Brand as={Link} href="/">
             <Image
               src={logo?.logo || "/assets/logo.png"}
@@ -93,7 +93,7 @@ const HeaderItems = ({ headers }) => {
           <Navbar.Collapse
             className={`${isNavbarOpen ? "block" : "hidden"} md:block`}
           >
-            <div className="flex flex-col md:flex-row md:items-center md:space-x-4 mt-4 md:mt-0">
+            <div className="flex flex-col md:flex-row md:items-center md:space-x-4 mt-0 md:mt-0">
               {menu?.map((item, index) => (
                 <Navbar.Link
                   as={Link}
@@ -103,10 +103,10 @@ const HeaderItems = ({ headers }) => {
                   className={`
                     ${
                       item.menu_name === "Book An Appointment"
-                        ? "bg-[#FF693B] border border-[#FF693B] text-white md:p-[10px] font-medium px-4 py-1 rounded-lg hover:bg-white hover:text-[#FF693B] transition-all duration-300 text-center mb-2 md:mb-0 md:inline-block md:text-sm"
+                        ? "bg-[#FF693B] font-bold py-2 border border-[#FF693B] text-white md:p-[10px]  px-4 rounded-md hover:bg-white hover:text-[#FF693B] transition-all duration-300 text-center mb-2 md:mb-0 md:inline-block md:text-sm"
                         : isLinkActive(item.menu_link)
-                        ? "text-[16px] text-[#FF0000] font-normal pb-1 transition duration-300 ease-in-out mb-2 md:mb-0"
-                        : "text-[16px] text-[#0F172A] cursor-pointer font-normal hover:text-[#FF693B] pb-1 transition duration-300 ease-in-out mb-2 md:mb-0"
+                        ? "text-subheading text-[#FF0000]  pb-1 transition duration-300 ease-in-out mb-2 md:mb-0 font-bold"
+                        : "text-subheading text-[#0F172A] cursor-pointer hover:text-[#FF693B] pb-1 transition duration-300 ease-in-out mb-2 md:mb-0 font-bold"
                     }
                     ${
                       item.menu_name !== "Book An Appointment"
