@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
 import GlobalButtonColored from "../GlobalButton/GlobalButtonColored";
-import GlobalButtonHovered from "../GlobalButton/GlobalButtonHovered";
 
 const BusinessConsultingHero = () => {
   return (

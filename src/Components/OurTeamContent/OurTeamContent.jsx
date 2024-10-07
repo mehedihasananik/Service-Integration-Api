@@ -15,33 +15,43 @@ const OurTeamContent = () => {
     },
   ];
 
-  const marketingTeam = [
+  const marketingMembers = [
     {
       name: "Tanvir Hosen",
       title: "Senior Marketing Executive",
-      image: "/assets/Tanvir.jpg",
+      imgSrc: "/assets/Tanvir.jpg",
+      gradientFrom: "from-yellow-200",
+      gradientTo: "to-yellow-400",
     },
     {
       name: "Minul Islam",
       title: "Senior Marketing Executive",
-      image: "/assets/minul.jpg",
+      imgSrc: "/assets/minul.jpg",
+      gradientFrom: "from-green-200",
+      gradientTo: "to-green-400",
     },
     {
       name: "Md Al Amin",
       title: "Marketing Expert",
-      image: "/assets/alamin.jpg",
+      imgSrc: "/assets/alamin.jpg",
+      gradientFrom: "from-blue-200",
+      gradientTo: "to-blue-400",
     },
     {
       name: "Faisal Abedin",
       title: "Marketing Expert",
-      image: "/assets/faysal.jpg",
+      imgSrc: "/assets/faysal.jpg",
+      gradientFrom: "from-red-200",
+      gradientTo: "to-red-400",
     },
     {
       name: "Monir Ahmed",
       title: "Marketing Expert",
-      image: "/assets/monir.jpg",
+      imgSrc: "/assets/monir.jpg",
+      gradientFrom: "from-purple-200",
+      gradientTo: "to-purple-400",
     },
-    // Add more marketing team members...
+    // Add more marketing team members with unique gradients...
   ];
 
   const developmentTeam = [
@@ -66,7 +76,7 @@ const OurTeamContent = () => {
 
   return (
     <div className="text-gray-800">
-      {/* <OurTeamFounders
+      <OurTeamFounders
         imagePosition="left"
         name="Md Sheikh Hasib Akter"
         title="Managing director"
@@ -77,7 +87,7 @@ const OurTeamContent = () => {
         name="Nodi Akter"
         title="Chairman"
         imageSrc="/assets/chairmans.jpeg"
-      /> */}
+      />
       <div className="text-center mb-10">
         <h2 className="text-5xl font-bold mb-6 text-[#FF693B]">
           Our Dynamic Talents
@@ -89,12 +99,7 @@ const OurTeamContent = () => {
       </div>
       {/* <TeamGrid heading="Management Team" members={managementTeam} /> */}
       <div className="space-y-10">
-        <TeamGrid />
-        {/* <TeamGrid1 />
-        <TeamGrid2 />
-        <TeamGrid3 />
-        <TeamGrid4 />
-        <TeamGrid5 /> */}
+        <TeamGrid marketingMembers={marketingMembers} />
       </div>
       {/* <TeamGrid heading="Sales & Marketing Team" members={marketingTeam} /> */}
     </div>
