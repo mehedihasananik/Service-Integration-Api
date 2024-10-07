@@ -56,6 +56,12 @@
   .heading-space {
     @apply mt-3 mb-3 md:mt-3 md:mb-5;
   }
+  .app_heading {
+    @apply text-headingBaseSmall md:text-[48px] text-gray-800 font-bold;
+  }
+  .app_space {
+    @apply py-3 md:py-8;
+  }
 
   .custom-rotate {
     background: linear-gradient(90deg, #2f4c9d 0%, #0a2c8c 100%);

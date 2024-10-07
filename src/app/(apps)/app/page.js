@@ -1,12 +1,11 @@
 import AppPageContent from "@/Components/AppPageContent/AppPageContent";
-import Container from "@/Components/Container/Container";
 
 const AppPage = () => {
   return (
-    <div className="bg-[#F1F3F8] h-full">
-      <Container>
+    <div className="bg-[#fff] h-full">
+      <>
         <AppPageContent />
-      </Container>
+      </>
     </div>
   );
 };

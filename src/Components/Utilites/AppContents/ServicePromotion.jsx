@@ -1,3 +1,4 @@
+import Container from "@/Components/Container/Container";
 import { link } from "fs";
 import Link from "next/link";
 import React from "react";
@@ -79,36 +80,38 @@ const ServicePromotion = () => {
   ];
 
   return (
-    <section id="services" className=" py-24">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-extrabold mb-6 text-gray-800">
-            Discover Our
-            <span className="text-[#123390] mx-3 relative">
-              Services
-              <span className="absolute bottom-0 left-0 w-full h-3 bg-blue-200 -z-10 transform -skew-x-12"></span>
-            </span>
-          </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto text-lg leading-relaxed">
-            From web development to design, we offer a range of services to help
-            your business thrive in the digital world.
-          </p>
+    <Container>
+      <section id="services" className="app_space">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-5 md:mb-16">
+            <h2 className="app_heading font-extrabold mb-4 ">
+              Discover Our
+              <span className="text-[#123390] mx-3 relative">
+                Services
+                <span className="absolute bottom-0 left-0 w-full h-3 bg-blue-200 -z-10 transform -skew-x-12"></span>
+              </span>
+            </h2>
+            <p className="text-gray-600 max-w-2xl mx-auto text-lg leading-relaxed">
+              From web development to design, we offer a range of services to
+              help your business thrive in the digital world.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {featuredServices.map((service, index) => (
+              <ServiceCard key={index} {...service} />
+            ))}
+          </div>
+          <div className="text-center mb-5 mt-8 md:mt-16 md:mb-0">
+            <Link
+              href="/services"
+              className="inline-block bg-[#123390] text-white py-4 px-10 rounded-lg font-semibold text-sm md:text-lg hover:bg-[#FF693B] transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+            >
+              View All Services
+            </Link>
+          </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {featuredServices.map((service, index) => (
-            <ServiceCard key={index} {...service} />
-          ))}
-        </div>
-        <div className="text-center mt-16">
-          <Link
-            href="/services"
-            className="inline-block bg-[#123390] text-white py-4 px-10 rounded-full font-semibold text-lg hover:bg-[#FF693B] transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
-          >
-            View All Services
-          </Link>
-        </div>
-      </div>
-    </section>
+      </section>
+    </Container>
   );
 };
 

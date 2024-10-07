@@ -7,7 +7,7 @@ import BusinessConsultingHero from "../Utilites/AppContents/BusinessConsultingHe
 
 const AppPageContent = () => {
   return (
-    <div className="pb-[5%]">
+    <div>
       <AppBanner />
       <StatsSection />
       <AppSection />
