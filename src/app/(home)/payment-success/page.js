@@ -1,4 +1,6 @@
 // PaymentSuccess.jsx
+"use client";
+
 export default function PaymentSuccess({ searchParams }) {
   const { amount } = searchParams; // Destructure amount from searchParams
 

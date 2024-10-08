@@ -48,7 +48,7 @@ const CheckoutPage = ({ amount }) => {
       elements,
       clientSecret,
       confirmParams: {
-        return_url: `/payment-success?amount=${amount}`,
+        return_url: `http://www.envobyte.shop/payment-success?amount=${amount}`,
       },
     });
 
