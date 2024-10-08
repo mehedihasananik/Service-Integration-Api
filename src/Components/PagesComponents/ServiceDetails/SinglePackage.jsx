@@ -119,8 +119,8 @@ const SinglePackage = ({ item, setOpenModal, height, serviceName }) => {
             Contact For Order
           </button> */}
           <GlobalButtonHovered
-            path={"/schedule-meeting"}
-            title={"Book Now"}
+            path={"/checkout"}
+            title={"Pay Now"}
             className="btn btn-secondary md:w-[100%] text-center py-2.5"
           />
         </div>
