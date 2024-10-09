@@ -6,6 +6,7 @@ import { FaRegClock } from "react-icons/fa6";
 import { BiRevision } from "react-icons/bi";
 import Link from "next/link";
 import { VscQuestion } from "react-icons/vsc";
+import GlobalButtonHovered from "@/Components/Utilites/GlobalButton/GlobalButtonHovered";
 
 const SinglePackageSm = ({ item, setOpenModal }) => {
   const [userData, setUserData] = useState(null);
@@ -56,12 +57,11 @@ const SinglePackageSm = ({ item, setOpenModal }) => {
 
         {/* order button */}
         <div className="mb-6">
-          <button
-            onClick={orderWithLogin}
-            className="text-[16px] font-medium text-[#FF693B] border border-[#FF693B] px-6 py-2 w-full rounded-md hover:text-white hover:bg-[#FF693B] transition-all duration-300"
-          >
-            Place Order Now
-          </button>
+          <GlobalButtonHovered
+            path={"/checkout"}
+            title={"Pay Now"}
+            className="btn btn-secondary md:w-[100%] text-center py-2.5"
+          />
         </div>
 
         {/* order details */}

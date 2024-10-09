@@ -6,6 +6,7 @@ import { Tooltip } from "flowbite-react";
 import { VscQuestion } from "react-icons/vsc";
 import Link from "next/link";
 import GlobalButtonHovered from "@/Components/Utilites/GlobalButton/GlobalButtonHovered";
+import CheckoutButton from "@/Components/CheckoutButton/CheckoutButton";
 
 const SinglePackage = ({ item, setOpenModal, height, serviceName }) => {
   const [userData, setUserData] = useState(null);
@@ -75,6 +76,10 @@ const SinglePackage = ({ item, setOpenModal, height, serviceName }) => {
       : "";
 
   // console.log(item);
+  const items = [
+    { name: "Product 1", amount: 1000, quantity: 1 },
+    { name: "Product 2", amount: 2000, quantity: 1 },
+  ];
 
   return (
     <div className="md:mx-[10%] lg:mx-0 overflow-hidden">
@@ -118,11 +123,7 @@ const SinglePackage = ({ item, setOpenModal, height, serviceName }) => {
           >
             Contact For Order
           </button> */}
-          <GlobalButtonHovered
-            path={"/checkout"}
-            title={"Pay Now"}
-            className="btn btn-secondary md:w-[100%] text-center py-2.5"
-          />
+          <CheckoutButton items={items} />
         </div>
         {/* order details */}
         <div className="space-y-5 md:h-[150px] pl-3 md:pl-8">
