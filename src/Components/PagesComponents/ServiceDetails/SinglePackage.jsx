@@ -7,6 +7,7 @@ import { VscQuestion } from "react-icons/vsc";
 import Link from "next/link";
 import GlobalButtonHovered from "@/Components/Utilites/GlobalButton/GlobalButtonHovered";
 import CheckoutButton from "@/Components/CheckoutButton/CheckoutButton";
+import MyCheckout from "@/Components/MyCheckout/MyCheckout";
 
 const SinglePackage = ({ item, setOpenModal, height, serviceName }) => {
   const [userData, setUserData] = useState(null);
@@ -123,7 +124,7 @@ const SinglePackage = ({ item, setOpenModal, height, serviceName }) => {
           >
             Contact For Order
           </button> */}
-          <CheckoutButton items={items} />
+          <MyCheckout />
         </div>
         {/* order details */}
         <div className="space-y-5 md:h-[150px] pl-3 md:pl-8">
