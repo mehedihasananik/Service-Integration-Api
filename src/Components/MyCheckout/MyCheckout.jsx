@@ -1,10 +1,8 @@
-import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import { useState } from "react";
 
-const MyCheckout = () => {
+const MyCheckout = ({ itemId, package_price, sevice_items_id }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const router = useRouter(); // For navigation
 
   const handleCheckout = async () => {
     setLoading(true);
@@ -12,9 +10,9 @@ const MyCheckout = () => {
 
     const data = {
       user_id: 1,
-      service_package: 1,
-      sevice_items_id: 1,
-      package_price: 6800,
+      service_package: itemId,
+      sevice_items_id: sevice_items_id,
+      package_price: package_price,
       payment_status: "unpaid",
       order_status: "Requirement Needed",
     };
@@ -34,8 +32,8 @@ const MyCheckout = () => {
 
       const result = await response.json();
 
-      // Manually append the URL to the query string
-      router.push(`/checkout?url=${encodeURIComponent(result.url)}`);
+      // Redirect to the result.url directly
+      window.location.href = result.url;
     } catch (err) {
       setError("Error during checkout: " + err.message);
     } finally {
@@ -45,9 +43,12 @@ const MyCheckout = () => {
 
   return (
     <div>
-      <h1>MyCheckout</h1>
-      <button onClick={handleCheckout} disabled={loading}>
-        {loading ? "Processing..." : "Checkout"}
+      <button
+        className="btn btn-secondary py-2"
+        onClick={handleCheckout}
+        disabled={loading}
+      >
+        {loading ? "Processing..." : "Pay Now"}
       </button>
       {error && <p style={{ color: "red" }}>{error}</p>}
     </div>

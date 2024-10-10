@@ -1,15 +1,33 @@
-import CheckoutButton from "../CheckoutButton/CheckoutButton";
+"use client";
 
-export default function CheckoutPage() {
-  const items = [
-    { name: "Product 1", amount: 1000, quantity: 1 },
-    { name: "Product 2", amount: 2000, quantity: 1 },
-  ];
+import React from "react";
+import { useSearchParams } from "next/navigation";
+import Container from "@/Components/Container/Container";
+
+const CheckoutPage = () => {
+  const searchParams = useSearchParams();
+  const url = searchParams.get("url"); // Access the URL query param
 
   return (
-    <div>
-      <h1>Checkout</h1>
-      <CheckoutButton items={items} />
-    </div>
+    <Container>
+      <h1>Heres Your Payment Option</h1>
+      {url ? (
+        <p className="text-4xl">
+          <br />
+          <a
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-red-400"
+          >
+            Pay Now
+          </a>
+        </p>
+      ) : (
+        <p>No URL provided</p>
+      )}
+    </Container>
   );
-}
+};
+
+export default CheckoutPage;

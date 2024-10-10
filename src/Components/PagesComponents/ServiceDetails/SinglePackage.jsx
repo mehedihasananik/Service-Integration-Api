@@ -5,23 +5,10 @@ import { FaRegClock } from "react-icons/fa6";
 import { Tooltip } from "flowbite-react";
 import { VscQuestion } from "react-icons/vsc";
 import Link from "next/link";
-import GlobalButtonHovered from "@/Components/Utilites/GlobalButton/GlobalButtonHovered";
-import CheckoutButton from "@/Components/CheckoutButton/CheckoutButton";
 import MyCheckout from "@/Components/MyCheckout/MyCheckout";
 
 const SinglePackage = ({ item, setOpenModal, height, serviceName }) => {
   const [userData, setUserData] = useState(null);
-
-  const orderWithLogin = () => {
-    localStorage.setItem(
-      "item",
-      JSON.stringify({
-        ...item,
-        serviceName: serviceName,
-      })
-    );
-    setOpenModal(true);
-  };
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -77,10 +64,7 @@ const SinglePackage = ({ item, setOpenModal, height, serviceName }) => {
       : "";
 
   // console.log(item);
-  const items = [
-    { name: "Product 1", amount: 1000, quantity: 1 },
-    { name: "Product 2", amount: 2000, quantity: 1 },
-  ];
+  console.log(item);
 
   return (
     <div className="md:mx-[10%] lg:mx-0 overflow-hidden">
@@ -124,7 +108,11 @@ const SinglePackage = ({ item, setOpenModal, height, serviceName }) => {
           >
             Contact For Order
           </button> */}
-          <MyCheckout />
+          <MyCheckout
+            itemId={item?.id}
+            package_price={item?.package_price}
+            sevice_items_id={item?.sevice_items_id}
+          />
         </div>
         {/* order details */}
         <div className="space-y-5 md:h-[150px] pl-3 md:pl-8">

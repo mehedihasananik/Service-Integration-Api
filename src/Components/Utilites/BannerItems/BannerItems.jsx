@@ -25,7 +25,7 @@ const BannerItems = ({ banner }) => {
           <span className="custom-rotate">Development </span> <br />
           for your product
         </h2>
-        <p className="w-[300px] xs:w-full lg:w-[450px] mx-auto text-paragraph  line-clamp-5 xs:px-3 md:px-0 pt-4">
+        <p className="w-[300px] xs:w-full lg:w-[450px] mx-auto text-paragraph  lg:line-clamp-5 xs:px-3 md:px-0 pt-4">
           {banner[0].details}
         </p>
         <div className="flex flex-col xs:flex-row  justify-center lg:justify-start gap-4 md:gap-6 py-6">
