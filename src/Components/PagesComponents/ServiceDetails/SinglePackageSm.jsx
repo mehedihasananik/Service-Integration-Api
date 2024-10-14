@@ -11,17 +11,6 @@ import GlobalButtonHovered from "@/Components/Utilites/GlobalButton/GlobalButton
 const SinglePackageSm = ({ item, setOpenModal }) => {
   const [userData, setUserData] = useState(null);
 
-  const orderWithLogin = () => {
-    localStorage.setItem(
-      "item",
-      JSON.stringify({
-        ...item,
-        serviceName: serviceName,
-      })
-    );
-    setOpenModal(true);
-  };
-
   useEffect(() => {
     if (typeof window !== "undefined") {
       const data = JSON.parse(localStorage.getItem("userData"));
@@ -46,7 +35,7 @@ const SinglePackageSm = ({ item, setOpenModal }) => {
         </div>
 
         {/* price */}
-        <div className="mb-4 flex">
+        <div className="mb-0 flex">
           <h2 className="text-[20px] md:text-[32px] font-semibold font-Raleway flex items-center">
             $ <span>{item?.package_price}</span>
           </h2>
@@ -56,10 +45,10 @@ const SinglePackageSm = ({ item, setOpenModal }) => {
         </div>
 
         {/* order button */}
-        <div className="mb-6">
+        <div className="mb-4 flex justify-center">
           <GlobalButtonHovered
-            path={"/checkout"}
-            title={"Pay Now"}
+            path={"/schedule-meeting"}
+            title={"Book Now"}
             className="btn btn-secondary md:w-[100%] text-center py-2.5"
           />
         </div>

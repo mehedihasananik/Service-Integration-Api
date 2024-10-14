@@ -1,5 +1,6 @@
 import SuccessComponent from "@/Components/SuccessComponent/SuccessComponent";
-import React, { Suspense } from "react";
+import { Suspense } from "react";
+
 
 const SuccessPage = () => {
   return (

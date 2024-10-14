@@ -10,6 +10,7 @@ import MyCheckout from "@/Components/MyCheckout/MyCheckout";
 const SinglePackage = ({ item, setOpenModal, height, serviceName }) => {
   const [userData, setUserData] = useState(null);
 
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       const data = JSON.parse(localStorage.getItem("userData"));
@@ -64,7 +65,6 @@ const SinglePackage = ({ item, setOpenModal, height, serviceName }) => {
       : "";
 
   // console.log(item);
-  console.log(item);
 
   return (
     <div className="md:mx-[10%] lg:mx-0 overflow-hidden">
@@ -108,11 +108,11 @@ const SinglePackage = ({ item, setOpenModal, height, serviceName }) => {
           >
             Contact For Order
           </button> */}
-          <MyCheckout
-            itemId={item?.id}
-            package_price={item?.package_price}
-            sevice_items_id={item?.sevice_items_id}
-          />
+         <MyCheckout
+              itemId={item?.id}
+              package_price={item?.package_price}
+              sevice_items_id={item?.sevice_items_id}
+            />
         </div>
         {/* order details */}
         <div className="space-y-5 md:h-[150px] pl-3 md:pl-8">

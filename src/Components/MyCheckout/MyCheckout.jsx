@@ -1,3 +1,5 @@
+"use client";
+
 import { checkoutApi } from "@/config/apis";
 import { useState } from "react";
 
@@ -28,14 +30,20 @@ const MyCheckout = ({ itemId, package_price, sevice_items_id }) => {
       });
 
       if (!response.ok) {
-        throw new Error("Failed to process the request");
+        throw new Error(`Failed to process the request: ${response.status}`);
       }
 
       const result = await response.json();
 
-      // Redirect to the result.url directly
-      window.location.href = result.url;
+      // Check if the result has the correct structure
+      if (result && result.url) {
+        // Redirect to the URL returned from the API
+        window.location.href = result.url;
+      } else {
+        throw new Error("Invalid API response: missing URL.");
+      }
     } catch (err) {
+      console.error("Error during checkout:", err);
       setError("Error during checkout: " + err.message);
     } finally {
       setLoading(false);
