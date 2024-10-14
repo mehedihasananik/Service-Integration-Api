@@ -1,3 +1,4 @@
+import { checkoutApi } from "@/config/apis";
 import { useState } from "react";
 
 const MyCheckout = ({ itemId, package_price, sevice_items_id }) => {
@@ -18,7 +19,7 @@ const MyCheckout = ({ itemId, package_price, sevice_items_id }) => {
     };
 
     try {
-      const response = await fetch("http://192.168.10.16:8000/api/checkout", {
+      const response = await fetch(`${checkoutApi}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

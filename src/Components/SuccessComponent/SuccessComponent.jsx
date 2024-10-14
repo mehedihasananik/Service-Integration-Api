@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { successApi } from "@/config/apis";
 
 export default function SuccessComponent() {
   const searchParams = useSearchParams();
@@ -16,7 +17,7 @@ export default function SuccessComponent() {
       const postSuccessData = async () => {
         try {
           const response = await fetch(
-            "http://192.168.10.16:8000/api/success",
+            `${successApi}`,
             {
               method: "POST",
               headers: {

@@ -55,6 +55,7 @@ const singleRequirement = `${apiEndpoint}/service_requirements`;
 
 // checkout api
 const checkoutApi = `${apiEndpoint}/checkout`;
+const successApi = `${apiEndpoint}/success`;
 // service order
 const serviceOrder = `${apiEndpoint}/service_order`;
 // webscore
@@ -93,4 +94,5 @@ export {
   checkoutApi,
   serviceOrder,
   business_webscore,
+  successApi
 };
