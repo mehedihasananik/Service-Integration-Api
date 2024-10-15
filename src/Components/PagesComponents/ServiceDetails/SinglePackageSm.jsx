@@ -7,6 +7,7 @@ import { BiRevision } from "react-icons/bi";
 import Link from "next/link";
 import { VscQuestion } from "react-icons/vsc";
 import GlobalButtonHovered from "@/Components/Utilites/GlobalButton/GlobalButtonHovered";
+import MyCheckout from "@/Components/MyCheckout/MyCheckout";
 
 const SinglePackageSm = ({ item, setOpenModal }) => {
   const [userData, setUserData] = useState(null);
@@ -46,10 +47,10 @@ const SinglePackageSm = ({ item, setOpenModal }) => {
 
         {/* order button */}
         <div className="mb-4 flex justify-center">
-          <GlobalButtonHovered
-            path={"/schedule-meeting"}
-            title={"Book Now"}
-            className="btn btn-secondary md:w-[100%] text-center py-2.5"
+          <MyCheckout
+            itemId={item?.id}
+            package_price={item?.package_price}
+            sevice_items_id={item?.sevice_items_id}
           />
         </div>
 

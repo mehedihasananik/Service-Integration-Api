@@ -5,6 +5,7 @@ Disallow: /api/
 Disallow: /_next/static/
 Disallow: /_next/image
 Disallow: /admin/
+Disallow: /shop/
 Disallow: /config/
 Disallow: /database/
 Disallow: /resources/
@@ -118,9 +119,6 @@ Allow: /_next/static/
 Allow: /_next/image
 Disallow: /api/
 
-# Prevent access to external API
-Disallow: https://admin.envobyte.com/
-Disallow: https://envobyte.shop/
 
 # Block specific bots
 User-agent: VelenPublicWebCrawler

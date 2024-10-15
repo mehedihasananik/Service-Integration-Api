@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { successApi } from "@/config/apis";
 
-
 export default function SuccessComponent() {
   const searchParams = useSearchParams();
   const sessionId = searchParams.get("session_id"); // Get the session_id from the query params
@@ -16,19 +15,16 @@ export default function SuccessComponent() {
       // Function to send the POST request to the API
       const postSuccessData = async () => {
         try {
-          const response = await fetch(
-            `${successApi}`,
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                session_id: sessionId,
-                payment_status: "paid",
-              }),
-            }
-          );
+          const response = await fetch(`${successApi}`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              session_id: sessionId,
+              payment_status: "paid",
+            }),
+          });
 
           if (!response.ok) {
             throw new Error("Failed to payment");
