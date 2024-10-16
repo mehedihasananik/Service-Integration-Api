@@ -1,10 +1,4 @@
-import bundleAnalyzer from "@next/bundle-analyzer";
-
-const withBundleAnalyzer = bundleAnalyzer({
-  enabled: process.env.ANALYZE === "true",
-});
-
-const nextConfig = withBundleAnalyzer({
+const nextConfig = {
   reactStrictMode: false,
   swcMinify: false,
   trailingSlash: true,
@@ -31,6 +25,6 @@ const nextConfig = withBundleAnalyzer({
       "site.sociolib.com",
     ],
   },
-});
+};
 
 export default nextConfig;

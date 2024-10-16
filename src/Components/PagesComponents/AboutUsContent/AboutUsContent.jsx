@@ -86,7 +86,7 @@ const MissionVision = ({ image, title2, details2, title3, details3, alt }) => (
 
 const MissionVisionItem = ({ title, details, logoSrc }) => (
   <div className="space-y-3 text-center lg:text-left lg:pt-[8%]">
-    <h2 className="text-paragraphMedium md:text-headingBase font-semibold">
+    <h2 className="text-paragraphMedium md:text-headingBase font-semibold pt-5 md:pt-0">
       {title}
     </h2>
     <p className="text-paragraphMedium line-clamp-[12]">{details}</p>
@@ -105,7 +105,7 @@ const Values = ({ title4, details4 }) => (
         </h2>
       </div>
       <div>
-        <div className="w-[80%] text-justify">
+        <div className="md:w-[80%] text-justify">
           <p className="text-grayish text-paragraphMedium">{details4}</p>
         </div>
       </div>
