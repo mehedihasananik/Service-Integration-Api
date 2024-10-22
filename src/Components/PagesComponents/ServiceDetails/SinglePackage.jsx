@@ -5,11 +5,11 @@ import { FaRegClock } from "react-icons/fa6";
 import { Tooltip } from "flowbite-react";
 import { VscQuestion } from "react-icons/vsc";
 import Link from "next/link";
-import MyCheckout from "@/Components/MyCheckout/MyCheckout";
+import OrderNowModal from "@/Components/Utilites/OrderNowModal/OrderNowModal";
+import OrderNowModal4 from "@/Components/Utilites/OrderNowModal/OrderNowModal4";
 
 const SinglePackage = ({ item, setOpenModal, height, serviceName }) => {
   const [userData, setUserData] = useState(null);
-
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -64,7 +64,7 @@ const SinglePackage = ({ item, setOpenModal, height, serviceName }) => {
       ? "mt-[30px] md:mt-[290px]"
       : "";
 
-  // console.log(item);
+  console.log(item);
 
   return (
     <div className="md:mx-[10%] lg:mx-0 overflow-hidden">
@@ -108,11 +108,43 @@ const SinglePackage = ({ item, setOpenModal, height, serviceName }) => {
           >
             Contact For Order
           </button> */}
-         <MyCheckout
+          {item?.monthly_subscription === 1 ? (
+            <OrderNowModal
+              serviceName={serviceName}
+              packageData={{
+                package_name: item?.package_name,
+                package_text: item?.package_text,
+                discount_price: item?.discount_price,
+                package_price: item?.package_price,
+                monthly_subscription: item?.monthly_subscription,
+                package_details: item?.package_details,
+              }}
               itemId={item?.id}
               package_price={item?.package_price}
               sevice_items_id={item?.sevice_items_id}
             />
+          ) : (
+            <OrderNowModal4
+              serviceName={serviceName}
+              packageData={{
+                package_name: item?.package_name,
+                package_text: item?.package_text,
+                discount_price: item?.discount_price,
+                package_price: item?.package_price,
+                monthly_subscription: item?.monthly_subscription,
+                package_details: item?.package_details,
+              }}
+              itemId={item?.id}
+              package_price={item?.package_price}
+              sevice_items_id={item?.sevice_items_id}
+            />
+          )}
+
+          {/* <MyCheckout
+            itemId={item?.id}
+            package_price={item?.package_price}
+            sevice_items_id={item?.sevice_items_id}
+          /> */}
         </div>
         {/* order details */}
         <div className="space-y-5 md:h-[150px] pl-3 md:pl-8">

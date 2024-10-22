@@ -7,7 +7,7 @@ import { BiRevision } from "react-icons/bi";
 import Link from "next/link";
 import { VscQuestion } from "react-icons/vsc";
 import GlobalButtonHovered from "@/Components/Utilites/GlobalButton/GlobalButtonHovered";
-import MyCheckout from "@/Components/MyCheckout/MyCheckout";
+import MyCheckout from "@/Components/MyCheckout/NonSubsCheckout";
 
 const SinglePackageSm = ({ item, setOpenModal }) => {
   const [userData, setUserData] = useState(null);

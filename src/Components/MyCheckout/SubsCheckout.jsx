@@ -2,14 +2,33 @@
 
 import { checkoutApi } from "@/config/apis";
 import { useState } from "react";
+import { toast } from "react-hot-toast";
 
-const MyCheckout = ({ itemId, package_price, sevice_items_id }) => {
+const SubsCheckout = ({
+  itemId,
+  package_price,
+  sevice_items_id,
+  isEnabled,
+  setValidationError = () => {},
+  email,
+  handleCheckoutValidation, // New validation function
+}) => {
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
 
   const handleCheckout = async () => {
+    // Check if email is valid and terms are accepted
+    if (!handleCheckoutValidation()) {
+      return; // Prevent checkout if validation fails
+    }
+
+    if (!isEnabled) {
+      toast.error("Please accept the Terms & Conditions before proceeding."); // Toast message
+      setValidationError(true); // Show validation warning message
+      return;
+    }
+
     setLoading(true);
-    setError(null);
+    setValidationError(false); // Clear validation error when conditions are met
 
     const data = {
       user_id: 1,
@@ -18,6 +37,7 @@ const MyCheckout = ({ itemId, package_price, sevice_items_id }) => {
       package_price: package_price,
       payment_status: "unpaid",
       order_status: "Requirement Needed",
+      email: email, // Pass the email to the backend
     };
 
     try {
@@ -44,7 +64,7 @@ const MyCheckout = ({ itemId, package_price, sevice_items_id }) => {
       }
     } catch (err) {
       console.error("Error during checkout:", err);
-      setError("Error during checkout: " + err.message);
+      toast.error("Error during checkout: " + err.message);
     } finally {
       setLoading(false);
     }
@@ -53,15 +73,14 @@ const MyCheckout = ({ itemId, package_price, sevice_items_id }) => {
   return (
     <div>
       <button
-        className="btn btn-secondary py-2"
+        className={`btn btn-secondary py-3`}
         onClick={handleCheckout}
         disabled={loading}
       >
-        {loading ? "Processing..." : "Pay Now"}
+        {loading ? "Processing..." : "Proceed To Checkout"}
       </button>
-      {error && <p style={{ color: "red" }}>{error}</p>}
     </div>
   );
 };
 
-export default MyCheckout;
+export default SubsCheckout;

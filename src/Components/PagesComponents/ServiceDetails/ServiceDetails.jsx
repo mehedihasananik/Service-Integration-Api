@@ -31,7 +31,7 @@ const ServiceDetails = ({ service, sliders, packages }) => {
           {/* title */}
           <div className="text-center font-Raleway pb-[1.75rem]">
             <h1 className="text-[#10F172A] text-[32px] md:text-[48px] font-bold capitalize">
-              {service?.service_details[0]?.sevice_items_name}
+              {serviceName}
             </h1>
             <h3 className="text-[18px] font-medium">
               Discover <span className="text-[#FF693B]">The Perfect Plan</span>
