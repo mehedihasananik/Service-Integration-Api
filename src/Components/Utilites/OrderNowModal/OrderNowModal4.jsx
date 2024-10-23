@@ -14,12 +14,13 @@ const OrderNowModal4 = ({
 }) => {
   const [openModal, setOpenModal] = useState(false);
   const [agreeTerms, setAgreeTerms] = useState(false);
+  const [validationError, setValidationError] = useState(false); // Add a validation error state
 
   return (
     <>
       <button
         onClick={() => setOpenModal(true)}
-        className="btn btn-secondary md:w-[100%] text-center py-2.5 mx-2"
+        className="btn btn-secondary mt-0 mb-4 lg:mt-0 lg:mb-0 md:w-[100%] text-center py-2.5 mx-2"
       >
         Order Now
       </button>
@@ -31,7 +32,6 @@ const OrderNowModal4 = ({
         className="!z-50"
       >
         <div className="relative rounded-lg overflow-hidden max-h-[90vh] flex flex-col">
-          {/* Header - Fixed */}
           <Modal.Header className="bg-gradient-to-r from-[#123390] to-[#1a4bc1] border-none flex-shrink-0">
             <div className="flex items-center justify-center w-full gap-2">
               <Package className="w-6 h-6 text-white" />
@@ -41,12 +41,10 @@ const OrderNowModal4 = ({
             </div>
           </Modal.Header>
 
-          {/* Body - Scrollable */}
           <Modal.Body className="bg-gradient-to-br from-white to-blue-50 p-4 md:p-6 overflow-y-auto">
             <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-              {/* Package Header */}
               <div className="p-6 border-b border-gray-100">
-                <div className="flex  items-center justify-between gap-4">
+                <div className="flex items-center justify-between gap-4">
                   <div>
                     <h2 className="text-lg md:text-3xl font-bold text-[#123390]">
                       {packageData?.package_name}
@@ -60,7 +58,6 @@ const OrderNowModal4 = ({
                 </div>
               </div>
 
-              {/* Package Content */}
               <div className="p-3 md:p-5">
                 <p className="text-lg md:text-xl text-gray-700 mb-6">
                   {packageData?.package_text}
@@ -94,15 +91,17 @@ const OrderNowModal4 = ({
             </div>
           </Modal.Body>
 
-          {/* Footer - Fixed */}
           <Modal.Footer className="bg-gray-50 border-t p-6 flex-shrink-0">
             <div className="w-full space-y-4">
-              <div className="flex items-center   gap-3">
+              <div className="flex items-center gap-3">
                 <div>
                   <Checkbox
                     id="agree-terms"
                     checked={agreeTerms}
-                    onChange={() => setAgreeTerms(!agreeTerms)}
+                    onChange={() => {
+                      setAgreeTerms(!agreeTerms);
+                      setValidationError(false); // Reset validation error when checkbox is toggled
+                    }}
                     className="mt-1"
                   />
                 </div>
@@ -111,7 +110,11 @@ const OrderNowModal4 = ({
                     htmlFor="agree-terms"
                     className="text-sm text-gray-600 cursor-pointer"
                   >
-                    I confirm that I have read and accepted{" "}
+                    <span
+                      className={`${validationError ? "text-red-600" : ""}`}
+                    >
+                      I confirm that I have read and accepted
+                    </span>{" "}
                     <Link
                       href="/terms-and-conditions"
                       className="text-[#123390] hover:text-[#1a4bc1] font-semibold 
@@ -137,6 +140,7 @@ const OrderNowModal4 = ({
                   package_price={package_price}
                   sevice_items_id={sevice_items_id}
                   isEnabled={agreeTerms}
+                  setValidationError={setValidationError} // Pass down validation state setter
                 />
               </div>
             </div>

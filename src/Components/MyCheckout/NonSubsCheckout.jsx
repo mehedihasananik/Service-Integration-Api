@@ -14,10 +14,9 @@ const NonSubsCheckout = ({
   const [loading, setLoading] = useState(false);
 
   const handleCheckout = async () => {
-    // Check if terms are accepted
     if (!isEnabled) {
-      toast.error("Please accept the Terms & Conditions before proceeding."); // Toast message
-      setValidationError(true); // Show validation warning message
+      toast.error("Please accept the Terms & Conditions before proceeding.");
+      setValidationError(true); // Set validation error state
       return;
     }
 
@@ -48,9 +47,7 @@ const NonSubsCheckout = ({
 
       const result = await response.json();
 
-      // Check if the result has the correct structure
       if (result && result.url) {
-        // Redirect to the URL returned from the API
         window.location.href = result.url;
       } else {
         throw new Error("Invalid API response: missing URL.");
@@ -72,8 +69,6 @@ const NonSubsCheckout = ({
       >
         {loading ? "Processing..." : "Proceed To Checkout"}
       </button>
-
-      {/* Validation warning message */}
     </div>
   );
 };
