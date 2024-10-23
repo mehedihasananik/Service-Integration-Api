@@ -26,12 +26,13 @@ const AppointmentTestimonials = ({ testimonials, details }) => {
       slidesPerView: 4,
       spaceBetween: 30,
     },
-    1336: {
-      slidesPerView: 3,
+
+    1536: {
+      slidesPerView: 4,
       spaceBetween: 10,
     },
     1280: {
-      slidesPerView: 2,
+      slidesPerView: 3,
       spaceBetween: 30,
     },
     1024: {
@@ -51,7 +52,7 @@ const AppointmentTestimonials = ({ testimonials, details }) => {
   return (
     <div id="testimonial" className="overflow-hidden pt-4 md:pt-10">
       <div className="max-w-[1520px] mx-auto px-[6%] md:px-[4%] xl:px-[8%] 4xl:px-[4%]">
-        <div className="relative pb-20 xl:pt-0">
+        <div className="relative pb-0 pt-5 xl:pt-0">
           {loading ? (
             <div className="flex flex-wrap justify-center">
               {[...Array(3)].map((_, index) => (
@@ -65,7 +66,7 @@ const AppointmentTestimonials = ({ testimonials, details }) => {
             <div className="relative">
               <button
                 onClick={() => swiperRef.current?.swiper.slidePrev()}
-                className="absolute -left-2 lg:-left-10 top-1/2 -translate-y-1/2 z-10 transform 
+                className="absolute -left-2 lg:-left-10 top-1/2 -translate-y-1/2 z-10 transform text-primary
                   w-12 h-12 flex items-center justify-center rounded-full
                  lg:bg-primary lg:text-white  lg:shadow-md  lg:hover:bg-secondary lg:hover:text-white
                   transition-all duration-300 -translate-x-1/2
@@ -89,7 +90,7 @@ const AppointmentTestimonials = ({ testimonials, details }) => {
 
               <button
                 onClick={() => swiperRef.current?.swiper.slideNext()}
-                className="absolute -right-2 lg:-right-10 top-1/2 -translate-y-1/2 z-10 transform
+                className="absolute -right-2 lg:-right-10 top-1/2 -translate-y-1/2 z-10 transform text-primary
                   w-12 h-12 flex items-center justify-center rounded-full
                   lg:bg-primary lg:text-white  lg:shadow-md lg:hover:bg-secondary lg:hover:text-white
                   transition-all duration-300 translate-x-1/2

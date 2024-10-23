@@ -3,9 +3,9 @@ import { FaStar } from "react-icons/fa";
 
 const TestimonialCard = ({ testimonial }) => {
   return (
-    <div className="h-[400px] pl-4 mt-10 bg-[#F8FAFC] lg:hover:bg-[#1E293B] group rounded-md transition-all duration-300 ">
+    <div className="h-[400px] px-3 pl-4 mt-10 bg-[#F8FAFC] lg:hover:bg-[#1E293B] group rounded-md transition-all duration-300 ">
       <div className="relative">
-        <div className="absolute top-[-25px] left-[140px] md:left-[120px] lg:left-0">
+        <div className="absolute top-[-25px] left-[120px] md:left-[120px] lg:left-0">
           <div className="relative w-[56px] h-[56px] rounded-full overflow-hidden">
             <Image
               src={testimonial?.image}
@@ -44,7 +44,7 @@ const TestimonialCard = ({ testimonial }) => {
           </div>
         </div>
         <div>
-          <p className="w-full lg:w-[260px] 4xl:w-[300px] text-paragraph text-grayish pt-1 pb-12 lg:group-hover:text-white line-clamp-[7]">
+          <p className="w-full  text-paragraph text-grayish pt-1 pb-12 lg:group-hover:text-white line-clamp-[7]">
             {testimonial?.message}
           </p>
         </div>
