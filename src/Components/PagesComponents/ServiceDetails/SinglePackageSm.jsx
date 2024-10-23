@@ -48,7 +48,7 @@ const SinglePackageSm = ({ item, setOpenModal, serviceName }) => {
         </div>
 
         {/* order button */}
-        <div className="mb-4 flex justify-center mt-3">
+        <div className="mb-4 flex justify-center mt-0">
           <div>
             {/* <button
             onClick={orderWithLogin}
