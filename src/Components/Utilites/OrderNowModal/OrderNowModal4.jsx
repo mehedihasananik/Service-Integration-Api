@@ -35,7 +35,7 @@ const OrderNowModal4 = ({
           <Modal.Header className="bg-gradient-to-r from-[#123390] to-[#1a4bc1] border-none flex-shrink-0">
             <div className="flex items-center justify-center w-full gap-2">
               <Package className="w-6 h-6 text-white" />
-              <h3 className="text-2xl md:text-3xl font-bold text-white text-center">
+              <h3 className="text-lg md:text-3xl font-bold text-white text-center">
                 {serviceName}
               </h3>
             </div>
@@ -46,33 +46,30 @@ const OrderNowModal4 = ({
             <div className="bg-white rounded-xl shadow-lg overflow-hidden">
               {/* Package Header */}
               <div className="p-6 border-b border-gray-100">
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                  <h2 className="text-2xl font-bold text-[#123390]">
-                    {packageData?.package_name}
-                  </h2>
+                <div className="flex  items-center justify-between gap-4">
+                  <div>
+                    <h2 className="text-lg md:text-3xl font-bold text-[#123390]">
+                      {packageData?.package_name}
+                    </h2>
+                  </div>
                   <div className="text-left md:text-right">
-                    <p className="text-3xl font-bold text-[#FF693B]">
+                    <p className="text-lg md:text-3xl font-bold text-[#FF693B]">
                       ${packageData?.package_price}
-                      {packageData?.monthly_subscription === "1" && (
-                        <span className="text-lg ml-1 text-gray-600">
-                          /monthly
-                        </span>
-                      )}
                     </p>
                   </div>
                 </div>
               </div>
 
               {/* Package Content */}
-              <div className="p-6">
-                <p className="text-lg text-gray-700 mb-6">
+              <div className="p-3 md:p-5">
+                <p className="text-lg md:text-xl text-gray-700 mb-6">
                   {packageData?.package_text}
                 </p>
 
                 <div className="bg-blue-50 rounded-xl p-6 border border-blue-100">
                   <div className="flex items-center gap-2 mb-4">
                     <CheckCircle className="w-5 h-5 text-[#123390]" />
-                    <h4 className="text-xl font-semibold text-[#123390]">
+                    <h4 className="text-lg md:text-xl font-semibold text-[#123390]">
                       What&apos;s included:
                     </h4>
                   </div>
@@ -82,7 +79,6 @@ const OrderNowModal4 = ({
                       <li
                         key={index}
                         className="flex items-start gap-3 text-gray-700 animate-fadeIn"
-                        style={{ animationDelay: `${index * 150}ms` }}
                       >
                         <div className="min-w-2 mt-2">
                           <div className="w-2 h-2 rounded-full bg-[#123390]" />

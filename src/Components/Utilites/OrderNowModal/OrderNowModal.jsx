@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { Modal, Checkbox } from "flowbite-react";
+import { Modal, Checkbox, Tooltip, Button } from "flowbite-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import SubsCheckout from "@/Components/MyCheckout/SubsCheckout";
+import { Package } from "lucide-react";
+import { VscQuestion } from "react-icons/vsc";
 
 const OrderNowModal = ({
   serviceName,
@@ -16,6 +18,7 @@ const OrderNowModal = ({
   const [validationError, setValidationError] = useState(false); // Validation error state
   const [email, setEmail] = useState(""); // Email state
   const [emailError, setEmailError] = useState(""); // Email error state
+  const [showTooltip, setShowTooltip] = useState(false);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -87,12 +90,13 @@ const OrderNowModal = ({
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.2 }}
-                  className="text-3xl font-bold flex justify-center items-center text-white"
+                  className="text-lg md:text-3xl font-bold flex justify-center items-center text-white gap-x-2"
                 >
+                  <Package className="w-6 h-6 text-white" />
                   {serviceName}
                 </motion.h3>
               </Modal.Header>
-              <Modal.Body className="p-8 bg-gradient-to-br from-blue-50 to-orange-50">
+              <Modal.Body className="p-0 md:p-8 bg-gradient-to-br from-blue-50 to-orange-50">
                 <motion.div
                   variants={containerVariants}
                   initial="hidden"
@@ -101,21 +105,23 @@ const OrderNowModal = ({
                 >
                   <motion.div
                     variants={itemVariants}
-                    className="bg-white p-8 rounded-xl shadow-lg"
+                    className="bg-white p-4 md:p-8 md:rounded-xl shadow-lg"
                   >
-                    <div className="flex justify-between items-center">
-                      <h2 className="text-3xl font-bold text-[#123390] mb-4">
-                        {packageData?.package_name}
-                      </h2>
-                      <div className="text-right">
+                    <div className="flex justify-between items-center pb-4">
+                      <div>
+                        <h2 className="text-lg md:text-3xl font-bold text-[#123390] ">
+                          {packageData?.package_name}
+                        </h2>
+                      </div>
+                      <div className="text-right p-0 m-0">
                         <motion.p
                           initial={{ scale: 0.5, opacity: 0 }}
                           animate={{ scale: 1, opacity: 1 }}
                           transition={{ delay: 0.5, type: "spring" }}
-                          className="text-4xl font-bold text-[#FF693B]"
+                          className="text-lg md:text-3xl font-bold text-[#FF693B] p-0 m-0"
                         >
                           ${packageData?.package_price}
-                          {packageData?.monthly_subscription === "1" && (
+                          {packageData?.monthly_subscription === 1 && (
                             <span className="text-lg ml-1">/monthly</span>
                           )}
                         </motion.p>
@@ -124,7 +130,7 @@ const OrderNowModal = ({
 
                     <motion.p
                       variants={itemVariants}
-                      className="text-xl text-gray-700 mb-6"
+                      className="text-lg md:text-xl text-gray-700 mb-6"
                     >
                       {packageData?.package_text}
                     </motion.p>
@@ -133,14 +139,32 @@ const OrderNowModal = ({
                     <motion.div variants={itemVariants} className="mt-6">
                       <label
                         htmlFor="email"
-                        className="block text-xl text-gray-700 mb-2"
+                        className="text-lg md:text-xl text-gray-700 mb-2 font-bold flex  items-center gap-x-2"
                       >
-                        Enter Your Email
+                        <span>
+                          {" "}
+                          Please share your email for monthly subscription{" "}
+                        </span>
+                        <div className="">
+                          <Tooltip
+                            className="w-[170px] md:w-[170px] "
+                            content={
+                              <div>
+                                <span>
+                                  This email will be used only for subscription
+                                  purpose, your data will be safe and protected.
+                                </span>
+                              </div>
+                            }
+                          >
+                            <VscQuestion className="cursor-pointer mt-1" />
+                          </Tooltip>
+                        </div>
                       </label>
                       <input
                         type="email"
                         id="email"
-                        placeholder="yourname@example.com"
+                        placeholder="Enter your email"
                         value={email} // Bind the value to the email state
                         onChange={(e) => {
                           setEmail(e.target.value);
@@ -171,13 +195,19 @@ const OrderNowModal = ({
                         id="agree-terms"
                         checked={agreeTerms}
                         onChange={() => setAgreeTerms(!agreeTerms)}
-                        className="mr-2 h-5 w-5"
+                        className={`${
+                          validationError ? "border border-red-500" : ""
+                        } mr-2 h-5 w-5 `}
                       />
                       <label
                         htmlFor="agree-terms"
                         className="text-sm text-gray-700"
                       >
-                        You confirm that you have read and accepted our{" "}
+                        <span
+                          className={`${validationError ? "text-red-500" : ""}`}
+                        >
+                          You confirm that you have read and accepted our
+                        </span>{" "}
                         <Link
                           className="text-[#123390] font-semibold transition-colors duration-300"
                           href="/terms-and-conditions"
@@ -193,11 +223,6 @@ const OrderNowModal = ({
                         </Link>
                       </label>
                     </div>
-                    {validationError && (
-                      <p className="text-red-500 mt-2">
-                        Please accept the Terms & Conditions before proceeding.
-                      </p>
-                    )}
                   </div>
                   <div className="flex gap-x-8 justify-end">
                     <SubsCheckout

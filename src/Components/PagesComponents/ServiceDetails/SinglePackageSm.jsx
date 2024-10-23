@@ -8,8 +8,10 @@ import Link from "next/link";
 import { VscQuestion } from "react-icons/vsc";
 import GlobalButtonHovered from "@/Components/Utilites/GlobalButton/GlobalButtonHovered";
 import MyCheckout from "@/Components/MyCheckout/NonSubsCheckout";
+import OrderNowModal from "@/Components/Utilites/OrderNowModal/OrderNowModal";
+import OrderNowModal4 from "@/Components/Utilites/OrderNowModal/OrderNowModal4";
 
-const SinglePackageSm = ({ item, setOpenModal }) => {
+const SinglePackageSm = ({ item, setOpenModal, serviceName }) => {
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
@@ -41,17 +43,57 @@ const SinglePackageSm = ({ item, setOpenModal }) => {
             $ <span>{item?.package_price}</span>
           </h2>
           {item?.monthly_subscription === 1 && (
-            <div className="mt-4 font-semibold"> /monthly</div>
+            <div className="mt-1 font-semibold"> /monthly</div>
           )}
         </div>
 
         {/* order button */}
-        <div className="mb-4 flex justify-center">
-          <MyCheckout
+        <div className="mb-4 flex justify-center mt-3">
+          <div>
+            {/* <button
+            onClick={orderWithLogin}
+            className="text-[16px] font-medium text-[#FF693B] border border-[#FF693B] px-6 py-2 w-full rounded-md hover:text-white hover:bg-[#FF693B] transition-all duration-300"
+          >
+            Contact For Order
+          </button> */}
+            {item?.monthly_subscription === 1 ? (
+              <OrderNowModal
+                serviceName={serviceName}
+                packageData={{
+                  package_name: item?.package_name,
+                  package_text: item?.package_text,
+                  discount_price: item?.discount_price,
+                  package_price: item?.package_price,
+                  monthly_subscription: item?.monthly_subscription,
+                  package_details: item?.package_details,
+                }}
+                itemId={item?.id}
+                package_price={item?.package_price}
+                sevice_items_id={item?.sevice_items_id}
+              />
+            ) : (
+              <OrderNowModal4
+                serviceName={serviceName}
+                packageData={{
+                  package_name: item?.package_name,
+                  package_text: item?.package_text,
+                  discount_price: item?.discount_price,
+                  package_price: item?.package_price,
+                  monthly_subscription: item?.monthly_subscription,
+                  package_details: item?.package_details,
+                }}
+                itemId={item?.id}
+                package_price={item?.package_price}
+                sevice_items_id={item?.sevice_items_id}
+              />
+            )}
+
+            {/* <MyCheckout
             itemId={item?.id}
             package_price={item?.package_price}
             sevice_items_id={item?.sevice_items_id}
-          />
+          /> */}
+          </div>
         </div>
 
         {/* order details */}

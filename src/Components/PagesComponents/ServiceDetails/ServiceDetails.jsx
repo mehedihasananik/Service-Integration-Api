@@ -60,6 +60,7 @@ const ServiceDetails = ({ service, sliders, packages }) => {
                   item={item}
                   openModal={openModal}
                   setOpenModal={setOpenModal}
+                  serviceName={serviceName}
                 />
               );
             })}
