@@ -75,7 +75,7 @@ const HeaderItems = ({ headers }) => {
       </Container>
 
       {/* Navbar for small devices */}
-      <div className="lg:hidden">
+      <div className="lg:hidden md:py-4">
         <Navbar fluid className="bg-white ">
           <Navbar.Brand as={Link} href="/">
             <Image
