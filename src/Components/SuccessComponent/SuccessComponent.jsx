@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { successApi } from "@/config/apis";
+import GlobalButtonColored from "../Utilites/GlobalButton/GlobalButtonColored";
 
 export default function SuccessComponent() {
   const searchParams = useSearchParams();
@@ -60,6 +61,13 @@ export default function SuccessComponent() {
         </div>
       )}
       {error && <p className="text-red-500">Error: {error}</p>}
+      <div className="mt-20">
+        <GlobalButtonColored
+          path="/service-requirements"
+          title="Submit Your Requirement"
+          className="btn btn-primary w-[45%] md:w-[100%] text-center mt-10"
+        />
+      </div>
     </div>
   );
 }
