@@ -10,16 +10,29 @@ const SubsCheckout = ({
   setValidationError,
   email,
   handleCheckoutValidation,
+  setEmailError, // Add this prop to handle email error
 }) => {
   const [loading, setLoading] = useState(false);
 
   const handleCheckout = async () => {
+    let hasErrors = false;
+
+    // Check for checkbox
     if (!isEnabled) {
       setValidationError(true);
-      return;
+      hasErrors = true;
     }
 
-    if (!handleCheckoutValidation()) {
+    // Check for email
+    if (!email) {
+      setEmailError("Email is required.");
+      hasErrors = true;
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setEmailError("Please enter a valid email address.");
+      hasErrors = true;
+    }
+
+    if (hasErrors) {
       return;
     }
 

@@ -252,6 +252,7 @@ const OrderNowModal = ({
                       setValidationError={setValidationError}
                       email={email}
                       handleCheckoutValidation={handleCheckoutValidation}
+                      setEmailError={setEmailError} // Add this prop
                     />
                   </div>
                 </motion.div>
