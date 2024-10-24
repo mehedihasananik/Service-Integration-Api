@@ -51,20 +51,22 @@ export default function SuccessComponent() {
       {/* Display loading, success message, or error */}
       {loading && <p>Processing payment data...</p>}
       {successMessage && (
-        <div className="text-green-500">
-          <h1 className="text-2xl font-bold">Payment Successful!</h1>
-          <p>
-            Thank you for your purchase. Your transaction has been completed
-            successfully.
-          </p>
-          {successMessage}
-        </div>
+        <>
+          <div className="text-green-500">
+            <h1 className="text-2xl font-bold">Payment Successful!</h1>
+            <p>
+              Thank you for your purchase. Your transaction has been completed
+              successfully.
+            </p>
+            {successMessage}
+          </div>
+        </>
       )}
       {error && <p className="text-red-500">Error: {error}</p>}
       <div className="mt-20">
         <GlobalButtonColored
           path="/service-requirements"
-          title="Submit Your Requirement"
+          title="Submit Your Requirements"
           className="btn btn-primary w-[45%] md:w-[100%] text-center mt-10"
         />
       </div>
