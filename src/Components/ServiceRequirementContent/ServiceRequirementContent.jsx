@@ -127,7 +127,7 @@ const ServiceRequirementContent = () => {
               {/* Name Field */}
               <div className="space-y-2 group">
                 <label className="block text-sm font-medium text-[#123390] group-hover:text-[#FF693B] transition-colors">
-                  Full Name
+                  Full Name *
                 </label>
                 <input
                   type="text"
@@ -147,7 +147,7 @@ const ServiceRequirementContent = () => {
               {/* Email Field */}
               <div className="space-y-2 group">
                 <label className="block text-sm font-medium text-[#123390] group-hover:text-[#FF693B] transition-colors">
-                  Email Address
+                  Email Address *
                 </label>
                 <input
                   type="email"
@@ -173,7 +173,7 @@ const ServiceRequirementContent = () => {
               {/* Phone Field */}
               <div className="space-y-2 group">
                 <label className="block text-sm font-medium text-[#123390] group-hover:text-[#FF693B] transition-colors">
-                  Phone Number
+                  Phone Number *
                 </label>
                 <input
                   type="tel"
@@ -211,7 +211,7 @@ const ServiceRequirementContent = () => {
               {/* Company Field */}
               <div className="space-y-2 group">
                 <label className="block text-sm font-medium text-[#123390] group-hover:text-[#FF693B] transition-colors">
-                  Company Name
+                  Company Name *
                 </label>
                 <input
                   type="text"
@@ -260,7 +260,7 @@ const ServiceRequirementContent = () => {
             {/* Requirements Field */}
             <div className="space-y-2 group">
               <label className="block text-sm font-medium text-[#123390] group-hover:text-[#FF693B] transition-colors">
-                Project Requirements
+                Project Requirements *
               </label>
               <textarea
                 rows="8"
