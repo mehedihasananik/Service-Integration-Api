@@ -111,7 +111,11 @@ const AppointmentTestimonials = ({ testimonials, details }) => {
                   />
                 </svg>
               </button>
-
+              <div className="text-center md:pb-8">
+                <h3 className="headings line-clamp-2">
+                  Our Clients <span className="text-primary">Feedback</span>
+                </h3>
+              </div>
               <Swiper
                 ref={swiperRef}
                 slidesPerView={3}
