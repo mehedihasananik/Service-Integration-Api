@@ -151,7 +151,7 @@ const OrderNowModal4 = ({
                   transition={{ delay: 0.8 }}
                   className="w-full"
                 >
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-x-2">
                     <div>
                       <Checkbox
                         id="agree-terms"
@@ -162,7 +162,7 @@ const OrderNowModal4 = ({
                         }}
                         className={`${
                           validationError ? "border-red-500" : ""
-                        } mt-1`}
+                        } mt-1.5 h-5 w-5 `}
                       />
                     </div>
                     <div className="mt-1.5">
@@ -170,7 +170,11 @@ const OrderNowModal4 = ({
                         htmlFor="agree-terms"
                         className="text-sm text-gray-700 cursor-pointer"
                       >
-                        <span>
+                        <span
+                          className={`${
+                            validationError ? "text-red-500" : ""
+                          } text-[14px]`}
+                        >
                           You confirm that you have read and accepted our{" "}
                         </span>
                         <Link
@@ -192,7 +196,7 @@ const OrderNowModal4 = ({
                     </div>
                   </div>
 
-                  <div className="h-6">
+                  <div className="h-6 pt-1">
                     {" "}
                     {/* Fixed height container for error message */}
                     <AnimatePresence>
@@ -202,7 +206,7 @@ const OrderNowModal4 = ({
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0 }}
                           transition={{ duration: 0.2 }}
-                          className="px-7 text-sm text-red-700"
+                          className="px-7  text-sm text-red-700  font-[500]"
                         >
                           Please accept the Terms & Conditions.
                         </motion.div>

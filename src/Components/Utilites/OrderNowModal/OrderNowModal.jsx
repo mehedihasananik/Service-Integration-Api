@@ -210,7 +210,11 @@ const OrderNowModal = ({
                           htmlFor="agree-terms"
                           className="text-sm text-gray-700"
                         >
-                          <span>
+                          <span
+                            className={`${
+                              validationError ? "text-red-500" : ""
+                            } text-[14px]`}
+                          >
                             You confirm that you have read and accepted our
                           </span>{" "}
                           <Link
@@ -234,7 +238,7 @@ const OrderNowModal = ({
                             initial={{ opacity: 0, y: -10 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0 }}
-                            className="absolute left-7 top-full text-sm text-red-700 mt-1"
+                            className="absolute left-7 top-full text-sm text-red-700 mt-1 font-[500]"
                           >
                             Please accept the Terms & Conditions.
                           </motion.div>
