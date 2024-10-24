@@ -9,7 +9,6 @@ import toast from "react-hot-toast";
 const ServiceRequirementContent = () => {
   const [attachment, setAttachment] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [fileError, setFileError] = useState("");
 
   const {
     register,
@@ -44,18 +43,11 @@ const ServiceRequirementContent = () => {
   const handleFileChange = (e) => {
     if (e.target.files[0]) {
       setAttachment(e.target.files[0]);
-      setFileError("");
     }
   };
 
   // Handle form submission
   const onSubmit = async (data) => {
-    // Check if file is attached
-    if (!attachment) {
-      setFileError("Please attach required documents");
-      return;
-    }
-
     setIsSubmitting(true);
 
     try {
@@ -67,7 +59,10 @@ const ServiceRequirementContent = () => {
       formData.append("company", data.company);
       formData.append("website", data.website);
       formData.append("requirement", data.requirement);
-      formData.append("attachment", attachment);
+      // Only append attachment if it exists
+      if (attachment) {
+        formData.append("attachment", attachment);
+      }
 
       // Make API call
       const response = await fetch(customer_requirements, {
@@ -175,7 +170,7 @@ const ServiceRequirementContent = () => {
                 )}
               </div>
 
-              {/* Phone Field - Now Required */}
+              {/* Phone Field */}
               <div className="space-y-2 group">
                 <label className="block text-sm font-medium text-[#123390] group-hover:text-[#FF693B] transition-colors">
                   Phone Number
@@ -284,10 +279,10 @@ const ServiceRequirementContent = () => {
               )}
             </div>
 
-            {/* File Upload Field - Required */}
+            {/* File Upload Field - Optional */}
             <div className="space-y-2">
               <label className="block text-sm font-medium text-[#123390]">
-                Additional Documents *
+                Additional Documents (Optional)
               </label>
               <div className="relative group">
                 <input
@@ -298,20 +293,15 @@ const ServiceRequirementContent = () => {
                 />
                 <label
                   htmlFor="file-upload"
-                  className={`flex items-center justify-center w-full px-6 py-4 rounded-xl border-2 border-dashed ${
-                    fileError ? "border-red-500" : "border-gray-300"
-                  } hover:border-[#FF693B] transition-all duration-300 cursor-pointer bg-gray-50/50 group-hover:bg-[#FF693B]/5`}
+                  className="flex items-center justify-center w-full px-6 py-4 rounded-xl border-2 border-dashed border-gray-300 hover:border-[#FF693B] transition-all duration-300 cursor-pointer bg-gray-50/50 group-hover:bg-[#FF693B]/5"
                 >
                   <PaperclipIcon className="w-5 h-5 text-gray-400 mr-2 group-hover:text-[#FF693B] transition-colors" />
                   <span className="text-gray-600 group-hover:text-[#FF693B] transition-colors">
                     {attachment
                       ? attachment.name
-                      : "Drag files here or click to upload (Required)"}
+                      : "Drag files here or click to upload"}
                   </span>
                 </label>
-                {fileError && (
-                  <p className="text-red-500 text-sm mt-2">{fileError}</p>
-                )}
               </div>
             </div>
 
