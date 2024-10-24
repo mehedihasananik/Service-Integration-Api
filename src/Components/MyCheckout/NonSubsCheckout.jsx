@@ -1,27 +1,26 @@
 "use client";
-
 import { checkoutApi } from "@/config/apis";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
+import { motion, AnimatePresence } from "framer-motion";
 
 const NonSubsCheckout = ({
   itemId,
   package_price,
   sevice_items_id,
   isEnabled,
-  setValidationError = () => {}, // Set a default empty function
+  setValidationError = () => {},
 }) => {
   const [loading, setLoading] = useState(false);
 
   const handleCheckout = async () => {
     if (!isEnabled) {
-      toast.error("Please accept the Terms & Conditions before proceeding.");
-      setValidationError(true); // Set validation error state
+      setValidationError(true);
       return;
     }
 
     setLoading(true);
-    setValidationError(false); // Clear validation error when conditions are met
+    setValidationError(false);
 
     const data = {
       user_id: 1,
@@ -61,14 +60,16 @@ const NonSubsCheckout = ({
   };
 
   return (
-    <div>
-      <button
-        className={`btn btn-secondary py-3`}
+    <div className="flex flex-col">
+      <motion.button
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
+        className="btn btn-secondary py-3"
         onClick={handleCheckout}
         disabled={loading}
       >
         {loading ? "Processing..." : "Proceed To Checkout"}
-      </button>
+      </motion.button>
     </div>
   );
 };

@@ -15,9 +15,9 @@ const OrderNowModal = ({
 }) => {
   const [openModal, setOpenModal] = useState(false);
   const [agreeTerms, setAgreeTerms] = useState(false);
-  const [validationError, setValidationError] = useState(false); // Validation error state
-  const [email, setEmail] = useState(""); // Email state
-  const [emailError, setEmailError] = useState(""); // Email error state
+  const [validationError, setValidationError] = useState(false);
+  const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
   const [showTooltip, setShowTooltip] = useState(false);
 
   const containerVariants = {
@@ -44,7 +44,6 @@ const OrderNowModal = ({
     },
   };
 
-  // Email validation function
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
@@ -53,13 +52,22 @@ const OrderNowModal = ({
   const handleCheckoutValidation = () => {
     if (!email) {
       setEmailError("Email is required.");
+      return false;
     } else if (!validateEmail(email)) {
       setEmailError("Please enter a valid email address.");
+      return false;
     } else {
       setEmailError("");
       return true;
     }
-    return false;
+  };
+
+  const handleTermsChange = () => {
+    const newAgreeTerms = !agreeTerms;
+    setAgreeTerms(newAgreeTerms);
+    if (newAgreeTerms) {
+      setValidationError(false);
+    }
   };
 
   return (
@@ -109,7 +117,7 @@ const OrderNowModal = ({
                   >
                     <div className="flex justify-between items-center pb-4">
                       <div>
-                        <h2 className="text-lg md:text-3xl font-bold text-[#123390] ">
+                        <h2 className="text-lg md:text-3xl font-bold text-[#123390]">
                           {packageData?.package_name}
                         </h2>
                       </div>
@@ -135,19 +143,17 @@ const OrderNowModal = ({
                       {packageData?.package_text}
                     </motion.p>
 
-                    {/* Email Input Field */}
                     <motion.div variants={itemVariants} className="mt-6">
                       <label
                         htmlFor="email"
-                        className="text-lg md:text-xl text-gray-700 mb-2 font-bold flex  items-center gap-x-2"
+                        className="text-lg md:text-xl text-gray-700 mb-2 font-bold flex items-center gap-x-2"
                       >
                         <span>
-                          {" "}
-                          Please share your email for monthly subscription{" "}
+                          Please share your email for monthly subscription
                         </span>
                         <div className="">
                           <Tooltip
-                            className="w-[170px] md:w-[170px] "
+                            className="w-[170px] md:w-[170px]"
                             content={
                               <div>
                                 <span>
@@ -165,10 +171,10 @@ const OrderNowModal = ({
                         type="email"
                         id="email"
                         placeholder="Enter your email"
-                        value={email} // Bind the value to the email state
+                        value={email}
                         onChange={(e) => {
                           setEmail(e.target.value);
-                          setEmailError(""); // Reset error on change
+                          setEmailError("");
                         }}
                         className={`w-full px-4 py-2 border ${
                           emailError ? "border-red-500" : "border-gray-300"
@@ -190,49 +196,62 @@ const OrderNowModal = ({
                   className="flex flex-col w-full"
                 >
                   <div className="w-full flex flex-col items-start mb-4">
-                    <div className="flex items-center">
-                      <Checkbox
-                        id="agree-terms"
-                        checked={agreeTerms}
-                        onChange={() => setAgreeTerms(!agreeTerms)}
-                        className={`${
-                          validationError ? "border border-red-500" : ""
-                        } mr-2 h-5 w-5 `}
-                      />
-                      <label
-                        htmlFor="agree-terms"
-                        className="text-sm text-gray-700"
-                      >
-                        <span
-                          className={`${validationError ? "text-red-500" : ""}`}
+                    <div className="relative min-h-[20px]">
+                      <div className="flex items-center">
+                        <Checkbox
+                          id="agree-terms"
+                          checked={agreeTerms}
+                          onChange={handleTermsChange}
+                          className={`${
+                            validationError ? "border-red-500" : ""
+                          } mr-2 h-5 w-5`}
+                        />
+                        <label
+                          htmlFor="agree-terms"
+                          className="text-sm text-gray-700"
                         >
-                          You confirm that you have read and accepted our
-                        </span>{" "}
-                        <Link
-                          className="text-[#123390] font-semibold transition-colors duration-300"
-                          href="/terms-and-conditions"
-                        >
-                          Terms and Conditions
-                        </Link>{" "}
-                        &{" "}
-                        <Link
-                          className="text-[#123390] font-semibold transition-colors duration-300"
-                          href="/refund-policy"
-                        >
-                          Refund Policy.
-                        </Link>
-                      </label>
+                          <span>
+                            You confirm that you have read and accepted our
+                          </span>{" "}
+                          <Link
+                            className="text-[#123390] font-semibold transition-colors duration-300"
+                            href="/terms-and-conditions"
+                          >
+                            Terms and Conditions
+                          </Link>{" "}
+                          &{" "}
+                          <Link
+                            className="text-[#123390] font-semibold transition-colors duration-300"
+                            href="/refund-policy"
+                          >
+                            Refund Policy.
+                          </Link>
+                        </label>
+                      </div>
+                      <AnimatePresence>
+                        {validationError && (
+                          <motion.div
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0 }}
+                            className="absolute left-7 top-full text-sm text-red-700 mt-1"
+                          >
+                            Please accept the Terms & Conditions.
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
                     </div>
                   </div>
+
                   <div className="flex gap-x-8 justify-end">
                     <SubsCheckout
                       itemId={itemId}
                       package_price={package_price}
                       sevice_items_id={sevice_items_id}
                       isEnabled={agreeTerms}
-                      setValidationError={setValidationError} // Pass the setValidationError prop
-                      email={email} // Pass the email state as a prop
-                      handleCheckoutValidation={handleCheckoutValidation} // Pass the validation function
+                      setValidationError={setValidationError}
+                      email={email}
+                      handleCheckoutValidation={handleCheckoutValidation}
                     />
                   </div>
                 </motion.div>

@@ -1,5 +1,3 @@
-"use client";
-
 import { checkoutApi } from "@/config/apis";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
@@ -9,26 +7,24 @@ const SubsCheckout = ({
   package_price,
   sevice_items_id,
   isEnabled,
-  setValidationError = () => {},
+  setValidationError,
   email,
-  handleCheckoutValidation, // New validation function
+  handleCheckoutValidation,
 }) => {
   const [loading, setLoading] = useState(false);
 
   const handleCheckout = async () => {
-    // Check if email is valid and terms are accepted
-    if (!handleCheckoutValidation()) {
-      return; // Prevent checkout if validation fails
+    if (!isEnabled) {
+      setValidationError(true);
+      return;
     }
 
-    if (!isEnabled) {
-      toast.error("Please accept the Terms & Conditions before proceeding."); // Toast message
-      setValidationError(true); // Show validation warning message
+    if (!handleCheckoutValidation()) {
       return;
     }
 
     setLoading(true);
-    setValidationError(false); // Clear validation error when conditions are met
+    setValidationError(false);
 
     const data = {
       user_id: 1,
@@ -37,7 +33,7 @@ const SubsCheckout = ({
       package_price: package_price,
       payment_status: "unpaid",
       order_status: "Requirement Needed",
-      email: email, // Pass the email to the backend
+      email: email,
     };
 
     try {
@@ -55,9 +51,7 @@ const SubsCheckout = ({
 
       const result = await response.json();
 
-      // Check if the result has the correct structure
       if (result && result.url) {
-        // Redirect to the URL returned from the API
         window.location.href = result.url;
       } else {
         throw new Error("Invalid API response: missing URL.");
@@ -73,7 +67,7 @@ const SubsCheckout = ({
   return (
     <div>
       <button
-        className={`btn btn-secondary py-3`}
+        className="btn btn-secondary py-3"
         onClick={handleCheckout}
         disabled={loading}
       >
