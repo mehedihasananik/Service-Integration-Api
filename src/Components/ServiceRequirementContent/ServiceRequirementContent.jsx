@@ -175,10 +175,10 @@ const ServiceRequirementContent = () => {
                 )}
               </div>
 
-              {/* Phone Field - Optional, Numbers Only */}
+              {/* Phone Field - Now Required */}
               <div className="space-y-2 group">
                 <label className="block text-sm font-medium text-[#123390] group-hover:text-[#FF693B] transition-colors">
-                  Phone Number (Optional)
+                  Phone Number
                 </label>
                 <input
                   type="tel"
@@ -189,6 +189,7 @@ const ServiceRequirementContent = () => {
                   onInput={handlePhoneInput}
                   maxLength={16}
                   {...register("phone", {
+                    required: "Phone number is required",
                     pattern: {
                       value: /^\+?\d+$/,
                       message:
