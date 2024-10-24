@@ -116,10 +116,7 @@ const OrderNowModal4 = ({
                       {packageData?.package_text}
                     </p>
 
-                    <motion.div
-                      variants={itemVariants}
-                      className="bg-blue-50 rounded-xl p-6 border border-blue-100"
-                    >
+                    <div className="bg-blue-50 rounded-xl p-6 border border-blue-100">
                       <div className="flex items-center gap-2 mb-4">
                         <CheckCircle className="w-5 h-5 text-[#123390]" />
                         <h4 className="text-lg md:text-xl font-semibold text-[#123390]">
@@ -129,10 +126,9 @@ const OrderNowModal4 = ({
 
                       <ul className="space-y-3">
                         {packageData?.package_details?.map((detail, index) => (
-                          <motion.li
+                          <li
                             key={index}
-                            variants={itemVariants}
-                            className="flex items-start gap-3 text-gray-700"
+                            className="flex items-start gap-3 text-gray-700 animate-fadeIn"
                           >
                             <div className="min-w-2 mt-2">
                               <div className="w-2 h-2 rounded-full bg-[#123390]" />
@@ -140,10 +136,10 @@ const OrderNowModal4 = ({
                             <span className="text-base leading-relaxed">
                               {detail.package_item}
                             </span>
-                          </motion.li>
+                          </li>
                         ))}
                       </ul>
-                    </motion.div>
+                    </div>
                   </motion.div>
                 </motion.div>
               </Modal.Body>

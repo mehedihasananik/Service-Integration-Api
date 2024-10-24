@@ -62,6 +62,7 @@ const serviceOrder = `${apiEndpoint}/service_order`;
 // webscore
 
 const business_webscore = `${apiEndpoint}/web-score`;
+const customer_requirements = `${apiEndpoint}/customer/requirement`;
 
 export {
   headerApi,
@@ -96,4 +97,5 @@ export {
   serviceOrder,
   business_webscore,
   successApi,
+  customer_requirements,
 };

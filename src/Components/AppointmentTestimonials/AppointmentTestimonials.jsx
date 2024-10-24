@@ -125,6 +125,9 @@ const AppointmentTestimonials = ({ testimonials, details }) => {
                   delay: 3000,
                   disableOnInteraction: false,
                 }}
+                pagination={{
+                  clickable: true,
+                }}
               >
                 {testimonials?.map((testimonial) => (
                   <SwiperSlide
