@@ -214,7 +214,7 @@ const OrderNowModal4 = ({
                     </AnimatePresence>
                   </div>
 
-                  <div className="flex justify-end gap-4">
+                  <div className="flex justify-end gap-4 mt-5 md:mt-0">
                     <NonSubsCheckout
                       itemId={itemId}
                       package_price={package_price}

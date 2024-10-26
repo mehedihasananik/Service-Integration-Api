@@ -247,7 +247,7 @@ const OrderNowModal = ({
                     </div>
                   </div>
 
-                  <div className="flex gap-x-8 justify-end">
+                  <div className="flex gap-x-8 justify-end mt-5 md:mt-0">
                     <SubsCheckout
                       itemId={itemId}
                       package_price={package_price}

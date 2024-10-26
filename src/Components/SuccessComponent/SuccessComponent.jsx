@@ -1,75 +1,250 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import { successApi } from "@/config/apis";
-import GlobalButtonColored from "../Utilites/GlobalButton/GlobalButtonColored";
+import { Check, Loader2 } from "lucide-react";
 
-export default function SuccessComponent() {
-  const searchParams = useSearchParams();
-  const sessionId = searchParams.get("session_id"); // Get the session_id from the query params
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [successMessage, setSuccessMessage] = useState(null);
-
-  useEffect(() => {
-    if (sessionId) {
-      // Function to send the POST request to the API
-      const postSuccessData = async () => {
-        try {
-          const response = await fetch(`${successApi}`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              session_id: sessionId,
-              payment_status: "paid",
-            }),
-          });
-
-          if (!response.ok) {
-            throw new Error("Failed to payment");
-          }
-
-          const result = await response.json();
-          console.log(result.success);
-          setSuccessMessage(result.success);
-        } catch (err) {
-          setError(err.message);
-        } finally {
-          setLoading(false);
-        }
-      };
-
-      postSuccessData(); // Call the function to send data when the component mounts
-    }
-  }, [sessionId]);
-  console.log(error);
-
-  return (
-    <div className="flex flex-col justify-center items-center h-screen">
-      {/* Display loading, success message, or error */}
-      {loading && <p>Processing payment data...</p>}
-      {successMessage && (
-        <>
-          <div className="text-green-500">
-            <h1 className="text-2xl font-bold">Payment Successful!</h1>
-            <p>
-              Thank you for your purchase. Your transaction has been completed
-              successfully.
-            </p>
-            {successMessage}
+const StatusContainer = ({ children }) => (
+  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full px-2 md:px-0 ">
+    <div className="w-full max-w-sm md:max-w-lg lg:max-w-xl mx-auto">
+      <div className="relative bg-white/70 backdrop-blur-xl md:rounded-2xl md:shadow-2xl border md:border-white/30 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-white/50 to-transparent" />
+        <div className="relative p-6 md:p-10 lg:p-12">
+          <div className="flex flex-col items-center space-y-2 md:space-y-6">
+            {children}
           </div>
-        </>
-      )}
-      {error && <p className="text-red-500">Error: {error}</p>}
-      <div className="mt-20">
-        <GlobalButtonColored
-          path="/service-requirements"
-          title="Submit Your Requirements"
-          className="btn btn-primary w-[45%] md:w-[100%] text-center mt-10"
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+const LoadingSpinner = () => (
+  <div className="transform scale-100 lg:scale-150 my-4">
+    <div className="relative w-[40px] h-[40px] md:w-[50px] md:h-[50px]">
+      <div className="absolute inset-0 rounded-full border-4 border-blue-500/30 border-t-blue-500 animate-spin" />
+    </div>
+  </div>
+);
+
+const SuccessCheckmark = () => (
+  <div className="transform scale-100 lg:scale-150 my-4">
+    <div className="relative">
+      <div className="w-[40px]  h-[40px] md:w-[50px] md:h-[50px] bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center p-1">
+        <Check
+          className="w-8 h-8 md:w-16 md:h-16 text-white transform scale-125 p-1.5"
+          strokeWidth={3}
         />
       </div>
     </div>
+  </div>
+);
+
+const CountdownTimer = ({ seconds }) => (
+  <span className="inline-flex items-center justify-center w-8 h-8 md:w-12 md:h-12 rounded-full bg-[#FF693B] text-white text-lg md:text-2xl font-bold shadow-lg animate-pulse">
+    {seconds}
+  </span>
+);
+
+const ProgressBar = ({ progress }) => (
+  <div className="w-full h-1.5 bg-gray-100 rounded-full overflow-hidden mt-4">
+    <div
+      className="h-full bg-[#FF693B] transition-all duration-1000 ease-out relative"
+      style={{ width: `${progress}%` }}
+    >
+      <div className="absolute inset-0 bg-white/20 animate-shimmer" />
+    </div>
+  </div>
+);
+
+const FadeOutOverlay = ({ show }) => (
+  <div
+    className={`fixed inset-0 bg-white transition-all duration-1000 ${
+      show ? "opacity-100 z-50" : "opacity-0 -z-10"
+    }`}
+  />
+);
+
+const CustomButton = ({
+  children,
+  onClick,
+  variant = "primary",
+  className = "",
+}) => {
+  const baseStyles =
+    "group relative w-full md:w-[70%] text-base font-semibold py-3 px-6 rounded-lg shadow-lg transition-all duration-500 overflow-hidden";
+  const variants = {
+    primary: "bg-[#FF693B] hover:bg-[#e55934] text-white",
+    outline: "border-2 border-red-200 text-red-500 hover:bg-red-50 bg-white",
+  };
+
+  return (
+    <button
+      onClick={onClick}
+      className={`${baseStyles} ${variants[variant]} ${className}`}
+    >
+      <div className="absolute inset-0 bg-white/20 transform translate-x-full group-hover:translate-x-0 transition-transform duration-700" />
+      <div className="relative">{children}</div>
+    </button>
   );
-}
+};
+
+const SuccessComponent = () => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const sessionId = searchParams.get("session_id");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [successMessage, setSuccessMessage] = useState(null);
+  const [countdown, setCountdown] = useState(10);
+  const [showFadeOut, setShowFadeOut] = useState(false);
+  const [progress, setProgress] = useState(0);
+
+  // Initialize loading state when component mounts
+  useEffect(() => {
+    if (!sessionId) {
+      setLoading(false);
+      setError("No session ID provided");
+      return;
+    }
+    setLoading(true);
+  }, [sessionId]);
+
+  useEffect(() => {
+    let progressInterval;
+    if (loading) {
+      progressInterval = setInterval(() => {
+        setProgress((prev) => (prev >= 90 ? 90 : prev + 10));
+      }, 500);
+    }
+    return () => clearInterval(progressInterval);
+  }, [loading]);
+
+  useEffect(() => {
+    let countdownTimer;
+    if (successMessage && countdown > 0) {
+      countdownTimer = setInterval(() => {
+        setCountdown((prev) => prev - 1);
+      }, 1000);
+    } else if (successMessage && countdown === 0) {
+      setShowFadeOut(true);
+      setTimeout(() => {
+        router.push("/service-requirements");
+      }, 1000);
+    }
+    return () => clearInterval(countdownTimer);
+  }, [successMessage, countdown, router]);
+
+  useEffect(() => {
+    const postSuccessData = async () => {
+      if (!sessionId) return;
+
+      try {
+        const response = await fetch(`${successApi}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            session_id: sessionId,
+            payment_status: "paid",
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to process payment");
+        }
+
+        const result = await response.json();
+        setSuccessMessage(result.success);
+        setProgress(100);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (sessionId) {
+      postSuccessData();
+    }
+  }, [sessionId]);
+
+  return (
+    <main className="h-[60vh] md:h-[100vh] w-full relative overflow-hidden ">
+      <FadeOutOverlay show={showFadeOut} />
+
+      {loading && (
+        <StatusContainer>
+          <LoadingSpinner />
+          <h2 className="text-xl md:text-3xl font-bold text-gray-700 mt-6 text-center">
+            Processing your payment
+          </h2>
+          <p className="text-base md:text-xl text-gray-500 text-center mt-3">
+            Please wait while we confirm your transaction...
+          </p>
+          <div className="w-full mt-6">
+            <ProgressBar progress={progress} />
+          </div>
+        </StatusContainer>
+      )}
+
+      {!loading && successMessage && (
+        <StatusContainer>
+          <SuccessCheckmark />
+          <div className="text-center space-y-4 mt-6">
+            <h1 className="text-2xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#FF693B] to-[#e55934]">
+              Payment Successful!
+            </h1>
+            <p className="text-base md:text-xl text-gray-600 px-4">
+              Thank you for your purchase. Your transaction has been completed
+              successfully.
+            </p>
+          </div>
+
+          <div className="flex flex-col lg:flex-row items-center justify-center md:gap-2 text-base md:text-xl text-gray-600 mt-6">
+            <span className="text-[14px] md:text-[18px]">
+              Redirecting to requirement page within
+            </span>
+            <div className="flex items-center gap-2">
+              <CountdownTimer seconds={countdown} />
+              <span className="text-[14px] md:text-[18px]">seconds</span>
+            </div>
+          </div>
+
+          <div className="w-full text-center mt-6 ">
+            <button
+              className="btn btn-primary text-center mt-4"
+              onClick={() => router.push("/service-requirements")}
+            >
+              Continue to Requirements
+            </button>
+          </div>
+        </StatusContainer>
+      )}
+
+      {!loading && error && (
+        <StatusContainer>
+          <div className="text-center space-y-4 w-full px-4">
+            <div className="bg-red-50 p-6 rounded-xl">
+              <p className="text-xl font-bold text-red-500 mb-3">
+                Error: {error}
+              </p>
+              <p className="text-base text-red-400">
+                Please try again or contact support if the issue persists.
+              </p>
+            </div>
+            <CustomButton
+              onClick={() => router.push("/services")}
+              variant="outline"
+            >
+              Contact Support
+            </CustomButton>
+          </div>
+        </StatusContainer>
+      )}
+    </main>
+  );
+};
+
+export default SuccessComponent;

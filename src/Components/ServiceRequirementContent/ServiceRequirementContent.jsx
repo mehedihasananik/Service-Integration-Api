@@ -109,11 +109,11 @@ const ServiceRequirementContent = () => {
   };
 
   return (
-    <div className="min-h-screen py-6 px-4 sm:px-6 lg:px-8 relative">
+    <div className="min-h-screen pb-6 md:pb-6 md:py-6 px-4  lg:px-8 relative">
       <div className="max-w-2xl mx-auto">
-        <div className="text-center mb-8 space-y-4">
-          <h2 className="text-5xl font-bold text-[#123390]">
-            Service <span className="text-[#FF693B]">Requirements</span>
+        <div className="text-center mb-4 md:mb-8 space-y-2 md:space-y-4">
+          <h2 className="headings font-bold text-[#123390]">
+            Share Your <span className="text-[#FF693B]">Requirements</span>
           </h2>
           <p className="text-gray-600 text-lg max-w-2xl mx-auto">
             Share your requirements with us and we&apos;ll help bring it to life
@@ -121,8 +121,8 @@ const ServiceRequirementContent = () => {
           </p>
         </div>
 
-        <div className="bg-white rounded-xl shadow-2xl overflow-hidden relative">
-          <form onSubmit={handleSubmit(onSubmit)} className="p-8 space-y-8">
+        <div className="bg-white md:rounded-xl md:shadow-2xl overflow-hidden relative">
+          <form onSubmit={handleSubmit(onSubmit)} className="md:p-8 space-y-8">
             <div className="grid md:grid-cols-2 gap-8">
               {/* Name Field */}
               <div className="space-y-2 group">
@@ -309,7 +309,7 @@ const ServiceRequirementContent = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full bg-[#FF693B] text-white py-4 px-8 rounded-xl font-medium text-lg hover:shadow-lg hover:bg-[#123390] transition-all duration-300 flex items-center justify-center group relative overflow-hidden disabled:opacity-50"
+              className="w-full bg-[#FF693B] text-white py-4 px-8  rounded-xl font-medium md:text-lg hover:shadow-lg hover:bg-[#123390] transition-all duration-300 flex items-center justify-center group relative overflow-hidden disabled:opacity-50"
             >
               <span className="relative z-10 flex items-center">
                 {isSubmitting ? "Submitting..." : "Submit Requirements"}
