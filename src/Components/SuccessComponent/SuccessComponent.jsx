@@ -100,7 +100,6 @@ const SuccessComponent = () => {
   const [showFadeOut, setShowFadeOut] = useState(false);
   const [progress, setProgress] = useState(0);
 
-  // Initialize loading state when component mounts
   useEffect(() => {
     if (!sessionId) {
       setLoading(false);
@@ -129,11 +128,11 @@ const SuccessComponent = () => {
     } else if (successMessage && countdown === 0) {
       setShowFadeOut(true);
       setTimeout(() => {
-        router.push("/service-requirements");
+        router.push(`/service-requirements?session_id=${sessionId}`);
       }, 1000);
     }
     return () => clearInterval(countdownTimer);
-  }, [successMessage, countdown, router]);
+  }, [successMessage, countdown, router, sessionId]);
 
   useEffect(() => {
     const postSuccessData = async () => {
@@ -171,7 +170,7 @@ const SuccessComponent = () => {
   }, [sessionId]);
 
   return (
-    <main className="h-[60vh] md:h-[100vh] w-full relative overflow-hidden ">
+    <main className="h-[60vh] md:h-[100vh] w-full relative overflow-hidden">
       <FadeOutOverlay show={showFadeOut} />
 
       {loading && (
@@ -197,7 +196,7 @@ const SuccessComponent = () => {
               Payment Successful!
             </h1>
             <p className="text-base md:text-xl text-gray-600 px-4">
-              Thank you for your purchase. Your transaction has been completed
+              Thank you for your order. Your transaction has been completed
               successfully.
             </p>
           </div>
@@ -212,10 +211,12 @@ const SuccessComponent = () => {
             </div>
           </div>
 
-          <div className="w-full text-center mt-6 ">
+          <div className="w-full text-center mt-6">
             <button
               className="btn btn-primary text-center mt-4"
-              onClick={() => router.push("/service-requirements")}
+              onClick={() =>
+                router.push(`/service-requirements?session_id=${sessionId}`)
+              }
             >
               Continue to Requirements
             </button>

@@ -98,14 +98,14 @@ const Values = ({ title4, details4 }) => (
     <h2 className="text-headingSmall md:text-headingBase text-[#334155] text-center lg:text-left">
       Our Values
     </h2>
-    <div className="w-full lg:w-[70%] text-center lg:text-left space-y-3">
+    <div className="w-full  text-center lg:text-left space-y-3">
       <div>
-        <h2 className="text-blackish text-headingSmall lg:text-headingLarge font-bold font-Raleway leading-tight">
+        <h2 className="lg:w-[90%] text-blackish text-headingSmall lg:text-headingLarge font-bold font-Raleway leading-tight">
           {title4}
         </h2>
       </div>
       <div>
-        <div className="md:w-[80%] text-justify">
+        <div className=" text-justify">
           <p className="text-grayish text-paragraphMedium">{details4}</p>
         </div>
       </div>

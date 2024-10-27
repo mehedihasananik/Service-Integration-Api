@@ -6,7 +6,7 @@ import { PaperclipIcon, Send } from "lucide-react";
 import { customer_requirements } from "@/config/apis";
 import toast from "react-hot-toast";
 
-const ServiceRequirementContent = () => {
+const ServiceRequirementContent = ({ sessionId }) => {
   const [attachment, setAttachment] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -59,6 +59,8 @@ const ServiceRequirementContent = () => {
       formData.append("company", data.company);
       formData.append("website", data.website);
       formData.append("requirement", data.requirement);
+      formData.append("session", sessionId);
+
       // Only append attachment if it exists
       if (attachment) {
         formData.append("attachment", attachment);
@@ -70,14 +72,17 @@ const ServiceRequirementContent = () => {
         body: formData,
       });
 
+      // Log the complete response
+
       if (!response.ok) {
         throw new Error("Submission failed");
       }
 
-      await response.json();
+      const responseData = await response.json();
+      console.log("API Response Data:", responseData);
 
       // Show success toast
-      toast.success("Requirements submitted successfully!", {
+      toast.success(responseData?.message, {
         duration: 4000,
         position: "top-center",
         style: {
@@ -92,6 +97,9 @@ const ServiceRequirementContent = () => {
       reset();
       setAttachment(null);
     } catch (error) {
+      // Log any errors that occur
+      console.error("Form submission error:", error);
+
       // Show error toast
       toast.error("Failed to submit requirements. Please try again.", {
         duration: 4000,

@@ -44,8 +44,10 @@ const TestimonialCard = ({ testimonial }) => {
           </div>
         </div>
         <div>
-          <p className="w-full  text-paragraph text-grayish pt-1 pb-12 lg:group-hover:text-white line-clamp-[7]">
-            {testimonial?.message}
+          <p className="w-full  text-paragraph text-grayish pt-1 pb-12 lg:group-hover:text-white ">
+            {testimonial?.message.length > 300
+              ? `${testimonial?.message.slice(0, 300)}...`
+              : testimonial?.message}
           </p>
         </div>
       </div>

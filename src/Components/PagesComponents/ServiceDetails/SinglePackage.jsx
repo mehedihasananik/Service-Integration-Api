@@ -64,8 +64,6 @@ const SinglePackage = ({ item, setOpenModal, height, serviceName }) => {
       ? "mt-[30px] md:mt-[290px]"
       : "";
 
-  console.log(item);
-
   return (
     <div className="md:mx-[10%] lg:mx-0 overflow-hidden">
       <div
