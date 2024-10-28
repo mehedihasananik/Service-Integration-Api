@@ -241,7 +241,7 @@ const ServiceRequirementContent = ({ sessionId }) => {
               {/* Website Field - Optional */}
               <div className="space-y-2 group">
                 <label className="block text-sm font-medium text-[#123390] group-hover:text-[#FF693B] transition-colors">
-                  Website URL (Optional)
+                  Website URL
                 </label>
                 <input
                   type="url"
@@ -290,7 +290,7 @@ const ServiceRequirementContent = ({ sessionId }) => {
             {/* File Upload Field - Optional */}
             <div className="space-y-2">
               <label className="block text-sm font-medium text-[#123390]">
-                Additional Documents (Optional)
+                Additional Documents
               </label>
               <div className="relative group">
                 <input

@@ -1,16 +1,24 @@
-// app/service-requirements/page.jsx
 "use client";
 import ServiceRequirementContent from "@/Components/ServiceRequirementContent/ServiceRequirementContent";
+import UserLoading from "@/Components/Utilites/UserLoading/UserLoading";
 import { useSearchParams } from "next/navigation";
-import React from "react";
+import React, { Suspense } from "react";
 
-const ServiceRequirements = () => {
+// Create a separate component for the content that uses useSearchParams
+const ServiceRequirementsContent = () => {
   const searchParams = useSearchParams();
   const sessionId = searchParams.get("session_id");
 
+  return <ServiceRequirementContent sessionId={sessionId} />;
+};
+
+// Main page component with Suspense boundary
+const ServiceRequirements = () => {
   return (
     <div>
-      <ServiceRequirementContent sessionId={sessionId} />
+      <Suspense fallback={<UserLoading />}>
+        <ServiceRequirementsContent />
+      </Suspense>
     </div>
   );
 };

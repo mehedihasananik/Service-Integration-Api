@@ -45,7 +45,7 @@ export async function generateMetadata({ params }, parent) {
 const SinglePage = async ({ params }) => {
   try {
     const { service, sliders, packages } = await getPageData(params.id);
-    console.log(packages);
+
     return (
       <>
         <JsonLd data={service?.meta?.json_ld} />
