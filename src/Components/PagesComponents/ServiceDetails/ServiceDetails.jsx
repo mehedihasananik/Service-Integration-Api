@@ -77,7 +77,7 @@ const ServiceDetails = ({ service, sliders, packages }) => {
             </h2>
             <GlobalButtonColored
               path={"/schedule-meeting"}
-              title={"Book an Appointment"}
+              title={"Book An Appointment"}
               className="btn btn-primary md:w-[20%] text-center "
             />
           </div>
