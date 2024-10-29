@@ -6,7 +6,6 @@ import { Toaster } from "react-hot-toast";
 import AuthProviders, { ThemeProvider } from "@/providers/AuthProviders";
 import GoogleTagManagerScript from "../GoogleTagManager/GoogleTagManagerScript";
 import GoogleTagManagerNoScript from "../GoogleTagManager/GoogleTagManagerNoScript";
-import Analytics from "../Analytics/Analytics";
 import HubSpotScript from "@/Components/HubSpot/HubSpot";
 import HotJar from "../Hotjar/HotJar";
 import FacebookPixel from "../FacebookPixel/FacebookPixelScript";
@@ -29,7 +28,6 @@ export default function RootLayout({ children }) {
           sizes="16x16"
         />
         <GoogleTagManagerScript />
-        <Analytics />
         <HotJar />
         <FacebookPixel />
       </head>

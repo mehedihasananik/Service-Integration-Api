@@ -18,13 +18,6 @@ const ServicesPageContent = ({
   const [searchQuery, setSearchQuery] = useState("");
   const [serviceItems, setServiceItems] = useState([]);
   const [animate, setAnimate] = useState(false);
-  const [isNavigating, setIsNavigating] = useState(false);
-  const router = useRouter();
-
-  const handleNavigation = (slug) => {
-    setIsNavigating(true);
-    router.push(`/services/${slug}`);
-  };
 
   useEffect(() => {
     setLoading(false);
@@ -150,14 +143,10 @@ const ServicesPageContent = ({
                 animate ? "fade-in" : ""
               }`}
             >
-              {services.map((service, index) => (
-                <div
-                  key={index}
-                  onClick={() => handleNavigation(service.slug)}
-                  className="cursor-pointer"
-                >
+              {serviceItems.map((service, index) => (
+                <Link key={index} href={`/services/${service?.slug}`}>
                   <ServicePageItems {...service} />
-                </div>
+                </Link>
               ))}
             </div>
           )}
