@@ -1,11 +1,9 @@
 "use client";
-
 import RelevantServices from "@/Components/Utilites/RelevantServices/RelevantServices";
 import Container from "@/Components/Container/Container";
 import ServicePortolio from "@/Components/Utilites/ServicePortfolio/ServicePortolio";
 import { useState } from "react";
 import SinglePackage from "./SinglePackage";
-import Link from "next/link";
 import OrderSliderLg from "@/Components/Utilites/OrderSlider/OrderSliderLg";
 import OrderSliderSm from "@/Components/Utilites/OrderSlider/OrderSliderSm";
 import QuestionService from "@/Components/Home/Questions/QuestionService";
@@ -21,6 +19,7 @@ const ServiceDetails = ({ service, sliders, packages }) => {
   const height = packages[2].package_details.length;
 
   const serviceName = service?.service_details[0]?.sevice_items_name;
+
   // console.log(packages);
 
   return (
