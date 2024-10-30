@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { AlertCircle, Loader2 } from "lucide-react";
 
-const ServiceFormContent = () => {
+const OnBoardingContent = () => {
   const [formData, setFormData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -247,4 +247,4 @@ const ServiceFormContent = () => {
   );
 };
 
-export default ServiceFormContent;
+export default OnBoardingContent;
