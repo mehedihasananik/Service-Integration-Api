@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { AlertCircle, Loader2 } from "lucide-react";
 
-const OnBoardingContent = () => {
+const OnBoardingContent = ({ orderId }) => {
   const [formData, setFormData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -10,7 +10,7 @@ const OnBoardingContent = () => {
     const fetchForm = async () => {
       try {
         const response = await fetch(
-          "http://192.168.10.16:8000/api/onboarding/custom-website-development"
+          `http://192.168.10.16:8000/api/onboarding/${orderId}`
         );
         const data = await response.json();
         setFormData(data);
@@ -199,7 +199,7 @@ const OnBoardingContent = () => {
         {/* Form Header */}
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-[#123390] mb-2">
-            {formData.form_name}
+            Onboarding form for {formData.service_name}
           </h1>
           <p className="text-gray-600">
             Please fill out the form below to get started

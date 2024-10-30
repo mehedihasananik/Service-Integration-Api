@@ -99,6 +99,7 @@ const SuccessComponent = () => {
   const [countdown, setCountdown] = useState(10);
   const [showFadeOut, setShowFadeOut] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [orderId, setOrderId] = useState(null);
 
   useEffect(() => {
     if (!sessionId) {
@@ -128,11 +129,11 @@ const SuccessComponent = () => {
     } else if (successMessage && countdown === 0) {
       setShowFadeOut(true);
       setTimeout(() => {
-        router.push(`/service-requirements?session_id=${sessionId}`);
+        router.push(`/onBoarding?order=${orderId}`);
       }, 1000);
     }
     return () => clearInterval(countdownTimer);
-  }, [successMessage, countdown, router, sessionId]);
+  }, [successMessage, countdown, router, orderId]);
 
   useEffect(() => {
     const postSuccessData = async () => {
@@ -156,6 +157,7 @@ const SuccessComponent = () => {
 
         const result = await response.json();
         setSuccessMessage(result.success);
+        setOrderId(result.order_id);
         setProgress(100);
       } catch (err) {
         setError(err.message);
@@ -214,9 +216,7 @@ const SuccessComponent = () => {
           <div className="w-full text-center mt-6">
             <button
               className="btn btn-primary text-center mt-4"
-              onClick={() =>
-                router.push(`/service-requirements?session_id=${sessionId}`)
-              }
+              onClick={() => router.push(`/onBoarding?order=${orderId}`)}
             >
               Continue to Requirements
             </button>
