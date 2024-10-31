@@ -23,13 +23,13 @@ const ServiceDetails = ({ service, sliders, packages }) => {
   useEffect(() => {
     if (service && packages) {
       window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({
+      const dataLayerObject = {
         event: "view_item",
         ecommerce: {
           currency: "USD",
           items: [
             {
-              item_id: service?.service_id || "", // Your service ID
+              item_id: service.service_details[0].sevice_items_id || "", // Your service ID
               item_name:
                 service?.service_details[0]?.service_items_name ||
                 "WordPress Development",
@@ -39,14 +39,19 @@ const ServiceDetails = ({ service, sliders, packages }) => {
                 package_id: pkg.id,
                 package_name: pkg.package_name,
                 description: pkg.package_details, // Or specific details if available
-                price: pkg.price,
+                price: pkg.package_price,
                 price_period: "monthly", // Or "one-time" based on pricing structure
               })),
             },
           ],
         },
         "gtm.uniqueEventId": Date.now(),
-      });
+      };
+
+      window.dataLayer.push(dataLayerObject);
+
+      // Log the dataLayer object to the console
+      console.log("Data Layer Object:", dataLayerObject);
     }
   }, [service, packages]);
 

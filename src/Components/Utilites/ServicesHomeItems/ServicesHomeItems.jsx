@@ -51,8 +51,14 @@ const ServicesHomeItems = ({ services, details }) => {
               <h1 className="text-center md:text-left headings  xl:w-[400px]">
                 {details?.title}
               </h1>
-              <p className="line-clamp-4 pt-4 text-center md:text-left text-paragraph text-gray font-normal w-[100%] px-4 md:px-0 md:w-[700px] xl:w-[380px] 4xl:w-[500px]">
-                {details?.details}
+              <p className="line-clamp-5 pt-4 text-center md:text-left text-paragraph text-gray font-normal w-[100%] px-4 md:px-0 md:w-[700px] xl:w-[380px] 4xl:w-[500px]">
+                Kick Start With Our Digital Marketing Services Envobyte has a
+                highly experienced in-house web design, developer, SMM, and SEO
+                team. Our team enhances your online presence with personalized
+                WordPress web design and custom web development services. We
+                also offer Website UI/UX design, mobile application development,
+                SEO (Search Engine Optimization), and social media marketing to
+                enhance traffic and audience engagement
               </p>
               <SlideCounter
                 currentSlide={currentSlide}

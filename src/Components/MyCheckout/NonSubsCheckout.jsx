@@ -9,6 +9,8 @@ const NonSubsCheckout = ({
   package_price,
   sevice_items_id,
   isEnabled,
+  handleOrderClick,
+  checkout,
   setValidationError = () => {},
 }) => {
   const [loading, setLoading] = useState(false);
@@ -58,6 +60,10 @@ const NonSubsCheckout = ({
       setLoading(false);
     }
   };
+  const handleCombinedActions = () => {
+    handleOrderClick(checkout); // Trigger handleOrderClick
+    handleCheckout(); // Trigger handleCheckout
+  };
 
   return (
     <div className="flex flex-col">
@@ -65,7 +71,7 @@ const NonSubsCheckout = ({
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
         className="btn btn-secondary py-3"
-        onClick={handleCheckout}
+        onClick={handleCombinedActions}
         disabled={loading}
       >
         {loading ? "Processing..." : "Proceed To Checkout"}

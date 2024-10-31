@@ -263,3 +263,8 @@
 .animate-fadeIn {
   animation: fadeIn 0.8s ease-out forwards;
 }
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+  display: block;
+  -webkit-appearance: none;
+}

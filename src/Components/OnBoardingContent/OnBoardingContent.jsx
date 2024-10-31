@@ -4,7 +4,9 @@ import { AlertCircle, Loader2 } from "lucide-react";
 
 const OnBoardingContent = ({ orderId }) => {
   const [formData, setFormData] = useState(null);
+  const [formValues, setFormValues] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [formId, setFormId] = useState(null);
 
   useEffect(() => {
     const fetchForm = async () => {
@@ -14,21 +16,42 @@ const OnBoardingContent = ({ orderId }) => {
         );
         const data = await response.json();
         setFormData(data);
+        setFormId(data.id);
       } catch (error) {
         console.error("Error fetching form data:", error);
       }
     };
 
     fetchForm();
-  }, []);
+  }, [orderId]);
+
+  const handleInputChange = (id, value, isCheckbox = false, isFile = false) => {
+    setFormValues((prevValues) => {
+      if (isFile) {
+        return { ...prevValues, [`field_${id}`]: value }; // Store file object directly
+      } else if (isCheckbox) {
+        const updatedValues = prevValues[`field_${id}`] || [];
+        const valueIndex = updatedValues.indexOf(value);
+
+        if (valueIndex === -1) {
+          updatedValues.push(value);
+        } else {
+          updatedValues.splice(valueIndex, 1);
+        }
+        return { ...prevValues, [`field_${id}`]: updatedValues };
+      } else {
+        return { ...prevValues, [`field_${id}`]: value };
+      }
+    });
+  };
 
   const renderField = (field) => {
     const { id, field_type, question, placeholder, options, is_required } =
       field;
 
     const baseInputClasses = `
-      w-full px-4 py-3 rounded-lg  border-gray-200 
-      focus:border-[#FF693B]  focus:ring-[#FF693B]/20 
+      w-full px-4 py-3 rounded-lg border border-gray-200 
+      focus:border-[#FF693B] focus:ring-[#FF693B]/20 
       outline-none transition-all duration-200
     `;
 
@@ -55,10 +78,11 @@ const OnBoardingContent = ({ orderId }) => {
             <input
               type={field_type}
               id={id}
-              name={id}
+              name={`field_${id}`}
               placeholder={placeholder}
               required={is_required === 1}
               className={baseInputClasses}
+              onChange={(e) => handleInputChange(id, e.target.value)}
             />
           </div>
         );
@@ -71,11 +95,12 @@ const OnBoardingContent = ({ orderId }) => {
             </label>
             <textarea
               id={id}
-              name={id}
+              name={`field_${id}`}
               placeholder={placeholder}
               required={is_required === 1}
               rows={4}
-              className={`${baseInputClasses} resize-none`}
+              className={`${baseInputClasses} resize-y`} // Allows vertical resizing
+              onChange={(e) => handleInputChange(id, e.target.value)}
             />
           </div>
         );
@@ -88,9 +113,10 @@ const OnBoardingContent = ({ orderId }) => {
             </label>
             <select
               id={id}
-              name={id}
+              name={`field_${id}`}
               required={is_required === 1}
               className={baseInputClasses}
+              onChange={(e) => handleInputChange(id, e.target.value)}
             >
               <option value="">{placeholder}</option>
               {options.map((option) => (
@@ -114,10 +140,11 @@ const OnBoardingContent = ({ orderId }) => {
                 >
                   <input
                     type="radio"
-                    name={id}
+                    name={`field_${id}`}
                     value={option.option_value}
                     required={is_required === 1}
                     className="w-4 h-4 text-[#FF693B] border-gray-300 focus:ring-[#FF693B]"
+                    onChange={(e) => handleInputChange(id, e.target.value)}
                   />
                   <span className="text-gray-700">{option.option_text}</span>
                 </label>
@@ -130,7 +157,7 @@ const OnBoardingContent = ({ orderId }) => {
         return (
           <div key={id} className="mb-6">
             <p className={labelClasses}>{question}</p>
-            <div className="space-y-2">
+            <div className="flex items-center gap-x-3">
               {options.map((option) => (
                 <label
                   key={option.id}
@@ -138,9 +165,12 @@ const OnBoardingContent = ({ orderId }) => {
                 >
                   <input
                     type="checkbox"
-                    name={`${id}[]`}
+                    name={`field_${id}[]`}
                     value={option.option_value}
                     className="w-4 h-4 text-[#FF693B] border-gray-300 rounded focus:ring-[#FF693B]"
+                    onChange={(e) =>
+                      handleInputChange(id, option.option_value, true)
+                    }
                   />
                   <span className="text-gray-700">{option.option_text}</span>
                 </label>
@@ -159,15 +189,18 @@ const OnBoardingContent = ({ orderId }) => {
               <input
                 type="file"
                 id={id}
-                name={id}
+                name={`field_${id}`}
                 required={is_required === 1}
                 className="block w-full text-sm text-gray-500
                   file:mr-4 file:py-2 file:px-4
-                  file:rounded-full file:border-0
+                   file:border-0
                   file:text-sm file:font-semibold
                   file:bg-[#FF693B] file:text-white
                   hover:file:bg-[#FF693B]/90
                   file:cursor-pointer file:transition-colors"
+                onChange={(e) =>
+                  handleInputChange(id, e.target.files[0], false, true)
+                }
               />
             </div>
           </div>
@@ -178,11 +211,38 @@ const OnBoardingContent = ({ orderId }) => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    // Add your form submission logic here
-    setTimeout(() => setIsLoading(false), 2000); // Simulate loading
+
+    const formDataToSend = new FormData();
+
+    Object.entries(formValues).forEach(([key, value]) => {
+      if (Array.isArray(value)) {
+        formDataToSend.append(key, JSON.stringify(value)); // Convert array to JSON string
+      } else {
+        formDataToSend.append(key, value); // Append file objects and other values directly
+      }
+    });
+
+    try {
+      const response = await fetch(
+        `http://192.168.10.16:8000/api/onboarding-form/${formId}/submit/${orderId}`,
+        {
+          method: "POST",
+          body: formDataToSend,
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Error submitting form");
+      }
+      console.log("Form submitted successfully");
+    } catch (error) {
+      console.error("Form submission error:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   if (!formData) {
@@ -195,18 +255,15 @@ const OnBoardingContent = ({ orderId }) => {
 
   return (
     <div className="min-h-screen bg-gray-50 mt-3 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="text-center mb-8">
+        <h1 className="text-lg md:text-4xl font-bold text-[#123390] mb-2">
+          Onboarding form for {formData.service_name}
+        </h1>
+        <p className="text-gray-600">
+          Please fill out the form below to get started
+        </p>
+      </div>
       <div className="max-w-3xl mx-auto">
-        {/* Form Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-[#123390] mb-2">
-            Onboarding form for {formData.service_name}
-          </h1>
-          <p className="text-gray-600">
-            Please fill out the form below to get started
-          </p>
-        </div>
-
-        {/* Main Form */}
         <div className="bg-white rounded-xl shadow-lg overflow-hidden">
           <div className="p-6 sm:p-8">
             <form onSubmit={handleSubmit}>
@@ -230,17 +287,15 @@ const OnBoardingContent = ({ orderId }) => {
                     <span>Submitting...</span>
                   </>
                 ) : (
-                  <span>Submit Form</span>
+                  <span>Submit your requirements</span>
                 )}
               </button>
             </form>
           </div>
-        </div>
-
-        {/* Required Fields Note */}
-        <div className="mt-4 flex items-center justify-center text-sm text-gray-500">
-          <AlertCircle className="w-4 h-4 mr-2" />
-          <span>Required fields are marked with an asterisk (*)</span>
+          <div className="px-4 sm:px-6 lg:px-8 mt-0 pb-5 flex items-center justify-start text-sm text-gray-500">
+            <AlertCircle className="w-4 h-4 mr-2" />
+            <span>Fields marked with * are required</span>
+          </div>
         </div>
       </div>
     </div>

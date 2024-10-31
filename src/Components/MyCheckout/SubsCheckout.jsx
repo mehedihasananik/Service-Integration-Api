@@ -10,6 +10,8 @@ const SubsCheckout = ({
   setValidationError,
   email,
   handleCheckoutValidation,
+  handleOrderClick,
+  checkout,
   setEmailError, // Add this prop to handle email error
 }) => {
   const [loading, setLoading] = useState(false);
@@ -76,12 +78,16 @@ const SubsCheckout = ({
       setLoading(false);
     }
   };
+  const handleCombinedActions = () => {
+    handleOrderClick(checkout); // Trigger handleOrderClick
+    handleCheckout(); // Trigger handleCheckout
+  };
 
   return (
     <div>
       <button
         className="btn btn-secondary py-3"
-        onClick={handleCheckout}
+        onClick={handleCombinedActions}
         disabled={loading}
       >
         {loading ? "Processing..." : "Proceed To Checkout"}

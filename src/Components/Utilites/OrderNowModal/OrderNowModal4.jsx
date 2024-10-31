@@ -16,6 +16,8 @@ const OrderNowModal4 = ({
   const [openModal, setOpenModal] = useState(false);
   const [agreeTerms, setAgreeTerms] = useState(false);
   const [validationError, setValidationError] = useState(false);
+  const [addToCart, setAddToCart] = useState("add_to_cart");
+  const [checkout, setCheckout] = useState("checkout");
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -40,13 +42,39 @@ const OrderNowModal4 = ({
       },
     },
   };
+  const handleOrderClick = (addToCart) => {
+    // Push event to dataLayer
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: addToCart,
+      ecommerce: {
+        currency: "USD",
+        value: packageData?.package_price || 0,
+        items: [
+          {
+            item_id: itemId || "",
+            item_name: packageData?.package_name || "Default Package",
+            item_category: serviceName || "Service Category",
+            item_brand: "Envobyte Ltd",
+            price: packageData?.package_price,
+            price_period: packageData?.monthly_subscription
+              ? "monthly"
+              : "one-time",
+          },
+        ],
+      },
+      "gtm.uniqueEventId": Date.now(),
+    });
+    // Open the modal
+    setOpenModal(true);
+  };
 
   return (
     <>
       <motion.button
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        onClick={() => setOpenModal(true)}
+        onClick={() => handleOrderClick(addToCart)}
         className="btn btn-secondary mt-0 mb-4 lg:mt-0 lg:mb-0 md:w-[100%] text-center py-2.5 mx-2"
       >
         Order Now
@@ -221,6 +249,8 @@ const OrderNowModal4 = ({
                       sevice_items_id={sevice_items_id}
                       isEnabled={agreeTerms}
                       setValidationError={setValidationError}
+                      handleOrderClick={() => handleOrderClick(checkout)}
+                      checkout={checkout} // Add this prop
                     />
                   </div>
                 </motion.div>
