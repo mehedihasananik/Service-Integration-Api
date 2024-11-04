@@ -4,6 +4,7 @@ import { AlertCircle, Loader2 } from "lucide-react";
 import { PhoneInput } from "react-international-phone";
 import "react-international-phone/style.css";
 import { onBoardingApiData, onBoardingApiForm } from "@/config/apis";
+import { useSearchParams } from "next/navigation";
 
 const OnBoardingContent = ({ orderId }) => {
   const [formData, setFormData] = useState(null);
@@ -368,7 +369,8 @@ const OnBoardingContent = ({ orderId }) => {
   if (status === true) {
     return (
       <div className="flex flex-col items-center justify-center h-[40vh] md:h-[70vh] text-center px-5 md:px-0">
-        <h3 className="text-2xl font-bold text-primary mb-4">
+        <h2 className="font-bold text-3xl py-2"> #{orderId}</h2>
+        <h3 className="text-2xl font-bold text-primary mb-3">
           {formData?.submission_exists
             ? "Requirement already submitted."
             : "Requirement Submitted Successfully!"}
