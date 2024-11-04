@@ -129,7 +129,12 @@ const SuccessComponent = () => {
     } else if (successMessage && countdown === 0) {
       setShowFadeOut(true);
       setTimeout(() => {
-        router.push(`/onBoarding?order=${orderId}`);
+        // Check if orderId exists, navigate accordingly
+        if (orderId) {
+          router.push(`/onboarding?order=${orderId}`);
+        } else {
+          router.push("/service-requirements");
+        }
       }, 1000);
     }
     return () => clearInterval(countdownTimer);
@@ -156,9 +161,46 @@ const SuccessComponent = () => {
         }
 
         const result = await response.json();
+
         setSuccessMessage(result.success);
         setOrderId(result.order_id);
         setProgress(100);
+        // Prepare transaction data for dataLayer
+        const dataLayerData = {
+          event: "purchase",
+          ecommerce: {
+            currency: "USD",
+            transaction_id: result.order_id,
+            affiliation: "", // Static default if not available
+            value: parseFloat(result.package.package_price) || 0,
+            tax: 0, // Static default as tax isn't provided
+            shipping: 0, // Static default as shipping isn't provided
+            coupon: "", // Static default if no coupon applied
+            items: [
+              {
+                item_id: result?.package?.id,
+                item_name: result?.service_name || "Default Service Name",
+                sku: result.package.id, // Assuming item_id acts as SKU
+                price: parseFloat(result.package.package_price) || 0,
+                stocklevel: null, // Static default as stocklevel isn't provided
+                stockstatus: "instock", // Static default if stock status not available
+                google_business_vertical: "retail", // Static value if not available
+                item_category:
+                  result.package.package_name || "Default Category",
+                id: result.package.id,
+                quantity: 1,
+              },
+            ],
+          },
+          gtm: { uniqueEventId: new Date().getTime() },
+        };
+
+        // Push transaction data to dataLayer
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push(dataLayerData);
+
+        // Log the specific data being pushed
+        console.log("Data being pushed to dataLayer:", dataLayerData);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -172,7 +214,7 @@ const SuccessComponent = () => {
   }, [sessionId]);
 
   return (
-    <main className="h-[60vh] md:h-[100vh] w-full relative overflow-hidden">
+    <main className="h-[60vh] md:h-[70vh] w-full relative overflow-hidden">
       <FadeOutOverlay show={showFadeOut} />
 
       {loading && (
@@ -214,12 +256,21 @@ const SuccessComponent = () => {
           </div>
 
           <div className="w-full text-center mt-6">
-            <button
-              className="btn btn-primary text-center mt-4"
-              onClick={() => router.push(`/onBoarding?order=${orderId}`)}
-            >
-              Continue to Requirements
-            </button>
+            {orderId ? (
+              <button
+                className="btn btn-primary text-center mt-4"
+                onClick={() => router.push(`/onboarding?order=${orderId}`)}
+              >
+                Continue to Requirements
+              </button>
+            ) : (
+              <button
+                className="btn btn-primary text-center mt-4"
+                onClick={() => router.push(`/service-requirements`)}
+              >
+                Continue to Requirements
+              </button>
+            )}
           </div>
         </StatusContainer>
       )}

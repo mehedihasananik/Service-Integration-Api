@@ -63,6 +63,8 @@ const serviceOrder = `${apiEndpoint}/service_order`;
 
 const business_webscore = `${apiEndpoint}/web-score`;
 const customer_requirements = `${apiEndpoint}/customer/requirement`;
+const onBoardingApiData = `${apiEndpoint}/onboarding`;
+const onBoardingApiForm = `${apiEndpoint}/onboarding-form`;
 
 export {
   headerApi,
@@ -98,4 +100,6 @@ export {
   business_webscore,
   successApi,
   customer_requirements,
+  onBoardingApiData,
+  onBoardingApiForm,
 };

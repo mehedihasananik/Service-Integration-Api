@@ -79,8 +79,29 @@ const SubsCheckout = ({
     }
   };
   const handleCombinedActions = () => {
-    handleOrderClick(checkout); // Trigger handleOrderClick
-    handleCheckout(); // Trigger handleCheckout
+    let hasErrors = false;
+
+    // Check for checkbox
+    if (!isEnabled) {
+      setValidationError(true);
+      hasErrors = true;
+    }
+
+    // Check for email
+    if (!email) {
+      setEmailError("Email is required.");
+      hasErrors = true;
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setEmailError("Please enter a valid email address.");
+      hasErrors = true;
+    }
+
+    // If there are no errors, fire handleOrderClick and proceed to handleCheckout
+    if (!hasErrors) {
+      setValidationError(false); // Clear any previous validation errors
+      handleOrderClick(checkout);
+      handleCheckout(); // Proceed with checkout
+    }
   };
 
   return (

@@ -1,22 +1,36 @@
 "use client";
 import { useState, useEffect } from "react";
 import { AlertCircle, Loader2 } from "lucide-react";
+import { PhoneInput } from "react-international-phone";
+import "react-international-phone/style.css";
+import { onBoardingApiData, onBoardingApiForm } from "@/config/apis";
 
 const OnBoardingContent = ({ orderId }) => {
   const [formData, setFormData] = useState(null);
   const [formValues, setFormValues] = useState({});
+  const [fileErrors, setFileErrors] = useState({});
+  const [inputErrors, setInputErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [formId, setFormId] = useState(null);
+  const [status, setStatus] = useState();
+  const [isFormValid, setIsFormValid] = useState(true);
 
   useEffect(() => {
     const fetchForm = async () => {
       try {
-        const response = await fetch(
-          `http://192.168.10.16:8000/api/onboarding/${orderId}`
-        );
+        const response = await fetch(`${onBoardingApiData}/${orderId}`);
         const data = await response.json();
         setFormData(data);
         setFormId(data.id);
+
+        const submissionStatus = localStorage.getItem(
+          `form_${orderId}_submitted`
+        );
+        if (submissionStatus === "true" || data.submission_exists) {
+          setStatus(true);
+        } else {
+          setStatus(false);
+        }
       } catch (error) {
         console.error("Error fetching form data:", error);
       }
@@ -27,8 +41,50 @@ const OnBoardingContent = ({ orderId }) => {
 
   const handleInputChange = (id, value, isCheckbox = false, isFile = false) => {
     setFormValues((prevValues) => {
+      if (
+        formData?.fields.find((field) => field.id === id)?.field_type ===
+        "phone"
+      ) {
+        const phoneDigitsOnly = value.replace(/\D/g, "");
+        if (phoneDigitsOnly.length >= 5) {
+          setInputErrors((prevErrors) => ({
+            ...prevErrors,
+            [id]: null,
+          }));
+        }
+      }
+
       if (isFile) {
-        return { ...prevValues, [`field_${id}`]: value }; // Store file object directly
+        const filesArray = Array.from(value);
+        const fileNames = filesArray.map((file) => file.name);
+        let errors = [];
+
+        if (filesArray.length > 4) {
+          errors.push("You can upload maximum 4 files.");
+        }
+
+        const oversizedFiles = filesArray.filter(
+          (file) => file.size > 30 * 1024 * 1024
+        );
+        if (oversizedFiles.length > 0) {
+          oversizedFiles.forEach((file) =>
+            errors.push(`${file.name} exceeds the max file size: 30MB limit.`)
+          );
+        }
+
+        if (errors.length > 0) {
+          setFileErrors((prevErrors) => ({ ...prevErrors, [id]: errors }));
+          setIsFormValid(false);
+          return { ...prevValues, [`field_${id}`]: [] };
+        } else {
+          setFileErrors((prevErrors) => ({ ...prevErrors, [id]: null }));
+          setIsFormValid(true);
+          return {
+            ...prevValues,
+            [`field_${id}`]: filesArray,
+            [`fileNames_${id}`]: fileNames,
+          };
+        }
       } else if (isCheckbox) {
         const updatedValues = prevValues[`field_${id}`] || [];
         const valueIndex = updatedValues.indexOf(value);
@@ -45,6 +101,24 @@ const OnBoardingContent = ({ orderId }) => {
     });
   };
 
+  const validatePhoneNumber = () => {
+    const phoneField = formData?.fields.find(
+      (field) => field.field_type === "phone"
+    );
+    if (phoneField) {
+      const phoneValue = formValues[`field_${phoneField.id}`] || "";
+      const phoneDigitsOnly = phoneValue.replace(/\D/g, "");
+      if (phoneDigitsOnly.length < 5) {
+        setInputErrors((prevErrors) => ({
+          ...prevErrors,
+          [phoneField.id]: "Phone number must be at least 5 digits",
+        }));
+        return false;
+      }
+    }
+    return true;
+  };
+
   const renderField = (field) => {
     const { id, field_type, question, placeholder, options, is_required } =
       field;
@@ -58,7 +132,9 @@ const OnBoardingContent = ({ orderId }) => {
     const labelClasses = `
       block text-[#123390] font-medium mb-2 
       ${
-        is_required ? "after:content-['*'] after:ml-1 after:text-[#FF693B]" : ""
+        is_required
+          ? "after:content-['*'] after:ml-1 after:text-[#FF693B] py-3"
+          : ""
       }
     `;
 
@@ -66,7 +142,6 @@ const OnBoardingContent = ({ orderId }) => {
       case "text":
       case "email":
       case "number":
-      case "phone":
       case "date":
       case "time":
       case "datetime":
@@ -87,6 +162,25 @@ const OnBoardingContent = ({ orderId }) => {
           </div>
         );
 
+      case "phone":
+        return (
+          <div key={id} className="mb-6 group">
+            <label htmlFor={id} className={labelClasses}>
+              {question}
+            </label>
+            <PhoneInput
+              defaultCountry="us"
+              value={formValues[`field_${id}`] || ""}
+              onChange={(value) => handleInputChange(id, value)}
+              placeholder={placeholder}
+              required={is_required === 1}
+            />
+            {inputErrors[id] && (
+              <p className="text-red-500 text-sm mt-1">{inputErrors[id]}</p>
+            )}
+          </div>
+        );
+
       case "textarea":
         return (
           <div key={id} className="mb-6">
@@ -99,7 +193,7 @@ const OnBoardingContent = ({ orderId }) => {
               placeholder={placeholder}
               required={is_required === 1}
               rows={4}
-              className={`${baseInputClasses} resize-y`} // Allows vertical resizing
+              className={`${baseInputClasses} resize-y`}
               onChange={(e) => handleInputChange(id, e.target.value)}
             />
           </div>
@@ -189,19 +283,34 @@ const OnBoardingContent = ({ orderId }) => {
               <input
                 type="file"
                 id={id}
-                name={`field_${id}`}
+                name={`field_${id}[]`}
+                multiple
                 required={is_required === 1}
                 className="block w-full text-sm text-gray-500
+                border
                   file:mr-4 file:py-2 file:px-4
-                   file:border-0
-                  file:text-sm file:font-semibold
-                  file:bg-[#FF693B] file:text-white
-                  hover:file:bg-[#FF693B]/90
-                  file:cursor-pointer file:transition-colors"
+            
+                  file:text-sm file:font-semibold"
                 onChange={(e) =>
-                  handleInputChange(id, e.target.files[0], false, true)
+                  handleInputChange(id, e.target.files, false, true)
                 }
               />
+              {formValues[`fileNames_${id}`] &&
+                formValues[`fileNames_${id}`].length > 1 && (
+                  <ul className="mt-2 text-sm text-gray-600">
+                    {formValues[`fileNames_${id}`].map((fileName, index) => (
+                      <li key={index}>{fileName}</li>
+                    ))}
+                  </ul>
+                )}
+
+              {fileErrors[id] && (
+                <ul className="mt-2 text-sm text-red-500">
+                  {fileErrors[id].map((error, index) => (
+                    <li key={index}>{error}</li>
+                  ))}
+                </ul>
+              )}
             </div>
           </div>
         );
@@ -213,21 +322,28 @@ const OnBoardingContent = ({ orderId }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
 
+    const isPhoneValid = validatePhoneNumber();
+    if (!isPhoneValid) return;
+
+    setIsLoading(true);
     const formDataToSend = new FormData();
 
     Object.entries(formValues).forEach(([key, value]) => {
       if (Array.isArray(value)) {
-        formDataToSend.append(key, JSON.stringify(value)); // Convert array to JSON string
+        if (value[0] instanceof File) {
+          value.forEach((file) => formDataToSend.append(`${key}[]`, file));
+        } else {
+          formDataToSend.append(key, JSON.stringify(value));
+        }
       } else {
-        formDataToSend.append(key, value); // Append file objects and other values directly
+        formDataToSend.append(key, value);
       }
     });
 
     try {
       const response = await fetch(
-        `http://192.168.10.16:8000/api/onboarding-form/${formId}/submit/${orderId}`,
+        `${onBoardingApiForm}/${formId}/submit/${orderId}`,
         {
           method: "POST",
           body: formDataToSend,
@@ -237,13 +353,46 @@ const OnBoardingContent = ({ orderId }) => {
       if (!response.ok) {
         throw new Error("Error submitting form");
       }
-      console.log("Form submitted successfully");
+      const responseData = await response.json();
+      console.log("Response data:", responseData);
+
+      setStatus(true);
+      localStorage.setItem(`form_${orderId}_submitted`, "true");
     } catch (error) {
       console.error("Form submission error:", error);
     } finally {
       setIsLoading(false);
     }
   };
+
+  if (status === true) {
+    return (
+      <div className="flex flex-col items-center justify-center h-[40vh] md:h-[70vh] text-center px-5 md:px-0">
+        <h3 className="text-2xl font-bold text-primary mb-4">
+          {formData?.submission_exists
+            ? "Requirement already submitted."
+            : "Requirement Submitted Successfully!"}
+        </h3>
+        <p className="text-gray-700">
+          {formData?.submission_exists ? (
+            <>
+              The order requirement has been submitted. If you would like to
+              change anything, please contact{" "}
+              <a
+                href="mailto:support@envobyte.com"
+                className="text-primary underline"
+              >
+                support@envobyte.com
+              </a>
+              .
+            </>
+          ) : (
+            "Thank you for submitting the requirement. We will start work on the project soon."
+          )}
+        </p>
+      </div>
+    );
+  }
 
   if (!formData) {
     return (
@@ -254,9 +403,9 @@ const OnBoardingContent = ({ orderId }) => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 mt-3 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-50 mt-3 py-4 md:py-12 md:px-4 lg:px-8">
       <div className="text-center mb-8">
-        <h1 className="text-lg md:text-4xl font-bold text-[#123390] mb-2">
+        <h1 className="text-[20px] md:text-4xl font-bold text-[#123390] mb-2">
           Onboarding form for {formData.service_name}
         </h1>
         <p className="text-gray-600">
@@ -264,7 +413,7 @@ const OnBoardingContent = ({ orderId }) => {
         </p>
       </div>
       <div className="max-w-3xl mx-auto">
-        <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+        <div className="bg-white md:rounded-xl md:shadow-lg overflow-hidden">
           <div className="p-6 sm:p-8">
             <form onSubmit={handleSubmit}>
               {formData.fields
@@ -273,13 +422,13 @@ const OnBoardingContent = ({ orderId }) => {
 
               <button
                 type="submit"
-                disabled={isLoading}
+                disabled={!isFormValid || isLoading}
                 className="w-full bg-[#FF693B] hover:bg-[#FF693B]/90 
-                  text-white font-semibold py-3.5 px-6 rounded-lg
-                  transform transition-all duration-200 
-                  hover:scale-[1.02] active:scale-[0.98]
-                  disabled:opacity-70 disabled:cursor-not-allowed
-                  flex items-center justify-center space-x-2 my-3 mt-10"
+              text-white font-semibold py-3.5 px-6 rounded-lg
+              transform transition-all duration-200 
+              hover:scale-[1.02] active:scale-[0.98]
+              disabled:opacity-70 disabled:cursor-not-allowed
+              flex items-center justify-center space-x-2 my-3 mt-10"
               >
                 {isLoading ? (
                   <>
@@ -292,7 +441,7 @@ const OnBoardingContent = ({ orderId }) => {
               </button>
             </form>
           </div>
-          <div className="px-4 sm:px-6 lg:px-8 mt-0 pb-5 flex items-center justify-start text-sm text-gray-500">
+          <div className="px-6 lg:px-8 mt-0 pb-5 flex items-center justify-start text-sm text-gray-500">
             <AlertCircle className="w-4 h-4 mr-2" />
             <span>Fields marked with * are required</span>
           </div>

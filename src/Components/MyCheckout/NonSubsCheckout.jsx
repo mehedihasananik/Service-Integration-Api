@@ -61,8 +61,13 @@ const NonSubsCheckout = ({
     }
   };
   const handleCombinedActions = () => {
+    if (!isEnabled) {
+      setValidationError(true);
+      return; // Prevent handleOrderClick if validationError is true
+    }
+    setValidationError(false); // Clear any previous validation errors
     handleOrderClick(checkout); // Trigger handleOrderClick
-    handleCheckout(); // Trigger handleCheckout
+    handleCheckout(); // Proceed with checkout
   };
 
   return (
