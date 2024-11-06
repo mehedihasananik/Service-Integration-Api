@@ -8,8 +8,6 @@ import GoogleTagManagerScript from "../GoogleTagManager/GoogleTagManagerScript";
 import GoogleTagManagerNoScript from "../GoogleTagManager/GoogleTagManagerNoScript";
 import HubSpotScript from "@/Components/HubSpot/HubSpot";
 import HotJar from "../Hotjar/HotJar";
-import FacebookPixel from "../FacebookPixel/FacebookPixelScript";
-import FacebookPixelNoScript from "../FacebookPixel/FacebookNoScript";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,11 +27,10 @@ export default function RootLayout({ children }) {
         />
         <GoogleTagManagerScript />
         <HotJar />
-        <FacebookPixel />
       </head>
       <body className={inter.className}>
         <GoogleTagManagerNoScript />
-        <FacebookPixelNoScript />
+
         <Toaster />
         <AuthProviders>
           <Header />
