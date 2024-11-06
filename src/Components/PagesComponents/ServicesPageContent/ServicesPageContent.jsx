@@ -63,6 +63,8 @@ const ServicesPageContent = ({
   const handleSearchInputChange = (e) => {
     setSearchQuery(e.target.value);
   };
+  // console.log(selectedCategoryId);
+  // console.log(serviceItems);
 
   return (
     <div className="service_section overflow-hidden">
@@ -84,18 +86,21 @@ const ServicesPageContent = ({
                     className="cursor-pointer border border-gray-300 text-sm rounded-lg focus:ring-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-3 md:mb-0"
                   >
                     <option value="">Select Category</option>
-                    {serviceCategories.map((category) => (
-                      <option
-                        key={category.category_id}
-                        value={category.category_id}
-                        className="text-[#434348] text-[16px]"
-                      >
-                        {category.category_name}
-                      </option>
-                    ))}
+                    {serviceCategories.map((category) => {
+                      return (
+                        <option
+                          key={category.category_id}
+                          value={category.category_id}
+                          className="text-[#434348] text-[16px]"
+                        >
+                          {category.category_name}
+                        </option>
+                      );
+                    })}
                   </select>
                 </form>
               </div>
+              {/* search */}
               <div className="w-full md:w-[40%] lg:w-[25%]">
                 <div className="relative w-full">
                   <input

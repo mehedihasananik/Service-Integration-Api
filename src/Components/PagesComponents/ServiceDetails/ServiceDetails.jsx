@@ -51,7 +51,7 @@ const ServiceDetails = ({ service, sliders, packages }) => {
       window.dataLayer.push(dataLayerObject);
 
       // Log the dataLayer object to the console
-      console.log("Data Layer Object:", dataLayerObject);
+      // console.log("Data Layer Object:", dataLayerObject);
     }
   }, [service, packages]);
 
