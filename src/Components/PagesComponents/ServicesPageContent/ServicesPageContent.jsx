@@ -36,7 +36,7 @@ const ServicesPageContent = ({
 
       if (selectedCategoryId) {
         filteredServices = filteredServices.filter(
-          (item) => item.category_id === selectedCategoryId
+          (item) => item.category_id === Number(selectedCategoryId)
         );
       }
 
