@@ -80,6 +80,29 @@ const ProjectDetails = ({ userContact }) => {
             duration: 10000,
           }
         );
+
+        // Push data to dataLayer after successful submission
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: "form_submit",
+          eventModel: {
+            form_id: "project_details_input",
+            first_name: formData.first_name,
+            phone: formData.user_phone,
+            website: formData.website,
+            services: formData.service_categories,
+            form_destination: "https://www.envobyte.com/",
+          },
+          gtm: {
+            uniqueEventId: 1,
+            priorityId: 8,
+          },
+        });
+
+        // Console log the dataLayer to verify the data
+        console.log("dataLayer:", window.dataLayer);
+
+        // Reset form data
         setFormData({
           first_name: "",
           user_email: "",
