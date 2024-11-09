@@ -170,7 +170,7 @@ const SuccessComponent = () => {
           event: "purchase",
           ecommerce: {
             currency: "USD",
-            transaction_id: result.order_id,
+            transaction_id: result.transaction_id,
             affiliation: "", // Static default if not available
             value: parseFloat(result.package.package_price) || 0,
             tax: 0, // Static default as tax isn't provided
@@ -185,8 +185,6 @@ const SuccessComponent = () => {
                 stocklevel: null, // Static default as stocklevel isn't provided
                 stockstatus: "instock", // Static default if stock status not available
                 google_business_vertical: "retail", // Static value if not available
-                item_category:
-                  result.package.package_name || "Default Category",
                 id: result.package.id,
                 quantity: 1,
               },

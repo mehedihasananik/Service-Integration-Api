@@ -17,7 +17,7 @@ const OrderNowModal4 = ({
   const [agreeTerms, setAgreeTerms] = useState(false);
   const [validationError, setValidationError] = useState(false);
   const [addToCart, setAddToCart] = useState("add_to_cart");
-  const [checkout, setCheckout] = useState("checkout");
+  const [checkout, setCheckout] = useState("begin_checkout");
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -49,14 +49,14 @@ const OrderNowModal4 = ({
       event: addToCart,
       ecommerce: {
         currency: "USD",
-        value: packageData?.package_price || 0,
+        value: Number(packageData?.package_price),
         items: [
           {
             item_id: itemId || "",
-            item_name: packageData?.package_name || "Default Package",
-            item_category: serviceName || "Service Category",
+            item_name: serviceName,
+            package_name: packageData?.package_name,
             item_brand: "Envobyte Ltd",
-            price: packageData?.package_price,
+            price: Number(packageData?.package_price),
             price_period: packageData?.monthly_subscription
               ? "monthly"
               : "one-time",

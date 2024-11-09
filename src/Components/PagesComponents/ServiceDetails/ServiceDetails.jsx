@@ -19,6 +19,7 @@ const ServiceDetails = ({ service, sliders, packages }) => {
   const height = packages[2].package_details.length;
 
   const serviceName = service?.service_details[0]?.sevice_items_name;
+  console.log(service);
 
   useEffect(() => {
     if (service && packages) {
@@ -30,16 +31,12 @@ const ServiceDetails = ({ service, sliders, packages }) => {
           items: [
             {
               item_id: service.service_details[0].sevice_items_id || "", // Your service ID
-              item_name:
-                service?.service_details[0]?.service_items_name ||
-                "WordPress Development",
-              item_category: "Web Development",
-              item_brand: "Your Brand Name", // Add if applicable
+              item_name: serviceName || "",
               packages: packages.map((pkg) => ({
                 package_id: pkg.id,
                 package_name: pkg.package_name,
                 description: pkg.package_details, // Or specific details if available
-                price: pkg.package_price,
+                price: Number(pkg.package_price),
                 price_period: "monthly", // Or "one-time" based on pricing structure
               })),
             },
@@ -51,7 +48,7 @@ const ServiceDetails = ({ service, sliders, packages }) => {
       window.dataLayer.push(dataLayerObject);
 
       // Log the dataLayer object to the console
-      // console.log("Data Layer Object:", dataLayerObject);
+      console.log("Data Layer Object:", dataLayerObject);
     }
   }, [service, packages]);
 
