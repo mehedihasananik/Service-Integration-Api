@@ -82,25 +82,29 @@ const ProjectDetails = ({ userContact }) => {
         );
 
         // Push data to dataLayer after successful submission
+        const uniqueEventId = Date.now(); // Unique ID based on timestamp
+        const priorityId = Math.floor(Math.random() * 100) + 1; // Random priority ID for uniqueness
+
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
           event: "form_submit",
           eventModel: {
             form_id: "project_details_input",
-            first_name: formData.first_name,
+            fullName: formData.first_name,
+            email: formData.user_email,
             phone: formData.user_phone,
             website: formData.website,
             services: formData.service_categories,
             form_destination: "https://www.envobyte.com/",
           },
           gtm: {
-            uniqueEventId: 1,
-            priorityId: 8,
+            uniqueEventId: uniqueEventId,
+            priorityId: priorityId,
           },
         });
 
         // Console log the dataLayer to verify the data
-        console.log("dataLayer:", window.dataLayer);
+        // console.log("dataLayer:", window.dataLayer);
 
         // Reset form data
         setFormData({

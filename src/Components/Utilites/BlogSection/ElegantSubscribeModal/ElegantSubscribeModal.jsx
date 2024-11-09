@@ -91,6 +91,28 @@ const ElegantSubscribeModal = () => {
         setName("");
         setEmail("");
         handleClose(); // Close modal after a delay
+
+        // Push data to dataLayer after successful API response with unique IDs
+        const uniqueEventId = Date.now(); // Unique ID based on timestamp
+        const priorityId = Math.floor(Math.random() * 100) + 1; // Random priority ID for uniqueness
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: "subscription_form",
+          eventModel: {
+            form_id: "subscription_input",
+            name: formData.name,
+            email: formData.email,
+            form_destination: "https://www.envobyte.com/blogs",
+          },
+          gtm: {
+            uniqueEventId: uniqueEventId,
+            priorityId: priorityId,
+          },
+        });
+
+        // Console log the dataLayer to verify the data
+        console.log("dataLayer:", window.dataLayer);
       } else {
         const errorData = await response.json();
         setError(` ${errorData.errors?.email?.[0] || "Failed to subscribe."}`);
