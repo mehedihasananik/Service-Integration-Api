@@ -4,7 +4,6 @@ import { AlertCircle, Loader2 } from "lucide-react";
 import { PhoneInput } from "react-international-phone";
 import "react-international-phone/style.css";
 import { onBoardingApiData, onBoardingApiForm } from "@/config/apis";
-import { useSearchParams } from "next/navigation";
 
 const OnBoardingContent = ({ orderId }) => {
   const [formData, setFormData] = useState(null);
@@ -143,7 +142,6 @@ const OnBoardingContent = ({ orderId }) => {
       case "text":
       case "email":
       case "number":
-      case "date":
       case "time":
       case "datetime":
         return (
@@ -160,6 +158,27 @@ const OnBoardingContent = ({ orderId }) => {
               className={baseInputClasses}
               onChange={(e) => handleInputChange(id, e.target.value)}
             />
+          </div>
+        );
+
+      case "date":
+        return (
+          <div key={id} className="mb-6 group">
+            <label htmlFor={id} className={labelClasses}>
+              {question}
+            </label>
+            <input
+              type="date"
+              id={id}
+              name={`field_${id}`}
+              value={formValues[`field_${id}`] || ""}
+              required={is_required === 1}
+              className={baseInputClasses}
+              onChange={(e) => handleInputChange(id, e.target.value)}
+            />
+            {inputErrors[id] && (
+              <p className="text-red-500 text-sm mt-1">{inputErrors[id]}</p>
+            )}
           </div>
         );
 
@@ -369,7 +388,7 @@ const OnBoardingContent = ({ orderId }) => {
   if (status === true) {
     return (
       <div className="flex flex-col items-center justify-center h-[40vh] md:h-[70vh] text-center px-5 md:px-0">
-        <h2 className="font-bold text-3xl py-2"> #{orderId}</h2>
+        <h2 className="font-bold text-2xl py-2"> Order: #{orderId}</h2>
         <h3 className="text-2xl font-bold text-primary mb-3">
           {formData?.submission_exists
             ? "Requirement already submitted."
