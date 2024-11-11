@@ -4,6 +4,14 @@ import { AlertCircle, Loader2 } from "lucide-react";
 import { PhoneInput } from "react-international-phone";
 import "react-international-phone/style.css";
 import { onBoardingApiData, onBoardingApiForm } from "@/config/apis";
+import DatePicker from "react-datepicker";
+import { format } from "date-fns";
+import "react-datepicker/dist/react-datepicker.css";
+import { forwardRef } from "react";
+import AppointmentTestimonials from "../AppointmentTestimonials/AppointmentTestimonials";
+import ServiceExplore from "../ServiceExplore/ServiceExplore";
+import toast from "react-hot-toast";
+import Container from "../Container/Container";
 
 const OnBoardingContent = ({ orderId }) => {
   const [formData, setFormData] = useState(null);
@@ -38,6 +46,21 @@ const OnBoardingContent = ({ orderId }) => {
 
     fetchForm();
   }, [orderId]);
+
+  const CustomDateInput = forwardRef(function CustomDateInput(
+    { value, onClick },
+    ref
+  ) {
+    return (
+      <input
+        onClick={onClick}
+        ref={ref}
+        value={value}
+        readOnly // Disables manual typing but allows calendar popup
+        className="w-full px-4 py-3 rounded-lg border border-gray-200 outline-none transition-all duration-200"
+      />
+    );
+  });
 
   const handleInputChange = (id, value, isCheckbox = false, isFile = false) => {
     setFormValues((prevValues) => {
@@ -167,21 +190,24 @@ const OnBoardingContent = ({ orderId }) => {
             <label htmlFor={id} className={labelClasses}>
               {question}
             </label>
-            <input
-              type="date"
-              id={id}
-              name={`field_${id}`}
-              value={formValues[`field_${id}`] || ""}
+            <DatePicker
+              selected={
+                formValues[`field_${id}`]
+                  ? new Date(formValues[`field_${id}`])
+                  : new Date() // Default to current date if no value is present
+              }
+              onChange={(date) =>
+                handleInputChange(id, format(date, "yyyy-MM-dd"))
+              }
               required={is_required === 1}
-              className={baseInputClasses}
-              onChange={(e) => handleInputChange(id, e.target.value)}
+              dateFormat="dd-MM-yyyy"
+              customInput={<CustomDateInput />} // Custom input to disable manual typing
             />
             {inputErrors[id] && (
               <p className="text-red-500 text-sm mt-1">{inputErrors[id]}</p>
             )}
           </div>
         );
-
       case "phone":
         return (
           <div key={id} className="mb-6 group">
@@ -379,7 +405,8 @@ const OnBoardingContent = ({ orderId }) => {
       setStatus(true);
       localStorage.setItem(`form_${orderId}_submitted`, "true");
     } catch (error) {
-      console.error("Form submission error:", error);
+      console.log("Form submission error:", error);
+      toast.error("Form submission error");
     } finally {
       setIsLoading(false);
     }
@@ -387,31 +414,40 @@ const OnBoardingContent = ({ orderId }) => {
 
   if (status === true) {
     return (
-      <div className="flex flex-col items-center justify-center h-[40vh] md:h-[70vh] text-center px-5 md:px-0">
-        <h2 className="font-bold text-2xl py-2"> Order: #{orderId}</h2>
-        <h3 className="text-2xl font-bold text-primary mb-3">
-          {formData?.submission_exists
-            ? "Requirement already submitted."
-            : "Requirement Submitted Successfully!"}
-        </h3>
-        <p className="text-gray-700">
-          {formData?.submission_exists ? (
-            <>
-              The order requirement has been submitted. If you would like to
-              change anything, please contact{" "}
-              <a
-                href="mailto:support@envobyte.com"
-                className="text-primary underline"
-              >
-                support@envobyte.com
-              </a>
-              .
-            </>
-          ) : (
-            "Thank you for submitting the requirement. We will start work on the project soon."
-          )}
-        </p>
-      </div>
+      <>
+        {" "}
+        <div className="flex flex-col  text-center px-5 md:px-0 pt-[30%] md:pt-[8%] md:pb-[5%] ">
+          <h2 className="font-bold text-2xl py-2">
+            {" "}
+            Order: <span className="text-secondary"> #{orderId}</span>
+          </h2>
+          <h3 className="text-2xl font-bold text-primary mb-3">
+            {formData?.submission_exists
+              ? "Requirement already submitted."
+              : "Requirement Submitted Successfully!"}
+          </h3>
+          <p className="text-gray-700">
+            {formData?.submission_exists ? (
+              <>
+                The order requirement has been submitted. If you would like to
+                change anything, please contact{" "}
+                <a
+                  href="mailto:support@envobyte.com"
+                  className="text-primary underline"
+                >
+                  support@envobyte.com
+                </a>
+                .
+              </>
+            ) : (
+              "Thank you for submitting the requirement. We will start work on the project soon."
+            )}
+          </p>
+        </div>
+        <div className="mt-5">
+          <ServiceExplore />
+        </div>
+      </>
     );
   }
 
@@ -424,51 +460,53 @@ const OnBoardingContent = ({ orderId }) => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 mt-3 py-4 md:py-12 md:px-4 lg:px-8">
-      <div className="text-center mb-8">
-        <h1 className="text-[20px] md:text-4xl font-bold text-[#123390] mb-2">
-          Onboarding form for {formData.service_name}
-        </h1>
-        <p className="text-gray-600">
-          Please fill out the form below to get started
-        </p>
-      </div>
-      <div className="max-w-3xl mx-auto">
-        <div className="bg-white md:rounded-xl md:shadow-lg overflow-hidden">
-          <div className="p-6 sm:p-8">
-            <form onSubmit={handleSubmit}>
-              {formData.fields
-                .sort((a, b) => a.field_order - b.field_order)
-                .map((field) => renderField(field))}
+    <Container>
+      <div className="min-h-screen  mt-3 py-4 md:py-12  md:px-4 lg:px-8">
+        <div className="text-center mb-8">
+          <h1 className="text-[20px] md:text-4xl font-bold text-[#123390] mb-2">
+            Onboarding form for {formData.service_name}
+          </h1>
+          <p className="text-gray-600">
+            Please fill out the form below to get started
+          </p>
+        </div>
+        <div className="max-w-3xl mx-auto">
+          <div className="bg-white md:rounded-xl md:shadow-lg overflow-hidden">
+            <div className="p-6 sm:p-8">
+              <form onSubmit={handleSubmit}>
+                {formData.fields
+                  .sort((a, b) => a.field_order - b.field_order)
+                  .map((field) => renderField(field))}
 
-              <button
-                type="submit"
-                disabled={!isFormValid || isLoading}
-                className="w-full bg-[#FF693B] hover:bg-[#FF693B]/90 
+                <button
+                  type="submit"
+                  disabled={!isFormValid || isLoading}
+                  className="w-full bg-[#FF693B] hover:bg-[#FF693B]/90 
               text-white font-semibold py-3.5 px-6 rounded-lg
               transform transition-all duration-200 
               hover:scale-[1.02] active:scale-[0.98]
               disabled:opacity-70 disabled:cursor-not-allowed
               flex items-center justify-center space-x-2 my-3 mt-10"
-              >
-                {isLoading ? (
-                  <>
-                    <Loader2 className="w-5 h-5 animate-spin" />
-                    <span>Submitting...</span>
-                  </>
-                ) : (
-                  <span>Submit your requirements</span>
-                )}
-              </button>
-            </form>
-          </div>
-          <div className="px-6 lg:px-8 mt-0 pb-5 flex items-center justify-start text-sm text-gray-500">
-            <AlertCircle className="w-4 h-4 mr-2" />
-            <span>Fields marked with * are required</span>
+                >
+                  {isLoading ? (
+                    <>
+                      <Loader2 className="w-5 h-5 animate-spin" />
+                      <span>Submitting...</span>
+                    </>
+                  ) : (
+                    <span>Submit your requirements</span>
+                  )}
+                </button>
+              </form>
+            </div>
+            <div className="px-6 lg:px-8 mt-0 pb-5 flex items-center justify-start text-sm text-gray-500">
+              <AlertCircle className="w-4 h-4 mr-2" />
+              <span>Fields marked with * are required</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </Container>
   );
 };
 

@@ -161,6 +161,8 @@
   .swiper-slide-container {
     position: relative;
   }
+  .exploreSwiper {
+  }
 
   .swiper-slide-image {
     cursor: pointer;

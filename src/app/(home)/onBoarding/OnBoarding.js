@@ -3,6 +3,7 @@
 import React, { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import OnBoardingContent from "@/Components/OnBoardingContent/OnBoardingContent";
+import { Loader2 } from "lucide-react";
 
 // Separate component to handle the search params logic
 const OnBoardingWrapper = () => {
@@ -36,8 +37,8 @@ const OnBoardingWrapper = () => {
 // Loading component for Suspense fallback
 const LoadingComponent = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#FF693B]"></div>
+    <div className="flex items-center justify-center min-h-[400px]">
+      <Loader2 className="w-8 h-8 text-[#FF693B] animate-spin" />
     </div>
   );
 };
