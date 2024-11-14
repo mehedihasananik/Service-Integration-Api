@@ -3,6 +3,7 @@ export async function generateCommonMetadata(pageData, parent) {
 
   return {
     title: pageData?.meta?.seo_meta?.title,
+
     description: pageData?.meta?.seo_meta?.description,
     keywords: pageData?.meta?.seo_meta?.keywords,
     robots: pageData?.meta?.seo_meta?.robots,
@@ -48,6 +49,7 @@ export async function generateCommonMetadata(pageData, parent) {
         pageData?.meta?.seo_meta?.["google-site-verification"],
       "msvalidate.01": pageData?.meta?.seo_meta?.["msvalidate.01"],
       facebook: 216678091242743,
+      "facebook-domain-verification": "my036wd0ysy3q0l5kiv8aj7kifj4sh",
       "article:published_time":
         pageData?.meta?.seo_meta?.["article:published_time"],
     },
