@@ -207,7 +207,7 @@ const ProjectDetails = ({ userContact }) => {
                   <Image
                     width={24}
                     height={24}
-                    src="https://i.ibb.co/hVTCYCp/Email.png"
+                    src="/assets/Email.png"
                     alt=""
                   />
                 </div>

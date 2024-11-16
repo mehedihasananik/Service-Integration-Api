@@ -186,11 +186,7 @@ const ContactModal = ({ openModal, setOpenModal }) => {
                 >
                   <div className="flex  items-center gap-6 bg-[#FFFFFF] py-3  rounded-lg shadow-md p-3 border  w-[275px] ">
                     <div className="bg-[#FFF5F1] p-4 rounded-lg">
-                      <img
-                        className="w-6 h-6"
-                        src="https://i.ibb.co/hVTCYCp/Email.png"
-                        alt=""
-                      />
+                      <img className="w-6 h-6" src="/assets/Email.png" alt="" />
                     </div>
                     <div>
                       <h3 className="text-[16px] text-[#94A3B8]">Email us</h3>
