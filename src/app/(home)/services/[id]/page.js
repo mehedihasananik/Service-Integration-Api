@@ -12,15 +12,23 @@ import { Suspense } from "react";
 // This function will fetch all required data for the page
 async function getPageData(id) {
   try {
-    const serviceResponse = await fetch(`${singeServiceDetails}/${id}`, {
-      cache: "no-store",
-    });
-    const slidersResponse = await fetch(`${singleSliderPageDetails}/${id}`, {
-      cache: "no-store",
-    });
-    const packagesResponse = await fetch(`${singleService_package}/${id}`, {
-      cache: "no-store",
-    });
+    // Updated fetch calls with 120-second revalidation
+    const fetchOptions = {
+      next: { revalidate: 120 },
+    };
+
+    const serviceResponse = await fetch(
+      `${singeServiceDetails}/${id}`,
+      fetchOptions
+    );
+    const slidersResponse = await fetch(
+      `${singleSliderPageDetails}/${id}`,
+      fetchOptions
+    );
+    const packagesResponse = await fetch(
+      `${singleService_package}/${id}`,
+      fetchOptions
+    );
 
     if (!serviceResponse.ok || !slidersResponse.ok || !packagesResponse.ok) {
       throw new Error("Failed to fetch one or more resources");
