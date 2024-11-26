@@ -1,0 +1,30 @@
+import Container from "@/Components/Container/Container";
+import React from "react";
+import ComboClientSlider from "./ComboClientSlider";
+import { fetchData } from "@/config/fetchData";
+import { testimonials_itemsApi } from "@/config/apis";
+
+const ComboClientReview = async () => {
+  const testimonials = await fetchData(testimonials_itemsApi);
+  return (
+    <Container>
+      <div className="">
+        <div className="text-center">
+          <h2 className="combo_title ">What our clients have to say</h2>
+          <p className="combo_des">
+            Their success stories fuel our passion and drive us to deliver even
+            better solutions every day.
+          </p>
+        </div>
+        <div className="mx-4">
+          <ComboClientSlider
+            testimonials={testimonials.items}
+            details={testimonials.testimonials}
+          />
+        </div>
+      </div>
+    </Container>
+  );
+};
+
+export default ComboClientReview;

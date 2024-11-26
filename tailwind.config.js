@@ -7,6 +7,7 @@ module.exports = {
     "./src/app/[...not-found]/page.js/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/(home)/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/(dashboard)/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/(combolanding)/**/*.{js,ts,jsx,tsx,mdx}",
     "node_modules/flowbite-react/lib/esm/**/*.js",
   ],
   theme: {
@@ -33,6 +34,7 @@ module.exports = {
         Roboto: ["Roboto", "sans-serif"],
         Raleway: ["Raleway", "sans-serif"],
         OpenSans: ["Open Sans", "sans-serif"],
+        Poppins: ["Poppins", "sans-serif"],
       },
       animation: {
         "fade-in": "fadeIn 0.5s ease-out forwards",
