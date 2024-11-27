@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 import Container from "../Container/Container";
 
-const ScheduleMeetingContent = () => {
+const ScheduleMeetingContent = ({ containerClass }) => {
   useEffect(() => {
     // Load the HubSpot Meetings Embed script
     const script = document.createElement("script");
@@ -18,7 +18,7 @@ const ScheduleMeetingContent = () => {
   }, []);
 
   return (
-    <Container>
+    <div className={`${containerClass}`}>
       <div className="text-center mb-8 mt-5">
         <h1 className="text-[30px] md:text-[30px] lg:text-[48px] font-Raleway font-bold">
           Schedule a <span className="text-[#FF693B]">meeting</span>
@@ -31,7 +31,7 @@ const ScheduleMeetingContent = () => {
         className="meetings-iframe-container"
         data-src="https://meetings.hubspot.com/envobyte?embed=true"
       ></div>
-    </Container>
+    </div>
   );
 };
 

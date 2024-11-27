@@ -27,6 +27,7 @@ const singleService_package = `${apiEndpoint}/service_package`;
 
 // portfolio page
 const searchServiceApi = `${apiEndpoint}/search_sevice_category`;
+const updatePortfolio = `${apiEndpoint}/sevice_portfolio_update`;
 const search_sevice_categoryAll = `${apiEndpoint}/search_sevice_category/all`;
 
 // single Portfolio page
@@ -102,4 +103,5 @@ export {
   customer_requirements,
   onBoardingApiData,
   onBoardingApiForm,
+  updatePortfolio,
 };

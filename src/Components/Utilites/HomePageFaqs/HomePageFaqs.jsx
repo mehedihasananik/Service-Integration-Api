@@ -4,16 +4,17 @@ import { faqApi } from "@/config/apis";
 import UserLoading from "@/Components/Utilites/UserLoading/UserLoading";
 import { fetchData } from "@/config/fetchData"; // Import fetchData
 
-const HomePageFaqs = async ({ className, title }) => {
+const HomePageFaqs = async ({ className, title, containerClass }) => {
   const data = await fetchData(faqApi); // Use fetchData instead
 
   // Filter the questions to include those with featured: "1" or 1
   const questions = data.FaqDataArray.filter(
     (question) => question.featured === "1" || question.featured === 1
   );
+  console.log(className);
 
   return (
-    <div className="max-w-[1520px] mx-auto px-[0%] md:px-[4%] lg:px-[8%] 4xl:px-[4%] md:mt-0">
+    <div className={`${containerClass}`}>
       <div className={`md:py-6 md:pt-0 md:pb-6 ${className}`}>
         <div className="max-w-[1680px] mx-auto">
           <div className="text-center">

@@ -56,6 +56,9 @@
   .heading-space {
     @apply mt-3 mb-3 md:mt-3 md:mb-5;
   }
+  .combo_portSwiper {
+    height: 420px !important;
+  }
   .combo_mySwiper {
     height: 480px !important;
   }
@@ -119,6 +122,24 @@
   /* combo hero section starts */
   .combo_hero {
     background-image: url("/assets/Frame1.png");
+    background-repeat: no-repeat;
+    background-size: center;
+    background-position: center;
+    z-index: -1;
+    height: 850px;
+    width: 100%;
+  }
+  .faqBookbg {
+    background-image: url("/assets/faqBookbg.png");
+    background-repeat: no-repeat;
+    background-size: center;
+    background-position: center;
+    z-index: -1;
+    height: 1500px;
+    width: 100%;
+  }
+  .combo_faq {
+    background-image: url("/assets/faqbg.png");
     background-repeat: no-repeat;
     background-size: center;
     background-position: center;
