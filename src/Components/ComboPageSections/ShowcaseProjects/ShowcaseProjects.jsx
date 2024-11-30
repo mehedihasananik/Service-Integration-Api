@@ -40,7 +40,7 @@ export default function ShowcaseProjects() {
   );
 
   return (
-    <section className="showcase_section flex overflow-hidden flex-col justify-center items-center px-10 py-14 rounded-lg max-md:px-5 ">
+    <section className="showcase_section flex overflow-hidden flex-col justify-center items-center px-10 py-14 rounded-lg max-md:px-5 md:pt-[10%]">
       {/* Title */}
       <h2 className="text-4xl font-extrabold leading-none text-center text-blue-900 max-md:max-w-full">
         Numbers that showcase our success
@@ -52,7 +52,7 @@ export default function ShowcaseProjects() {
         we've made!
       </p>
       {/* Statistics */}
-      <div className="containerStats flex flex-wrap gap-5 justify-between px-16 py-10 mt-6 w-full font-semibold text-white rounded-xl  max-w-[1106px] max-md:px-5 max-md:max-w-full">
+      <div className="containerStats flex flex-wrap gap-5 justify-between px-16 py-10 mt-6 w-full font-semibold text-white rounded-xl max-w-[1375px]">
         {statisticsData.map((stat, index) => (
           <React.Fragment key={stat.id}>
             {/* Statistic Card Inline */}

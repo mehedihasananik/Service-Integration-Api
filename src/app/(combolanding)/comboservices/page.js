@@ -6,6 +6,7 @@ import ComboDeals from "@/Components/ComboPageSections/ComboDeals/ComboDeals";
 import ComboHeader from "@/Components/ComboPageSections/ComboHeaderSections/ComboHeader";
 import ComboHeroSection from "@/Components/ComboPageSections/ComboHeroSection/ComboHeroSection";
 import ComboPortfolio from "@/Components/ComboPageSections/ComboPortfolio/ComboPortfolio";
+import PricingPlans from "@/Components/ComboPageSections/PricingPlans/PricingPlans";
 import ShowcaseProjects from "@/Components/ComboPageSections/ShowcaseProjects/ShowcaseProjects";
 import ScheduleMeetingContent from "@/Components/ScheduleMeeting/ScheduleMeetingContent";
 import HomePageFaqs from "@/Components/Utilites/HomePageFaqs/HomePageFaqs";
@@ -33,6 +34,7 @@ const LandingPage = async () => {
         <ShowcaseProjects />
       </div>
       <BusinessTransform />
+      <PricingPlans />
 
       <ComboContact />
       <div className="pt-10">
