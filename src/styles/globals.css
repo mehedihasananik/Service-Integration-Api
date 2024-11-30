@@ -131,6 +131,16 @@
     height: 850px;
     width: 100%;
   }
+  /* .combo_heroService {
+    background-image: url("/assets/heroServicebg.png");
+    background-repeat: no-repeat;
+    background-size: center;
+    background-position: center;
+    z-index: 1;
+    height: 500px;
+    width: 100%;
+    border-radius: 20px;
+  } */
   .comboDeals {
     background-image: url("/assets/comboDeals.png");
     background-repeat: no-repeat;

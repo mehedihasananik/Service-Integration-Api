@@ -117,12 +117,16 @@ function PricingPlans() {
       key={plan.title}
       className={`flex flex-col px-6 py-8 rounded-lg min-w-[240px] w-[368px] ${
         plan.isDark
-          ? "bg-gray-800 text-white"
-          : "bg-white shadow-sm border border-slate-200"
+          ? "bg-[#0A2C8C] text-white"
+          : "bg-white text-[#0A2C8C] shadow-sm border border-slate-200"
       }`}
     >
       <div
-        className={`text-lg ${plan.isDark ? "text-white" : "text-blue-900"}`}
+        className={`text-lg ${
+          plan.isDark
+            ? "text-white font-bold md:text-[18px]"
+            : "text-[#0A2C8C] font-bold md:text-[18px]"
+        }`}
       >
         {plan.title}
       </div>
@@ -138,7 +142,7 @@ function PricingPlans() {
         </div>
       </div>
       <div className="mt-9">{plan.description}</div>
-      <div className="mt-9 border border-slate-200"></div>
+      <hr className="mt-9 divide-y divide-slate-700 " />
       <div className="mt-9">
         {renderFeatures(
           plan.features,
@@ -161,14 +165,24 @@ function PricingPlans() {
 
   return (
     <div className="flex flex-col items-center my-[4%]">
+      <div className="flex items-center py-4 gap-x-3 text-[14px] text-[#6D758F] font-bold">
+        <span> Custom</span>{" "}
+        <div className="relative -top-4">
+          <img src="/assets/crown.png" />
+        </div>
+        <span> Combo</span>
+      </div>
       <div className="text-center">
-        <h2 className="text-5xl font-bold text-blue-900">
+        <h2 className="text-5xl font-bold text-[#0A2C8C]">
           Friendly <span className="text-orange-500">Pricing Plans</span>
         </h2>
-        <p className="mt-6 text-base text-neutral-500">
-          Our limited-time Combo packages are designed to jumpstart your brand
-          with exceptional value:
-        </p>
+        <div className="flex justify-center">
+          {" "}
+          <p className="mt-6 text-[16px] text-[#787878] w-[75%]">
+            Our limited-time Combo packages are designed to jumpstart your brand
+            with exceptional value:
+          </p>
+        </div>
       </div>
       <div className="flex flex-wrap gap-10 justify-center mt-11">
         {plans.map(renderCard)}
