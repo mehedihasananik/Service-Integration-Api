@@ -5,7 +5,7 @@ import React from "react";
 const ComboPortfolioCard = ({ service }) => {
   return (
     <div>
-      <Link href={`/services/${service.slug}`}>
+      <Link href={`/portfolio/${service.slug}`}>
         <div className="">
           <div className="">
             <div

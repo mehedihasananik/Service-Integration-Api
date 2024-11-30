@@ -101,12 +101,7 @@
   .order_title {
     @apply text-[#95979D] font-Raleway text-[16px] font-[600];
   }
-  .combo_title {
-    @apply text-[#0A2C8C] text-[20px] md:text-[36px] font-bold text-center pt-[2%] md:pt-[5%];
-  }
-  .combo_des {
-    @apply text-[16px] text-[#6D758F] pt-[.5%];
-  }
+
   .cross-btn {
     background: #fff !important;
     color: black !important;
@@ -120,6 +115,13 @@
   }
 
   /* combo hero section starts */
+  .combo_title {
+    @apply text-[#0A2C8C] text-[20px] md:text-[36px] lg:text-[48px] font-bold text-center pt-[2%] md:pt-[5%];
+  }
+  .combo_des {
+    @apply text-[16px] text-[#6D758F] pt-[.5%];
+  }
+
   .combo_hero {
     background-image: url("/assets/Frame1.png");
     background-repeat: no-repeat;
@@ -129,24 +131,93 @@
     height: 850px;
     width: 100%;
   }
-  .faqBookbg {
+  .comboDeals {
+    background-image: url("/assets/comboDeals.png");
+    background-repeat: no-repeat;
+    background-size: center;
+    background-position: center;
+    z-index: -1;
+    height: 1800px;
+    width: 100%;
+  }
+  .containerStats {
+    background-image: url("/assets/Container Stats.png");
+    background-repeat: no-repeat;
+    background-size: center;
+    background-position: center;
+    z-index: -1;
+    height: 200px;
+    width: 100%;
+  }
+  .businessTransformBg {
+    background-image: url("/assets/businessTransform.png");
+    background-repeat: no-repeat;
+    background-size: cover; /* Adjust the size as needed */
+    background-position: center; /* Ensure it's positioned correctly */
+    position: relative; /* Relative positioning to allow absolute children */
+    height: 600px;
+    width: 100%;
+    z-index: 1; /* Background image is placed above bgGirl */
+  }
+  /* .showcase_section {
+    background-image: url("/assets/comboDeals.png");
+    background-repeat: no-repeat;
+    background-size: center;
+    background-position: center;
+    z-index: -1;
+    height: 1400px;
+    width: 100%;
+  } */
+
+  .bgGirl {
+    background-image: url("/assets/girl.png");
+    background-repeat: no-repeat;
+    background-size: auto; /* Or cover, depending on the desired effect */
+    background-position: center; /* Adjust the positioning */
+    position: absolute; /* Absolute positioning to place it behind */
+    z-index: -1; /* This ensures it stays behind the background */
+    height: 100%; /* Ensure it fills the container */
+    width: 100%; /* Ensure it fills the container */
+    top: 0; /* Position at the top of the container */
+    left: -400px; /* Position at the left of the container */
+  }
+
+  /* .overbgcombo {
+    background-image: url("/assets/overbgcombo.png");
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: bottom;
+    z-index: -1;
+    height: 1600px;
+    width: 100%;
+  } */
+  /* .faqBg {
     background-image: url("/assets/faqBookbg.png");
     background-repeat: no-repeat;
-    background-size: center;
-    background-position: center;
+    background-size: auto;
+    background-position: bottom;
     z-index: -1;
-    height: 1500px;
+    height: 750px;
     width: 100%;
-  }
-  .combo_faq {
-    background-image: url("/assets/faqbg.png");
+  } */
+
+  .appointmentBg {
+    background-image: url("/assets/myappoinment.png");
     background-repeat: no-repeat;
-    background-size: center;
-    background-position: center;
-    z-index: -1;
-    height: 850px;
+    background-size: auto;
+    background-position: bottom;
+    /* z-index: -1; */
+    height: 100%;
     width: 100%;
   }
+  /* .brand_shadow {
+    font-size: 22px;
+    padding: 8px;
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
+    border: 1px solid transparent;
+    box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.2);
+  } */
 
   /* combo hero section end */
 

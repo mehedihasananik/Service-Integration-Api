@@ -1,7 +1,6 @@
 import { Inter } from "next/font/google";
 import "/src/styles/globals.css";
 import { Footer } from "@/Components";
-import Header from "@/Components/Home/Navbar/Header";
 import { Toaster } from "react-hot-toast";
 import AuthProviders, { ThemeProvider } from "@/providers/AuthProviders";
 import GoogleTagManagerScript from "../GoogleTagManager/GoogleTagManagerScript";

@@ -19,7 +19,7 @@ const ScheduleMeetingContent = ({ containerClass }) => {
 
   return (
     <div className={`${containerClass}`}>
-      <div className="text-center mb-8 mt-5">
+      <div className="text-center mb-8 pt-5">
         <h1 className="text-[30px] md:text-[30px] lg:text-[48px] font-Raleway font-bold">
           Schedule a <span className="text-[#FF693B]">meeting</span>
         </h1>

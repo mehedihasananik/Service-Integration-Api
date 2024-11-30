@@ -10,6 +10,7 @@ import GlobalButtonColored from "@/Components/Utilites/GlobalButton/GlobalButton
 import ViewAllButton from "@/Components/Utilites/ViewAllButton/ViewAllButton";
 import ServiceCard from "@/Components/Utilites/ServiceCard/ServiceCard";
 import ComboPortfolioCard from "./ComboPortfolioCard";
+import ComboNavigationBtn from "@/Components/Utilites/NavigationButtons/ComboNavigationBtn";
 
 const breakpoints = {
   320: { slidesPerView: 1, spaceBetween: 10 },
@@ -21,7 +22,7 @@ const breakpoints = {
   1536: { slidesPerView: 2.8, spaceBetween: 30 },
   1680: { slidesPerView: 2.8, spaceBetween: 30 },
   1700: { slidesPerView: 2.8, spaceBetween: 30 },
-  1920: { slidesPerView: 3.5, spaceBetween: 30 },
+  1920: { slidesPerView: 5, spaceBetween: 30 },
 };
 
 const ComboPortfolioSlider = ({ services }) => {
@@ -42,7 +43,7 @@ const ComboPortfolioSlider = ({ services }) => {
   };
 
   return (
-    <div id="serviceSlider" className="serviceSlider">
+    <div id="serviceSlider" className="serviceSlider px-3">
       <div className="w-full md:flex justify-center pt-10 ">
         <Swiper
           ref={swiperRef}
@@ -68,7 +69,7 @@ const ComboPortfolioSlider = ({ services }) => {
         </Swiper>
       </div>
       <div className="flex justify-center">
-        <NavigationButtons onPrev={handlePrevSlide} onNext={handleNextSlide} />
+        <ComboNavigationBtn onPrev={handlePrevSlide} onNext={handleNextSlide} />
       </div>
     </div>
   );

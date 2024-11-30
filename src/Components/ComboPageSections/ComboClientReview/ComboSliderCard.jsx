@@ -8,7 +8,7 @@ const ComboSliderCard = ({ testimonial }) => {
       <div className="flex-shrink-0">
         <div className=" overflow-hidden">
           <Image
-            src="/assets/comboClient.png"
+            src={testimonial?.image_md}
             alt={testimonial?.name || "Testimonial Avatar"}
             width={1000}
             height={1000}
@@ -32,7 +32,7 @@ const ComboSliderCard = ({ testimonial }) => {
         </div>
 
         {/* Heading */}
-        <h3 className="text-xl font-extrabold text-[#5168A7] text-[33px] mt-2 md:mt-8">
+        <h3 className="font-extrabold text-[#5168A7] text-[30px] mt-2 md:mt-8">
           {testimonial?.headline || "Revitalized my work approach"}
         </h3>
 

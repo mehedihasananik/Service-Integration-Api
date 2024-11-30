@@ -11,10 +11,15 @@ const ComboClientReview = async () => {
       <div className="">
         <div className="text-center">
           <h2 className="combo_title ">What our clients have to say</h2>
-          <p className="combo_des">
-            Their success stories fuel our passion and drive us to deliver even
-            better solutions every day.
-          </p>
+          <div className="flex justify-center">
+            <p className="combo_des md:w-[37%]">
+              <span className=" ">
+                {" "}
+                Their success stories fuel our passion and drive us to deliver
+                even better solutions every day.
+              </span>
+            </p>
+          </div>
         </div>
         <div className="mx-4">
           <ComboClientSlider

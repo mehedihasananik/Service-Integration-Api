@@ -9,7 +9,7 @@ const FooterItems = ({ footer, userContact }) => {
   // console.log(userContact);
   return (
     <Container>
-      <div className="flex flex-col py-3 md:py-4 lg:flex-row justify-between items-center lg:pt-4 ">
+      <div className="flex flex-col py-3 md:py-4 lg:flex-row justify-between items-center lg:pt-4  ">
         {/* left side */}
 
         <div className="w-full py-4 md:justify-between md:items-center lg:py-10 lg:flex-col lg:justify-start lg:items-start lg:w-[30%]">

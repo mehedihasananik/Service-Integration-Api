@@ -1,6 +1,6 @@
 "use client";
 
-import Container from "@/Components/Container/Container";
+import ComboContainer from "@/Components/Container/ComboContainer";
 import { Navbar } from "flowbite-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -26,7 +26,7 @@ const ComboHeaderItems = ({ headers }) => {
 
   return (
     <>
-      <Container>
+      <ComboContainer>
         {/* Navbar for large devices */}
         <nav className="hidden lg:flex justify-between items-center pt-5 bg-transparent">
           {/* Logo */}
@@ -72,7 +72,7 @@ const ComboHeaderItems = ({ headers }) => {
             ))}
           </div>
         </nav>
-      </Container>
+      </ComboContainer>
 
       {/* Navbar for small devices */}
       <div className="lg:hidden md:py-4">

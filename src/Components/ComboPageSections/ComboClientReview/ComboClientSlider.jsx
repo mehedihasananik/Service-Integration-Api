@@ -45,7 +45,7 @@ const ComboClientSlider = ({ testimonials, details }) => {
           slidesPerGroup={1}
           spaceBetween={30}
           breakpoints={breakpoints}
-          className=" mySwiper combo_mySwiper"
+          className="  combo_mySwiper"
           pagination={{
             clickable: true,
           }}

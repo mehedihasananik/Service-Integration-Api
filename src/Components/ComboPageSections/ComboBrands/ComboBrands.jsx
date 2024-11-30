@@ -2,7 +2,6 @@
 import Container from "@/Components/Container/Container";
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper/modules";
 import Image from "next/image";
 import "swiper/css";
 import "swiper/css/autoplay";
@@ -14,11 +13,40 @@ const breakpoints = {
   1280: { slidesPerView: 5, spaceBetween: 30 },
   1336: { slidesPerView: 5, spaceBetween: 50 },
   1920: { slidesPerView: 6, spaceBetween: 10 },
-  2500: { slidesPerView: 6, spaceBetween: 50 },
+  2500: { slidesPerView: 5, spaceBetween: 50 },
 };
 
+const demoBrands = [
+  {
+    src: "/assets/logo1.png",
+    hoverSrc: "/assets/logo1-hover.png",
+    alt: "Brand 1 Logo",
+  },
+  {
+    src: "/assets/logo2.png",
+    hoverSrc: "/assets/logo2-hover.png",
+    alt: "Brand 2 Logo",
+  },
+  {
+    src: "/assets/logo3.png",
+    hoverSrc: "/assets/logo3-hover.png",
+    alt: "Brand 3 Logo",
+  },
+  {
+    src: "/assets/logo4.png",
+    hoverSrc: "/assets/logo4-hover.png",
+    alt: "Brand 4 Logo",
+  },
+  {
+    src: "/assets/logo5.png",
+    hoverSrc: "/assets/logo5-hover.png",
+    alt: "Brand 5 Logo",
+  },
+];
+
 const ComboBrands = ({ brands }) => {
-  const duplicatedBrands = [...brands, ...brands];
+  const duplicatedBrands = [...demoBrands, ...demoBrands];
+
   return (
     <Container>
       <div>
@@ -29,26 +57,33 @@ const ComboBrands = ({ brands }) => {
       <div>
         <div className="overflow-hidden md:px-[10%]">
           <Swiper
-            slidesPerView={6}
+            slidesPerView={5}
             slidesPerGroup={1}
             spaceBetween={200}
             breakpoints={breakpoints}
-            modules={[Autoplay]}
-            autoplay={{ delay: 2000, disableOnInteraction: false }}
             className="mySwiper space-x-4"
           >
             {duplicatedBrands.map((brand, index) => (
               <SwiperSlide
                 key={index}
-                className="flex justify-end items-center "
+                className="flex justify-center items-center"
               >
-                <div className="flex justify-center items-center border shadow-md  rounded-lg w-full bg-white">
+                <div className="relative w-[147px] h-[72px] group">
+                  {/* Default image */}
                   <Image
-                    width={101}
-                    height={70}
-                    src={brand.logo}
-                    alt={`Brand logo`}
-                    className="h-[70px] rounded-lg"
+                    width={147}
+                    height={72}
+                    src={brand.src}
+                    alt={brand.alt}
+                    className="absolute top-0 left-0 w-full h-full rounded-lg transition-all duration-300 group-hover:opacity-0"
+                  />
+                  {/* Hover image */}
+                  <Image
+                    width={147}
+                    height={72}
+                    src={brand.hoverSrc}
+                    alt={`Hover ${brand.alt}`}
+                    className="absolute top-0 left-0 w-full h-full rounded-lg opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                   />
                 </div>
               </SwiperSlide>

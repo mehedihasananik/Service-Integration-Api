@@ -14,7 +14,9 @@ const HomePageFaqs = async ({ className, title, containerClass }) => {
   console.log(className);
 
   return (
-    <div className={`${containerClass}`}>
+    <div
+      className={`max-w-[1520px] mx-auto px-[0%] md:px-[4%] lg:px-[8%] 4xl:px-[4%] md:mt-0`}
+    >
       <div className={`md:py-6 md:pt-0 md:pb-6 ${className}`}>
         <div className="max-w-[1680px] mx-auto">
           <div className="text-center">
