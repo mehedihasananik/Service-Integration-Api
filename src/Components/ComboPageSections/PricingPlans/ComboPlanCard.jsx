@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import ComboFeatureList from "./ComboFeatureList";
 
@@ -36,6 +35,7 @@ const ComboPlanCard = ({ plan }) => (
       isDark={plan.isDark}
       isCustomPlan={plan.title === "Custom Plan"}
       isPremiumPlus={plan.title === "Premium+ Plan"}
+      plan={plan}
     />
     <button
       className={`mt-9 p-3 w-full rounded ${

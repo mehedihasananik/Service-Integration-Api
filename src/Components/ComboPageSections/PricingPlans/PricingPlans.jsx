@@ -1,7 +1,6 @@
 import React from "react";
 import ComboPlanCard from "./ComboPlanCard";
 import ComboPricingHeader from "./ComboPricingHeader";
-import { fetchData } from "@/config/fetchData";
 
 const PricingPlans = async () => {
   return (
@@ -68,166 +67,76 @@ const PricingPlans = async () => {
               {
                 name: "Professional Logo Design",
                 options: [
-                  {
-                    Option: "Basic Logo",
-                    Price: "220.00",
-                  },
-                  {
-                    Option: "Professional Logo",
-                    Price: "154.00",
-                  },
-                  {
-                    Option: "Advanced Logo",
-                    Price: "333.00",
-                  },
+                  { Option: "Basic Logo", Price: "220.00" },
+                  { Option: "Professional Logo", Price: "154.00" },
+                  { Option: "Advanced Logo", Price: "333.00" },
                 ],
               },
               {
                 name: "10-Page WordPress Website",
                 options: [
-                  {
-                    Option: "2 page website",
-                    Price: "380.00",
-                  },
-                  {
-                    Option: "4 page website",
-                    Price: "577.00",
-                  },
+                  { Option: "2 page website", Price: "380.00" },
+                  { Option: "4 page website", Price: "577.00" },
                 ],
               },
               {
                 name: "Content Writing",
                 options: [
-                  {
-                    Option: "yes",
-                    Price: "380.00",
-                  },
-                  {
-                    Option: "no",
-                    Price: "0",
-                  },
+                  { Option: "yes", Price: "380.00" },
+                  { Option: "no", Price: "0" },
                 ],
               },
               {
                 name: "Custom Graphics",
                 options: [
-                  {
-                    Option: "yes",
-                    Price: "380.00",
-                  },
-                  {
-                    Option: "no",
-                    Price: "0",
-                  },
+                  { Option: "yes", Price: "380.00" },
+                  { Option: "no", Price: "0" },
                 ],
               },
               {
                 name: "Brand Guideline",
                 options: [
-                  {
-                    Option: "yes",
-                    Price: "",
-                  },
-                  {
-                    Option: "no",
-                    Price: "0",
-                  },
+                  { Option: "yes", Price: "" },
+                  { Option: "no", Price: "0" },
                 ],
               },
               {
                 name: "Monthly SEO Services",
                 options: [
-                  {
-                    Option: "Basic SEO - 1 Month",
-                    Price: "230.00",
-                  },
-                  {
-                    Option: "Basic SEO - 3 Months",
-                    Price: "635.00",
-                  },
-                  {
-                    Option: "Standard SEO - 1 Month",
-                    Price: "459.00",
-                  },
-                  {
-                    Option: "Standard SEO - 3 Months",
-                    Price: "349.00",
-                  },
-                  {
-                    Option: "Standard SEO - 1 Year",
-                    Price: "589.00",
-                  },
-                  {
-                    Option: "Advanced SEO - 1 Month",
-                    Price: "519.00",
-                  },
-                  {
-                    Option: "Advanced SEO - 3 Months",
-                    Price: "132.00",
-                  },
-                  {
-                    Option: "Advanced SEO - 1 Year",
-                    Price: "450.00",
-                  },
+                  { Option: "Basic 1 Month", Price: "230.00" },
+                  { Option: "Basic 3 Months", Price: "635.00" },
+                  { Option: "Standard 1 Month", Price: "459.00" },
+                  { Option: "Standard 3 Months", Price: "349.00" },
+                  { Option: "Standard 1 Year", Price: "589.00" },
+                  { Option: "Advanced 1 Month", Price: "519.00" },
+                  { Option: "Advanced 3 Months", Price: "132.00" },
+                  { Option: "Advanced 1 Year", Price: "450.00" },
                 ],
               },
               {
                 name: "Social Media Kit & Posts",
                 options: [
-                  {
-                    Option: "1 Platform",
-                    Price: "399.00",
-                  },
-                  {
-                    Option: "2 Platforms",
-                    Price: "632.00",
-                  },
-                  {
-                    Option: "3 Platforms",
-                    Price: "514.00",
-                  },
-                  {
-                    Option: "4 Platforms",
-                    Price: "613.00",
-                  },
+                  { Option: "1 Platform", Price: "399.00" },
+                  { Option: "2 Platforms", Price: "632.00" },
+                  { Option: "3 Platforms", Price: "514.00" },
+                  { Option: "4 Platforms", Price: "613.00" },
                 ],
               },
               {
                 name: "Animated Video",
                 options: [
-                  {
-                    Option: "20 sec - 30 sec",
-                    Price: "120.00",
-                  },
-                  {
-                    Option: "30 sec - 50 sec",
-                    Price: "150.00",
-                  },
-                  {
-                    Option: "50 sec - 60 sec",
-                    Price: "160.00",
-                  },
-                  {
-                    Option: "60 sec - 70 sec",
-                    Price: "180.00",
-                  },
+                  { Option: "20 sec - 30 sec", Price: "120.00" },
+                  { Option: "30 sec - 50 sec", Price: "150.00" },
+                  { Option: "50 sec - 60 sec", Price: "160.00" },
+                  { Option: "60 sec - 70 sec", Price: "180.00" },
                 ],
               },
               {
-                name: " Website Maintenance",
+                name: "Website Maintenance",
                 options: [
-                  {
-                    Option: "No Maintenance",
-                    Price: "120.00",
-                  },
-                  {
-                    Option: "3 Months",
-                    Price: "150.00",
-                  },
-                  {
-                    Option: "1 Year",
-                    Price: "160.00",
-                  },
+                  { Option: "No Maintenance", Price: "120.00" },
+                  { Option: "3 Months", Price: "150.00" },
+                  { Option: "1 Year", Price: "160.00" },
                 ],
               },
             ],

@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState } from "react";
 import { RiCheckboxBlankCircleLine } from "react-icons/ri";
 import CustomDropdown from "./CustomDropdown";
@@ -9,8 +8,10 @@ const ComboFeatureList = ({
   isDark,
   isCustomPlan = false,
   isPremiumPlus = false,
+  plan,
 }) => {
   const [selectedOption, setSelectedOption] = useState({});
+  const [openDropdown, setOpenDropdown] = useState(null); // To track which dropdown is open
 
   const handleOptionChange = (featureName, option) => {
     setSelectedOption((prev) => ({
@@ -19,10 +20,21 @@ const ComboFeatureList = ({
     }));
   };
 
+  const toggleDropdown = (featureName) => {
+    setOpenDropdown((prev) => (prev === featureName ? null : featureName)); // Toggle the open state
+  };
+
   return (
     <div className="h-[380px] mt-8">
       {features.map((feature, index) => (
-        <div key={index} className="flex justify-between items-center mt-2">
+        <div
+          key={index}
+          className={`flex justify-between items-center ${
+            plan.title === "Premium Plan" || plan.title === "Premium+ Plan"
+              ? "mt-2"
+              : "mt-0"
+          }`}
+        >
           <div
             className={`whitespace-nowrap ${
               isDark
@@ -41,6 +53,8 @@ const ComboFeatureList = ({
               onSelect={(selectedOpt) =>
                 handleOptionChange(feature.name, selectedOpt)
               }
+              isOpen={openDropdown === feature.name} // Only open if this dropdown is selected
+              toggleDropdown={() => toggleDropdown(feature.name)} // Toggle this dropdown
             />
           ) : !isCustomPlan ? (
             feature.active ? (
