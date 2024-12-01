@@ -25,21 +25,21 @@ const ComboFeatureList = ({
   };
 
   return (
-    <div className="h-[380px] mt-8">
+    <div className="h-[335px] mt-4">
       {features.map((feature, index) => (
         <div
           key={index}
           className={`flex justify-between items-center ${
             plan.title === "Premium Plan" || plan.title === "Premium+ Plan"
-              ? "mt-2"
-              : "mt-0"
+              ? "mt-3"
+              : "mt-1 border-b  border-b-gray-100"
           }`}
         >
           <div
-            className={`whitespace-nowrap ${
+            className={`whitespace-nowrap font-bold text-[16px] ${
               isDark
-                ? "text-white"
-                : "text-blue-900 " +
+                ? "text-white "
+                : "text-[#0A2C8C]" +
                   (!feature.active && !isCustomPlan ? "text-opacity-40" : "")
             }`}
           >
@@ -83,7 +83,7 @@ const ComboFeatureList = ({
                   isPremiumPlus ? "w-6 h-6 rounded-full bg-white" : ""
                 }`}
               >
-                <RiCheckboxBlankCircleLine className="text-gray-400" />
+                <RiCheckboxBlankCircleLine className="text-gray-800" />
               </div>
             )
           ) : null}

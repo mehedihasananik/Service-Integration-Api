@@ -131,6 +131,15 @@
     height: 850px;
     width: 100%;
   }
+  .pricing_bg {
+    background-image: url("/assets/pricingBg.png");
+    background-repeat: no-repeat;
+    background-size: center;
+    background-position: center;
+    z-index: -1;
+    height: 1000px;
+    width: 100%;
+  }
   /* .combo_heroService {
     background-image: url("/assets/heroServicebg.png");
     background-repeat: no-repeat;

@@ -35,11 +35,11 @@ const LandingPage = async () => {
       </div>
       <BusinessTransform />
       <PricingPlans />
-
-      <ComboContact />
       <div className="pt-10">
         <HomePageFaqs title="Frequently Asked Questions" />
       </div>
+      <ComboContact />
+
       <div className="appointmentBg">
         <ScheduleMeetingContent />
       </div>
