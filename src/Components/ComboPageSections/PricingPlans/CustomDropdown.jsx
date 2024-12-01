@@ -30,7 +30,10 @@ const CustomDropdown = ({
       </button>
 
       {isOpen && (
-        <ul className="absolute z-10 max-w-full mt-1 bg-white rounded-md shadow-lg max-h-60 overflow-auto">
+        <ul
+          className="absolute z-10 max-w-full mt-1 bg-white rounded-md shadow-lg overflow-y-auto"
+          style={{ maxHeight: "200px", overflowX: "hidden" }} // Prevent horizontal scroll and limit height
+        >
           {options.map((option, index) => (
             <li
               key={index}
@@ -40,7 +43,7 @@ const CustomDropdown = ({
               }}
               className="px-4 py-2 cursor-pointer 
                 transition-colors duration-200
-                text-white bg-[#0A2C8C] border-b hover:bg-[#0A2C8C] text-center text-[16px]"
+                text-white bg-[#0A2C8C] border-b border-b-gray-500 hover:bg-[#0A2C8C] text-center text-[16px]"
             >
               {option}
             </li>
