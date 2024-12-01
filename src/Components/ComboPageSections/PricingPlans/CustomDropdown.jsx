@@ -14,8 +14,24 @@ const CustomDropdown = ({
     (option) => option.toLowerCase() === "yes" || option.toLowerCase() === "no"
   );
 
+  // Check if any option contains "platform"
+  const containsPlatform = options.some((option) =>
+    option.toLowerCase().includes("platform")
+  );
+
+  // Check if any option contains "sec"
+  const containsSec = options.some((option) =>
+    option.toLowerCase().includes("sec")
+  );
+
   // Conditionally set the width based on the options
-  const containerWidth = isYesNoOptions ? "w-[100px]" : "w-[200px]";
+  const containerWidth = containsSec
+    ? "w-[172px]" // If the option contains "sec"
+    : containsPlatform
+    ? "w-[150px]" // If the option contains "platform"
+    : isYesNoOptions
+    ? "w-[100px]" // If the option is "yes" or "no"
+    : "w-[200px]"; // Default width for other cases
 
   return (
     <div className={`relative ${containerWidth}`}>
