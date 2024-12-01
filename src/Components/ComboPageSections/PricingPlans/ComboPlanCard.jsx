@@ -1,10 +1,11 @@
+"use client";
 import React from "react";
 import ComboFeatureList from "./ComboFeatureList";
 
 const ComboPlanCard = ({ plan }) => (
   <div
     key={plan.title}
-    className={`flex flex-col px-6 py-8 rounded-lg min-w-[240px] w-[368px] ${
+    className={`flex flex-col px-6 py-8 rounded-lg min-w-[240px] w-[430px]  ${
       plan.isDark
         ? "bg-[#0A2C8C] text-white"
         : "bg-white text-[#0A2C8C] shadow-sm border border-slate-200"

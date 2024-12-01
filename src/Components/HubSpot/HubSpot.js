@@ -1,4 +1,4 @@
-import Script from 'next/script'
+import Script from "next/script";
 
 export default function HubSpotScript() {
   return (
@@ -7,5 +7,5 @@ export default function HubSpotScript() {
       strategy="beforeInteractive"
       src="//js.hs-scripts.com/47106540.js"
     />
-  )
+  );
 }
