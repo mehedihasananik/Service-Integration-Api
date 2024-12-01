@@ -39,7 +39,12 @@ const CustomDropdown = ({
         onClick={toggleDropdown}
         className="flex items-center justify-end w-full px-4 py-2 text-left bg-none text-black text-[16px] "
       >
-        <span className={isOpen ? "text-black" : "text-gray-500 mr-[5px]"}>
+        {/* Span with fixed height */}
+        <span
+          className={`${
+            isOpen ? "text-black" : "text-gray-500"
+          } mr-[5px] h-[14px] flex items-center`}
+        >
           {placeholder || (isOpen ? "" : "")}
         </span>
         <FaAngleDown className="text-gray-500" />
@@ -59,7 +64,7 @@ const CustomDropdown = ({
               }}
               className="px-4 py-2 cursor-pointer 
                 transition-colors duration-200
-                text-white bg-[#0A2C8C] border-b border-b-gray-500 hover:bg-[#0A2C8C] text-center text-[16px]"
+                text-white bg-[#0A2C8C] border-b border-b-gray-500 hover:bg-[#0075FF] text-center text-[16px]"
             >
               {option}
             </li>
