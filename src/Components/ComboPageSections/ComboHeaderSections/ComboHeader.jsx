@@ -1,25 +1,38 @@
-import { headerApi } from "@/config/apis";
-import HeaderItems from "@/Components/Utilites/HeaderItems/HeaderItems";
-import { fetchData } from "@/config/fetchData";
+"use client";
 import ComboHeaderItems from "./ComboHeaderItems";
+import { useState } from "react";
 
-async function getHeaderContent() {
-  try {
-    return await fetchData(`${headerApi}`);
-  } catch (error) {
-    console.error("Error fetching header content:", error);
-    throw error;
-  }
-}
+const ComboHeader = () => {
+  // Static header data
+  const headers = {
+    logo: "/assets/envobyteDark.png",
+    menu: [
+      { menu_name: "Home", menu_link: "/" },
+      { menu_name: "Portfolio", menu_link: "#portfolio" },
+      { menu_name: "Pricing", menu_link: "#pricing" },
+      { menu_name: "Contact Us", menu_link: "#contact_us" },
+      { menu_name: "Faq", menu_link: "#faqCombo" },
+      { menu_name: "Book An Appointment", menu_link: "/appointment" },
+    ],
+  };
 
-const ComboHeader = async () => {
-  try {
-    const headers = await getHeaderContent();
-    return <ComboHeaderItems headers={headers} />;
-  } catch (error) {
-    console.error("Error in Header component:", error);
-    return <></>;
-  }
+  // Add state for mobile menu
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Toggle mobile menu
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  return (
+    <div className="relative z-50">
+      <ComboHeaderItems
+        headers={headers}
+        isMobileMenuOpen={isMobileMenuOpen}
+        toggleMobileMenu={toggleMobileMenu}
+      />
+    </div>
+  );
 };
 
 export default ComboHeader;

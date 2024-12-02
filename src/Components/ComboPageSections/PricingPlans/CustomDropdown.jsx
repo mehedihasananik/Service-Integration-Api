@@ -24,8 +24,22 @@ const CustomDropdown = ({
     option.toLowerCase().includes("sec")
   );
 
+  // Check if any option contains "page"
+  const containsPage = options.some((option) =>
+    option.toLowerCase().includes("page")
+  );
+
+  // Check if any option contains "logo"
+  const containsLogo = options.some((option) =>
+    option.toLowerCase().includes("logo")
+  );
+
   // Conditionally set the width based on the options
-  const containerWidth = containsSec
+  const containerWidth = containsLogo
+    ? "w-[196px]" // If the option contains "logo"
+    : containsPage
+    ? "w-[175px]" // If the option contains "page"
+    : containsSec
     ? "w-[172px]" // If the option contains "sec"
     : containsPlatform
     ? "w-[150px]" // If the option contains "platform"
@@ -37,7 +51,7 @@ const CustomDropdown = ({
     <div className={`relative ${containerWidth}`}>
       <button
         onClick={toggleDropdown}
-        className="flex items-center justify-end w-full px-4 py-2 text-left bg-none text-black text-[16px] "
+        className="flex items-center justify-end w-full px-4 py-2 text-left bg-none text-black text-[16px]"
       >
         {/* Span with fixed height */}
         <span
@@ -47,7 +61,10 @@ const CustomDropdown = ({
         >
           {placeholder || (isOpen ? "" : "")}
         </span>
-        <FaAngleDown className="text-gray-500" />
+        <span className="hidden md:block">
+          {" "}
+          <FaAngleDown className="text-gray-500" />
+        </span>
       </button>
 
       {isOpen && (

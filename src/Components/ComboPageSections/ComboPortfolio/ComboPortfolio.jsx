@@ -9,9 +9,9 @@ const ComboPortfolio = async () => {
 
   return (
     <>
-      <div>
+      <div id="portfolio">
         <h2 className="combo_title">CheckOut Our Portfolio</h2>
-        <div className="flex justify-center">
+        <div className="flex justify-center pt-4 md:pt-0">
           <p className="combo_des text-center md:w-[33%]">
             Portfolio That Reflects Our Expertise Explore our innovative,
             user-driven solutions that drive success and help achieve your

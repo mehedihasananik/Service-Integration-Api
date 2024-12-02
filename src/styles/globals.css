@@ -125,11 +125,13 @@
   .combo_hero {
     background-image: url("/assets/Frame1.png");
     background-repeat: no-repeat;
-    background-size: center;
+    background-size: cover; /* Changed from 'center' to 'cover' for full stretching */
     background-position: center;
-    z-index: -1;
+    position: relative; /* Added to ensure proper z-index stacking */
+    z-index: 1; /* Adjusted z-index to ensure content is above background */
     height: 850px;
     width: 100%;
+    overflow: hidden; /* Prevent any overflow */
   }
   .pricing_bg {
     background-image: url("/assets/pricingBg.png");

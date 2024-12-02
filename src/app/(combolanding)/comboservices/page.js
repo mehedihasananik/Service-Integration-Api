@@ -19,7 +19,7 @@ const LandingPage = async () => {
   return (
     <>
       <div className="relative">
-        <div className="combo_hero">
+        <div className="combo_hero overflow-hidden">
           <ComboHeader />
           <ComboHeroSection />
         </div>

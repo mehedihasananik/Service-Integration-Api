@@ -15,6 +15,7 @@ const HomePageFaqs = async ({ className, title, containerClass }) => {
 
   return (
     <div
+      id="faqCombo"
       className={`max-w-[1520px] mx-auto px-[0%] md:px-[4%] lg:px-[8%] 4xl:px-[4%] md:mt-0`}
     >
       <div className={`md:py-6 md:pt-0 md:pb-6 ${className}`}>

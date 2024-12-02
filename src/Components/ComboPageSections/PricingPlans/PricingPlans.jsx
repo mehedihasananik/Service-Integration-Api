@@ -4,8 +4,8 @@ import ComboPricingHeader from "./ComboPricingHeader";
 
 const PricingPlans = () => {
   return (
-    <div className="pricing_bg">
-      <div className="flex flex-col items-center my-[4%]">
+    <div id="pricing" className="pricing_bg overflow-hidden ">
+      <div className="flex flex-col items-center my-[4%]  md:px-0">
         <ComboPricingHeader />
         <div className="flex flex-wrap gap-10 justify-center mt-11">
           {/* Static Plan 1 */}
@@ -61,6 +61,7 @@ const PricingPlans = () => {
             plan={{
               title: "Custom Plan",
               price: "0.00",
+              percentage: "10",
               originalPrice: "0.00",
               description:
                 "Customize the plan tailored to your unique needs your unique needs",
@@ -71,6 +72,7 @@ const PricingPlans = () => {
                 {
                   name: "Professional Logo Design",
                   options: [
+                    { Option: "None", Price: "0" },
                     { Option: "Basic Logo", Price: "220.00" },
                     { Option: "Professional Logo", Price: "154.00" },
                     { Option: "Advanced Logo", Price: "333.00" },
@@ -79,6 +81,7 @@ const PricingPlans = () => {
                 {
                   name: "10-Page WordPress Website",
                   options: [
+                    { Option: "None", Price: "0" },
                     { Option: "2 page website", Price: "380.00" },
                     { Option: "4 page website", Price: "577.00" },
                   ],
@@ -100,13 +103,14 @@ const PricingPlans = () => {
                 {
                   name: "Brand Guideline",
                   options: [
-                    { Option: "yes", Price: "" },
+                    { Option: "yes", Price: "99" },
                     { Option: "no", Price: "0" },
                   ],
                 },
                 {
                   name: "Monthly SEO Services",
                   options: [
+                    { Option: "None", Price: "0" },
                     { Option: "Basic 1 Month", Price: "230.00" },
                     { Option: "Basic 3 Months", Price: "635.00" },
                     { Option: "Standard 1 Month", Price: "459.00" },
@@ -120,6 +124,7 @@ const PricingPlans = () => {
                 {
                   name: "Social Media Kit & Posts",
                   options: [
+                    { Option: "None", Price: "0" },
                     { Option: "1 Platform", Price: "399.00" },
                     { Option: "2 Platforms", Price: "632.00" },
                     { Option: "3 Platforms", Price: "514.00" },
@@ -129,6 +134,7 @@ const PricingPlans = () => {
                 {
                   name: "Animated Video",
                   options: [
+                    { Option: "None", Price: "0" },
                     { Option: "20 sec - 30 sec", Price: "120.00" },
                     { Option: "30 sec - 50 sec", Price: "150.00" },
                     { Option: "50 sec - 60 sec", Price: "160.00" },
@@ -138,7 +144,7 @@ const PricingPlans = () => {
                 {
                   name: "Website Maintenance",
                   options: [
-                    { Option: "No Maintenance", Price: "120.00" },
+                    { Option: "No Maintenance", Price: "0" },
                     { Option: "3 Months", Price: "150.00" },
                     { Option: "1 Year", Price: "160.00" },
                   ],

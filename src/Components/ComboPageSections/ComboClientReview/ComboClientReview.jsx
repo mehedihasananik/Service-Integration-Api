@@ -10,7 +10,9 @@ const ComboClientReview = async () => {
     <Container>
       <div className="">
         <div className="text-center">
-          <h2 className="combo_title ">What our clients have to say</h2>
+          <h2 className="combo_title pb-2 md:pb-0 ">
+            What our clients have to say
+          </h2>
           <div className="flex justify-center">
             <p className="combo_des md:w-[37%]">
               <span className=" ">

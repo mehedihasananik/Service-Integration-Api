@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { RiCheckboxBlankCircleLine } from "react-icons/ri";
 import CustomDropdown from "./CustomDropdown";
 
@@ -9,19 +9,47 @@ const ComboFeatureList = ({
   isCustomPlan = false,
   isPremiumPlus = false,
   plan,
+  onTotalPriceChange, // New prop to update total price
 }) => {
   const [selectedOption, setSelectedOption] = useState({});
-  const [openDropdown, setOpenDropdown] = useState(null); // To track which dropdown is open
+  const [openDropdown, setOpenDropdown] = useState(null);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   const handleOptionChange = (featureName, option) => {
-    setSelectedOption((prev) => ({
-      ...prev,
-      [featureName]: option,
-    }));
+    // Find the selected option's price
+    const feature = features.find((f) => f.name === featureName);
+    const selectedOptionDetails = feature.options.find(
+      (opt) => opt.Option === option
+    );
+
+    // Update selected options
+    setSelectedOption((prev) => {
+      const newSelectedOptions = {
+        ...prev,
+        [featureName]: {
+          option,
+          price: parseFloat(selectedOptionDetails?.Price || "0"),
+        },
+      };
+
+      // Calculate total price
+      const newTotalPrice = Object.values(newSelectedOptions).reduce(
+        (total, item) => total + (item.price || 0),
+        0
+      );
+
+      // Update total price
+      setTotalPrice(newTotalPrice);
+
+      // Inform parent component about price change
+      onTotalPriceChange(newTotalPrice);
+
+      return newSelectedOptions;
+    });
   };
 
   const toggleDropdown = (featureName) => {
-    setOpenDropdown((prev) => (prev === featureName ? null : featureName)); // Toggle the open state
+    setOpenDropdown((prev) => (prev === featureName ? null : featureName));
   };
 
   return (
@@ -32,7 +60,7 @@ const ComboFeatureList = ({
           className={`flex justify-between items-center ${
             plan.title === "Premium Plan" || plan.title === "Premium+ Plan"
               ? "mt-3"
-              : "mt-1 border-b  border-b-gray-100"
+              : "mt-1 border-b border-b-gray-100"
           }`}
         >
           <div
@@ -47,15 +75,21 @@ const ComboFeatureList = ({
           </div>
 
           {feature.options ? (
-            <CustomDropdown
-              options={feature.options.map((option) => option.Option)}
-              placeholder={selectedOption[feature.name] || ""}
-              onSelect={(selectedOpt) =>
-                handleOptionChange(feature.name, selectedOpt)
-              }
-              isOpen={openDropdown === feature.name} // Only open if this dropdown is selected
-              toggleDropdown={() => toggleDropdown(feature.name)} // Toggle this dropdown
-            />
+            <div className="flex items-center">
+              <CustomDropdown
+                options={feature.options.map((option) => option.Option)}
+                placeholder={
+                  selectedOption[feature.name]
+                    ? selectedOption[feature.name].option
+                    : ""
+                }
+                onSelect={(selectedOpt) => {
+                  handleOptionChange(feature.name, selectedOpt);
+                }}
+                isOpen={openDropdown === feature.name}
+                toggleDropdown={() => toggleDropdown(feature.name)}
+              />
+            </div>
           ) : !isCustomPlan ? (
             feature.active ? (
               <div

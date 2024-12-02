@@ -1,131 +1,95 @@
 "use client";
-
-import ComboContainer from "@/Components/Container/ComboContainer";
-import { Navbar } from "flowbite-react";
+import Container from "@/Components/Container/Container";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import { RxHamburgerMenu } from "react-icons/rx";
 
-const ComboHeaderItems = ({ headers }) => {
-  const pathname = usePathname();
-  const [isNavbarOpen, setIsNavbarOpen] = useState(false);
-
-  const handleMenuItemClick = () => {
-    setIsNavbarOpen(false);
-  };
-
-  const { logo, menu } = headers || {};
-
-  const isLinkActive = (href) => {
-    if (href === "/") {
-      return pathname === href;
-    }
-    return pathname.startsWith(href);
-  };
-
+const ComboHeaderItems = ({ headers, isMobileMenuOpen, toggleMobileMenu }) => {
   return (
-    <>
-      <ComboContainer>
-        {/* Navbar for large devices */}
-        <nav className="hidden lg:flex justify-between items-center pt-5 bg-transparent">
-          {/* Logo */}
-          <Link href="/">
-            <div className="">
-              {logo && (
-                <Image
-                  src="/assets/envobyteDark.png"
-                  width={159}
-                  height={49}
-                  alt="Picture of the logo"
-                  className="relative left-[-8px]"
-                />
-              )}
-            </div>
-          </Link>
-          {/* Nav items */}
-          <div className="flex items-center gap-10 text-[#fff]">
-            {menu?.map((item, index) => (
-              <Link
-                className={`
-                  ${
-                    item.menu_name === "Book An Appointment"
-                      ? "bg-[#FF693B] border border-[#FF693B] text-white font-medium px-6 py-2 rounded-lg hover:bg-white hover:text-[#FF693B] transition-all duration-300"
-                      : isLinkActive(item.menu_link)
-                      ? "text-[16px] text-[#FF0000] font-medium"
-                      : "text-[16px] text-[#fff] cursor-pointer font-medium hover:text-[#FF693B] transition-colors duration-300"
-                  }
-                  ${
-                    item.menu_name !== "Book An Appointment"
-                      ? "relative group"
-                      : ""
-                  }
-                `}
-                href={item.menu_link}
-                key={index}
-              >
-                {item.menu_name}
-                {item.menu_name !== "Book An Appointment" && (
-                  <span className="absolute left-0 bottom-0 w-full h-0.5 bg-[#FF693B] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
-                )}
-              </Link>
-            ))}
-          </div>
-        </nav>
-      </ComboContainer>
-
-      {/* Navbar for small devices */}
-      <div className="lg:hidden md:py-4">
-        <Navbar fluid className="bg-white ">
-          <Navbar.Brand as={Link} href="/">
+    <Container>
+      <header className="relative z-50">
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex justify-between items-center px-4 lg:px-0 py-4">
+          {/* Logo - Left Side */}
+          <div>
             <Image
-              src={logo?.logo || "/assets/logo.png"}
-              width={100}
-              height={49}
+              src={headers.logo}
               alt="Logo"
-              priority={false}
+              width={150}
+              height={50}
+              className="object-contain"
             />
-          </Navbar.Brand>
-          <Navbar.Toggle
-            onClick={() => setIsNavbarOpen(!isNavbarOpen)}
-            className="focus:ring-2 focus:ring-[#FF693B]"
-          />
-          <Navbar.Collapse
-            className={`${isNavbarOpen ? "block" : "hidden"} md:block`}
-          >
-            <div className="flex flex-col md:flex-row md:items-center md:space-x-4 mt-0 md:mt-0">
-              {menu?.map((item, index) => (
-                <Navbar.Link
-                  as={Link}
-                  href={item.menu_link}
+          </div>
+
+          {/* Menu Items - Center */}
+          <div className="flex space-x-6 items-center">
+            {headers.menu
+              .filter((item) => item.menu_name !== "Book An Appointment")
+              .map((item, index) => (
+                <Link
                   key={index}
-                  onClick={handleMenuItemClick}
-                  className={`
-                    ${
-                      item.menu_name === "Book An Appointment"
-                        ? "bg-[#FF693B] font-bold py-2 border border-[#FF693B] text-white md:p-[10px]  px-4 rounded-md hover:bg-white hover:text-[#FF693B] transition-all duration-300 text-center mb-2 md:mb-0 md:inline-block md:text-sm"
-                        : isLinkActive(item.menu_link)
-                        ? "text-subheading text-[#FF0000]  pb-1 transition duration-300 ease-in-out mb-2 md:mb-0 font-bold"
-                        : "text-subheading text-[#0F172A] cursor-pointer hover:text-[#FF693B] pb-1 transition duration-300 ease-in-out mb-2 md:mb-0 font-bold"
-                    }
-                    ${
-                      item.menu_name !== "Book An Appointment"
-                        ? "relative group"
-                        : ""
-                    }
-                  `}
+                  href={item.menu_link}
+                  className="text-white hover:text-primary transition-colors font-bold"
                 >
                   {item.menu_name}
-                  {item.menu_name !== "Book An Appointment" && (
-                    <span className="absolute left-0 bottom-0 w-full h-0.5 bg-[#FF693B] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
-                  )}
-                </Navbar.Link>
+                </Link>
+              ))}
+          </div>
+
+          {/* Book Appointment - Right Side */}
+          <div>
+            <Link
+              href={
+                headers.menu.find(
+                  (item) => item.menu_name === "Book An Appointment"
+                )?.menu_link || "#"
+              }
+              className="bg-white  text-[#0A2C8C] px-4 py-2 rounded-md hover:bg-opacity-90 transition-colors font-bold "
+            >
+              Book An Appointment
+            </Link>
+          </div>
+        </nav>
+
+        {/* Mobile Navigation */}
+        <nav className="md:hidden relative z-50">
+          {/* Mobile Header */}
+          <div className="flex justify-between items-center p-4">
+            <Image
+              src={headers.logo}
+              alt="Logo"
+              width={120}
+              height={40}
+              className="object-contain"
+            />
+
+            {/* Mobile Menu Toggle */}
+            <button
+              onClick={toggleMobileMenu}
+              className="text-white z-50 relative"
+            >
+              <RxHamburgerMenu size={24} />
+            </button>
+          </div>
+
+          {/* Mobile Menu Overlay */}
+          {isMobileMenuOpen && (
+            <div className="fixed inset-0 bg-black/90 z-40 flex flex-col items-center justify-center space-y-6">
+              {headers.menu.map((item, index) => (
+                <Link
+                  key={index}
+                  href={item.menu_link}
+                  onClick={toggleMobileMenu}
+                  className="text-white text-2xl hover:text-primary transition-colors"
+                >
+                  {item.menu_name}
+                </Link>
               ))}
             </div>
-          </Navbar.Collapse>
-        </Navbar>
-      </div>
-    </>
+          )}
+        </nav>
+      </header>
+    </Container>
   );
 };
 

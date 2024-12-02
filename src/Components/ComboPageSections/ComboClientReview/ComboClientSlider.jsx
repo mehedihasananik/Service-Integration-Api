@@ -15,19 +15,19 @@ const ComboClientSlider = ({ testimonials, details }) => {
       spaceBetween: 30,
     },
     1336: {
-      slidesPerView: 3,
+      slidesPerView: 1,
       spaceBetween: 10,
     },
     1280: {
-      slidesPerView: 2,
+      slidesPerView: 1,
       spaceBetween: 30,
     },
     1024: {
-      slidesPerView: 3,
+      slidesPerView: 1,
       spaceBetween: 30,
     },
     768: {
-      slidesPerView: 2,
+      slidesPerView: 1,
       spaceBetween: 20,
     },
     320: {
@@ -38,7 +38,7 @@ const ComboClientSlider = ({ testimonials, details }) => {
 
   return (
     <div className="overflow-hidden pt-4 md:pt-5">
-      <div className="w-full flex px-[12%] ">
+      <div className="w-full flex lg:px-[12%] ">
         <Swiper
           ref={swiperRef}
           slidesPerView={1}

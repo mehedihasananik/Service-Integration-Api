@@ -40,39 +40,43 @@ export default function ShowcaseProjects() {
   );
 
   return (
-    <section className="showcase_section flex overflow-hidden flex-col justify-center items-center px-10 py-14 rounded-lg max-md:px-5 md:pt-[10%]">
-      {/* Title */}
-      <h2 className="text-4xl font-extrabold leading-none text-center text-blue-900 max-md:max-w-full">
-        Numbers that showcase our success
-      </h2>
-      {/* Subtitle */}
-      <p className="mt-6 text-base leading-6 text-center text-slate-500 w-[656px] max-md:max-w-full">
-        Over the years, we've transformed countless businesses, delivering
-        measurable growth and unmatched customer satisfaction. See the impact
-        we've made!
-      </p>
-      {/* Statistics */}
-      <div className="containerStats flex flex-wrap gap-5 justify-between px-16 py-10 mt-6 w-full font-semibold text-white rounded-xl max-w-[1375px]">
-        {statisticsData.map((stat, index) => (
-          <React.Fragment key={stat.id}>
-            {/* Statistic Card Inline */}
-            <article className="flex gap-4 items-center">
-              <img
-                loading="lazy"
-                src={stat.icon}
-                alt={stat.label}
-                className="object-contain shrink-0 self-stretch my-auto w-12 aspect-square"
-              />
-              <div className="flex flex-col self-stretch my-auto">
-                <p className="text-2xl leading-none">{stat.count}</p>
-                <p className="mt-2 text-base leading-none">{stat.label}</p>
+    <div className="">
+      <section className="showcase_section  flex overflow-hidden flex-col justify-center items-center px-10 py-14 rounded-lg max-md:px-5 md:pt-[10%]">
+        {/* Title */}
+        <h2 className="text-[20px] md:text-4xl font-extrabold leading-none text-center text-blue-900 max-md:max-w-full">
+          Numbers that showcase our success
+        </h2>
+        {/* Subtitle */}
+        <p className="mt-6 text-base leading-6 text-center text-slate-500 w-[656px] max-md:max-w-full">
+          Over the years, we&apos;ve transformed countless businesses,
+          delivering measurable growth and unmatched customer satisfaction. See
+          the impact we&apos;ve made!
+        </p>
+        {/* Statistics */}
+        <div className="containerStats flex flex-wrap space-y-5 md:gap-5 justify-between px-16 py-10 mt-6 w-full font-semibold text-white rounded-xl max-w-[1375px]">
+          {statisticsData.map((stat, index) => (
+            <React.Fragment key={stat.id}>
+              {/* Statistic Card Inline */}
+              <article className="flex space-x-5 items-center">
+                <img
+                  loading="lazy"
+                  src={stat.icon}
+                  alt={stat.label}
+                  className="object-contain shrink-0 self-stretch my-auto w-12 aspect-square"
+                />
+                <div className="flex flex-col self-stretch my-auto">
+                  <p className="text-2xl leading-none">{stat.count}</p>
+                  <p className="mt-2 text-base leading-none">{stat.label}</p>
+                </div>
+              </article>
+              {/* Divider */}
+              <div className="hidden md:block">
+                {index < statisticsData.length - 1 && <Divider />}
               </div>
-            </article>
-            {/* Divider */}
-            {index < statisticsData.length - 1 && <Divider />}
-          </React.Fragment>
-        ))}
-      </div>
-    </section>
+            </React.Fragment>
+          ))}
+        </div>
+      </section>
+    </div>
   );
 }

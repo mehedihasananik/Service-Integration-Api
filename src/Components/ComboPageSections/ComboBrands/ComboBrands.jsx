@@ -7,7 +7,7 @@ import "swiper/css";
 import "swiper/css/autoplay";
 
 const breakpoints = {
-  320: { slidesPerView: 4, spaceBetween: 10 },
+  320: { slidesPerView: 3, spaceBetween: 10 },
   768: { slidesPerView: 4, spaceBetween: 20 },
   1024: { slidesPerView: 4, spaceBetween: 10 },
   1280: { slidesPerView: 5, spaceBetween: 30 },
@@ -50,7 +50,7 @@ const ComboBrands = ({ brands }) => {
   return (
     <Container>
       <div>
-        <h2 className="text-[24px] text-[#5168A7] text-center font-bold py-8 md:py-15">
+        <h2 className="text-[20px] md:text-[24px] text-[#5168A7] text-center font-bold py-8 md:py-15">
           Trusted by Top Brands
         </h2>
       </div>

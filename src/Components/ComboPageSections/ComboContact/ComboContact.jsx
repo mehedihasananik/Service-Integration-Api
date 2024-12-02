@@ -56,7 +56,10 @@ export default function ComboContact() {
   };
 
   return (
-    <section className="bg-[#0A2C8C] text-white py-10 md:py-[5%]">
+    <section
+      id="contact_us"
+      className="bg-[#0A2C8C] text-white py-10 md:py-[5%]"
+    >
       <ComboContainer>
         <div className="w-full mx-auto px-0 grid grid-cols-1 md:grid-cols-2 gap-x-20">
           {/* Left Side: Contact Form */}

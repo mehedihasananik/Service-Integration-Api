@@ -99,6 +99,37 @@
   .ql-editor .ql-indent-2:not(.ql-direction-rtl) {
     padding-left: 0 !important;
   }
+  /* combo */
+  .combo_mySwiper {
+    height: 100% !important;
+  }
+
+  .pricing_bg {
+    background-image: url("/assets/pricingBg.png");
+    background-repeat: no-repeat;
+    background-size: center;
+    background-position: center;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    margin-top: 120px;
+  }
+  .comboDeals {
+    background-image: url("/assets/comboDeals.png");
+    background-repeat: no-repeat;
+    background-size: center;
+    background-position: inherit;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+  }
+  .combo_hero {
+    height: auto; /* Allow height to adjust to content */
+    min-height: 100vh; /* Ensure it covers full viewport height on mobile */
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+  }
 }
 
 @media only screen and (max-width: 425px) {

@@ -7,7 +7,7 @@ const ComboDeals = () => {
   return (
     <div className="">
       <Container>
-        <div className=" px-[10%]">
+        <div className="px-2 xl:px-[10%]">
           {/* Header Section */}
           <section className="text-center pt-10 ">
             <h1 className=" font-bold text-blue-900 combo_title">
