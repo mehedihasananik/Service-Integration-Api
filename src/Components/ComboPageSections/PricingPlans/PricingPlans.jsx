@@ -72,81 +72,173 @@ const PricingPlans = () => {
                 {
                   name: "Professional Logo Design",
                   options: [
-                    { Option: "None", Price: "0" },
-                    { Option: "Basic Logo", Price: "220.00" },
-                    { Option: "Professional Logo", Price: "154.00" },
-                    { Option: "Advanced Logo", Price: "333.00" },
+                    { Option: "None", Price: "0", discountP: "0" },
+                    {
+                      Option: "Basic Logo",
+                      Price: "220.00",
+                      discountP: "221.00",
+                    },
+                    {
+                      Option: "Professional Logo",
+                      Price: "154.00",
+                      discountP: "155.00",
+                    },
+                    {
+                      Option: "Advanced Logo",
+                      Price: "333.00",
+                      discountP: "333.00",
+                    },
                   ],
                 },
                 {
                   name: "10-Page WordPress Website",
                   options: [
                     { Option: "None", Price: "0" },
-                    { Option: "2 page website", Price: "380.00" },
-                    { Option: "4 page website", Price: "577.00" },
+                    {
+                      Option: "2 page website",
+                      Price: "380.00",
+                      discountP: "380.00",
+                    },
+                    {
+                      Option: "4 page website",
+                      Price: "577.00",
+                      discountP: "577.00",
+                    },
                   ],
                 },
                 {
                   name: "Content Writing",
                   options: [
-                    { Option: "yes", Price: "380.00" },
-                    { Option: "no", Price: "0" },
+                    { Option: "yes", Price: "380.00", discountP: "380.00" },
+                    { Option: "no", Price: "0", discountP: "0" },
                   ],
                 },
                 {
                   name: "Custom Graphics",
                   options: [
-                    { Option: "yes", Price: "380.00" },
-                    { Option: "no", Price: "0" },
+                    { Option: "yes", Price: "380.00", discountP: "380.00" },
+                    { Option: "no", Price: "0", discountP: "0" },
                   ],
                 },
                 {
                   name: "Brand Guideline",
                   options: [
-                    { Option: "yes", Price: "99" },
-                    { Option: "no", Price: "0" },
+                    { Option: "yes", Price: "99", discountP: "99.00" },
+                    { Option: "no", Price: "0", discountP: "0.00" },
                   ],
                 },
                 {
                   name: "Monthly SEO Services",
                   options: [
                     { Option: "None", Price: "0" },
-                    { Option: "Basic 1 Month", Price: "230.00" },
-                    { Option: "Basic 3 Months", Price: "635.00" },
-                    { Option: "Standard 1 Month", Price: "459.00" },
-                    { Option: "Standard 3 Months", Price: "349.00" },
-                    { Option: "Standard 1 Year", Price: "589.00" },
-                    { Option: "Advanced 1 Month", Price: "519.00" },
-                    { Option: "Advanced 3 Months", Price: "132.00" },
-                    { Option: "Advanced 1 Year", Price: "450.00" },
+                    {
+                      Option: "Basic 1 Month",
+                      Price: "230.00",
+                      discountP: "230.00",
+                    },
+                    {
+                      Option: "Basic 3 Months",
+                      Price: "635.00",
+                      discountP: "635.00",
+                    },
+                    {
+                      Option: "Standard 1 Month",
+                      Price: "459.00",
+                      discountP: "459.00",
+                    },
+                    {
+                      Option: "Standard 3 Months",
+                      Price: "349.00",
+                      discountP: "349.00",
+                    },
+                    {
+                      Option: "Standard 1 Year",
+                      Price: "589.00",
+                      discountP: "589.00",
+                    },
+                    {
+                      Option: "Advanced 1 Month",
+                      Price: "519.00",
+                      discountP: "519.00",
+                    },
+                    {
+                      Option: "Advanced 3 Months",
+                      Price: "132.00",
+                      discountP: "132.00",
+                    },
+                    {
+                      Option: "Advanced 1 Year",
+                      Price: "450.00",
+                      discountP: "450.00",
+                    },
                   ],
                 },
                 {
                   name: "Social Media Kit & Posts",
                   options: [
-                    { Option: "None", Price: "0" },
-                    { Option: "1 Platform", Price: "399.00" },
-                    { Option: "2 Platforms", Price: "632.00" },
-                    { Option: "3 Platforms", Price: "514.00" },
-                    { Option: "4 Platforms", Price: "613.00" },
+                    { Option: "None", Price: "0", discountP: "0" },
+                    {
+                      Option: "1 Platform",
+                      Price: "399.00",
+                      discountP: "399.00",
+                    },
+                    {
+                      Option: "2 Platforms",
+                      Price: "632.00",
+                      discountP: "632.00",
+                    },
+                    {
+                      Option: "3 Platforms",
+                      Price: "514.00",
+                      discountP: "514.00",
+                    },
+                    {
+                      Option: "4 Platforms",
+                      Price: "613.00",
+                      discountP: "613.00",
+                    },
                   ],
                 },
                 {
                   name: "Animated Video",
                   options: [
                     { Option: "None", Price: "0" },
-                    { Option: "20 sec - 30 sec", Price: "120.00" },
-                    { Option: "30 sec - 50 sec", Price: "150.00" },
-                    { Option: "50 sec - 60 sec", Price: "160.00" },
-                    { Option: "60 sec - 70 sec", Price: "180.00" },
+                    {
+                      Option: "20 sec - 30 sec",
+                      Price: "120.00",
+                      discountP: "120.00",
+                    },
+                    {
+                      Option: "30 sec - 50 sec",
+                      Price: "150.00",
+                      discountP: "150.00",
+                    },
+                    {
+                      Option: "50 sec - 60 sec",
+                      Price: "160.00",
+                      discountP: "160.00",
+                    },
+                    {
+                      Option: "60 sec - 70 sec",
+                      Price: "180.00",
+                      discountP: "180.00",
+                    },
                   ],
                 },
                 {
                   name: "Website Maintenance",
                   options: [
-                    { Option: "No Maintenance", Price: "0" },
-                    { Option: "3 Months", Price: "150.00" },
-                    { Option: "1 Year", Price: "160.00" },
+                    {
+                      Option: "No Maintenance",
+                      Price: "0",
+                      discountP: "0.00",
+                    },
+                    {
+                      Option: "3 Months",
+                      Price: "150.00",
+                      discountP: "150.00",
+                    },
+                    { Option: "1 Year", Price: "160.00", discountP: "160.00" },
                   ],
                 },
               ],

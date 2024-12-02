@@ -5,13 +5,11 @@ import UserLoading from "@/Components/Utilites/UserLoading/UserLoading";
 import { fetchData } from "@/config/fetchData"; // Import fetchData
 
 const HomePageFaqs = async ({ className, title, containerClass }) => {
-  const data = await fetchData(faqApi); // Use fetchData instead
+  const { FaqDataArray: questions } = await fetchData(
+    "http://192.168.10.16:8000/api/landing-page/faq"
+  ); // Use fetchData instead
 
   // Filter the questions to include those with featured: "1" or 1
-  const questions = data.FaqDataArray.filter(
-    (question) => question.featured === "1" || question.featured === 1
-  );
-  console.log(className);
 
   return (
     <div

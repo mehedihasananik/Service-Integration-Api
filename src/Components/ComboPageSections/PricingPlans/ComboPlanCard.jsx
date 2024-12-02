@@ -13,7 +13,8 @@ const ComboPlanCard = ({ plan }) => {
   // Calculate discounted price (10% off)
   const originalPrice =
     plan.title === "Custom Plan" ? totalPrice : parseFloat(plan.price);
-  const discountedPrice = originalPrice * 0.9; // 10% discount
+  const discountPrice =
+    plan.title === "Custom Plan" ? totalPrice : parseFloat(plan.discountP);
 
   return (
     <div
@@ -37,10 +38,10 @@ const ComboPlanCard = ({ plan }) => {
         <img src={plan.iconSrc} alt="" className="w-10" />
         <div className="flex flex-1 gap-3 items-center">
           <div className="md:text-[40px] font-bold">
-            {`$${discountedPrice.toFixed(2)}`}
+            {`$${originalPrice.toFixed(2)}`}
           </div>
           <div className="text-sm text-opacity-40 line-through">
-            {`$${originalPrice.toFixed(2)}`}
+            {`$${discountPrice.toFixed(2)}`}
           </div>
         </div>
       </div>

@@ -32,12 +32,19 @@ const ComboSliderCard = ({ testimonial }) => {
         </div>
 
         {/* Heading */}
-        <h3 className="font-extrabold text-[#5168A7] text-[18px] xl:text-[20px] xll:text-[30px] mt-2 md:mt-8">
+        <h3 className="font-extrabold text-[#5168A7] text-[16px] xl:text-[20px] xll:text-[30px] mt-2 md:mt-8">
           {testimonial?.headline || "Revitalized my work approach"}
         </h3>
 
         {/* Description */}
-        <p className="combo_des mt-4">{testimonial?.message.slice}</p>
+        <p className="combo_des hidden md:block  mt-4">
+          {testimonial?.message}
+        </p>
+        <p className=" md:hidden combo_des mt-4">
+          {testimonial?.message.length > 200
+            ? `${testimonial.message.slice(0, 200)}...`
+            : testimonial.message}
+        </p>
 
         {/* Author Info */}
         <p className="mt-6 text-sm text-gray-500 font-semibold">

@@ -5,17 +5,17 @@ const ComboHeroSection = () => {
   return (
     <ComboContainer>
       {/* main section */}
-      <div className="hidden md:flex justify-center relative top-8">
+      <div className="hidden lg:flex justify-center relative top-8">
         <img src="/assets/comboshape.png" alt="" className="max-w-full" />
       </div>
-      <div className="flex flex-col md:flex-row justify-between text-white items-center h-auto md:h-[60vh] space-y-8 md:space-y-0">
+      <div className="flex md:mt-[15%] lg:mt-[0%] flex-col md:flex-row justify-between text-white items-center h-auto md:h-[60vh] space-y-0 md:space-y-0">
         {/* left side */}
-        <div className="text-center md:text-left space-y-4 md:space-y-6 px-4 md:px-0">
+        <div className="text-center  md:text-left space-y-0 md:space-y-6 px-4 md:px-0">
           <div>
-            <h3 className="text-[18px] md:text-[24px] font-Poppins pb-4 font-medium pt-5 md:pt-0">
+            <h3 className="text-[18px] lg:text-[24px] font-Poppins pb-4 font-medium pt-5 md:pt-0">
               <span className="text-primary">All-in-One</span> Creative Combo
             </h3>
-            <h1 className="text-[25px] md:text-[35px] lg:text-[48px] xl:text-[62px] font-bold w-full lg:w-[80%] lg:leading-[70px] ">
+            <h1 className="text-[25px] md:text-[25px] lg:text-[48px] xl:text-[62px] font-bold w-full md:w-[80%] lg:w-[90%] lg:leading-[70px] ">
               <span className="text-primary">Web Design</span>, SEO, Content,
               Logo and <span className="text-primary">Social</span>
             </h1>
@@ -28,34 +28,41 @@ const ComboHeroSection = () => {
           </div>
           <div className="flex flex-col md:flex-row gap-4 md:gap-x-10 justify-center md:justify-start">
             <div className="flex justify-center md:justify-start ">
-              <button className="bg-white text-[#0A2C8C] w-[50%] md:w-[100%] text-[14px] md:text-[18px] px-4 md:px-8 py-2 font-bold rounded-md">
+              <button className="bg-white whitespace-nowrap text-[#0A2C8C] w-[50%] md:w-[100%] lg:w-[100%] text-[14px] md:text-[18px] px-4 md:px-10 lg:px-8 py-3 md:py-1 lg:py-2 font-bold rounded-md">
                 See Pricing
               </button>
             </div>
-            <div className="hidden md:flex justify-center">
+            <div className="hidden lg:flex justify-center">
               <img
                 src="/assets/FrameClient.png"
                 alt="Client Frame"
                 className="w-[100%] h-[100%]"
               />
             </div>
-            <div className="  flex md:hidden justify-center mt-2">
+            <div className="  flex lg:hidden justify-center mt-2">
               <img
                 src="/assets/FrameClientSm.png"
                 alt="Client Frame"
-                className="w-[80%] h-[100%]"
+                className="w-[80%] md:w-[100%] h-[100%] md:h-[50px]"
               />
             </div>
           </div>
         </div>
         {/* right side */}
-        <div className="w-full md:w-[100%] lg:w-[50%] px-4 md:px-0 relative md:right-[-7%] xl:right-[-5%]">
+        <div className="w-[100%] md:w-[140%] lg:w-[80%] xl:w-[80%] 4xl:w-[70%] px-4 md:px-0 relative lg:right-[-7%] xl:right-[-5%]">
           <div className="relative lg:top-5">
             <img
-              className="w-full max-w-sm md:max-w-full mx-auto"
-              src="/assets/landingservices.png"
+              className="w-full  mx-auto hidden md:block"
+              src="/assets/landingservices1.png"
               alt="Landing Services"
             />
+            <div>
+              <img
+                className="w-[100%] h-[100%] mx-auto block md:hidden"
+                src="/assets/landingservices2.png"
+                alt="Landing Services"
+              />
+            </div>
           </div>
         </div>
       </div>

@@ -5,7 +5,7 @@ import { useState } from "react";
 const ComboHeader = () => {
   // Static header data
   const headers = {
-    logo: "/assets/envobyteDark.png",
+    logo: "/assets/Frame 404.png",
     menu: [
       { menu_name: "Home", menu_link: "/" },
       { menu_name: "Portfolio", menu_link: "#portfolio" },

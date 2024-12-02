@@ -1,25 +1,18 @@
 "use client";
-import Container from "@/Components/Container/Container";
 import Image from "next/image";
 import Link from "next/link";
 import { RxHamburgerMenu } from "react-icons/rx";
 
 const ComboHeaderItems = ({ headers, isMobileMenuOpen, toggleMobileMenu }) => {
   return (
-    <Container>
+    <div className="max-w-[1520px] mx-auto px-[6%] md:px-[0%] xl:px-[8%] 4xl:px-[4%] ">
       <header className="relative z-50">
         {/* Desktop Navigation */}
         <nav className="hidden md:flex justify-between items-center px-4 lg:px-0 py-4">
           {/* Logo - Left Side */}
-          <div>
-            <Image
-              src={headers.logo}
-              alt="Logo"
-              width={150}
-              height={50}
-              className="object-contain"
-            />
-          </div>
+          <Link href="/">
+            <Image src={headers.logo} alt="Logo" width={120} height={30} />
+          </Link>
 
           {/* Menu Items - Center */}
           <div className="flex space-x-6 items-center">
@@ -39,12 +32,8 @@ const ComboHeaderItems = ({ headers, isMobileMenuOpen, toggleMobileMenu }) => {
           {/* Book Appointment - Right Side */}
           <div>
             <Link
-              href={
-                headers.menu.find(
-                  (item) => item.menu_name === "Book An Appointment"
-                )?.menu_link || "#"
-              }
-              className="bg-white  text-[#0A2C8C] px-4 py-2 rounded-md hover:bg-opacity-90 transition-colors font-bold "
+              href="#appointment"
+              className="bg-white  text-[#0A2C8C] px-4 py-2 rounded-md hover:bg-[#0A2C8C] hover:text-white transition-colors font-bold "
             >
               Book An Appointment
             </Link>
@@ -89,7 +78,7 @@ const ComboHeaderItems = ({ headers, isMobileMenuOpen, toggleMobileMenu }) => {
           )}
         </nav>
       </header>
-    </Container>
+    </div>
   );
 };
 
