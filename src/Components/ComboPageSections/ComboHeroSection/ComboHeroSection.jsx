@@ -28,9 +28,12 @@ const ComboHeroSection = () => {
           </div>
           <div className="flex flex-col md:flex-row gap-4 md:gap-x-10 justify-center md:justify-start">
             <div className="flex justify-center md:justify-start ">
-              <button className="bg-white whitespace-nowrap text-[#0A2C8C] w-[50%] md:w-[100%] lg:w-[100%] text-[14px] md:text-[18px] px-4 md:px-10 lg:px-8 py-3 md:py-1 lg:py-2 font-bold rounded-md">
+              <a
+                href="#pricing"
+                className="flex justify-center items-center bg-white whitespace-nowrap text-[#0A2C8C] w-[50%] md:w-[100%] lg:w-[100%] text-[14px] md:text-[18px] px-4 md:px-10 lg:px-8 py-3 md:py-1 lg:py-2 font-bold rounded-md"
+              >
                 See Pricing
-              </button>
+              </a>
             </div>
             <div className="hidden lg:flex justify-center">
               <img
@@ -51,15 +54,10 @@ const ComboHeroSection = () => {
         {/* right side */}
         <div className="w-[100%] md:w-[140%] lg:w-[80%] xl:w-[80%] 4xl:w-[70%] px-4 md:px-0 relative lg:right-[-7%] xl:right-[-5%]">
           <div className="relative lg:top-5">
-            <img
-              className="w-full  mx-auto hidden md:block"
-              src="/assets/landingservices1.png"
-              alt="Landing Services"
-            />
             <div>
               <img
-                className="w-[100%] h-[100%] mx-auto block md:hidden"
-                src="/assets/landingservices2.png"
+                className="w-full  mx-auto "
+                src="/assets/landingservices1.png"
                 alt="Landing Services"
               />
             </div>

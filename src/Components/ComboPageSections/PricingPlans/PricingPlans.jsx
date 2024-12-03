@@ -4,13 +4,16 @@ import ComboPricingHeader from "./ComboPricingHeader";
 
 const PricingPlans = () => {
   return (
-    <div id="pricing" className="pricing_bg overflow-hidden ">
+    <div id="pricing" className="pricing_bg  ">
       <div className="flex flex-col items-center my-[4%]  md:px-0">
         <ComboPricingHeader />
         <div className="flex flex-wrap gap-10 justify-center mt-11">
           {/* Static Plan 1 */}
           <ComboPlanCard
             plan={{
+              package_id: 102,
+              service_id: 34,
+              user_id: 1,
               title: "Premium Plan",
               price: "499",
               originalPrice: "999",
@@ -35,6 +38,9 @@ const PricingPlans = () => {
           {/* Static Plan 2 */}
           <ComboPlanCard
             plan={{
+              package_id: 103,
+              service_id: 34,
+              user_id: 1,
               title: "Premium+ Plan",
               price: "1199",
               originalPrice: "2240",
@@ -59,6 +65,9 @@ const PricingPlans = () => {
           {/* Static Plan 3 */}
           <ComboPlanCard
             plan={{
+              package_id: 104,
+              service_id: 34,
+              user_id: 1,
               title: "Custom Plan",
               price: "0.00",
               percentage: "10",
@@ -97,7 +106,7 @@ const PricingPlans = () => {
                     {
                       Option: "2 page website",
                       Price: "380.00",
-                      discountP: "380.00",
+                      discountP: "381.00",
                     },
                     {
                       Option: "4 page website",
@@ -109,7 +118,7 @@ const PricingPlans = () => {
                 {
                   name: "Content Writing",
                   options: [
-                    { Option: "yes", Price: "380.00", discountP: "380.00" },
+                    { Option: "yes", Price: "380.00", discountP: "381.00" },
                     { Option: "no", Price: "0", discountP: "0" },
                   ],
                 },

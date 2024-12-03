@@ -5,16 +5,22 @@ import { TiArrowRight } from "react-icons/ti";
 
 const ComboPlanCard = ({ plan }) => {
   const [totalPrice, setTotalPrice] = useState(0);
+  const [totalDiscountPrice, setTotalDiscountPrice] = useState(0);
 
   const handleTotalPriceChange = (newTotalPrice) => {
     setTotalPrice(newTotalPrice);
   };
 
-  // Calculate discounted price (10% off)
+  const handleTotalDiscountChange = (newTotalDiscountPrice) => {
+    setTotalDiscountPrice(newTotalDiscountPrice);
+  };
+
   const originalPrice =
     plan.title === "Custom Plan" ? totalPrice : parseFloat(plan.price);
   const discountPrice =
-    plan.title === "Custom Plan" ? totalPrice : parseFloat(plan.discountP);
+    plan.title === "Custom Plan"
+      ? totalDiscountPrice
+      : parseFloat(plan.originalPrice);
 
   return (
     <div
@@ -53,7 +59,8 @@ const ComboPlanCard = ({ plan }) => {
         isCustomPlan={plan.title === "Custom Plan"}
         isPremiumPlus={plan.title === "Premium+ Plan"}
         plan={plan}
-        onTotalPriceChange={handleTotalPriceChange} // Pass price update handler
+        onTotalPriceChange={handleTotalPriceChange}
+        onTotalDiscountChange={handleTotalDiscountChange}
       />
       <button
         className={`mt-9 p-3 w-full rounded flex justify-center items-center text-[16px] font-medium ${

@@ -8,6 +8,7 @@ import ComboHeroSection from "@/Components/ComboPageSections/ComboHeroSection/Co
 import ComboPortfolio from "@/Components/ComboPageSections/ComboPortfolio/ComboPortfolio";
 import PricingPlans from "@/Components/ComboPageSections/PricingPlans/PricingPlans";
 import ShowcaseProjects from "@/Components/ComboPageSections/ShowcaseProjects/ShowcaseProjects";
+import VideoSection from "@/Components/ComboPageSections/VideoSection/VideoSection";
 import ScheduleMeetingContent from "@/Components/ScheduleMeeting/ScheduleMeetingContent";
 import HomePageFaqs from "@/Components/Utilites/HomePageFaqs/HomePageFaqs";
 import { brandsApi } from "@/config/apis";
@@ -15,7 +16,6 @@ import { fetchData } from "@/config/fetchData";
 import React from "react";
 
 const LandingPage = async () => {
-  let brands = await fetchData(brandsApi);
   return (
     <>
       <div className="relative">
@@ -23,11 +23,14 @@ const LandingPage = async () => {
           <ComboHeader />
           <ComboHeroSection />
         </div>
-        <div className="bg-[#fff] pb-5 pt-[0%]">
-          <ComboBrands brands={brands} />
-        </div>
       </div>
-      <ComboClientReview />
+      <div className="">
+        <VideoSection />
+      </div>
+      <div className="bg-[#FCFEFF]">
+        <ComboClientReview />
+      </div>
+
       <ComboPortfolio />
       <div className="comboDeals">
         <ComboDeals />

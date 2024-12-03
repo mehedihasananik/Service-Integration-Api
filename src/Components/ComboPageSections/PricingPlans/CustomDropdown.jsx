@@ -33,35 +33,46 @@ const CustomDropdown = ({
   const containsLogo = options.some((option) =>
     option.toLowerCase().includes("logo")
   );
+  // basic seo
+  const basicSeo = options.some((option) =>
+    option.toLowerCase().includes("basic")
+  );
+  const maintenance = options.some((option) =>
+    option.toLowerCase().includes("maintenance")
+  );
 
   // Conditionally set the width based on the options
   const containerWidth = containsLogo
-    ? "w-[196px]" // If the option contains "logo"
+    ? "w-[110px] md:w-[196px]" // If the option contains "logo"
     : containsPage
-    ? "w-[175px]" // If the option contains "page"
+    ? "w-[80px] md:w-[175px]" // If the option contains "page"
     : containsSec
-    ? "w-[172px]" // If the option contains "sec"
+    ? " w-[172px]" // If the option contains "sec"
     : containsPlatform
-    ? "w-[150px]" // If the option contains "platform"
+    ? "w-[80px] md:w-[150px]" // If the option contains "platform"
     : isYesNoOptions
     ? "w-[100px]" // If the option is "yes" or "no"
+    : basicSeo // If basic seo
+    ? "w-[100px] md:w-[200px]"
+    : maintenance
+    ? "w-[130px] md:w-[200px]"
     : "w-[200px]"; // Default width for other cases
 
   return (
     <div className={`relative ${containerWidth}`}>
       <button
         onClick={toggleDropdown}
-        className="flex items-center justify-end w-full px-4 py-2 text-left bg-none text-black text-[16px]"
+        className="flex items-center justify-end w-full px-4 py-2 text-left bg-none text-black text-[12px] md:text-[16px]"
       >
         {/* Span with fixed height */}
         <span
           className={`${
             isOpen ? "text-black" : "text-gray-500"
-          } mr-[5px] h-[14px] flex items-center`}
+          } mr-[5px] h-[14px] flex items-center whitespace-nowrap`}
         >
           {placeholder || (isOpen ? "" : "")}
         </span>
-        <span className="hidden md:block">
+        <span className="block">
           {" "}
           <FaAngleDown className="text-gray-500" />
         </span>

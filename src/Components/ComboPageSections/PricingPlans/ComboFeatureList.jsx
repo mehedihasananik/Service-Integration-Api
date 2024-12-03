@@ -9,14 +9,16 @@ const ComboFeatureList = ({
   isCustomPlan = false,
   isPremiumPlus = false,
   plan,
-  onTotalPriceChange, // New prop to update total price
+  onTotalPriceChange,
+  onTotalDiscountChange,
 }) => {
   const [selectedOption, setSelectedOption] = useState({});
   const [openDropdown, setOpenDropdown] = useState(null);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [totalDiscountPrice, setTotalDiscountPrice] = useState(0);
 
   const handleOptionChange = (featureName, option) => {
-    // Find the selected option's price
+    // Find the selected option's price and discount price
     const feature = features.find((f) => f.name === featureName);
     const selectedOptionDetails = feature.options.find(
       (opt) => opt.Option === option
@@ -29,6 +31,7 @@ const ComboFeatureList = ({
         [featureName]: {
           option,
           price: parseFloat(selectedOptionDetails?.Price || "0"),
+          discountP: parseFloat(selectedOptionDetails?.discountP || "0"),
         },
       };
 
@@ -38,11 +41,19 @@ const ComboFeatureList = ({
         0
       );
 
-      // Update total price
-      setTotalPrice(newTotalPrice);
+      // Calculate total discount price
+      const newTotalDiscountPrice = Object.values(newSelectedOptions).reduce(
+        (total, item) => total + (item.discountP || 0),
+        0
+      );
 
-      // Inform parent component about price change
+      // Update total prices
+      setTotalPrice(newTotalPrice);
+      setTotalDiscountPrice(newTotalDiscountPrice);
+
+      // Inform parent component about price changes
       onTotalPriceChange(newTotalPrice);
+      onTotalDiscountChange(newTotalDiscountPrice);
 
       return newSelectedOptions;
     });
@@ -53,18 +64,18 @@ const ComboFeatureList = ({
   };
 
   return (
-    <div className="h-[335px] mt-4">
+    <div className="h-[380px] md:h-[335px] mt-4">
       {features.map((feature, index) => (
         <div
           key={index}
           className={`flex justify-between items-center ${
             plan.title === "Premium Plan" || plan.title === "Premium+ Plan"
               ? "mt-3"
-              : "mt-1 border-b border-b-gray-100"
+              : "mt-3 md:mt-1 border-b border-b-gray-100 "
           }`}
         >
           <div
-            className={`whitespace-nowrap font-bold text-[16px] ${
+            className={`whitespace-nowrap font-bold text-[14px] md:text-[16px] ${
               isDark
                 ? "text-white "
                 : "text-[#0A2C8C]" +
