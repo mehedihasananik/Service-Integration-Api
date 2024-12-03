@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { RiCheckboxBlankCircleLine } from "react-icons/ri";
 import CustomDropdown from "./CustomDropdown";
 
@@ -11,11 +11,10 @@ const ComboFeatureList = ({
   plan,
   onTotalPriceChange,
   onTotalDiscountChange,
+  onOptionChange, // Added this prop to handle option change
 }) => {
   const [selectedOption, setSelectedOption] = useState({});
   const [openDropdown, setOpenDropdown] = useState(null);
-  const [totalPrice, setTotalPrice] = useState(0);
-  const [totalDiscountPrice, setTotalDiscountPrice] = useState(0);
 
   const handleOptionChange = (featureName, option) => {
     // Find the selected option's price and discount price
@@ -48,12 +47,11 @@ const ComboFeatureList = ({
       );
 
       // Update total prices
-      setTotalPrice(newTotalPrice);
-      setTotalDiscountPrice(newTotalDiscountPrice);
-
-      // Inform parent component about price changes
       onTotalPriceChange(newTotalPrice);
       onTotalDiscountChange(newTotalDiscountPrice);
+
+      // Inform parent component about price changes
+      onOptionChange(featureName, option); // Notify ComboPlanCard about the change
 
       return newSelectedOptions;
     });
@@ -71,7 +69,7 @@ const ComboFeatureList = ({
           className={`flex justify-between items-center ${
             plan.title === "Premium Plan" || plan.title === "Premium+ Plan"
               ? "mt-3"
-              : "mt-3 md:mt-1 border-b border-b-gray-100 "
+              : "mt-3 md:mt-1 border-b border-b-gray-100"
           }`}
         >
           <div
