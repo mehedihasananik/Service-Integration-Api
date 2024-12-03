@@ -116,7 +116,7 @@
 
   /* combo hero section starts */
   .combo_title {
-    @apply text-[#0A2C8C] text-[20px] md:text-[36px] lg:text-[48px] font-bold text-center pt-[2%] md:pt-[5%];
+    @apply text-[#0A2C8C] text-[20px] md:text-[36px] lg:text-[48px] font-bold text-center pt-[2%] md:pt-[3%];
   }
   .combo_des {
     @apply text-[16px] text-[#6D758F] pt-[.5%];
@@ -175,7 +175,7 @@
   .containerStats {
     background-image: url("/assets/ContainerStats1.png");
     background-repeat: no-repeat;
-    background-size: cover; /* or contain, depending on your design */
+    background-size: contain; /* or contain, depending on your design */
     background-position: center;
     /* Remove z-index: -1 */
   }

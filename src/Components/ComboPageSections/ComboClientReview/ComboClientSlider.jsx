@@ -52,11 +52,14 @@ const ComboClientSlider = ({ testimonials, details }) => {
           modules={[Pagination, Autoplay]}
           //   autoplay={{ delay: 2000, disableOnInteraction: false }}
         >
-          {testimonials?.map((testimonial) => (
-            <SwiperSlide key={testimonial.id}>
-              <ComboSliderCard testimonial={testimonial} />
-            </SwiperSlide>
-          ))}
+          {testimonials?.map((testimonial) => {
+            console.log(testimonial?.image_md);
+            return (
+              <SwiperSlide key={testimonial.id}>
+                <ComboSliderCard testimonial={testimonial} />
+              </SwiperSlide>
+            );
+          })}
         </Swiper>
       </div>
     </div>

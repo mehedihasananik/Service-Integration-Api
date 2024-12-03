@@ -41,7 +41,7 @@ export default function ShowcaseProjects() {
 
   return (
     <div className="">
-      <section className="showcase_section  flex overflow-hidden flex-col justify-center items-center px-10 py-14 rounded-lg max-md:px-5 md:pt-[10%]">
+      <section className="showcase_section  flex overflow-hidden flex-col justify-center items-center px-10 py-14 rounded-lg max-md:px-5 md:pt-[1%]">
         {/* Title */}
         <h2 className="text-[20px] md:text-4xl font-extrabold leading-none text-center text-blue-900 max-md:max-w-full">
           Numbers that showcase our success

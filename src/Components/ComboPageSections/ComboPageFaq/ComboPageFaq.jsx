@@ -1,10 +1,10 @@
 import React from "react";
-import Accordion from "@/Components/Accordion/Accordion";
-import { faqApi } from "@/config/apis";
 import UserLoading from "@/Components/Utilites/UserLoading/UserLoading";
-import { fetchData } from "@/config/fetchData"; // Import fetchData
+import { fetchData } from "@/config/fetchData";
+import { faqApi } from "@/config/apis";
+import ComboPageAccodion from "./ComboPageAccodion";
 
-const HomePageFaqs = async ({ className, title, containerClass }) => {
+const ComboPageFaq = async ({ className, title, containerClass }) => {
   const data = await fetchData(faqApi); // Use fetchData instead
 
   // Filter the questions to include those with featured: "1" or 1
@@ -22,22 +22,21 @@ const HomePageFaqs = async ({ className, title, containerClass }) => {
           <div className="text-center">
             <h2 className="headings pb-3 md:pb-5 md:pt-5 lg:pt-0">{title}</h2>
             <div className="flex justify-center">
-              <p className="text-[#0F172A] text-paragraph w-full md:w-2/3 lg:w-1/2 px-4 md:px-0 ">
-                Here, you&apos;ll find answers to the most common questions and
-                concerns our clients have. We&apos;ve compiled this
-                comprehensive resource to provide you with the information you
-                need, right at your fingertips.
+              <p className="text-[#0F172A] text-paragraph w-full md:w-2/3 lg:w-[38%] px-4 md:px-0 ">
+                Got questions about SEO and website development? Explore our
+                FAQs for clear, actionable insights tailored to you!
               </p>
             </div>
           </div>
-          <div className="py-4 md:py-8">
+          <div className="py-4 md:py-8 lg:px-[15%]">
             <div className="rounded-lg">
               {questions.length === 0 ? (
                 <UserLoading />
               ) : (
-                questions.map((question) => (
-                  <Accordion
+                questions.map((question, index) => (
+                  <ComboPageAccodion
                     key={question.id}
+                    index={index}
                     title={question.title}
                     answer={question.details}
                   />
@@ -51,4 +50,4 @@ const HomePageFaqs = async ({ className, title, containerClass }) => {
   );
 };
 
-export default HomePageFaqs;
+export default ComboPageFaq;

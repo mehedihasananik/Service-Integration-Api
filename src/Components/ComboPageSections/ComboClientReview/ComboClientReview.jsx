@@ -2,10 +2,12 @@ import Container from "@/Components/Container/Container";
 import React from "react";
 import ComboClientSlider from "./ComboClientSlider";
 import { fetchData } from "@/config/fetchData";
-import { testimonials_itemsApi } from "@/config/apis";
+import { BookAppointmentButton } from "../ComboGroupBtn/ComboGroupBtn";
 
 const ComboClientReview = async () => {
-  const testimonials = await fetchData(testimonials_itemsApi);
+  const testimonials = await fetchData(
+    "http://192.168.10.16:8000/api/testimonials_items_landing"
+  );
   return (
     <Container>
       <div className="">
@@ -28,6 +30,9 @@ const ComboClientReview = async () => {
             testimonials={testimonials.items}
             details={testimonials.testimonials}
           />
+        </div>
+        <div className="flex justify-center font-bold mt-5">
+          <BookAppointmentButton />
         </div>
       </div>
     </Container>

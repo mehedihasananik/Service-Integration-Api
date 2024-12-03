@@ -9,6 +9,7 @@ const ComboPlanCard = ({ plan }) => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalDiscountPrice, setTotalDiscountPrice] = useState(0);
   const [selectedOption, setSelectedOption] = useState({});
+  const [errorMessage, setErrorMessage] = useState(""); // State for error message
   const router = useRouter();
 
   // Handle price changes when options are selected
@@ -25,6 +26,15 @@ const ComboPlanCard = ({ plan }) => {
     plan.title === "Custom Plan" ? totalPrice : parseFloat(plan.price);
 
   const handlePlaceOrder = async () => {
+    // Reset error message
+    setErrorMessage("");
+
+    // Check if the price is less than $499
+    if (originalPrice < 499) {
+      setErrorMessage("Minimum Order $499");
+      return; // Stop further execution
+    }
+
     // Determine selected features based on the plan type
     const selectedFeatures =
       plan.title === "Custom Plan"
@@ -47,6 +57,8 @@ const ComboPlanCard = ({ plan }) => {
       service_id: plan.service_id,
       package_id: plan.package_id,
       selected_features: selectedFeatures,
+      payment_status: "pending",
+      order_status: "requirement needed",
     };
 
     try {
@@ -82,10 +94,12 @@ const ComboPlanCard = ({ plan }) => {
   return (
     <div
       key={plan.title}
-      className={`flex flex-col px-6 py-6 rounded-lg w-[350px] md:w-[430px]  ${
+      className={`flex flex-col px-6 py-6 rounded-lg w-[350px] md:w-[430px] ${
+        errorMessage ? "border-2 border-red-500" : "border border-slate-200 "
+      } ${
         plan.isDark
           ? "bg-[#0A2C8C] text-white"
-          : "bg-white text-[#0A2C8C] shadow-sm border border-slate-200"
+          : "bg-white text-[#0A2C8C] shadow-sm"
       }`}
     >
       <div
@@ -98,15 +112,34 @@ const ComboPlanCard = ({ plan }) => {
         {plan.title}
       </div>
       <div className="flex gap-2 items-center mt-4">
-        <img src={plan.iconSrc} alt="" className="w-10" />
+        {errorMessage ? (
+          <img src={plan.iconSrcError} alt="" className="w-10" />
+        ) : (
+          <img src={plan.iconSrc} alt="" className="w-10" />
+        )}
+
         <div className="flex flex-1 gap-3 items-center">
-          <div className="md:text-[40px] font-bold">
+          <div
+            className={`md:text-[40px] ${
+              errorMessage ? "text-red-600 font-bold" : "font-bold"
+            }`}
+          >
             {`$${originalPrice.toFixed(2)}`}
           </div>
-          {plan.originalPrice && (
+
+          {plan.title === "Custom Plan" ? (
+            <div className="text-sm text-opacity-40 line-through">
+              {`$${parseFloat(totalDiscountPrice).toFixed(2)}`}
+            </div>
+          ) : (
             <div className="text-sm text-opacity-40 line-through">
               {`$${parseFloat(plan.originalPrice).toFixed(2)}`}
             </div>
+          )}
+          {errorMessage && (
+            <span className="mt-3 font-bold text-red-600 text-sm relative top-0">
+              {errorMessage}
+            </span>
           )}
         </div>
       </div>
@@ -130,6 +163,8 @@ const ComboPlanCard = ({ plan }) => {
           }));
         }}
       />
+
+      {/* Display error message if price is too low */}
 
       <button
         onClick={handlePlaceOrder}

@@ -15,9 +15,9 @@ const ComboHeroSection = () => {
             <h3 className="text-[18px] lg:text-[24px] font-Poppins pb-4 font-medium pt-5 md:pt-0">
               <span className="text-primary">All-in-One</span> Creative Combo
             </h3>
-            <h1 className="text-[25px] md:text-[25px] lg:text-[48px] xl:text-[62px] font-bold w-full md:w-[80%] lg:w-[90%] lg:leading-[70px] ">
-              <span className="text-primary">Web Design</span>, SEO, Content,
-              Logo and <span className="text-primary">Social</span>
+            <h1 className="text-[25px] md:text-[25px] lg:text-[48px] xl:text-[62px] font-bold w-full md:w-[80%] lg:w-[100%] lg:leading-[70px] ">
+              <span className="text-primary">Web </span> Design, Development,
+              SEO, Content, <span className="text-primary">Logo </span>
             </h1>
 
             <p className="text-[15px] md:text-[24px] py-4 md:py-6 w-full md:w-[75%] mx-auto md:mx-0">
@@ -52,7 +52,7 @@ const ComboHeroSection = () => {
           </div>
         </div>
         {/* right side */}
-        <div className="w-[100%] md:w-[140%] lg:w-[80%] xl:w-[80%] 4xl:w-[70%] px-4 md:px-0 relative lg:right-[-7%] xl:right-[-5%]">
+        <div className="w-[100%] md:w-[140%] lg:w-[80%] xl:w-[80%] 4xl:w-[60%] px-4 md:px-0 relative lg:right-[-7%] xl:right-[-5%]">
           <div className="relative lg:top-5">
             <div>
               <img

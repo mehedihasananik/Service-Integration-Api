@@ -2,10 +2,11 @@ import Container from "@/Components/Container/Container";
 import React from "react";
 import { TiArrowRight } from "react-icons/ti";
 import ShowcaseProjects from "../ShowcaseProjects/ShowcaseProjects";
+import { BookAppointmentButton } from "../ComboGroupBtn/ComboGroupBtn";
 
 const ComboDeals = () => {
   return (
-    <div className="">
+    <div className="mb-[5%]">
       <Container>
         <div className="px-2 xl:px-[10%]">
           {/* Header Section */}
@@ -99,6 +100,9 @@ const ComboDeals = () => {
               />
             </div>
           </section>
+        </div>
+        <div className="flex justify-center font-bold mt-5">
+          <BookAppointmentButton />
         </div>
       </Container>
     </div>

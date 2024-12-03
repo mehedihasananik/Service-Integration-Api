@@ -78,7 +78,7 @@ export default function ComboContact() {
                       <input
                         id="name"
                         type="text"
-                        placeholder="Your Name"
+                        placeholder="John Smith"
                         {...register("name", { required: "Name is required" })}
                         className="mt-1 p-3 w-full bg-white text-black rounded-lg border border-gray-300"
                       />
@@ -140,12 +140,12 @@ export default function ComboContact() {
                         htmlFor="company"
                         className="block text-sm font-medium"
                       >
-                        Company
+                        Website
                       </label>
                       <input
                         id="company"
                         type="text"
-                        placeholder="Envobyte"
+                        placeholder="www.website.com"
                         {...register("company", {
                           required: "Company is required",
                         })}
@@ -229,7 +229,7 @@ export default function ComboContact() {
                   <p className="text-sm">support@envobyte.com</p>
                 </div>
               </a>
-              <hr className="w-[70%] border-[0.5px] border-gray-400" />
+              <hr className="w-[70%] border-[0.5px] border-gray-600 " />
             </div>
 
             <div className="space-y-3">
@@ -251,7 +251,7 @@ export default function ComboContact() {
                   <p className="text-sm">+1 (667) 777 2477</p>
                 </div>
               </a>
-              <hr className="w-[70%] border-[0.5px] border-gray-400" />
+              <hr className="w-[70%] border-[0.5px] border-gray-600 " />
             </div>
 
             <div className="space-y-3">
@@ -273,7 +273,7 @@ export default function ComboContact() {
                   <p className="text-sm">www.linkedin.com/company/envobyte</p>
                 </div>
               </a>
-              <hr className="w-[70%] border-[0.5px] border-gray-400" />
+              <hr className="w-[70%] border-[0.5px] border-gray-600 " />
             </div>
           </div>
         </div>

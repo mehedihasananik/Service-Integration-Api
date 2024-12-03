@@ -35,6 +35,7 @@ module.exports = {
         Raleway: ["Raleway", "sans-serif"],
         OpenSans: ["Open Sans", "sans-serif"],
         Poppins: ["Poppins", "sans-serif"],
+        Inter: ["Inter", "sans-serif"],
       },
       animation: {
         "fade-in": "fadeIn 0.5s ease-out forwards",

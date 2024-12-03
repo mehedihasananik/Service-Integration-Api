@@ -20,6 +20,7 @@
     height: 450px !important;
   }
 }
+
 @media only screen and (max-width: 1500px) {
   .custom-margin {
     margin-left: 0% !important;
@@ -29,6 +30,17 @@
   }
   .no-margin2 {
     margin-left: 0% !important;
+  }
+}
+@media only screen and (max-width: 1369px) {
+  .pricing_bg {
+    background-image: url("/assets/pricingBg.png");
+    background-repeat: no-repeat;
+    background-size: center;
+    background-position: center;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
   }
 }
 
@@ -145,6 +157,9 @@
     background-size: cover;
     background-position: center;
     overflow: hidden;
+  }
+  .containerStats {
+    background-size: cover;
   }
   .service_section {
     background-image: none;

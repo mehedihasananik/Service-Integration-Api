@@ -3,6 +3,10 @@ import React from "react";
 import ComboPortfolioSlider from "./ComboPortfolioSlider";
 import { fetchData } from "@/config/fetchData";
 import { updatePortfolio } from "@/config/apis";
+import {
+  BookAppointmentButton,
+  SeePricingButton,
+} from "../ComboGroupBtn/ComboGroupBtn";
 
 const ComboPortfolio = async () => {
   let { ServiceportfolioArray } = await fetchData(updatePortfolio);
@@ -10,7 +14,7 @@ const ComboPortfolio = async () => {
   return (
     <>
       <div id="portfolio">
-        <h2 className="combo_title">CheckOut Our Portfolio</h2>
+        <h2 className="combo_title">Checkout Our Portfolio</h2>
         <div className="flex justify-center pt-4 md:pt-0">
           <p className="combo_des text-center md:w-[33%]">
             Portfolio That Reflects Our Expertise Explore our innovative,
@@ -21,6 +25,10 @@ const ComboPortfolio = async () => {
       </div>
 
       <ComboPortfolioSlider services={ServiceportfolioArray} />
+      <div className="flex flex-col md:flex-row justify-center text-[16px] font-bold gap-x-5 mt-5">
+        <SeePricingButton />
+        <BookAppointmentButton />
+      </div>
     </>
   );
 };
