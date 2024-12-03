@@ -40,10 +40,15 @@ const CustomDropdown = ({
   const maintenance = options.some((option) =>
     option.toLowerCase().includes("maintenance")
   );
+  const website = options.some((option) =>
+    option.toLowerCase().includes("website")
+  );
 
   // Conditionally set the width based on the options
   const containerWidth = containsLogo
-    ? "w-[110px] md:w-[196px]" // If the option contains "logo"
+    ? "w-[110px] md:w-[180px]" // If the option contains "logo"
+    : website
+    ? "w-[110px] md:w-[150px]"
     : containsPage
     ? "w-[80px] md:w-[175px]" // If the option contains "page"
     : containsSec

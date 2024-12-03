@@ -22,7 +22,7 @@ const ComboHeaderItems = ({ headers, isMobileMenuOpen, toggleMobileMenu }) => {
                 <Link
                   key={index}
                   href={item.menu_link}
-                  className="text-white hover:text-primary transition-colors font-semibold uppercase tracking-[1px]"
+                  className="text-white hover:text-primary transition-colors font-semibold uppercase tracking-[.5px]"
                 >
                   {item.menu_name}
                 </Link>
@@ -35,7 +35,7 @@ const ComboHeaderItems = ({ headers, isMobileMenuOpen, toggleMobileMenu }) => {
               href="#appointment"
               className="bg-white  text-[#0A2C8C] px-5 py-2.5 rounded-md hover:bg-[#0A2C8C] hover:text-white transition-colors font-semibold font-Inter "
             >
-              Book an Appointment
+              Book an appointment
             </Link>
           </div>
         </nav>

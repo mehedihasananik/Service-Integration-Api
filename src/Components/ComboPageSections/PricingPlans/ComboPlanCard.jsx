@@ -105,8 +105,8 @@ const ComboPlanCard = ({ plan }) => {
       <div
         className={`text-lg ${
           plan.isDark
-            ? "text-white font-bold md:text-[18px]"
-            : "text-[#0A2C8C] font-bold md:text-[18px]"
+            ? "text-[#FFD54D] font-semibold md:text-[18px] font-Inter "
+            : "text-[#0A2C8C] font-semibold md:text-[18px] font-Inter "
         }`}
       >
         {plan.title}
@@ -128,7 +128,7 @@ const ComboPlanCard = ({ plan }) => {
           </div>
 
           {plan.title === "Custom Plan" ? (
-            <div className="text-sm text-opacity-40 line-through">
+            <div className="text-sm text-opacity-40 line-through text-[#FFFFFF4D]">
               {`$${parseFloat(totalDiscountPrice).toFixed(2)}`}
             </div>
           ) : (
@@ -168,9 +168,9 @@ const ComboPlanCard = ({ plan }) => {
 
       <button
         onClick={handlePlaceOrder}
-        className={`mt-9 p-3 w-full rounded flex justify-center items-center text-[16px] font-medium ${
+        className={`mt-9 p-3 w-full rounded flex justify-center items-center text-[16px] font-semibold ${
           plan.isDark
-            ? "bg-white text-blue-900"
+            ? "bg-[#FFD54D] text-blue-900"
             : "bg-blue-900 text-white shadow-sm"
         }`}
       >

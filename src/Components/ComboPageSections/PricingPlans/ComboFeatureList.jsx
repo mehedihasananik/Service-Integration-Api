@@ -73,7 +73,7 @@ const ComboFeatureList = ({
           }`}
         >
           <div
-            className={`whitespace-nowrap font-bold text-[14px] md:text-[16px] ${
+            className={`whitespace-nowrap font-semibold text-[14px] md:text-[16px] font-Inter ${
               isDark
                 ? "text-white "
                 : "text-[#0A2C8C]" +

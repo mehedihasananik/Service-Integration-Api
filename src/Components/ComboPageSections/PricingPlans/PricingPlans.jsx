@@ -50,8 +50,7 @@ const PricingPlans = () => {
                 "Scale your business with the essential tools to boost your online presence.",
               iconSrcError:
                 "https://cdn.builder.io/api/v1/image/assets/e7a246693dbe47b68ba0a6f099060cf8/c6192dc25953d0c31c7432f7e09db95874d8a54296018ca3e3eecda042c32a7a?apiKey=5dfe0fed099d4e7fb78a3e68f506b2af&",
-              iconSrc:
-                "https://cdn.builder.io/api/v1/image/assets/e7a246693dbe47b68ba0a6f099060cf8/c6192dc25953d0c31c7432f7e09db95874d8a54296018ca3e3eecda042c32a7a?apiKey=5dfe0fed099d4e7fb78a3e68f506b2af&",
+              iconSrc: "/assets/crown2.png",
               isDark: true,
               features: [
                 { name: "Professional Logo Design", active: true },
@@ -109,47 +108,47 @@ const PricingPlans = () => {
                   options: [
                     { Option: "None", Price: "0" },
                     {
-                      Option: "4 page website",
+                      Option: "4 pages ",
                       Price: "200.00",
                       discountP: "399.00",
                     },
                     {
-                      Option: "6 page website",
+                      Option: "6 pages ",
                       Price: "250.00",
                       discountP: "499.00",
                     },
                     {
-                      Option: "8 page website",
+                      Option: "8 pages ",
                       Price: "350.00",
                       discountP: "699.00",
                     },
                     {
-                      Option: "10 page website",
+                      Option: "10 pages ",
                       Price: "450.00",
                       discountP: "899.00",
                     },
                     {
-                      Option: "12 page website",
+                      Option: "12 pages ",
                       Price: "600.00",
                       discountP: "1199.00",
                     },
                     {
-                      Option: "14 page website",
+                      Option: "14 pages ",
                       Price: "700.00",
                       discountP: "1399.00",
                     },
                     {
-                      Option: "16 page website",
+                      Option: "16 pages ",
                       Price: "800.00",
                       discountP: "1599.00",
                     },
                     {
-                      Option: "18 page website",
+                      Option: "18 pages ",
                       Price: "900.00",
                       discountP: "1799.00",
                     },
                     {
-                      Option: "20 page website",
+                      Option: "20 pages ",
                       Price: "1000.00",
                       discountP: "1999.00",
                     },
