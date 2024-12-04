@@ -2,17 +2,16 @@ import Container from "@/Components/Container/Container";
 import React from "react";
 import ComboClientSlider from "./ComboClientSlider";
 import { fetchData } from "@/config/fetchData";
-import { BookAppointmentButton } from "../ComboGroupBtn/ComboGroupBtn";
+import { comboTestimonial } from "@/config/apis";
 
 const ComboClientReview = async () => {
-  const testimonials = await fetchData(
-    "http://192.168.10.16:8000/api/testimonials_items_landing"
-  );
+  const testimonials = await fetchData(comboTestimonial);
+
   return (
     <Container>
       <div className="">
         <div className="text-center">
-          <h2 className="combo_title pb-2 md:pb-0 ">
+          <h2 className="text-[#0A2C8C] font-Inter text-[20px] md:text-[36px] lg:text-[48px] font-extrabold text-center pt-[2%] md:pt-[5%] pb-2 md:pb-0 ">
             What our clients have to say
           </h2>
           <div className="flex justify-center">
@@ -30,9 +29,6 @@ const ComboClientReview = async () => {
             testimonials={testimonials.items}
             details={testimonials.testimonials}
           />
-        </div>
-        <div className="flex justify-center font-bold mt-5">
-          <BookAppointmentButton />
         </div>
       </div>
     </Container>

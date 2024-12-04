@@ -4,6 +4,7 @@ import ComboFeatureList from "./ComboFeatureList";
 import { TiArrowRight } from "react-icons/ti";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { comboCheckoutApi } from "@/config/apis";
 
 const ComboPlanCard = ({ plan }) => {
   const [totalPrice, setTotalPrice] = useState(0);
@@ -62,15 +63,11 @@ const ComboPlanCard = ({ plan }) => {
     };
 
     try {
-      const response = await axios.post(
-        "http://192.168.10.16:8000/api/custom/checkout",
-        orderData,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await axios.post(comboCheckoutApi, orderData, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 
       if (response.status === 200) {
         // If session_url is present in the response, navigate to it
@@ -94,12 +91,12 @@ const ComboPlanCard = ({ plan }) => {
   return (
     <div
       key={plan.title}
-      className={`flex flex-col px-6 py-6 rounded-lg w-[350px] md:w-[430px] ${
-        errorMessage ? "border-2 border-red-500" : "border border-slate-200 "
+      className={`flex flex-col px-6 py-6 rounded-lg w-[350px] md:w-[400px] xl:w-[400px] xxl:w-[430px] font-Inter ${
+        errorMessage
+          ? "border-[3px] border-[#FF5050] text-[14px] font-Inter"
+          : "border border-slate-200 "
       } ${
-        plan.isDark
-          ? "bg-[#0A2C8C] text-white"
-          : "bg-white text-[#0A2C8C] shadow-sm"
+        plan.isDark ? "bg-[#0A2C8C] text-white" : "bg-white text-[#0A2C8C] "
       }`}
     >
       <div
@@ -118,33 +115,41 @@ const ComboPlanCard = ({ plan }) => {
           <img src={plan.iconSrc} alt="" className="w-10" />
         )}
 
-        <div className="flex flex-1 gap-3 items-center">
+        <div className="flex flex-1 gap-3 items-center font-Inter">
           <div
-            className={`md:text-[40px] ${
-              errorMessage ? "text-red-600 font-bold" : "font-bold"
-            }`}
+            className={`md:text-[40px] font-Inter ${
+              errorMessage ? "text-[#FF5050] font-semibold" : "font-semibold"
+            } ${plan.title === "Premium+ Plan" ? "text-[#FFD54D]" : ""}`}
           >
             {`$${originalPrice.toFixed(2)}`}
           </div>
 
-          {plan.title === "Custom Plan" ? (
-            <div className="text-sm text-opacity-40 line-through text-[#FFFFFF4D]">
-              {`$${parseFloat(totalDiscountPrice).toFixed(2)}`}
-            </div>
-          ) : (
-            <div className="text-sm text-opacity-40 line-through">
-              {`$${parseFloat(plan.originalPrice).toFixed(2)}`}
-            </div>
-          )}
+          <div className="mt-6  font-medium font-Inter">
+            {plan.title === "Custom Plan" ? (
+              <div className="text-[14px] line-through text-gray-400 font-Inter">
+                {`$${parseFloat(totalDiscountPrice).toFixed(2)}`}
+              </div>
+            ) : (
+              <div className="text-[14px]  line-through text-gray-400 font-Inter">
+                {`$${parseFloat(plan.originalPrice).toFixed(2)}`}
+              </div>
+            )}
+          </div>
           {errorMessage && (
-            <span className="mt-3 font-bold text-red-600 text-sm relative top-0">
+            <span className="mt-3 font-bold text-[14px] font-Inter text-[#FF5050] text-sm relative top-0">
               {errorMessage}
             </span>
           )}
         </div>
       </div>
-      <div className="mt-4">{plan.description}</div>
-      <hr className="mt-6 divide-y divide-slate-600 " />
+      <div className="mt-4 font-Inter text-[16px] font-normal">
+        {plan.description}
+      </div>
+      {plan.title === "Premium+ Plan" ? (
+        <hr className="mt-6 border-t border-[#FFD54D]" />
+      ) : (
+        <hr className="mt-6 border-t border-[#E1E4ED]" />
+      )}
 
       {/* Pass the necessary props to ComboFeatureList */}
       <ComboFeatureList
@@ -168,8 +173,10 @@ const ComboPlanCard = ({ plan }) => {
 
       <button
         onClick={handlePlaceOrder}
-        className={`mt-9 p-3 w-full rounded flex justify-center items-center text-[16px] font-semibold ${
-          plan.isDark
+        className={`mt-9 p-3 w-full rounded flex justify-center items-center text-[16px] font-semibold font-Inter ${
+          plan.title === "Custom Plan"
+            ? "bg-[#0A2C8C66] text-[#fff]" // Custom Plan color
+            : plan.isDark
             ? "bg-[#FFD54D] text-blue-900"
             : "bg-blue-900 text-white shadow-sm"
         }`}

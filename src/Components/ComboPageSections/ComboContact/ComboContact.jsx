@@ -1,6 +1,6 @@
 "use client";
 import ComboContainer from "@/Components/Container/ComboContainer";
-import Container from "@/Components/Container/Container";
+import { user_feedbackApi } from "@/config/apis";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
@@ -13,26 +13,28 @@ export default function ComboContact() {
   } = useForm();
   const [responseMessage, setResponseMessage] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); // State for loading
 
   // Handle form submission
   const onSubmit = async (data) => {
+    // Set loading to true when the form is being submitted
+    setIsLoading(true);
+    setResponseMessage(""); // Reset any previous message
+
     // Create FormData object
     const form = new FormData();
-    form.append("name", data.name);
-    form.append("email", data.email);
-    form.append("phone", data.phone);
-    form.append("company", data.company);
+    form.append("first_name", data.first_name);
+    form.append("user_email", data.user_email);
+    form.append("user_phone", data.user_phone);
+    form.append("website", data.website);
     form.append("message", data.message);
 
     try {
       // Send the POST request
-      const response = await fetch(
-        "http://192.168.10.16:8000/api/comboservices/contact-us/",
-        {
-          method: "POST",
-          body: form,
-        }
-      );
+      const response = await fetch(user_feedbackApi, {
+        method: "POST",
+        body: form,
+      });
 
       const result = await response.json();
       console.log(result);
@@ -40,7 +42,7 @@ export default function ComboContact() {
       // Check if the response was successful
       if (result.success) {
         setIsSuccess(true);
-        setResponseMessage(result.message); // Display the success message from response
+        setResponseMessage("Your form has been successfully submitted!"); // Success message
 
         // Reset the form fields after successful submission
         reset();
@@ -52,6 +54,9 @@ export default function ComboContact() {
       console.error("Error:", error);
       setIsSuccess(false);
       setResponseMessage("An error occurred. Please try again.");
+    } finally {
+      // Set loading to false once the request is complete
+      setIsLoading(false);
     }
   };
 
@@ -63,50 +68,52 @@ export default function ComboContact() {
       <ComboContainer>
         <div className="w-full mx-auto px-0 grid grid-cols-1 md:grid-cols-2 gap-x-20">
           {/* Left Side: Contact Form */}
-          <div className="space-y-6 border border-gray-600  md:p-7 rounded-lg">
+          <div className="space-y-6 md:border md:border-gray-600  md:p-7 rounded-lg">
             <div className="space-y-10">
               <form onSubmit={handleSubmit(onSubmit)}>
-                <div className="space-y-4">
+                <div className="space-y-4 font-Inter">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label
-                        htmlFor="name"
+                        htmlFor="first_name"
                         className="block text-sm font-medium"
                       >
                         Name
                       </label>
                       <input
-                        id="name"
+                        id="first_name"
                         type="text"
-                        placeholder="John Smith"
-                        {...register("name", { required: "Name is required" })}
-                        className="mt-1 p-3 w-full bg-white text-black rounded-lg border border-gray-300"
+                        placeholder="John Smith"
+                        {...register("first_name", {
+                          required: "Name is required",
+                        })}
+                        className="mt-2 p-3 w-full bg-white text-black rounded-lg border border-gray-300"
                       />
-                      {errors.name && (
+                      {errors.first_name && (
                         <p className="text-red-500 text-sm">
-                          {errors.name.message}
+                          {errors.first_name.message}
                         </p>
                       )}
                     </div>
                     <div>
                       <label
-                        htmlFor="email"
+                        htmlFor="user_email"
                         className="block text-sm font-medium"
                       >
                         Email
                       </label>
                       <input
-                        id="email"
+                        id="user_email"
                         type="email"
                         placeholder="support@envobyte.com"
-                        {...register("email", {
+                        {...register("user_email", {
                           required: "Email is required",
                         })}
-                        className="mt-1 p-3 w-full bg-white text-black rounded-lg border border-gray-300"
+                        className="mt-2 p-3 w-full bg-white text-black rounded-lg border border-gray-300"
                       />
-                      {errors.email && (
+                      {errors.user_email && (
                         <p className="text-red-500 text-sm">
-                          {errors.email.message}
+                          {errors.user_email.message}
                         </p>
                       )}
                     </div>
@@ -115,45 +122,45 @@ export default function ComboContact() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label
-                        htmlFor="phone"
+                        htmlFor="user_phone"
                         className="block text-sm font-medium"
                       >
                         Phone
                       </label>
                       <input
-                        id="phone"
+                        id="user_phone"
                         type="text"
                         placeholder="+1 (667) 777 2477"
-                        {...register("phone", {
+                        {...register("user_phone", {
                           required: "Phone is required",
                         })}
-                        className="mt-1 p-3 w-full bg-white text-black rounded-lg border border-gray-300"
+                        className="mt-2 p-3 w-full bg-white text-black rounded-lg border border-gray-300"
                       />
-                      {errors.phone && (
+                      {errors.user_phone && (
                         <p className="text-red-500 text-sm">
-                          {errors.phone.message}
+                          {errors.user_phone.message}
                         </p>
                       )}
                     </div>
                     <div>
                       <label
-                        htmlFor="company"
+                        htmlFor="website"
                         className="block text-sm font-medium"
                       >
                         Website
                       </label>
                       <input
-                        id="company"
+                        id="website"
                         type="text"
                         placeholder="www.website.com"
-                        {...register("company", {
-                          required: "Company is required",
+                        {...register("website", {
+                          required: "Website is required",
                         })}
-                        className="mt-1 p-3 w-full bg-white text-black rounded-lg border border-gray-300"
+                        className="mt-2 p-3 w-full bg-white text-black rounded-lg border border-gray-300"
                       />
-                      {errors.company && (
+                      {errors.website && (
                         <p className="text-red-500 text-sm">
-                          {errors.company.message}
+                          {errors.website.message}
                         </p>
                       )}
                     </div>
@@ -173,7 +180,7 @@ export default function ComboContact() {
                       {...register("message", {
                         required: "Message is required",
                       })}
-                      className="mt-1 p-3 w-full bg-white text-black rounded-lg border border-gray-300"
+                      className="mt-2 p-3 w-full bg-white text-black rounded-lg border border-gray-300"
                     />
                     {errors.message && (
                       <p className="text-red-500 text-sm">
@@ -185,8 +192,15 @@ export default function ComboContact() {
                   <button
                     type="submit"
                     className="mt-4 bg-[#536BAE] text-white font-bold py-3 px-6 rounded-lg hover:text-black hover:bg-white transition"
+                    disabled={isLoading} // Disable the button during loading
                   >
-                    Send message
+                    {isLoading ? (
+                      <div className="flex justify-center items-center">
+                        Submitting...
+                      </div>
+                    ) : (
+                      "Send message"
+                    )}
                   </button>
                 </div>
               </form>
@@ -194,7 +208,7 @@ export default function ComboContact() {
               {responseMessage && (
                 <div
                   className={`mt-4 text-lg font-semibold ${
-                    isSuccess ? "text-green-500" : "text-red-500"
+                    isSuccess ? "text-white" : "text-red-500"
                   }`}
                 >
                   {responseMessage}
@@ -204,13 +218,13 @@ export default function ComboContact() {
           </div>
 
           {/* Right Side: Contact Information */}
-          <div className="space-y-6">
-            <h2 className="text-[25px] md:text-[48px] font-bold leading-none">
-              Let us know what <br /> you think!
+          <div className="space-y-6 mt-5 md:mt-0">
+            <h2 className="text-[25px] md:text-[48px] font-bold leading-[50px] md:w-[60%]">
+              Let us know what you think!
             </h2>
             <p className="text-[16px] ">
               Got something on your mind? Share it with us! Drop a message, and
-              we'll respond quickly to assist you.
+              we&apos;ll respond quickly to assist you.
             </p>
             <div className="space-y-3">
               <a

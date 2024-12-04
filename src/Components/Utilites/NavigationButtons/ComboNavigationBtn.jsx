@@ -12,7 +12,7 @@ const ComboNavigationBtn = ({
       className={`flex justify-center items-center lg:justify-start lg:items-start gap-6 py-4 md:mb-4 ${className}`}
     >
       <button
-        className="group bg-[#F8FAFF] hover:bg-[#0A2C8C] px-4 py-4 rounded-lg transition-all duration-300"
+        className="group bg-[#F8FAFF] hover:bg-[#0A2C8C] px-4 py-4 rounded-lg transition-all duration-300 border"
         onClick={onPrev}
       >
         <HiArrowLeft
@@ -22,7 +22,7 @@ const ComboNavigationBtn = ({
       </button>
 
       <button
-        className="group bg-[#0A2C8C] hover:bg-[#F8FAFF] px-4 py-4 rounded-lg transition-all duration-300"
+        className="group bg-[#0A2C8C] hover:bg-[#F8FAFF] border hover:border px-4 py-4 rounded-lg transition-all duration-300"
         onClick={onNext}
       >
         <HiArrowRight

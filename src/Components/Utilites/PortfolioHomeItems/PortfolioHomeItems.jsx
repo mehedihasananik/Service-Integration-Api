@@ -133,7 +133,7 @@ const PortfolioHomeItems = ({
                   <div className="group rounded-lg overflow-hidden border border-[#CBD5E1]">
                     <div className="portfolio-bgHover w-full cursor-pointer flex flex-col xl:flex-row bg-white rounded-lg">
                       <div className="w-full xl:w-1/2">
-                        <div className="relative w-full lg:aspect-[330/370] h-[270px] md:h-[400px] lg:h-auto overflow-hidden">
+                        <div className="relative w-full lg:aspect-[330/370] h-[270px] md:h-[400px] lg:w-[345px]  lg:h-[370px] overflow-hidden">
                           <Image
                             src={portfolio?.image}
                             fill // Replaces layout="fill"

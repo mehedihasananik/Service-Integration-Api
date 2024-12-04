@@ -50,7 +50,7 @@ const ComboBrands = ({ brands }) => {
   return (
     <Container>
       <div>
-        <h2 className="text-[20px] md:text-[24px] text-[#5168A7] text-center font-bold py-8 md:py-15">
+        <h2 className="text-[20px] md:text-[24px] font-Inter text-[#5168A7] text-center font-semibold py-8 md:py-15">
           Trusted by Top Brands
         </h2>
       </div>

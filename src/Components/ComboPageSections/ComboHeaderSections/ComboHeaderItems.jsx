@@ -4,6 +4,17 @@ import Link from "next/link";
 import { RxHamburgerMenu } from "react-icons/rx";
 
 const ComboHeaderItems = ({ headers, isMobileMenuOpen, toggleMobileMenu }) => {
+  const handleSmoothScroll = (e) => {
+    e.preventDefault();
+    const target = document.querySelector(e.target.getAttribute("href"));
+
+    if (target) {
+      window.scrollTo({
+        top: target.offsetTop,
+        behavior: "smooth",
+      });
+    }
+  };
   return (
     <div className="max-w-[1520px] mx-auto px-[6%] md:px-[0%] xl:px-[8%] 4xl:px-[4%] pt-3 ">
       <header className="relative z-50">
@@ -15,7 +26,7 @@ const ComboHeaderItems = ({ headers, isMobileMenuOpen, toggleMobileMenu }) => {
           </Link>
 
           {/* Menu Items - Center */}
-          <div className="flex space-x-6 items-center font-Inter font-semibold text-[16px] ">
+          <div className="flex space-x-6 items-center font-Inter font-semibold text-[14px] lg:text-[16px] ">
             {headers.menu
               .filter((item) => item.menu_name !== "Book An Appointment")
               .map((item, index) => (
@@ -31,12 +42,13 @@ const ComboHeaderItems = ({ headers, isMobileMenuOpen, toggleMobileMenu }) => {
 
           {/* Book Appointment - Right Side */}
           <div>
-            <Link
+            <a
+              onClick={handleSmoothScroll}
               href="#appointment"
-              className="bg-white  text-[#0A2C8C] px-5 py-2.5 rounded-md hover:bg-[#0A2C8C] hover:text-white transition-colors font-semibold font-Inter "
+              className="bg-white  text-[#0A2C8C] px-5 py-3 rounded-md hover:bg-[#0A2C8C] hover:text-white transition-colors font-semibold font-Inter "
             >
               Book an appointment
-            </Link>
+            </a>
           </div>
         </nav>
 

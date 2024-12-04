@@ -50,7 +50,7 @@ const CustomDropdown = ({
     : website
     ? "w-[110px] md:w-[150px]"
     : containsPage
-    ? "w-[80px] md:w-[175px]" // If the option contains "page"
+    ? "w-[80px] md:w-[155px]" // If the option contains "page"
     : containsSec
     ? " w-[172px]" // If the option contains "sec"
     : containsPlatform

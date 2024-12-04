@@ -116,10 +116,10 @@
 
   /* combo hero section starts */
   .combo_title {
-    @apply text-[#0A2C8C] text-[20px] md:text-[36px] lg:text-[48px] font-bold text-center pt-[2%] md:pt-[3%];
+    @apply text-[#0A2C8C] font-Inter text-[20px] md:text-[36px] lg:text-[48px] font-bold text-center pt-[2%] md:pt-[3%];
   }
   .combo_des {
-    @apply text-[16px] text-[#6D758F] pt-[.5%];
+    @apply font-Inter text-[16px] text-[#6D758F] pt-[.5%] font-normal;
   }
 
   .combo_hero {
@@ -134,13 +134,13 @@
     overflow: hidden; /* Prevent any overflow */
   }
   .youtube_vdoSection {
-    background-image: url("/assets/youtubeSection.png");
+    background-image: url("/assets/youtubeSection1.png");
     background-repeat: no-repeat;
     background-size: cover; /* Changed from 'center' to 'cover' for full stretching */
     background-position: center;
     position: relative; /* Added to ensure proper z-index stacking */
     z-index: -19; /* Adjusted z-index to ensure content is above background */
-    height: 900px;
+    height: 100%;
     width: 100%;
     overflow: hidden; /* Prevent any overflow */
   }
@@ -188,6 +188,7 @@
     height: 600px;
     width: 100%;
     z-index: 1; /* Background image is placed above bgGirl */
+    border-radius: 15px;
   }
   /* .showcase_section {
     background-image: url("/assets/comboDeals.png");

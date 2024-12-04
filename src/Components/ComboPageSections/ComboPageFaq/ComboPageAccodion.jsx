@@ -20,13 +20,13 @@ const ComboPageAccodion = ({ title, answer, index }) => {
             0{index + 1}
           </span>
 
-          <h3 className="text-[#334155] text-headingCaption lg:text-headingSmall text-left">
+          <h3 className="text-[#6D758F] font-Inter font-semibold text-headingCaption lg:text-headingSmall text-left">
             {title}
           </h3>
         </div>
 
         <svg
-          className="fill-indigo-500 shrink-0 ml-2 md:ml-8 w-4 h-4 md:w-6 md:h-6"
+          className="fill-[#6D758F] shrink-0 ml-2 md:ml-8 w-4 h-4 md:w-4 md:h-4"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 16 16"
         >
@@ -57,7 +57,7 @@ const ComboPageAccodion = ({ title, answer, index }) => {
             : "grid-rows-[0fr] opacity-0"
         }`}
       >
-        <div className="overflow-hidden text-left text-paragraphSmall md:text-paragraph px-3 md:px-4 py-0 lg:ml-[5%]">
+        <div className="overflow-hidden font-Inter text-[#6D758F] text-left text-paragraphSmall md:text-paragraph px-3 md:px-4 py-0 lg:ml-[5%]">
           <p className="py-3 pb-6 md:pb-8">{answer}</p>
         </div>
       </div>

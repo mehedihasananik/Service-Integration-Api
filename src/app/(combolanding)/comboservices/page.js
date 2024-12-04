@@ -1,3 +1,4 @@
+import { Testimonial } from "@/Components";
 import { BusinessTransform } from "@/Components/ComboPageSections/BusinessTransform/BusinessTransform";
 import ComboClientReview from "@/Components/ComboPageSections/ComboClientReview/ComboClientReview";
 import ComboContact from "@/Components/ComboPageSections/ComboContact/ComboContact";
@@ -20,7 +21,7 @@ const LandingPage = async () => {
           <ComboHeroSection />
         </div>
       </div>
-      <div className="">
+      <div className="pb-4 md:pb-0">
         <VideoSection />
       </div>
       <div className="bg-[#FCFEFF]">
@@ -38,8 +39,7 @@ const LandingPage = async () => {
         <ComboPageFaq title="Frequently Asked Questions" />
       </div>
       <ComboContact />
-
-      <div className="appointmentBg">
+      <div className="appointmentBg py-5">
         <ScheduleMeetingContent />
       </div>
     </>

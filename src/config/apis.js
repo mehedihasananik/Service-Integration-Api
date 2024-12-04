@@ -67,6 +67,11 @@ const customer_requirements = `${apiEndpoint}/customer/requirement`;
 const onBoardingApiData = `${apiEndpoint}/onboarding`;
 const onBoardingApiForm = `${apiEndpoint}/onboarding-form`;
 
+// combopage
+const comboTestimonial = `${apiEndpoint}/testimonials_items_landing`;
+const comboPortfolioApi = `${apiEndpoint}/service_portfolio_landingpage`;
+const comboCheckoutApi = `${apiEndpoint}/custom/checkout`;
+
 export {
   headerApi,
   bannerApi,
@@ -104,4 +109,7 @@ export {
   onBoardingApiData,
   onBoardingApiForm,
   updatePortfolio,
+  comboTestimonial,
+  comboPortfolioApi,
+  comboCheckoutApi,
 };

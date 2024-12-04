@@ -31,29 +31,24 @@ export default function ShowcaseProjects() {
 
   // Divider Component Inline
   const Divider = () => (
-    <img
-      loading="lazy"
-      src="https://cdn.builder.io/api/v1/image/assets/e7a246693dbe47b68ba0a6f099060cf8/ee01a84e227f2db953da6a0313985be5cccd0397c8e4071e174dc15ffe69e167?apiKey=e7a246693dbe47b68ba0a6f099060cf8&"
-      alt=""
-      className="object-contain shrink-0 w-px aspect-[0.02] stroke-[1px] stroke-gray-400"
-    />
+    <img loading="lazy" src="/assets/Divider.png" alt="" className="" />
   );
 
   return (
     <div className="">
       <section className="showcase_section  flex overflow-hidden flex-col justify-center items-center px-10 py-14 rounded-lg max-md:px-5 md:pt-[1%]">
         {/* Title */}
-        <h2 className="text-[20px] md:text-4xl font-extrabold leading-none text-center text-blue-900 max-md:max-w-full">
+        <h2 className="text-[20px] md:text-4xl font-extrabold leading-none text-center text-[#0A2C8C] max-md:max-w-full">
           Numbers that showcase our success
         </h2>
         {/* Subtitle */}
-        <p className="mt-6 text-base leading-6 text-center text-slate-500 w-[656px] max-md:max-w-full">
+        <p className="mt-2 combo_des w-[656px] max-md:max-w-full">
           Over the years, we&apos;ve transformed countless businesses,
           delivering measurable growth and unmatched customer satisfaction. See
           the impact we&apos;ve made!
         </p>
         {/* Statistics */}
-        <div className="containerStats flex flex-wrap space-y-5 md:gap-5 justify-between px-16 py-10 mt-6 w-full font-semibold text-white rounded-xl max-w-[1375px]">
+        <div className="containerStats flex flex-wrap space-y-5 md:space-y-0 md:gap-5 justify-between px-16 py-10 mt-6 w-full font-semibold text-white rounded-xl max-w-[1340px]">
           {statisticsData.map((stat, index) => (
             <React.Fragment key={stat.id}>
               {/* Statistic Card Inline */}
@@ -65,8 +60,12 @@ export default function ShowcaseProjects() {
                   className="object-contain shrink-0 self-stretch my-auto w-12 aspect-square"
                 />
                 <div className="flex flex-col self-stretch my-auto">
-                  <p className="text-2xl leading-none">{stat.count}</p>
-                  <p className="mt-2 text-base leading-none">{stat.label}</p>
+                  <p className="text-[24px] font-semibold leading-none font-Inter">
+                    {stat.count}
+                  </p>
+                  <p className="mt-2 text-[16px] font-semibold text-base leading-none font-Inter">
+                    {stat.label}
+                  </p>
                 </div>
               </article>
               {/* Divider */}

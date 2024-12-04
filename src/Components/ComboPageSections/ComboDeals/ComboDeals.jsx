@@ -1,20 +1,32 @@
+"use client";
 import Container from "@/Components/Container/Container";
 import React from "react";
 import { TiArrowRight } from "react-icons/ti";
-import ShowcaseProjects from "../ShowcaseProjects/ShowcaseProjects";
 import { BookAppointmentButton } from "../ComboGroupBtn/ComboGroupBtn";
 
 const ComboDeals = () => {
+  const handleSmoothScroll = (e) => {
+    e.preventDefault();
+    const target = document.querySelector(e.target.getAttribute("href"));
+
+    if (target) {
+      window.scrollTo({
+        top: target.offsetTop,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
     <div className="mb-[5%]">
       <Container>
-        <div className="px-2 xl:px-[10%]">
+        <div className="px-2 xl:px-[9%]">
           {/* Header Section */}
           <section className="text-center pt-10 ">
-            <h1 className=" font-bold text-blue-900 combo_title">
+            <h1 className=" font-bold text-[#0A2C8C] combo_title">
               Unbeatable Growth Combo Deals
             </h1>
-            <p className="text-gray-700 mt-4 lg:w-[72%] mx-auto">
+            <p className="text-[#6D758F] font-medium mt-4 lg:w-[80%] mx-auto combo_des">
               Unlock professional web development and marketing with our
               limited-time deals. Boost visibility, drive growth, and ensure
               long-term success with our ultimate web development combos!
@@ -24,7 +36,7 @@ const ComboDeals = () => {
           {/* Main Content Section */}
           <section className=" mx-auto py-16 grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Left Content */}
-            <div>
+            <div className="flex justify-center">
               <img
                 src="/assets/deal1.png"
                 alt="Combo Image"
@@ -33,10 +45,10 @@ const ComboDeals = () => {
             </div>
             {/* Left Content */}
             <div className="flex flex-col justify-center items-start space-y-6">
-              <h2 className="text-2xl md:text-[38px] leading-10 font-semibold text-[#5168A7]">
+              <h2 className="text-2xl md:text-[38px] leading-10 font-bold text-[#5168A7] font-Inter">
                 Effortless Solutions Tailored to Your Needs
               </h2>
-              <div className="text-[#6D758F] space-y-2.5 text-[18px]">
+              <div className="text-[#6D758F] space-y-1.5 combo_des text-[18px]">
                 <p>
                   Need a custom website? We deliver hassle-free designs that
                   align with your business goals. Our content connects with your
@@ -55,9 +67,13 @@ const ComboDeals = () => {
                   marketing materials for continuous engagement.
                 </p>
               </div>
-              <button className="bg-[#FF693B] text-white py-2 px-6 rounded-md hover:bg-orange-600 flex items-center">
+              <a
+                onClick={handleSmoothScroll}
+                href="#contact_us"
+                className="bg-[#FF693B] border border-[#FF693B] text-white py-2 px-6 rounded-md hover:bg-white hover:text-[#ff693B] flex items-center"
+              >
                 Get started <TiArrowRight className="text-[20px]" />
-              </button>
+              </a>
             </div>
           </section>
 
@@ -65,10 +81,10 @@ const ComboDeals = () => {
           <section className=" mx-auto md:pb-[0%] grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Left Content */}
             <div className="flex flex-col justify-center items-start space-y-6">
-              <h2 className="text-2xl md:text-[38px] leading-10 font-semibold text-[#5168A7]">
+              <h2 className="text-2xl md:text-[38px] leading-10 font-bold text-[#5168A7] font-Inter">
                 Why Choose Our Combos?
               </h2>
-              <div className="text-[#6D758F] space-y-2.5 text-[18px]">
+              <div className="text-[#6D758F] space-y-1.5 combo_des text-[18px]">
                 <p>
                   Stay stress-free as we handle everything for you and save up
                   to 50% with our all-in-one packages that offer web design,
@@ -86,13 +102,17 @@ const ComboDeals = () => {
                   growing your business.
                 </p>
               </div>
-              <button className="bg-[#FF693B] text-white py-2 px-6 rounded-md hover:bg-orange-600 flex items-center">
+              <a
+                onClick={handleSmoothScroll}
+                href="#contact_us"
+                className="bg-[#FF693B] border border-[#FF693B] text-white py-2 px-6 rounded-md hover:bg-white hover:text-[#ff693B] flex items-center"
+              >
                 Get started <TiArrowRight className="text-[20px]" />
-              </button>
+              </a>
             </div>
 
             {/* Rigt Image */}
-            <div>
+            <div className="flex justify-center">
               <img
                 src="/assets/deal2.png"
                 alt="Why Choose Us"
@@ -101,7 +121,7 @@ const ComboDeals = () => {
             </div>
           </section>
         </div>
-        <div className="flex justify-center font-bold mt-5">
+        <div className="flex justify-center font-bold pt-[10%] md:pt-[5%] px-[10px]">
           <BookAppointmentButton />
         </div>
       </Container>

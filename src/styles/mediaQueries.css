@@ -147,9 +147,18 @@
     width: 100%;
     overflow: hidden; /* Prevent any overflow */
   }
+  .containerStats {
+    background-size: cover;
+  }
+  .pricing_bg {
+    margin-top: 10px !important;
+  }
 }
 
 @media only screen and (max-width: 425px) {
+  .pricing_bg {
+    margin-top: 10px !important;
+  }
   .combo_hero {
     background-image: url("/assets/comboHerosm.png");
     height: auto; /* Allow height to adjust to content */

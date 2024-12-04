@@ -1,5 +1,4 @@
-import Container from "@/Components/Container/Container";
-import * as React from "react";
+"use client";
 import { TiArrowRight } from "react-icons/ti";
 import {
   BookAppointmentButton,
@@ -7,20 +6,32 @@ import {
 } from "../ComboGroupBtn/ComboGroupBtn";
 
 export function BusinessTransform() {
+  const handleSmoothScroll = (e) => {
+    e.preventDefault();
+    const target = document.querySelector(e.target.getAttribute("href"));
+
+    if (target) {
+      window.scrollTo({
+        top: target.offsetTop,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
-    <Container>
+    <div className="max-w-[1520px] mx-auto px-[6%] md:px-[0%] xl:px-[0%] 4xl:px-[4%] ">
       <div className="pb-[1%]">
         <div>
           <div className="hidden lg:block">
             <div className="businessTransformBg">
-              <div className="w-[100%] flex ">
+              <div className="w-[100%] flex justify-evenly ">
                 <div className="md:w-[50%]"></div>
-                <div className="md:w-[50%] text-white pt-[5%]">
+                <div className="md:w-[50%] text-white pt-[5%] flex justify-end">
                   <div>
-                    <h2 className="text-[25px] md:text-[36px] font-bold md:w-[75%]">
+                    <h2 className="text-[25px] md:text-[36px] md:w-[80%] font-Inter font-extrabold leading-tight">
                       Transform Your Business with Zero Hassle
                     </h2>
-                    <div className="space-y-5 md:w-[75%] pt-[3%]">
+                    <div className="space-y-4 md:w-[80%] pt-[3%] combo_des text-[16px] font-normal">
                       <p className="combo_des text-white">
                         Don&apos;t just build a website—build a brand. Our
                         10-page custom WordPress site comes with expert SEO,
@@ -40,27 +51,31 @@ export function BusinessTransform() {
                         your business leaves a lasting impression.
                       </p>
                     </div>
-                    <button className="bg-[#FFFFFF] text-[#0A2C8C] text-[16px] mt-5 md:mt-7 px-4 py-2 flex items-center rounded-md">
+                    <a
+                      href="#contact_us"
+                      onClick={handleSmoothScroll}
+                      className="bg-[#FFFFFF] w-[40%]  font-Inter font-normal text-[#0A2C8C] hover:bg-[#0A2C8C] hover:text-white text-[16px] mt-5 md:mt-7 px-4 py-2 flex justify-center items-center rounded-md transition-all"
+                    >
                       <span> Let&apos;s build something amazing</span>
                       <span>
                         <TiArrowRight className="text-lg " />
                       </span>
-                    </button>
+                    </a>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div className=" lg:hidden">
+          <div className=" lg:hidden ">
             <div className="bg-[#001C5F] rounded-lg">
               <div>
                 <img
-                  className="w-full h-full rounded-t"
-                  src="/assets/singleGirl.png"
+                  className="w-full rounded-t"
+                  src="/assets/girl3.png"
                   alt=""
                 />
               </div>
-              <div className="p-5">
+              <div className="p-5 py-8">
                 <h2 className="text-white font-bold text-[22px] pb-3">
                   Transform Your Business with Zero Hassle
                 </h2>
@@ -82,11 +97,11 @@ export function BusinessTransform() {
             </div>
           </div>
         </div>
-        <div className="flex flex-col md:flex-row justify-center text-[16px] font-bold gap-x-5 mt-[5%]">
+        <div className="flex flex-col md:flex-row justify-center text-[16px] font-bold gap-x-5 gap-y-3 md:gap-y-0 mt-5 md:mt-12">
           <SeePricingButton />
           <BookAppointmentButton />
         </div>
       </div>
-    </Container>
+    </div>
   );
 }

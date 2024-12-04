@@ -4,11 +4,6 @@ import React, { useState, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/swiper-bundle.css";
-import SlideCounter from "@/Components/Utilites/SlideCounter/SlideCounter";
-import NavigationButtons from "@/Components/Utilites/NavigationButtons/NavigationButtons";
-import GlobalButtonColored from "@/Components/Utilites/GlobalButton/GlobalButtonColored";
-import ViewAllButton from "@/Components/Utilites/ViewAllButton/ViewAllButton";
-import ServiceCard from "@/Components/Utilites/ServiceCard/ServiceCard";
 import ComboPortfolioCard from "./ComboPortfolioCard";
 import ComboNavigationBtn from "@/Components/Utilites/NavigationButtons/ComboNavigationBtn";
 
@@ -17,11 +12,11 @@ const breakpoints = {
   768: { slidesPerView: 2.2, spaceBetween: 20 },
   1024: { slidesPerView: 3, spaceBetween: 30 },
   1280: { slidesPerView: 2.3, spaceBetween: 30 },
-  1336: { slidesPerView: 2.5, spaceBetween: 30 },
-  1440: { slidesPerView: 2.6, spaceBetween: 30 },
-  1536: { slidesPerView: 2.8, spaceBetween: 30 },
-  1680: { slidesPerView: 2.8, spaceBetween: 30 },
-  1700: { slidesPerView: 2.8, spaceBetween: 30 },
+  1336: { slidesPerView: 3.2, spaceBetween: 30 },
+  1440: { slidesPerView: 3.3, spaceBetween: 30 },
+  1536: { slidesPerView: 3.5, spaceBetween: 30 },
+  1680: { slidesPerView: 4.3, spaceBetween: 30 },
+  1700: { slidesPerView: 4.5, spaceBetween: 30 },
   1920: { slidesPerView: 5, spaceBetween: 30 },
 };
 

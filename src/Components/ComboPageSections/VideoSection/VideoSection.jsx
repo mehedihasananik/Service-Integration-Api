@@ -18,11 +18,11 @@ const VideoSection = async () => {
       </div>
       <Container>
         <div className="flex flex-col items-center justify-center">
-          <h3 className="text-[20px] md:text-[35px] lg:text-[48px] font-bold text-[#0A2C8C] mt-[5%]">
+          <h3 className="text-[20px] md:text-[35px] lg:text-[48px] font-bold text-[#0A2C8C] mt-[5%] font-Inter">
             Excellence at Every Step
           </h3>
-          <div>
-            <p className="combo_des text-center pt-3 lg:w-[80%]">
+          <div className="flex justify-center">
+            <p className="combo_des text-center pt-3 lg:w-[80%] font-Inter text-[#6D758F] font-normal">
               Our experienced team of developers, designers, and marketers works
               together to deliver outstanding results.
             </p>
@@ -41,6 +41,7 @@ const VideoSection = async () => {
             allowFullScreen
           />
         </div>
+
         <div className="w-full flex md:hidden justify-center my-8">
           <iframe
             width="1120"
@@ -54,7 +55,7 @@ const VideoSection = async () => {
             allowFullScreen
           />
         </div>
-        <div className="flex justify-center text-[16px] font-bold gap-x-5">
+        <div className="flex flex-col md:flex-row justify-center text-[16px] font-bold gap-x-5 gap-y-5 md:gap-y-0">
           <SeePricingButton />
           <BookAppointmentButton />
         </div>
