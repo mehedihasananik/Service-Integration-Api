@@ -178,15 +178,15 @@ const PricingPlans = () => {
                 {
                   name: "Custom Graphics",
                   options: [
-                    { Option: "yes", Price: "40.00", discountP: "80.00" },
-                    { Option: "no", Price: "0", discountP: "0" },
+                    { Option: "Yes", Price: "40.00", discountP: "80.00" },
+                    { Option: "No", Price: "0", discountP: "0" },
                   ],
                 },
                 {
                   name: "Brand Guideline",
                   options: [
-                    { Option: "yes", Price: "50.00", discountP: "100.00" },
-                    { Option: "no", Price: "0", discountP: "0.00" },
+                    { Option: "Yes", Price: "50.00", discountP: "100.00" },
+                    { Option: "No", Price: "0", discountP: "0.00" },
                   ],
                 },
                 {
@@ -219,17 +219,17 @@ const PricingPlans = () => {
                       discountP: "9500.00",
                     },
                     {
-                      Option: "Advanced SEO 1 Month",
+                      Option: "Advanced 1 Month",
                       Price: "1000.00",
                       discountP: "1499.00",
                     },
                     {
-                      Option: "Advanced SEO 3 Months",
+                      Option: "Advanced 3 Months",
                       Price: "2490.00",
                       discountP: "4499.00",
                     },
                     {
-                      Option: "Advanced SEO 1 Year",
+                      Option: "Advanced 1 Year",
                       Price: "7900.00",
                       discountP: "17900.00",
                     },

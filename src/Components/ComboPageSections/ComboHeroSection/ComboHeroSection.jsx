@@ -45,7 +45,7 @@ const ComboHeroSection = () => {
               <a
                 href="#pricing"
                 onClick={handleSmoothScroll} // Add the click handler
-                className="flex justify-center items-center bg-white whitespace-nowrap text-[#0A2C8C] w-[50%] md:w-[100%] lg:w-[100%] text-[14px] md:text-[18px] px-4 md:px-10 lg:px-8 py-3 md:py-1 lg:py-2 font-semibold rounded-md font-Inter"
+                className="flex justify-center items-center bg-white whitespace-nowrap text-[#0A2C8C] hover:bg-[#0A2C8C] hover:text-white  w-[50%] md:w-[100%] lg:w-[100%] text-[14px] md:text-[18px] px-4 md:px-10 lg:px-8 py-3 md:py-1 lg:py-2 font-semibold rounded-md font-Inter transition-all duration-300"
               >
                 See Pricing
               </a>
