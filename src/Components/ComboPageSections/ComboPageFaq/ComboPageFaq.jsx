@@ -14,10 +14,10 @@ const ComboPageFaq = async ({ className, title, containerClass }) => {
     (question) =>
       question.is_landingpage === "1" || question.is_landingpage === 1
   );
-  console.log(className);
 
   return (
     <div
+      id="faqCombo"
       className={`max-w-[1520px] mx-auto px-[0%] md:px-[4%] lg:px-[8%] 4xl:px-[4%] md:mt-0`}
     >
       <div className={`md:py-6 md:pt-0 md:pb-6 ${className}`}>

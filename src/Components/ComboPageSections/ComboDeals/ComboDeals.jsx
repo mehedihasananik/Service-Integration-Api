@@ -18,7 +18,7 @@ const ComboDeals = () => {
   };
 
   return (
-    <div className="mb-[5%]">
+    <div className="mb-[3%]">
       <Container>
         <div className="px-2 xl:px-[9%]">
           {/* Header Section */}

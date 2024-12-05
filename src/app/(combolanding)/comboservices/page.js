@@ -1,4 +1,3 @@
-import { Testimonial } from "@/Components";
 import { BusinessTransform } from "@/Components/ComboPageSections/BusinessTransform/BusinessTransform";
 import ComboClientReview from "@/Components/ComboPageSections/ComboClientReview/ComboClientReview";
 import ComboContact from "@/Components/ComboPageSections/ComboContact/ComboContact";
@@ -27,7 +26,6 @@ const LandingPage = async () => {
       <div className="bg-[#FCFEFF]">
         <ComboClientReview />
       </div>
-
       <ComboPortfolio />
       <div className="comboDeals">
         <ComboDeals />

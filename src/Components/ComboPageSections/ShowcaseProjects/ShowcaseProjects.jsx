@@ -5,7 +5,7 @@ export default function ShowcaseProjects() {
   const statisticsData = [
     {
       id: 1,
-      count: "200+",
+      count: "800+",
       label: "Websites build",
       icon: "https://cdn.builder.io/api/v1/image/assets/e7a246693dbe47b68ba0a6f099060cf8/26684aa8f35edd61be877ff82151124536ee8424f36a37ab1faf0c3c4399c33c?apiKey=e7a246693dbe47b68ba0a6f099060cf8&",
     },
@@ -17,13 +17,13 @@ export default function ShowcaseProjects() {
     },
     {
       id: 3,
-      count: "34+",
+      count: "25+",
       label: "Team members",
       icon: "https://cdn.builder.io/api/v1/image/assets/e7a246693dbe47b68ba0a6f099060cf8/c7f49d7df514be5c977631e7fbc60f0b4edc5d270f61a232fe26a0f4a8633ecd?apiKey=e7a246693dbe47b68ba0a6f099060cf8&",
     },
     {
       id: 4,
-      count: "100+",
+      count: "300+",
       label: "Amazing clients",
       icon: "https://cdn.builder.io/api/v1/image/assets/e7a246693dbe47b68ba0a6f099060cf8/f218d0b1d33ddf7902c976efd34a38b1b49bdeb88758c4b1f48441eb00b85ae3?apiKey=e7a246693dbe47b68ba0a6f099060cf8&",
     },
@@ -36,7 +36,7 @@ export default function ShowcaseProjects() {
 
   return (
     <div className="">
-      <section className="showcase_section  flex overflow-hidden flex-col justify-center items-center px-10 py-14 rounded-lg max-md:px-5 md:pt-[1%]">
+      <section className="showcase_section  flex overflow-hidden flex-col justify-center items-center px-10 py-14 rounded-lg max-md:px-5 md:pt-[0%]">
         {/* Title */}
         <h2 className="text-[20px] md:text-4xl font-extrabold leading-none text-center text-[#0A2C8C] max-md:max-w-full">
           Numbers that showcase our success

@@ -11,7 +11,7 @@ const PricingPlans = () => {
           {/* Static Plan 1 */}
           <ComboPlanCard
             plan={{
-              package_id: 102,
+              package_id: 101,
               service_id: 34,
               user_id: 1,
               title: "Premium Plan",
@@ -40,7 +40,7 @@ const PricingPlans = () => {
           {/* Static Plan 2 */}
           <ComboPlanCard
             plan={{
-              package_id: 103,
+              package_id: 102,
               service_id: 34,
               user_id: 1,
               title: "Premium+ Plan",
@@ -68,7 +68,7 @@ const PricingPlans = () => {
           {/* Static Plan 3 */}
           <ComboPlanCard
             plan={{
-              package_id: 104,
+              package_id: 103,
               service_id: 34,
               user_id: 1,
               title: "Custom Plan",
@@ -83,7 +83,7 @@ const PricingPlans = () => {
               isDark: false,
               features: [
                 {
-                  name: "Professional Logo Design",
+                  name: "Logo Design",
                   options: [
                     { Option: "None", Price: "0", discountP: "0" },
                     {
@@ -104,7 +104,7 @@ const PricingPlans = () => {
                   ],
                 },
                 {
-                  name: "20-Page WordPress Website",
+                  name: "WordPress Website",
                   options: [
                     { Option: "None", Price: "0" },
                     {
@@ -155,7 +155,7 @@ const PricingPlans = () => {
                   ],
                 },
                 {
-                  name: "Content Writing",
+                  name: "Content",
                   options: [
                     { Option: "None", Price: "0" },
                     {
@@ -190,7 +190,7 @@ const PricingPlans = () => {
                   ],
                 },
                 {
-                  name: "Monthly SEO Services",
+                  name: "SEO Services",
                   options: [
                     { Option: "None", Price: "0" },
                     {
@@ -236,7 +236,7 @@ const PricingPlans = () => {
                   ],
                 },
                 {
-                  name: "Social Media Kit & Posts",
+                  name: "Social Media Designs",
                   options: [
                     { Option: "None", Price: "0", discountP: "0" },
                     {
@@ -262,7 +262,7 @@ const PricingPlans = () => {
                   ],
                 },
                 {
-                  name: "Animated Video",
+                  name: "Video",
                   options: [
                     { Option: "None", Price: "0" },
                     {

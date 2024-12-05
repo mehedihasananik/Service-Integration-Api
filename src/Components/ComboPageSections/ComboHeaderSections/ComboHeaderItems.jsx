@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { RxHamburgerMenu } from "react-icons/rx";
+import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
 
 const ComboHeaderItems = ({ headers, isMobileMenuOpen, toggleMobileMenu }) => {
   const handleSmoothScroll = (e) => {
@@ -15,37 +15,36 @@ const ComboHeaderItems = ({ headers, isMobileMenuOpen, toggleMobileMenu }) => {
       });
     }
   };
+
   return (
-    <div className="max-w-[1520px] mx-auto px-[6%] md:px-[0%] xl:px-[8%] 4xl:px-[4%] pt-3 ">
+    <div className="max-w-[1520px] mx-auto px-[6%] md:px-[0%] xl:px-[8%] 4xl:px-[4%] pt-3">
       <header className="relative z-50">
         {/* Desktop Navigation */}
         <nav className="hidden md:flex justify-between items-center px-4 lg:px-0 py-4">
-          {/* Logo - Left Side */}
           <Link href="/">
             <Image src={headers.logo} alt="Logo" width={120} height={30} />
           </Link>
 
-          {/* Menu Items - Center */}
-          <div className="flex space-x-6 items-center font-Inter font-semibold text-[14px] lg:text-[16px] ">
+          <div className="flex space-x-6 items-center font-Inter font-semibold text-[14px] lg:text-[16px]">
             {headers.menu
               .filter((item) => item.menu_name !== "Book An Appointment")
               .map((item, index) => (
-                <Link
+                <a
+                  onClick={handleSmoothScroll}
                   key={index}
                   href={item.menu_link}
                   className="text-white hover:text-primary transition-colors font-semibold uppercase tracking-[.5px]"
                 >
                   {item.menu_name}
-                </Link>
+                </a>
               ))}
           </div>
 
-          {/* Book Appointment - Right Side */}
           <div>
             <a
               onClick={handleSmoothScroll}
               href="#appointment"
-              className="bg-white  text-[#0A2C8C] px-5 py-3 rounded-md hover:bg-[#0A2C8C] hover:text-white transition-colors font-semibold font-Inter "
+              className="bg-white text-[#0A2C8C] px-5 py-3 rounded-md hover:bg-[#0A2C8C] hover:text-white transition-colors font-semibold font-Inter"
             >
               Book an appointment
             </a>
@@ -54,7 +53,6 @@ const ComboHeaderItems = ({ headers, isMobileMenuOpen, toggleMobileMenu }) => {
 
         {/* Mobile Navigation */}
         <nav className="md:hidden relative z-50">
-          {/* Mobile Header */}
           <div className="flex justify-between items-center p-4">
             <Image
               src={headers.logo}
@@ -64,28 +62,32 @@ const ComboHeaderItems = ({ headers, isMobileMenuOpen, toggleMobileMenu }) => {
               className="object-contain"
             />
 
-            {/* Mobile Menu Toggle */}
             <button
               onClick={toggleMobileMenu}
               className="text-white z-50 relative"
             >
-              <RxHamburgerMenu size={24} />
+              {isMobileMenuOpen ? (
+                <RxCross2 size={24} />
+              ) : (
+                <RxHamburgerMenu size={24} />
+              )}
             </button>
           </div>
 
-          {/* Mobile Menu Overlay */}
           {isMobileMenuOpen && (
-            <div className="fixed inset-0 bg-black/90 z-40 flex flex-col items-center justify-center space-y-6">
-              {headers.menu.map((item, index) => (
-                <Link
-                  key={index}
-                  href={item.menu_link}
-                  onClick={toggleMobileMenu}
-                  className="text-white text-2xl hover:text-primary transition-colors"
-                >
-                  {item.menu_name}
-                </Link>
-              ))}
+            <div className="absolute top-full left-0 w-full bg-[#0A2C8C] z-40 shadow-lg">
+              <div className="divide-y divide-white/10">
+                {headers.menu.map((item, index) => (
+                  <a
+                    key={index}
+                    href={item.menu_link}
+                    onClick={toggleMobileMenu}
+                    className="block px-4 py-4 text-white text-lg hover:bg-white/10 transition-colors uppercase tracking-wider font-medium"
+                  >
+                    {item.menu_name}
+                  </a>
+                ))}
+              </div>
             </div>
           )}
         </nav>

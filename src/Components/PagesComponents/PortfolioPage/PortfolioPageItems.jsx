@@ -8,7 +8,7 @@ const PortfolioPageItems = ({ portfolio }) => {
       <div className="group rounded-lg overflow-hidden border border-[#CBD5E1]">
         <div className="portfolio-bgHover w-full cursor-pointer flex flex-col xl:flex-row bg-white rounded-lg">
           <div className="w-full xl:w-1/2">
-            <div className="relative w-full aspect-[3/2] lg:aspect-[330/370] lg:w-[345px]  lg:h-[370px] overflow-hidden">
+            <div className="relative w-full aspect-[3/2] lg:aspect-[330/370] overflow-hidden">
               <Image
                 src={portfolio?.image}
                 fill
@@ -37,7 +37,7 @@ const PortfolioPageItems = ({ portfolio }) => {
               <h2 className="text-headingText lg:text-subheading font-bold font-Raleway text-[#333333] portfolio-textHover line-clamp-2 lg:line-clamp-3 mb-3">
                 {portfolio?.heading}
               </h2>
-              <p className="text-sm text-grayish portfolio-textHover mb-4 line-clamp-3 lg:line-clamp-[7]">
+              <p className="text-sm text-grayish portfolio-textHover mb-4 line-clamp-3 lg:line-clamp-6">
                 {portfolio.portfolio_summery}
               </p>
               <div className="flex justify-center items-center gap-2 text-primary font-bold portfolio-textHover">

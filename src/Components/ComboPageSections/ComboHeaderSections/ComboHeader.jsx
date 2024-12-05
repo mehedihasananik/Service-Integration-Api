@@ -12,7 +12,6 @@ const ComboHeader = () => {
       { menu_name: "Pricing", menu_link: "#pricing" },
       { menu_name: "Contact Us", menu_link: "#contact_us" },
       { menu_name: "Faq", menu_link: "#faqCombo" },
-      { menu_name: "Book An Appointment", menu_link: "/appointment" },
     ],
   };
 

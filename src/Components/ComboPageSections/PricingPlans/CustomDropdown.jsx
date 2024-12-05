@@ -60,7 +60,7 @@ const CustomDropdown = ({
     : basicSeo // If basic seo
     ? "w-[100px] md:w-[200px]"
     : maintenance
-    ? "w-[130px] md:w-[200px]"
+    ? "w-[130px] md:w-[] lg:w-[200px]"
     : "w-[200px]"; // Default width for other cases
 
   return (
@@ -85,8 +85,8 @@ const CustomDropdown = ({
 
       {isOpen && (
         <ul
-          className="absolute z-10 max-w-full mt-1 bg-white rounded-md shadow-lg overflow-y-auto"
-          style={{ maxHeight: "200px", overflowX: "hidden" }} // Prevent horizontal scroll and limit height
+          className="absolute z-10 max-w-[400px] mt-1 bg-white rounded-md shadow-lg overflow-y-auto"
+          style={{ maxHeight: "500px" }} // Prevent horizontal scroll and limit height
         >
           {options.map((option, index) => (
             <li
