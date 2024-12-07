@@ -1,48 +1,9 @@
 "use client";
 import Image from "next/image";
-import Link from "next/link";
 import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
+import { Link } from "react-scroll";
 
 const ComboHeaderItems = ({ headers, isMobileMenuOpen, toggleMobileMenu }) => {
-  const handleSmoothScroll = (e) => {
-    const href = e.target.getAttribute("href");
-
-    // Check if it's a hash link
-    if (href && href.startsWith("#")) {
-      e.preventDefault();
-      const target = document.querySelector(href);
-
-      if (target) {
-        const targetPosition = target.offsetTop;
-        const startPosition = window.scrollY;
-        const distance = targetPosition - startPosition;
-        const duration = 1500; // Duration in milliseconds
-        let startTime = null;
-
-        const ease = (t, b, c, d) => {
-          t /= d / 2;
-          if (t < 1) return (c / 2) * t * t + b;
-          t--;
-          return (-c / 2) * (t * (t - 2) - 1) + b;
-        };
-
-        const animation = (currentTime) => {
-          if (!startTime) startTime = currentTime;
-          const timeElapsed = currentTime - startTime;
-          const run = ease(timeElapsed, startPosition, distance, duration);
-
-          window.scrollTo(0, run);
-
-          if (timeElapsed < duration) {
-            requestAnimationFrame(animation);
-          }
-        };
-
-        requestAnimationFrame(animation);
-      }
-    }
-  };
-
   return (
     <div className="max-w-[1520px] mx-auto px-[6%] md:px-[0%] xl:px-[8%] 4xl:px-[4%] pt-3">
       <header className="relative z-50">
@@ -55,26 +16,43 @@ const ComboHeaderItems = ({ headers, isMobileMenuOpen, toggleMobileMenu }) => {
           <div className="flex space-x-6 items-center font-Inter font-semibold text-[14px] lg:text-[16px]">
             {headers.menu
               .filter((item) => item.menu_name !== "Book An Appointment")
-              .map((item, index) => (
-                <a
-                  onClick={handleSmoothScroll}
-                  key={index}
-                  href={item.menu_link}
-                  className="text-white hover:text-primary transition-colors font-semibold uppercase tracking-[.5px]"
-                >
-                  {item.menu_name}
-                </a>
-              ))}
+              .map((item, index) => {
+                // Check if the menu item is for the homepage
+                const isHomeLink = item.menu_link === "/";
+
+                return isHomeLink ? (
+                  // For "Home", use a normal <a> tag
+                  <a
+                    key={index}
+                    href={item.menu_link}
+                    className="text-white hover:text-primary transition-colors font-semibold uppercase tracking-[.5px]"
+                  >
+                    {item.menu_name}
+                  </a>
+                ) : (
+                  // For other links, use react-scroll's Link
+                  <Link
+                    key={index}
+                    to={item.menu_link.replace("#", "")} // Ensure no '#' in the link
+                    smooth={true}
+                    duration={1500}
+                    className="text-white hover:text-primary transition-colors font-semibold uppercase tracking-[.5px] cursor-pointer"
+                  >
+                    {item.menu_name}
+                  </Link>
+                );
+              })}
           </div>
 
           <div>
-            <a
-              onClick={handleSmoothScroll}
-              href="#appointment"
+            <Link
+              to="appointment" // Use a 'Link' here instead of the 'a' tag
+              smooth={true}
+              duration={1500}
               className="bg-white text-[#0A2C8C] px-5 py-3 rounded-md hover:bg-[#0A2C8C] hover:text-white transition-colors font-semibold font-Inter"
             >
               Book an appointment
-            </a>
+            </Link>
           </div>
         </nav>
 
@@ -104,16 +82,34 @@ const ComboHeaderItems = ({ headers, isMobileMenuOpen, toggleMobileMenu }) => {
           {isMobileMenuOpen && (
             <div className="absolute top-full left-0 w-full bg-[#0A2C8C] z-40 shadow-lg">
               <div className="divide-y divide-white/10">
-                {headers.menu.map((item, index) => (
-                  <a
-                    key={index}
-                    href={item.menu_link}
-                    onClick={toggleMobileMenu}
-                    className="block px-4 py-4 text-white text-lg hover:bg-white/10 transition-colors uppercase tracking-wider font-medium"
-                  >
-                    {item.menu_name}
-                  </a>
-                ))}
+                {headers.menu.map((item, index) => {
+                  // Check if the menu item is for the homepage
+                  const isHomeLink = item.menu_link === "/";
+
+                  return isHomeLink ? (
+                    // For "Home", use a normal <a> tag
+                    <a
+                      key={index}
+                      href={item.menu_link}
+                      onClick={toggleMobileMenu}
+                      className="block px-4 py-4 text-white text-lg hover:bg-white/10 transition-colors uppercase tracking-wider font-medium"
+                    >
+                      {item.menu_name}
+                    </a>
+                  ) : (
+                    // For other links, use react-scroll's Link
+                    <Link
+                      key={index}
+                      to={item.menu_link.replace("#", "")} // Ensure no '#' in the link
+                      onClick={toggleMobileMenu}
+                      smooth={true}
+                      duration={1500}
+                      className="block px-4 py-4 text-white text-lg hover:bg-white/10 transition-colors uppercase tracking-wider font-medium"
+                    >
+                      {item.menu_name}
+                    </Link>
+                  );
+                })}
               </div>
             </div>
           )}
