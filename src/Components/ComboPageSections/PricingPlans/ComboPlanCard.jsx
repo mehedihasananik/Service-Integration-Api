@@ -91,7 +91,7 @@ const ComboPlanCard = ({ plan }) => {
   return (
     <div
       key={plan.title}
-      className={`flex flex-col px-6 py-6 rounded-lg w-[350px] md:w-[400px] xl:w-[400px] xxl:w-[430px] font-Inter ${
+      className={`flex flex-col px-6 py-6 rounded-lg w-[350px] md:w-[400px] xl:w-[400px] xxl:w-[380px] font-Inter ${
         errorMessage
           ? "border-[3px] border-[#FF5050] text-[14px] font-Inter"
           : "border border-slate-200 "

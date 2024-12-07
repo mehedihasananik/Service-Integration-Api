@@ -200,13 +200,22 @@
     overflow: hidden; /* Prevent any overflow */
   }
   .pricing_bg {
-    background-image: url("/assets/pricingBg.png");
-    background-repeat: no-repeat;
-    background-size: center;
-    background-position: center;
-    z-index: -1;
-    height: 1000px;
-    width: 100%;
+    width: 529px;
+    height: 234px;
+    transform: rotate(90deg);
+    flex-shrink: 0;
+    border-radius: 529px;
+    background: rgba(255, 105, 59, 0.3);
+    filter: blur(157px);
+  }
+  .pricing_bg_blue {
+    width: 441px;
+    height: 366px;
+    transform: rotate(90deg);
+    flex-shrink: 0;
+    border-radius: 441px;
+    background: rgba(92, 130, 255, 0.28);
+    filter: blur(122px);
   }
   /* .combo_heroService {
     background-image: url("/assets/heroServicebg.png");

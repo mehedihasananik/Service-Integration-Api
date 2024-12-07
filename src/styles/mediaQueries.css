@@ -45,6 +45,12 @@
 }
 
 @media only screen and (max-width: 1024px) {
+  .pricing_bg {
+    display: none;
+  }
+  .pricing_bg_blue {
+    display: none;
+  }
   .project_title {
     display: block;
   }

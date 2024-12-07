@@ -60,7 +60,7 @@ const CustomDropdown = ({
     : basicSeo // If basic seo
     ? "w-[100px] md:w-[200px]"
     : maintenance
-    ? "w-[130px] md:w-[] lg:w-[200px]"
+    ? "w-[130px] md:w-[] lg:w-[100px]"
     : "w-[200px]"; // Default width for other cases
 
   return (
@@ -71,7 +71,7 @@ const CustomDropdown = ({
       >
         {/* Span with fixed height */}
         <span
-          className={`${
+          className={`text-[16px] ${
             isOpen ? "text-black" : "text-gray-500"
           } mr-[5px] h-[14px] flex items-center whitespace-nowrap`}
         >
