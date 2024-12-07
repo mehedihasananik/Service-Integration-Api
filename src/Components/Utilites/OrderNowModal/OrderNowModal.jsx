@@ -105,7 +105,7 @@ const OrderNowModal = ({
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => handleOrderClick(addToCart)}
-        className="btn btn-secondary my-4 lg:my-0 md:w-[100%] text-center py-2.5 mx-2"
+        className="btn btn-secondary my-4 lg:my-0 w-[100%] md:w-[100%] text-center py-2.5 mx-2"
       >
         Order Now
       </motion.button>

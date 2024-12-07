@@ -6,20 +6,21 @@ import {
 } from "../ComboGroupBtn/ComboGroupBtn";
 
 export function BusinessTransform() {
-  const handleSmoothScroll = (e) => {
-    e.preventDefault();
-    const target = document.querySelector(e.target.getAttribute("href"));
+  const handleSmoothScroll = (event) => {
+    event.preventDefault(); // Prevent default anchor click behavior
+    const targetId = event.currentTarget.getAttribute("href").slice(1); // Get the ID from href
+    const targetElement = document.getElementById(targetId);
 
-    if (target) {
-      window.scrollTo({
-        top: target.offsetTop,
+    if (targetElement) {
+      targetElement.scrollIntoView({
         behavior: "smooth",
+        block: "start",
       });
     }
   };
 
   return (
-    <div className="max-w-[1520px] mx-auto px-[6%] md:px-[0%] xl:px-[0%] 4xl:px-[4%] ">
+    <div className="max-w-[1505px] mx-auto px-[6%] md:px-[0%] xl:px-[0%] 4xl:px-[4%] ">
       <div className="pb-[1%]">
         <div>
           <div className="hidden lg:block">
@@ -39,20 +40,21 @@ export function BusinessTransform() {
                         your business leaves a lasting impression.
                       </p>
                       <p className="combo_des text-white">
-                        Don&apos;t just build a website—build a brand. Our
-                        10-page custom WordPress site comes with expert SEO,
-                        captivating content, and standout branding, ensuring
-                        your business leaves a lasting impression.
+                        We&apos;re all about creating solutions that help you
+                        succeed. Our process is smooth, straightforward, and
+                        stress-free from start to finish. Let&apos;s build
+                        something great together!
                       </p>
                       <p className="combo_des text-white">
-                        Don&apos;t just build a website—build a brand. Our
-                        10-page custom WordPress site comes with expert SEO,
-                        captivating content, and standout branding, ensuring
-                        your business leaves a lasting impression.
+                        With marketing materials and real-time support, we
+                        handle everything, so you focus on growth. Invest in a
+                        service that drives real results—your success is our
+                        priority.
                       </p>
+                      {/* &apos;t */}
                     </div>
                     <a
-                      href="#contact_us"
+                      href="#pricing"
                       onClick={handleSmoothScroll}
                       className="bg-[#FFFFFF] w-[40%]  font-Inter font-normal text-[#0A2C8C] hover:bg-[#0A2C8C] hover:text-white text-[16px] mt-5 md:mt-7 px-4 py-2 flex justify-center items-center rounded-md transition-all"
                     >

@@ -17,15 +17,29 @@ const TestimonialCard = ({ testimonial }) => {
             />
           </div>
         </div>
-        <div className="absolute top-4 right-4">
-          <Image
-            src="/assets/fiver.png"
-            alt="Fiverr"
-            width={30}
-            height={25}
-            className="opacity-70 transition-opacity duration-300 group-hover:opacity-100"
-          />
-        </div>
+        {testimonial.source === "fiverr" && (
+          <div className="absolute top-4 right-4">
+            <Image
+              src="/assets/fiver.png"
+              alt="Fiverr"
+              width={30}
+              height={25}
+              className="opacity-70 transition-opacity duration-300 group-hover:opacity-100"
+            />
+          </div>
+        )}
+        {testimonial.source === "upwork" && (
+          <div className="absolute top-4 right-4">
+            <Image
+              src="/assets/upwork.jpg"
+              alt="Fiverr"
+              width={30}
+              height={25}
+              className="opacity-70 transition-opacity duration-300 group-hover:opacity-100 rounded-full"
+            />
+          </div>
+        )}
+
         <div className="pt-14 pb-4">
           <h3 className="text-paragraphExtraLarge text-[#333333] lg:group-hover:text-white font-Raleway font-bold">
             {testimonial?.name}

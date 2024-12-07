@@ -121,6 +121,50 @@
   .combo_des {
     @apply font-Inter text-[16px] text-[#6D758F] pt-[.5%] font-normal;
   }
+  .bgheroBlur {
+    background-image: url("/assets/bgheroBlur.png");
+    background-repeat: no-repeat;
+    background-size: cover; /* Ensures the image covers the entire area */
+    background-position: center;
+    position: relative; /* For stacking content properly */
+    z-index: 1; /* Make sure content is above background */
+    height: 589px;
+    width: 333px;
+    overflow: visible; /* Ensure content can overflow outside the box */
+  }
+  .bgAnimatedCommon {
+    border-radius: 44px;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 26px -26px 20px 0px rgba(10, 44, 140, 0.2);
+    backdrop-filter: blur(11px);
+  }
+  .bgAnimatedKit {
+    border-radius: 44px;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 26px -26px 20px 0px rgba(10, 44, 140, 0.2),
+      26px 26px 20px 0px rgba(10, 44, 140, 0.2);
+    backdrop-filter: blur(11px);
+  }
+  .bgAnimatedAfterKit {
+    border-radius: 44px;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 26px 26px 20px 0px rgba(10, 44, 140, 0.2);
+    backdrop-filter: blur(11px);
+  }
+
+  .bgheroBlurContent {
+    background: #fff;
+    opacity: 0.8;
+    backdrop-filter: blur(10px); /* Adds blur effect */
+    position: absolute;
+    inset: 0; /* Make sure it covers the entire parent */
+    z-index: -1; /* Ensure it's behind the content */
+  }
+  .smooth-scroll-container {
+    will-change: transform; /* Hint to browser for optimization */
+    transform: translateZ(0); /* Create a new stacking context */
+    backface-visibility: hidden; /* Reduce rendering artifacts */
+  }
 
   .combo_hero {
     background-image: url("/assets/Frame1.png");
@@ -130,6 +174,17 @@
     position: relative; /* Added to ensure proper z-index stacking */
     z-index: 1; /* Adjusted z-index to ensure content is above background */
     height: 850px;
+    width: 100%;
+    overflow: hidden; /* Prevent any overflow */
+  }
+  .contactusbg {
+    background-image: url("/assets/contactusbg.png");
+    background-repeat: no-repeat;
+    background-size: cover; /* Changed from 'center' to 'cover' for full stretching */
+    background-position: center;
+    position: relative; /* Added to ensure proper z-index stacking */
+    z-index: 1; /* Adjusted z-index to ensure content is above background */
+    height: 650px;
     width: 100%;
     overflow: hidden; /* Prevent any overflow */
   }

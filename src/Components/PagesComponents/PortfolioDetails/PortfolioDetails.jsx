@@ -62,7 +62,7 @@ const PortfolioDetails = ({ singlePortfolioItem }) => {
           </div>
 
           {details.map((portfolio) => (
-            <div key={portfolio?.id} className="relative">
+            <div key={portfolio?.id} className="relative space-y-0">
               <div
                 className={`aspect-w-16 aspect-h-9  ${
                   !imagesLoaded[portfolio.id] ? "bg-gray-200 animate-pulse" : ""
@@ -81,7 +81,7 @@ const PortfolioDetails = ({ singlePortfolioItem }) => {
                   quality={100}
                 />
               </div>
-              <h3 className="text-gray-500 text-[18px] md:text-[20px] font-Raleway font-semibold text-center py-4 md:py-5 md:pb-3">
+              <h3 className="text-gray-500 text-[18px] md:text-[20px] font-Raleway font-semibold text-center pt-1 pb-3 md:pt-2 md:pb-5">
                 {portfolio.caption_text}
               </h3>
             </div>

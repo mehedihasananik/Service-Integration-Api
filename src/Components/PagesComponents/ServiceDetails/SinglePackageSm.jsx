@@ -38,17 +38,24 @@ const SinglePackageSm = ({ item, setOpenModal, serviceName }) => {
         </div>
 
         {/* price */}
-        <div className="mb-0 flex">
-          <h2 className="text-[20px] md:text-[32px] font-semibold font-Raleway flex items-center">
-            $ <span>{item?.package_price}</span>
-          </h2>
+        <div className="mb-0 flex pb-4">
+          <div className="flex gap-x-2 items-center">
+            <h2 className="text-[20px] md:text-[32px] font-semibold font-Raleway flex items-center">
+              $ <span>{item?.package_price}</span>
+            </h2>
+            {item?.discount_price && (
+              <span className="line-through text-gray-500 font-medium text-[16px] md:text-[20px] ">
+                ${item?.discount_price}
+              </span>
+            )}
+          </div>
           {item?.monthly_subscription === 1 && (
             <div className="mt-1 font-semibold"> /monthly</div>
           )}
         </div>
 
         {/* order button */}
-        <div className=" flex justify-center">
+        <div>
           <div>
             {/* <button
             onClick={orderWithLogin}

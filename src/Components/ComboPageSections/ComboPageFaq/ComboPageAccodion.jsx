@@ -20,7 +20,7 @@ const ComboPageAccodion = ({ title, answer, index }) => {
             0{index + 1}
           </span>
 
-          <h3 className="text-[#6D758F] font-Inter font-semibold text-headingCaption lg:text-headingSmall text-left">
+          <h3 className="text-[rgb(90,94,110)] font-Inter font-semibold text-headingCaption lg:text-headingSmall text-left">
             {title}
           </h3>
         </div>
