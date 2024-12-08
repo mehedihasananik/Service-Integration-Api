@@ -85,7 +85,7 @@ const CustomDropdown = ({
 
       {isOpen && (
         <ul
-          className="absolute z-10 max-w-[400px] mt-1 bg-white rounded-md shadow-lg overflow-y-auto"
+          className="absolute z-10 max-w-[400px] mt-1 bg-white rounded-md shadow-lg overflow-y-auto "
           style={{ maxHeight: "500px" }} // Prevent horizontal scroll and limit height
         >
           {options.map((option, index) => (

@@ -100,7 +100,7 @@ const ComboHeroSection = () => {
 
         {/* right side */}
 
-        <div className=" hidden xl:block w-[100%] md:w-[140%] lg:w-[80%] xl:w-[80%] 4xl:w-[70%] px-4 md:px-0 relative lg:right-[-7%] xl:right-[-14%] xl:top-[14%] 4xl:top-[0%] 3xl:right-[-20%]">
+        <div className=" hidden lg:block w-[100%] md:w-[140%] lg:w-[80%] xl:w-[80%] 4xl:w-[70%] px-4 md:px-0 relative lg:right-[-7%] xl:right-[-14%] lg:top-[10%] lg:left-[30%] xl:left-[10%] xxl:left-[15%]  xl:top-[14%] 4xl:top-[0%] 3xl:left-[20%]">
           {/* Replace the image with ServiceList component */}
           <div className="bg-cover bg-center w-full mx-auto h-[600px]">
             {/* Render the ServiceList component here */}
@@ -108,7 +108,7 @@ const ComboHeroSection = () => {
           </div>
         </div>
 
-        <div className="w-[100%]  block xl:hidden md:w-[140%] lg:w-[80%] xl:w-[80%] 4xl:w-[70%] px-4 md:px-0 relative lg:right-[-7%] xl:right-[-5%]">
+        <div className="w-[100%]  block lg:hidden md:w-[140%] lg:w-[80%] xl:w-[80%] 4xl:w-[70%] px-4 md:px-0 relative lg:right-[-7%] xl:right-[-5%]">
           <div className="relative lg:top-5">
             {/* <div className="hidden md:block">
               <img

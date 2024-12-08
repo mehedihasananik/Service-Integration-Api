@@ -4,13 +4,13 @@ import ComboPricingHeader from "./ComboPricingHeader";
 
 const PricingPlans = () => {
   return (
-    <div className="relative overflow-hidden">
+    <div className="relative h-full md:h-full">
       <div className="pricing_bg absolute top-[50%] left-[-12%]"></div>
       <div className="pricing_bg_blue absolute top-[50%] right-[-12%]"></div>
       <div className=" font-Inter  ">
         <div className="flex flex-col items-center my-[4%]  md:px-0">
           <ComboPricingHeader />
-          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-x-8 mt-11 gap-y-10 md:gap-y-0 ">
+          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-x-8 mt-11 gap-y-10 md:gap-y-5 ">
             {/* Static Plan 1 */}
             <ComboPlanCard
               plan={{

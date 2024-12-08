@@ -11,13 +11,13 @@ export function BusinessTransform() {
     <div className="max-w-[1505px] mx-auto px-[6%] md:px-[0%] xl:px-[4%] 4xl:px-[4%] ">
       <div className="pb-[1%]">
         <div>
-          <div className="hidden lg:block">
+          <div className="hidden lg:block px-2 xl:px-0">
             <div className="businessTransformBg">
               <div className="w-[100%] flex justify-evenly ">
                 <div className="md:w-[50%]"></div>
                 <div className="md:w-[50%] text-white pt-[5%] flex justify-end">
                   <div>
-                    <h2 className="text-[25px] md:text-[36px] md:w-[80%] font-Inter font-extrabold leading-tight">
+                    <h2 className="text-[25px] md:text-[36px] xl:w-[80%] font-Inter font-extrabold leading-tight">
                       Transform Your Business with Zero Hassle
                     </h2>
                     <div className="space-y-4 md:w-[80%] pt-[3%] combo_des text-[16px] font-normal">
@@ -57,20 +57,21 @@ export function BusinessTransform() {
               </div>
             </div>
           </div>
+
           <div className=" lg:hidden ">
-            <div className="bg-[#001C5F] rounded-lg">
-              <div>
+            <div className="bg-[#001C5F] rounded-lg md:rounded-none">
+              <div className="flex justify-center ">
                 <img
-                  className="w-full rounded-t"
+                  className="w-[340px] h-[360px] rounded-t"
                   src="/assets/girl3.png"
                   alt=""
                 />
               </div>
-              <div className="p-5 py-8">
+              <div className="p-5 py-8 flex flex-col items-center">
                 <h2 className="text-white font-bold text-[22px] pb-3">
                   Transform Your Business with Zero Hassle
                 </h2>
-                <div className="text-[14px] text-white space-y-3">
+                <div className="text-[14px] text-white space-y-2">
                   <p>
                     We handle everything with marketing materials and support so
                     you can focus on growth

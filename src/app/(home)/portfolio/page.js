@@ -30,7 +30,7 @@ const Portfolio = async () => {
     const { portfolios, portfoliosCategories, services } = await getPageData();
 
     return (
-      <div className="max-w-[1520px] mx-auto px-[6%] md:px-[4%] lg:px-[2%] 4xl:px-[2%]">
+      <div className="max-w-[1520px] mx-auto px-[6%] md:px-[4%] lg:px-[5%] xl:px-[1%] 4xl:px-[2%]">
         <JsonLd data={portfolios?.meta?.json_ld} />
         <PortfolioPage
           portfolios={portfolios.ServiceportfolioArray}

@@ -5,7 +5,7 @@ import { HiArrowSmallRight } from "react-icons/hi2";
 const PortfolioPageItems = ({ portfolio }) => {
   return (
     <>
-      <div className="group rounded-lg overflow-hidden border border-[#CBD5E1]">
+      <div className="group rounded-lg overflow-hidden border border-[#CBD5E1] ">
         <div className="portfolio-bgHover w-full cursor-pointer flex flex-col xl:flex-row bg-white rounded-lg">
           <div className="w-full xl:w-1/2">
             <div className="relative w-auto h-[370px] overflow-hidden">
@@ -37,7 +37,7 @@ const PortfolioPageItems = ({ portfolio }) => {
               <h2 className="text-headingText lg:text-subheading font-bold font-Raleway text-[#333333] portfolio-textHover line-clamp-2 lg:line-clamp-3 mb-3">
                 {portfolio?.heading}
               </h2>
-              <p className="text-sm text-grayish portfolio-textHover mb-4 line-clamp-4 lg:line-clamp-none">
+              <p className="text-sm text-grayish portfolio-textHover mb-4 line-clamp-4 md:line-clamp-5 lg:line-clamp-[7]">
                 {portfolio.portfolio_summery}
               </p>
               <div className="flex justify-center items-center gap-2 text-primary font-bold portfolio-textHover">

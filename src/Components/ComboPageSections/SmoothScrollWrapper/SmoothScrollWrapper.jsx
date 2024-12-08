@@ -1,84 +1,97 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
-import LocomotiveScroll from "locomotive-scroll";
-import "locomotive-scroll/dist/locomotive-scroll.css";
+import React, { useEffect } from "react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { gsap } from "gsap";
+import { useRouter } from "next/navigation";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export const SmoothScrollWrapper = ({ children }) => {
-  const scrollRef = useRef(null);
-  const locomotiveScrollRef = useRef(null);
+  const router = useRouter();
 
   useEffect(() => {
-    if (!scrollRef.current) return;
+    (async () => {
+      const LocomotiveScroll = (await import("locomotive-scroll")).default;
 
-    locomotiveScrollRef.current = new LocomotiveScroll({
-      el: scrollRef.current,
-      smooth: true,
-      smoothMobile: true,
-      resetNativeScroll: true,
-      lerp: 0.08, // Reduced from 0.1 to minimize shake
-      multiplier: 1.1, // Slightly reduced
-      direction: "vertical",
-      smartphone: {
+      const scroller = new LocomotiveScroll({
+        el: document.querySelector("[data-scroll-container]"),
         smooth: true,
-        direction: "vertical",
-      },
-      tablet: {
-        smooth: true,
-        direction: "vertical",
-      },
-      class: "is-smooth-scroll", // Add a class for additional styling
-      scrollFromAnywhere: true,
-      touchMultiplier: 1.3,
-      wheelMultiplier: 1,
-      prevent: true, // Prevent default scrolling
+        multiplier: 1,
+        class: "is-revealed",
+        reloadOnContextChange: true,
+        touchMultiplier: 2,
+        smoothMobile: true,
+        smartphone: {
+          smooth: true,
+        },
+        tablet: {
+          smooth: true,
+        },
+      });
 
-      // New options to reduce shake
-      inertia: 0.8, // Controls scroll momentum
-      ease: 0.1, // Smooth easing
-    });
+      // Update ScrollTrigger when locomotive scroll updates
+      scroller.on("scroll", () => {
+        ScrollTrigger.update();
+      });
 
-    // Optional: Prevent over-scrolling and bounce effects
-    const preventOverscroll = (e) => {
-      e.preventDefault();
-    };
+      // Tell ScrollTrigger to use these proxy methods
+      ScrollTrigger.scrollerProxy("[data-scroll-container]", {
+        scrollTop(value) {
+          return arguments.length
+            ? scroller.scrollTo(value, { duration: 0 })
+            : scroller.scroll.y;
+        },
+        getBoundingClientRect() {
+          return {
+            top: 0,
+            left: 0,
+            width: window.innerWidth,
+            height: window.innerHeight,
+          };
+        },
+        pinType: document.querySelector("[data-scroll-container]").style
+          .transform
+          ? "transform"
+          : "fixed",
+      });
 
-    window.addEventListener("wheel", preventOverscroll, { passive: false });
+      ScrollTrigger.defaults({ scroller: "[data-scroll-container]" });
 
-    // Cleanup
-    return () => {
-      if (locomotiveScrollRef.current) {
-        locomotiveScrollRef.current.destroy();
-      }
-      window.removeEventListener("wheel", preventOverscroll);
-    };
-  }, []);
+      // Handle route changes
+      router.events?.on("routeChangeStart", () => {
+        scroller.destroy();
+      });
+
+      // Handle window resize
+      const handleResize = () => {
+        scroller.update();
+      };
+
+      window.addEventListener("resize", handleResize);
+
+      // Force update after small delay to ensure all content is loaded
+      setTimeout(() => {
+        scroller.update();
+        ScrollTrigger.refresh();
+      }, 500);
+
+      return () => {
+        scroller.destroy();
+        ScrollTrigger.getAll().forEach((t) => t.kill());
+        window.removeEventListener("resize", handleResize);
+      };
+    })();
+  }, [router]);
 
   return (
-    <div
-      ref={scrollRef}
+    <main
       data-scroll-container
-      className="smooth-scroll-container"
+      className="min-h-screen w-full relative overflow-hidden"
     >
       {children}
-    </div>
+    </main>
   );
-};
-
-// Optional: Scroll to section utility
-export const useScrollToSection = () => {
-  const scrollToSection = (sectionId, offset = -50) => {
-    const element = document.getElementById(sectionId);
-    const locomotiveScroll = new LocomotiveScroll({ smooth: true });
-
-    if (element) {
-      locomotiveScroll.scrollTo(element, {
-        offset: offset,
-        duration: 600, // Slightly reduced duration
-        easing: [0.25, 0.1, 0.25, 1], // Smoother easing
-      });
-    }
-  };
-
-  return { scrollToSection };
 };
