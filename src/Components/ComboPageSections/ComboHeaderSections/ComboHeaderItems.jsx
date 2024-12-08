@@ -49,7 +49,7 @@ const ComboHeaderItems = ({ headers, isMobileMenuOpen, toggleMobileMenu }) => {
               to="appointment" // Use a 'Link' here instead of the 'a' tag
               smooth={true}
               duration={1500}
-              className="bg-white text-[#0A2C8C] px-5 py-3 rounded-md hover:bg-[#0A2C8C] hover:text-white transition-colors font-semibold font-Inter"
+              className="bg-white text-[#0A2C8C] px-5 py-3 rounded-md hover:bg-[#0A2C8C] cursor-pointer hover:text-white transition-all duration-300  font-semibold font-Inter"
             >
               Book an appointment
             </Link>

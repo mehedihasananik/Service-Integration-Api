@@ -1,4 +1,5 @@
 import { IoIosCheckmark } from "react-icons/io";
+import { Link } from "react-scroll";
 
 export default function ComboServiceList() {
   const services = [
@@ -27,9 +28,12 @@ export default function ComboServiceList() {
   return (
     <div className="flex flex-col items-start space-y-4 bgheroBlur">
       {services.map((service, index) => (
-        <div
+        <Link
+          to="pricing"
+          smooth={true}
+          duration={1500}
           key={index}
-          className={`flex items-center  rounded-full space-x-2 relative overflow-visible ${
+          className={`flex items-center  rounded-full space-x-2 relative overflow-visible cursor-pointer ${
             translateValues[index % translateValues.length]
           } 
           transform transition-all duration-700 ease-in-out 
@@ -52,7 +56,7 @@ export default function ComboServiceList() {
           <p className="text-[#0A2C8C] text-[16px] font-Inter font-normal overflow-visible relative -left-[5%]">
             {service}
           </p>
-        </div>
+        </Link>
       ))}
     </div>
   );

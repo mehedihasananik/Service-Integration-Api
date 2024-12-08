@@ -4,21 +4,9 @@ import {
   BookAppointmentButton,
   SeePricingButton,
 } from "../ComboGroupBtn/ComboGroupBtn";
+import { Link } from "react-scroll";
 
 export function BusinessTransform() {
-  const handleSmoothScroll = (event) => {
-    event.preventDefault(); // Prevent default anchor click behavior
-    const targetId = event.currentTarget.getAttribute("href").slice(1); // Get the ID from href
-    const targetElement = document.getElementById(targetId);
-
-    if (targetElement) {
-      targetElement.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
-  };
-
   return (
     <div className="max-w-[1505px] mx-auto px-[6%] md:px-[0%] xl:px-[0%] 4xl:px-[4%] ">
       <div className="pb-[1%]">
@@ -53,16 +41,17 @@ export function BusinessTransform() {
                       </p>
                       {/* &apos;t */}
                     </div>
-                    <a
-                      href="#pricing"
-                      onClick={handleSmoothScroll}
-                      className="bg-[#FFFFFF] w-[40%]  font-Inter font-normal text-[#0A2C8C] hover:bg-[#0A2C8C] hover:text-white text-[16px] mt-5 md:mt-7 px-4 py-2 flex justify-center items-center rounded-md transition-all"
+                    <Link
+                      to="pricing"
+                      smooth={true}
+                      duration={1000}
+                      className="bg-[#FFFFFF] w-[40%] cursor-pointer  font-Inter font-normal text-[#0A2C8C] hover:bg-[#0A2C8C] hover:text-white text-[16px] mt-5 md:mt-7 px-4 py-2 flex justify-center items-center rounded-md transition-all"
                     >
                       <span> Let&apos;s build something amazing</span>
                       <span>
                         <TiArrowRight className="text-lg " />
                       </span>
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>

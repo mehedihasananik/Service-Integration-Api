@@ -3,20 +3,9 @@ import Container from "@/Components/Container/Container";
 import React from "react";
 import { TiArrowRight } from "react-icons/ti";
 import { BookAppointmentButton } from "../ComboGroupBtn/ComboGroupBtn";
+import { Link } from "react-scroll";
 
 const ComboDeals = () => {
-  const handleSmoothScroll = (e) => {
-    e.preventDefault();
-    const target = document.querySelector(e.target.getAttribute("href"));
-
-    if (target) {
-      window.scrollTo({
-        top: target.offsetTop,
-        behavior: "smooth",
-      });
-    }
-  };
-
   return (
     <div className="mb-[3%]">
       <Container>
@@ -67,13 +56,14 @@ const ComboDeals = () => {
                   marketing materials for continuous engagement.
                 </p>
               </div>
-              <a
-                onClick={handleSmoothScroll}
-                href="#contact_us"
-                className="bg-[#FF693B] border border-[#FF693B] text-white py-2 px-6 rounded-md hover:bg-white hover:text-[#ff693B] flex items-center"
+              <Link
+                to="contact_us"
+                smooth={true}
+                duration={1500}
+                className="bg-[#FF693B] border border-[#FF693B] cursor-pointer text-white py-2 px-6 rounded-md hover:bg-white hover:text-[#ff693B] duration-300 flex items-center"
               >
                 Get started <TiArrowRight className="text-[20px]" />
-              </a>
+              </Link>
             </div>
           </section>
 
@@ -102,13 +92,14 @@ const ComboDeals = () => {
                   growing your business.
                 </p>
               </div>
-              <a
-                onClick={handleSmoothScroll}
-                href="#contact_us"
-                className="bg-[#FF693B] border border-[#FF693B] text-white py-2 px-6 rounded-md hover:bg-white hover:text-[#ff693B] flex items-center"
+              <Link
+                to="contact_us"
+                smooth={true}
+                duration={1500}
+                className="bg-[#FF693B] border border-[#FF693B] text-white cursor-pointer py-2 px-6 rounded-md hover:bg-white hover:text-[#ff693B] flex items-center duration-300"
               >
                 Get started <TiArrowRight className="text-[20px]" />
-              </a>
+              </Link>
             </div>
 
             {/* Rigt Image */}

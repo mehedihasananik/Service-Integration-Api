@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import ServiceList from "./ComboServiceList";
+import { Link } from "react-scroll";
 
 const ComboHeroSection = () => {
   const handleSmoothScroll = (e) => {
@@ -70,13 +71,15 @@ const ComboHeroSection = () => {
           </div>
           <div className="flex flex-col md:flex-row gap-4 md:gap-x-10 justify-center md:justify-start">
             <div className="flex justify-center md:justify-start ">
-              <a
-                href="#pricing"
+              <Link
+                to="pricing"
+                smooth={true}
+                duration={1500}
                 onClick={handleSmoothScroll} // Add the click handler
-                className="flex justify-center items-center bg-white whitespace-nowrap text-[#0A2C8C] w-[50%] md:w-[100%] lg:w-[100%] text-[14px] md:text-[18px] px-4 md:px-10 lg:px-8 py-3 md:py-1 lg:py-2 font-semibold rounded-md font-Inter transition-all duration-300 transform hover:shadow-[0px_4px_6px_rgba(0,0,0,0.1)] hover:bg-[#F0F1F3] hover:drop-shadow-lg"
+                className="flex justify-center items-center bg-white whitespace-nowrap cursor-pointer text-[#0A2C8C] w-[50%] md:w-[100%] lg:w-[100%] text-[14px] md:text-[18px] px-4 md:px-10 lg:px-8 py-3 md:py-1 lg:py-2 font-semibold rounded-md font-Inter transition-all duration-300 transform hover:shadow-[0px_4px_6px_rgba(0,0,0,0.1)] hover:bg-[#F0F1F3] hover:drop-shadow-lg"
               >
                 See Pricing
-              </a>
+              </Link>
             </div>
             <div className="hidden lg:flex justify-center">
               <img

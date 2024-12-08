@@ -160,22 +160,23 @@ const PricingPlans = () => {
                   {
                     name: "Content",
                     options: [
-                      { Option: "None", Price: "0" },
-                      {
-                        Option: "4-8 pages",
-                        Price: "80.00",
-                        discountP: "120.00",
-                      },
-                      {
-                        Option: "10-14 pages",
-                        Price: "120.00",
-                        discountP: "180.00",
-                      },
-                      {
-                        Option: "16-20 pages",
-                        Price: "150.00",
-                        discountP: "250.00",
-                      },
+                      { Option: "Yes", Price: "0" },
+                      { Option: "No", Price: "0" },
+                      // {
+                      //   Option: "4-8 pages",
+                      //   Price: "80.00",
+                      //   discountP: "120.00",
+                      // },
+                      // {
+                      //   Option: "10-14 pages",
+                      //   Price: "120.00",
+                      //   discountP: "180.00",
+                      // },
+                      // {
+                      //   Option: "16-20 pages",
+                      //   Price: "150.00",
+                      //   discountP: "250.00",
+                      // },
                     ],
                   },
                   {

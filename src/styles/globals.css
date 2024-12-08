@@ -488,3 +488,5 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   display: block;
   -webkit-appearance: none;
 }
+
+/* smooth scroll */
