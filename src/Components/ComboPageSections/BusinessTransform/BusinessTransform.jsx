@@ -8,7 +8,7 @@ import { Link } from "react-scroll";
 
 export function BusinessTransform() {
   return (
-    <div className="max-w-[1505px] mx-auto px-[6%] md:px-[0%] xl:px-[0%] 4xl:px-[4%] ">
+    <div className="max-w-[1505px] mx-auto px-[6%] md:px-[0%] xl:px-[4%] 4xl:px-[4%] ">
       <div className="pb-[1%]">
         <div>
           <div className="hidden lg:block">

@@ -36,7 +36,7 @@ export default function ShowcaseProjects() {
 
   return (
     <div className="">
-      <section className="showcase_section  flex overflow-hidden flex-col justify-center items-center px-10 py-5 md:py-14 rounded-lg max-md:px-5 md:pt-[0%]">
+      <section className="showcase_section  flex overflow-hidden flex-col justify-center items-center xl:px-10 py-5 md:py-14 rounded-lg max-md:px-5 md:pt-[0%]">
         {/* Title */}
         <h2 className="text-[20px] md:text-4xl font-extrabold leading-none text-center text-[#0A2C8C] max-md:max-w-full">
           Numbers that showcase our success
@@ -48,7 +48,7 @@ export default function ShowcaseProjects() {
           the impact we&apos;ve made!
         </p>
         {/* Statistics */}
-        <div className="containerStats flex flex-wrap space-y-5 md:space-y-0 md:gap-5 justify-between px-16 py-10 mt-6 w-full font-semibold text-white rounded-xl max-w-[1340px]">
+        <div className="containerStats hidden lg:flex flex-wrap space-y-5 md:space-y-0 md:gap-5 justify-between px-16 py-10 mt-6 w-full font-semibold text-white rounded-xl max-w-[1340px]">
           {statisticsData.map((stat, index) => (
             <React.Fragment key={stat.id}>
               {/* Statistic Card Inline */}
@@ -74,6 +74,38 @@ export default function ShowcaseProjects() {
               </div>
             </React.Fragment>
           ))}
+        </div>
+        <div className="containerStats lg:hidden w-full max-w-[1340px] px-4 sm:px-6 lg:px-16 py-6 sm:py-8 lg:py-10 mt-4 sm:mt-6 rounded-xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-4">
+            {statisticsData.map((stat, index) => (
+              <React.Fragment key={stat.id}>
+                {/* Statistic Card */}
+                <article className="flex items-center space-x-4 bg-opacity-10 bg-white p-4 rounded-lg">
+                  <img
+                    loading="lazy"
+                    src={stat.icon}
+                    alt={stat.label}
+                    className="w-10 sm:w-12 h-10 sm:h-12 object-contain shrink-0"
+                  />
+                  <div className="flex flex-col">
+                    <p className="text-[20px] sm:text-[24px] font-semibold leading-tight font-Inter text-white">
+                      {stat.count}
+                    </p>
+                    <p className="mt-1 sm:mt-2 text-[14px] sm:text-[16px] font-semibold leading-tight font-Inter text-white/90">
+                      {stat.label}
+                    </p>
+                  </div>
+                </article>
+
+                {/* Divider - Only show between items on larger screens */}
+                {index < statisticsData.length - 1 && (
+                  <div className="hidden lg:block lg:col-span-0">
+                    <Divider />
+                  </div>
+                )}
+              </React.Fragment>
+            ))}
+          </div>
         </div>
       </section>
     </div>
