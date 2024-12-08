@@ -43,6 +43,19 @@
     width: 100%;
   }
 }
+@media only screen and (max-width: 1279px) {
+  .combo_hero {
+    background-image: url("/assets/Frame1.png");
+    background-repeat: no-repeat;
+    background-size: cover; /* Changed from 'center' to 'cover' for full stretching */
+    background-position: center;
+    position: relative; /* Added to ensure proper z-index stacking */
+    z-index: 1; /* Adjusted z-index to ensure content is above background */
+    height: 1100px;
+    width: 100%;
+    overflow: hidden; /* Prevent any overflow */
+  }
+}
 
 @media only screen and (max-width: 1024px) {
   .pricing_bg {
@@ -56,7 +69,7 @@
   }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1024px) {
   .image-gallery-left-nav .image-gallery-svg,
   .image-gallery-right-nav .image-gallery-svg {
     height: 30px !important;
@@ -149,7 +162,7 @@
     background-position: center;
     position: relative; /* Added to ensure proper z-index stacking */
     z-index: 1; /* Adjusted z-index to ensure content is above background */
-    height: 750px;
+    height: 1031px;
     width: 100%;
     overflow: hidden; /* Prevent any overflow */
   }
@@ -158,6 +171,16 @@
   }
   .pricing_bg {
     margin-top: 10px !important;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .combo_hero {
+    background-image: url("/assets/comboHerosm.png");
+    height: auto; /* Allow height to adjust to content */
+    min-height: 100vh; /* Ensure it covers full viewport height on mobile */
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
   }
 }
 
@@ -169,14 +192,7 @@
     font-size: 18px !important;
     padding: 0 0 !important;
   }
-  .combo_hero {
-    background-image: url("/assets/comboHerosm.png");
-    height: auto; /* Allow height to adjust to content */
-    min-height: 100vh; /* Ensure it covers full viewport height on mobile */
-    background-size: cover;
-    background-position: center;
-    overflow: hidden;
-  }
+
   .containerStats {
     background-size: cover;
   }

@@ -490,3 +490,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 /* smooth scroll */
+.custom-link {
+  color: blue !important;
+  background-color: transparent !important;
+}
+.custom-link:hover {
+  color: blue !important;
+  text-decoration: underline !important;
+  background-color: transparent !important;
+}

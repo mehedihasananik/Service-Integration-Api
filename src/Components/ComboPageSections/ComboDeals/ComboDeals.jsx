@@ -23,7 +23,7 @@ const ComboDeals = () => {
           </section>
 
           {/* Main Content Section */}
-          <section className=" mx-auto py-16 grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <section className=" mx-auto py-6 md:py-16 grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
             {/* Left Content */}
             <div className="flex justify-center">
               <img
@@ -33,11 +33,11 @@ const ComboDeals = () => {
               />
             </div>
             {/* Left Content */}
-            <div className="flex flex-col justify-center items-start space-y-6">
-              <h2 className="text-2xl md:text-[38px] leading-10 font-bold text-[#5168A7] font-Inter">
+            <div className="flex flex-col justify-center items-start space-y-4 md:space-y-6">
+              <h2 className="text-[18px] leading-tight md:text-[38px] md:leading-10 font-bold text-[#5168A7] font-Inter">
                 Effortless Solutions Tailored to Your Needs
               </h2>
-              <div className="text-[#6D758F] space-y-1.5 combo_des text-[18px]">
+              <div className="text-[#6D758F] space-y-1.5 combo_des text-[16px]">
                 <p>
                   Need a custom website? We deliver hassle-free designs that
                   align with your business goals. Our content connects with your
@@ -60,7 +60,7 @@ const ComboDeals = () => {
                 to="contact_us"
                 smooth={true}
                 duration={1500}
-                className="bg-[#FF693B] border border-[#FF693B] cursor-pointer text-white py-2 px-6 rounded-md hover:bg-white hover:text-[#ff693B] duration-300 flex items-center"
+                className="bg-[#FF693B]  border border-[#FF693B] cursor-pointer text-white py-2 px-6 rounded-md hover:bg-white hover:text-[#ff693B] duration-300 flex items-center"
               >
                 Get started <TiArrowRight className="text-[20px]" />
               </Link>
@@ -68,13 +68,13 @@ const ComboDeals = () => {
           </section>
 
           {/* Why Choose Section */}
-          <section className=" mx-auto md:pb-[0%] grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <section className=" mx-auto md:pb-[0%] grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
             {/* Left Content */}
-            <div className="flex flex-col justify-center items-start space-y-6">
-              <h2 className="text-2xl md:text-[38px] leading-10 font-bold text-[#5168A7] font-Inter">
+            <div className="flex flex-col justify-center items-start space-y-3 md:space-y-6">
+              <h2 className="text-[18px] md:text-[38px] leading-10 font-bold text-[#5168A7] font-Inter">
                 Why Choose Our Combos?
               </h2>
-              <div className="text-[#6D758F] space-y-1.5 combo_des text-[18px]">
+              <div className="text-[#6D758F] md:space-y-1.5 combo_des text-[16px]">
                 <p>
                   Stay stress-free as we handle everything for you and save up
                   to 50% with our all-in-one packages that offer web design,

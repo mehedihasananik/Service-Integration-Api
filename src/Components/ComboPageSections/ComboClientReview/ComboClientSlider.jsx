@@ -53,7 +53,7 @@ const ComboClientSlider = ({ testimonials, details }) => {
 
   return (
     <div className="lg:overflow-hidden pt-4 md:pt-5">
-      <div className="w-full flex lg:px-[12%] ">
+      <div className="w-full flex xl:px-[6.3%] ">
         <Swiper
           ref={swiperRef}
           breakpoints={breakpoints}
@@ -69,7 +69,6 @@ const ComboClientSlider = ({ testimonials, details }) => {
           // autoplay={{ delay: 2000, disableOnInteraction: false }}
         >
           {testimonials?.map((testimonial) => {
-            console.log(testimonial?.image_md);
             return (
               <SwiperSlide key={testimonial.id}>
                 <ComboSliderCard testimonial={testimonial} />

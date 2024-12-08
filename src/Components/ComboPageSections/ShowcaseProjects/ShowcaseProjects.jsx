@@ -23,7 +23,7 @@ export default function ShowcaseProjects() {
     },
     {
       id: 4,
-      count: "300+",
+      count: "500+",
       label: "Amazing clients",
       icon: "https://cdn.builder.io/api/v1/image/assets/e7a246693dbe47b68ba0a6f099060cf8/f218d0b1d33ddf7902c976efd34a38b1b49bdeb88758c4b1f48441eb00b85ae3?apiKey=e7a246693dbe47b68ba0a6f099060cf8&",
     },
@@ -36,7 +36,7 @@ export default function ShowcaseProjects() {
 
   return (
     <div className="">
-      <section className="showcase_section  flex overflow-hidden flex-col justify-center items-center px-10 py-14 rounded-lg max-md:px-5 md:pt-[0%]">
+      <section className="showcase_section  flex overflow-hidden flex-col justify-center items-center px-10 py-5 md:py-14 rounded-lg max-md:px-5 md:pt-[0%]">
         {/* Title */}
         <h2 className="text-[20px] md:text-4xl font-extrabold leading-none text-center text-[#0A2C8C] max-md:max-w-full">
           Numbers that showcase our success

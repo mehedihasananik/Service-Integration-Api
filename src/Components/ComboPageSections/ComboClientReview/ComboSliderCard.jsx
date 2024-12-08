@@ -58,7 +58,7 @@ const ComboSliderCard = ({ testimonial }) => {
       </div>
       <div className="lg:hidden flex flex-col lg:flex-row lg:justify-center bg-white md:p-6 md:gap-x-10 ">
         {/* Right Side: Content */}
-        <div className="flex justify-center">
+        <div className="flex justify-center relative top-3">
           <img
             src={testimonial?.image_md}
             alt={testimonial?.name || "Testimonial Avatar"}

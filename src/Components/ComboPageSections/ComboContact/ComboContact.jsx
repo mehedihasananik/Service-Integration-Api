@@ -87,8 +87,9 @@ export default function ComboContact() {
                         {...register("first_name", {
                           required: "Name is required",
                         })}
-                        className="mt-2 p-3 w-full bg-transparent hover:bg-white text-white hover:text-black transition-all duration-300 rounded-lg border border-[rgba(241,243,247,0.30)]"
+                        className="mt-2 p-3 w-full bg-transparent  text-[rgba(255, 255, 255, 0.50)]  transition-all duration-300 rounded-lg border border-[rgba(241,243,247,0.30)] placeholder:text-[#919497]"
                       />
+
                       {errors.first_name && (
                         <p className="text-red-500 text-sm">
                           {errors.first_name.message}
@@ -109,7 +110,7 @@ export default function ComboContact() {
                         {...register("user_email", {
                           required: "Email is required",
                         })}
-                        className="mt-2 p-3 w-full bg-transparent hover:bg-white text-white hover:text-black transition-all duration-300 rounded-lg border border-[rgba(241,243,247,0.30)]"
+                        className="mt-2 p-3 w-full bg-transparent  text-[rgba(255, 255, 255, 0.50)]  transition-all duration-300 rounded-lg border border-[rgba(241,243,247,0.30)] placeholder:text-[#919497]"
                       />
                       {errors.user_email && (
                         <p className="text-red-500 text-sm">
@@ -134,7 +135,7 @@ export default function ComboContact() {
                         {...register("user_phone", {
                           required: "Phone is required",
                         })}
-                        className="mt-2 p-3 w-full bg-transparent hover:bg-white text-white hover:text-black transition-all duration-300 rounded-lg border border-[rgba(241,243,247,0.30)]"
+                        className="mt-2 p-3 w-full bg-transparent  text-[rgba(255, 255, 255, 0.50)]  transition-all duration-300 rounded-lg border border-[rgba(241,243,247,0.30)] placeholder:text-[#919497]"
                       />
                       {errors.user_phone && (
                         <p className="text-red-500 text-sm">
@@ -156,7 +157,7 @@ export default function ComboContact() {
                         {...register("website", {
                           required: "Website is required",
                         })}
-                        className="mt-2 p-3 w-full bg-transparent hover:bg-white text-white hover:text-black transition-all duration-300 rounded-lg border border-[rgba(241,243,247,0.30)]"
+                        className="mt-2 p-3 w-full bg-transparent  text-[rgba(255, 255, 255, 0.50)]  transition-all duration-300 rounded-lg border border-[rgba(241,243,247,0.30)] placeholder:text-[#919497]"
                       />
                       {errors.website && (
                         <p className="text-red-500 text-sm">
@@ -180,7 +181,7 @@ export default function ComboContact() {
                       {...register("message", {
                         required: "Message is required",
                       })}
-                      className="mt-2 p-3 w-full bg-transparent hover:bg-white text-white hover:text-black transition-all duration-300 rounded-lg border border-[rgba(241,243,247,0.30)]"
+                      className="mt-2 p-3 w-full bg-transparent  text-[rgba(255, 255, 255, 0.50)]  transition-all duration-300 rounded-lg border border-[rgba(241,243,247,0.30)] placeholder:text-[#919497]"
                     />
                     {errors.message && (
                       <p className="text-red-500 text-sm">
@@ -239,7 +240,7 @@ export default function ComboContact() {
                   />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold">Business:</h3>
+                  <h3 className="text-xl font-bold">Email:</h3>
                   <div className="flex gap-x-2 items-center">
                     <p className="text-sm">support@envobyte.com</p>
                     <img src="/assets/External_Link.png" alt="" />

@@ -18,6 +18,7 @@ module.exports = {
         sm: "375px",
         xxs: "390px",
         lsm: "414px",
+        miniDevice: "640px",
         md: "768px",
         mdd: "991px",
         lg: "1024px",

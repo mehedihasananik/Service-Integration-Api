@@ -28,7 +28,7 @@ const VideoSection = async () => {
             </p>
           </div>
         </div>
-        <div className="w-full hidden md:flex justify-center my-8">
+        <div className="w-full hidden lg:flex justify-center my-8">
           <iframe
             width="1120"
             height="630"
@@ -42,19 +42,23 @@ const VideoSection = async () => {
           />
         </div>
 
-        <div className="w-full flex md:hidden justify-center my-8">
-          <iframe
-            width="1120"
-            height="200"
-            src="https://www.youtube.com/embed/N73NyNDq-ZY?si=W2VUBjMkee8TGkv6"
-            title="YouTube video player"
-            className="rounded-lg shadow-lg"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen
-          />
+        <div className="w-full flex lg:hidden justify-center my-8">
+          <div
+            className="relative w-full flex justify-center items-center"
+            style={{ paddingBottom: "56.25%" }}
+          >
+            <iframe
+              className="absolute top-0 left-0 w-full h-full rounded-lg shadow-lg"
+              src="https://www.youtube.com/embed/N73NyNDq-ZY?si=W2VUBjMkee8TGkv6"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            />
+          </div>
         </div>
+
         <div className="flex flex-col md:flex-row justify-center text-[16px] font-bold gap-x-5 gap-y-5 md:gap-y-0">
           <SeePricingButton />
           <BookAppointmentButton />

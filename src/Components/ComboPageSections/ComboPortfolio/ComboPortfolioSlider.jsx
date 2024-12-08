@@ -9,9 +9,12 @@ import ComboNavigationBtn from "@/Components/Utilites/NavigationButtons/ComboNav
 
 const breakpoints = {
   320: { slidesPerView: 1, spaceBetween: 10 },
+  600: { slidesPerView: 1.5, spaceBetween: 10 },
+  700: { slidesPerView: 1.8, spaceBetween: 10 },
   768: { slidesPerView: 2.2, spaceBetween: 20 },
+  900: { slidesPerView: 2.6, spaceBetween: 20 },
   1024: { slidesPerView: 3, spaceBetween: 30 },
-  1280: { slidesPerView: 2.3, spaceBetween: 30 },
+  1280: { slidesPerView: 3, spaceBetween: 30 },
   1336: { slidesPerView: 3.2, spaceBetween: 30 },
   1440: { slidesPerView: 3.3, spaceBetween: 30 },
   1536: { slidesPerView: 3.5, spaceBetween: 30 },

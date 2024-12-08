@@ -8,12 +8,12 @@ const ComboHeaderItems = ({ headers, isMobileMenuOpen, toggleMobileMenu }) => {
     <div className="max-w-[1520px] mx-auto px-[6%] md:px-[0%] xl:px-[8%] 4xl:px-[4%] pt-3">
       <header className="relative z-50">
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex justify-between items-center px-4 lg:px-0 py-4">
+        <nav className="hidden md:flex justify-between items-center px-4 md:px-2 lg:px-0 py-4">
           <Link href="/">
             <Image src={headers.logo} alt="Logo" width={120} height={30} />
           </Link>
 
-          <div className="flex space-x-10 items-center font-Inter font-semibold text-[14px] lg:text-[16px]">
+          <div className="flex md:space-x-3 xl:space-x-10 items-center font-Inter font-semibold text-[14px] lg:text-[16px]">
             {headers.menu
               .filter((item) => item.menu_name !== "Book An Appointment")
               .map((item, index) => {
