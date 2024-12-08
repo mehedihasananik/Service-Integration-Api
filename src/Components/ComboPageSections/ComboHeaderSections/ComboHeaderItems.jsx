@@ -13,7 +13,7 @@ const ComboHeaderItems = ({ headers, isMobileMenuOpen, toggleMobileMenu }) => {
             <Image src={headers.logo} alt="Logo" width={120} height={30} />
           </Link>
 
-          <div className="flex space-x-6 items-center font-Inter font-semibold text-[14px] lg:text-[16px]">
+          <div className="flex space-x-10 items-center font-Inter font-semibold text-[14px] lg:text-[16px]">
             {headers.menu
               .filter((item) => item.menu_name !== "Book An Appointment")
               .map((item, index) => {
@@ -25,7 +25,7 @@ const ComboHeaderItems = ({ headers, isMobileMenuOpen, toggleMobileMenu }) => {
                   <a
                     key={index}
                     href={item.menu_link}
-                    className="text-white hover:text-primary transition-colors font-semibold uppercase tracking-[.5px]"
+                    className="text-white hover:text-primary transition-colors font-medium uppercase tracking-[.5px]"
                   >
                     {item.menu_name}
                   </a>
@@ -36,7 +36,7 @@ const ComboHeaderItems = ({ headers, isMobileMenuOpen, toggleMobileMenu }) => {
                     to={item.menu_link.replace("#", "")} // Ensure no '#' in the link
                     smooth={true}
                     duration={1500}
-                    className="text-white hover:text-primary transition-colors font-semibold uppercase tracking-[.5px] cursor-pointer"
+                    className="text-white hover:text-primary transition-colors font-medium uppercase tracking-[.5px] cursor-pointer"
                   >
                     {item.menu_name}
                   </Link>

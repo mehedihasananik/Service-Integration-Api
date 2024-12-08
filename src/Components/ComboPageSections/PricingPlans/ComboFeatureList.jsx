@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import { RiCheckboxBlankCircleLine } from "react-icons/ri";
 import CustomDropdown from "./CustomDropdown";
 
 const ComboFeatureList = ({
@@ -17,11 +16,7 @@ const ComboFeatureList = ({
   const [openDropdown, setOpenDropdown] = useState(null);
 
   const handleOptionChange = (featureName, option) => {
-    // Find the selected option's price and discount price
     const feature = features.find((f) => f.name === featureName);
-    const selectedOptionDetails = feature.options.find(
-      (opt) => opt.Option === option
-    );
 
     // Update selected options
     setSelectedOption((prev) => {
@@ -29,29 +24,79 @@ const ComboFeatureList = ({
         ...prev,
         [featureName]: {
           option,
-          price: parseFloat(selectedOptionDetails?.Price || "0"),
-          discountP: parseFloat(selectedOptionDetails?.discountP || "0"),
+          price: parseFloat(
+            feature.options.find((opt) => opt.Option === option)?.Price || "0"
+          ),
+          discountP: parseFloat(
+            feature.options.find((opt) => opt.Option === option)?.discountP ||
+              "0"
+          ),
         },
       };
 
       // Calculate total price
-      const newTotalPrice = Object.values(newSelectedOptions).reduce(
+      let newTotalPrice = Object.values(newSelectedOptions).reduce(
         (total, item) => total + (item.price || 0),
         0
       );
 
-      // Calculate total discount price
-      const newTotalDiscountPrice = Object.values(newSelectedOptions).reduce(
+      // Handle WordPress Website and Content logic
+      const websiteOption = newSelectedOptions["WordPress Website"];
+      const contentOption = newSelectedOptions["Content"];
+
+      if (contentOption?.option === "Yes" && websiteOption?.option) {
+        switch (websiteOption.option) {
+          case "4 pages":
+          case "6 pages":
+          case "8 pages":
+            newTotalPrice += 80; // Add price for 4-8 pages
+            break;
+          case "10 pages":
+          case "12 pages":
+          case "14 pages":
+            newTotalPrice += 120; // Add price for 10-14 pages
+            break;
+          case "16 pages":
+          case "18 pages":
+          case "20 pages":
+            newTotalPrice += 150; // Add price for 16-20 pages
+            break;
+          default:
+            break;
+        }
+      }
+
+      // Calculate total discount
+      let newTotalDiscountPrice = Object.values(newSelectedOptions).reduce(
         (total, item) => total + (item.discountP || 0),
         0
       );
 
-      // Update total prices
+      if (contentOption?.option === "Yes" && websiteOption?.option) {
+        switch (websiteOption.option) {
+          case "4 pages":
+          case "6 pages":
+          case "8 pages":
+            newTotalDiscountPrice += 120; // Add discount for 4-8 pages
+            break;
+          case "10 pages":
+          case "12 pages":
+          case "14 pages":
+            newTotalDiscountPrice += 180; // Add discount for 10-14 pages
+            break;
+          case "16 pages":
+          case "18 pages":
+          case "20 pages":
+            newTotalDiscountPrice += 250; // Add discount for 16-20 pages
+            break;
+          default:
+            break;
+        }
+      }
+
+      // Update totals
       onTotalPriceChange(newTotalPrice);
       onTotalDiscountChange(newTotalDiscountPrice);
-
-      // Inform parent component about price changes
-      onOptionChange(featureName, option); // Notify ComboPlanCard about the change
 
       return newSelectedOptions;
     });

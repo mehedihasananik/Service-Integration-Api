@@ -111,47 +111,47 @@ const PricingPlans = () => {
                     options: [
                       { Option: "None", Price: "0" },
                       {
-                        Option: "4 pages ",
+                        Option: "4 pages",
                         Price: "200.00",
                         discountP: "399.00",
                       },
                       {
-                        Option: "6 pages ",
+                        Option: "6 pages",
                         Price: "250.00",
                         discountP: "499.00",
                       },
                       {
-                        Option: "8 pages ",
+                        Option: "8 pages",
                         Price: "350.00",
                         discountP: "699.00",
                       },
                       {
-                        Option: "10 pages ",
+                        Option: "10 pages",
                         Price: "450.00",
                         discountP: "899.00",
                       },
                       {
-                        Option: "12 pages ",
+                        Option: "12 pages",
                         Price: "600.00",
                         discountP: "1199.00",
                       },
                       {
-                        Option: "14 pages ",
+                        Option: "14 pages",
                         Price: "700.00",
                         discountP: "1399.00",
                       },
                       {
-                        Option: "16 pages ",
+                        Option: "16 pages",
                         Price: "800.00",
                         discountP: "1599.00",
                       },
                       {
-                        Option: "18 pages ",
+                        Option: "18 pages",
                         Price: "900.00",
                         discountP: "1799.00",
                       },
                       {
-                        Option: "20 pages ",
+                        Option: "20 pages",
                         Price: "1000.00",
                         discountP: "1999.00",
                       },
