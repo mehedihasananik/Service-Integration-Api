@@ -4,7 +4,7 @@ import React from "react";
 
 const ComboPortfolioCard = ({ service }) => {
   return (
-    <div>
+    <Link Link href={`/portfolio/${service.slug}`}>
       <div className="">
         <div className="">
           <div
@@ -22,7 +22,7 @@ const ComboPortfolioCard = ({ service }) => {
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

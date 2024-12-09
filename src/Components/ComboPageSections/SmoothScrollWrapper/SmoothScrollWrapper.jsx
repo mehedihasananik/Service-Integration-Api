@@ -87,10 +87,7 @@ export const SmoothScrollWrapper = ({ children }) => {
   }, [router]);
 
   return (
-    <main
-      data-scroll-container
-      className="min-h-screen w-full relative overflow-hidden"
-    >
+    <main data-scroll-container className=" w-full  overflow-hidden">
       {children}
     </main>
   );
