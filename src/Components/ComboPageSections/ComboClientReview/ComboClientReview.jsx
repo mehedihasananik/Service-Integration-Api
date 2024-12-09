@@ -3,6 +3,7 @@ import React from "react";
 import ComboClientSlider from "./ComboClientSlider";
 import { fetchData } from "@/config/fetchData";
 import { comboTestimonial } from "@/config/apis";
+import { BookAppointmentButton } from "../ComboGroupBtn/ComboGroupBtn";
 
 const ComboClientReview = async () => {
   const testimonials = await fetchData(comboTestimonial);

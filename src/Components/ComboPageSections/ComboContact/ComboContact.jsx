@@ -66,7 +66,7 @@ export default function ComboContact() {
       className="contactusbg text-white py-10 md:py-[5%]"
     >
       <ComboContainer>
-        <div className="w-full mx-auto px-0 grid grid-cols-1 md:grid-cols-2 gap-x-20">
+        <div className="w-full mx-auto px-0 grid grid-cols-1 lg:grid-cols-2 gap-x-20 gap-y-0 md:gap-y-10 lg:gap-y-0">
           {/* Left Side: Contact Form */}
           <div className="space-y-6 md:border md:border-[#E1E4ED26]  md:p-7 rounded-lg">
             <div className="space-y-10">
@@ -219,8 +219,8 @@ export default function ComboContact() {
           </div>
 
           {/* Right Side: Contact Information */}
-          <div className="space-y-6 mt-5 md:mt-0">
-            <h2 className="text-[25px] md:text-[48px] font-bold leading-[50px] md:w-[60%]">
+          <div className="space-y-3 mt-3 md:mt-7 lg:mt-0">
+            <h2 className="text-[25px] md:text-[48px] font-bold leading-[50px] xll:w-[60%]">
               Let us know what you think!
             </h2>
             <p className="text-[16px] ">

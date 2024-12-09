@@ -11,44 +11,40 @@ import PricingPlans from "../PricingPlans/PricingPlans";
 import ComboPageFaq from "../ComboPageFaq/ComboPageFaq";
 import ComboContact from "../ComboContact/ComboContact";
 import ScheduleMeetingContent from "@/Components/ScheduleMeeting/ScheduleMeetingContent";
-import { SmoothScrollWrapper } from "../SmoothScrollWrapper/SmoothScrollWrapper";
 import { Footer } from "@/Components";
+import { SmoothScrollWrapper } from "../SmoothScrollWrapper/SmoothScrollWrapper";
 
 const ComboHome = () => {
   return (
-    <>
-      <SmoothScrollWrapper>
-        <>
-          <div className="relative">
-            <div className="combo_hero overflow-hidden">
-              <ComboHeader />
-              <ComboHeroSection />
-            </div>
-          </div>
-          <div className="pb-4 md:pb-0">
-            <VideoSection />
-          </div>
-          <div className="bg-[#FCFEFF]">
-            <ComboClientReview />
-          </div>
-          <ComboPortfolio />
-          <div className="comboDeals">
-            <ComboDeals />
-            <ShowcaseProjects />
-          </div>
-          <BusinessTransform />
-          <PricingPlans />
-          <div className="pt-10">
-            <ComboPageFaq title="Frequently Asked Questions" />
-          </div>
-          <ComboContact />
-          <div className="appointmentBg py-5 h-[100vh]">
-            <ScheduleMeetingContent />
-          </div>
-          <Footer />
-        </>
-      </SmoothScrollWrapper>
-    </>
+    <SmoothScrollWrapper>
+      <div className="relative">
+        <div className="combo_hero overflow-hidden">
+          <ComboHeader />
+          <ComboHeroSection />
+        </div>
+      </div>
+      <div className="pb-4 md:pb-0">
+        <VideoSection />
+      </div>
+      <div className="bg-[#FCFEFF]">
+        <ComboClientReview />
+      </div>
+      <ComboPortfolio />
+      <div className="comboDeals">
+        <ComboDeals />
+        <ShowcaseProjects />
+      </div>
+      <BusinessTransform />
+      <PricingPlans />
+      <div className="pt-[0%]">
+        <ComboPageFaq title="Frequently Asked Questions" />
+      </div>
+      <ComboContact />
+      <div className="appointmentBg py-5 pt-[2.7%]">
+        <ScheduleMeetingContent />
+      </div>
+      <Footer />
+    </SmoothScrollWrapper>
   );
 };
 

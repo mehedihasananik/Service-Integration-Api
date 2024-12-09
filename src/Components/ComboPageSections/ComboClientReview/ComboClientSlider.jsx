@@ -6,23 +6,24 @@ import { HiArrowLeft, HiArrowRight } from "react-icons/hi";
 import { Autoplay, Pagination } from "swiper/modules";
 import ComboSliderCard from "./ComboSliderCard";
 import ComboNavigationBtn from "@/Components/Utilites/NavigationButtons/ComboNavigationBtn";
+import { BookAppointmentButton } from "../ComboGroupBtn/ComboGroupBtn";
 
 const ComboClientSlider = ({ testimonials, details }) => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [previousSlide, setPreviousSlide] = useState(null);
-  const swiperRef = useRef(null);
+  // const [currentSlide, setCurrentSlide] = useState(0);
+  // const [previousSlide, setPreviousSlide] = useState(null);
+  // const swiperRef = useRef(null);
 
   // Filter services to only include those with "featured": "1"
 
-  const handlePrevSlide = () => {
-    swiperRef.current?.swiper.slidePrev();
-    setPreviousSlide(currentSlide);
-  };
+  // const handlePrevSlide = () => {
+  //   swiperRef.current?.swiper.slidePrev();
+  //   setPreviousSlide(currentSlide);
+  // };
 
-  const handleNextSlide = () => {
-    swiperRef.current?.swiper.slideNext();
-    setPreviousSlide(currentSlide);
-  };
+  // const handleNextSlide = () => {
+  //   swiperRef.current?.swiper.slideNext();
+  //   setPreviousSlide(currentSlide);
+  // };
 
   const breakpoints = {
     1920: {
@@ -55,18 +56,17 @@ const ComboClientSlider = ({ testimonials, details }) => {
     <div className="lg:overflow-hidden pt-4 md:pt-5">
       <div className="w-full flex xl:px-[6.3%] ">
         <Swiper
-          ref={swiperRef}
           breakpoints={breakpoints}
-          className="mySwiper combo_portSwiper"
-          onSlideChange={(swiper) => {
-            setCurrentSlide(swiper.realIndex);
-            setPreviousSlide(swiper.previousIndex);
-          }}
+          className="mySwiper combo_ServiceSwiper"
+          // onSlideChange={(swiper) => {
+          //   setCurrentSlide(swiper.realIndex);
+          //   setPreviousSlide(swiper.previousIndex);
+          // }}
           pagination={{
             clickable: true,
           }}
-          // modules={[Autoplay]}
-          // autoplay={{ delay: 2000, disableOnInteraction: false }}
+          modules={[Pagination, Autoplay]}
+          autoplay={{ delay: 2000, disableOnInteraction: false }}
         >
           {testimonials?.map((testimonial) => {
             return (
@@ -77,8 +77,11 @@ const ComboClientSlider = ({ testimonials, details }) => {
           })}
         </Swiper>
       </div>
-      <div className="flex justify-center">
+      {/* <div className="flex justify-center">
         <ComboNavigationBtn onPrev={handlePrevSlide} onNext={handleNextSlide} />
+      </div> */}
+      <div className="flex justify-center pt-[2%]">
+        <BookAppointmentButton />
       </div>
     </div>
   );

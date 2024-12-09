@@ -11,7 +11,7 @@ const ComboDeals = () => {
       <Container>
         <div className="px-2 xl:px-[9%]">
           {/* Header Section */}
-          <section className="text-center pt-10 ">
+          <section className="text-center mt-[3%] ">
             <h1 className=" font-bold text-[#0A2C8C] combo_title">
               Unbeatable Growth Combo Deals
             </h1>

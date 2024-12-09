@@ -162,7 +162,7 @@
     background-position: center;
     position: relative; /* Added to ensure proper z-index stacking */
     z-index: 1; /* Adjusted z-index to ensure content is above background */
-    height: 1031px;
+    height: 1100px;
     width: 100%;
     overflow: hidden; /* Prevent any overflow */
   }
@@ -171,6 +171,12 @@
   }
   .pricing_bg {
     margin-top: 10px !important;
+  }
+  .contactusbg {
+    background-image: none;
+    background: #051a71;
+    height: 100%;
+    width: 100%;
   }
 }
 @media only screen and (max-width: 767px) {
@@ -213,5 +219,11 @@
   .ql-editor ol li:not(.ql-direction-rtl),
   .ql-editor ul li:not(.ql-direction-rtl) {
     padding-left: 0.5em !important;
+  }
+  .contactusbg {
+    background-image: none;
+    background: #051a71;
+    height: 100%;
+    width: 100%;
   }
 }

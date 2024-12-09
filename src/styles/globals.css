@@ -56,6 +56,9 @@
   .heading-space {
     @apply mt-3 mb-3 md:mt-3 md:mb-5;
   }
+  .combo_ServiceSwiper {
+    height: 460px !important;
+  }
   .combo_portSwiper {
     height: 420px !important;
   }
@@ -233,7 +236,7 @@
     background-size: center;
     background-position: center;
     z-index: -1;
-    height: 1800px;
+    height: 1730px;
     width: 100%;
   }
   .containerStats {
