@@ -239,6 +239,10 @@
     height: 1730px;
     width: 100%;
   }
+  .container {
+    overflow: visible; /* Ensure it's not 'hidden' or 'auto' */
+    position: relative; /* Avoid 'fixed' positioning which might conflict */
+  }
   .containerStats {
     background-image: url("/assets/ContainerStats1.png");
     background-repeat: no-repeat;

@@ -13,7 +13,7 @@ const VideoSection = async () => {
   return (
     <div className="relative">
       <div className="youtube_vdoSection absolute "></div>
-      <div className="  pt-[0%]">
+      <div className="pt-[0%]">
         <ComboBrands brands={brands} />
       </div>
       <Container>
@@ -28,29 +28,16 @@ const VideoSection = async () => {
             </p>
           </div>
         </div>
-        <div className="w-full hidden lg:flex justify-center my-8">
-          <iframe
-            width="1120"
-            height="630"
-            src="https://www.youtube.com/embed/N73NyNDq-ZY?si=W2VUBjMkee8TGkv6"
-            title="YouTube video player"
-            className="rounded-lg shadow-lg"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen
-          />
-        </div>
 
-        <div className="w-full flex lg:hidden justify-center my-8">
-          <div
-            className="relative w-full flex justify-center items-center"
-            style={{ paddingBottom: "56.25%" }}
-          >
+        {/* Iframe container added */}
+        <div className="iframe-container w-full hidden lg:flex justify-center my-8">
+          <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
             <iframe
-              className="absolute top-0 left-0 w-full h-full rounded-lg shadow-lg"
+              width="1120"
+              height="630"
               src="https://www.youtube.com/embed/N73NyNDq-ZY?si=W2VUBjMkee8TGkv6"
               title="YouTube video player"
+              className="absolute top-0 left-0 w-full h-full rounded-lg shadow-lg"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerPolicy="strict-origin-when-cross-origin"
