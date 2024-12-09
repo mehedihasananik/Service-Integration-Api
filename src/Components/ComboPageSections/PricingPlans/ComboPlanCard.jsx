@@ -115,7 +115,7 @@ const ComboPlanCard = ({ plan }) => {
           <img src={plan.iconSrc} alt="" className="w-10" />
         )}
 
-        <div className="flex flex-1 gap-3 items-center font-Inter">
+        <div className="flex flex-1 gap-3 items-center font-Inter relative">
           <div
             className={`md:text-[40px] font-Inter ${
               errorMessage ? "text-[#FF5050] font-semibold" : "font-semibold"
@@ -124,7 +124,7 @@ const ComboPlanCard = ({ plan }) => {
             {`$${originalPrice.toFixed(2)}`}
           </div>
 
-          <div className="mt-6  font-medium font-Inter">
+          <div className="mt-0 md:mt-6  font-medium font-Inter">
             {plan.title === "Custom Plan" ? (
               <div className="text-[14px] line-through text-gray-400 font-Inter">
                 {`$${parseFloat(totalDiscountPrice).toFixed(2)}`}
@@ -135,13 +135,16 @@ const ComboPlanCard = ({ plan }) => {
               </div>
             )}
           </div>
-          {errorMessage && (
-            <span className="mt-3 font-bold text-[14px] font-Inter text-[#FF5050] text-sm relative top-0">
-              {errorMessage}
-            </span>
-          )}
+          <span className="absolute  -bottom-5 left-[0%] md:left-[1%] md:bottom-[-15%]">
+            {errorMessage && (
+              <span className="mt-3 font-bold text-[14px] font-Inter text-[#FF5050] text-sm relative top-0">
+                {errorMessage}
+              </span>
+            )}
+          </span>
         </div>
       </div>
+
       <div className="mt-4 font-Inter text-[16px] font-normal">
         {plan.description}
       </div>
