@@ -30,6 +30,7 @@ const VideoSection = async () => {
         </div>
         <div className="w-full hidden lg:flex justify-center my-8">
           <iframe
+            style={{ pointerEvents: "none" }}
             width="1120"
             height="630"
             src="https://www.youtube.com/embed/N73NyNDq-ZY?si=W2VUBjMkee8TGkv6"

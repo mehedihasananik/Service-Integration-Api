@@ -92,12 +92,10 @@ const ComboPlanCard = ({ plan }) => {
     <div
       key={plan.title}
       className={`flex flex-col px-6 py-6 rounded-lg w-[350px] md:w-[400px] xl:w-[400px] xxl:w-[380px] font-Inter ${
-        errorMessage
+        errorMessage && totalPrice <= 499
           ? "border-[3px] border-[#FF5050] text-[14px] font-Inter"
-          : "border border-slate-200 "
-      } ${
-        plan.isDark ? "bg-[#0A2C8C] text-white" : "bg-white text-[#0A2C8C] "
-      }`}
+          : "border border-slate-200"
+      } ${plan.isDark ? "bg-[#0A2C8C] text-white" : "bg-white text-[#0A2C8C]"}`}
     >
       <div
         className={`text-lg ${
@@ -109,7 +107,7 @@ const ComboPlanCard = ({ plan }) => {
         {plan.title}
       </div>
       <div className="flex gap-2 items-center mt-4">
-        {errorMessage ? (
+        {errorMessage && totalPrice <= 499 ? (
           <img src={plan.iconSrcError} alt="" className="w-10" />
         ) : (
           <img src={plan.iconSrc} alt="" className="w-10" />
@@ -118,7 +116,9 @@ const ComboPlanCard = ({ plan }) => {
         <div className="flex flex-1 gap-3 items-center font-Inter relative">
           <div
             className={`md:text-[40px] font-Inter ${
-              errorMessage ? "text-[#FF5050] font-semibold" : "font-semibold"
+              errorMessage && totalPrice <= 499
+                ? "text-[#FF5050] font-semibold"
+                : "font-semibold"
             } ${plan.title === "Premium+ Plan" ? "text-[#FFD54D]" : ""}`}
           >
             {`$${originalPrice.toFixed(2)}`}
@@ -135,8 +135,8 @@ const ComboPlanCard = ({ plan }) => {
               </div>
             )}
           </div>
-          <span className="absolute  -bottom-5 left-[0%] md:left-[1%] md:bottom-[-15%]">
-            {errorMessage && (
+          <span className="absolute -bottom-5 left-[0%] md:left-[1%] md:bottom-[-15%]">
+            {errorMessage && totalPrice <= 499 && (
               <span className="mt-3 font-bold text-[14px] font-Inter text-[#FF5050] text-sm relative top-0">
                 {errorMessage}
               </span>
@@ -177,12 +177,14 @@ const ComboPlanCard = ({ plan }) => {
       <button
         onClick={handlePlaceOrder}
         className={`mt-9 p-3 w-full rounded flex justify-center items-center text-[16px] font-semibold font-Inter ${
-          plan.title === "Custom Plan"
-            ? "bg-[#0A2C8C66]  hover:bg-[#7f8eb4] text-[#fff] transition-all duration-300 " // Custom Plan color
+          plan.title === "Custom Plan" && totalPrice > 0
+            ? "bg-blue-900 hover:bg-[#0F2870] text-white" // Red color when totalPrice > 0
+            : plan.title === "Custom Plan"
+            ? "bg-[#0A2C8C66] hover:bg-[#7f8eb4] text-[#fff] transition-all duration-300" // Default Custom Plan color
             : plan.isDark
-            ? "bg-[#FFD54D] text-blue-900 hover:bg-[#FFC300] transition-all duration-300 "
+            ? "bg-[#FFD54D] text-blue-900 hover:bg-[#FFC300] transition-all duration-300"
             : "bg-blue-900 hover:bg-[#0F2870] text-white transition-all duration-300"
-        } transform transition-all duration-300  hover:shadow-lg`}
+        } transform transition-all duration-300 hover:shadow-lg`}
       >
         <span>Place Order</span>{" "}
         <span>

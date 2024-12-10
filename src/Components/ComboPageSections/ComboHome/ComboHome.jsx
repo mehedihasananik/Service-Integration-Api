@@ -12,10 +12,11 @@ import ComboPageFaq from "../ComboPageFaq/ComboPageFaq";
 import ComboContact from "../ComboContact/ComboContact";
 import ScheduleMeetingContent from "@/Components/ScheduleMeeting/ScheduleMeetingContent";
 import { Footer } from "@/Components";
+import SmoothScrollWrapper3 from "../SmoothScrollWrapper/SmoothScrollWrapper3";
 
 const ComboHome = () => {
   return (
-    <>
+    <SmoothScrollWrapper3>
       <div className="relative">
         <div className="combo_hero overflow-hidden">
           <ComboHeader />
@@ -43,7 +44,7 @@ const ComboHome = () => {
         <ScheduleMeetingContent />
       </div>
       <Footer />
-    </>
+    </SmoothScrollWrapper3>
   );
 };
 

@@ -133,12 +133,11 @@ const PortfolioHomeItems = ({
                   <div className="group rounded-lg overflow-hidden border border-[#CBD5E1]">
                     <div className="portfolio-bgHover w-full cursor-pointer flex flex-col xl:flex-row bg-white rounded-lg">
                       <div className="w-full xl:w-1/2">
-                        <div className="relative w-full lg:aspect-[330/370] h-[270px] md:h-[400px] lg:h-auto overflow-hidden">
+                        <div className="relative w-auto h-[370px] overflow-hidden">
                           <Image
                             src={portfolio?.image}
-                            fill // Replaces layout="fill"
-                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 100vw, 330px" // Sizes based on container dimensions and breakpoints
-                            style={{ objectFit: "cover" }} // Replaces objectFit="cover"
+                            fill
+                            style={{ objectFit: "fill" }}
                             quality={80}
                             className="rounded-t-lg xl:rounded-l-lg lg:rounded-tr-none"
                             alt={portfolio?.alt_text || "Portfolio image"}
