@@ -120,7 +120,7 @@ const PortfolioHomeItems = ({
           </div>
         ) : (
           <div
-            className={`grid grid-cols-1 md:grid-cols-2  gap-8 4xl:gap-10 justify-between pt-10 pb-5 ${
+            className={`small:px-[5%] miniDevice:px-[15%] md:px-0 lg:px-[10%] 2lg:px-[0] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 2lg:grid-cols-3 xl:grid-cols-2 gap-8 4xl:gap-10 justify-between pt-10 pb-5 ${
               animate ? "fade-in" : ""
             }`}
           >
@@ -130,10 +130,10 @@ const PortfolioHomeItems = ({
                 href={`/portfolio/${portfolio?.slug}`}
               >
                 <>
-                  <div className="group rounded-lg overflow-hidden border border-[#CBD5E1]">
+                  <div className="group w-full lg:[345px] 2lg:w-[345px] xl:w-full rounded-lg overflow-hidden border border-[#CBD5E1]">
                     <div className="portfolio-bgHover w-full cursor-pointer flex flex-col xl:flex-row bg-white rounded-lg">
                       <div className="w-full xl:w-1/2">
-                        <div className="relative w-auto h-[370px] overflow-hidden">
+                        <div className="relative w-auto 2lg:w-[345px] xl:w-auto  h-[370px] overflow-hidden">
                           <Image
                             src={portfolio?.image}
                             fill
