@@ -50,15 +50,15 @@ const CustomDropdown = ({
     : website
     ? "w-[110px] md:w-[150px]"
     : containsPage
-    ? "w-[80px] md:w-[155px]" // If the option contains "page"
+    ? "w-[100px] md:w-[155px]" // If the option contains "page"
     : containsSec
     ? " w-[172px]" // If the option contains "sec"
     : containsPlatform
-    ? "w-[80px] md:w-[150px]" // If the option contains "platform"
+    ? "w-[100px] md:w-[150px]" // If the option contains "platform"
     : isYesNoOptions
     ? "w-[100px]" // If the option is "yes" or "no"
     : basicSeo // If basic seo
-    ? "w-[100px] md:w-[200px]"
+    ? "w-[110px] md:w-[200px]"
     : maintenance
     ? "w-[130px] md:w-[] lg:w-[100px]"
     : "w-[200px]"; // Default width for other cases

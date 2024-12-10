@@ -4,7 +4,7 @@ import ComboPricingHeader from "./ComboPricingHeader";
 
 const PricingPlans = () => {
   return (
-    <div>
+    <div className="pt-4 md:pt-0">
       <div className="relative h-full md:h-full lg:overflow-hidden">
         <div className="pricing_bg absolute top-[50%] left-[-12%]"></div>
         <div className="pricing_bg_blue absolute top-[45%] right-[-12%]"></div>
