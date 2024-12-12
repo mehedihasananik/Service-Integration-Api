@@ -48,6 +48,14 @@ module.exports = {
           "0%": { opacity: "0" },
           "100%": { opacity: "1" },
         },
+        "skeleton-wave": {
+          "0%": { transform: "translateX(-100%) skewX(12deg)", opacity: 0.5 },
+          "50%": { transform: "translateX(150%) skewX(12deg)", opacity: 1 },
+          "100%": { transform: "translateX(300%) skewX(12deg)", opacity: 0.5 },
+        },
+      },
+      animation: {
+        "skeleton-wave": "skeleton-wave 7s infinite",
       },
       colors: {
         primary: "#FF693B",

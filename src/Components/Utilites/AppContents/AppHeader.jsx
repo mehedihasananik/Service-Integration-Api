@@ -1,12 +1,20 @@
 "use client";
 
 import { useState } from "react";
+import { Link } from "react-scroll";
 import Container from "@/Components/Container/Container";
 import { Navbar } from "flowbite-react";
-import Link from "next/link";
 
 const AppHeader = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const navItems = [
+    "Experience",
+    "Apps",
+    "Services",
+    "Business Consulting",
+    "Contact Us",
+  ];
 
   return (
     <header className="bg-white shadow-lg">
@@ -30,16 +38,13 @@ const AppHeader = () => {
           >
             <nav className="md:ml-auto">
               <ul className="flex flex-col md:flex-row md:space-x-8 mt-4 md:mt-0">
-                {[
-                  "Experience",
-                  "Apps",
-                  "Services",
-                  "Business Consulting",
-                  "Contact Us",
-                ].map((item) => (
+                {navItems.map((item) => (
                   <li key={item} className="my-2 md:my-0">
                     <Link
-                      href={`#${item.toLowerCase().replace(" ", "")}`}
+                      to={item.toLowerCase().replace(" ", "")}
+                      smooth={true}
+                      duration={1000}
+                      offset={-70}
                       className="text-[16px] text-[#0F172A] cursor-pointer font-medium hover:text-[#FF693B] transition-colors duration-300 relative group py-2"
                     >
                       {item}

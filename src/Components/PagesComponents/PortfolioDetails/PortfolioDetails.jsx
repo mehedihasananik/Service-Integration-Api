@@ -20,51 +20,38 @@ const PortfolioDetails = ({ singlePortfolioItem }) => {
 
   // Disable right-click
   useEffect(() => {
+    const handleContextMenu = (e) => {
+      e.preventDefault();
+    };
     document.addEventListener("contextmenu", handleContextMenu);
     return () => {
       document.removeEventListener("contextmenu", handleContextMenu);
     };
   }, []);
 
-  const SkeletonLoader = () => (
-    <div className="skeleton-container">
-      <div className="skeleton-wrapper">
-        <div className="skeleton-image-wrapper">
-          <div className="skeleton-image-overlay">
-            <div className="skeleton-image-content">
-              <div className="skeleton-image-placeholder">
-                <svg
-                  className="skeleton-placeholder-icon"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                  <circle cx="8.5" cy="8.5" r="1.5"></circle>
-                  <polyline points="21 15 16 10 5 21"></polyline>
-                </svg>
-              </div>
-              <div className="skeleton-loading-bars">
-                <div className="skeleton-loading-bar"></div>
-                <div className="skeleton-loading-bar w-3/4"></div>
-                <div className="skeleton-loading-bar w-1/2"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="skeleton-caption">
-          <div className="skeleton-caption-line"></div>
-        </div>
-      </div>
-    </div>
-  );
+  // Disable keyboard shortcuts
+  // useEffect(() => {
+  //   const handleKeyDown = (e) => {
+  //     if (
+  //       (e.ctrlKey &&
+  //         (e.keyCode === 67 ||
+  //           e.keyCode === 86 ||
+  //           e.keyCode === 85 ||
+  //           e.keyCode === 117)) ||
+  //       e.keyCode === 123
+  //     ) {
+  //       e.preventDefault();
+  //       return false;
+  //     }
+  //   };
+  //   document.addEventListener("keydown", handleKeyDown);
+  //   return () => {
+  //     document.removeEventListener("keydown", handleKeyDown);
+  //   };
+  // }, []);
 
   return (
-    <div className="bg-[#fff]">
+    <div className="bg-[#fff]]">
       <Container>
         <div className="heading-space">
           <h1 className="text-[20px] md:text-[30px] lg:text-[54px] font-Raleway font-bold lg:leading-[63.4px] text-[#000000] text-center pb-3 lg:pb-0 pt-5 md:pt-0">
@@ -75,9 +62,25 @@ const PortfolioDetails = ({ singlePortfolioItem }) => {
           </div>
 
           {details.map((portfolio) => (
-            <div key={portfolio?.id} className="relative space-y-0 mb-6">
-              <div className="relative aspect-w-16 aspect-h-9">
-                {!imagesLoaded[portfolio.id] && <SkeletonLoader />}
+            <div key={portfolio?.id} className="relative space-y-0">
+              <div
+                className={`aspect-w-16 aspect-h-9 relative overflow-hidden ${
+                  !imagesLoaded[portfolio.id] ? "bg-gray-200" : ""
+                }`}
+              >
+                {!imagesLoaded[portfolio.id] && (
+                  <div className="absolute inset-0 bg-gradient-to-br from-gray-100 via-gray-300 to-gray-100 overflow-hidden">
+                    <div
+                      className="absolute inset-0 bg-gradient-to-r 
+                        from-transparent 
+                        via-white/70 
+                        to-transparent 
+                        animate-skeleton-wave
+                        skew-x-12
+                        shadow-lg"
+                    ></div>
+                  </div>
+                )}
                 <Image
                   height={800}
                   width={1000}
@@ -97,12 +100,11 @@ const PortfolioDetails = ({ singlePortfolioItem }) => {
             </div>
           ))}
         </div>
-        <div className="portfolio_text single_description">
+        <div className=" portfolio_text single_description">
           <Global_PageHtml serviceDetails={basic?.details} />
         </div>
       </Container>
 
-      {/* Rest of the component remains the same */}
       <div className="text-center bg-[#FF693B08] py-8 md:py-14 md:pb-16">
         <h2 className="text-[20px] md:text-[32px] lg:text-[45px] text-[#111111] lg:leading-[101px] font-semibold pb-4 md:pb-3">
           Let&apos;s Choose Us for Your Next Project
@@ -119,53 +121,6 @@ const PortfolioDetails = ({ singlePortfolioItem }) => {
           <RelevantPortfolio singlePortfolioItem={singlePortfolioItem} />
         </div>
       </div>
-
-      {/* Skeleton Styles */}
-      <style jsx>{`
-        .skeleton-container {
-          @apply w-full relative;
-        }
-
-        .skeleton-wrapper {
-          @apply w-full rounded-lg overflow-hidden;
-        }
-
-        .skeleton-image-wrapper {
-          @apply relative aspect-w-16 aspect-h-9 bg-gray-100;
-        }
-
-        .skeleton-image-overlay {
-          @apply absolute inset-0 flex items-center justify-center;
-        }
-
-        .skeleton-image-content {
-          @apply w-full h-full flex flex-col items-center justify-center space-y-4 p-4;
-        }
-
-        .skeleton-image-placeholder {
-          @apply w-24 h-24 text-gray-300 opacity-50;
-        }
-
-        .skeleton-placeholder-icon {
-          @apply w-full h-full;
-        }
-
-        .skeleton-loading-bars {
-          @apply w-full space-y-2 mt-4;
-        }
-
-        .skeleton-loading-bar {
-          @apply h-3 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 rounded-full animate-pulse;
-        }
-
-        .skeleton-caption {
-          @apply flex justify-center items-center py-4;
-        }
-
-        .skeleton-caption-line {
-          @apply w-1/2 h-4 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 rounded-full animate-pulse;
-        }
-      `}</style>
     </div>
   );
 };
