@@ -91,7 +91,7 @@ const WebsiteScore = () => {
           <span className="relative z-10 flex items-center">
             <Rocket className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3 animate-launch" />
             <span className="animate-pulse text-sm sm:text-base lg:text-lg">
-              Check Our Website Combos
+              Check Website Combo Offer
             </span>
           </span>
           <span className="absolute inset-0 bg-gradient-to-r from-[#FF693B] via-yellow-500 to-[#FF693B] opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out"></span>

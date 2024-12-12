@@ -8,7 +8,7 @@ const PortfolioPageItems = ({ portfolio }) => {
       <div className="group rounded-lg overflow-hidden border border-[#CBD5E1] ">
         <div className="portfolio-bgHover w-full cursor-pointer flex flex-col xl:flex-row bg-white rounded-lg">
           <div className="w-full xl:w-1/2">
-            <div className="relative  h-[370px] w-[370px] md:w-auto overflow-hidden">
+            <div className="relative w-auto h-[370px] overflow-hidden">
               <Image
                 src={portfolio?.image}
                 fill
