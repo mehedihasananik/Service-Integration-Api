@@ -84,14 +84,14 @@ const WebsiteScore = () => {
   return (
     <>
       <div className="flex justify-center items-center px-4 pb-3">
-        <button
-          className="relative overflow-hidden group bg-gradient-to-r from-[#FF693B] via-[#FF8C39] to-[#FF693B] text-white font-bold  py-5 px-10 md:py-6 md:px-10 lg:py-8 lg:px-12 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 ease-out transform hover:-translate-y-1 hover:scale-105"
-          onClick={() => setOpenModal(true)}
+        <a
+          href="/website-combo-offer"
+          className="relative cursor-pointer overflow-hidden group bg-gradient-to-r from-[#FF693B] via-[#FF8C39] to-[#FF693B] text-white font-bold  py-5 px-10 md:py-6 md:px-10 lg:py-8 lg:px-12 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 ease-out transform hover:-translate-y-1 hover:scale-105"
         >
           <span className="relative z-10 flex items-center">
             <Rocket className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3 animate-launch" />
             <span className="animate-pulse text-sm sm:text-base lg:text-lg">
-              Check Your Website Score
+              Check Our Website Combos
             </span>
           </span>
           <span className="absolute inset-0 bg-gradient-to-r from-[#FF693B] via-yellow-500 to-[#FF693B] opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out"></span>
@@ -100,7 +100,7 @@ const WebsiteScore = () => {
           <span className="absolute -bottom-1 -left-1 w-4 h-4 bg-yellow-300 rounded-3xl animate-ping"></span>
           <span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-0 h-0 bg-white rounded-3xl animate-ripple"></span>
           <span className="absolute top-0 left-0 w-full h-full border-4 border-white rounded-3xl animate-pulse"></span>
-        </button>
+        </a>
       </div>
 
       {/* Form Modal */}

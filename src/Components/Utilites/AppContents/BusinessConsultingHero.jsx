@@ -7,7 +7,7 @@ const BusinessConsultingHero = () => {
     <div className="  max-w-[1520px] md:mx-auto md:px-[4%] xl:px-[8%] 4xl:px-[4%]">
       <div
         id="businessconsulting"
-        className="bg-gradient-to-br from-blue-600 to-blue-700 py-8 md:py-20 px-4 sm:px-6 lg:px-8 rounded-[3px] app_space md:mt-6"
+        className="bg-secondary py-8 md:py-20 px-4 sm:px-6 lg:px-8 rounded-lg app_space md:mt-6"
       >
         <div className=" mx-auto flex flex-col lg:flex-row items-center justify-between">
           {/* Left column */}
@@ -15,7 +15,7 @@ const BusinessConsultingHero = () => {
             <h1 className="app_heading text-white   text-center md:text-left font-extrabold mb-6 leading-tight">
               Expert Business
               <br />
-              <span className="text-[#FF693B]">Consulting App</span>
+              Consulting App
             </h1>
 
             <p className="text-xl mb-8 leading-relaxed text-blue-100">

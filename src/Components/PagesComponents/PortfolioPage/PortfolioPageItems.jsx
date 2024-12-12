@@ -5,10 +5,10 @@ import { HiArrowSmallRight } from "react-icons/hi2";
 const PortfolioPageItems = ({ portfolio }) => {
   return (
     <>
-      <div className="group w-full lg:[345px] 2lg:w-[345px] xl:w-full rounded-lg overflow-hidden border border-[#CBD5E1]">
+      <div className="group rounded-lg overflow-hidden border border-[#CBD5E1] ">
         <div className="portfolio-bgHover w-full cursor-pointer flex flex-col xl:flex-row bg-white rounded-lg">
           <div className="w-full xl:w-1/2">
-            <div className="relative w-auto 2lg:w-[345px] xl:w-auto  h-[370px] overflow-hidden">
+            <div className="relative w-auto h-[370px] overflow-hidden">
               <Image
                 src={portfolio?.image}
                 fill
@@ -22,7 +22,7 @@ const PortfolioPageItems = ({ portfolio }) => {
 
           <div className="w-full xl:w-1/2 p-4 lg:p-6 flex flex-col justify-center items-center">
             <div className="text-center w-full">
-              <h4 className="text-headingCaption text-[#999999] mb-2 portfolio-textHover">
+              <h4 className="text-headingCaption text-grayish mb-2 portfolio-textHover">
                 {portfolio?.service_name.slice(0, 3).map((service, index) => (
                   <span key={index}>
                     {index > 0 && (
@@ -34,13 +34,13 @@ const PortfolioPageItems = ({ portfolio }) => {
                   </span>
                 ))}
               </h4>
-              <div className="text-base lg:text-lg font-bold font-Raleway text-[#333333] portfolio-textHover line-clamp-2 lg:line-clamp-2 mb-3">
-                {portfolio?.heading?.slice(0, 120)}
-              </div>
-              <p className="text-paragraphSmall text-grayish portfolio-textHover mb-4 line-clamp-4 lg:line-clamp-[8]">
+              <h2 className="text-headingText lg:text-subheading font-bold font-Raleway text-[#333333] portfolio-textHover line-clamp-2 lg:line-clamp-3 mb-3">
+                {portfolio?.heading}
+              </h2>
+              <p className="text-sm text-grayish portfolio-textHover mb-4 line-clamp-4 md:line-clamp-5 lg:line-clamp-[7]">
                 {portfolio.portfolio_summery}
               </p>
-              <div className="flex justify-center items-center gap-2 text-[#FF693B] font-bold portfolio-textHover">
+              <div className="flex justify-center items-center gap-2 text-primary font-bold portfolio-textHover">
                 <button className="text-sm lg:text-base">Read More</button>
                 <span className="w-5">
                   <HiArrowSmallRight className="text-xl" />

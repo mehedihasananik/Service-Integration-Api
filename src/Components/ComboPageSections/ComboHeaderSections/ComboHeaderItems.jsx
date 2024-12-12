@@ -9,9 +9,9 @@ const ComboHeaderItems = ({ headers, isMobileMenuOpen, toggleMobileMenu }) => {
       <header className="relative z-50">
         {/* Desktop Navigation */}
         <nav className="hidden md:flex justify-between items-center px-4 md:px-2 lg:px-0 py-4">
-          <Link href="/">
+          <a href="/">
             <Image src={headers.logo} alt="Logo" width={120} height={30} />
-          </Link>
+          </a>
 
           <div className="flex md:space-x-3 xl:space-x-10 items-center font-Inter font-semibold text-[14px] lg:text-[16px]">
             {headers.menu

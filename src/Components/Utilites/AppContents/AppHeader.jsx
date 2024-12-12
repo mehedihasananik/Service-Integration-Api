@@ -30,19 +30,23 @@ const AppHeader = () => {
           >
             <nav className="md:ml-auto">
               <ul className="flex flex-col md:flex-row md:space-x-8 mt-4 md:mt-0">
-                {["Experience", "Apps", "Services", "Business Consulting"].map(
-                  (item) => (
-                    <li key={item} className="my-2 md:my-0">
-                      <Link
-                        href={`#${item.toLowerCase().replace(" ", "")}`}
-                        className="text-[16px] text-[#0F172A] cursor-pointer font-medium hover:text-[#FF693B] transition-colors duration-300 relative group py-2"
-                      >
-                        {item}
-                        <span className="absolute left-0 bottom-0 w-full h-0.5 bg-[#FF693B] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
-                      </Link>
-                    </li>
-                  )
-                )}
+                {[
+                  "Experience",
+                  "Apps",
+                  "Services",
+                  "Business Consulting",
+                  "Contact Us",
+                ].map((item) => (
+                  <li key={item} className="my-2 md:my-0">
+                    <Link
+                      href={`#${item.toLowerCase().replace(" ", "")}`}
+                      className="text-[16px] text-[#0F172A] cursor-pointer font-medium hover:text-[#FF693B] transition-colors duration-300 relative group py-2"
+                    >
+                      {item}
+                      <span className="absolute left-0 bottom-0 w-full h-0.5 bg-[#FF693B] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </nav>
           </Navbar.Collapse>

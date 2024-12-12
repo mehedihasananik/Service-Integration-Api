@@ -51,7 +51,7 @@ const ServicePromotion = () => {
       description:
         "Custom, feature-rich WordPress websites tailored to your needs.",
       color: "bg-blue-600",
-      link: `https://www.envobyte.com/services/wordpress-website-development-service/`,
+      link: `https://www.envobyte.com/services/affordable-wordpress-website-development-service/`,
     },
     {
       icon: <FaAndroid className="text-3xl" />,
@@ -59,7 +59,7 @@ const ServicePromotion = () => {
       description:
         "High-quality, user-friendly Android apps that drive results.",
       color: "bg-green-500",
-      link: `https://www.envobyte.com/services/android-app-development-company/`,
+      link: `https://www.envobyte.com/services/best-android-app-development-service/`,
     },
     {
       icon: <FaPaintBrush className="text-3xl" />,
@@ -67,7 +67,7 @@ const ServicePromotion = () => {
       description:
         "Captivating logos that elevate your brand and leave a lasting impression.",
       color: "bg-purple-500",
-      link: `https://www.envobyte.com/services/logo-design-services/`,
+      link: `https://www.envobyte.com/services/eye-catching-logo-design/`,
     },
     {
       icon: <FaGlobe className="text-3xl" />,
@@ -75,7 +75,7 @@ const ServicePromotion = () => {
       description:
         "Tailored websites that combine cutting-edge design with seamless functionality.",
       color: "bg-indigo-500",
-      link: `https://www.envobyte.com/services/custom-website-development-service/`,
+      link: `https://www.envobyte.com/services/custom-website-development/`,
     },
   ];
 

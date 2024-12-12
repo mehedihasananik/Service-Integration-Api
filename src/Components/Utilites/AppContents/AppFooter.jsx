@@ -38,7 +38,7 @@ const AppFooter = () => {
               <SocialIcon
                 Icon={FaLinkedin}
                 label="LinkedIn"
-                link="https://www.linkedin.com/company/envobyte/mycompany/"
+                link="https://www.linkedin.com/company/envobyte/"
               />
               <SocialIcon
                 Icon={FaInstagram}

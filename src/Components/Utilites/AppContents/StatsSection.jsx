@@ -7,9 +7,9 @@ import Container from "@/Components/Container/Container";
 
 const StatsSection = () => {
   const stats = [
-    { value: 10, label: "Apps", suffix: "" },
-    { value: 900, label: "Downloads", suffix: "k+" },
-    { value: 140, label: "Active Installs", suffix: "k" },
+    { value: 10, label: "Apps", suffix: "+" },
+    { value: 1, label: "Downloads", suffix: "M+" },
+    { value: 200, label: "Active Installs", suffix: "K+" },
   ];
 
   return (

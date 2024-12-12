@@ -139,6 +139,24 @@ const AppSection = () => {
       slug: "https://play.google.com/store/apps/details?id=com.jpeg.image.compressor",
       downloads: 100,
     },
+    {
+      title: "iBooster: Likes and Followers",
+      description:
+        "Efficiently compress and resize JPEG images to save space or upload easily.",
+      rating: 5.0,
+      imageUrl: "/assets/iBooster.png",
+      slug: "https://play.google.com/store/apps/details?id=com.increase.instagram.followers.likes",
+      downloads: 5,
+    },
+    {
+      title: "Video Resizer & Compressor",
+      description:
+        "Efficiently compress and resize JPEG images to save space or upload easily.",
+      rating: 4.9,
+      imageUrl: "/assets/videoResizer.png",
+      slug: "https://play.google.com/store/apps/details?id=com.video.resizer.compressor",
+      downloads: 10,
+    },
   ];
 
   return (
