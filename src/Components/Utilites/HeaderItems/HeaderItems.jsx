@@ -26,7 +26,7 @@ const HeaderItems = ({ headers }) => {
 
   return (
     <>
-      <Container>
+      <div className="max-w-[1520px] mx-auto px-[6%] md:px-[4%] lg:px-[1%] 2lg:px-[4%] xl:px-[8%] 4xl:px-[4%] ">
         {/* Navbar for large devices */}
         <nav className="hidden lg:flex justify-between items-center pt-5 bg-[#FFFFFF]">
           {/* Logo */}
@@ -72,7 +72,7 @@ const HeaderItems = ({ headers }) => {
             ))}
           </div>
         </nav>
-      </Container>
+      </div>
 
       {/* Navbar for small devices */}
       <div className="lg:hidden md:py-4">

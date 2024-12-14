@@ -59,14 +59,15 @@ const ComboHeaderItems = ({ headers, isMobileMenuOpen, toggleMobileMenu }) => {
         {/* Mobile Navigation */}
         <nav className="md:hidden relative z-50">
           <div className="flex justify-between items-center p-4">
-            <Image
-              src={headers.logo}
-              alt="Logo"
-              width={120}
-              height={40}
-              className="object-contain"
-            />
-
+            <a href="/">
+              <Image
+                src={headers.logo}
+                alt="Logo"
+                width={120}
+                height={40}
+                className="object-contain"
+              />
+            </a>
             <button
               onClick={toggleMobileMenu}
               className="text-white z-50 relative"

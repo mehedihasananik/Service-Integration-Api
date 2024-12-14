@@ -1,4 +1,4 @@
-// // envobyte api
+// // // envobyte api
 export const apiEndpoint = "https://admin.envobyte.com/api";
 
 // envobyte shop api

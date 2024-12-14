@@ -112,7 +112,7 @@ const PortfolioPage = ({
           Our Amazing <span className="text-primary">Portfolio</span>
         </h1>
       </div>
-      <div className="grid grid-cols-1 md:space-x-3 lg:space-x-20 space-y-3 md:space-y-0 md:grid-cols-3 mt-4 md:mt-10">
+      <div className="grid grid-cols-1 md:space-x-3 lg:space-x-20 space-y-3 md:space-y-0 md:grid-cols-3 mt-4 md:mt-10 px-[2%] lg:px-[0%]">
         <div className="flex justify-center">
           <form className="w-full md:w-sm">
             <select
@@ -220,7 +220,7 @@ const PortfolioPage = ({
                 key={portfolio.id + "-" + portfolio.slug}
                 href={`/portfolio/${portfolio?.slug}`}
               >
-                <div className="group w-[345px] md:w-[335px] lg:w-[100%] rounded-lg overflow-hidden border border-[#CBD5E1] mx-auto mb-6 md:mb-0">
+                <div className="group w-[335px] miniDevice:w-[345px] md:w-[335px] lg:w-[100%] rounded-lg overflow-hidden border border-[#CBD5E1] mx-auto mb-6 md:mb-0">
                   <div className="portfolio-bgHover w-full cursor-pointer flex flex-col xl:flex-row bg-white rounded-lg">
                     <div className="w-full xl:w-1/2">
                       <div className="relative w-[345px] md:w-auto h-[370px] overflow-hidden">
