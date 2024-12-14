@@ -71,7 +71,7 @@ const ServicesPageContent = ({
       <div className="max-w-[1520px] mx-auto px-[6%] md:px-[4%] lg:px-0 xl:px-[8%] 4xl:px-[4%]">
         <div className="heading-space">
           <div className="text-center">
-            <h1 className="headings">
+            <h1 className="headings ">
               Choose a <span className="text-primary">service</span> that you
               need
             </h1>
