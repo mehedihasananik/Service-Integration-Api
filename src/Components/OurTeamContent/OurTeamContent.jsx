@@ -19,35 +19,35 @@ const OurTeamContent = () => {
     {
       name: "Tanvir Hosen",
       title: "Senior Marketing Executive",
-      imgSrc: "/assets/Tanvir.jpg",
+      imgSrc: "",
       gradientFrom: "from-yellow-200",
       gradientTo: "to-yellow-400",
     },
     {
       name: "Minul Islam",
       title: "Senior Marketing Executive",
-      imgSrc: "/assets/minul.jpg",
+      imgSrc: "",
       gradientFrom: "from-green-200",
       gradientTo: "to-green-400",
     },
     {
       name: "Md Al Amin",
       title: "Marketing Expert",
-      imgSrc: "/assets/alamin.jpg",
+      imgSrc: "",
       gradientFrom: "from-blue-200",
       gradientTo: "to-blue-400",
     },
     {
       name: "Faisal Abedin",
       title: "Marketing Expert",
-      imgSrc: "/assets/faysal.jpg",
+      imgSrc: "",
       gradientFrom: "from-red-200",
       gradientTo: "to-red-400",
     },
     {
       name: "Monir Ahmed",
       title: "Marketing Expert",
-      imgSrc: "/assets/monir.jpg",
+      imgSrc: "",
       gradientFrom: "from-purple-200",
       gradientTo: "to-purple-400",
     },
@@ -58,17 +58,17 @@ const OurTeamContent = () => {
     {
       name: "Shahed Noor",
       title: "Sr Software Engineer",
-      image: "/assets/mr.noor.jpg",
+      image: "",
     },
     {
       name: "Mehedi Hasan Anik",
       title: "Jr Software Engineer",
-      image: "/assets/myimg.png",
+      image: "",
     },
     {
       name: "Neriah Lux",
       title: "Freelance Developer",
-      image: "/assets/images.png",
+      image: "",
     },
 
     // Add more development team members...

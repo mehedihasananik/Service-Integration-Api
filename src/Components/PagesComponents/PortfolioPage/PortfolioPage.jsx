@@ -6,6 +6,7 @@ import Link from "next/link";
 import { searchServiceApi } from "@/config/apis";
 import Global_PageHtml from "@/Components/Utilites/Global_PageHtml/Global_PageHtml";
 import PortfolioPageItems from "./PortfolioPageItems";
+import { HiArrowSmallRight } from "react-icons/hi2";
 
 const PortfolioPage = ({
   portfolios,
@@ -112,8 +113,8 @@ const PortfolioPage = ({
         </h1>
       </div>
       <div className="grid grid-cols-1 md:space-x-3 lg:space-x-20 space-y-3 md:space-y-0 md:grid-cols-3 mt-4 md:mt-10">
-        <div>
-          <form className="max-w-sm">
+        <div className="flex justify-center">
+          <form className="w-full md:w-sm">
             <select
               onChange={handleCategoryChange}
               id="categories"
@@ -133,8 +134,8 @@ const PortfolioPage = ({
             </select>
           </form>
         </div>
-        <div>
-          <form className="max-w-sm">
+        <div className="flex justify-center">
+          <form className="w-full md:w-sm">
             <select
               onChange={handleServiceChange}
               id="services"
@@ -154,8 +155,8 @@ const PortfolioPage = ({
             </select>
           </form>
         </div>
-        <div>
-          <div className="relative w-full">
+        <div className="flex justify-center">
+          <div className="relative w-full md:w-sm">
             <input
               type="text"
               placeholder="What are you looking for?"
@@ -210,7 +211,7 @@ const PortfolioPage = ({
           </div>
         ) : (
           <div
-            className={`small:px-[5%] miniDevice:px-[15%] md:px-0 lg:px-[10%] 2lg:px-[0] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 2lg:grid-cols-3 xl:grid-cols-2 gap-8 4xl:gap-10 justify-between pt-10 pb-5 ${
+            className={`md:px-0 lg:px-[10%] 2lg:px-[0] space-y-5  md:grid grid-cols-1 items-center justify-center md:items-center md:grid-cols-2 lg:grid-cols-2 2lg:grid-cols-3 xl:grid-cols-2 gap-8 md:gap-0 lg:gap-10 4xl:gap-10 md:justify-between pt-10 pb-5 mx-auto w-full ${
               animate ? "fade-in" : ""
             }`}
           >
@@ -219,7 +220,55 @@ const PortfolioPage = ({
                 key={portfolio.id + "-" + portfolio.slug}
                 href={`/portfolio/${portfolio?.slug}`}
               >
-                <PortfolioPageItems portfolio={portfolio} />
+                <div className="group w-[345px] md:w-[335px] lg:w-[100%] rounded-lg overflow-hidden border border-[#CBD5E1] mx-auto mb-6 md:mb-0">
+                  <div className="portfolio-bgHover w-full cursor-pointer flex flex-col xl:flex-row bg-white rounded-lg">
+                    <div className="w-full xl:w-1/2">
+                      <div className="relative w-[345px] md:w-auto h-[370px] overflow-hidden">
+                        <Image
+                          src={portfolio?.image}
+                          fill
+                          style={{ objectFit: "fill" }}
+                          quality={80}
+                          className="rounded-t-lg xl:rounded-l-lg lg:rounded-tr-none"
+                          alt={portfolio?.alt_text || "Portfolio image"}
+                        />
+                      </div>
+                    </div>
+
+                    <div className="w-full xl:w-1/2 p-4 lg:p-6 flex flex-col justify-center items-center">
+                      <div className="text-center w-full">
+                        <h4 className="text-headingCaption text-grayish mb-2 portfolio-textHover">
+                          {portfolio?.service_name
+                            .slice(0, 3)
+                            .map((service, index) => (
+                              <span key={index}>
+                                {index > 0 && (
+                                  <>
+                                    ,<br />
+                                  </>
+                                )}
+                                {service}
+                              </span>
+                            ))}
+                        </h4>
+                        <h2 className="text-headingText lg:text-subheading font-bold font-Raleway text-[#333333] portfolio-textHover line-clamp-2 lg:line-clamp-3 mb-3">
+                          {portfolio?.heading}
+                        </h2>
+                        <p className="text-sm text-grayish portfolio-textHover mb-4 line-clamp-4 md:line-clamp-5 lg:line-clamp-[7]">
+                          {portfolio.portfolio_summery}
+                        </p>
+                        <div className="flex justify-center items-center gap-2 text-primary font-bold portfolio-textHover">
+                          <button className="text-sm lg:text-base">
+                            Read More
+                          </button>
+                          <span className="w-5">
+                            <HiArrowSmallRight className="text-xl" />
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </Link>
             ))}
           </div>

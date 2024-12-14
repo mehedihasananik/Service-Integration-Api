@@ -42,45 +42,45 @@ export default function TeamGrid2() {
     {
       name: "Amy Walker",
       title: "Art Director",
-      image: "/assets/myimg.png",
+      image: "",
       roleLink: "#",
     },
     {
       name: "Alice R Sloat",
       title: "Sales Manager",
-      image: "/assets/mr.noor.jpg",
+      image: "",
       roleLink: "#",
     },
     {
       name: "Molly Davidson",
       title: "HR Management",
-      image: "/assets/Hr_Manager.jpg",
+      image: "",
       roleLink: "#",
     },
     {
       name: "Tanvir Hosen",
       title: "Senior Marketing Executive",
-      image: "/assets/Tanvir.jpg",
+      image: "",
     },
     {
       name: "Minul Islam",
       title: "Senior Marketing Executive",
-      image: "/assets/minul.jpg",
+      image: "",
     },
     {
       name: "Md Al Amin",
       title: "Marketing Expert",
-      image: "/assets/alamin.jpg",
+      image: "",
     },
     {
       name: "Faisal Abedin",
       title: "Marketing Expert",
-      image: "/assets/faysal.jpg",
+      image: "",
     },
     {
       name: "Monir Ahmed",
       title: "Marketing Expert",
-      image: "/assets/monir.jpg",
+      image: "",
     },
   ];
 
