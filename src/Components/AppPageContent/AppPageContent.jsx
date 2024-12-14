@@ -6,11 +6,11 @@ import ServicePromotion from "../Utilites/AppContents/ServicePromotion";
 import BusinessConsultingHero from "../Utilites/AppContents/BusinessConsultingHero";
 import ContactSection from "../Utilites/AppContents/ContactUs";
 
-const AppPageContent = () => {
+const AppPageContent = ({ appData }) => {
   return (
     <div>
-      <AppBanner />
-      <StatsSection />
+      <AppBanner appData={appData.hero} />
+      <StatsSection stats={appData.apps_data} />
       <AppSection />
       <ServicePromotion />
       <BusinessConsultingHero />

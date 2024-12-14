@@ -72,6 +72,10 @@ const comboTestimonial = `${apiEndpoint}/testimonials_items_landing`;
 const comboPortfolioApi = `${apiEndpoint}/service_portfolio_landingpage`;
 const comboCheckoutApi = `${apiEndpoint}/custom/checkout`;
 
+// app page
+
+const envobyteApps = `http://192.168.10.16:8000/api/envobyte-apps`;
+
 export {
   headerApi,
   bannerApi,
@@ -112,4 +116,5 @@ export {
   comboTestimonial,
   comboPortfolioApi,
   comboCheckoutApi,
+  envobyteApps,
 };

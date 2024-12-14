@@ -3,7 +3,8 @@ import GlobalButtonColored from "../GlobalButton/GlobalButtonColored";
 import GlobalButtonHovered from "../GlobalButton/GlobalButtonHovered";
 import Container from "@/Components/Container/Container";
 
-const AppBanner = () => {
+const AppBanner = ({ appData }) => {
+  console.log(appData);
   return (
     <Container>
       <div className=" h-full app_space flex  justify-center items-center">
@@ -14,16 +15,23 @@ const AppBanner = () => {
                 Join 1 Million users worldwide!
               </p>
               <h1 className="text-2xl  lg:text-[60px] font-bold text-gray-900 leading-tight sm:leading-tight md:leading-tight lg:leading-[1.2]">
-                Welcome to{" "}
+                {/* Welcome to{" "}
                 <span className="text-[#FF693B] relative">Envobyte</span> Your
-                One-Stop Solution for Custom App Development
+                One-Stop Solution for Custom App Development */}
+
+                {appData.title.split(" ").map((word, index) => (
+                  <span
+                    key={index}
+                    style={{
+                      color: word === "Envobyte" ? "#FF693B" : "",
+                    }}
+                  >
+                    {word}{" "}
+                  </span>
+                ))}
               </h1>
               <p className="text-gray-700 text-paragraphMedium md:text-paragraphExtraLarge mb-4 mt-6 sm:mt-8 max-w-2xl mx-auto md:mx-0 ">
-                Apps make things easier to access. At Envobyte, we don&apos;t
-                just build apps—we bring your vision to life. We always aim to
-                provide real value to our users and clients. That&apos;s why we
-                have made our custom app development which is available on the
-                Play Store.
+                {appData.description}
               </p>
               <div className="flex flex-col xs:flex-row  justify-center xxl:justify-start gap-4 md:gap-6 lg:py-2">
                 <GlobalButtonColored
