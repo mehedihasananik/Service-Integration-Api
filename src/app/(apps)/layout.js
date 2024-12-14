@@ -3,7 +3,7 @@ import "/src/styles/globals.css";
 import AppFooter from "@/Components/Utilites/AppContents/AppFooter";
 
 export const metadata = {
-  title: "Business Growth with Custom App Development | Envobyte",
+  title: "Envobyte Apps",
   description:
     "Looking for custom app development? Envobyte delivers scalable and secure apps that drive business growth, available on the Play Store with no financial barrier",
 };

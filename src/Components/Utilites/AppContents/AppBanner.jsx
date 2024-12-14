@@ -15,7 +15,7 @@ const AppBanner = () => {
               </p>
               <h1 className="text-2xl  lg:text-[60px] font-bold text-gray-900 leading-tight sm:leading-tight md:leading-tight lg:leading-[1.2]">
                 Welcome to{" "}
-                <span className="text-[#FF693B] relative">Envobyte</span>: Your
+                <span className="text-[#FF693B] relative">Envobyte</span> Your
                 One-Stop Solution for Custom App Development
               </h1>
               <p className="text-gray-700 text-paragraphMedium md:text-paragraphExtraLarge mb-4 mt-6 sm:mt-8 max-w-2xl mx-auto md:mx-0 ">

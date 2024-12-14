@@ -20,7 +20,7 @@ const AppHeader = () => {
     <header className="bg-white shadow-lg">
       <Container>
         <Navbar fluid className="px-4 py-5">
-          <Navbar.Brand href="/app" className="flex items-center">
+          <Navbar.Brand href="/" className="flex items-center">
             <img
               src="/assets/footer.png"
               className="mr-3 h-10 sm:h-12"

@@ -11,6 +11,8 @@ const ComboFeatureList = ({
   onTotalPriceChange,
   onTotalDiscountChange,
   onOptionChange, // Added this prop to handle option change
+  errorMessage,
+  totalPrice,
 }) => {
   const [selectedOption, setSelectedOption] = useState({});
   const [openDropdown, setOpenDropdown] = useState(null);
@@ -131,7 +133,10 @@ const ComboFeatureList = ({
                   (!feature.active && !isCustomPlan ? " text-opacity-40" : "")
             } ${!feature.active && !isCustomPlan ? "text-gray-500" : ""}`}
           >
-            {typeof feature === "string" ? feature : feature.name}
+            <button onClick={() => toggleDropdown(feature.name)}>
+              {" "}
+              {typeof feature === "string" ? feature : feature.name}{" "}
+            </button>
           </div>
 
           {feature.options ? (
@@ -153,19 +158,19 @@ const ComboFeatureList = ({
           ) : !isCustomPlan ? (
             feature.active ? (
               <div
-                className={`flex items-center justify-center ${
-                  isPremiumPlus ? "w-6 h-6 rounded-full " : ""
+                className={`flex items-center justify-center w-[16px] h- ${
+                  isPremiumPlus ? "" : ""
                 }`}
               >
                 {isPremiumPlus ? (
                   <img
-                    src="/assets/Check circle.png"
+                    src="/assets/Check circle2.svg"
                     className="text-black"
                     style={{ background: "none" }}
                   />
                 ) : (
                   <img
-                    src="/assets/Check circle1.png"
+                    src="/assets/Check circle.svg"
                     className="text-black"
                     style={{ background: "none" }}
                   />
@@ -177,12 +182,19 @@ const ComboFeatureList = ({
                   "isPremiumPlus" ? " rounded-full bg-white" : ""
                 }`}
               >
-                <img src="/assets/Check circleR.png" alt="" />
+                <img src="/assets/Check circle3.svg" alt="" />
               </div>
             )
           ) : null}
         </div>
       ))}
+      {errorMessage && totalPrice <= 499 && (
+        <div className="text-center md:pt-2 font-bold">
+          <h2 className="text-[#FF5050] font-Inter text-[16px] font-semibold md:leading-[18px]">
+            Select services, minimum $499.
+          </h2>
+        </div>
+      )}
     </div>
   );
 };

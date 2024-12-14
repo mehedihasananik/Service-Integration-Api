@@ -171,6 +171,7 @@
 
   .combo_hero {
     background-image: url("/assets/Frame1.png");
+    background-color: #005ddd;
     background-repeat: no-repeat;
     background-size: cover; /* Changed from 'center' to 'cover' for full stretching */
     background-position: center;

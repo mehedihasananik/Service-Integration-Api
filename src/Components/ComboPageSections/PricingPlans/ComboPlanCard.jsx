@@ -170,6 +170,8 @@ const ComboPlanCard = ({ plan }) => {
             [featureName]: { option },
           }));
         }}
+        errorMessage={errorMessage}
+        totalPrice={totalPrice}
       />
 
       {/* Display error message if price is too low */}
