@@ -221,16 +221,15 @@
   .app_contact {
     height: 100%;
   }
-  .businessTransformBgSm {
+  /* .businessTransformBgSm {
     background-image: url("/assets/businessTransformSm.png");
     background-repeat: no-repeat;
-    background-size: contain; /* Adjust the size as needed */
-    background-position: center; /* Ensure it's positioned correctly */
+    background-size: cover;
     height: 740px;
     width: 100%;
-    z-index: 1; /* Background image is placed above bgGirl */
+    z-index: 1;
     border-radius: 15px;
-  }
+  } */
 }
 
 @media only screen and (max-width: 425px) {

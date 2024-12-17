@@ -60,6 +60,13 @@ export function BusinessTransform() {
 
           <div className=" lg:hidden ">
             <div className="bg-[#001C5F] rounded-lg md:rounded-none">
+              <div className="flex justify-center ">
+                <img
+                  className="w-[340px] h-[360px] rounded-t"
+                  src="/assets/girl3.svg"
+                  alt=""
+                />
+              </div>
               <div className="p-5 py-8 flex flex-col items-center">
                 <h2 className="text-white font-bold text-[22px] pb-3">
                   Transform Your Business with Zero Hassle
@@ -78,9 +85,6 @@ export function BusinessTransform() {
                     priority from start to finish.
                   </p>
                 </div>
-              </div>
-              <div className="flex justify-center ">
-                <img className="" src="/assets/girl3.png" alt="" />
               </div>
             </div>
           </div>
