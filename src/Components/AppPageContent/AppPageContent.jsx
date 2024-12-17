@@ -12,7 +12,7 @@ const AppPageContent = ({ appData }) => {
       <AppBanner appData={appData.hero} />
       <StatsSection stats={appData.apps_data} />
       <AppSection apps={appData.apps} />
-      <ServicePromotion />
+      <ServicePromotion featuredServices={appData.services} />
       <BusinessConsultingHero business={appData.business} />
       <div className="mt-10">
         {" "}

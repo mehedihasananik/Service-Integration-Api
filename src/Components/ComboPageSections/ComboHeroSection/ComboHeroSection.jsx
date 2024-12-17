@@ -1,7 +1,8 @@
 "use client";
 import React from "react";
-import ServiceList from "./ComboServiceList";
 import { Link } from "react-scroll";
+import ComboServiceList from "./ComboServiceList";
+import ComboServiceListSm from "./ComboServiceListSm";
 
 const ComboHeroSection = () => {
   const handleSmoothScroll = (e) => {
@@ -100,30 +101,16 @@ const ComboHeroSection = () => {
 
         {/* right side */}
 
-        <div className=" hidden lg:block w-[100%] md:w-[140%] lg:w-[80%] xl:w-[80%] 4xl:w-[70%] px-4 md:px-0 relative lg:right-[-7%] xl:right-[-14%] lg:top-[10%] lg:left-[30%] xl:left-[10%] xxl:left-[15%]  xl:top-[14%] 4xl:top-[0%] 3xl:left-[20%]">
+        <div className=" hidden lg:block  w-[100%] md:w-[140%] lg:w-[80%] xl:w-[80%] 4xl:w-[70%] px-4 md:px-0 relative lg:right-[-7%] xl:right-[-14%] top-10 lg:top-[10%] lg:left-[30%] xl:left-[10%] xxl:left-[15%]  xl:top-[14%] 4xl:top-[0%] 3xl:left-[20%]">
           {/* Replace the image with ServiceList component */}
           <div className="bg-cover bg-center w-full mx-auto h-[600px]">
             {/* Render the ServiceList component here */}
-            <ServiceList />
+            <ComboServiceList />
           </div>
         </div>
-
-        <div className="w-[100%]  block lg:hidden md:w-[140%] lg:w-[80%] xl:w-[80%] 4xl:w-[70%] px-4 md:px-0 relative lg:right-[-7%] xl:right-[-5%]">
-          <div className="relative lg:top-5">
-            {/* <div className="hidden md:block">
-              <img
-                className="w-full  mx-auto "
-                src="/assets/landingservices1.png"
-                alt="Landing Services"
-              />
-            </div> */}
-            <div className="flex justify-center items-center w-full">
-              <img
-                className="w-[332px]  mx-auto block  "
-                src="/assets/Group 1000005923.png"
-                alt="Landing Services"
-              />
-            </div>
+        <div className=" lg:hidden py-8">
+          <div className="relative left-1">
+            <ComboServiceListSm />
           </div>
         </div>
       </div>

@@ -63,7 +63,7 @@
   }
 }
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 1023px) {
   .image-gallery-left-nav .image-gallery-svg,
   .image-gallery-right-nav .image-gallery-svg {
     height: 30px !important;
@@ -150,7 +150,7 @@
   }
 
   .combo_hero {
-    background-image: url("/assets/Frame1.jpg");
+    background-image: url("/assets/comboHerosm.png");
     background-repeat: no-repeat;
     background-size: cover; /* Changed from 'center' to 'cover' for full stretching */
     background-position: center;
@@ -187,6 +187,15 @@
     height: 100%;
     width: 100%;
   }
+  .bgheroBlur {
+    background-image: none;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(12px);
+    width: 300px;
+    height: 500px;
+    flex-shrink: 0;
+  }
 }
 @media only screen and (max-width: 767px) {
   .combo_hero {
@@ -197,8 +206,30 @@
     background-position: center;
     overflow: hidden;
   }
+
+  .bgheroBlur {
+    background-image: url("/assets/bgheroBlursm.png");
+    background-repeat: no-repeat;
+    background-size: cover; /* Ensures the image covers the entire area */
+    background-position: center;
+    position: relative; /* For stacking content properly */
+    z-index: 1; /* Make sure content is above background */
+    height: 422px;
+    width: 239px;
+    overflow: visible; /* Ensure content can overflow outside the box */
+  }
   .app_contact {
     height: 100%;
+  }
+  .businessTransformBgSm {
+    background-image: url("/assets/businessTransformSm.png");
+    background-repeat: no-repeat;
+    background-size: contain; /* Adjust the size as needed */
+    background-position: center; /* Ensure it's positioned correctly */
+    height: 740px;
+    width: 100%;
+    z-index: 1; /* Background image is placed above bgGirl */
+    border-radius: 15px;
   }
 }
 
