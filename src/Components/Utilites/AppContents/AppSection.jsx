@@ -36,9 +36,7 @@ const StarRating = ({ rating }) => {
           return <FaRegStar key={index} className="w-5 h-5 text-gray-300" />;
         }
       })}
-      <span className="ml-2 text-gray-600 font-semibold">
-        {rating.toFixed(1)}
-      </span>
+      <span className="ml-2 text-gray-600 font-semibold">{rating}</span>
     </div>
   );
 };
@@ -65,7 +63,7 @@ const AppCard = ({ title, description, rating, imageUrl, slug, downloads }) => (
                 {" "}
                 <FaDownload className=" w-4 h-4 mr-1 text-blue-500" />
               </span>
-              <span className="text-sm font-medium ">{downloads}k+ </span>
+              <span className="text-sm font-medium ">{downloads}+ </span>
             </div>
           </div>
         </div>
@@ -74,91 +72,7 @@ const AppCard = ({ title, description, rating, imageUrl, slug, downloads }) => (
   </Link>
 );
 
-const AppSection = () => {
-  const apps = [
-    {
-      title: "Square Photo Editor - No Crop",
-      description:
-        "Easily edit and enhance your photos with powerful tools without cropping them.",
-      rating: 4.2,
-      imageUrl: "/assets/square-photo-editor.png",
-      slug: "https://play.google.com/store/apps/details?id=com.envobyte.square.photo.editor.nocrop",
-      downloads: 10,
-    },
-    {
-      title: "TTBoost: Get Likes & Followers",
-      description:
-        "Boost your TikTok profile with more likes and followers effortlessly.",
-      rating: 4.6,
-      imageUrl: "/assets/ttboost.png",
-      slug: "https://play.google.com/store/apps/details?id=com.ttboost.tik.tok.followers.likes",
-      downloads: 100,
-    },
-    {
-      title: "Video Downloader - Reels Saver",
-      description:
-        "Download Instagram Reels and videos directly to your device.",
-      rating: 4.5,
-      imageUrl: "/assets/video-downloader.png",
-      slug: "https://play.google.com/store/apps/details?id=com.ig.video.downloader.instagram.reels.story.saver",
-      downloads: 100,
-    },
-    {
-      title: "Automatic Background Remover",
-      description:
-        "Remove backgrounds from any image automatically with just a few clicks.",
-      rating: 4.3,
-      imageUrl: "/assets/background-remover.png",
-      slug: "https://play.google.com/store/apps/details?id=com.automatic.background.remover",
-      downloads: 10,
-    },
-    {
-      title: "Compress Video - Size Reducer",
-      description:
-        "Reduce the file size of your videos without compromising quality.",
-      rating: 4.4,
-      imageUrl: "/assets/video-compressor.png",
-      slug: "https://play.google.com/store/apps/details?id=com.compress.video.compressor.size.reducer",
-      downloads: 50,
-    },
-    {
-      title: "World VPN - Global Fast Secure",
-      description:
-        "Secure and fast VPN services for accessing content globally without restrictions.",
-      rating: 4.5,
-      imageUrl: "/assets/world-vpn.png",
-      slug: "https://play.google.com/store/apps/details?id=com.envobyte.world.vpn.global",
-      downloads: 5,
-    },
-    {
-      title: "JPEG Image Compressor & Resize",
-      description:
-        "Efficiently compress and resize JPEG images to save space or upload easily.",
-      rating: 4.2,
-      imageUrl: "/assets/jpeg-compressor.png",
-      slug: "https://play.google.com/store/apps/details?id=com.jpeg.image.compressor",
-      downloads: 100,
-    },
-    {
-      title: "iBooster: Likes and Followers",
-      description:
-        "Efficiently compress and resize JPEG images to save space or upload easily.",
-      rating: 5.0,
-      imageUrl: "/assets/iBooster.png",
-      slug: "https://play.google.com/store/apps/details?id=com.increase.instagram.followers.likes",
-      downloads: 5,
-    },
-    {
-      title: "Video Resizer & Compressor",
-      description:
-        "Efficiently compress and resize JPEG images to save space or upload easily.",
-      rating: 4.9,
-      imageUrl: "/assets/videoResizer.png",
-      slug: "https://play.google.com/store/apps/details?id=com.video.resizer.compressor",
-      downloads: 10,
-    },
-  ];
-
+const AppSection = ({ apps }) => {
   return (
     <Container>
       <section className="app_space pt-3 pb-5">

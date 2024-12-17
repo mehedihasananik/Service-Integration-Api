@@ -5,7 +5,7 @@ import React from "react";
 const ServiceCard = ({ service }) => {
   return (
     <Link href={`/services/${service.slug}`}>
-      <div className="w-[330px] h-[550px]  group shadow-lg rounded-md border border-[#E2E8F0] cursor-pointer hover:bg-[#FF693B] hover:text-white">
+      <div className="w-[330px] h-[520px] md:h-[555px] md:hover:h-[555px]  group shadow-lg rounded-md border border-[#E2E8F0] cursor-pointer hover:bg-[#FF693B]  hover:text-white">
         <div className="flex flex-col h-full">
           <div className="bg-[#E2E8F0] transition-all duration-300">
             <div className="relative w-full max-w-[330px] aspect-[330/305] overflow-hidden rounded-t-md">
@@ -20,11 +20,11 @@ const ServiceCard = ({ service }) => {
               />
             </div>
           </div>
-          <div className="px-5 h-[155px] group-hover:bg-[#FF693B] group-hover:h-[155px] transition-all duration-300 flex-grow">
+          <div className="px-5 h-[155px] group-hover:bg-[#FF693B] ] transition-all duration-300 flex-grow">
             <h3 className="line-clamp-1 text-headingSmall md:text-subheading font-bold text-blackish font-Raleway whitespace-nowrap pt-5 pb-2 group-hover:text-white transition-all duration-300">
               {service.title}
             </h3>
-            <p className="text-paragraphSmall line-clamp-5 text-slateBlueGray group-hover:text-white transition-all duration-300">
+            <p className="text-paragraphSmall line-clamp-4 md:line-clamp-5 lg:line-clamp-6  text-slateBlueGray group-hover:text-white transition-all duration-300">
               {service?.service_summery}
             </p>
           </div>

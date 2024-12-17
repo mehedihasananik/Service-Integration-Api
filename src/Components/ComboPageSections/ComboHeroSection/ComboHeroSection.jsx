@@ -117,10 +117,10 @@ const ComboHeroSection = () => {
                 alt="Landing Services"
               />
             </div> */}
-            <div>
+            <div className="flex justify-center items-center w-full">
               <img
                 className="w-[332px]  mx-auto block  "
-                src="/assets/landingservices3.png"
+                src="/assets/Group 1000005923.png"
                 alt="Landing Services"
               />
             </div>

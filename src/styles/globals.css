@@ -170,7 +170,7 @@
   }
 
   .combo_hero {
-    background-image: url("/assets/Frame1.png");
+    background-image: url("/assets/Frame1.jpg");
     background-color: #005ddd;
     background-repeat: no-repeat;
     background-size: cover; /* Changed from 'center' to 'cover' for full stretching */
@@ -182,7 +182,7 @@
     overflow: hidden; /* Prevent any overflow */
   }
   .contactusbg {
-    background-image: url("/assets/contactusbg.png");
+    background-image: url("/assets/contactusbg.jpg");
     background-repeat: no-repeat;
     background-size: cover; /* Changed from 'center' to 'cover' for full stretching */
     background-position: center;
@@ -232,7 +232,7 @@
     border-radius: 20px;
   } */
   .comboDeals {
-    background-image: url("/assets/comboDeals.png");
+    background-image: url("/assets/comboDeals.jpg");
     background-repeat: no-repeat;
     background-size: center;
     background-position: center;
@@ -263,7 +263,7 @@
     border-radius: 15px;
   }
   /* .showcase_section {
-    background-image: url("/assets/comboDeals.png");
+    background-image: url("/assets/comboDeals.jpg");
     background-repeat: no-repeat;
     background-size: center;
     background-position: center;

@@ -28,10 +28,7 @@ export default function ComboServiceList() {
   return (
     <div className="flex flex-col items-start space-y-4 bgheroBlur">
       {services.map((service, index) => (
-        <Link
-          to="pricing"
-          smooth={true}
-          duration={1500}
+        <div
           key={index}
           className={`flex items-center  rounded-full space-x-2 relative overflow-visible cursor-pointer ${
             translateValues[index % translateValues.length]
@@ -56,7 +53,7 @@ export default function ComboServiceList() {
           <p className="text-[#0A2C8C] text-[16px] font-Inter font-normal overflow-visible relative -left-[5%]">
             {service}
           </p>
-        </Link>
+        </div>
       ))}
     </div>
   );

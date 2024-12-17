@@ -5,13 +5,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import Container from "@/Components/Container/Container";
 
-const StatsSection = () => {
-  const stats = [
-    { value: 10, label: "Apps", suffix: "+" },
-    { value: 1, label: "Downloads", suffix: "M+" },
-    { value: 200, label: "Active Installs", suffix: "K+" },
-  ];
-
+const StatsSection = ({ stats }) => {
   return (
     <Container>
       <section id="experience" className=" px-4 sm:px-6 lg:px-0 app_space">
@@ -35,26 +29,29 @@ const StatsSection = () => {
           </motion.div>
 
           <div className="w-full grid grid-cols-1 justify-center lg:grid-cols-3 gap-8 mb-8 md:mb-16">
-            {stats.map((stat, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-200 text-center"
-              >
-                <CountUp
-                  end={stat.value}
-                  duration={2.5}
-                  separator=","
-                  suffix={stat.suffix}
-                  className="text-5xl font-bold text-[#173792]"
-                />
-                <p className="text-xl mt-4 text-gray-600 font-medium">
-                  {stat.label}
-                </p>
-              </motion.div>
-            ))}
+            {stats.map((stat, index) => {
+              console.log(stat.value);
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-200 text-center"
+                >
+                  <CountUp
+                    end={stat.value}
+                    duration={2.5}
+                    separator=","
+                    suffix={stat.suffix}
+                    className="text-5xl font-bold text-[#173792]"
+                  />
+                  <p className="text-xl mt-4 text-gray-600 font-medium">
+                    {stat.label}
+                  </p>
+                </motion.div>
+              );
+            })}
           </div>
 
           <motion.div

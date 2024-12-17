@@ -11,12 +11,12 @@ const AppPageContent = ({ appData }) => {
     <div>
       <AppBanner appData={appData.hero} />
       <StatsSection stats={appData.apps_data} />
-      <AppSection />
+      <AppSection apps={appData.apps} />
       <ServicePromotion />
-      <BusinessConsultingHero />
+      <BusinessConsultingHero business={appData.business} />
       <div className="mt-10">
         {" "}
-        <ContactSection />
+        <ContactSection contact={appData.contact} />
       </div>
     </div>
   );
