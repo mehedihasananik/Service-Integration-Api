@@ -6,7 +6,7 @@ const AppBanner = ({ appData }) => {
   return (
     <Container>
       <div className="flex flex-col gap-y-7 lg:gap-y-0 lg:flex-row w-[100%] pt-[4.5%] relative">
-        <div className="w-[100%] lg:w-[50%]">
+        <div className="w-[100%] lg:w-[50%] ">
           <div>
             <h3 className="text-center lg:text-left text-[#FF693B] font-Poppins text-[14px] md:text-[28px] font-semibold md:leading-[85px] capitalize">
               Join 1 Million users worldwide!
