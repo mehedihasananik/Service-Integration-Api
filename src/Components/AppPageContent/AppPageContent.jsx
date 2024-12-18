@@ -18,7 +18,7 @@ const AppPageContent = ({ appData }) => {
       <StatsSection stats={appData.apps_data} />
       <AppSection apps={appData.apps} />
       <ServicePromotion featuredServices={appData.services} />
-      <BusinessConsultingHero />
+      <BusinessConsultingHero business={appData.business} />
       <div className="mt-0">
         {" "}
         <ContactSection contact={appData.contact} />

@@ -81,7 +81,7 @@ const ServicePromotion = () => {
 
   return (
     <Container>
-      <section id="services" className="app_space">
+      <section id="services" className="app_space pt-[2%] md:pt-[3%]">
         <div className="container mx-auto px-4">
           <div className="text-center mb-5 md:mb-16">
             <h2 className="app_heading font-extrabold mb-4 ">
@@ -101,12 +101,12 @@ const ServicePromotion = () => {
               <ServiceCard key={index} {...service} />
             ))}
           </div>
-          <div className="text-center mb-5 mt-8 md:mt-16 md:mb-0">
+          <div className="text-center flex justify-center mb-5 mt-8 md:mt-16 md:mb-0">
             <Link
               href="/services"
-              className="inline-block bg-[#123390] text-white py-4 px-10 rounded-lg font-semibold text-sm md:text-lg hover:bg-[#FF693B] transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+              className="font-Inter w-[15%] flex justify-center items-center font-semibold md:leading-[20px] text-[14px] md:text-[16px] whitespace-nowrap px-4 py-2.5 md:px-11 md:py-3.5 rounded-lg transition-all duration-300 text-white bg-[#FF693B] border border-[#FF693B] hover:bg-white hover:text-[#FF693B]"
             >
-              View All Services
+              Explore Our Apps
             </Link>
           </div>
         </div>

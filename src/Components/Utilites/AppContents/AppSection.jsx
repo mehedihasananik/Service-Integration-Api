@@ -75,7 +75,7 @@ const AppCard = ({ title, description, rating, imageUrl, slug, downloads }) => (
 const AppSection = ({ apps }) => {
   return (
     <Container>
-      <section className="app_space pt-3 pb-5">
+      <section className="app_space pt-[2%] md:pt-[3%]">
         <div id="apps" className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="app_heading font-extrabold  mb-4">

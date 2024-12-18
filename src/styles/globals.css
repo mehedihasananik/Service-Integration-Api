@@ -72,7 +72,7 @@
     @apply text-headingBaseSmall md:text-[48px] text-gray-800 font-bold;
   }
   .app_space {
-    @apply py-3 md:py-8;
+    @apply py-3 md:py-0;
   }
 
   .custom-rotate {
@@ -585,17 +585,39 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     transform: rotate(360deg);
   }
 }
-
 .engine {
   background-image: url("/assets/enginen.png");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
   position: absolute;
-  right: 210px;
-  bottom: -5px;
+  /* right: 210px;
+  bottom: -5px; */
   width: 300px; /* Adjust size as needed */
   height: 250px;
   z-index: 0;
   animation: spin 8s linear infinite; /* Adjust duration for speed */
+}
+.consulting_engine {
+  background-image: url("/assets/consulting_engine.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  position: absolute;
+  top: 50%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+  width: 30%;
+  height: 30%;
+  z-index: 1; /* Ensures it's above the image */
+  animation: spins 8s linear infinite; /* Adjust duration for spin */
+}
+
+@keyframes spins {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
 }
