@@ -39,7 +39,7 @@ const ComboHome = () => {
         <ComboPageFaq title="Frequently Asked Questions" />
       </div>
       <ComboContact />
-      <div className="appointmentBg py-5 pt-[2.7%] px-2 md:px-0">
+      <div className=" py-5 pt-[2.7%] px-2 md:px-0">
         <ScheduleMeetingContent />
       </div>
       <Footer />

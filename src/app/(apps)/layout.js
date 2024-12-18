@@ -1,4 +1,3 @@
-import AppHeader from "@/Components/Utilites/AppContents/AppHeader";
 import "/src/styles/globals.css";
 import AppFooter from "@/Components/Utilites/AppContents/AppFooter";
 
@@ -19,7 +18,6 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body>
-        <AppHeader />
         {children}
         <AppFooter />
       </body>

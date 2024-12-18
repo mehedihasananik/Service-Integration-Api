@@ -556,3 +556,46 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   height: 700px;
   width: 100%;
 }
+
+.businessConsultingHero {
+  background-image: url("/assets/BusinessConsultingHero.png");
+  background-repeat: no-repeat;
+  background-size: center;
+  background-position: center;
+  z-index: -1;
+  height: 800px;
+  width: 100%;
+}
+
+.app_heroSection {
+  background-image: url("/assets/app_heroSection.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  z-index: 1;
+  height: 100vh;
+  width: 100%;
+  background-color: #001656;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.engine {
+  background-image: url("/assets/enginen.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  position: absolute;
+  right: 210px;
+  bottom: -5px;
+  width: 300px; /* Adjust size as needed */
+  height: 250px;
+  z-index: 0;
+  animation: spin 8s linear infinite; /* Adjust duration for speed */
+}
