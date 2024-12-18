@@ -3,7 +3,6 @@ import GlobalButtonColored from "../GlobalButton/GlobalButtonColored";
 import Container from "@/Components/Container/Container";
 
 const AppBanner = ({ appData }) => {
-  console.log(appData);
   return (
     <Container>
       <div className="flex flex-col gap-y-7 lg:gap-y-0 lg:flex-row w-[100%] pt-[4.5%] relative">
@@ -13,7 +12,7 @@ const AppBanner = ({ appData }) => {
               Join 1 Million users worldwide!
             </h3>
             <div>
-              <h1 className="hidden md:block text-[#fff] text-center lg:text-left font-Poppins text-[25px] xll:text-[52px] font-bold xll:leading-[58px] capitalize">
+              <h1 className="hidden md:block text-[#fff] text-center lg:text-left font-Poppins text-[25px] xll:text-[50px] font-bold xll:leading-[58px] capitalize">
                 Welcome to Envobyte <br /> Your One-Stop{" "}
                 <span className="text-[#FF693B]">Solution</span> for{" "}
                 <span className="text-[#FF693B]"> Custom App</span> Development

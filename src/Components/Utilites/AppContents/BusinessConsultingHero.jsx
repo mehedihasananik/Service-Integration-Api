@@ -4,7 +4,10 @@ import GlobalButtonColored from "../GlobalButton/GlobalButtonColored";
 
 const BusinessConsultingHero = ({ business }) => {
   return (
-    <div className="businessConsultingHero pb-10 lg:pb-0">
+    <div
+      id="businessconsulting"
+      className="businessConsultingHero pb-10 lg:pb-0"
+    >
       <div className="max-w-[1450px] mx-auto px-[6%] md:px-[6%] lg:px-[2%] xl:px-[8%] 4xl:px-[4%] lg:h-[80vh]  flex items-center ">
         <div className="flex flex-col-reverse gap-y-7 lg:gap-y-0 lg:flex-row items-center justify-center w-[100%] overflow-hidden">
           <div className="w-[100%] lg:w-[50%] lg:pt-10">

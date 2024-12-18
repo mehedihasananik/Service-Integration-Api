@@ -74,7 +74,7 @@ const comboCheckoutApi = `${apiEndpoint}/custom/checkout`;
 
 // app page
 
-const envobyteApps = `http://192.168.10.16:8000/api/envobyte-apps`;
+const envobyteApps = `${apiEndpoint}/envobyte-apps`;
 
 export {
   headerApi,

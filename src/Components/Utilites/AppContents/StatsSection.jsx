@@ -9,7 +9,7 @@ const StatsSection = ({ stats }) => {
     <Container>
       <section
         id="experience"
-        className="px-4 sm:px-6 lg:px-0 app_space pt-[2%] md:pt-[3%]"
+        className="px-4 sm:px-6 lg:px-0 app_space pt-[5%] lg:pt-[3%]"
       >
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-8">
@@ -32,6 +32,7 @@ const StatsSection = ({ stats }) => {
                 className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-200 text-center"
               >
                 <CountUp
+                  start={0}
                   end={stat.value}
                   duration={2.5}
                   separator="," // Adds commas to large numbers
@@ -48,7 +49,7 @@ const StatsSection = ({ stats }) => {
           <div className="text-center flex justify-center">
             <Link
               href="https://play.google.com/store/apps/dev?id=8045723784298228141"
-              className="font-Inter w-[18%] flex justify-center items-center font-semibold md:leading-[20px] text-[14px] md:text-[16px] whitespace-nowrap px-4 py-2.5 md:px-11 md:py-3.5 rounded-lg transition-all duration-300 text-white bg-[#FF693B] border border-[#FF693B] hover:bg-white hover:text-[#FF693B]"
+              className="font-Inter lg:w-[18%] flex justify-center items-center font-semibold md:leading-[20px] text-[14px] md:text-[16px] whitespace-nowrap px-4 py-2.5 md:px-11 md:py-3.5 rounded-lg transition-all duration-300 text-white bg-[#FF693B] border border-[#FF693B] hover:bg-white hover:text-[#FF693B]"
             >
               Explore Our Apps
             </Link>

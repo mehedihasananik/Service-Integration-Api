@@ -28,7 +28,7 @@ const ContactUs = ({ contact }) => {
               <div className="pt-[5%]">
                 <a
                   href={`mailto:${contact.email}`}
-                  className="font-Inter text-[#0A2C8C] bg-[#FFF] hover:bg-[#0A2C8C] hover:text-[#fff] transition-all duration-300 delay-75 rounded-[6px] text-[16px] font-semibold md:leading-[20px] px-[13%] py-[2.5%]"
+                  className="font-Inter text-[#0A2C8C] bg-[#FFF] hover:bg-[#0A2C8C] border hover:border-[#fff] hover:text-[#fff] transition-all duration-300 delay-75 rounded-[6px] text-[16px] font-semibold md:leading-[20px] px-[13%] py-[2.5%]"
                 >
                   Contact us
                 </a>
