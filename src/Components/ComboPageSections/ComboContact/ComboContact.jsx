@@ -192,7 +192,7 @@ export default function ComboContact() {
 
                   <button
                     type="submit"
-                    className="mt-4 bg-[#536BAE] text-white font-semibold font-Inter text-[14px] py-3 px-6 rounded-lg hover:text-black hover:bg-white transition"
+                    className="mt-4 bg-white whitespace-nowrap cursor-pointer text-[#0A2C8C] font-bold  hover:bg-transparent border hover:text-white hover:border-white font-Inter text-[14px] py-3 px-6 rounded-lg   transition"
                     disabled={isLoading} // Disable the button during loading
                   >
                     {isLoading ? (

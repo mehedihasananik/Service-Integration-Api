@@ -1,63 +1,23 @@
 "use client";
-
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
+import ComboBrands from "../ComboBrands/ComboBrands";
+import Container from "@/Components/Container/Container";
 import {
   BookAppointmentButton,
   SeePricingButton,
 } from "../ComboGroupBtn/ComboGroupBtn";
-import ComboBrands from "../ComboBrands/ComboBrands";
-import Container from "@/Components/Container/Container";
+import { motion } from "framer-motion";
 
 const VideoSectionItem = ({ brands }) => {
-  const iframeWrapperRef = useRef(null);
-  const [isHovering, setIsHovering] = useState(false);
-
-  useEffect(() => {
-    const iframeWrapper = iframeWrapperRef.current;
-    if (!iframeWrapper) return;
-
-    const iframes = iframeWrapper.querySelectorAll("iframe");
-
-    const handleWheel = (e) => {
-      // Only prevent default scrolling when not hovering over iframe
-      if (!isHovering) {
-        e.preventDefault();
-
-        // Try to manually scroll the parent container
-        const parentContainer = document.querySelector(
-          "[data-smooth-scroll-container]"
-        );
-        if (parentContainer) {
-          parentContainer.scrollTop += e.deltaY;
-        }
-      }
-    };
-
-    // Add global wheel event listener
-    window.addEventListener("wheel", handleWheel, { passive: false });
-
-    iframes.forEach((iframe) => {
-      // Ensure full interaction with iframe
-      iframe.style.pointerEvents = "auto";
-
-      // Add hover state tracking
-      iframe.addEventListener("mouseenter", () => setIsHovering(true));
-      iframe.addEventListener("mouseleave", () => setIsHovering(false));
-    });
-
-    return () => {
-      window.removeEventListener("wheel", handleWheel);
-
-      iframes.forEach((iframe) => {
-        iframe.removeEventListener("mouseenter", () => setIsHovering(true));
-        iframe.removeEventListener("mouseleave", () => setIsHovering(false));
-      });
-    };
-  }, [isHovering]);
-
   return (
-    <div className="relative">
-      <div className="youtube_vdoSection absolute"></div>
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true }}
+      className="relative"
+    >
+      <div className="youtube_vdoSection absolute "></div>
       <div className="pt-[0%]">
         <ComboBrands brands={brands} />
       </div>
@@ -73,40 +33,34 @@ const VideoSectionItem = ({ brands }) => {
             </p>
           </div>
         </div>
+        <div className="w-full hidden lg:flex justify-center my-8">
+          <iframe
+            width="1120"
+            height="630"
+            src="https://www.youtube.com/embed/N73NyNDq-ZY?si=W2VUBjMkee8TGkv6"
+            title="YouTube video player"
+            className="rounded-lg shadow-lg"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+          />
+        </div>
 
-        <div ref={iframeWrapperRef}>
-          <div className="w-full hidden lg:flex justify-center my-8">
+        <div className="w-full flex lg:hidden justify-center my-8">
+          <div
+            className="relative w-full flex justify-center items-center"
+            style={{ paddingBottom: "56.25%" }}
+          >
             <iframe
-              width="1120"
-              height="630"
+              className="absolute top-0 left-0 w-full h-full rounded-lg shadow-lg"
               src="https://www.youtube.com/embed/N73NyNDq-ZY?si=W2VUBjMkee8TGkv6"
               title="YouTube video player"
-              className="rounded-lg shadow-lg"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerPolicy="strict-origin-when-cross-origin"
               allowFullScreen
             />
-          </div>
-
-          <div
-            className="w-full flex lg:hidden justify-center my-8"
-            style={{ position: "relative" }}
-          >
-            <div
-              className="relative w-full flex justify-center items-center"
-              style={{ paddingBottom: "56.25%" }}
-            >
-              <iframe
-                className="absolute top-0 left-0 w-full h-full rounded-lg shadow-lg"
-                src="https://www.youtube.com/embed/N73NyNDq-ZY?si=W2VUBjMkee8TGkv6"
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
-                allowFullScreen
-              />
-            </div>
           </div>
         </div>
 
@@ -115,7 +69,7 @@ const VideoSectionItem = ({ brands }) => {
           <BookAppointmentButton />
         </div>
       </Container>
-    </div>
+    </motion.div>
   );
 };
 

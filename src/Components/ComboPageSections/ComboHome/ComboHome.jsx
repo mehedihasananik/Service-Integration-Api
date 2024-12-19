@@ -12,10 +12,12 @@ import ComboPageFaq from "../ComboPageFaq/ComboPageFaq";
 import ComboContact from "../ComboContact/ComboContact";
 import ScheduleMeetingContent from "@/Components/ScheduleMeeting/ScheduleMeetingContent";
 import { Footer } from "@/Components";
+import SmoothScrollWrapper from "../SmoothScrollWrapper/SmoothScrollWrapper";
+import ComboScheduleMetting from "../ComboScheduleMetting/ComboScheduleMetting";
 
 const ComboHome = () => {
   return (
-    <>
+    <SmoothScrollWrapper>
       <div className="relative">
         <div className="combo_hero overflow-hidden">
           <ComboHeader />
@@ -39,11 +41,11 @@ const ComboHome = () => {
         <ComboPageFaq title="Frequently Asked Questions" />
       </div>
       <ComboContact />
-      <div className=" py-5 pt-[2.7%] px-2 md:px-0">
-        <ScheduleMeetingContent />
+      <div className="appointmentBg  py-5 pt-[2.7%] px-2 md:px-0">
+        <ComboScheduleMetting />
       </div>
       <Footer />
-    </>
+    </SmoothScrollWrapper>
   );
 };
 
