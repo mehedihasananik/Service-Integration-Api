@@ -1,9 +1,7 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 const ScheduleMeetingContent = ({ containerClass }) => {
-  const [isOverlayVisible, setIsOverlayVisible] = useState(true);
-
   useEffect(() => {
     // Load the HubSpot Meetings Embed script
     const script = document.createElement("script");
@@ -18,22 +16,6 @@ const ScheduleMeetingContent = ({ containerClass }) => {
     };
   }, []);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsOverlayVisible(true); // Show overlay on scroll to disable interaction
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  const handleOverlayClick = () => {
-    setIsOverlayVisible(false); // Hide overlay to enable interaction
-  };
-
   return (
     <div id="appointment" className={`${containerClass}`}>
       <div className="text-center mb-8 pt-5">
@@ -45,30 +27,9 @@ const ScheduleMeetingContent = ({ containerClass }) => {
         </p>
       </div>
       <div
-        className="meetings-iframe-container relative"
+        className="meetings-iframe-container"
         data-src="https://meetings.hubspot.com/envobyte?embed=true"
-        style={{ height: "" }} // Adjust as needed for your layout
-      >
-        {/* Overlay Div */}
-        {isOverlayVisible && (
-          <div
-            className="absolute inset-0  z-10 flex items-center justify-center cursor-pointer transition-opacity"
-            onClick={handleOverlayClick}
-            role="button"
-            aria-label="Enable interaction with the calendar"
-            tabIndex={0}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") {
-                handleOverlayClick();
-              }
-            }}
-          >
-            <span className="text-lg text-gray-700 relative top-[-10%] left-[10%]">
-              Click to Book An Appointment
-            </span>
-          </div>
-        )}
-      </div>
+      ></div>
     </div>
   );
 };

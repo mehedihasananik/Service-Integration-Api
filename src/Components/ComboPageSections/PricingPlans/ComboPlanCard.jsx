@@ -11,6 +11,7 @@ const ComboPlanCard = ({ plan }) => {
   const [totalDiscountPrice, setTotalDiscountPrice] = useState(0);
   const [selectedOption, setSelectedOption] = useState({});
   const [errorMessage, setErrorMessage] = useState(""); // State for error message
+  const [checkout, setCheckout] = useState("begin_checkout"); // State for checkout event
   const router = useRouter();
 
   // Handle price changes when options are selected
@@ -25,6 +26,30 @@ const ComboPlanCard = ({ plan }) => {
 
   const originalPrice =
     plan.title === "Custom Plan" ? totalPrice : parseFloat(plan.price);
+
+  const handleOrderClick = (selectedFeatures) => {
+    // Push event to dataLayer
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: checkout,
+      ecommerce: {
+        currency: "USD",
+        value: Number(originalPrice),
+        items: [
+          {
+            item_id: plan.package_id || "",
+            item_name: plan.title,
+            package_name: plan.title,
+            item_brand: "Envobyte Ltd",
+            price: originalPrice,
+            price_period: "1 time",
+            selected_features: selectedFeatures,
+          },
+        ],
+      },
+      "gtm.uniqueEventId": Date.now(),
+    });
+  };
 
   const handlePlaceOrder = async () => {
     // Reset error message
@@ -50,6 +75,9 @@ const ComboPlanCard = ({ plan }) => {
             name: feature.name,
             option: "", // No options, just pass the name
           }));
+
+    // Trigger the GTM event before placing the order
+    handleOrderClick(selectedFeatures);
 
     const orderData = {
       user_id: plan.user_id,
