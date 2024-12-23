@@ -624,3 +624,26 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 /* animation */
+.parallax-section {
+  overflow: hidden;
+  position: relative;
+}
+
+.parallax-bg {
+  will-change: transform;
+  transform-style: preserve-3d;
+}
+
+.floating-element {
+  will-change: transform;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.elegant-reveal {
+  overflow: hidden;
+}
+
+.reveal-element {
+  will-change: transform, opacity;
+}
