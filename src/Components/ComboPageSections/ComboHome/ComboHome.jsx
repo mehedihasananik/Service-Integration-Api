@@ -26,7 +26,7 @@ const ComboHome = () => {
       <div className="review-section bg-[#FCFEFF]">
         <ComboClientReview />
       </div>
-      <div className="portfolio-section">
+      <div className="py-10">
         <ComboPortfolio />
       </div>
       <div className="comboDeals">
