@@ -119,11 +119,12 @@ const ComboFeatureList = ({
       {features.map((feature, index) => (
         <div
           key={index}
+          onClick={() => toggleDropdown(feature.name)} // Add onClick directly to the div
           className={`flex justify-between items-center ${
             plan.title === "Premium Plan" || plan.title === "Premium+ Plan"
               ? "mt-3"
               : "mt-3 md:mt-1 border-b border-b-gray-100"
-          }`}
+          } cursor-pointer`} // Optional: Add cursor-pointer for better UX
         >
           <div
             className={`whitespace-nowrap font-semibold text-[14px] md:text-[16px] font-Inter ${
@@ -133,10 +134,8 @@ const ComboFeatureList = ({
                   (!feature.active && !isCustomPlan ? " text-opacity-40" : "")
             } ${!feature.active && !isCustomPlan ? "text-gray-500" : ""}`}
           >
-            <button onClick={() => toggleDropdown(feature.name)}>
-              {" "}
-              {typeof feature === "string" ? feature : feature.name}{" "}
-            </button>
+            {/* Remove the button as the div itself is clickable */}
+            {typeof feature === "string" ? feature : feature.name}
           </div>
 
           {feature.options ? (
@@ -150,41 +149,16 @@ const ComboFeatureList = ({
                 }
                 onSelect={(selectedOpt) => {
                   handleOptionChange(feature.name, selectedOpt);
+                  toggleDropdown(feature.name); // Ensure dropdown closes after selection
                 }}
                 isOpen={openDropdown === feature.name}
                 toggleDropdown={() => toggleDropdown(feature.name)}
               />
             </div>
           ) : !isCustomPlan ? (
-            feature.active ? (
-              <div
-                className={`flex items-center justify-center w-[16px] h- ${
-                  isPremiumPlus ? "" : ""
-                }`}
-              >
-                {isPremiumPlus ? (
-                  <img
-                    src="/assets/Check circle2.svg"
-                    className="text-black"
-                    style={{ background: "none" }}
-                  />
-                ) : (
-                  <img
-                    src="/assets/Check circle.svg"
-                    className="text-black"
-                    style={{ background: "none" }}
-                  />
-                )}
-              </div>
-            ) : (
-              <div
-                className={`flex items-center justify-center pl-[16px] ${
-                  "isPremiumPlus" ? " rounded-full bg-white" : ""
-                }`}
-              >
-                <img src="/assets/Check circle3.svg" alt="" />
-              </div>
-            )
+            <div className="flex items-center justify-center">
+              <img src="/assets/Check circle.svg" className="text-black" />
+            </div>
           ) : null}
         </div>
       ))}

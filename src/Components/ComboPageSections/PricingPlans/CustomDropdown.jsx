@@ -65,10 +65,7 @@ const CustomDropdown = ({
 
   return (
     <div className={`relative ${containerWidth}`}>
-      <button
-        onClick={toggleDropdown}
-        className="flex items-center justify-end w-full px-4 py-2 text-left bg-none text-black text-[12px] md:text-[16px]"
-      >
+      <div className="flex items-center justify-end w-full px-4 py-2 text-left bg-none text-black text-[12px] md:text-[16px]">
         {/* Span with fixed height */}
         <span
           className={`text-[16px] ${
@@ -78,10 +75,9 @@ const CustomDropdown = ({
           {placeholder || (isOpen ? "" : "")}
         </span>
         <span className="block">
-          {" "}
           <FaAngleDown className="text-gray-500" />
         </span>
-      </button>
+      </div>
 
       {isOpen && (
         <ul
@@ -92,12 +88,12 @@ const CustomDropdown = ({
             <li
               key={index}
               onClick={() => {
-                onSelect(option);
-                toggleDropdown(); // Close the dropdown after selection
+                onSelect(option); // Pass selected option to parent
+                toggleDropdown(); // Close dropdown after selection
               }}
               className="px-4 py-2 cursor-pointer 
-                transition-colors duration-200
-                text-white bg-[#0A2C8C] border-b border-b-gray-500 hover:bg-[#0075FF] text-center text-[16px]"
+            transition-colors duration-200
+            text-white bg-[#0A2C8C] border-b border-b-gray-500 hover:bg-[#0075FF] text-center text-[16px]"
             >
               {option}
             </li>
