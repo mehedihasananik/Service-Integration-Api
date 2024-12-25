@@ -1,27 +1,25 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
+import { ComboLeadBookBtn } from "@/Components/ComboLead/ComboLeadButtons/ComboLeadBookBtn";
 
 const ComboPortfolioSlider2 = ({ portfolio: images }) => {
   const [animationComplete, setAnimationComplete] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentImage, setCurrentImage] = useState(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
   const controls = useAnimation();
 
-  const imageWidth = 730; // Image width
+  const imageWidth = 730;
   const containerWidth =
-    typeof window !== "undefined" ? window.innerWidth : 1200; // Default to 1200 if window is not available
-  const visibleImages = Math.floor(containerWidth / imageWidth); // Calculate how many images can be visible
-
+    typeof window !== "undefined" ? window.innerWidth : 1200;
   const filteredImages = images.filter(
     (image) => image.position.toLowerCase() === "up"
   );
-
   const totalImages = filteredImages.length;
   const startAtX = -(imageWidth * (totalImages - 3));
   const stopAtX = 0;
-
-  // Calculate exact width needed for all images plus gaps
   const totalWidth = imageWidth * totalImages + 24 * (totalImages - 1);
   const maxDragDistance = totalWidth - containerWidth;
 
@@ -29,21 +27,37 @@ const ComboPortfolioSlider2 = ({ portfolio: images }) => {
     if (!animationComplete) {
       controls.start({
         x: stopAtX,
-        transition: {
-          duration: 4,
-          ease: "easeOut",
-        },
+        transition: { duration: 4, ease: "easeOut" },
       });
     }
   }, [controls, animationComplete, stopAtX]);
 
-  // Adjust drag constraints to prevent extra space
   const dragConstraints = {
     right: stopAtX,
-    left: -maxDragDistance - 24, // Subtract one gap width to ensure last image aligns perfectly
+    left: -maxDragDistance - 24,
+  };
+
+  const handleDragStart = () => {
+    setIsDragging(true);
+  };
+
+  const handleDragEnd = () => {
+    // Set a timeout to reset isDragging to prevent immediate click after drag
+    setTimeout(() => {
+      setIsDragging(false);
+    }, 100);
+  };
+
+  const handleClick = (src) => {
+    // Only open modal if not dragging
+    if (!isDragging) {
+      openModal(src);
+    }
   };
 
   const openModal = (src) => {
+    const index = filteredImages.findIndex((img) => img.image_url === src);
+    setCurrentImageIndex(index);
     setCurrentImage(src);
     setIsModalOpen(true);
   };
@@ -53,8 +67,28 @@ const ComboPortfolioSlider2 = ({ portfolio: images }) => {
     setCurrentImage(null);
   };
 
+  const navigateModal = (direction) => {
+    const newIndex =
+      direction === "next" ? currentImageIndex + 1 : currentImageIndex - 1;
+
+    if (newIndex >= 0 && newIndex < totalImages) {
+      setCurrentImageIndex(newIndex);
+      setCurrentImage(filteredImages[newIndex].image_url);
+    }
+  };
+
   const getCurrentImageDetails = (image_url) =>
     filteredImages.find((image) => image.image_url === image_url);
+
+  const isFirstImage = currentImageIndex === 0;
+  const isLastImage = currentImageIndex === totalImages - 1;
+
+  const handleCloseAndScroll = () => {
+    closeModal(); // Close the modal
+    document
+      .querySelector("#appointment") // Select the "appointment" section by ID
+      .scrollIntoView({ behavior: "smooth" }); // Scroll to the section smoothly
+  };
 
   return (
     <div className="w-full overflow-hidden py-2">
@@ -65,7 +99,9 @@ const ComboPortfolioSlider2 = ({ portfolio: images }) => {
           drag={animationComplete ? "x" : false}
           dragConstraints={dragConstraints}
           dragElastic={0.1}
-          className={`absolute flex gap-6 cursor-grab active:cursor-grabbing ${
+          onDragStart={handleDragStart}
+          onDragEnd={handleDragEnd}
+          className={`absolute flex gap-6 cursor-pointer active:cursor-pointer ${
             isModalOpen ? "pointer-events-none" : ""
           }`}
           style={{
@@ -74,9 +110,7 @@ const ComboPortfolioSlider2 = ({ portfolio: images }) => {
             opacity: isModalOpen ? 0.3 : 1,
             transition: "opacity 0.1s ease-out",
           }}
-          onAnimationComplete={() => {
-            setAnimationComplete(true);
-          }}
+          onAnimationComplete={() => setAnimationComplete(true)}
         >
           {filteredImages.map(({ image_url, title, updated_at }, index) => (
             <div
@@ -85,6 +119,7 @@ const ComboPortfolioSlider2 = ({ portfolio: images }) => {
                 isModalOpen ? "pointer-events-none" : ""
               }`}
               style={{ width: `${imageWidth}px`, height: "410px" }}
+              onClick={() => handleClick(image_url)}
             >
               <img
                 src={image_url}
@@ -107,12 +142,9 @@ const ComboPortfolioSlider2 = ({ portfolio: images }) => {
                     {updated_at}
                   </p>
                 </div>
-                <button
+                <div
                   className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[#fff] font-Inter text-[16px] font-medium view_design flex items-center leading-[20px] tracking-[0.32px]"
-                  onClick={() => openModal(image_url)}
-                  style={{
-                    textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
-                  }}
+                  style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)" }}
                 >
                   View Design{" "}
                   <span className="ml-2">
@@ -132,7 +164,7 @@ const ComboPortfolioSlider2 = ({ portfolio: images }) => {
                       />
                     </svg>
                   </span>
-                </button>
+                </div>
               </div>
             </div>
           ))}
@@ -140,51 +172,85 @@ const ComboPortfolioSlider2 = ({ portfolio: images }) => {
       </div>
 
       {isModalOpen && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.3, ease: "easeOut" }}
-          className="fixed inset-0 bg-[#1E1E1E] flex items-center justify-center z-50"
-        >
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.9, opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-            className="relative max-w-[1600px] w-full px-6"
+        <>
+          <button
+            className={`fixed left-[5%] top-1/2 transform -translate-y-1/2 p-4 rounded-full transition-colors z-[60] ${
+              isFirstImage ? "opacity-50 cursor-not-allowed" : "cursor-pointer"
+            }`}
+            onClick={() => !isFirstImage && navigateModal("prev")}
+            disabled={isFirstImage}
           >
-            <button
-              className="absolute top-4 right-4 text-white text-3xl font-bold"
-              onClick={closeModal}
-            >
-              &times;
-            </button>
-            <div className="flex flex-col items-start mb-4">
-              <p className="font-Inter text-[32px] font-medium leading-[20px] tracking-[0.64px] text-white mb-4">
-                {getCurrentImageDetails(currentImage)?.title}
-              </p>
-              <p className="text-[14px] text-white/70 leading-[20px] font-inter font-normal not-italic tracking-normal">
-                {getCurrentImageDetails(currentImage)?.updated_at}
-              </p>
-            </div>
-
-            <motion.img
-              src={currentImage}
-              alt="Enlarged View"
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 50 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
-              className="w-full max-w-[1800px] aspect-[235/100] rounded-lg shadow-xl"
+            <img
+              src="/assets/arrow-back-simpleRight.png"
+              alt="Previous"
+              className={isFirstImage ? "opacity-50" : ""}
             />
-            <div className="text-white mt-10 text-center flex justify-center">
-              <button className="flex border shadow-[0px_1px_4px_0px_rgba(25,33,61,0.08)] font-semibold py-3 px-6 rounded-md border-solid border-white hover:bg-[#fff] hover:text-[#1E1E1E] transition-all duration-300">
-                Book an Appointment
+          </button>
+
+          <button
+            className={`fixed right-[5%] top-1/2 transform -translate-y-1/2 p-4 rounded-full transition-colors z-[60] ${
+              isLastImage ? "opacity-50 cursor-not-allowed" : "cursor-pointer"
+            }`}
+            onClick={() => !isLastImage && navigateModal("next")}
+            disabled={isLastImage}
+          >
+            <img
+              src="/assets/arrow-back-simpleRight.svg"
+              alt="Next"
+              className={isLastImage ? "opacity-50" : ""}
+            />
+          </button>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="fixed inset-0 bg-[#1E1E1E] flex items-center justify-center z-50"
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="relative max-w-[1600px] w-full px-6"
+            >
+              <button
+                className="absolute top-4 right-4 text-white text-3xl font-bold"
+                onClick={closeModal}
+              >
+                &times;
               </button>
-            </div>
+
+              <div className="flex flex-col items-start mb-4">
+                <p className="font-Inter text-[32px] font-medium leading-[20px] tracking-[0.64px] text-white mb-4">
+                  {getCurrentImageDetails(currentImage)?.title}
+                </p>
+                <p className="text-[14px] text-white/70 leading-[20px] font-inter font-normal not-italic tracking-normal">
+                  {getCurrentImageDetails(currentImage)?.updated_at}
+                </p>
+              </div>
+
+              <motion.img
+                key={currentImage}
+                src={currentImage}
+                alt="Enlarged View"
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 50 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+                className="w-full max-w-[1800px] aspect-[235/100] rounded-lg shadow-xl"
+              />
+
+              <div className="text-white mt-10 text-center flex justify-center">
+                <ComboLeadBookBtn
+                  onClick={handleCloseAndScroll}
+                  className="border-primary"
+                />
+              </div>
+            </motion.div>
           </motion.div>
-        </motion.div>
+        </>
       )}
     </div>
   );
