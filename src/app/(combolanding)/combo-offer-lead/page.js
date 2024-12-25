@@ -11,11 +11,6 @@ async function getPageData() {
   }
 }
 
-export async function generateMetadata(parent) {
-  const homeData = await getPageData();
-  return generateCommonMetadata(homeData, parent);
-}
-
 const ComboLeadPage = async () => {
   const homeData = await getPageData();
 

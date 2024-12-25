@@ -2,47 +2,19 @@
 import React, { useState, useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 
-const ComboPortfolioSlider2 = () => {
-  const images = [
-    {
-      src: "/assets/comboP.jpg",
-      title: "Project 1",
-      date: "Uploaded Dec 24, 2024",
-    },
-    {
-      src: "/assets/comboP1.jpg",
-      title: "Bravaa Website UI/UX Design",
-      date: "Uploaded Dec 23, 2024",
-    },
-    {
-      src: "/assets/comboP2.jpg",
-      title: "Project 3",
-      date: "Uploaded Dec 22, 2024",
-    },
-    {
-      src: "/assets/comboP4.jpg",
-      title: "Project 4",
-      date: "Uploaded Dec 21, 2024",
-    },
-    {
-      src: "/assets/comboP5.jpg",
-      title: "Project 5",
-      date: "Uploaded Dec 20, 2024",
-    },
-    {
-      src: "/assets/comboP6.jpg",
-      title: "Project 6",
-      date: "Uploaded Dec 19, 2024",
-    },
-  ];
-
+const ComboPortfolioSlider2 = ({ portfolio: images }) => {
+  console.log(images);
   const [animationComplete, setAnimationComplete] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentImage, setCurrentImage] = useState(null);
   const controls = useAnimation();
 
   const imageWidth = 730; // Single image width
-  const totalImages = images.length;
+  const filteredImages = images.filter(
+    (image) => image.position.toLowerCase() === "up"
+  ); // Filter 'up' position regardless of case
+
+  const totalImages = filteredImages.length;
   const startAtX = -(imageWidth * (totalImages - 3)); // Start position
   const stopAtX = 0; // End position
 
@@ -73,8 +45,8 @@ const ComboPortfolioSlider2 = () => {
     setCurrentImage(null);
   };
 
-  const getCurrentImageDetails = (src) =>
-    images.find((image) => image.src === src);
+  const getCurrentImageDetails = (image_url) =>
+    filteredImages.find((image) => image.image_url === image_url);
 
   return (
     <div className="w-full overflow-hidden py-2">
@@ -98,7 +70,7 @@ const ComboPortfolioSlider2 = () => {
             setAnimationComplete(true);
           }}
         >
-          {images.map(({ src, title, date }, index) => (
+          {filteredImages.map(({ image_url, title, updated_at }, index) => (
             <div
               key={index}
               className={`relative flex-none group ${
@@ -107,7 +79,7 @@ const ComboPortfolioSlider2 = () => {
               style={{ width: `${imageWidth}px`, height: "410px" }}
             >
               <img
-                src={src}
+                src={image_url}
                 alt={`Slide ${index + 1}`}
                 className="w-full h-full object-cover object-left cursor-pointer"
                 draggable={false}
@@ -124,12 +96,12 @@ const ComboPortfolioSlider2 = () => {
                     {title}
                   </p>
                   <p className="text-[14px] text-white/70 leading-[20px] font-inter font-normal not-italic tracking-normal">
-                    {date}
+                    {updated_at}
                   </p>
                 </div>
                 <button
                   className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[#fff] font-Inter text-[16px] font-medium view_design flex items-center leading-[20px] tracking-[0.32px]"
-                  onClick={() => openModal(src)} // Open modal on button click
+                  onClick={() => openModal(image_url)} // Open modal on button click
                   style={{
                     textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)", // Add subtle shadow
                   }}
@@ -162,17 +134,17 @@ const ComboPortfolioSlider2 = () => {
       {/* Modal */}
       {isModalOpen && (
         <motion.div
-          initial={{ opacity: 0 }} // Start with opacity 0
-          animate={{ opacity: 1 }} // Animate to opacity 1
-          exit={{ opacity: 0 }} // Exit animation for unmounting
-          transition={{ duration: 0.3, ease: "easeOut" }} // Animation properties
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
           className="fixed inset-0 bg-[#1E1E1E] flex items-center justify-center z-50"
         >
           <motion.div
-            initial={{ scale: 0.9, opacity: 0 }} // Start slightly scaled down and invisible
-            animate={{ scale: 1, opacity: 1 }} // Animate to full size and visible
-            exit={{ scale: 0.9, opacity: 0 }} // Exit animation
-            transition={{ duration: 0.3, ease: "easeOut" }} // Animation properties
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.9, opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
             className="relative max-w-[1600px] w-full px-6"
           >
             <button
@@ -183,25 +155,33 @@ const ComboPortfolioSlider2 = () => {
             </button>
             <div className="flex flex-col items-start mb-4">
               {/* Title and Date */}
-              <p className="font-Inter text-[22px] font-medium leading-[20px] tracking-[0.44px] text-white mb-1">
+              <p className="font-Inter text-[32px] font-medium leading-[20px] tracking-[0.64px] text-white mb-4">
                 {getCurrentImageDetails(currentImage)?.title}
               </p>
               <p className="text-[14px] text-white/70 leading-[20px] font-inter font-normal not-italic tracking-normal">
-                {getCurrentImageDetails(currentImage)?.date}
+                {getCurrentImageDetails(currentImage)?.updated_at}
               </p>
             </div>
+
             <motion.img
               src={currentImage}
               alt="Enlarged View"
-              initial={{ opacity: 0, y: 50 }} // Start slightly below and invisible
-              animate={{ opacity: 1, y: 0 }} // Animate to position and visible
-              exit={{ opacity: 0, y: 50 }} // Exit animation
-              transition={{ duration: 0.3, ease: "easeOut" }} // Animation properties
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 50 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
               className="w-full max-w-[1800px] aspect-[235/100] rounded-lg shadow-xl"
             />
+            <div className="text-white mt-10 text-center flex justify-center">
+              <button className="flex  border shadow-[0px_1px_4px_0px_rgba(25,33,61,0.08)] font-semibold  py-3 px-6 rounded-md border-solid border-white hover:bg-[#fff] hover:text-[#1E1E1E] transition-all duration-300">
+                Book an Appointment
+              </button>
+            </div>
           </motion.div>
         </motion.div>
       )}
+
+      {/* Book an Appointment Button */}
     </div>
   );
 };

@@ -12,7 +12,7 @@ async function getPageData() {
   }
 }
 
-const ComboPortfolio = async () => {
+const ComboLeadPortfolio = async () => {
   const portfolio = await getPageData();
 
   return (
@@ -35,4 +35,4 @@ const ComboPortfolio = async () => {
   );
 };
 
-export default ComboPortfolio;
+export default ComboLeadPortfolio;

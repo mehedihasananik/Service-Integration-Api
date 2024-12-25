@@ -10,6 +10,7 @@ import PricingPlans from "../ComboPageSections/PricingPlans/PricingPlans";
 import ShowcaseProjects from "../ComboPageSections/ShowcaseProjects/ShowcaseProjects";
 import VideoSection from "../ComboPageSections/VideoSection/VideoSection";
 import ScheduleMeetingContent from "../ScheduleMeeting/ScheduleMeetingContent";
+import ComboLeadPortfolio from "./ComboLeadPortfolio";
 
 const ComboLead = () => {
   return (
@@ -27,18 +28,17 @@ const ComboLead = () => {
         <ComboClientReview />
       </div>
       <div className="py-10">
-        <ComboPortfolio />
+        <ComboLeadPortfolio />
       </div>
-      <div className="comboDeals">
-        <ComboDeals />
+      <div>
         <ShowcaseProjects />
       </div>
       <div className="business-section">
         <BusinessTransform />
       </div>
-      <div className="pricing-section">
+      {/* <div className="pricing-section">
         <PricingPlans />
-      </div>
+      </div> */}
       <div className="faq-section pt-[0%]">
         <ComboPageFaq title="Frequently Asked Questions" />
       </div>
