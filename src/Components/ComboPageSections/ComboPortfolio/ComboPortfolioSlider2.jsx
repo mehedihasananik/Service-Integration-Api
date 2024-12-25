@@ -3,20 +3,27 @@ import React, { useState, useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 
 const ComboPortfolioSlider2 = ({ portfolio: images }) => {
-  console.log(images);
   const [animationComplete, setAnimationComplete] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentImage, setCurrentImage] = useState(null);
   const controls = useAnimation();
 
-  const imageWidth = 730; // Single image width
+  const imageWidth = 730; // Image width
+  const containerWidth =
+    typeof window !== "undefined" ? window.innerWidth : 1200; // Default to 1200 if window is not available
+  const visibleImages = Math.floor(containerWidth / imageWidth); // Calculate how many images can be visible
+
   const filteredImages = images.filter(
     (image) => image.position.toLowerCase() === "up"
-  ); // Filter 'up' position regardless of case
+  );
 
   const totalImages = filteredImages.length;
-  const startAtX = -(imageWidth * (totalImages - 3)); // Start position
-  const stopAtX = 0; // End position
+  const startAtX = -(imageWidth * (totalImages - 3));
+  const stopAtX = 0;
+
+  // Calculate exact width needed for all images plus gaps
+  const totalWidth = imageWidth * totalImages + 24 * (totalImages - 1);
+  const maxDragDistance = totalWidth - containerWidth;
 
   useEffect(() => {
     if (!animationComplete) {
@@ -30,9 +37,10 @@ const ComboPortfolioSlider2 = ({ portfolio: images }) => {
     }
   }, [controls, animationComplete, stopAtX]);
 
+  // Adjust drag constraints to prevent extra space
   const dragConstraints = {
     right: stopAtX,
-    left: startAtX,
+    left: -maxDragDistance - 24, // Subtract one gap width to ensure last image aligns perfectly
   };
 
   const openModal = (src) => {
@@ -59,12 +67,12 @@ const ComboPortfolioSlider2 = ({ portfolio: images }) => {
           dragElastic={0.1}
           className={`absolute flex gap-6 cursor-grab active:cursor-grabbing ${
             isModalOpen ? "pointer-events-none" : ""
-          }`} // Disable dragging when modal is open
+          }`}
           style={{
-            width: `${imageWidth * totalImages}px`,
-            filter: isModalOpen ? "blur(2px)" : "none", // Blur effect when modal is open
-            opacity: isModalOpen ? 0.3 : 1, // Fade out images when modal is open
-            transition: "opacity 0.1s ease-out", // Smooth fade transition
+            width: totalWidth,
+            filter: isModalOpen ? "blur(2px)" : "none",
+            opacity: isModalOpen ? 0.3 : 1,
+            transition: "opacity 0.1s ease-out",
           }}
           onAnimationComplete={() => {
             setAnimationComplete(true);
@@ -75,7 +83,7 @@ const ComboPortfolioSlider2 = ({ portfolio: images }) => {
               key={index}
               className={`relative flex-none group ${
                 isModalOpen ? "pointer-events-none" : ""
-              }`} // Disable interactions when modal is open
+              }`}
               style={{ width: `${imageWidth}px`, height: "410px" }}
             >
               <img
@@ -101,9 +109,9 @@ const ComboPortfolioSlider2 = ({ portfolio: images }) => {
                 </div>
                 <button
                   className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[#fff] font-Inter text-[16px] font-medium view_design flex items-center leading-[20px] tracking-[0.32px]"
-                  onClick={() => openModal(image_url)} // Open modal on button click
+                  onClick={() => openModal(image_url)}
                   style={{
-                    textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)", // Add subtle shadow
+                    textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
                   }}
                 >
                   View Design{" "}
@@ -131,7 +139,6 @@ const ComboPortfolioSlider2 = ({ portfolio: images }) => {
         </motion.div>
       </div>
 
-      {/* Modal */}
       {isModalOpen && (
         <motion.div
           initial={{ opacity: 0 }}
@@ -154,7 +161,6 @@ const ComboPortfolioSlider2 = ({ portfolio: images }) => {
               &times;
             </button>
             <div className="flex flex-col items-start mb-4">
-              {/* Title and Date */}
               <p className="font-Inter text-[32px] font-medium leading-[20px] tracking-[0.64px] text-white mb-4">
                 {getCurrentImageDetails(currentImage)?.title}
               </p>
@@ -173,15 +179,13 @@ const ComboPortfolioSlider2 = ({ portfolio: images }) => {
               className="w-full max-w-[1800px] aspect-[235/100] rounded-lg shadow-xl"
             />
             <div className="text-white mt-10 text-center flex justify-center">
-              <button className="flex  border shadow-[0px_1px_4px_0px_rgba(25,33,61,0.08)] font-semibold  py-3 px-6 rounded-md border-solid border-white hover:bg-[#fff] hover:text-[#1E1E1E] transition-all duration-300">
+              <button className="flex border shadow-[0px_1px_4px_0px_rgba(25,33,61,0.08)] font-semibold py-3 px-6 rounded-md border-solid border-white hover:bg-[#fff] hover:text-[#1E1E1E] transition-all duration-300">
                 Book an Appointment
               </button>
             </div>
           </motion.div>
         </motion.div>
       )}
-
-      {/* Book an Appointment Button */}
     </div>
   );
 };

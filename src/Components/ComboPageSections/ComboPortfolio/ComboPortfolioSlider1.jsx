@@ -9,12 +9,20 @@ const ComboPortfolioSlider1 = ({ portfolio: images }) => {
   const controls = useAnimation();
 
   const imageWidth = 730;
+  const containerWidth =
+    typeof window !== "undefined" ? window.innerWidth : 1200;
+
   const filteredImages = images.filter(
     (image) => image.position.toLowerCase() === "down"
-  ); // Filter 'up' position regardless of case
+  );
 
   const totalImages = filteredImages.length;
   const stopAtX = -(imageWidth * (totalImages - 3));
+  const startAtX = 0;
+
+  // Calculate total width including gaps
+  const totalWidth = imageWidth * totalImages + 24 * (totalImages - 1);
+  const maxDragDistance = totalWidth - containerWidth;
 
   useEffect(() => {
     if (!animationComplete) {
@@ -30,7 +38,7 @@ const ComboPortfolioSlider1 = ({ portfolio: images }) => {
 
   const dragConstraints = {
     right: 0,
-    left: stopAtX,
+    left: -maxDragDistance - 24,
   };
 
   const openModal = (src) => {
@@ -50,6 +58,7 @@ const ComboPortfolioSlider1 = ({ portfolio: images }) => {
     <div className="w-full overflow-hidden py-2">
       <div className="relative h-[420px] overflow-hidden">
         <motion.div
+          initial={{ x: startAtX }}
           animate={controls}
           drag={animationComplete ? "x" : false}
           dragConstraints={dragConstraints}
@@ -58,10 +67,10 @@ const ComboPortfolioSlider1 = ({ portfolio: images }) => {
             isModalOpen ? "pointer-events-none" : ""
           }`}
           style={{
-            width: `${imageWidth * totalImages}px`,
+            width: totalWidth,
             filter: isModalOpen ? "blur(2px)" : "none",
             opacity: isModalOpen ? 0.3 : 1,
-            transition: "opacity 0.3s ease-out",
+            transition: "opacity 0.1s ease-out",
           }}
           onAnimationComplete={() => {
             setAnimationComplete(true);
@@ -79,8 +88,6 @@ const ComboPortfolioSlider1 = ({ portfolio: images }) => {
                 className="w-full h-full object-cover object-left cursor-pointer"
                 draggable={false}
               />
-
-              {/* Overlay on Hover */}
               <div
                 className="absolute inset-0 bg-opacity-60 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                 style={{
@@ -128,7 +135,6 @@ const ComboPortfolioSlider1 = ({ portfolio: images }) => {
         </motion.div>
       </div>
 
-      {/* Modal */}
       {isModalOpen && (
         <motion.div
           initial={{ opacity: 0 }}
@@ -151,7 +157,6 @@ const ComboPortfolioSlider1 = ({ portfolio: images }) => {
               &times;
             </button>
             <div className="flex flex-col items-start mb-4">
-              {/* Title and Date */}
               <p className="font-Inter text-[32px] font-medium leading-[20px] tracking-[0.64px] text-white mb-4">
                 {getCurrentImageDetails(currentImage)?.title}
               </p>
@@ -169,7 +174,7 @@ const ComboPortfolioSlider1 = ({ portfolio: images }) => {
               className="w-full max-w-[1800px] aspect-[235/100] rounded-lg shadow-xl"
             />
             <div className="text-white mt-10 text-center flex justify-center">
-              <button className="flex  border shadow-[0px_1px_4px_0px_rgba(25,33,61,0.08)] font-semibold  py-3 px-6 rounded-md border-solid border-white hover:bg-[#fff] hover:text-[#1E1E1E] transition-all duration-300">
+              <button className="flex border shadow-[0px_1px_4px_0px_rgba(25,33,61,0.08)] font-semibold py-3 px-6 rounded-md border-solid border-white hover:bg-[#fff] hover:text-[#1E1E1E] transition-all duration-300">
                 Book an Appointment
               </button>
             </div>
