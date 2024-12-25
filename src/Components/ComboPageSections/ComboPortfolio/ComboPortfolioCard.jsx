@@ -11,9 +11,12 @@ const ComboPortfolioCard = ({ service }) => {
             style={{ border: "1px solid rgba(10, 44, 140, 0.25)" }}
             className="relative w-[345px] h-[370px] md:w-[300px] md:h-[320px] lg:w-[345px] lg:h-[370px] overflow-hidden rounded-lg"
           >
-            <img
+            <Image
               src={service?.image}
-              className="h-[729px] w-[410px]"
+              fill
+              style={{ objectFit: "fill" }}
+              quality={80}
+              className=""
               alt={service?.alt_text || "Service image"}
             />
           </div>

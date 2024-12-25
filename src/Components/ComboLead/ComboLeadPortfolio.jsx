@@ -1,7 +1,8 @@
 import React from "react";
-import ComboPortfolioSlider1 from "./ComboPortfolioSlider1";
-import ComboPortfolioSlider2 from "./ComboPortfolioSlider2";
 import { fetchData } from "@/config/fetchData";
+import ComboPortfolioSlider2 from "../ComboPageSections/ComboPortfolio/ComboPortfolioSlider2";
+import ComboPortfolioSlider1 from "../ComboPageSections/ComboPortfolio/ComboPortfolioSlider1";
+import { ComboLeadBookBtn } from "./ComboLeadButtons/ComboLeadBookBtn";
 
 async function getPageData() {
   try {
@@ -31,6 +32,13 @@ const ComboLeadPortfolio = async () => {
       </div>
       <ComboPortfolioSlider2 portfolio={portfolio} />
       <ComboPortfolioSlider1 portfolio={portfolio} />
+      <div>
+        <div className="flex justify-center pt-[2%]">
+          <div className="w-[11%]">
+            <ComboLeadBookBtn />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

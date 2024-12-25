@@ -1,15 +1,12 @@
 import { BusinessTransform } from "../ComboPageSections/BusinessTransform/BusinessTransform";
 import ComboClientReview from "../ComboPageSections/ComboClientReview/ComboClientReview";
 import ComboContact from "../ComboPageSections/ComboContact/ComboContact";
-import ComboDeals from "../ComboPageSections/ComboDeals/ComboDeals";
 import ComboHeader from "../ComboPageSections/ComboHeaderSections/ComboHeader";
 import ComboHeroSection from "../ComboPageSections/ComboHeroSection/ComboHeroSection";
 import ComboPageFaq from "../ComboPageSections/ComboPageFaq/ComboPageFaq";
-import ComboPortfolio from "../ComboPageSections/ComboPortfolio/ComboPortfolio";
-import PricingPlans from "../ComboPageSections/PricingPlans/PricingPlans";
+import ComboScheduleMetting from "../ComboPageSections/ComboScheduleMetting/ComboScheduleMetting";
 import ShowcaseProjects from "../ComboPageSections/ShowcaseProjects/ShowcaseProjects";
 import VideoSection from "../ComboPageSections/VideoSection/VideoSection";
-import ScheduleMeetingContent from "../ScheduleMeeting/ScheduleMeetingContent";
 import ComboLeadPortfolio from "./ComboLeadPortfolio";
 
 const ComboLead = () => {
@@ -39,14 +36,11 @@ const ComboLead = () => {
       {/* <div className="pricing-section">
         <PricingPlans />
       </div> */}
-      <div className="faq-section pt-[0%]">
+      <div className="faq-section pt-[4%]">
         <ComboPageFaq title="Frequently Asked Questions" />
       </div>
-      <div className="contact-section">
-        <ComboContact />
-      </div>
       <div className="schedule-section appointmentBg py-5 pt-[2.7%] px-2 md:px-0">
-        <ScheduleMeetingContent />
+        <ComboScheduleMetting />
       </div>
     </>
   );

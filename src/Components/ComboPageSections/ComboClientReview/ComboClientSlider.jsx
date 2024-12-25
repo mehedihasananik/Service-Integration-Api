@@ -7,6 +7,7 @@ import { Autoplay, Pagination } from "swiper/modules";
 import ComboSliderCard from "./ComboSliderCard";
 import ComboNavigationBtn from "@/Components/Utilites/NavigationButtons/ComboNavigationBtn";
 import { BookAppointmentButton } from "../ComboGroupBtn/ComboGroupBtn";
+import { ComboLeadBookBtn } from "@/Components/ComboLead/ComboLeadButtons/ComboLeadBookBtn";
 
 const ComboClientSlider = ({ testimonials, details }) => {
   // const [currentSlide, setCurrentSlide] = useState(0);
@@ -24,6 +25,14 @@ const ComboClientSlider = ({ testimonials, details }) => {
   //   swiperRef.current?.swiper.slideNext();
   //   setPreviousSlide(currentSlide);
   // };
+
+  const [currentPath, setCurrentPath] = useState("");
+
+  useEffect(() => {
+    // Use window.location.pathname to get the current route
+    const path = window?.location?.pathname.replace(/\/$/, ""); // Remove trailing slash
+    setCurrentPath(path);
+  }, []);
 
   const breakpoints = {
     1920: {
@@ -80,9 +89,18 @@ const ComboClientSlider = ({ testimonials, details }) => {
       {/* <div className="flex justify-center">
         <ComboNavigationBtn onPrev={handlePrevSlide} onNext={handleNextSlide} />
       </div> */}
-      <div className="flex justify-center pt-[2%]">
-        <BookAppointmentButton />
-      </div>
+      {/* Conditional Rendering Based on Route */}
+      {currentPath === "/website-combo-offer" ? (
+        <div className="flex justify-center pt-[2%]">
+          <BookAppointmentButton />
+        </div>
+      ) : currentPath === "/combo-offer-lead" ? (
+        <div className="flex justify-center pt-[2%]">
+          <div className="w-[15%]">
+            <ComboLeadBookBtn />
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 };
