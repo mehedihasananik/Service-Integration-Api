@@ -12,17 +12,28 @@ const ComboPortfolioSlider2 = ({ portfolio: images }) => {
   const [direction, setDirection] = useState("next");
   const controls = useAnimation();
 
-  const imageWidth = 730;
+  // Responsive image width based on screen size
+  const getImageWidth = () => {
+    if (typeof window === "undefined") return 730;
+    return window.innerWidth < 1024 ? 360 : 730;
+  };
+
+  const imageWidth = getImageWidth();
   const containerWidth =
     typeof window !== "undefined" ? window.innerWidth : 1200;
   const filteredImages = images.filter(
     (image) => image.position.toLowerCase() === "up"
   );
   const totalImages = filteredImages.length;
-  const startAtX = -(imageWidth * (totalImages - 3));
+
+  // Calculate total width based on images and gaps
+  const gapWidth = 24; // Gap between images
+  const totalWidth = imageWidth * totalImages + gapWidth * (totalImages - 1);
+
+  // Calculate start and stop positions
+  const startAtX = -Math.max(0, totalWidth - containerWidth);
   const stopAtX = 0;
-  const totalWidth = imageWidth * totalImages + 24 * (totalImages - 1);
-  const maxDragDistance = totalWidth - containerWidth;
+  const maxDragDistance = Math.max(0, totalWidth - containerWidth);
 
   useEffect(() => {
     if (!animationComplete) {
@@ -35,9 +46,8 @@ const ComboPortfolioSlider2 = ({ portfolio: images }) => {
 
   const dragConstraints = {
     right: stopAtX,
-    left: -maxDragDistance - 24,
+    left: -maxDragDistance,
   };
-
   const handleDragStart = () => {
     setIsDragging(true);
   };
@@ -95,7 +105,7 @@ const ComboPortfolioSlider2 = ({ portfolio: images }) => {
 
   return (
     <div className="w-full overflow-hidden py-2">
-      <div className="relative h-[200px] md:h-[220px] lg:h-[420px]  overflow-hidden">
+      <div className="relative h-[200px] md:h-[220px] lg:h-[420px] overflow-hidden">
         <motion.div
           initial={{ x: startAtX }}
           animate={controls}
@@ -108,7 +118,7 @@ const ComboPortfolioSlider2 = ({ portfolio: images }) => {
             isModalOpen ? "pointer-events-none" : ""
           }`}
           style={{
-            width: totalWidth,
+            width: `${totalWidth}px`,
             filter: isModalOpen ? "blur(2px)" : "none",
             opacity: isModalOpen ? 0.3 : 1,
             transition: "opacity 0.1s ease-out",
@@ -129,7 +139,7 @@ const ComboPortfolioSlider2 = ({ portfolio: images }) => {
                 className="w-full h-full object-cover cursor-pointer"
                 draggable={false}
                 style={{
-                  objectPosition: "-20px 0", // Adjust the horizontal position to cut off the left side
+                  objectPosition: "-20px 0",
                 }}
               />
 

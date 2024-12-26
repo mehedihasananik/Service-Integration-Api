@@ -4,7 +4,7 @@ import { motion, useAnimation } from "framer-motion";
 import { ComboLeadBookBtn } from "@/Components/ComboLead/ComboLeadButtons/ComboLeadBookBtn";
 import { SlideLeadBtn } from "@/Components/ComboLead/ComboLeadButtons/SlideLeadBtn";
 
-const ComboPortfolioSlider1 = ({ portfolio: images }) => {
+const ComboPortfolioSliderSm1 = ({ portfolio: images }) => {
   const [animationComplete, setAnimationComplete] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentImage, setCurrentImage] = useState(null);
@@ -13,42 +13,36 @@ const ComboPortfolioSlider1 = ({ portfolio: images }) => {
   const [direction, setDirection] = useState("next");
   const controls = useAnimation();
 
-  // Responsive image width based on screen size
-  const getImageWidth = () => {
-    if (typeof window === "undefined") return 730;
-    return window.innerWidth < 1024 ? 360 : 730;
-  };
-
-  const imageWidth = getImageWidth();
+  const imageWidth = 730;
   const containerWidth =
     typeof window !== "undefined" ? window.innerWidth : 1200;
 
   const filteredImages = images.filter(
     (image) => image.position.toLowerCase() === "down"
   );
+
   const totalImages = filteredImages.length;
-
-  // Calculate total width based on images and gaps
-  const gapWidth = 24; // Gap between images
-  const totalWidth = imageWidth * totalImages + gapWidth * (totalImages - 1);
-
-  // Calculate start and stop positions like ComboPortfolioSlider2
+  const stopAtX = -(imageWidth * (totalImages - 3));
   const startAtX = 0;
-  const stopAtX = -Math.max(0, totalWidth - containerWidth);
-  const maxDragDistance = Math.max(0, totalWidth - containerWidth);
+
+  const totalWidth = imageWidth * totalImages + 24 * (totalImages - 1);
+  const maxDragDistance = totalWidth - containerWidth;
 
   useEffect(() => {
     if (!animationComplete) {
       controls.start({
         x: stopAtX,
-        transition: { duration: 4, ease: "easeOut" },
+        transition: {
+          duration: 4,
+          ease: "easeOut",
+        },
       });
     }
   }, [controls, animationComplete, stopAtX]);
 
   const dragConstraints = {
     right: 0,
-    left: -maxDragDistance,
+    left: -maxDragDistance - 24,
   };
 
   const handleDragStart = () => {
@@ -106,7 +100,7 @@ const ComboPortfolioSlider1 = ({ portfolio: images }) => {
 
   return (
     <div className="w-full overflow-hidden py-2">
-      <div className="relative h-[200px] md:h-[220px] lg:h-[420px] overflow-hidden">
+      <div className="relative  h-[200px] md:h-[220px] lg:h-[420px] overflow-hidden">
         <motion.div
           initial={{ x: startAtX }}
           animate={controls}
@@ -119,12 +113,14 @@ const ComboPortfolioSlider1 = ({ portfolio: images }) => {
             isModalOpen ? "pointer-events-none" : ""
           }`}
           style={{
-            width: `${totalWidth}px`,
+            width: totalWidth,
             filter: isModalOpen ? "blur(2px)" : "none",
             opacity: isModalOpen ? 0.3 : 1,
             transition: "opacity 0.1s ease-out",
           }}
-          onAnimationComplete={() => setAnimationComplete(true)}
+          onAnimationComplete={() => {
+            setAnimationComplete(true);
+          }}
         >
           {filteredImages.map(({ image_url, title, updated_at }, index) => (
             <div
@@ -279,4 +275,4 @@ const ComboPortfolioSlider1 = ({ portfolio: images }) => {
   );
 };
 
-export default ComboPortfolioSlider1;
+export default ComboPortfolioSliderSm1;

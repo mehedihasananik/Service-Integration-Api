@@ -3,6 +3,8 @@ import { fetchData } from "@/config/fetchData";
 import ComboPortfolioSlider2 from "../ComboPageSections/ComboPortfolio/ComboPortfolioSlider2";
 import ComboPortfolioSlider1 from "../ComboPageSections/ComboPortfolio/ComboPortfolioSlider1";
 import { ComboLeadBookBtn } from "./ComboLeadButtons/ComboLeadBookBtn";
+import ComboPortfolioSliderSm2 from "../ComboPageSections/ComboPortfolio/ComboPortfolioSliderSm2";
+import ComboPortfolioSliderSm1 from "../ComboPageSections/ComboPortfolio/ComboPortfolioSliderSm1";
 
 async function getPageData() {
   try {
@@ -30,8 +32,14 @@ const ComboLeadPortfolio = async () => {
           </p>
         </div>
       </div>
-      <ComboPortfolioSlider2 portfolio={portfolio} />
-      <ComboPortfolioSlider1 portfolio={portfolio} />
+      <div className="">
+        <ComboPortfolioSlider2 portfolio={portfolio} />
+        <ComboPortfolioSlider1 portfolio={portfolio} />
+      </div>
+      {/* <div className="block md:hidden">
+        <ComboPortfolioSliderSm2 portfolio={portfolio} />
+        <ComboPortfolioSliderSm1 portfolio={portfolio} />
+      </div> */}
       <div className="">
         <div className="w-[100%] flex justify-center items-center pt-[1%]">
           <ComboLeadBookBtn />

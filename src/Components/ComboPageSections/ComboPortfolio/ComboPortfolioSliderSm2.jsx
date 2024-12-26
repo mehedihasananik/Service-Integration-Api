@@ -1,10 +1,9 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
-import { ComboLeadBookBtn } from "@/Components/ComboLead/ComboLeadButtons/ComboLeadBookBtn";
 import { SlideLeadBtn } from "@/Components/ComboLead/ComboLeadButtons/SlideLeadBtn";
 
-const ComboPortfolioSlider1 = ({ portfolio: images }) => {
+const ComboPortfolioSliderSm2 = ({ portfolio: images }) => {
   const [animationComplete, setAnimationComplete] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentImage, setCurrentImage] = useState(null);
@@ -13,29 +12,17 @@ const ComboPortfolioSlider1 = ({ portfolio: images }) => {
   const [direction, setDirection] = useState("next");
   const controls = useAnimation();
 
-  // Responsive image width based on screen size
-  const getImageWidth = () => {
-    if (typeof window === "undefined") return 730;
-    return window.innerWidth < 1024 ? 360 : 730;
-  };
-
-  const imageWidth = getImageWidth();
+  const imageWidth = 730;
   const containerWidth =
     typeof window !== "undefined" ? window.innerWidth : 1200;
-
   const filteredImages = images.filter(
-    (image) => image.position.toLowerCase() === "down"
+    (image) => image.position.toLowerCase() === "up"
   );
   const totalImages = filteredImages.length;
-
-  // Calculate total width based on images and gaps
-  const gapWidth = 24; // Gap between images
-  const totalWidth = imageWidth * totalImages + gapWidth * (totalImages - 1);
-
-  // Calculate start and stop positions like ComboPortfolioSlider2
-  const startAtX = 0;
-  const stopAtX = -Math.max(0, totalWidth - containerWidth);
-  const maxDragDistance = Math.max(0, totalWidth - containerWidth);
+  const startAtX = -(imageWidth * (totalImages - 3));
+  const stopAtX = 0;
+  const totalWidth = imageWidth * totalImages + 24 * (totalImages - 1);
+  const maxDragDistance = totalWidth - containerWidth;
 
   useEffect(() => {
     if (!animationComplete) {
@@ -47,8 +34,8 @@ const ComboPortfolioSlider1 = ({ portfolio: images }) => {
   }, [controls, animationComplete, stopAtX]);
 
   const dragConstraints = {
-    right: 0,
-    left: -maxDragDistance,
+    right: stopAtX,
+    left: -maxDragDistance - 24,
   };
 
   const handleDragStart = () => {
@@ -56,12 +43,14 @@ const ComboPortfolioSlider1 = ({ portfolio: images }) => {
   };
 
   const handleDragEnd = () => {
+    // Set a timeout to reset isDragging to prevent immediate click after drag
     setTimeout(() => {
       setIsDragging(false);
     }, 100);
   };
 
   const handleClick = (src) => {
+    // Only open modal if not dragging
     if (!isDragging) {
       openModal(src);
     }
@@ -98,15 +87,15 @@ const ComboPortfolioSlider1 = ({ portfolio: images }) => {
   const isLastImage = currentImageIndex === totalImages - 1;
 
   const handleCloseAndScroll = () => {
-    closeModal();
+    closeModal(); // Close the modal
     document
-      .querySelector("#appointment")
-      .scrollIntoView({ behavior: "smooth" });
+      .querySelector("#appointment") // Select the "appointment" section by ID
+      .scrollIntoView({ behavior: "smooth" }); // Scroll to the section smoothly
   };
 
   return (
     <div className="w-full overflow-hidden py-2">
-      <div className="relative h-[200px] md:h-[220px] lg:h-[420px] overflow-hidden">
+      <div className="relative h-[200px] md:h-[220px] lg:h-[420px]  overflow-hidden">
         <motion.div
           initial={{ x: startAtX }}
           animate={controls}
@@ -119,7 +108,7 @@ const ComboPortfolioSlider1 = ({ portfolio: images }) => {
             isModalOpen ? "pointer-events-none" : ""
           }`}
           style={{
-            width: `${totalWidth}px`,
+            width: totalWidth,
             filter: isModalOpen ? "blur(2px)" : "none",
             opacity: isModalOpen ? 0.3 : 1,
             transition: "opacity 0.1s ease-out",
@@ -279,4 +268,4 @@ const ComboPortfolioSlider1 = ({ portfolio: images }) => {
   );
 };
 
-export default ComboPortfolioSlider1;
+export default ComboPortfolioSliderSm2;
