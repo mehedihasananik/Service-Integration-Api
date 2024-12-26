@@ -1,10 +1,11 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-scroll";
 import ComboServiceList from "./ComboServiceList";
 import ComboServiceListSm from "./ComboServiceListSm";
 
 const ComboHeroSection = () => {
+  const [currentPath, setCurrentPath] = useState("");
   const handleSmoothScroll = (e) => {
     e.preventDefault();
 
@@ -45,6 +46,12 @@ const ComboHeroSection = () => {
     }
   };
 
+  useEffect(() => {
+    // Use window.location.pathname to get the current route
+    const path = window?.location?.pathname.replace(/\/$/, ""); // Remove trailing slash
+    setCurrentPath(path);
+  }, []);
+
   return (
     <div className="max-w-[1520px] mx-auto px-[6%] md:px-[4%] xl:px-[8%] 4xl:px-[4%]">
       {/* main section */}
@@ -72,15 +79,27 @@ const ComboHeroSection = () => {
           </div>
           <div className="flex flex-col md:flex-row gap-4 md:gap-x-10 justify-center md:justify-start">
             <div className="flex justify-center md:justify-start ">
-              <Link
-                to="pricing"
-                smooth={true}
-                duration={1500}
-                onClick={handleSmoothScroll} // Add the click handler
-                className="flex justify-center items-center bg-white whitespace-nowrap cursor-pointer text-[#0A2C8C]  hover:bg-transparent border hover:text-white hover:border-white w-[140px] md:w-[100%] lg:w-[100%] text-[14px] md:text-[18px] px-4 md:px-10 lg:px-8 py-3 md:py-1 lg:py-2 font-semibold rounded-md font-Inter transition-all duration-300 transform hover:shadow-[0px_4px_6px_rgba(0,0,0,0.1)] hover:bg-[#F0F0F0] hover:drop-shadow-lg"
-              >
-                See Pricing
-              </Link>
+              {currentPath === "/website-combo-offer" ? (
+                <Link
+                  to="pricing"
+                  smooth={true}
+                  duration={1500}
+                  onClick={handleSmoothScroll} // Add the click handler
+                  className="flex justify-center items-center bg-white whitespace-nowrap cursor-pointer text-[#0A2C8C]  hover:bg-transparent border hover:text-white hover:border-white w-[140px] md:w-[100%] lg:w-[100%] text-[14px] md:text-[18px] px-4 md:px-10 lg:px-8 py-3 md:py-1 lg:py-2 font-semibold rounded-md font-Inter transition-all duration-300 transform hover:shadow-[0px_4px_6px_rgba(0,0,0,0.1)] hover:bg-[#F0F0F0] hover:drop-shadow-lg"
+                >
+                  See Pricing
+                </Link>
+              ) : currentPath === "/combo-offer-lead" ? (
+                <Link
+                  to="appointment"
+                  smooth={true}
+                  duration={1500}
+                  onClick={handleSmoothScroll} // Add the click handler
+                  className="flex justify-center  items-center bg-white whitespace-nowrap cursor-pointer text-[#0A2C8C]  hover:bg-transparent border hover:text-white hover:border-white w-[140px] md:w-[100%] lg:w-[100%] text-[14px] md:text-[18px] px-4 md:px-10 lg:px-6 py-3 md:py-1 lg:py-2 font-semibold rounded-md font-Inter transition-all duration-300 transform hover:shadow-[0px_4px_6px_rgba(0,0,0,0.1)] hover:bg-[#F0F0F0] hover:drop-shadow-lg "
+                >
+                  Book An Appointment
+                </Link>
+              ) : null}
             </div>
             <div className="hidden lg:flex justify-center">
               <img

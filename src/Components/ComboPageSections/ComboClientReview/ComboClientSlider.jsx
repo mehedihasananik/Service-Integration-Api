@@ -95,8 +95,8 @@ const ComboClientSlider = ({ testimonials, details }) => {
           <BookAppointmentButton />
         </div>
       ) : currentPath === "/combo-offer-lead" ? (
-        <div className="flex justify-center pt-[2%]">
-          <div className="w-[15%]">
+        <div className="">
+          <div className="w-[100%] flex justify-center items-center pt-[2%] ">
             <ComboLeadBookBtn />
           </div>
         </div>

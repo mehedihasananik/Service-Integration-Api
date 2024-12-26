@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
-import { ComboLeadBookBtn } from "@/Components/ComboLead/ComboLeadButtons/ComboLeadBookBtn";
+import { SlideLeadBtn } from "@/Components/ComboLead/ComboLeadButtons/SlideLeadBtn";
 
 const ComboPortfolioSlider2 = ({ portfolio: images }) => {
   const [animationComplete, setAnimationComplete] = useState(false);
@@ -9,6 +9,7 @@ const ComboPortfolioSlider2 = ({ portfolio: images }) => {
   const [currentImage, setCurrentImage] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
+  const [direction, setDirection] = useState("next");
   const controls = useAnimation();
 
   const imageWidth = 730;
@@ -68,6 +69,8 @@ const ComboPortfolioSlider2 = ({ portfolio: images }) => {
   };
 
   const navigateModal = (direction) => {
+    setDirection(direction); // Update the direction state
+
     const newIndex =
       direction === "next" ? currentImageIndex + 1 : currentImageIndex - 1;
 
@@ -92,7 +95,7 @@ const ComboPortfolioSlider2 = ({ portfolio: images }) => {
 
   return (
     <div className="w-full overflow-hidden py-2">
-      <div className="relative h-[420px] overflow-hidden">
+      <div className="relative h-[200px] md:h-[220px] lg:h-[420px]  overflow-hidden">
         <motion.div
           initial={{ x: startAtX }}
           animate={controls}
@@ -117,16 +120,19 @@ const ComboPortfolioSlider2 = ({ portfolio: images }) => {
               key={index}
               className={`relative flex-none group ${
                 isModalOpen ? "pointer-events-none" : ""
-              }`}
-              style={{ width: `${imageWidth}px`, height: "410px" }}
+              } w-[360px] h-[200px] lg:w-[730px] lg:h-[410px]`}
               onClick={() => handleClick(image_url)}
             >
               <img
                 src={image_url}
                 alt={`Slide ${index + 1}`}
-                className="w-full h-full object-cover object-left cursor-pointer"
+                className="w-full h-full object-cover cursor-pointer"
                 draggable={false}
+                style={{
+                  objectPosition: "-20px 0", // Adjust the horizontal position to cut off the left side
+                }}
               />
+
               <div
                 className="absolute inset-0 bg-opacity-60 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                 style={{
@@ -235,15 +241,21 @@ const ComboPortfolioSlider2 = ({ portfolio: images }) => {
                 key={currentImage}
                 src={currentImage}
                 alt="Enlarged View"
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 50 }}
+                initial={{
+                  opacity: 0,
+                  x: direction === "next" ? 200 : -200, // Slide in from right (next) or left (prev)
+                }}
+                animate={{ opacity: 1, x: 0 }} // Bring image to center
+                exit={{
+                  opacity: 0,
+                  x: direction === "next" ? -200 : 200, // Slide out to left (next) or right (prev)
+                }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
                 className="w-full max-w-[1800px] aspect-[235/100] rounded-lg shadow-xl"
               />
 
               <div className="text-white mt-10 text-center flex justify-center">
-                <ComboLeadBookBtn
+                <SlideLeadBtn
                   onClick={handleCloseAndScroll}
                   className="border-primary"
                 />

@@ -67,9 +67,9 @@ export function BusinessTransform() {
                         </Link>
                       </div>
                     ) : currentPath === "/combo-offer-lead" ? (
-                      <div className="w-[30%] pt-5 ">
-                        <div className="border-none">
-                          <ComboLeadBookBtn className="border-none" />
+                      <div className="pt-5">
+                        <div className="w-[30%] ">
+                          <ComboLeadBookBtn className="border-none " />
                         </div>
                       </div>
                     ) : null}

@@ -7,6 +7,7 @@ import ComboPageFaq from "../ComboPageSections/ComboPageFaq/ComboPageFaq";
 import ComboScheduleMetting from "../ComboPageSections/ComboScheduleMetting/ComboScheduleMetting";
 import ShowcaseProjects from "../ComboPageSections/ShowcaseProjects/ShowcaseProjects";
 import VideoSection from "../ComboPageSections/VideoSection/VideoSection";
+import AllOffer from "./AllOffer";
 import ComboLeadPortfolio from "./ComboLeadPortfolio";
 
 const ComboLead = () => {
@@ -18,16 +19,20 @@ const ComboLead = () => {
           <ComboHeroSection />
         </div>
       </div>
-      <div className="video-section pb-4 md:pb-0">
+      <div className="video-section pb-4 md:pb-[4%]">
         <VideoSection />
       </div>
-      <div className="review-section bg-[#FCFEFF]">
+      <div>
+        <AllOffer />
+      </div>
+
+      <div className="review-section bg-[#FCFEFF] mt-[6%]">
         <ComboClientReview />
       </div>
-      <div className="py-10">
+      <div className="py-0">
         <ComboLeadPortfolio />
       </div>
-      <div>
+      <div className="mt-[4%]">
         <ShowcaseProjects />
       </div>
       <div className="business-section">

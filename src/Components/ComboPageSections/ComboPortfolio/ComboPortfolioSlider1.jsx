@@ -96,7 +96,7 @@ const ComboPortfolioSlider1 = ({ portfolio: images }) => {
 
   return (
     <div className="w-full overflow-hidden py-2">
-      <div className="relative h-[420px] overflow-hidden">
+      <div className="relative  h-[200px] md:h-[220px] lg:h-[420px] overflow-hidden">
         <motion.div
           initial={{ x: startAtX }}
           animate={controls}
@@ -105,7 +105,7 @@ const ComboPortfolioSlider1 = ({ portfolio: images }) => {
           dragElastic={0.1}
           onDragStart={handleDragStart}
           onDragEnd={handleDragEnd}
-          className={`absolute flex gap-6 cursor-grab active:cursor-grabbing ${
+          className={`absolute flex gap-6 cursor-pointer active:cursor-pointer ${
             isModalOpen ? "pointer-events-none" : ""
           }`}
           style={{
@@ -121,16 +121,21 @@ const ComboPortfolioSlider1 = ({ portfolio: images }) => {
           {filteredImages.map(({ image_url, title, updated_at }, index) => (
             <div
               key={index}
-              className="relative flex-none group"
-              style={{ width: `${imageWidth}px`, height: "410px" }}
+              className={`relative flex-none group ${
+                isModalOpen ? "pointer-events-none" : ""
+              } w-[360px] h-[200px] lg:w-[730px] lg:h-[410px]`}
               onClick={() => handleClick(image_url)}
             >
               <img
                 src={image_url}
                 alt={`Slide ${index + 1}`}
-                className="w-full h-full object-cover object-left cursor-pointer"
+                className="w-full h-full object-cover cursor-pointer"
                 draggable={false}
+                style={{
+                  objectPosition: "-20px 0", // Adjust the horizontal position to cut off the left side
+                }}
               />
+
               <div
                 className="absolute inset-0 bg-opacity-60 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                 style={{

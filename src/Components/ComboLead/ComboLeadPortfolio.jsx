@@ -32,11 +32,9 @@ const ComboLeadPortfolio = async () => {
       </div>
       <ComboPortfolioSlider2 portfolio={portfolio} />
       <ComboPortfolioSlider1 portfolio={portfolio} />
-      <div>
-        <div className="flex justify-center pt-[2%]">
-          <div className="w-[11%]">
-            <ComboLeadBookBtn />
-          </div>
+      <div className="">
+        <div className="w-[100%] flex justify-center items-center pt-[1%]">
+          <ComboLeadBookBtn />
         </div>
       </div>
     </div>

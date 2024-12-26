@@ -557,6 +557,15 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   height: 700px;
   width: 100%;
 }
+.all-offer-section {
+  background-image: url("/assets/AllOffer.jpg");
+  background-repeat: no-repeat;
+  background-size: center;
+  background-position: center;
+  z-index: -11;
+  height: auto;
+  width: 100%;
+}
 
 .businessConsultingHero {
   background-image: url("/assets/BusinessConsultingHero.png");
@@ -572,7 +581,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   background-image: url("/assets/app_heroSection.png");
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center;
+  background-position: top;
   z-index: 1;
   height: 995px;
   width: 100%;

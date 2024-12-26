@@ -75,7 +75,7 @@ export default function ShowcaseProjects() {
                     <CountUp
                       start={0}
                       end={stat.count}
-                      duration={2}
+                      duration={5}
                       separator=","
                       suffix={stat.suffix}
                       className="text-[24px] font-semibold leading-none font-Inter"

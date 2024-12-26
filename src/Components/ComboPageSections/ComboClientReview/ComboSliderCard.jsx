@@ -34,7 +34,7 @@ const ComboSliderCard = ({ testimonial }) => {
 
           {/* Heading */}
           <h3 className="font-extrabold text-[#5168A7] font-Inter text-[16px] xl:text-[20px] xll:text-[30px] mt-2 md:mt-8">
-            {testimonial?.headline || "Revitalized my work approach"}
+            {`"${testimonial?.headline || "Revitalized my work approach"}"`}
           </h3>
 
           {/* Description */}
@@ -48,9 +48,9 @@ const ComboSliderCard = ({ testimonial }) => {
           </p>
 
           {/* Author Info */}
-          <p className="mt-6 text-sm text-[#6D758F] font-semibold text-[16px]">
+          <p className="mt-6  text-[#6D758F] text-[16px] text-[color:var(--Neutral-colors-600,#6D758F)] [leading-trim:both] [text-edge:cap] [font-feature-settings:'liga'_off,'clig'_off] [font-family:Inter] text-base font-extrabold leading-[22px]">
             {testimonial?.name || "Stephanie Powell"}{" "}
-            <span className="font-medium font-Inter text-[#6D758F]">
+            <span className="text-[color:var(--Neutral-colors-600,#6D758F)] [leading-trim:both] [text-edge:cap] [font-feature-settings:'liga'_off,'clig'_off] [font-family:Inter] text-base font-semibold leading-[22px]">
               | {testimonial?.designation || "VP of Sales at SalesForce"}
             </span>
           </p>

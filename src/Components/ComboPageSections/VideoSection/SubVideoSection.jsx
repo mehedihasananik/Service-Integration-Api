@@ -68,8 +68,8 @@ const SubVideoSection = () => {
             <BookAppointmentButton />
           </div>
         ) : currentPath === "/combo-offer-lead" ? (
-          <div className="flex justify-center">
-            <div className="w-[15%]">
+          <div className="">
+            <div className="w-[100%] flex justify-center items-center ">
               <ComboLeadBookBtn />
             </div>
           </div>

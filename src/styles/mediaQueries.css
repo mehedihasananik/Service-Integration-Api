@@ -256,6 +256,25 @@
     height: 100%;
     width: 100%;
   }
+  .all-offer-section2 {
+    background: #03165f;
+    background-repeat: no-repeat;
+    background-size: cover; /* Ensure it covers the entire section */
+    z-index: -1; /* Ensure background is behind other content */
+    width: 100%;
+    position: relative; /* Enables positioning for child elements */
+  }
+
+  .all-offer-section2 img {
+    position: absolute; /* Position the image absolutely */
+    top: 7.5%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(
+      -50%,
+      -50%
+    ); /* Adjust for image size to perfectly center */
+    z-index: 1; /* Ensure it stays above the background */
+  }
 }
 @media only screen and (max-width: 767px) {
   .combo_hero {
