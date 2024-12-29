@@ -208,12 +208,12 @@ const ComboPlanCard = ({ plan }) => {
         onClick={handlePlaceOrder}
         className={`mt-9 p-3 w-full rounded flex justify-center items-center text-[16px] font-semibold font-Inter ${
           plan.title === "Custom Plan" && totalPrice > 0
-            ? "bg-blue-900 hover:bg-[#0F2870] text-white" // Red color when totalPrice > 0
+            ? "bg-blue-900 hover:bg-[#0E2566] text-white" // Red color when totalPrice > 0
             : plan.title === "Custom Plan"
             ? "bg-[#0A2C8C66] hover:bg-[#7f8eb4] text-[#fff] transition-all duration-300 border" // Default Custom Plan color
             : plan.isDark
-            ? "bg-[#FFD54D] text-blue-900 hover:bg-transparent border border-[#E1E4ED] hover:border hover:text-[#FFD54D] transition-all duration-300"
-            : "bg-blue-900 hover:bg-[#0F2870] text-white transition-all duration-300 border border-[#0F2870]"
+            ? "bg-[#FFD54D] text-blue-900 hover:bg-[#ffd343d6] border border-[#E1E4ED] hover:border hover:text-[#0E2566] transition-all duration-300"
+            : "bg-blue-900 hover:bg-[#0E2566] text-white transition-all duration-300 border border-[#0F2870]"
         } transform transition-all duration-300 hover:shadow-lg`}
       >
         <span>Place Order</span>{" "}

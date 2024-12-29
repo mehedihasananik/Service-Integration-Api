@@ -8,8 +8,8 @@ export default function ShowcaseProjects() {
   const statisticsData = [
     {
       id: 1,
-      count: 800,
-      suffix: "+",
+      count: 2,
+      suffix: "k+",
       label: "Websites build",
       icon: "https://cdn.builder.io/api/v1/image/assets/e7a246693dbe47b68ba0a6f099060cf8/26684aa8f35edd61be877ff82151124536ee8424f36a37ab1faf0c3c4399c33c?apiKey=e7a246693dbe47b68ba0a6f099060cf8&",
     },
@@ -54,8 +54,8 @@ export default function ShowcaseProjects() {
         className="showcase_section flex overflow-hidden flex-col justify-center items-center lg:px-2 xl:px-10 py-5 md:py-14 rounded-lg max-md:px-5 md:pt-[0%]"
       >
         {/* Title */}
-        <h2 className="text-[20px] md:text-[24px] font-Inter font-semibold md:leading-[32px] text-center text-[#0A2C8C] max-md:max-w-full">
-          Check-out Our Stats
+        <h2 className="text-[20px] md:text-[24px] font-Inter font-semibold md:leading-[32px] text-center text-[#5168A7] max-md:max-w-full">
+          Our Company Achievements
         </h2>
 
         {/* Statistics */}

@@ -80,7 +80,7 @@ const PricingPlans = () => {
                   percentage: "10",
                   originalPrice: "0.00",
                   description:
-                    "Customize the plan tailored to your unique needs your unique needs",
+                    "Customize the plan tailored to your unique needs and goals effectively",
                   iconSrcError: "/assets/iconSrcError.png",
                   iconSrc:
                     "https://cdn.builder.io/api/v1/image/assets/e7a246693dbe47b68ba0a6f099060cf8/1d694be04f1ee028608754572ee5982ed1b8b2712a62b70f6d18efd2c2ad362d?apiKey=5dfe0fed099d4e7fb78a3e68f506b2af&",

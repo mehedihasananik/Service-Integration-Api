@@ -39,6 +39,24 @@ export default function ComboContact() {
       const result = await response.json();
       console.log(result);
 
+      // Push data to Google Tag Manager's dataLayer
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: "comboForm",
+        ecommerce: {
+          items: [
+            {
+              first_name: data.first_name || "",
+              user_email: data.user_email,
+              user_phone: data.user_phone,
+              website: data.website,
+              message: data.message,
+            },
+          ],
+        },
+        "gtm.uniqueEventId": Date.now(),
+      });
+
       // Check if the response was successful
       if (result.success) {
         setIsSuccess(true);

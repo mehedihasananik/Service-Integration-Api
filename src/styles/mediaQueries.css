@@ -262,7 +262,6 @@
     background-size: cover; /* Ensure it covers the entire section */
     z-index: -1; /* Ensure background is behind other content */
     width: 100%;
-    position: relative; /* Enables positioning for child elements */
   }
 
   .all-offer-section2 img {

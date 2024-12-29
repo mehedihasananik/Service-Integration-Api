@@ -15,7 +15,7 @@ const ComboPortfolio = async () => {
     <>
       <div id="portfolio">
         <h2 className="combo_title pt-6 md:pt-[3.5%]">
-          Checkout Our Portfolio
+          Check Our Previous work
         </h2>
         <div className="flex justify-center pt-4 md:pt-0">
           <p className="combo_des text-center px-[2%] lg:px-0 lg:w-[35%] font-medium">

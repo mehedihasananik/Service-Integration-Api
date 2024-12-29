@@ -10,7 +10,7 @@ const ComboFeatureList = ({
   plan,
   onTotalPriceChange,
   onTotalDiscountChange,
-  onOptionChange, // Added this prop to handle option change
+  onOptionChange,
   errorMessage,
   totalPrice,
 }) => {
@@ -51,17 +51,17 @@ const ComboFeatureList = ({
           case "4 pages":
           case "6 pages":
           case "8 pages":
-            newTotalPrice += 80; // Add price for 4-8 pages
+            newTotalPrice += 80;
             break;
           case "10 pages":
           case "12 pages":
           case "14 pages":
-            newTotalPrice += 120; // Add price for 10-14 pages
+            newTotalPrice += 120;
             break;
           case "16 pages":
           case "18 pages":
           case "20 pages":
-            newTotalPrice += 150; // Add price for 16-20 pages
+            newTotalPrice += 150;
             break;
           default:
             break;
@@ -79,17 +79,17 @@ const ComboFeatureList = ({
           case "4 pages":
           case "6 pages":
           case "8 pages":
-            newTotalDiscountPrice += 120; // Add discount for 4-8 pages
+            newTotalDiscountPrice += 120;
             break;
           case "10 pages":
           case "12 pages":
           case "14 pages":
-            newTotalDiscountPrice += 180; // Add discount for 10-14 pages
+            newTotalDiscountPrice += 180;
             break;
           case "16 pages":
           case "18 pages":
           case "20 pages":
-            newTotalDiscountPrice += 250; // Add discount for 16-20 pages
+            newTotalDiscountPrice += 250;
             break;
           default:
             break;
@@ -102,6 +102,9 @@ const ComboFeatureList = ({
 
       return newSelectedOptions;
     });
+
+    // Close the dropdown after selection
+    setOpenDropdown(null);
   };
 
   const toggleDropdown = (featureName) => {
@@ -119,12 +122,12 @@ const ComboFeatureList = ({
       {features.map((feature, index) => (
         <div
           key={index}
-          onClick={() => toggleDropdown(feature.name)} // Add onClick directly to the div
-          className={`flex justify-between items-center ${
+          onClick={() => toggleDropdown(feature.name)}
+          className={`flex justify-between items-center cursor-pointer ${
             plan.title === "Premium Plan" || plan.title === "Premium+ Plan"
               ? "mt-3"
               : "mt-3 md:mt-1 border-b border-b-gray-100"
-          } cursor-pointer`} // Optional: Add cursor-pointer for better UX
+          }`}
         >
           <div
             className={`whitespace-nowrap font-semibold text-[14px] md:text-[16px] font-Inter ${
@@ -134,7 +137,6 @@ const ComboFeatureList = ({
                   (!feature.active && !isCustomPlan ? " text-opacity-40" : "")
             } ${!feature.active && !isCustomPlan ? "text-gray-500" : ""}`}
           >
-            {/* Remove the button as the div itself is clickable */}
             {typeof feature === "string" ? feature : feature.name}
           </div>
 
@@ -149,16 +151,41 @@ const ComboFeatureList = ({
                 }
                 onSelect={(selectedOpt) => {
                   handleOptionChange(feature.name, selectedOpt);
-                  toggleDropdown(feature.name); // Ensure dropdown closes after selection
                 }}
                 isOpen={openDropdown === feature.name}
                 toggleDropdown={() => toggleDropdown(feature.name)}
               />
             </div>
           ) : !isCustomPlan ? (
-            <div className="flex items-center justify-center">
-              <img src="/assets/Check circle.svg" className="text-black" />
-            </div>
+            feature.active ? (
+              <div
+                className={`flex items-center justify-center w-[16px] h- ${
+                  isPremiumPlus ? "" : ""
+                }`}
+              >
+                {isPremiumPlus ? (
+                  <img
+                    src="/assets/Check circle2.svg"
+                    className="text-black"
+                    style={{ background: "none" }}
+                  />
+                ) : (
+                  <img
+                    src="/assets/Check circle.svg"
+                    className="text-black"
+                    style={{ background: "none" }}
+                  />
+                )}
+              </div>
+            ) : (
+              <div
+                className={`flex items-center justify-center pl-[16px] ${
+                  "isPremiumPlus" ? " rounded-full bg-white" : ""
+                }`}
+              >
+                <img src="/assets/Check circle3.svg" alt="" />
+              </div>
+            )
           ) : null}
         </div>
       ))}

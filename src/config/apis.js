@@ -75,6 +75,7 @@ const comboCheckoutApi = `${apiEndpoint}/custom/checkout`;
 // app page
 
 const envobyteApps = `${apiEndpoint}/envobyte-apps`;
+const envobyteComboLead = `${apiEndpoint}/combo-offer/lead`;
 
 export {
   headerApi,
@@ -117,4 +118,5 @@ export {
   comboPortfolioApi,
   comboCheckoutApi,
   envobyteApps,
+  envobyteComboLead,
 };

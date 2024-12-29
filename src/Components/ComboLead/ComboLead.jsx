@@ -1,13 +1,13 @@
 import { BusinessTransform } from "../ComboPageSections/BusinessTransform/BusinessTransform";
 import ComboClientReview from "../ComboPageSections/ComboClientReview/ComboClientReview";
-import ComboContact from "../ComboPageSections/ComboContact/ComboContact";
-import ComboHeader from "../ComboPageSections/ComboHeaderSections/ComboHeader";
+
 import ComboHeroSection from "../ComboPageSections/ComboHeroSection/ComboHeroSection";
 import ComboPageFaq from "../ComboPageSections/ComboPageFaq/ComboPageFaq";
 import ComboScheduleMetting from "../ComboPageSections/ComboScheduleMetting/ComboScheduleMetting";
 import ShowcaseProjects from "../ComboPageSections/ShowcaseProjects/ShowcaseProjects";
 import VideoSection from "../ComboPageSections/VideoSection/VideoSection";
 import AllOffer from "./AllOffer";
+import ComboLeadHeader from "./ComboLeadHeader";
 import ComboLeadPortfolio from "./ComboLeadPortfolio";
 
 const ComboLead = () => {
@@ -15,11 +15,11 @@ const ComboLead = () => {
     <>
       <div className="relative">
         <div className="combo_hero overflow-hidden">
-          <ComboHeader />
+          <ComboLeadHeader />
           <ComboHeroSection />
         </div>
       </div>
-      <div className="video-section pb-4 md:pb-[4%]">
+      <div className="video-section pb-[10%] md:pb-[4%]">
         <VideoSection />
       </div>
       <div>

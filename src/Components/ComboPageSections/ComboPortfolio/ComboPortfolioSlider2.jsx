@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { SlideLeadBtn } from "@/Components/ComboLead/ComboLeadButtons/SlideLeadBtn";
 
@@ -10,7 +10,9 @@ const ComboPortfolioSlider2 = ({ portfolio: images }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [direction, setDirection] = useState("next");
+  const [autoSlideTriggered, setAutoSlideTriggered] = useState(false);
   const controls = useAnimation();
+  const sliderRef = useRef(null);
 
   // Responsive image width based on screen size
   const getImageWidth = () => {
@@ -33,34 +35,48 @@ const ComboPortfolioSlider2 = ({ portfolio: images }) => {
   // Calculate start and stop positions
   const startAtX = -Math.max(0, totalWidth - containerWidth);
   const stopAtX = 0;
-  const maxDragDistance = Math.max(0, totalWidth - containerWidth);
 
   useEffect(() => {
-    if (!animationComplete) {
-      controls.start({
-        x: stopAtX,
-        transition: { duration: 4, ease: "easeOut" },
-      });
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !autoSlideTriggered) {
+          setAutoSlideTriggered(true);
+          controls.start({
+            x: stopAtX,
+            transition: { duration: 4, ease: "easeOut" },
+          });
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sliderRef.current) {
+      observer.observe(sliderRef.current);
     }
-  }, [controls, animationComplete, stopAtX]);
+
+    return () => {
+      if (sliderRef.current) {
+        observer.unobserve(sliderRef.current);
+      }
+    };
+  }, [controls, stopAtX, autoSlideTriggered]);
 
   const dragConstraints = {
     right: stopAtX,
-    left: -maxDragDistance,
+    left: startAtX,
   };
+
   const handleDragStart = () => {
     setIsDragging(true);
   };
 
   const handleDragEnd = () => {
-    // Set a timeout to reset isDragging to prevent immediate click after drag
     setTimeout(() => {
       setIsDragging(false);
     }, 100);
   };
 
   const handleClick = (src) => {
-    // Only open modal if not dragging
     if (!isDragging) {
       openModal(src);
     }
@@ -79,8 +95,7 @@ const ComboPortfolioSlider2 = ({ portfolio: images }) => {
   };
 
   const navigateModal = (direction) => {
-    setDirection(direction); // Update the direction state
-
+    setDirection(direction);
     const newIndex =
       direction === "next" ? currentImageIndex + 1 : currentImageIndex - 1;
 
@@ -97,14 +112,14 @@ const ComboPortfolioSlider2 = ({ portfolio: images }) => {
   const isLastImage = currentImageIndex === totalImages - 1;
 
   const handleCloseAndScroll = () => {
-    closeModal(); // Close the modal
+    closeModal();
     document
-      .querySelector("#appointment") // Select the "appointment" section by ID
-      .scrollIntoView({ behavior: "smooth" }); // Scroll to the section smoothly
+      .querySelector("#appointment")
+      .scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <div className="w-full overflow-hidden py-2">
+    <div className="w-full overflow-hidden py-2" ref={sliderRef}>
       <div className="relative h-[200px] md:h-[220px] lg:h-[420px] overflow-hidden">
         <motion.div
           initial={{ x: startAtX }}
@@ -138,9 +153,6 @@ const ComboPortfolioSlider2 = ({ portfolio: images }) => {
                 alt={`Slide ${index + 1}`}
                 className="w-full h-full object-cover cursor-pointer"
                 draggable={false}
-                style={{
-                  objectPosition: "-20px 0",
-                }}
               />
 
               <div
@@ -253,12 +265,12 @@ const ComboPortfolioSlider2 = ({ portfolio: images }) => {
                 alt="Enlarged View"
                 initial={{
                   opacity: 0,
-                  x: direction === "next" ? 200 : -200, // Slide in from right (next) or left (prev)
+                  x: direction === "next" ? 200 : -200,
                 }}
-                animate={{ opacity: 1, x: 0 }} // Bring image to center
+                animate={{ opacity: 1, x: 0 }}
                 exit={{
                   opacity: 0,
-                  x: direction === "next" ? -200 : 200, // Slide out to left (next) or right (prev)
+                  x: direction === "next" ? -200 : 200,
                 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
                 className="w-full max-w-[1800px] aspect-[235/100] rounded-lg shadow-xl"

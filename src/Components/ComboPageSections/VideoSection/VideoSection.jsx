@@ -8,7 +8,7 @@ const VideoSection = async () => {
   let brands = await fetchData(brandsApi);
 
   return (
-    <div className="relative">
+    <div id="about_us" className="relative">
       <div className="youtube_vdoSection absolute "></div>
       <div className="  pt-[0%]">
         <ComboBrands brands={brands} />

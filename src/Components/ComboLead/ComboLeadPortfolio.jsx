@@ -3,12 +3,11 @@ import { fetchData } from "@/config/fetchData";
 import ComboPortfolioSlider2 from "../ComboPageSections/ComboPortfolio/ComboPortfolioSlider2";
 import ComboPortfolioSlider1 from "../ComboPageSections/ComboPortfolio/ComboPortfolioSlider1";
 import { ComboLeadBookBtn } from "./ComboLeadButtons/ComboLeadBookBtn";
-import ComboPortfolioSliderSm2 from "../ComboPageSections/ComboPortfolio/ComboPortfolioSliderSm2";
-import ComboPortfolioSliderSm1 from "../ComboPageSections/ComboPortfolio/ComboPortfolioSliderSm1";
+import { envobyteComboLead } from "@/config/apis";
 
 async function getPageData() {
   try {
-    return await fetchData("http://192.168.10.16:8000/api/combo-offer/lead");
+    return await fetchData(envobyteComboLead);
   } catch (error) {
     console.error("Error fetching home page data:", error);
     throw error;
@@ -19,8 +18,8 @@ const ComboLeadPortfolio = async () => {
   const portfolio = await getPageData();
 
   return (
-    <div>
-      <div id="portfolio ">
+    <div id="portfolio">
+      <div>
         <h2 className="combo_title pt-6 md:pt-[3.5%]">
           Checkout Our Portfolio
         </h2>
