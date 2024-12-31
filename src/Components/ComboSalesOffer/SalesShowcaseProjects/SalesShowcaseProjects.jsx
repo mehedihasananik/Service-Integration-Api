@@ -3,7 +3,7 @@ import React from "react";
 import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
 
-export default function ShowcaseProjects() {
+export default function SalesShowcaseProjects() {
   // Statistics Data
   const statisticsData = [
     {
@@ -51,17 +51,26 @@ export default function ShowcaseProjects() {
     <div className="">
       <section
         ref={ref}
-        className="showcase_section flex overflow-hidden flex-col justify-center items-center lg:px-2 xl:px-10 py-5 md:py-14 rounded-lg max-md:px-5 md:pt-[0%]"
+        className=" absolute left-[20%] -bottom-[10%] flex overflow-hidden flex-col justify-center items-center lg:px-2 xl:px-10 py-5 md:py-14 rounded-lg max-md:px-5 md:pt-[0%]"
       >
         {/* Title */}
         <h2 className="text-[20px] md:text-[24px] font-Inter font-semibold md:leading-[32px] text-center text-[#5168A7] max-md:max-w-full">
           Our Company Achievements
         </h2>
 
-        <div className="containerStats  w-full max-w-[1340px] px-4 sm:px-6 lg:px-16 py-6 sm:py-8 lg:py-10 mt-4 sm:mt-6 rounded-xl">
+        {/* Statistics */}
+
+        <div className=" w-full max-w-[1340px] px-4 sm:px-6 lg:px-16 py-6 sm:py-8 lg:py-10 mt-4 sm:mt-6 rounded-xl">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-4">
             {statisticsData.map((stat, index) => (
-              <React.Fragment key={stat.id}>
+              <div
+                style={{
+                  background: "rgba(10, 44, 140, 0.70)",
+                  backdropFilter: "blur(36px)",
+                  width: "268px",
+                }}
+                key={stat.id}
+              >
                 {/* Statistic Card */}
                 <article className="flex items-center space-x-4 bg-opacity-10 bg-white p-4 rounded-lg">
                   <img
@@ -86,14 +95,7 @@ export default function ShowcaseProjects() {
                     </p>
                   </div>
                 </article>
-
-                {/* Divider - Only show between items on larger screens */}
-                {index < statisticsData.length - 1 && (
-                  <div className="hidden lg:block lg:col-span-0">
-                    <Divider />
-                  </div>
-                )}
-              </React.Fragment>
+              </div>
             ))}
           </div>
         </div>

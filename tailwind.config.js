@@ -41,6 +41,7 @@ module.exports = {
         OpenSans: ["Open Sans", "sans-serif"],
         Poppins: ["Poppins", "sans-serif"],
         Inter: ["Inter", "sans-serif"],
+        Oswald: ["Oswald", "sans-serif"],
       },
       animation: {
         "fade-in": "fadeIn 0.5s ease-out forwards",

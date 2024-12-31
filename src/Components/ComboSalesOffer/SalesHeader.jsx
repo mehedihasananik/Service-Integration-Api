@@ -1,19 +1,20 @@
 "use client";
 
 import { useState } from "react";
-import ComboHeaderItems from "../ComboPageSections/ComboHeaderSections/ComboHeaderItems";
+import SalesHeaderItems from "./SalesHeaderItems";
 
-const ComboLeadHeader = () => {
+const SalesHeader = () => {
   // Static header data
   const headers = {
     logo: "/assets/Frame 404.png",
     menu: [
       { menu_name: "Home", menu_link: "/" },
-      { menu_name: "About Us", menu_link: "#about_us" },
-      { menu_name: "Offer", menu_link: "#offer" },
-      { menu_name: "Portfolio", menu_link: "#portfolio" },
-
-      { menu_name: "Faq", menu_link: "#faqCombo" },
+      { menu_name: "About us", menu_link: "#portfolio" },
+      { menu_name: "Offer", menu_link: "#portfolio" },
+      { menu_name: "Combo", menu_link: "#pricing" },
+      { menu_name: "Portfolio", menu_link: "#pricing" },
+      { menu_name: "Pricing", menu_link: "#contact_us" },
+      { menu_name: "FAQ", menu_link: "#faqCombo" },
     ],
   };
 
@@ -27,7 +28,7 @@ const ComboLeadHeader = () => {
 
   return (
     <div className="relative z-50">
-      <ComboHeaderItems
+      <SalesHeaderItems
         headers={headers}
         isMobileMenuOpen={isMobileMenuOpen}
         toggleMobileMenu={toggleMobileMenu}
@@ -36,4 +37,4 @@ const ComboLeadHeader = () => {
   );
 };
 
-export default ComboLeadHeader;
+export default SalesHeader;

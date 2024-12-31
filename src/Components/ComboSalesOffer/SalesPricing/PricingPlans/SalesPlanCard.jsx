@@ -1,12 +1,12 @@
 "use client";
 import React, { useState } from "react";
-import ComboFeatureList from "./ComboFeatureList";
 import { TiArrowRight } from "react-icons/ti";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { comboCheckoutApi } from "@/config/apis";
+import SalesFeatureList from "./SalesFeatureList";
 
-const ComboPlanCard = ({ plan }) => {
+const SalesPlanCard = ({ plan }) => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalDiscountPrice, setTotalDiscountPrice] = useState(0);
   const [selectedOption, setSelectedOption] = useState({});
@@ -122,13 +122,24 @@ const ComboPlanCard = ({ plan }) => {
         errorMessage && totalPrice <= 499
           ? "border-[3px] border-[#FF5050] text-[14px] font-Inter"
           : "border border-slate-200"
-      } ${plan.isDark ? "bg-[#0A2C8C] text-white" : "bg-white text-[#0A2C8C]"}`}
+      } ${plan.isDark ? "text-white" : "bg-white text-[#0A2C8C]"}`}
+      style={
+        plan.isDark
+          ? {
+              borderRadius: "8px",
+              border: "1px solid #FFF",
+              background:
+                "linear-gradient(169deg, #0A2C8C -1.15%, #0C89FF 99.51%)",
+              boxShadow: "0px 1px 4px 0px rgba(25, 33, 61, 0.08)",
+            }
+          : {}
+      }
     >
       <div
         className={`text-lg ${
           plan.isDark
-            ? "text-[#FFD54D] font-semibold md:text-[18px] font-Inter "
-            : "text-[#0A2C8C] font-semibold md:text-[18px] font-Inter "
+            ? "text-[#FFF] font-semibold md:text-[18px] font-Inter "
+            : "text-[#001246] font-semibold md:text-[18px] font-Inter "
         }`}
       >
         {plan.title}
@@ -146,7 +157,9 @@ const ComboPlanCard = ({ plan }) => {
               errorMessage && totalPrice <= 499
                 ? "text-[#FF5050] font-semibold"
                 : "font-semibold"
-            } ${plan.title === "Premium+ Plan" ? "text-[#FFD54D]" : ""}`}
+            } ${
+              plan.title === "Premium+ Plan" ? "text-[#fff]" : "text-[#001246]"
+            }`}
           >
             {`$${originalPrice.toFixed(2)}`}
           </div>
@@ -172,16 +185,21 @@ const ComboPlanCard = ({ plan }) => {
         </div>
       </div>
 
-      <div className="mt-4 font-Inter text-[16px] font-normal">
+      <div
+        className={`mt-4 font-Inter text-[16px] font-normal  ${
+          plan.isDark ? "text-[#FFF]  " : "text-[#001246] "
+        }`}
+      >
         {plan.description}
       </div>
+
       {plan.title === "Premium+ Plan" ? (
         <hr className="mt-6 border-t border-[#FFD54D]" />
       ) : (
         <hr className="mt-6 border-t border-[#E1E4ED]" />
       )}
 
-      <ComboFeatureList
+      <SalesFeatureList
         features={plan.features}
         isDark={plan.isDark}
         isCustomPlan={plan.title === "Custom Plan"}
@@ -208,7 +226,7 @@ const ComboPlanCard = ({ plan }) => {
             : plan.title === "Custom Plan"
             ? "bg-[#0A2C8C66] hover:bg-[#7f8eb4] text-[#fff] transition-all duration-300 border"
             : plan.isDark
-            ? "bg-[#FFD54D] text-blue-900 hover:bg-[#ffe07c] hover:text-[#0F2870] hover:shadow-lg    transition-all duration-300"
+            ? "bg-[#fff] text-[#001B69] hover:bg-[#ffffffc7] hover:text-[#0F2870] hover:shadow-lg    transition-all duration-300"
             : "bg-blue-900 hover:bg-[#0E2566] text-white transition-all duration-300 border border-[#0F2870]"
         } transform transition-all duration-300 hover:shadow-lg`}
       >
@@ -221,4 +239,4 @@ const ComboPlanCard = ({ plan }) => {
   );
 };
 
-export default ComboPlanCard;
+export default SalesPlanCard;

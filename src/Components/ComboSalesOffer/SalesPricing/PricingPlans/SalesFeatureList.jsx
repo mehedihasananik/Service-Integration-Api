@@ -1,8 +1,8 @@
 "use client";
 import React, { useState } from "react";
-import CustomDropdown from "./CustomDropdown";
+import SalesDropdown from "./SalesDropdown";
 
-const ComboFeatureList = ({
+const SalesFeatureList = ({
   features,
   isDark,
   isCustomPlan = false,
@@ -146,7 +146,7 @@ const ComboFeatureList = ({
             className={`whitespace-nowrap font-semibold text-[14px] md:text-[16px] font-Inter ${
               isDark
                 ? "text-white"
-                : "text-[#0A2C8C]" +
+                : "text-[#001246]" +
                   (!feature.active && !isCustomPlan ? " text-opacity-40" : "")
             } ${!feature.active && !isCustomPlan ? "text-gray-500" : ""}`}
           >
@@ -155,7 +155,7 @@ const ComboFeatureList = ({
 
           {feature.options ? (
             <div className="flex items-center">
-              <CustomDropdown
+              <SalesDropdown
                 options={feature.options.map((option) => option.Option)}
                 placeholder={
                   selectedOption[feature.name]
@@ -178,13 +178,13 @@ const ComboFeatureList = ({
               >
                 {isPremiumPlus ? (
                   <img
-                    src="/assets/Check circle2.svg"
+                    src="/assets/Salescircle.svg"
                     className="text-black"
                     style={{ background: "none" }}
                   />
                 ) : (
                   <img
-                    src="/assets/Check circle.svg"
+                    src="/assets/Salescircle1.svg "
                     className="text-black"
                     style={{ background: "none" }}
                   />
@@ -196,7 +196,7 @@ const ComboFeatureList = ({
                   isPremiumPlus ? "rounded-full bg-white" : ""
                 }`}
               >
-                <img src="/assets/Check circle3.svg" alt="" />
+                <img src="/assets/Salescircle2.svg" alt="" />
               </div>
             )
           ) : null}
@@ -213,4 +213,4 @@ const ComboFeatureList = ({
   );
 };
 
-export default ComboFeatureList;
+export default SalesFeatureList;

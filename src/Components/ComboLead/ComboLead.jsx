@@ -38,9 +38,7 @@ const ComboLead = () => {
       <div className="business-section">
         <BusinessTransform />
       </div>
-      {/* <div className="pricing-section">
-        <PricingPlans />
-      </div> */}
+
       <div className="faq-section pt-[4%]">
         <ComboPageFaq title="Frequently Asked Questions" />
       </div>
