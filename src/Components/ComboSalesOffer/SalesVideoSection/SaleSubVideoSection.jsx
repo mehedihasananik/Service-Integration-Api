@@ -16,11 +16,11 @@ const SaleSubVideoSection = () => {
     <div>
       <Container>
         <div className="flex flex-col items-center justify-center">
-          <h3 className="text-[16px] md:text-[16px] lg:text-[16px] font-normal leading-[24px] text-[#001246] mt-[5%] font-Inter ">
+          <h3 className="text-[16px] md:text-[16px] lg:text-[16px] font-bold leading-[24px] text-[#001246] mt-[5%] font-Inter ">
             Check what is Envobyte
           </h3>
-          <div className="flex justify-center pt-[1.5%] pb-[1%]">
-            <p className="lg:text-[48px] text-center pt-3 lg:w-[100%] font-Inter text-[#001246] font-bold leading-[24px] tracking-[0.96px]">
+          <div className="flex justify-center lg:pt-[1.5%] lg:pb-[3%]">
+            <p className=" text-[20px] lg:text-[48px] text-center lg:pt-3 lg:w-[100%] font-Inter text-[#001246] font-bold leading-[24px] tracking-[0.96px]">
               Introducing to Envobyte
             </p>
           </div>
@@ -64,7 +64,7 @@ const SaleSubVideoSection = () => {
         </div>
 
         {/* Conditional Rendering Based on Route */}
-        <div className="flex flex-col md:flex-row justify-center text-[16px] font-bold gap-x-5 gap-y-5 md:gap-y-0">
+        <div className="flex flex-col md:flex-row justify-center items-center text-[16px] font-bold gap-x-5 gap-y-5 md:gap-y-0">
           <SalesPricingBtn />
         </div>
       </Container>

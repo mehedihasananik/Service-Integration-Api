@@ -58,19 +58,30 @@ export function BusinessTransform() {
                           to="pricing"
                           smooth={true}
                           duration={1000}
-                          className="bg-[#FFFFFF] w-[40%] cursor-pointer  font-Inter font-normal text-[#0A2C8C] hover:bg-[#0A2C8C] hover:text-white text-[16px] mt-5 md:mt-7 px-4 py-2 flex justify-center items-center rounded-md transition-all"
+                          className="bg-[#FFFFFF] w-[40%] cursor-pointer font-Inter font-normal text-[#0A2C8C] hover:bg-[#0A2C8C] hover:text-white text-[16px] mt-5 md:mt-7 px-4 py-2 flex justify-center items-center rounded-md transition-all"
                         >
-                          <span> Let&apos;s build something amazing</span>
+                          <span>Let&apos;s build something amazing</span>
                           <span>
-                            <TiArrowRight className="text-lg " />
+                            <TiArrowRight className="text-lg" />
                           </span>
                         </Link>
                       </div>
                     ) : currentPath === "/combo-offer-lead" ? (
                       <div className="pt-5">
-                        <div className="w-[30%] ">
-                          <ComboLeadBookBtn className="border-none " />
+                        <div className="w-[30%]">
+                          <ComboLeadBookBtn className="border-none" />
                         </div>
+                      </div>
+                    ) : currentPath === "/combo-offer-sale" ? (
+                      <div className=" lg:w-[35%] pt-[3%] ">
+                        <Link
+                          to="pricing"
+                          smooth={true}
+                          duration={1500}
+                          className="flex justify-center items-center bg-white whitespace-nowrap cursor-pointer text-[#001246]   hover:bg-transparent border hover:text-white hover:border-white w-[140px] md:w-[100%] lg:w-[100%] text-[14px] md:text-[14px] px-4 md:px-10 lg:px-12 py-3 md:py-1 lg:py-3 font-semibold  font-Inter transition-all duration-300 transform hover:shadow-[0px_4px_6px_rgba(0,0,0,0.1)] hover:bg-[#F0F0F0] hover:drop-shadow-lg leading-[14px]"
+                        >
+                          See Pricing
+                        </Link>
                       </div>
                     ) : null}
                   </div>

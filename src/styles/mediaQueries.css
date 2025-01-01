@@ -83,6 +83,37 @@
     width: 100%;
     overflow: hidden; /* Prevent any overflow */
   }
+  .sales_hero {
+    background-image: url("/assets/salesHerosm.jpg");
+
+    background-repeat: no-repeat;
+    background-size: cover; /* Changed from 'center' to 'cover' for full stretching */
+    background-position: center;
+    position: relative; /* Added to ensure proper z-index stacking */
+    z-index: 1; /* Adjusted z-index to ensure content is above background */
+    height: 100vh;
+    width: 100%;
+    overflow: hidden; /* Prevent any overflow */
+  }
+  .Sales-Pricing-section {
+    background-image: none;
+    background-repeat: no-repeat;
+    background-size: center;
+    background-position: center;
+    z-index: -11;
+    height: 100%;
+    width: 100%;
+    background-color: #061964;
+  }
+  .anserSection {
+    background-image: none;
+    background-repeat: no-repeat;
+    background-size: center;
+    background-position: center;
+    z-index: -11;
+    height: 100%;
+    width: 100%;
+  }
 }
 
 @media only screen and (max-width: 1080px) {
@@ -275,28 +306,7 @@
     ); /* Adjust for image size to perfectly center */
     z-index: -1; /* Ensure it stays behind content */
   }
-  .Sales-Pricing-section {
-    background-image: none;
-    background-repeat: no-repeat;
-    background-size: center;
-    background-position: center;
-    z-index: -11;
-    height: 100%;
-    width: 100%;
-    background-color: #061964;
-  }
-  .sales_hero {
-    background-image: url("/assets/salesHero.jpg");
-    background-color: #005ddd;
-    background-repeat: no-repeat;
-    background-size: cover; /* Changed from 'center' to 'cover' for full stretching */
-    background-position: center;
-    position: relative; /* Added to ensure proper z-index stacking */
-    z-index: 1; /* Adjusted z-index to ensure content is above background */
-    height: 955px;
-    width: 100%;
-    overflow: hidden; /* Prevent any overflow */
-  }
+
   .sales_video {
     background-image: url("/assets/sales_video.jpg");
     background-repeat: no-repeat;
@@ -306,7 +316,17 @@
     height: 100%;
     width: 100%;
   }
-  .anserSection {
+
+  .SaleClients_Section {
+    background-image: url("/assets/SaleClients_Section.jpg");
+    background-repeat: no-repeat;
+    background-size: center;
+    background-position: center;
+    z-index: -11;
+    height: 100%;
+    width: 100%;
+  }
+  .websiteComboOffer {
     background-image: none;
     background-repeat: no-repeat;
     background-size: center;
@@ -314,6 +334,7 @@
     z-index: -11;
     height: 100%;
     width: 100%;
+    background: #11297e;
   }
 }
 @media only screen and (max-width: 767px) {
@@ -349,18 +370,6 @@
     z-index: 1;
     border-radius: 15px;
   } */
-  .sales_hero {
-    background-image: url("/assets/salesHerosm.jpg");
-
-    background-repeat: no-repeat;
-    background-size: cover; /* Changed from 'center' to 'cover' for full stretching */
-    background-position: center;
-    position: relative; /* Added to ensure proper z-index stacking */
-    z-index: 1; /* Adjusted z-index to ensure content is above background */
-    height: 729px;
-    width: 100%;
-    overflow: hidden; /* Prevent any overflow */
-  }
 }
 
 @media only screen and (max-width: 425px) {

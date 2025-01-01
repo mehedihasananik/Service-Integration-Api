@@ -8,7 +8,7 @@ const SalesHeaderItems = ({ headers, isMobileMenuOpen, toggleMobileMenu }) => {
     <div className="max-w-[1920px] mx-auto px-[6%] md:px-[0%] lg:px-[2%] xl:px-[8%] 4xl:px-[4%] pt-3">
       <header className="relative z-50">
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex justify-between items-center px-4 md:px-2 lg:px-0 py-4">
+        <nav className="hidden lg:flex justify-between items-center px-4 md:px-2 lg:px-0 py-4">
           <a href="/">
             <Image src={headers.logo} alt="Logo" width={120} height={30} />
           </a>
@@ -57,7 +57,7 @@ const SalesHeaderItems = ({ headers, isMobileMenuOpen, toggleMobileMenu }) => {
         </nav>
 
         {/* Mobile Navigation */}
-        <nav className="md:hidden relative z-50">
+        <nav className="lg:hidden relative z-50">
           <div className="flex justify-between items-center p-4">
             <a href="/">
               <Image

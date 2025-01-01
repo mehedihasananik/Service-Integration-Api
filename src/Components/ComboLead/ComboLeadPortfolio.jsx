@@ -4,6 +4,7 @@ import ComboPortfolioSlider2 from "../ComboPageSections/ComboPortfolio/ComboPort
 import ComboPortfolioSlider1 from "../ComboPageSections/ComboPortfolio/ComboPortfolioSlider1";
 import { ComboLeadBookBtn } from "./ComboLeadButtons/ComboLeadBookBtn";
 import { envobyteComboLead } from "@/config/apis";
+import ConditionBtn from "../ComboPageSections/ConditionalBtn/ConditionBtn";
 
 async function getPageData() {
   try {
@@ -40,9 +41,7 @@ const ComboLeadPortfolio = async () => {
         <ComboPortfolioSliderSm1 portfolio={portfolio} />
       </div> */}
       <div className="">
-        <div className="w-[100%] flex justify-center items-center pt-[1%]">
-          <ComboLeadBookBtn />
-        </div>
+        <ConditionBtn />
       </div>
     </div>
   );

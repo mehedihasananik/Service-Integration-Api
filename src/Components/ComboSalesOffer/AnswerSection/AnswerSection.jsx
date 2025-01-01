@@ -1,14 +1,19 @@
 import React from "react";
+import { SalesPricingBtn } from "../SalesBtn/SalesBtn";
 
 const AnswerSection = () => {
   return (
     <div className="anserSection pt-[5%]">
-      <div className="text-center text-white">
-        <h3>More details</h3>
-        <h2>Get Your Answers</h2>
+      <div className="text-center text-[#000] lg:text-white">
+        <h3 className="font-Raleway text-[18px] font-bold leading-[24px] pb-4">
+          More details
+        </h3>
+        <h2 className="font-Inter text-[30px] lg:text-[48px] font-bold leading-[24px] tracking-[0.96px]">
+          Get Your Answers
+        </h2>
       </div>
-      <div className="flex justify-center overflow-hidden">
-        <div className="grid grid-cols-1 md:grid-cols-3 justify-center items-center gap-y-3 lg:gap-y-0 lg:gap-x-8 pt-[5%]">
+      <div className="flex justify-center ">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 justify-center items-center gap-y-5 lg:gap-y-0 md:gap-x-5 lg:gap-x-8 pt-[5%]">
           <div
             style={{
               border: "1px solid #FFF",
@@ -44,7 +49,7 @@ const AnswerSection = () => {
               background: "rgba(255, 255, 255, 0.74)",
               backdropFilter: "blur(36px)",
             }}
-            className="w-[370px]  py-[8%] shadow-lg"
+            className="lg:w-[370px]  py-[8%] shadow-lg"
           >
             <div className="flex justify-center">
               <img
@@ -73,7 +78,7 @@ const AnswerSection = () => {
               background: "#0A2C8C",
               backdropFilter: "blur(36px)",
             }}
-            className="w-[370px]  py-[8%] shadow-lg"
+            className="lg:w-[370px]  py-[8%] shadow-lg"
           >
             <div className="flex justify-center">
               <img
@@ -95,9 +100,10 @@ const AnswerSection = () => {
               </p>
             </div>
           </div>
-
-          {/* Your content here */}
         </div>
+      </div>
+      <div className="flex justify-center pt-[4%] lg:pt-[2%]">
+        <SalesPricingBtn />
       </div>
     </div>
   );

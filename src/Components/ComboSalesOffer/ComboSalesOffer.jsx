@@ -26,16 +26,21 @@ const ComboSalesOffer = () => {
       <div className="pt-10 lg:pt-0">
         <SalesAllOne />
       </div>
-      <WebsiteComboOffer />
+      <div id="combo" className="websiteComboOffer overflow-hidden">
+        <WebsiteComboOffer />
+      </div>
+
       <AnswerSection />
-      {/* <SaleClients /> */}
+      <div className="pt-[2%] lg:pt-[0%] overflow-hidden">
+        <SaleClients />
+      </div>
       <div className="py-0">
         <ComboLeadPortfolio />
       </div>
-      <div className="business-section  pt-[5%]">
-        {/* <BusinessTransform /> */}
+      <div className="business-section  py-[5%] ">
+        <BusinessTransform />
       </div>
-      <div className="Sales-Pricing-section">
+      <div className="Sales-Pricing-section py-5 xl:py-0">
         <SalesPricingPlans />
       </div>
       <div className="faq-section pt-[4%]">

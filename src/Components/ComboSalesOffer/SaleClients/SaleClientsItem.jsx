@@ -6,26 +6,58 @@ const SaleClientsItem = ({ content }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const [direction, setDirection] = useState(0);
-  const itemsPerPage = 6;
-  const pages = Math.ceil(content.length / itemsPerPage);
+  const [isLargeScreen, setIsLargeScreen] = useState(true);
 
-  // Get current page items
+  // Different items per page based on screen size
+  const itemsPerPage = {
+    lg: 6, // 2 rows x 3 columns for large screens
+    sm: 1, // 1 row x 1 column for smaller screens
+  };
+
+  useEffect(() => {
+    // Check screen size on mount and window resize
+    const handleResize = () => {
+      setIsLargeScreen(window.innerWidth >= 1024);
+    };
+
+    // Set initial value
+    handleResize();
+
+    // Add event listener
+    window.addEventListener("resize", handleResize);
+
+    // Clean up
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const pages = Math.ceil(content.length / itemsPerPage.lg);
+  const mobilePages = Math.ceil(content.length / itemsPerPage.sm);
+
   const getCurrentItems = useCallback(
     (pageIndex) => {
+      // Use isLargeScreen state instead of direct window check
+      if (isLargeScreen) {
+        return content.slice(
+          pageIndex * itemsPerPage.lg,
+          (pageIndex + 1) * itemsPerPage.lg
+        );
+      }
+      // For smaller screens
       return content.slice(
-        pageIndex * itemsPerPage,
-        (pageIndex + 1) * itemsPerPage
+        pageIndex * itemsPerPage.sm,
+        (pageIndex + 1) * itemsPerPage.sm
       );
     },
-    [content, itemsPerPage]
+    [content, isLargeScreen]
   );
 
   const handleNavigation = useCallback(
     (newDirection) => {
       if (isAnimating) return;
 
+      const maxPages = isLargeScreen ? pages : mobilePages;
       const nextPage = currentPage + newDirection;
-      if (nextPage < 0 || nextPage >= pages) return;
+      if (nextPage < 0 || nextPage >= maxPages) return;
 
       setIsAnimating(true);
       setDirection(newDirection);
@@ -37,7 +69,7 @@ const SaleClientsItem = ({ content }) => {
         }, 50);
       }, 400);
     },
-    [currentPage, pages, isAnimating]
+    [currentPage, pages, mobilePages, isAnimating, isLargeScreen]
   );
 
   const TestimonialCard = ({
@@ -47,13 +79,12 @@ const SaleClientsItem = ({ content }) => {
     authorName,
     authorRole,
     index,
-    total,
   }) => {
     const delay = `${index * 50}ms`;
 
     return (
       <div
-        className="flex overflow-hidden flex-col px-6 pt-6 pb-7 rounded-lg border border-white border-solid bg-white bg-opacity-80 max-w-[313px] shadow-[-2px_2px_17px_rgba(0,0,0,0.06)] transition-all duration-500"
+        className="flex overflow-hidden flex-col px-6 pt-6 pb-7 rounded-lg border border-white border-solid bg-white bg-opacity-80 w-full lg:max-w-[313px] shadow-[-2px_2px_17px_rgba(0,0,0,0.06)] transition-all duration-500"
         style={{
           opacity: isAnimating ? 0 : 1,
           transform: `translateY(${isAnimating ? "20px" : "0"})`,
@@ -92,7 +123,7 @@ const SaleClientsItem = ({ content }) => {
   };
 
   return (
-    <div className="SaleClients_Section">
+    <div className="SaleClients_Section w-full">
       <div
         style={{
           borderRadius: "2px",
@@ -100,13 +131,17 @@ const SaleClientsItem = ({ content }) => {
           background: "rgba(255, 255, 255, 0.60)",
           backdropFilter: "blur(36px)",
         }}
-        className="flex flex-col items-center justify-center py-[3%] overflow-hidden w-[1100px] relative left-[22%]"
+        className="flex flex-col items-center justify-center py-[3%] overflow-hidden w-full lg:w-[1100px] mx-auto px-4 lg:px-0"
       >
         <div className="text-center mb-10">
-          <h3 className="text-orange-600 text-xl">Client Reviews</h3>
-          <h2 className="text-4xl font-bold">Our Proud Clients</h2>
+          <h3 className="text-[#FF693B] text-[18px] font-normal leading-[24px] pb-4">
+            Client Reviews
+          </h3>
+          <h2 className="text-[#001246] text-[30px] lg:text-[48px] font-bold leading-[24px] tracking-[0.96px]">
+            Our Proud Clients
+          </h2>
         </div>
-        <div className="max-w-[1200px] ">
+        <div className="w-full max-w-[1200px]">
           <div
             className="transition-all duration-500 ease-out"
             style={{
@@ -114,7 +149,7 @@ const SaleClientsItem = ({ content }) => {
               opacity: isAnimating ? 0.3 : 1,
             }}
           >
-            <div className="grid grid-cols-3 grid-rows-2 gap-4 justify-items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-3 lg:grid-rows-2 gap-4 justify-items-center overflow-hidden">
               {getCurrentItems(currentPage).map((testimonial, index) => (
                 <TestimonialCard
                   key={`${testimonial.id}-${currentPage}-${index}`}
@@ -124,7 +159,6 @@ const SaleClientsItem = ({ content }) => {
                   authorName={testimonial.name}
                   authorRole={testimonial.designation}
                   index={index}
-                  total={itemsPerPage}
                 />
               ))}
             </div>
@@ -132,7 +166,7 @@ const SaleClientsItem = ({ content }) => {
 
           {/* Navigation dots */}
           <div className="flex justify-center gap-2 mt-6 mb-4">
-            {[...Array(pages)].map((_, index) => (
+            {[...Array(isLargeScreen ? pages : mobilePages)].map((_, index) => (
               <button
                 key={index}
                 className={`w-2 h-2 rounded-full transition-all duration-300 ${
@@ -158,7 +192,10 @@ const SaleClientsItem = ({ content }) => {
             </button>
             <button
               onClick={() => handleNavigation(1)}
-              disabled={currentPage === pages - 1 || isAnimating}
+              disabled={
+                currentPage === (isLargeScreen ? pages : mobilePages) - 1 ||
+                isAnimating
+              }
               className="px-3 py-2 rounded-[6px] bg-[#0C89FF] disabled:opacity-50 border border-[#4580FF] text-white transition-all duration-300 hover:bg-[#0972d3] active:scale-95"
             >
               <GrFormNext

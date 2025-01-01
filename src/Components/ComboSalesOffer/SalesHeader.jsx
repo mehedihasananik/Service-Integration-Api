@@ -9,11 +9,11 @@ const SalesHeader = () => {
     logo: "/assets/Frame 404.png",
     menu: [
       { menu_name: "Home", menu_link: "/" },
-      { menu_name: "About us", menu_link: "#portfolio" },
-      { menu_name: "Offer", menu_link: "#portfolio" },
-      { menu_name: "Combo", menu_link: "#pricing" },
-      { menu_name: "Portfolio", menu_link: "#pricing" },
-      { menu_name: "Pricing", menu_link: "#contact_us" },
+      { menu_name: "About us", menu_link: "#about_us" },
+      { menu_name: "Offer", menu_link: "#offer" },
+      { menu_name: "Combo", menu_link: "#combo" },
+      { menu_name: "Portfolio", menu_link: "#portfolio" },
+      { menu_name: "Pricing", menu_link: "#pricing" },
       { menu_name: "FAQ", menu_link: "#faqCombo" },
     ],
   };

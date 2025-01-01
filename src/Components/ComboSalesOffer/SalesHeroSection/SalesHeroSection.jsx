@@ -55,7 +55,7 @@ const SalesHeroSection = () => {
 
   return (
     <div>
-      <div className="hidden lg:block">
+      <div className="hidden xl:block">
         <div className="max-w-[1520px] mx-auto px-[6%] md:px-[4%] xl:px-[8%] 4xl:px-[4%]">
           <div className="flex md:mt-[15%] lg:mt-[0%] flex-col xl:flex-row justify-between text-white items-center h-auto md:h-[60vh] space-y-0 md:space-y-0">
             {/* left side */}
@@ -68,7 +68,7 @@ const SalesHeroSection = () => {
                   </span>{" "}
                   <img src="/assets/star.svg" alt="" />
                 </div>{" "}
-                <div className=" capitalize flex gap-x-3  text-[114px] font-bold leading-[130px]">
+                <div className=" capitalize flex gap-x-8  text-[114px] font-bold leading-[130px]">
                   <span className="font-Oswald ">COMBO</span>{" "}
                   <span className="font-Oswald ">OFFER</span>
                 </div>
@@ -116,19 +116,18 @@ const SalesHeroSection = () => {
             <div className="w-[50%]"></div>
           </div>
         </div>
-        <div className="absolute bottom-12 left-0 right-0">
+        <div className="absolute bottom-3 left-0 right-0">
           <SalesStats />
         </div>
       </div>
-      <div className="block lg:hidden">
-        <div className="flex md:mt-[15%] lg:mt-[0%] flex-col xl:flex-row justify-between text-white items-center h-auto md:h-[60vh] space-y-0 md:space-y-0">
+      <div className="block xl:hidden">
+        <div className="flex md:px-[10%] md:mt-[15%] lg:mt-[0%] flex-col xl:flex-row justify-between text-white items-center h-auto md:h-[60vh] space-y-0 md:space-y-0">
           {/* left side */}
           <div className="text-center md:text-left space-y-0 md:space-y-6 px-4 md:px-0">
             <div>
-              <h1 className="text-[25px] font-Poppins font-semibold md:text-[25px] lg:text-[38px] xxl:text-[52px] w-full md:w-[100%] lg:w-[100%] xll:leading-[68px] ">
+              <h1 className="text-[25px] font-Oswald font-semibold md:text-[25px] lg:text-[38px] xxl:text-[52px] w-full md:w-[100%] lg:w-[100%] xll:leading-[68px] ">
                 Website combo offer
               </h1>
-
               <p className="text-[15px] md:text-[24px] lg:text-[20px]  xxl:text-[20px] py-4 md:py-6 w-full md:w-[100%] mx-auto md:mx-0 font-Inter">
                 Get everything you need from website design, development, SEO,
                 branding, logos, social media posts, and content writing in one
@@ -142,7 +141,7 @@ const SalesHeroSection = () => {
                   smooth={true}
                   duration={1500}
                   onClick={handleSmoothScroll} // Add the click handler
-                  className="flex justify-center items-center bg-white whitespace-nowrap cursor-pointer text-[#0A2C8C]  hover:bg-transparent border hover:text-white hover:border-white w-[140px] md:w-[100%] lg:w-[100%] text-[14px] md:text-[18px] px-4 md:px-10 lg:px-8 py-3 md:py-1 lg:py-2 font-semibold rounded-md font-Inter transition-all duration-300 transform hover:shadow-[0px_4px_6px_rgba(0,0,0,0.1)] hover:bg-[#F0F0F0] hover:drop-shadow-lg"
+                  className=" bg-white whitespace-nowrap cursor-pointer text-[#0A2C8C]  hover:bg-transparent border hover:text-white hover:border-white w-[180px] md:w-[100%] lg:w-[100%] text-[14px] md:text-[18px] px-10 md:px-10 lg:px-8 py-3 md:py-1 lg:py-2 font-semibold rounded-md font-Inter transition-all duration-300 transform hover:shadow-[0px_4px_6px_rgba(0,0,0,0.1)] hover:bg-[#F0F0F0] hover:drop-shadow-lg"
                 >
                   See Pricing
                 </Link>
@@ -166,9 +165,13 @@ const SalesHeroSection = () => {
 
           {/* right side */}
 
-          <div className=" lg:hidden py-8 ">
-            <div>
-              <img src="/assets/panda.svg" alt="" />
+          <div className=" xl:hidden py-8 ">
+            <div className="flex justify-center">
+              <img
+                className="w-[100%] md:w-[40%] lg:w-[50%]"
+                src="/assets/panda.svg"
+                alt=""
+              />
             </div>
           </div>
         </div>

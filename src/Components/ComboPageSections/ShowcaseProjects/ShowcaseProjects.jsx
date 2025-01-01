@@ -58,7 +58,43 @@ export default function ShowcaseProjects() {
           Our Company Achievements
         </h2>
 
-        <div className="containerStats  w-full max-w-[1340px] px-4 sm:px-6 lg:px-16 py-6 sm:py-8 lg:py-10 mt-4 sm:mt-6 rounded-xl">
+        {/* Statistics */}
+        <div className="containerStats hidden lg:flex flex-wrap space-y-5 md:space-y-0 md:gap-5 justify-between px-16 py-10 mt-6 w-full font-semibold text-white rounded-xl max-w-[1340px]">
+          {statisticsData.map((stat, index) => (
+            <React.Fragment key={stat.id}>
+              {/* Statistic Card Inline */}
+              <article className="flex space-x-5 items-center">
+                <img
+                  loading="lazy"
+                  src={stat.icon}
+                  alt={stat.label}
+                  className="object-contain shrink-0 self-stretch my-auto w-12 aspect-square"
+                />
+                <div className="flex flex-col self-stretch my-auto">
+                  {inView && (
+                    <CountUp
+                      start={0}
+                      end={stat.count}
+                      duration={5}
+                      separator=","
+                      suffix={stat.suffix}
+                      className="text-[24px] font-semibold leading-none font-Inter"
+                    />
+                  )}
+                  <p className="mt-2 text-[16px] font-semibold text-base leading-none font-Inter">
+                    {stat.label}
+                  </p>
+                </div>
+              </article>
+              {/* Divider */}
+              <div className="hidden md:block">
+                {index < statisticsData.length - 1 && <Divider />}
+              </div>
+            </React.Fragment>
+          ))}
+        </div>
+
+        <div className="containerStats lg:hidden w-full max-w-[1340px] px-4 sm:px-6 lg:px-16 py-6 sm:py-8 lg:py-10 mt-4 sm:mt-6 rounded-xl">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-4">
             {statisticsData.map((stat, index) => (
               <React.Fragment key={stat.id}>

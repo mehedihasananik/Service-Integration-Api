@@ -118,6 +118,14 @@ const ComboPortfolioSlider1 = ({ portfolio: images }) => {
       .scrollIntoView({ behavior: "smooth" });
   };
 
+  const [currentPath, setCurrentPath] = useState("");
+
+  useEffect(() => {
+    // Use window.location.pathname to get the current route
+    const path = window?.location?.pathname.replace(/\/$/, ""); // Remove trailing slash
+    setCurrentPath(path);
+  }, []);
+
   return (
     <div className="w-full overflow-hidden py-2" ref={sliderRef}>
       <div className="relative h-[200px] md:h-[220px] lg:h-[420px] overflow-hidden">
@@ -274,11 +282,15 @@ const ComboPortfolioSlider1 = ({ portfolio: images }) => {
                 className="w-full max-w-[1800px] aspect-[235/100] rounded-lg shadow-xl"
               />
 
-              <div className="text-white mt-10 text-center flex justify-center">
-                <SlideLeadBtn
-                  onClick={handleCloseAndScroll}
-                  className="border-primary"
-                />
+              <div>
+                {currentPath === "/combo-offer-lead" ? (
+                  <div className="text-white mt-10 text-center flex justify-center">
+                    <SlideLeadBtn
+                      onClick={handleCloseAndScroll}
+                      className="border-primary"
+                    />
+                  </div>
+                ) : null}
               </div>
             </motion.div>
           </motion.div>

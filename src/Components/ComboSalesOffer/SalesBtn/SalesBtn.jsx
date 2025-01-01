@@ -10,7 +10,7 @@ const SalesPricingBtn = ({ className }) => {
       to="pricing"
       smooth={true}
       duration={1500}
-      className={`${className} font-Inter text-[16px] font-semibold bg-[#FF693B] border cursor-pointer hover:border-[#FF693B] text-white hover:bg-[#fff] hover:text-[#FF693B] py-3 px-4 md:py-3 md:px-[1.7%] flex justify-center items-center rounded-full w-[180px] h-[42px] transition-all duration-300`}
+      className={`${className} font-Inter text-[16px] font-normal bg-[#FF693B] border cursor-pointer hover:border-[#FF693B] text-white hover:bg-[#fff] hover:text-[#FF693B] py-4 px-4 md:py-3 md:px-[1.7%] flex justify-center items-center rounded-full w-[180px] h-[43px] transition-all duration-300`}
     >
       See Pricing
     </Link>
