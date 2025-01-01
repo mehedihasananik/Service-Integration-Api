@@ -44,7 +44,7 @@ const AppBanner = ({ appData }) => {
         <div className="w-[100%] lg:w-[50%] relative">
           <div className="engine lg:right-[42%] lg:bottom-[-18%] 2lg:bottom-[-28%] xlll:bottom-[-5px] xlll:right-[210px] "></div>
           <img
-            src="/assets/bannerApp.png"
+            src="/assets/bannerApp1.png"
             alt="Banner App"
             className="relative z-[1]"
           />

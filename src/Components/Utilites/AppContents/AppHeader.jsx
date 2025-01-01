@@ -22,7 +22,7 @@ const AppHeader = () => {
       <header className="md:hidden relative top-0 left-0 w-full bg-[#001656] z-50">
         <div className="flex justify-between items-center p-4">
           {/* Mobile Logo */}
-          <Link href="/">
+          <a href="/">
             <Image
               src="/assets/applogo.svg"
               alt="Logo"
@@ -30,7 +30,7 @@ const AppHeader = () => {
               height={40}
               className="h-8"
             />
-          </Link>
+          </a>
 
           {/* Mobile Menu Toggle */}
           <button
@@ -111,7 +111,7 @@ const AppHeader = () => {
           <nav className="flex items-center justify-between py-5 text-white">
             {/* Desktop Logo */}
             <div className="flex items-center">
-              <Link href="/">
+              <a href="/">
                 {" "}
                 <Image
                   src="/assets/applogo.svg"
@@ -119,7 +119,7 @@ const AppHeader = () => {
                   width={150}
                   height={50}
                 />
-              </Link>
+              </a>
             </div>
 
             {/* Desktop Navigation */}

@@ -25,7 +25,7 @@ const SalesHeaderItems = ({ headers, isMobileMenuOpen, toggleMobileMenu }) => {
                   <a
                     key={index}
                     href={item.menu_link}
-                    className="text-white hover:text-primary transition-colors font-medium uppercase tracking-[.5px]"
+                    className="text-white font-Inter text-[16px] hover:text-primary transition-colors font-semibold leading-[22px] uppercase cursor-pointer"
                   >
                     {item.menu_name}
                   </a>
@@ -36,7 +36,7 @@ const SalesHeaderItems = ({ headers, isMobileMenuOpen, toggleMobileMenu }) => {
                     to={item.menu_link.replace("#", "")} // Ensure no '#' in the link
                     smooth={true}
                     duration={1500}
-                    className="text-white hover:text-primary transition-colors font-medium uppercase tracking-[.5px] cursor-pointer"
+                    className="text-white font-Inter text-[16px] hover:text-primary transition-colors font-semibold leading-[22px] uppercase cursor-pointer"
                   >
                     {item.menu_name}
                   </Link>
@@ -46,12 +46,13 @@ const SalesHeaderItems = ({ headers, isMobileMenuOpen, toggleMobileMenu }) => {
 
           <div>
             <Link
-              to="appointment" // Use a 'Link' here instead of the 'a' tag
+              style={{ width: "238px" }}
+              to="pricing" // Use a 'Link' here instead of the 'a' tag
               smooth={true}
               duration={1500}
-              className="bg-white text-[#0A2C8C] px-5 py-3 rounded-md hover:bg-[#0A2C8C] cursor-pointer hover:text-white transition-all duration-300  font-semibold font-Inter"
+              className="flex justify-center items-center bg-white whitespace-nowrap cursor-pointer text-[#001246]   hover:bg-transparent border hover:text-white hover:border-white  md:w-[100%] lg:w-[100%] text-[14px] md:text-[14px] px-4 md:px-10 lg:px-12 py-3 md:py-1 lg:py-3 font-semibold  font-Inter transition-all duration-300 transform hover:shadow-[0px_4px_6px_rgba(0,0,0,0.1)] hover:bg-[#F0F0F0] hover:drop-shadow-lg leading-[14px]"
             >
-              Book an appointment
+              See Pricing
             </Link>
           </div>
         </nav>

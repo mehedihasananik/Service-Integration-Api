@@ -77,7 +77,7 @@ const SalesPricingPlans = () => {
                   percentage: "10",
                   originalPrice: "0.00",
                   description:
-                    "Customize the plan tailored to your unique needs and goals effectively",
+                    "Select services and customize the plan tailored to your needs.",
                   iconSrcError: "/assets/iconSrcError.png",
                   iconSrc: "/assets/customCrown.svg",
                   isDark: false,
