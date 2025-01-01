@@ -134,7 +134,7 @@ const SaleClientsItem = ({ content }) => {
         className="flex flex-col items-center justify-center py-[3%] overflow-hidden w-full lg:w-[1100px] mx-auto px-4 lg:px-0"
       >
         <div className="text-center mb-10">
-          <h3 className="text-[#FF693B] text-[18px] font-normal leading-[24px] pb-4">
+          <h3 className="text-[16px] md:text-[16px] lg:text-[18px] font-normal leading-[24px] text-[#FF693B] font-Jua pb-4">
             Client Reviews
           </h3>
           <h2 className="text-[#001246] text-[30px] lg:text-[48px] font-bold leading-[24px] tracking-[0.96px]">

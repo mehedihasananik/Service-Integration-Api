@@ -154,7 +154,9 @@ const WebsiteComboOffer = () => {
   return (
     <div className="w-full px-4 py-8">
       <div className="text-center text-white mb-12">
-        <p className="text-lg font-medium mb-2">Check what's included</p>
+        <p className="text-[16px] md:text-[16px] lg:text-[16px] font-normal leading-[24px] text-[#fff]  font-Jua ">
+          Check what's included
+        </p>
         <h2 className="text-3xl lg:text-5xl font-bold">Website Combo Offer</h2>
       </div>
 

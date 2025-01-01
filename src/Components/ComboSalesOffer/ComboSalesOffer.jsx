@@ -10,6 +10,7 @@ import { BusinessTransform } from "../ComboPageSections/BusinessTransform/Busine
 import ComboLeadPortfolio from "../ComboLead/ComboLeadPortfolio";
 import SaleClients from "./SaleClients/SaleClients";
 import SalesVideoSection from "./SalesVideoSection/SalesVideoSection";
+import ComboSalesPortfolio from "./ComboSalesPortfolio/ComboSalesPortfolio";
 
 const ComboSalesOffer = () => {
   return (
@@ -20,10 +21,10 @@ const ComboSalesOffer = () => {
           <SalesHeroSection />
         </div>
       </div>
-      <div className="sales_video">
+      <div className="sales_video ">
         <SalesVideoSection />
       </div>
-      <div className="pt-10 lg:pt-0">
+      <div className="pt-10 lg:pt-[3%]">
         <SalesAllOne />
       </div>
       <div id="combo" className="websiteComboOffer overflow-hidden">
@@ -35,7 +36,7 @@ const ComboSalesOffer = () => {
         <SaleClients />
       </div>
       <div className="py-0">
-        <ComboLeadPortfolio />
+        <ComboSalesPortfolio />
       </div>
       <div className="business-section  py-[5%] ">
         <BusinessTransform />

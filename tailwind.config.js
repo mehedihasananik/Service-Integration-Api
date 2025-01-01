@@ -42,6 +42,7 @@ module.exports = {
         Poppins: ["Poppins", "sans-serif"],
         Inter: ["Inter", "sans-serif"],
         Oswald: ["Oswald", "sans-serif"],
+        Jua: ["Jua", "sans-serif"],
       },
       animation: {
         "fade-in": "fadeIn 0.5s ease-out forwards",

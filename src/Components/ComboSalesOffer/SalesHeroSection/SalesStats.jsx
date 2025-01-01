@@ -52,22 +52,25 @@ const SalesStats = () => {
           <React.Fragment key={stat.id}>
             <div className="flex items-center py-2.5 px-4 bg-[rgba(10,44,140,0.7)] backdrop-blur-[36px] rounded-[6px] w-[268px]">
               <div className="flex items-center gap-4">
-                {/* Icon */}
                 <img
                   loading="lazy"
                   src={stat.icon}
                   alt={stat.label}
                   className="w-12 h-12 object-contain"
                 />
-                {/* Count and Label */}
                 <div className="flex flex-col">
                   {inView && (
                     <CountUp
                       start={0}
-                      end={stat.count}
-                      duration={2}
+                      end={stat.id === 1 ? 2000 : stat.count}
+                      duration={5}
                       separator=","
-                      suffix={stat.suffix}
+                      formattingFn={(value) => {
+                        if (stat.id === 1) {
+                          return value >= 2000 ? "2k+" : value;
+                        }
+                        return value + (stat.suffix || "");
+                      }}
                       className="text-[24px] font-semibold text-white"
                     />
                   )}
