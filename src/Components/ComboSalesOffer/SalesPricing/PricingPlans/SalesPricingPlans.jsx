@@ -9,7 +9,7 @@ const SalesPricingPlans = () => {
         <div className=" font-Inter  ">
           <div className="flex flex-col items-center   md:px-0">
             <SalesPricingHeader />
-            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-x-8 mt-11 gap-y-10 md:gap-y-5 ">
+            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-x-8 mt-5 lg:mt-11 gap-y-10 md:gap-y-5 ">
               {/* Static Plan 1 */}
               <SalesPlanCard
                 plan={{

@@ -153,11 +153,11 @@ const SalesHeroSection = () => {
                   className="w-[100%] h-[100%]"
                 />
               </div>
-              <div className="flex lg:hidden justify-center mt-2">
+              <div className="flex lg:hidden justify-center mt-2 ">
                 <img
-                  src="/assets/FrameClientSm.png"
+                  src="/assets/FrameClientSales.svg"
                   alt="Client Frame"
-                  className="w-[262px] h-[50px]"
+                  className="w-[262px] h-[50px] pl-[12%]"
                 />
               </div>
             </div>

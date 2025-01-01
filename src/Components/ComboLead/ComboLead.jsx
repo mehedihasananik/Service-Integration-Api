@@ -39,7 +39,7 @@ const ComboLead = () => {
         <BusinessTransform />
       </div>
 
-      <div className="faq-section pt-[4%]">
+      <div className="sales-faq-section pt-[4%]">
         <ComboPageFaq title="Frequently Asked Questions" />
       </div>
       <div className="schedule-section appointmentBg py-5 pt-[2.7%] px-2 md:px-0">

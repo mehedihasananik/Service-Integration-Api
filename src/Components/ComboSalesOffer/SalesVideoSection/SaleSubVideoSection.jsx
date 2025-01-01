@@ -64,7 +64,7 @@ const SaleSubVideoSection = () => {
         </div>
 
         {/* Conditional Rendering Based on Route */}
-        <div className="flex flex-col md:flex-row justify-center items-center text-[16px] font-bold gap-x-5 gap-y-5 md:gap-y-0">
+        <div className="flex flex-col md:flex-row justify-center items-center text-[16px] font-bold gap-x-5 gap-y-5 md:gap-y-0 pt-[1%]">
           <SalesPricingBtn />
         </div>
       </Container>

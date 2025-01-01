@@ -1,15 +1,14 @@
-import React from "react";
 import UserLoading from "@/Components/Utilites/UserLoading/UserLoading";
+import React from "react";
+import SalePageAccodion from "./SalePageAccodion";
 import { fetchData } from "@/config/fetchData";
-import { faqApi } from "@/config/apis";
-import ComboPageAccodion from "./ComboPageAccodion";
+import AccordionManager from "./AccordionManager";
 
-const ComboPageFaq = async ({ className, title, containerClass }) => {
+const SalesPageFaq = async ({ className, title, containerClass }) => {
   const data = await fetchData(
     "https://admin.envobyte.com/api/landing-page/faq"
-  ); // Use fetchData instead
+  );
 
-  // Filter the questions to include those with featured: "1" or 1
   const questions = data.FaqDataArray.filter(
     (question) =>
       question.is_landingpage === "1" || question.is_landingpage === 1
@@ -33,26 +32,11 @@ const ComboPageFaq = async ({ className, title, containerClass }) => {
               </p>
             </div>
           </div>
-          <div className="py-4 md:py-8 lg:px-[15%]">
-            <div className="rounded-lg">
-              {questions.length === 0 ? (
-                <UserLoading />
-              ) : (
-                questions.map((question, index) => (
-                  <ComboPageAccodion
-                    key={question.id}
-                    index={index}
-                    title={question.title}
-                    answer={question.details}
-                  />
-                ))
-              )}
-            </div>
-          </div>
+          <AccordionManager questions={questions} />
         </div>
       </div>
     </div>
   );
 };
 
-export default ComboPageFaq;
+export default SalesPageFaq;

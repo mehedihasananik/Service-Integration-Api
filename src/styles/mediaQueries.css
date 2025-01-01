@@ -114,6 +114,15 @@
     height: 100%;
     width: 100%;
   }
+  .sale-faq-section {
+    background-image: none;
+    background-repeat: no-repeat;
+    background-size: center;
+    background-position: center;
+    z-index: -11;
+    height: 100%;
+    width: 100%;
+  }
 }
 
 @media only screen and (max-width: 1080px) {
@@ -335,6 +344,17 @@
     height: 100%;
     width: 100%;
     background: #11297e;
+  }
+  .salesAllOne {
+    background-image: none;
+    background-repeat: no-repeat;
+    background-size: center;
+    background-position: center;
+    z-index: 11;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    background-color: #051761;
   }
 }
 @media only screen and (max-width: 767px) {

@@ -14,7 +14,7 @@ async function getPageData() {
 
 const SaleClients = async () => {
   const homeData = await getPageData();
-  console.log(homeData.items);
+
   return (
     <div>
       <SaleClientsItem content={homeData.items} />

@@ -3,7 +3,7 @@ import { SalesPricingBtn } from "../SalesBtn/SalesBtn";
 
 const AnswerSection = () => {
   return (
-    <div className="anserSection pt-[5%]">
+    <div className="anserSection pt-[3%]">
       <div className="text-center text-[#000] lg:text-white">
         <h3 className="text-[16px] md:text-[16px] lg:text-[18px] font-normal leading-[24px] text-[#fff] font-Jua pb-4">
           More details
@@ -13,7 +13,7 @@ const AnswerSection = () => {
         </h2>
       </div>
       <div className="flex justify-center ">
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 justify-center items-center gap-y-5 lg:gap-y-0 md:gap-x-5 lg:gap-x-8 pt-[5%]">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 justify-center items-center gap-y-5 xl:gap-y-0  md:gap-x-5 lg:gap-x-12 pt-[3.2%]">
           <div
             style={{
               border: "1px solid #FFF",
@@ -30,13 +30,13 @@ const AnswerSection = () => {
               />
             </div>
             <div className="px-[8%]">
-              <h2 className=" text-[#001246]  font-Inter text-[20px] lg:text-[30px] font-semibold leading-9 ">
+              <h2 className=" text-[#001246]  font-Inter text-[20px] lg:text-[30px] font-semibold leading- pt-[2%] ">
                 What is Combo Offer
               </h2>
-              <p className=" text-[#002AA3]  font-Inter text-[16px]  font-medium leading-[22px] pb-2 pt-2">
+              <p className=" text-[#002AA3]  font-Inter text-[16px]  font-medium leading-[22px] pb-2 ">
                 Get 9 services in one package
               </p>
-              <p className=" text-[#424242]  font-Inter text-[16px]  font-normal leading-[24px]">
+              <p className=" text-[#424242]  font-Inter text-[16px]  font-normal leading-[24px] pt-1.5">
                 You’re getting web design, development, content writing, social
                 media kit, custom graphics, and business consultation—all in one
                 combo package!
@@ -82,7 +82,7 @@ const AnswerSection = () => {
           >
             <div className="flex justify-center">
               <img
-                className="w-[280.982px] h-[275.709px]"
+                className="w-[200.982px] h-[275.709px]"
                 src="/assets/answer2.svg"
                 alt=""
               />
@@ -91,12 +91,13 @@ const AnswerSection = () => {
               <h2 className=" text-[#fff]  font-Inter text-[20px] lg:text-[30px] font-semibold leading-9 ">
                 What’s Your Benefit
               </h2>
-              <p className=" text-[#fff]  font-Inter text-[16px]  font-medium leading-[22px] pb-2 pt-2">
-                No hassle with best price
+              <p className=" text-[#65B5FF]  font-Inter text-[16px]  font-medium leading-[22px] pb-2 pt-2">
+                Experienced & trustworthy
               </p>
-              <p className=" text-[#fff]  font-Inter text-[16px]  font-normal leading-[24px]">
-                A hassle-free process that saves you time, with everything you
-                need in one seamless package at an incredibly attractive price.
+              <p className=" text-[#fff]  font-Inter text-[16px]  font-normal leading-[22px]">
+                We’re experienced, trustworthy, and a team of experts in design,
+                development, SEO, and more, delivering everything you need for
+                success.
               </p>
             </div>
           </div>

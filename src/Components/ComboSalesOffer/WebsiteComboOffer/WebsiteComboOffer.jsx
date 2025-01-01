@@ -67,6 +67,13 @@ const WebsiteComboOffer = () => {
       subtitle: "Explain Your Business",
       buttonText: "Included",
     },
+    {
+      imageSrc: "/assets/websiteLogo1.svg",
+      imageAlt: "WordPress Website",
+      title: "WordPress Website",
+      subtitle: "Design & Development",
+      buttonText: "Included",
+    },
   ];
 
   const [currentPage, setCurrentPage] = useState(0);
@@ -122,7 +129,7 @@ const WebsiteComboOffer = () => {
 
     return (
       <div
-        className="flex flex-col justify-center items-center px-6 py-8 text-center text-white rounded-lg border border-white/20 bg-blue-700/20 backdrop-blur-lg"
+        className="h-[358px] flex flex-col justify-center items-center px-6 py-8 text-center text-white rounded-[4px] border border-white/20 bg-blue-700/20 backdrop-blur-lg"
         style={{
           background: "rgba(49, 88, 199, 0.20)",
           backdropFilter: "blur(36px)",
@@ -133,17 +140,16 @@ const WebsiteComboOffer = () => {
         }}
       >
         <div className="flex flex-col justify-center items-center w-full max-w-[228px]">
-          <img
-            loading="lazy"
-            src={item.imageSrc}
-            alt={item.imageAlt}
-            className="object-contain w-32 h-32"
-          />
+          <img loading="lazy" src={item.imageSrc} alt={item.imageAlt} />
           <div className="flex flex-col w-full mt-4">
-            <h3 className="text-xl font-semibold">{item.title}</h3>
-            <p className="mt-2 text-sm text-gray-300">{item.subtitle}</p>
+            <h3 className="font-Inter text-[20px] font-semibold leading-[42px]">
+              {item.title}
+            </h3>
+            <p className="font-Inter text-[16px] font-normal">
+              {item.subtitle}
+            </p>
           </div>
-          <button className="px-8 py-2 mt-4 text-sm font-medium text-white bg-blue-500 rounded-full hover:bg-blue-600 transition-colors">
+          <button className="w-[180px] py-2.5 mt-4 text-[14px] font-normal  text-white bg-[#0C89FF] rounded-[30px] hover:bg-blue-600 transition-colors">
             {item.buttonText}
           </button>
         </div>
@@ -151,10 +157,21 @@ const WebsiteComboOffer = () => {
     );
   };
 
+  const getCounterText = () => {
+    if (isLargeScreen) {
+      const itemsShown = Math.min(
+        (currentPage + 1) * itemsPerPageLg,
+        fakeData.length
+      );
+      return `${itemsShown}/${fakeData.length}`;
+    }
+    return `${currentPage + 1}/${totalPagesSm}`;
+  };
+
   return (
-    <div className="w-full px-4 py-8">
+    <div className="w-full px-[3%] py-8">
       <div className="text-center text-white mb-12">
-        <p className="text-[16px] md:text-[16px] lg:text-[16px] font-normal leading-[24px] text-[#fff]  font-Jua ">
+        <p className="text-[16px] md:text-[16px] lg:text-[16px] font-normal leading-[24px] text-[#fff]  font-Jua pb-4 ">
           Check what's included
         </p>
         <h2 className="text-3xl lg:text-5xl font-bold">Website Combo Offer</h2>
@@ -174,7 +191,9 @@ const WebsiteComboOffer = () => {
       </div>
 
       {/* Desktop View (≥ lg screens) */}
-      <div className="hidden lg:block">
+      <div className="hidden lg:block h-[740px]">
+        {" "}
+        {/* Add min-height here */}
         <div
           className="transition-all duration-500 ease-out"
           style={{
@@ -182,7 +201,7 @@ const WebsiteComboOffer = () => {
             opacity: isAnimating ? 0.3 : 1,
           }}
         >
-          <div className="grid grid-cols-3 gap-6">
+          <div className="grid grid-cols-3 gap-8">
             {fakeData
               .slice(
                 currentPage * itemsPerPageLg,
@@ -196,9 +215,9 @@ const WebsiteComboOffer = () => {
       </div>
 
       {/* Navigation Buttons */}
-      <div className="flex justify-center items-center mt-5">
-        <div className="bg-[#001246] lg:w-[8%] rounded-[30px]">
-          <div className="flex justify-center items-center gap-4">
+      <div className="flex justify-center items-center mt-10">
+        <div className="bg-[#001246] lg:w-[8%] rounded-[30px] py-1">
+          <div className="flex justify-center items-center gap-4  h-[30px] ">
             <button
               onClick={() => handleNavigation(-1)}
               disabled={currentPage === 0 || isAnimating}
@@ -206,8 +225,8 @@ const WebsiteComboOffer = () => {
             >
               <ChevronLeft className="w-6 h-6" />
             </button>
-            <span className="text-white">
-              {currentPage + 1} / {isLargeScreen ? totalPagesLg : totalPagesSm}
+            <span className="text-white font-Inter text-[12px] font-normal leading-[42px]">
+              {getCounterText()}
             </span>
             <button
               onClick={() => handleNavigation(1)}

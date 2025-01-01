@@ -130,7 +130,7 @@ const SalesPlanCard = ({ plan }) => {
               border: "1px solid #FFF",
               background:
                 "linear-gradient(169deg, #0A2C8C -1.15%, #0C89FF 99.51%)",
-              boxShadow: "0px 1px 4px 0px rgba(25, 33, 61, 0.08)",
+              boxShadow: " 0 0 60px 10px #0C89FF",
             }
           : {}
       }
@@ -227,7 +227,7 @@ const SalesPlanCard = ({ plan }) => {
             ? "bg-[#0A2C8C66] hover:bg-[#7f8eb4] text-[#fff] transition-all duration-300 border"
             : plan.isDark
             ? "bg-[#fff] text-[#001B69] hover:bg-[#ffffffc7] hover:text-[#0F2870] hover:shadow-lg    transition-all duration-300"
-            : "bg-blue-900 hover:bg-[#0E2566] text-white transition-all duration-300 border border-[#0F2870]"
+            : "bg-[#000] hover:bg-[#260c0c] text-white transition-all duration-300 border border-[#0F2870]"
         } transform transition-all duration-300 hover:shadow-lg`}
       >
         <span>Place Order</span>{" "}

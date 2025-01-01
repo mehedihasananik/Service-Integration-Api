@@ -8,45 +8,45 @@ const SaleClientsItem = ({ content }) => {
   const [direction, setDirection] = useState(0);
   const [isLargeScreen, setIsLargeScreen] = useState(true);
 
-  // Different items per page based on screen size
   const itemsPerPage = {
     lg: 6, // 2 rows x 3 columns for large screens
     sm: 1, // 1 row x 1 column for smaller screens
   };
 
   useEffect(() => {
-    // Check screen size on mount and window resize
     const handleResize = () => {
       setIsLargeScreen(window.innerWidth >= 1024);
+      // Reset to first page on screen size change to prevent invalid indices
+      setCurrentPage(0);
     };
-
-    // Set initial value
     handleResize();
-
-    // Add event listener
     window.addEventListener("resize", handleResize);
-
-    // Clean up
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const pages = Math.ceil(content.length / itemsPerPage.lg);
-  const mobilePages = Math.ceil(content.length / itemsPerPage.sm);
-
   const getCurrentItems = useCallback(
     (pageIndex) => {
-      // Use isLargeScreen state instead of direct window check
+      const itemsCount = isLargeScreen ? itemsPerPage.lg : itemsPerPage.sm;
+      const totalPages = Math.ceil(content.length / itemsCount);
+
+      // Create a normalized page index that wraps around
+      const normalizedIndex =
+        ((pageIndex % totalPages) + totalPages) % totalPages;
+
       if (isLargeScreen) {
-        return content.slice(
-          pageIndex * itemsPerPage.lg,
-          (pageIndex + 1) * itemsPerPage.lg
-        );
+        // For large screens, get 6 items
+        let start = (normalizedIndex * itemsCount) % content.length;
+        let items = [];
+        for (let i = 0; i < itemsCount; i++) {
+          const index = (start + i) % content.length;
+          items.push(content[index]);
+        }
+        return items;
+      } else {
+        // For small screens, get single item with wrapping
+        const index = normalizedIndex % content.length;
+        return [content[index]];
       }
-      // For smaller screens
-      return content.slice(
-        pageIndex * itemsPerPage.sm,
-        (pageIndex + 1) * itemsPerPage.sm
-      );
     },
     [content, isLargeScreen]
   );
@@ -55,21 +55,32 @@ const SaleClientsItem = ({ content }) => {
     (newDirection) => {
       if (isAnimating) return;
 
-      const maxPages = isLargeScreen ? pages : mobilePages;
-      const nextPage = currentPage + newDirection;
-      if (nextPage < 0 || nextPage >= maxPages) return;
-
       setIsAnimating(true);
       setDirection(newDirection);
 
       setTimeout(() => {
-        setCurrentPage(nextPage);
+        setCurrentPage((prev) => {
+          const totalPages = Math.ceil(
+            content.length / (isLargeScreen ? itemsPerPage.lg : itemsPerPage.sm)
+          );
+          let nextPage = prev + newDirection;
+
+          // Wrap around for infinite scrolling
+          if (nextPage < 0) {
+            nextPage = totalPages - 1;
+          } else if (nextPage >= totalPages) {
+            nextPage = 0;
+          }
+
+          return nextPage;
+        });
+
         setTimeout(() => {
           setIsAnimating(false);
         }, 50);
       }, 400);
     },
-    [currentPage, pages, mobilePages, isAnimating, isLargeScreen]
+    [content.length, isLargeScreen, isAnimating]
   );
 
   const TestimonialCard = ({
@@ -131,7 +142,7 @@ const SaleClientsItem = ({ content }) => {
           background: "rgba(255, 255, 255, 0.60)",
           backdropFilter: "blur(36px)",
         }}
-        className="flex flex-col items-center justify-center py-[3%] overflow-hidden w-full lg:w-[1100px] mx-auto px-4 lg:px-0"
+        className="flex flex-col items-center justify-center py-[3%] overflow-hidden w-full xl:w-[1240px] mx-auto px-4 lg:px-0"
       >
         <div className="text-center mb-10">
           <h3 className="text-[16px] md:text-[16px] lg:text-[18px] font-normal leading-[24px] text-[#FF693B] font-Jua pb-4">
@@ -149,7 +160,11 @@ const SaleClientsItem = ({ content }) => {
               opacity: isAnimating ? 0.3 : 1,
             }}
           >
-            <div className="grid grid-cols-1 lg:grid-cols-3 lg:grid-rows-2 gap-4 justify-items-center overflow-hidden">
+            <div
+              className={`grid grid-cols-1 ${
+                isLargeScreen ? "lg:grid-cols-3 lg:grid-rows-2" : ""
+              } gap-4 justify-items-center`}
+            >
               {getCurrentItems(currentPage).map((testimonial, index) => (
                 <TestimonialCard
                   key={`${testimonial.id}-${currentPage}-${index}`}
@@ -164,38 +179,17 @@ const SaleClientsItem = ({ content }) => {
             </div>
           </div>
 
-          {/* Navigation dots */}
-          <div className="flex justify-center gap-2 mt-6 mb-4">
-            {[...Array(isLargeScreen ? pages : mobilePages)].map((_, index) => (
-              <button
-                key={index}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  currentPage === index ? "bg-[#0C89FF] w-4" : "bg-gray-300"
-                }`}
-                onClick={() => {
-                  if (index > currentPage) handleNavigation(1);
-                  if (index < currentPage) handleNavigation(-1);
-                }}
-                disabled={isAnimating}
-              />
-            ))}
-          </div>
-
-          {/* Navigation arrows */}
-          <div className="flex justify-center gap-x-3 mt-2">
+          <div className="flex justify-center gap-x-3 mt-[4%]">
             <button
               onClick={() => handleNavigation(-1)}
-              disabled={currentPage === 0 || isAnimating}
+              disabled={isAnimating}
               className="px-3 py-2 rounded-[6px] bg-white disabled:opacity-50 border border-[#4580FF] transition-all duration-300 hover:bg-gray-50 active:scale-95"
             >
               <GrFormPrevious className="text-[20px] text-[#4580FF]" />
             </button>
             <button
               onClick={() => handleNavigation(1)}
-              disabled={
-                currentPage === (isLargeScreen ? pages : mobilePages) - 1 ||
-                isAnimating
-              }
+              disabled={isAnimating}
               className="px-3 py-2 rounded-[6px] bg-[#0C89FF] disabled:opacity-50 border border-[#4580FF] text-white transition-all duration-300 hover:bg-[#0972d3] active:scale-95"
             >
               <GrFormNext

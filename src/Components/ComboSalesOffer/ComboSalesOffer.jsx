@@ -4,13 +4,12 @@ import SalesHeroSection from "./SalesHeroSection/SalesHeroSection";
 import SalesAllOne from "./SalesAllOne/SalesAllOne";
 import WebsiteComboOffer from "./WebsiteComboOffer/WebsiteComboOffer";
 import AnswerSection from "./AnswerSection/AnswerSection";
-import ComboPageFaq from "../ComboPageSections/ComboPageFaq/ComboPageFaq";
 import SalesPricingPlans from "./SalesPricing/PricingPlans/SalesPricingPlans";
-import { BusinessTransform } from "../ComboPageSections/BusinessTransform/BusinessTransform";
-import ComboLeadPortfolio from "../ComboLead/ComboLeadPortfolio";
 import SaleClients from "./SaleClients/SaleClients";
 import SalesVideoSection from "./SalesVideoSection/SalesVideoSection";
 import ComboSalesPortfolio from "./ComboSalesPortfolio/ComboSalesPortfolio";
+import { SalesBusinessTransform } from "./SalesBusinessTransform/SalesBusinessTransform";
+import SalesPageFaq from "./SalesPageFaq/SalesPageFaq";
 
 const ComboSalesOffer = () => {
   return (
@@ -31,7 +30,9 @@ const ComboSalesOffer = () => {
         <WebsiteComboOffer />
       </div>
 
-      <AnswerSection />
+      <div className="px-[5%] md:px-[3%] lg:px-[0%]">
+        <AnswerSection />
+      </div>
       <div className="pt-[2%] lg:pt-[0%] overflow-hidden">
         <SaleClients />
       </div>
@@ -39,13 +40,13 @@ const ComboSalesOffer = () => {
         <ComboSalesPortfolio />
       </div>
       <div className="business-section  py-[5%] ">
-        <BusinessTransform />
+        <SalesBusinessTransform />
       </div>
-      <div className="Sales-Pricing-section py-5 xl:py-0">
+      <div className="Sales-Pricing-section pb-5 xl:pb-0 md:py-5 xl:py-0">
         <SalesPricingPlans />
       </div>
-      <div className="faq-section pt-[4%]">
-        <ComboPageFaq title="Frequently Asked Questions" />
+      <div className="sale-faq-section pt-[4%]">
+        <SalesPageFaq title="Frequently Asked Questions" />
       </div>
     </div>
   );

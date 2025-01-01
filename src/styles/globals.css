@@ -691,18 +691,19 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   background-position: center;
   position: relative; /* Added to ensure proper z-index stacking */
   z-index: 1; /* Adjusted z-index to ensure content is above background */
-  height: 955px;
+  height: 975px;
   width: 100%;
   overflow: hidden; /* Prevent any overflow */
 }
 .salesAllOne {
-  background-image: url("/assets/salesAllOne.jpg");
+  background-image: url("/assets/salesAllOneN.png");
   background-repeat: no-repeat;
   background-size: center;
   background-position: center;
-  z-index: -11;
-  height: auto;
+  z-index: 11;
+  height: 720px;
   width: 100%;
+  position: relative;
   background-color: #051761;
 }
 .sales_video {
@@ -716,7 +717,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .websiteComboOffer {
-  background-image: url("/assets/websiteComboOffer.jpg");
+  background-image: url("/assets/websiteComboOffer1.png");
   background-repeat: no-repeat;
   background-size: center;
   background-position: center;
@@ -743,14 +744,51 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   width: 100%;
 }
 .SaleClients_Section {
-  background-image: url("/assets/SaleClients_Section.jpg");
+  background-image: url("/assets/SaleClients_Section1.jpg");
   background-repeat: no-repeat;
   background-size: center;
   background-position: center;
   z-index: -11;
-  height: 750px;
+  height: 784px;
   width: 100%;
 }
+.sale-faq-section {
+  background-image: url("/assets/sale-faq-section.png");
+  background-repeat: no-repeat;
+  background-size: center;
+  background-position: center;
+  z-index: -11;
+  height: 972px;
+  width: 100%;
+}
+/* In your CSS file (e.g., styles.css) */
+.plan-card-dark::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle at top right,
+    rgba(255, 255, 255, 0.08) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 1; /* Added to ensure visibility */
+}
+
+/* Also add this to ensure the content appears above the pseudo-element */
+.plan-card-dark {
+  position: relative;
+  isolation: isolate;
+}
+
+.plan-card-dark > * {
+  position: relative;
+  z-index: 2;
+}
+
 /* .statsbg {
   background-image: url("/assets/statsbg.png");
   background-repeat: no-repeat;
