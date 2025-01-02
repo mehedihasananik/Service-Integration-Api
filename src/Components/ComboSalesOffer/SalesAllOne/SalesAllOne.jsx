@@ -9,7 +9,7 @@ const SalesAllOne = () => {
   return (
     <>
       <div id="offer" className="salesAllOne">
-        <div className="absolute lg:-top-[1%] xl:-top-[3%] hidden lg:block">
+        <div className="absolute lg:-top-[1%] xl:-top-[3%] lg:left-[2%] hidden lg:block">
           <img
             className="lg:w-[60%] xl:w-[100%]"
             src="/assets/salesCombo.svg"
@@ -44,7 +44,7 @@ const SalesAllOne = () => {
                   </div>
                 </div>
                 <div className="w-[32%]">
-                  <SalesPricingBtn className="border-none" />
+                  <SalesPricingBtn className="border border-[#FF693B]  hover:border-[#FF693B] hover:bg-transparent hover:text-[#FF693B]" />
                 </div>
               </div>
               <div className="w-[50%] pt-[8%] relative -right-12">

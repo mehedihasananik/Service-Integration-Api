@@ -161,7 +161,9 @@ const SalesPlanCard = ({ plan }) => {
               plan.title === "Premium+ Plan" ? "text-[#fff]" : "text-[#001246]"
             }`}
           >
-            {`$${originalPrice.toFixed(2)}`}
+            {plan.title === "Custom Plan"
+              ? `$${originalPrice.toFixed(2)}`
+              : `$${originalPrice}`}
           </div>
 
           <div className="mt-0 md:mt-6  font-medium font-Inter">
@@ -194,7 +196,7 @@ const SalesPlanCard = ({ plan }) => {
       </div>
 
       {plan.title === "Premium+ Plan" ? (
-        <hr className="mt-6 border-t border-[#FFD54D]" />
+        <hr className="mt-6 border-t border-[#FFF]" />
       ) : (
         <hr className="mt-6 border-t border-[#E1E4ED]" />
       )}

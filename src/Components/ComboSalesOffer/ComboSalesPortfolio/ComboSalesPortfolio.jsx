@@ -17,9 +17,12 @@ const ComboSalesPortfolio = async () => {
   const portfolio = await getPageData();
 
   return (
-    <div id="portfolio">
+    <div>
       <div className="py-[2%] pt-[5%]">
-        <h3 className="text-[16px] md:text-[18px] lg:text-[18px] font-normal leading-[24px] text-[#FF693B] font-Jua lg:pb-6 text-center">
+        <h3
+          id="portfolio"
+          className="text-[16px] md:text-[18px] lg:text-[18px] font-normal leading-[24px] text-[#FF693B] font-Jua lg:pb-6 text-center"
+        >
           Website portfolio
         </h3>
         <h2 className="font-Inter text-[#001246] text-[20px] lg:text-[48px] font-bold leading-[24px] tracking-[0.96px] text-center">

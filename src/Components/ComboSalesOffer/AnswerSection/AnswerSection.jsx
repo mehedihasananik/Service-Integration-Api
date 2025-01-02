@@ -20,7 +20,7 @@ const AnswerSection = () => {
               background: "rgba(255, 255, 255, 0.74)",
               backdropFilter: "blur(36px)",
             }}
-            className=" lg:w-[370px]  py-[8%] shadow-lg"
+            className="lg:w-[370px] py-[8%] shadow-2xl"
           >
             <div className="flex justify-center">
               <img
@@ -30,26 +30,27 @@ const AnswerSection = () => {
               />
             </div>
             <div className="px-[8%]">
-              <h2 className=" text-[#001246]  font-Inter text-[20px] lg:text-[30px] font-semibold leading- pt-[2%] ">
+              <h2 className="text-[#001246] font-Inter text-[20px] lg:text-[30px] font-semibold leading- pt-[2%]">
                 What is Combo Offer
               </h2>
-              <p className=" text-[#002AA3]  font-Inter text-[16px]  font-medium leading-[22px] pb-2 ">
+              <p className="text-[#002AA3] font-Inter text-[16px] font-medium leading-[22px] pb-2">
                 Get 9 services in one package
               </p>
-              <p className=" text-[#424242]  font-Inter text-[16px]  font-normal leading-[24px] pt-1.5">
+              <p className="text-[#424242] font-Inter text-[16px] font-normal leading-[24px] pt-1.5">
                 You’re getting web design, development, content writing, social
                 media kit, custom graphics, and business consultation—all in one
                 combo package!
               </p>
             </div>
           </div>
+
           <div
             style={{
               border: "1px solid #FFF",
               background: "rgba(255, 255, 255, 0.74)",
               backdropFilter: "blur(36px)",
             }}
-            className="lg:w-[370px]  py-[8%] shadow-lg"
+            className="lg:w-[370px]  py-[8%] shadow-2xl"
           >
             <div className="flex justify-center">
               <img
@@ -104,7 +105,7 @@ const AnswerSection = () => {
         </div>
       </div>
       <div className="flex justify-center pt-[4%] lg:pt-[2%]">
-        <SalesPricingBtn />
+        <SalesPricingBtn className="hover:bg-transparent" />
       </div>
     </div>
   );

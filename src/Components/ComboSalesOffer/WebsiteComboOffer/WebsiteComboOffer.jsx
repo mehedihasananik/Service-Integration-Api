@@ -67,39 +67,24 @@ const WebsiteComboOffer = () => {
       subtitle: "Explain Your Business",
       buttonText: "Included",
     },
-    {
-      imageSrc: "/assets/websiteLogo1.svg",
-      imageAlt: "WordPress Website",
-      title: "WordPress Website",
-      subtitle: "Design & Development",
-      buttonText: "Included",
-    },
   ];
 
   const [currentPage, setCurrentPage] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const [direction, setDirection] = useState(0);
-  const [isLargeScreen, setIsLargeScreen] = useState(true); // Default to true for SSR
+  const [isLargeScreen, setIsLargeScreen] = useState(true);
 
   const itemsPerPageLg = 6;
   const itemsPerPageSm = 1;
-
-  const totalPagesLg = Math.ceil(fakeData.length / itemsPerPageLg);
   const totalPagesSm = fakeData.length;
+  const totalPagesLg = 2; // Now we only have 2 pages: first page (1-6) and second page (7-9 + 1-3)
 
-  // Handle window resize and initial check
   useEffect(() => {
     const checkScreenSize = () => {
       setIsLargeScreen(window.innerWidth >= 1024);
     };
-
-    // Initial check
     checkScreenSize();
-
-    // Add event listener
     window.addEventListener("resize", checkScreenSize);
-
-    // Cleanup
     return () => window.removeEventListener("resize", checkScreenSize);
   }, []);
 
@@ -108,8 +93,19 @@ const WebsiteComboOffer = () => {
       if (isAnimating) return;
 
       const maxPages = isLargeScreen ? totalPagesLg : totalPagesSm;
-      const nextPage = currentPage + newDirection;
-      if (nextPage < 0 || nextPage >= maxPages) return;
+      let nextPage = currentPage + newDirection;
+
+      if (isLargeScreen) {
+        // For large screens, cycle between 0 and 1
+        if (nextPage < 0) {
+          nextPage = totalPagesLg - 1;
+        } else if (nextPage >= totalPagesLg) {
+          nextPage = 0;
+        }
+      } else {
+        // For small screens, keep the original bounds
+        if (nextPage < 0 || nextPage >= maxPages) return;
+      }
 
       setIsAnimating(true);
       setDirection(newDirection);
@@ -149,7 +145,7 @@ const WebsiteComboOffer = () => {
               {item.subtitle}
             </p>
           </div>
-          <button className="w-[180px] py-2.5 mt-4 text-[14px] font-normal  text-white bg-[#0C89FF] rounded-[30px] hover:bg-blue-600 transition-colors">
+          <button className="w-[180px] py-2.5 mt-4 text-[14px] font-normal text-white bg-[#0C89FF] rounded-[30px] hover:bg-blue-600 transition-colors">
             {item.buttonText}
           </button>
         </div>
@@ -157,21 +153,31 @@ const WebsiteComboOffer = () => {
     );
   };
 
+  const getLargeScreenItems = () => {
+    if (currentPage === 0) {
+      // First page: Show items 1-6
+      return fakeData.slice(0, 6);
+    } else {
+      // Second page: Show items 7-9 + 1-3
+      const lastThreeItems = fakeData.slice(6, 9);
+      const firstThreeItems = fakeData.slice(0, 3);
+      return [...lastThreeItems, ...firstThreeItems];
+    }
+  };
+
   const getCounterText = () => {
     if (isLargeScreen) {
-      const itemsShown = Math.min(
-        (currentPage + 1) * itemsPerPageLg,
-        fakeData.length
-      );
-      return `${itemsShown}/${fakeData.length}`;
+      // For large screens, show 6/9 on first page and 9/9 on second page
+      return currentPage === 0 ? "6/9" : "9/9";
     }
+    // For mobile, show current item number
     return `${currentPage + 1}/${totalPagesSm}`;
   };
 
   return (
     <div className="w-full px-[3%] py-8">
       <div className="text-center text-white mb-12">
-        <p className="text-[16px] md:text-[16px] lg:text-[16px] font-normal leading-[24px] text-[#fff]  font-Jua pb-4 ">
+        <p className="text-[16px] md:text-[16px] lg:text-[16px] font-normal leading-[24px] text-[#fff] font-Jua pb-4">
           Check what's included
         </p>
         <h2 className="text-3xl lg:text-5xl font-bold">Website Combo Offer</h2>
@@ -192,8 +198,6 @@ const WebsiteComboOffer = () => {
 
       {/* Desktop View (≥ lg screens) */}
       <div className="hidden lg:block h-[740px]">
-        {" "}
-        {/* Add min-height here */}
         <div
           className="transition-all duration-500 ease-out"
           style={{
@@ -202,14 +206,13 @@ const WebsiteComboOffer = () => {
           }}
         >
           <div className="grid grid-cols-3 gap-8">
-            {fakeData
-              .slice(
-                currentPage * itemsPerPageLg,
-                (currentPage + 1) * itemsPerPageLg
-              )
-              .map((item, index) => (
-                <ServiceCard key={index} item={item} index={index} />
-              ))}
+            {getLargeScreenItems().map((item, index) => (
+              <ServiceCard
+                key={`${item.title}-${index}`}
+                item={item}
+                index={index}
+              />
+            ))}
           </div>
         </div>
       </div>
@@ -217,10 +220,10 @@ const WebsiteComboOffer = () => {
       {/* Navigation Buttons */}
       <div className="flex justify-center items-center mt-10">
         <div className="bg-[#001246] lg:w-[8%] rounded-[30px] py-1">
-          <div className="flex justify-center items-center gap-4  h-[30px] ">
+          <div className="flex justify-center items-center gap-4 h-[30px]">
             <button
               onClick={() => handleNavigation(-1)}
-              disabled={currentPage === 0 || isAnimating}
+              disabled={!isLargeScreen && currentPage === 0}
               className="p-2 rounded-full text-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
               <ChevronLeft className="w-6 h-6" />
@@ -230,11 +233,7 @@ const WebsiteComboOffer = () => {
             </span>
             <button
               onClick={() => handleNavigation(1)}
-              disabled={
-                currentPage ===
-                  (isLargeScreen ? totalPagesLg - 1 : totalPagesSm - 1) ||
-                isAnimating
-              }
+              disabled={!isLargeScreen && currentPage === totalPagesSm - 1}
               className="p-2 rounded-full text-[#0A7AE8] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
               <ChevronRight className="w-6 h-6" />
