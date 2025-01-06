@@ -356,6 +356,9 @@
     position: relative;
     background-color: #051761;
   }
+  .client_mySwiper {
+    height: 100% !important;
+  }
 }
 @media only screen and (max-width: 767px) {
   .combo_hero {

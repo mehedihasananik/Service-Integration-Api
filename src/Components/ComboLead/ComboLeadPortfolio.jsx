@@ -41,7 +41,9 @@ const ComboLeadPortfolio = async () => {
         <ComboPortfolioSliderSm1 portfolio={portfolio} />
       </div> */}
       <div className="">
-        <ConditionBtn />
+        <div className="w-[100%] flex justify-center items-center pt-[1%]">
+          <ComboLeadBookBtn />
+        </div>
       </div>
     </div>
   );

@@ -1,87 +1,24 @@
 "use client";
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useRef } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper/modules";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 const SaleClientsItem = ({ content }) => {
   const [currentPage, setCurrentPage] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
-  const [direction, setDirection] = useState(0);
-  const [isLargeScreen, setIsLargeScreen] = useState(true);
+  const desktopSwiperRef = useRef(null);
+  const mobileSwiperRef = useRef(null);
 
-  const itemsPerPage = {
-    lg: 6, // 2 rows x 3 columns for large screens
-    sm: 1, // 1 row x 1 column for smaller screens
-  };
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsLargeScreen(window.innerWidth >= 1024);
-      // Reset to first page on screen size change to prevent invalid indices
-      setCurrentPage(0);
-    };
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  const getCurrentItems = useCallback(
-    (pageIndex) => {
-      const itemsCount = isLargeScreen ? itemsPerPage.lg : itemsPerPage.sm;
-      const totalPages = Math.ceil(content.length / itemsCount);
-
-      // Create a normalized page index that wraps around
-      const normalizedIndex =
-        ((pageIndex % totalPages) + totalPages) % totalPages;
-
-      if (isLargeScreen) {
-        // For large screens, get 6 items
-        let start = (normalizedIndex * itemsCount) % content.length;
-        let items = [];
-        for (let i = 0; i < itemsCount; i++) {
-          const index = (start + i) % content.length;
-          items.push(content[index]);
-        }
-        return items;
-      } else {
-        // For small screens, get single item with wrapping
-        const index = normalizedIndex % content.length;
-        return [content[index]];
-      }
-    },
-    [content, isLargeScreen]
-  );
-
-  const handleNavigation = useCallback(
-    (newDirection) => {
-      if (isAnimating) return;
-
-      setIsAnimating(true);
-      setDirection(newDirection);
-
-      setTimeout(() => {
-        setCurrentPage((prev) => {
-          const totalPages = Math.ceil(
-            content.length / (isLargeScreen ? itemsPerPage.lg : itemsPerPage.sm)
-          );
-          let nextPage = prev + newDirection;
-
-          // Wrap around for infinite scrolling
-          if (nextPage < 0) {
-            nextPage = totalPages - 1;
-          } else if (nextPage >= totalPages) {
-            nextPage = 0;
-          }
-
-          return nextPage;
-        });
-
-        setTimeout(() => {
-          setIsAnimating(false);
-        }, 50);
-      }, 400);
-    },
-    [content.length, isLargeScreen, isAnimating]
-  );
+  // Split content into groups of 6 for desktop view
+  const desktopSlideGroups = [];
+  for (let i = 0; i < content.length; i += 6) {
+    desktopSlideGroups.push(content.slice(i, i + 6));
+  }
 
   const TestimonialCard = ({
     logoSrc,
@@ -89,49 +26,37 @@ const SaleClientsItem = ({ content }) => {
     authorImage,
     authorName,
     authorRole,
-    index,
-  }) => {
-    const delay = `${index * 50}ms`;
-
-    return (
-      <div
-        className="flex overflow-hidden flex-col px-6 pt-6 pb-7 rounded-lg border border-white border-solid bg-white bg-opacity-80 w-full lg:max-w-[313px] shadow-[-2px_2px_17px_rgba(0,0,0,0.06)] transition-all duration-500"
-        style={{
-          opacity: isAnimating ? 0 : 1,
-          transform: `translateY(${isAnimating ? "20px" : "0"})`,
-          transitionDelay: delay,
-        }}
-      >
-        <div className="flex flex-col items-start w-full">
+  }) => (
+    <div className="flex overflow-hidden flex-col px-6 pt-6 pb-7 rounded-lg border border-white border-solid bg-white bg-opacity-80 w-full lg:max-w-[313px] shadow-[-2px_2px_17px_rgba(0,0,0,0.06)]">
+      <div className="flex flex-col items-start w-full">
+        <img
+          loading="lazy"
+          src="https://cdn.builder.io/api/v1/image/assets/e7a246693dbe47b68ba0a6f099060cf8/8f6ba71be2e98ac5210fa4aeeb4fdea74ea88007916d5b544a652af9e34e8bef?apiKey=5dfe0fed099d4e7fb78a3e68f506b2af&"
+          alt="Company logo"
+          className="object-contain max-w-full aspect-[5] w-[120px]"
+        />
+        <div className="self-stretch mt-4 text-sm leading-6 text-neutral-700 line-clamp-4">
+          {testimonialText}
+        </div>
+        <div className="flex gap-2 items-center mt-4">
           <img
             loading="lazy"
-            src="https://cdn.builder.io/api/v1/image/assets/e7a246693dbe47b68ba0a6f099060cf8/8f6ba71be2e98ac5210fa4aeeb4fdea74ea88007916d5b544a652af9e34e8bef?apiKey=5dfe0fed099d4e7fb78a3e68f506b2af&"
-            alt="Company logo"
-            className="object-contain max-w-full aspect-[5] w-[120px]"
+            src={authorImage}
+            alt={`${authorName} profile picture`}
+            className="object-contain shrink-0 self-stretch my-auto w-12 rounded-full aspect-square"
           />
-          <div className="self-stretch mt-4 text-sm leading-6 text-neutral-700 line-clamp-3">
-            {testimonialText}
-          </div>
-          <div className="flex gap-2 items-center mt-4">
-            <img
-              loading="lazy"
-              src={authorImage}
-              alt={`${authorName} profile picture`}
-              className="object-contain shrink-0 self-stretch my-auto w-12 rounded-full aspect-square"
-            />
-            <div className="flex flex-col self-stretch my-auto">
-              <div className="text-base font-semibold leading-none text-sky-950">
-                {authorName}
-              </div>
-              <div className="mt-4 text-sm leading-none text-sky-950 text-opacity-30">
-                {authorRole}
-              </div>
+          <div className="flex flex-col self-stretch my-auto">
+            <div className="text-base font-semibold leading-none text-sky-950">
+              {authorName}
+            </div>
+            <div className="mt-4 text-sm leading-none text-sky-950 text-opacity-30">
+              {authorRole}
             </div>
           </div>
         </div>
       </div>
-    );
-  };
+    </div>
+  );
 
   return (
     <div className="SaleClients_Section w-full">
@@ -152,45 +77,98 @@ const SaleClientsItem = ({ content }) => {
             Our Proud Clients
           </h2>
         </div>
-        <div className="w-full max-w-[1200px]">
-          <div
-            className="transition-all duration-500 ease-out"
-            style={{
-              transform: `translateX(${direction * (isAnimating ? -5 : 0)}%)`,
-              opacity: isAnimating ? 0.3 : 1,
-            }}
-          >
-            <div
-              className={`grid grid-cols-1 ${
-                isLargeScreen ? "lg:grid-cols-3 lg:grid-rows-2" : ""
-              } gap-4 justify-items-center`}
+
+        <div className="w-full max-w-[1200px] relative">
+          {/* Desktop View (2 rows x 3 columns) */}
+          <div className="hidden lg:block">
+            <Swiper
+              modules={[Navigation, Pagination]}
+              spaceBetween={32}
+              slidesPerView={1}
+              speed={500}
+              loop={true} // Enable infinite loop
+              onSwiper={(swiper) => (desktopSwiperRef.current = swiper)}
+              onSlideChange={(swiper) => {
+                setCurrentPage(swiper.realIndex);
+              }}
+              className="client_mySwiper"
             >
-              {getCurrentItems(currentPage).map((testimonial, index) => (
-                <TestimonialCard
-                  key={`${testimonial.id}-${currentPage}-${index}`}
-                  logoSrc={testimonial.image}
-                  testimonialText={testimonial.message}
-                  authorImage={testimonial.image}
-                  authorName={testimonial.name}
-                  authorRole={testimonial.designation}
-                  index={index}
-                />
-              ))}
-            </div>
+              {/* Duplicate the groups for seamless looping */}
+              {[...desktopSlideGroups, ...desktopSlideGroups].map(
+                (group, groupIndex) => (
+                  <SwiperSlide key={groupIndex}>
+                    <div className="grid grid-cols-3 gap-8 grid-rows-2">
+                      {group.map((item, index) => (
+                        <TestimonialCard
+                          key={`desktop-${groupIndex}-${index}`}
+                          logoSrc={item.image}
+                          testimonialText={item.message}
+                          authorImage={item.image}
+                          authorName={item.name}
+                          authorRole={item.designation}
+                        />
+                      ))}
+                    </div>
+                  </SwiperSlide>
+                )
+              )}
+            </Swiper>
           </div>
 
+          {/* Mobile/Tablet View (Single column) */}
+          <div className="block lg:hidden relative">
+            <Swiper
+              modules={[Navigation]}
+              spaceBetween={20}
+              slidesPerView={1}
+              speed={500}
+              loop={true} // Enable infinite loop
+              onSwiper={(swiper) => (mobileSwiperRef.current = swiper)}
+              onSlideChange={(swiper) => {
+                setCurrentPage(swiper.realIndex);
+              }}
+              className="client_mySwiper"
+            >
+              {/* Duplicate the content for seamless looping */}
+              {[...content, ...content].map((item, index) => (
+                <SwiperSlide key={`mobile-${index}`}>
+                  <div className="px-4 md:px-8">
+                    <TestimonialCard
+                      logoSrc={item.image}
+                      testimonialText={item.message}
+                      authorImage={item.image}
+                      authorName={item.name}
+                      authorRole={item.designation}
+                    />
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+
+          {/* Navigation Buttons */}
           <div className="flex justify-center gap-x-3 mt-[4%]">
             <button
-              onClick={() => handleNavigation(-1)}
-              disabled={isAnimating}
-              className="px-3 py-2 rounded-[6px] bg-white disabled:opacity-50 border border-[#4580FF] transition-all duration-300 hover:bg-gray-50 active:scale-95"
+              onClick={() => {
+                if (window.innerWidth >= 1024) {
+                  desktopSwiperRef.current?.slidePrev();
+                } else {
+                  mobileSwiperRef.current?.slidePrev();
+                }
+              }}
+              className="px-3 py-2 rounded-[6px] bg-white border border-[#4580FF] transition-all duration-300 hover:bg-gray-50 active:scale-95"
             >
               <GrFormPrevious className="text-[20px] text-[#4580FF]" />
             </button>
             <button
-              onClick={() => handleNavigation(1)}
-              disabled={isAnimating}
-              className="px-3 py-2 rounded-[6px] bg-[#0C89FF] disabled:opacity-50 border border-[#4580FF] text-white transition-all duration-300 hover:bg-[#0972d3] active:scale-95"
+              onClick={() => {
+                if (window.innerWidth >= 1024) {
+                  desktopSwiperRef.current?.slideNext();
+                } else {
+                  mobileSwiperRef.current?.slideNext();
+                }
+              }}
+              className="px-3 py-2 rounded-[6px] bg-[#0C89FF] border border-[#4580FF] text-white transition-all duration-300 hover:bg-[#0972d3] active:scale-95"
             >
               <GrFormNext
                 className="text-white text-[20px]"

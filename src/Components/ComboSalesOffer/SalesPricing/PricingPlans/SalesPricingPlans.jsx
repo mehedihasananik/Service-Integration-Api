@@ -4,7 +4,7 @@ import SalesPricingHeader from "./SalesPricingHeader";
 
 const SalesPricingPlans = () => {
   return (
-    <div className="pt-4 md:pt-0">
+    <div className="pt-4 md:pt-4">
       <div className="relative h-full md:h-full ">
         <div className=" font-Inter  ">
           <div className="flex flex-col items-center   md:px-0">

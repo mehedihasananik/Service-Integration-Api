@@ -161,7 +161,7 @@ const SuccessComponent = () => {
         }
 
         const result = await response.json();
-
+        console.log(result);
         setSuccessMessage(result.success);
         setOrderId(result.order_id);
         setProgress(100);
@@ -189,6 +189,9 @@ const SuccessComponent = () => {
                 quantity: 1,
               },
             ],
+            name: result?.name,
+            email: result?.email,
+            address: result?.customer?.address,
           },
           gtm: { uniqueEventId: new Date().getTime() },
         };

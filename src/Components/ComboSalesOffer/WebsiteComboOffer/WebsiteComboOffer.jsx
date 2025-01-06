@@ -1,9 +1,25 @@
 "use client";
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useRef } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper/modules";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+
 const WebsiteComboOffer = () => {
-  const fakeData = [
+  const [isEnd, setIsEnd] = useState(false);
+  const [isBeginning, setIsBeginning] = useState(true);
+  const [currentPage, setCurrentPage] = useState(0);
+
+  // Add refs for both swipers
+  const desktopSwiperRef = useRef(null);
+  const mobileSwiperRef = useRef(null);
+
+  const firstSlideData = [
+    // First Slide - First Row
     {
       imageSrc: "/assets/websiteLogo1.svg",
       imageAlt: "WordPress Website",
@@ -20,159 +36,88 @@ const WebsiteComboOffer = () => {
     },
     {
       imageSrc: "/assets/websiteLogo3.svg",
-      imageAlt: "Sample Image 3",
+      imageAlt: "Professional Logo",
       title: "Professional Logo",
       subtitle: "Create brand identity",
       buttonText: "Included",
     },
-    {
-      imageSrc: "/assets/websiteLogo4.svg",
-      imageAlt: "Sample Image 4",
-      title: "Custom Graphics",
-      subtitle: "According to your business.",
-      buttonText: "Included",
-    },
-    {
-      imageSrc: "/assets/websiteLogo5.svg",
-      imageAlt: "Sample Image 5",
-      title: "Website Maintenance",
-      subtitle: "Zero Hassle Business",
-      buttonText: "Included",
-    },
+    // First Slide - Second Row
     {
       imageSrc: "/assets/websiteLogo6.svg",
-      imageAlt: "Sample Image 6",
+      imageAlt: "Monthly SEO",
       title: "Monthly SEO",
-      subtitle: "Rank #1 on google ",
+      subtitle: "Rank #1 on google",
       buttonText: "Included",
     },
     {
       imageSrc: "/assets/websiteLogo7.svg",
-      imageAlt: "Sample Image 7",
+      imageAlt: "Brand Marketing",
       title: "Brand Marketing",
       subtitle: "From start to end",
       buttonText: "Included",
     },
     {
       imageSrc: "/assets/websiteLogo8.svg",
-      imageAlt: "Sample Image 8",
+      imageAlt: "Social Media Post",
       title: "Social Media Post",
       subtitle: "Full Social kit",
       buttonText: "Included",
     },
+  ];
+
+  const secondSlideData = [
+    // Second Slide - First Row
+    {
+      imageSrc: "/assets/websiteLogo4.svg",
+      imageAlt: "Custom Graphics",
+      title: "Custom Graphics",
+      subtitle: "According to your business",
+      buttonText: "Included",
+      row: 1,
+      col: 1,
+    },
+    {
+      imageSrc: "/assets/websiteLogo5.svg",
+      imageAlt: "Website Maintenance",
+      title: "Website Maintenance",
+      subtitle: "Zero Hassle Business",
+      buttonText: "Included",
+      row: 1,
+      col: 2,
+    },
     {
       imageSrc: "/assets/websiteLogo9.svg",
-      imageAlt: "Sample Image 9",
+      imageAlt: "Animated Video",
       title: "Animated Video",
       subtitle: "Explain Your Business",
       buttonText: "Included",
+      row: 2,
+      col: 1,
     },
   ];
 
-  const [currentPage, setCurrentPage] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
-  const [direction, setDirection] = useState(0);
-  const [isLargeScreen, setIsLargeScreen] = useState(true);
+  // Modified slide groups
+  const slideGroups = [firstSlideData, secondSlideData];
 
-  const itemsPerPageLg = 6;
-  const itemsPerPageSm = 1;
-  const totalPagesSm = fakeData.length;
-  const totalPagesLg = 2; // Now we only have 2 pages: first page (1-6) and second page (7-9 + 1-3)
-
-  useEffect(() => {
-    const checkScreenSize = () => {
-      setIsLargeScreen(window.innerWidth >= 1024);
-    };
-    checkScreenSize();
-    window.addEventListener("resize", checkScreenSize);
-    return () => window.removeEventListener("resize", checkScreenSize);
-  }, []);
-
-  const handleNavigation = useCallback(
-    (newDirection) => {
-      if (isAnimating) return;
-
-      const maxPages = isLargeScreen ? totalPagesLg : totalPagesSm;
-      let nextPage = currentPage + newDirection;
-
-      if (isLargeScreen) {
-        // For large screens, cycle between 0 and 1
-        if (nextPage < 0) {
-          nextPage = totalPagesLg - 1;
-        } else if (nextPage >= totalPagesLg) {
-          nextPage = 0;
-        }
-      } else {
-        // For small screens, keep the original bounds
-        if (nextPage < 0 || nextPage >= maxPages) return;
-      }
-
-      setIsAnimating(true);
-      setDirection(newDirection);
-
-      setTimeout(() => {
-        setCurrentPage(nextPage);
-        setTimeout(() => {
-          setIsAnimating(false);
-        }, 50);
-      }, 400);
-    },
-    [currentPage, totalPagesLg, totalPagesSm, isAnimating, isLargeScreen]
+  const ServiceCard = ({ item }) => (
+    <div className="h-[358px] flex flex-col justify-center items-center px-6 py-8 text-center text-white rounded-[4px] border border-white/20 bg-blue-700/20 backdrop-blur-lg">
+      <div className="flex flex-col justify-center items-center w-full max-w-[228px]">
+        <img loading="lazy" src={item.imageSrc} alt={item.imageAlt} />
+        <div className="flex flex-col w-full mt-4">
+          <h3 className="font-Inter text-[24px] font-semibold leading-[42px] whitespace-nowrap">
+            {item.title}
+          </h3>
+          <p className="font-Inter text-[16px] font-light">{item.subtitle}</p>
+        </div>
+        <button className="w-[180px] py-2.5 mt-4 text-[14px] font-normal text-white bg-[#0C89FF] rounded-[30px] hover:bg-blue-600 transition-colors">
+          {item.buttonText}
+        </button>
+      </div>
+    </div>
   );
 
-  const ServiceCard = ({ item, index }) => {
-    const delay = `${index * 50}ms`;
-
-    return (
-      <div
-        className="h-[358px] flex flex-col justify-center items-center px-6 py-8 text-center text-white rounded-[4px] border border-white/20 bg-blue-700/20 backdrop-blur-lg"
-        style={{
-          background: "rgba(49, 88, 199, 0.20)",
-          backdropFilter: "blur(36px)",
-          opacity: isAnimating ? 0 : 1,
-          transform: `translateY(${isAnimating ? "20px" : "0"})`,
-          transition: "all 500ms ease-out",
-          transitionDelay: delay,
-        }}
-      >
-        <div className="flex flex-col justify-center items-center w-full max-w-[228px]">
-          <img loading="lazy" src={item.imageSrc} alt={item.imageAlt} />
-          <div className="flex flex-col w-full mt-4">
-            <h3 className="font-Inter text-[20px] font-semibold leading-[42px]">
-              {item.title}
-            </h3>
-            <p className="font-Inter text-[16px] font-normal">
-              {item.subtitle}
-            </p>
-          </div>
-          <button className="w-[180px] py-2.5 mt-4 text-[14px] font-normal text-white bg-[#0C89FF] rounded-[30px] hover:bg-blue-600 transition-colors">
-            {item.buttonText}
-          </button>
-        </div>
-      </div>
-    );
-  };
-
-  const getLargeScreenItems = () => {
-    if (currentPage === 0) {
-      // First page: Show items 1-6
-      return fakeData.slice(0, 6);
-    } else {
-      // Second page: Show items 7-9 + 1-3
-      const lastThreeItems = fakeData.slice(6, 9);
-      const firstThreeItems = fakeData.slice(0, 3);
-      return [...lastThreeItems, ...firstThreeItems];
-    }
-  };
-
-  const getCounterText = () => {
-    if (isLargeScreen) {
-      // For large screens, show 6/9 on first page and 9/9 on second page
-      return currentPage === 0 ? "6/9" : "9/9";
-    }
-    // For mobile, show current item number
-    return `${currentPage + 1}/${totalPagesSm}`;
-  };
+  // Combine all items for mobile view
+  const allItems = [...firstSlideData, ...secondSlideData];
 
   return (
     <div className="w-full px-[3%] py-8">
@@ -183,61 +128,122 @@ const WebsiteComboOffer = () => {
         <h2 className="text-3xl lg:text-5xl font-bold">Website Combo Offer</h2>
       </div>
 
-      {/* Mobile View (< lg screens) */}
-      <div className="lg:hidden">
-        <div
-          className="transition-all duration-500 ease-out"
-          style={{
-            transform: `translateX(${direction * (isAnimating ? -5 : 0)}%)`,
-            opacity: isAnimating ? 0.3 : 1,
-          }}
-        >
-          <ServiceCard item={fakeData[currentPage]} index={0} />
-        </div>
-      </div>
-
-      {/* Desktop View (≥ lg screens) */}
-      <div className="hidden lg:block h-[740px]">
-        <div
-          className="transition-all duration-500 ease-out"
-          style={{
-            transform: `translateX(${direction * (isAnimating ? -5 : 0)}%)`,
-            opacity: isAnimating ? 0.3 : 1,
-          }}
-        >
-          <div className="grid grid-cols-3 gap-8">
-            {getLargeScreenItems().map((item, index) => (
-              <ServiceCard
-                key={`${item.title}-${index}`}
-                item={item}
-                index={index}
-              />
+      <div className="relative">
+        {/* Desktop View (2 rows x 3 columns) */}
+        <div className="hidden lg:block">
+          <Swiper
+            modules={[Navigation, Pagination]}
+            spaceBetween={32}
+            slidesPerView={1}
+            speed={500}
+            onSwiper={(swiper) => (desktopSwiperRef.current = swiper)}
+            onSlideChange={(swiper) => {
+              setIsEnd(swiper.isEnd);
+              setIsBeginning(swiper.isBeginning);
+              setCurrentPage(swiper.activeIndex);
+            }}
+            className="mySwiper"
+          >
+            {slideGroups.map((group, groupIndex) => (
+              <SwiperSlide key={groupIndex}>
+                <div className="grid grid-cols-3 gap-8 grid-rows-2">
+                  {group.map((item, index) => (
+                    <div
+                      key={`desktop-${groupIndex}-${index}`}
+                      className={`${
+                        groupIndex === 1 && index === 2
+                          ? "col-start-1 col-span-1"
+                          : ""
+                      }`}
+                    >
+                      <ServiceCard item={item} />
+                    </div>
+                  ))}
+                </div>
+              </SwiperSlide>
             ))}
-          </div>
+          </Swiper>
         </div>
-      </div>
 
-      {/* Navigation Buttons */}
-      <div className="flex justify-center items-center mt-10">
-        <div className="bg-[#001246] lg:w-[8%] rounded-[30px] py-1">
-          <div className="flex justify-center items-center gap-4 h-[30px]">
-            <button
-              onClick={() => handleNavigation(-1)}
-              disabled={!isLargeScreen && currentPage === 0}
-              className="p-2 rounded-full text-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-            >
-              <ChevronLeft className="w-6 h-6" />
-            </button>
-            <span className="text-white font-Inter text-[12px] font-normal leading-[42px]">
-              {getCounterText()}
-            </span>
-            <button
-              onClick={() => handleNavigation(1)}
-              disabled={!isLargeScreen && currentPage === totalPagesSm - 1}
-              className="p-2 rounded-full text-[#0A7AE8] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-            >
-              <ChevronRight className="w-6 h-6" />
-            </button>
+        {/* Mobile/Tablet View (Single column) */}
+        <div className="block lg:hidden relative">
+          <Swiper
+            modules={[Navigation]}
+            spaceBetween={20}
+            slidesPerView={1}
+            speed={500}
+            pagination={{
+              clickable: true,
+            }}
+            onSwiper={(swiper) => (mobileSwiperRef.current = swiper)}
+            onSlideChange={(swiper) => {
+              setIsEnd(swiper.isEnd);
+              setIsBeginning(swiper.isBeginning);
+              setCurrentPage(swiper.activeIndex);
+            }}
+            className="mySwiper"
+          >
+            {allItems.map((item, index) => (
+              <SwiperSlide key={`mobile-${index}`}>
+                <div className="px-4 md:px-8">
+                  <ServiceCard item={item} />
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+
+          {/* Mobile Navigation Buttons */}
+          <button
+            className={`absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-[#001246]/80 p-3 rounded-r-lg ${
+              isBeginning
+                ? "opacity-50 cursor-not-allowed"
+                : "hover:bg-[#001246]"
+            }`}
+            onClick={() => mobileSwiperRef.current?.slidePrev()}
+            disabled={isBeginning}
+          >
+            <ChevronLeft className="w-6 h-6 text-white" />
+          </button>
+
+          <button
+            className={`absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-[#001246]/80 p-3 rounded-l-lg ${
+              isEnd ? "opacity-50 cursor-not-allowed" : "hover:bg-[#001246]"
+            }`}
+            onClick={() => mobileSwiperRef.current?.slideNext()}
+            disabled={isEnd}
+          >
+            <ChevronRight className="w-6 h-6 text-white" />
+          </button>
+        </div>
+
+        {/* Desktop Navigation Buttons */}
+        <div className="hidden lg:flex justify-center items-center mt-10">
+          <div className="bg-[#001246] w-[8%] rounded-[30px] py-1">
+            <div className="flex justify-center items-center gap-4 h-[30px]">
+              <button
+                className={`p-2 rounded-full transition-colors ${
+                  isBeginning
+                    ? "text-gray-500"
+                    : "text-white hover:text-blue-400"
+                }`}
+                onClick={() => desktopSwiperRef.current?.slidePrev()}
+                disabled={isBeginning}
+              >
+                <ChevronLeft className="w-6 h-6" />
+              </button>
+              <span className="text-white font-Inter text-[12px] font-normal leading-[42px]">
+                {currentPage === 0 ? "6/9" : "9/9"}
+              </span>
+              <button
+                className={`p-2 rounded-full transition-colors ${
+                  isEnd ? "text-gray-500" : "text-[#0A7AE8] hover:text-blue-400"
+                }`}
+                onClick={() => desktopSwiperRef.current?.slideNext()}
+                disabled={isEnd}
+              >
+                <ChevronRight className="w-6 h-6" />
+              </button>
+            </div>
           </div>
         </div>
       </div>

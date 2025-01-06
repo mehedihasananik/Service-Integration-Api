@@ -43,8 +43,8 @@ export default function ShowcaseProjects() {
 
   // Use Intersection Observer
   const { ref, inView } = useInView({
-    triggerOnce: true, // Trigger only once when the component enters the viewport
-    threshold: 0.2, // Component is considered in view when 20% of it is visible
+    triggerOnce: true,
+    threshold: 0.2,
   });
 
   return (
@@ -58,11 +58,10 @@ export default function ShowcaseProjects() {
           Our Company Achievements
         </h2>
 
-        {/* Statistics */}
+        {/* Statistics - Desktop */}
         <div className="containerStats hidden lg:flex flex-wrap space-y-5 md:space-y-0 md:gap-5 justify-between px-16 py-10 mt-6 w-full font-semibold text-white rounded-xl max-w-[1340px]">
           {statisticsData.map((stat, index) => (
             <React.Fragment key={stat.id}>
-              {/* Statistic Card Inline */}
               <article className="flex space-x-5 items-center">
                 <img
                   loading="lazy"
@@ -74,10 +73,15 @@ export default function ShowcaseProjects() {
                   {inView && (
                     <CountUp
                       start={0}
-                      end={stat.count}
+                      end={stat.id === 1 ? 2000 : stat.count}
                       duration={5}
                       separator=","
-                      suffix={stat.suffix}
+                      formattingFn={(value) => {
+                        if (stat.id === 1) {
+                          return value >= 2000 ? "2k+" : value;
+                        }
+                        return value + (stat.suffix || "");
+                      }}
                       className="text-[24px] font-semibold leading-none font-Inter"
                     />
                   )}
@@ -86,7 +90,6 @@ export default function ShowcaseProjects() {
                   </p>
                 </div>
               </article>
-              {/* Divider */}
               <div className="hidden md:block">
                 {index < statisticsData.length - 1 && <Divider />}
               </div>
@@ -94,11 +97,11 @@ export default function ShowcaseProjects() {
           ))}
         </div>
 
+        {/* Statistics - Mobile */}
         <div className="containerStats lg:hidden w-full max-w-[1340px] px-4 sm:px-6 lg:px-16 py-6 sm:py-8 lg:py-10 mt-4 sm:mt-6 rounded-xl">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-4">
             {statisticsData.map((stat, index) => (
               <React.Fragment key={stat.id}>
-                {/* Statistic Card */}
                 <article className="flex items-center space-x-4 bg-opacity-10 bg-white p-4 rounded-lg">
                   <img
                     loading="lazy"
@@ -110,10 +113,15 @@ export default function ShowcaseProjects() {
                     {inView && (
                       <CountUp
                         start={0}
-                        end={stat.count}
+                        end={stat.id === 1 ? 2000 : stat.count}
                         duration={2}
                         separator=","
-                        suffix={stat.suffix}
+                        formattingFn={(value) => {
+                          if (stat.id === 1) {
+                            return value >= 2000 ? "2k+" : value;
+                          }
+                          return value + (stat.suffix || "");
+                        }}
                         className="text-[20px] sm:text-[24px] font-semibold leading-tight font-Inter text-white"
                       />
                     )}
@@ -123,7 +131,6 @@ export default function ShowcaseProjects() {
                   </div>
                 </article>
 
-                {/* Divider - Only show between items on larger screens */}
                 {index < statisticsData.length - 1 && (
                   <div className="hidden lg:block lg:col-span-0">
                     <Divider />

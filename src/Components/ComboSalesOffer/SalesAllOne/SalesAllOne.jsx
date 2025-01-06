@@ -1,7 +1,7 @@
 "use client";
-import Container from "@/Components/Container/Container";
 import React from "react";
 import { SalesPricingBtn } from "../SalesBtn/SalesBtn";
+import { Link } from "react-scroll";
 
 const SalesAllOne = () => {
   // List of services
@@ -44,7 +44,14 @@ const SalesAllOne = () => {
                   </div>
                 </div>
                 <div className="w-[32%]">
-                  <SalesPricingBtn className="border border-[#FF693B]  hover:border-[#FF693B] hover:bg-transparent hover:text-[#FF693B]" />
+                  <Link
+                    to="pricing"
+                    smooth={true}
+                    duration={1500}
+                    className={` font-Inter text-[16px] leading-[42px] font-normal bg-[#FF693B] border cursor-pointer border-[#FF693B] hover:border-[#FF693B] text-white hover:bg-transparent hover:text-[#FF693B] py-4 px-4 md:py-3 md:px-[1.7%] flex justify-center items-center rounded-full w-[180px] h-[43px] transition-all duration-300`}
+                  >
+                    See Pricing
+                  </Link>
                 </div>
               </div>
               <div className="w-[50%] pt-[8%] relative -right-12">

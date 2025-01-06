@@ -10,6 +10,7 @@ import PricingPlans from "../PricingPlans/PricingPlans";
 import ComboPageFaq from "../ComboPageFaq/ComboPageFaq";
 import ComboContact from "../ComboContact/ComboContact";
 import ComboScheduleMetting from "../ComboScheduleMetting/ComboScheduleMetting";
+import ComboLeadPortfolio from "@/Components/ComboLead/ComboLeadPortfolio";
 
 const ComboHome = () => {
   return (
@@ -27,7 +28,7 @@ const ComboHome = () => {
         <ComboClientReview />
       </div>
       <div className="py-10">
-        <ComboPortfolio />
+        <ComboLeadPortfolio />
       </div>
       <div className="comboDeals">
         <ComboDeals />

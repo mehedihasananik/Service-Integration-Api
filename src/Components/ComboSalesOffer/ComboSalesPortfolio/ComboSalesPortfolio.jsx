@@ -18,7 +18,7 @@ const ComboSalesPortfolio = async () => {
 
   return (
     <div>
-      <div className="py-[2%] pt-[5%]">
+      <div className="py-[2%] ">
         <h3
           id="portfolio"
           className="text-[16px] md:text-[18px] lg:text-[18px] font-normal leading-[24px] text-[#FF693B] font-Jua lg:pb-6 text-center"
@@ -37,7 +37,7 @@ const ComboSalesPortfolio = async () => {
         <ComboPortfolioSliderSm2 portfolio={portfolio} />
         <ComboPortfolioSliderSm1 portfolio={portfolio} />
       </div> */}
-      <div className="">
+      <div className="pt-[1%]">
         <ConditionBtn />
       </div>
     </div>

@@ -196,7 +196,7 @@ const SalesPlanCard = ({ plan }) => {
       </div>
 
       {plan.title === "Premium+ Plan" ? (
-        <hr className="mt-6 border-t border-[#FFF]" />
+        <hr className="mt-6 border-t border-[#cccccc]" />
       ) : (
         <hr className="mt-6 border-t border-[#E1E4ED]" />
       )}

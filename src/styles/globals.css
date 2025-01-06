@@ -744,12 +744,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   width: 100%;
 }
 .SaleClients_Section {
-  background-image: url("/assets/SaleClients_Section1.jpg");
+  background-image: url("/assets/SaleClients_Section2.jpg");
   background-repeat: no-repeat;
   background-size: center;
   background-position: center;
   z-index: -11;
-  height: 784px;
+  height: 904px;
   width: 100%;
 }
 .sale-faq-section {
@@ -758,7 +758,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   background-size: center;
   background-position: center;
   z-index: -11;
-  height: 972px;
+  height: 1104px;
   width: 100%;
 }
 /* In your CSS file (e.g., styles.css) */
@@ -801,3 +801,135 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   justify-content: center;
   align-items: center;
 } */
+
+/* for slider */
+.client_mySwiper {
+  height: 580px !important;
+}
+
+/* new sales animation  */
+.sales_hero1 {
+  background-image: url("/assets/salesHero11.png");
+  background-color: #005ddd;
+  background-repeat: no-repeat;
+  background-size: cover; /* Changed from 'center' to 'cover' for full stretching */
+  background-position: center;
+  position: relative; /* Added to ensure proper z-index stacking */
+  z-index: 1; /* Adjusted z-index to ensure content is above background */
+  height: 975px;
+  width: 100%;
+  overflow: hidden; /* Prevent any overflow */
+}
+.sales_hero2 {
+  background-image: url("/assets/salesHero12.png");
+  background-repeat: no-repeat;
+  background-size: cover; /* Changed from 'center' to 'cover' for full stretching */
+  background-position: center;
+  position: absolute; /* Added to ensure proper z-index stacking */
+  z-index: -1; /* Adjusted z-index to ensure content is above background */
+  height: 647px;
+  width: 100%;
+  bottom: -190px;
+}
+.sales_hero3 {
+  background-image: url("/assets/salesHero13.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  z-index: 10;
+  height: 564px;
+  width: 100%;
+  bottom: -158px;
+}
+.sales_hero4 {
+  background-image: url("/assets/salesHero14.png");
+  background-repeat: no-repeat;
+  position: absolute; /* Added to ensure proper z-index stacking */
+  z-index: 10; /* Adjusted z-index to ensure content is above background */
+  height: 590px;
+  width: 100%;
+  bottom: -300px;
+}
+
+/* animate  */
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.sales_doll {
+  background-image: url("/assets/sales_doll.png");
+  background-repeat: no-repeat;
+  position: absolute;
+  z-index: -1;
+  height: 328px;
+  width: 258px;
+  bottom: 305px;
+  animation: slideInFromLeft 2.5s ease-out;
+}
+
+@keyframes slideDownToPosition {
+  0% {
+    transform: translateY(-200%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.sales_moon {
+  background-image: url("/assets/sales_moon.png");
+  background-repeat: no-repeat;
+  position: absolute;
+  z-index: -2;
+  height: 700px;
+  width: 700px;
+  bottom: 150px;
+  right: 70px;
+  animation: slideDownToPosition 2.5s ease-out;
+}
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(200%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.sales_doll2 {
+  background-image: url("/assets/sales_doll2.png");
+  background-repeat: no-repeat;
+  position: absolute;
+  z-index: 1;
+  height: 259px;
+  width: 238px;
+  bottom: 239px;
+  right: 195px;
+  animation: slideUp 2.5s ease-out;
+}
+
+.sales_title {
+  background-image: url("/assets/sales_title.png");
+  background-repeat: no-repeat;
+  position: absolute;
+  z-index: -1;
+  height: 671px;
+  width: 685px;
+  bottom: 42px;
+  right: 110px;
+  animation: slideUp 2.5s ease-out;
+}

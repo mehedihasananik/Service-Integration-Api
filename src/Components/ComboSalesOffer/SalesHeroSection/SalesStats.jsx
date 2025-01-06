@@ -50,8 +50,8 @@ const SalesStats = () => {
       >
         {statisticsData.map((stat, index) => (
           <React.Fragment key={stat.id}>
-            <div className="flex items-center py-2.5 px-4 bg-[rgba(10,44,140,0.7)] backdrop-blur-[36px] rounded-[6px] w-[268px]">
-              <div className="flex items-center gap-4">
+            <div className="flex items-center  py-2.5 px-4 bg-[rgba(10,44,140,0.7)] backdrop-blur-[36px] rounded-[6px] w-[268px] lg:h-[85px]">
+              <div className="flex items-center gap-4 pl-5">
                 <img
                   loading="lazy"
                   src={stat.icon}
@@ -63,7 +63,7 @@ const SalesStats = () => {
                     <CountUp
                       start={0}
                       end={stat.id === 1 ? 2000 : stat.count}
-                      duration={5}
+                      duration={4}
                       separator=","
                       formattingFn={(value) => {
                         if (stat.id === 1) {

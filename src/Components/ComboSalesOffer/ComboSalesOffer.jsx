@@ -1,6 +1,4 @@
 import React from "react";
-import SalesHeader from "./SalesHeader";
-import SalesHeroSection from "./SalesHeroSection/SalesHeroSection";
 import SalesAllOne from "./SalesAllOne/SalesAllOne";
 import WebsiteComboOffer from "./WebsiteComboOffer/WebsiteComboOffer";
 import AnswerSection from "./AnswerSection/AnswerSection";
@@ -10,16 +8,22 @@ import SalesVideoSection from "./SalesVideoSection/SalesVideoSection";
 import ComboSalesPortfolio from "./ComboSalesPortfolio/ComboSalesPortfolio";
 import { SalesBusinessTransform } from "./SalesBusinessTransform/SalesBusinessTransform";
 import SalesPageFaq from "./SalesPageFaq/SalesPageFaq";
+import SalesHeader1 from "./SalesHeroSection/SalesHeader1";
+import SalesHeroSection1 from "./SalesHeroSection/SalesHeroSection1";
+import SalesHeroSection from "./SalesHeroSection/SalesHeroSection";
 
 const ComboSalesOffer = () => {
   return (
     <div>
       <div className="relative">
-        <div className="sales_hero overflow-hidden">
-          <SalesHeader />
-          <SalesHeroSection />
+        <div className="sales_hero1 overflow-hidden">
+          <SalesHeader1 />
+          <div className="">
+            <SalesHeroSection1 />
+          </div>
         </div>
       </div>
+
       <div className="sales_video ">
         <SalesVideoSection />
       </div>
@@ -33,7 +37,7 @@ const ComboSalesOffer = () => {
       <div className="px-[5%] md:px-[3%] lg:px-[0%]">
         <AnswerSection />
       </div>
-      <div className="pt-[2%] lg:pt-[0%] overflow-hidden">
+      <div className="pt-[2%] lg:pt-[0%] lg:pb-[0%] overflow-hidden">
         <SaleClients />
       </div>
       <div className="py-0">
@@ -42,7 +46,7 @@ const ComboSalesOffer = () => {
       <div className="business-section  py-[5%] ">
         <SalesBusinessTransform />
       </div>
-      <div className="Sales-Pricing-section pb-5 xl:pb-0 md:py-5 xl:py-0">
+      <div className="Sales-Pricing-section pb-5  xl:pb-0 md:py-5 xl:py-0">
         <SalesPricingPlans />
       </div>
       <div className="sale-faq-section pt-[4%]">
