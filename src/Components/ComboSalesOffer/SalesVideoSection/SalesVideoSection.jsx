@@ -4,7 +4,7 @@ import SaleSubVideoSection from "./SaleSubVideoSection";
 const SalesVideoSection = async () => {
   return (
     <div id="about_us" className="relative">
-      <div className="youtube_vdoSection absolute "></div>
+      <div className=" absolute "></div>
       <SaleSubVideoSection />
     </div>
   );

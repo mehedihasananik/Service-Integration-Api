@@ -50,6 +50,28 @@
     z-index: 0;
     animation: spin 8s linear infinite; /* Adjust duration for speed */
   }
+  .sales_moon {
+    right: -55px;
+  }
+  .sales_title {
+    height: 515px;
+    width: 684px;
+    bottom: 196px;
+    right: -6px;
+  }
+  .sales_doll {
+    height: 328px;
+    width: 100%;
+    bottom: 305px;
+    animation: slideInFromLeft 2.5s ease-out;
+    left: -40px;
+  }
+  .sales_doll2 {
+    height: 259px;
+    width: 238px;
+    bottom: 239px;
+    right: 76px;
+  }
 }
 @media only screen and (max-width: 1369px) {
   .pricing_bg {
@@ -69,6 +91,28 @@
     z-index: -1;
     height: 100vh;
     width: 100%;
+  }
+  .sales_moon {
+    right: -55px;
+  }
+  .sales_title {
+    height: 515px;
+    width: 684px;
+    bottom: 196px;
+    right: -6px;
+  }
+  .sales_doll {
+    height: 328px;
+    width: 100%;
+    bottom: 305px;
+    animation: slideInFromLeft 2.5s ease-out;
+    left: -40px;
+  }
+  .sales_doll2 {
+    height: 259px;
+    width: 238px;
+    bottom: 239px;
+    right: 76px;
   }
 }
 @media only screen and (max-width: 1279px) {
@@ -128,6 +172,18 @@
 @media only screen and (max-width: 1080px) {
   .app_contact {
     height: 500px;
+  }
+  .sales_hero1 {
+    background-image: url("/assets/salesHero11.png");
+    background-color: #005ddd;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
   }
 }
 

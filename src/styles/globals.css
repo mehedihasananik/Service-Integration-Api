@@ -712,7 +712,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   background-size: center;
   background-position: center;
   z-index: -11;
-  height: 939px;
+  height: 825px;
   width: 100%;
 }
 

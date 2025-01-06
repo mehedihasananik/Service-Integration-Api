@@ -18,13 +18,16 @@ const ComboSalesOffer = () => {
       <div className="relative">
         <div className="sales_hero1 overflow-hidden">
           <SalesHeader1 />
-          <div className="">
+          <div className="hidden xl:block">
             <SalesHeroSection1 />
+          </div>
+          <div className="xl:hidden">
+            <SalesHeroSection />
           </div>
         </div>
       </div>
 
-      <div className="sales_video ">
+      <div className=" ">
         <SalesVideoSection />
       </div>
       <div className="pt-10 lg:pt-[3%]">
