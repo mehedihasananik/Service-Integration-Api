@@ -707,12 +707,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   background-color: #051761;
 }
 .sales_video {
-  background-image: url("/assets/sales_video.jpg");
+  background-image: url("/assets/sales_video3.jpg");
   background-repeat: no-repeat;
   background-size: center;
   background-position: center;
   z-index: -11;
-  height: 825px;
+  height: 738px;
   width: 100%;
 }
 

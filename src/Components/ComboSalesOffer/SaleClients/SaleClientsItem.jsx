@@ -27,7 +27,7 @@ const SaleClientsItem = ({ content }) => {
     authorName,
     authorRole,
   }) => (
-    <div className="flex overflow-hidden flex-col px-6 pt-6 pb-7 rounded-lg border border-white border-solid bg-white bg-opacity-80 w-full lg:max-w-[313px] shadow-[-2px_2px_17px_rgba(0,0,0,0.06)]">
+    <div className="flex  flex-col px-6 pt-6 pb-7 rounded-lg border border-white border-solid bg-white bg-opacity-80 w-full lg:max-w-[313px] shadow-[-2px_2px_17px_rgba(0,0,0,0.06)]">
       <div className="flex flex-col items-start w-full">
         <img
           loading="lazy"
@@ -67,7 +67,7 @@ const SaleClientsItem = ({ content }) => {
           background: "rgba(255, 255, 255, 0.60)",
           backdropFilter: "blur(36px)",
         }}
-        className="flex flex-col items-center justify-center py-[3%] overflow-hidden w-full xl:w-[1240px] mx-auto px-4 lg:px-0"
+        className="flex flex-col items-center justify-center py-[3%]  w-full xl:w-[1240px] mx-auto px-4 lg:px-0"
       >
         <div className="text-center mb-10">
           <h3 className="text-[16px] md:text-[16px] lg:text-[18px] font-normal leading-[24px] text-[#FF693B] font-Jua pb-4">
@@ -91,13 +91,13 @@ const SaleClientsItem = ({ content }) => {
               onSlideChange={(swiper) => {
                 setCurrentPage(swiper.realIndex);
               }}
-              className="client_mySwiper"
+              className="client_mySwiper "
             >
               {/* Duplicate the groups for seamless looping */}
               {[...desktopSlideGroups, ...desktopSlideGroups].map(
                 (group, groupIndex) => (
                   <SwiperSlide key={groupIndex}>
-                    <div className="grid grid-cols-3 gap-8 grid-rows-2">
+                    <div className="grid grid-cols-3 gap-8 grid-rows-2 pl-10">
                       {group.map((item, index) => (
                         <TestimonialCard
                           key={`desktop-${groupIndex}-${index}`}
@@ -156,9 +156,9 @@ const SaleClientsItem = ({ content }) => {
                   mobileSwiperRef.current?.slidePrev();
                 }
               }}
-              className="px-3 py-2 rounded-[6px] bg-white border border-[#4580FF] transition-all duration-300 hover:bg-gray-50 active:scale-95"
+              className="h-[34px] w-[34px] flex justify-center items-center rounded-[6px] bg-white border border-[#4580FF] transition-all duration-300 hover:bg-gray-50"
             >
-              <GrFormPrevious className="text-[20px] text-[#4580FF]" />
+              <GrFormPrevious className="text-[25px] font-normal text-[#4580FF]" />
             </button>
             <button
               onClick={() => {
@@ -168,10 +168,10 @@ const SaleClientsItem = ({ content }) => {
                   mobileSwiperRef.current?.slideNext();
                 }
               }}
-              className="px-3 py-2 rounded-[6px] bg-[#0C89FF] border border-[#4580FF] text-white transition-all duration-300 hover:bg-[#0972d3] active:scale-95"
+              className="h-[34px] w-[34px] font-normal flex justify-center items-center rounded-[6px] bg-[#0C89FF] border border-[#4580FF] text-white transition-all duration-300 hover:bg-[#0972d3]"
             >
               <GrFormNext
-                className="text-white text-[20px]"
+                className="text-white text-[25px]"
                 style={{ color: "white" }}
               />
             </button>

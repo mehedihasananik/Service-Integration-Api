@@ -235,7 +235,7 @@ const SalesPlanCard = ({ plan }) => {
           plan.title === "Custom Plan" && totalPrice > 0
             ? "bg-blue-900 hover:bg-[#0E2566] text-white border border-[#0E2566] active:bg-[#B3B8C8] active:text-[#001246]  active:border-[#001246]"
             : plan.title === "Custom Plan"
-            ? "bg-[#0A2C8C66] hover:bg-[#7f8eb4] text-[#fff] transition-all duration-300 border  active:bg-[#B3B8C8] active:text-[#001246]  active:border-[#001246]"
+            ? "bg-[#99A0B5] hover:bg-[#99a0b5d1] text-[#fff] transition-all duration-300 border hover:border-[#ffffffc7]  active:bg-[#B3B8C8] active:text-[#001246]  active:border-[#001246]"
             : plan.isDark
             ? "bg-[#fff] text-[#001B69] hover:bg-[#ffffffc7] border border-[#fff] hover:text-[#0F2870] hover:shadow-lg transition-all duration-300 active:bg-[#1559E3] active:text-[#fff] active:border-[#FFF ]"
             : "bg-[#001246] hover:bg-[#001246e5] text-white border border-[#0F2870] hover:border-[#0F2870]  active:bg-[#B3B8C8] active:text-[#001246] active:border-[#001246]"

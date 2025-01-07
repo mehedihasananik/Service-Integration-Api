@@ -19,14 +19,29 @@ const ClientReviewsContent1 = ({ testimonials }) => {
               <div className="absolute inset-0 rounded-xl border-2 border-[#FF693B] opacity-0 transition-opacity duration-700 group-hover:opacity-100"></div>
 
               {/* Fiverr image in the top right corner */}
-              <div className="absolute top-8 right-4 w-10 z-10">
-                <Image
-                  src="/assets/fiver.png"
-                  alt="Fiverr"
-                  width={30}
-                  height={25}
-                  className="opacity-70 transition-opacity duration-300 group-hover:opacity-100"
-                />
+              <div>
+                {testimonial.source === "fiverr" && (
+                  <div className="absolute top-4 right-4">
+                    <Image
+                      src="/assets/fiver.png"
+                      alt="Fiverr"
+                      width={30}
+                      height={25}
+                      className="opacity-70 transition-opacity duration-300 group-hover:opacity-100"
+                    />
+                  </div>
+                )}
+                {testimonial.source === "upwork" && (
+                  <div className="absolute top-4 right-4">
+                    <Image
+                      src="/assets/upwork.jpg"
+                      alt="Fiverr"
+                      width={30}
+                      height={25}
+                      className="opacity-70 transition-opacity duration-300 group-hover:opacity-100 rounded-full"
+                    />
+                  </div>
+                )}
               </div>
 
               <div className="relative flex-grow w-full z-10">

@@ -36,8 +36,8 @@ const SaleSubVideoSection = () => {
                     "url(<path-to-image>) lightgray 50% / cover no-repeat",
                   boxShadow: "-38px 38px 91px 0px rgba(4, 19, 91, 0.40)",
                 }}
-                width="1120"
-                height="630"
+                width="982"
+                height="553"
                 src="https://www.youtube.com/embed/N73NyNDq-ZY?si=W2VUBjMkee8TGkv6"
                 title="YouTube video player"
                 className="rounded-lg shadow-lg"
