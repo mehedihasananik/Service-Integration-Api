@@ -13,6 +13,7 @@ const SalesPlanCard = ({ plan }) => {
   const [errorMessage, setErrorMessage] = useState("");
   const [checkout, setCheckout] = useState("begin_checkout");
   const router = useRouter();
+  const [isClicked, setIsClicked] = useState(false);
 
   const handleTotalPriceChange = (newTotalPrice) => {
     setTotalPrice(newTotalPrice);
@@ -113,6 +114,15 @@ const SalesPlanCard = ({ plan }) => {
       alert("Error placing the order. Please check the console for details.");
       console.error("API Call Error:", error);
     }
+  };
+
+  const handleClick = async () => {
+    setIsClicked(true); // Set the state to show the red border
+    setTimeout(() => {
+      setIsClicked(false); // Reset the state after 1.5 seconds
+    }, 6000);
+
+    await handlePlaceOrder(); // Call the original place order function
   };
 
   return (
@@ -219,17 +229,16 @@ const SalesPlanCard = ({ plan }) => {
         totalPrice={totalPrice}
         selectedOption={selectedOption}
       />
-
       <button
-        onClick={handlePlaceOrder}
-        className={`mt-9 p-3 w-full rounded flex justify-center items-center text-[16px] font-semibold font-Inter ${
+        onClick={handleClick}
+        className={`mt-9 p-3 w-full rounded flex justify-center items-center text-[14px] font-semibold font-Inter h-[44px] ${
           plan.title === "Custom Plan" && totalPrice > 0
-            ? "bg-blue-900 hover:bg-[#0E2566] text-white"
+            ? "bg-blue-900 hover:bg-[#0E2566] text-white border border-[#0E2566] active:bg-[#B3B8C8] active:text-[#001246]  active:border-[#001246]"
             : plan.title === "Custom Plan"
-            ? "bg-[#0A2C8C66] hover:bg-[#7f8eb4] text-[#fff] transition-all duration-300 border"
+            ? "bg-[#0A2C8C66] hover:bg-[#7f8eb4] text-[#fff] transition-all duration-300 border  active:bg-[#B3B8C8] active:text-[#001246]  active:border-[#001246]"
             : plan.isDark
-            ? "bg-[#fff] text-[#001B69] hover:bg-[#ffffffc7] hover:text-[#0F2870] hover:shadow-lg    transition-all duration-300"
-            : "bg-[#000] hover:bg-[#260c0c] text-white transition-all duration-300 border border-[#0F2870]"
+            ? "bg-[#fff] text-[#001B69] hover:bg-[#ffffffc7] border border-[#fff] hover:text-[#0F2870] hover:shadow-lg transition-all duration-300 active:bg-[#1559E3] active:text-[#fff] active:border-[#FFF ]"
+            : "bg-[#001246] hover:bg-[#001246e5] text-white border border-[#0F2870] hover:border-[#0F2870]  active:bg-[#B3B8C8] active:text-[#001246] active:border-[#001246]"
         } transform transition-all duration-300 hover:shadow-lg`}
       >
         <span>Place Order</span>{" "}

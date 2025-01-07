@@ -120,22 +120,25 @@ const SalesHeroSection = () => {
           <SalesStats />
         </div>
       </div>
+
+      {/* for small device */}
+
       <div className="block xl:hidden">
-        <div className="flex md:px-[10%] md:mt-[15%] lg:mt-[0%] flex-col xl:flex-row justify-between text-white items-center h-auto md:h-[60vh] space-y-0 md:space-y-0">
-          {/* left side */}
+        <div className="flex md:px-[10%] md:mt-[0%] lg:mt-[0%] flex-col xl:flex-row justify-between text-white items-center h-auto md:h-[60vh] space-y-0 md:space-y-0">
+          {/* Left Side */}
           <div className="text-center md:text-left space-y-0 md:space-y-6 px-4 md:px-0">
             <div>
-              <h1 className="text-[25px] font-Oswald font-semibold md:text-[25px] lg:text-[38px] xxl:text-[52px] w-full md:w-[100%] lg:w-[100%] xll:leading-[68px] ">
+              <h1 className="text-[25px] font-Oswald font-semibold miniDevice:text-[35px] lg:text-[38px] xxl:text-[52px] w-full md:w-[100%] lg:w-[100%] xll:leading-[68px]">
                 Website combo offer
               </h1>
-              <p className="text-[15px] md:text-[24px] lg:text-[20px]  xxl:text-[20px] py-4 md:py-6 w-full md:w-[100%] mx-auto md:mx-0 font-Inter">
+              <p className="text-[15px] miniDevice:text-[24px] lg:text-[20px]  xxl:text-[20px] py-4 md:py-6 w-full md:w-[100%] mx-auto md:mx-0 font-Inter">
                 Get everything you need from website design, development, SEO,
                 branding, logos, social media posts, and content writing in one
                 unbeatable combo!
               </p>
             </div>
             <div className="flex flex-col md:flex-row gap-4 md:gap-x-10 justify-center md:justify-start">
-              <div className="flex justify-center md:justify-start ">
+              <div className="flex justify-center items-center  md:justify-start ">
                 <Link
                   to="pricing"
                   smooth={true}
@@ -163,12 +166,11 @@ const SalesHeroSection = () => {
             </div>
           </div>
 
-          {/* right side */}
-
-          <div className=" xl:hidden py-8 ">
+          {/* Right Side */}
+          <div className="xl:hidden py-8">
             <div className="flex justify-center">
               <img
-                className="w-[100%] md:w-[40%] lg:w-[50%]"
+                className="w-[100%] md:w-[65%] lg:w-[80%] panda-animation"
                 src="/assets/panda.svg"
                 alt=""
               />

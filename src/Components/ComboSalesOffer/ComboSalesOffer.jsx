@@ -11,6 +11,7 @@ import SalesPageFaq from "./SalesPageFaq/SalesPageFaq";
 import SalesHeader1 from "./SalesHeroSection/SalesHeader1";
 import SalesHeroSection1 from "./SalesHeroSection/SalesHeroSection1";
 import SalesHeroSection from "./SalesHeroSection/SalesHeroSection";
+import SalesStats from "./SalesHeroSection/SalesStats";
 
 const ComboSalesOffer = () => {
   return (
@@ -25,6 +26,9 @@ const ComboSalesOffer = () => {
             <SalesHeroSection />
           </div>
         </div>
+      </div>
+      <div className="xl:hidden bg-[#0F3A9B]">
+        <SalesStats />
       </div>
 
       <div className=" ">

@@ -5,7 +5,7 @@ import { Link } from "react-scroll";
 
 const SalesHeaderItems = ({ headers, isMobileMenuOpen, toggleMobileMenu }) => {
   return (
-    <div className="max-w-[1920px] mx-auto px-[6%] md:px-[0%] lg:px-[2%] xl:px-[8%] 4xl:px-[4%] pt-3">
+    <div className="max-w-[1920px] mx-auto px-[6%] md:px-[0%] lg:px-[2%] xl:px-[8%] 4xl:px-[4%] pt-0">
       <header className="relative z-50">
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex justify-between items-center px-4 md:px-2 lg:px-0 py-4">

@@ -933,3 +933,17 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   right: 110px;
   animation: slideUp 2.5s ease-out;
 }
+@keyframes slideIn {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.panda-animation {
+  animation: slideIn 1.5s ease-in-out;
+}

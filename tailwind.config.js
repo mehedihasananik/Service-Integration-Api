@@ -84,6 +84,8 @@ module.exports = {
         paragraph: "16px",
         paragraphSmall: "14px",
       },
+      borderColor: ["active"],
+      backgroundColor: ["active"],
     },
   },
   plugins: [require("flowbite/plugin")],

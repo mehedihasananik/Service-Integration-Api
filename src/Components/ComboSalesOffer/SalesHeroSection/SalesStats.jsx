@@ -46,12 +46,12 @@ const SalesStats = () => {
     <div className="flex justify-center">
       <section
         ref={ref}
-        className="w-full max-w-[1340px] flex flex-col md:flex-row justify-between items-center py-10 px-5 gap-6 md:gap-0"
+        className="w-full max-w-[1340px] flex flex-col lg:flex-row justify-between items-center py-10 px-5 gap-6 md:gap-0"
       >
         {statisticsData.map((stat, index) => (
           <React.Fragment key={stat.id}>
             <div className="flex items-center  py-2.5 px-4 bg-[rgba(10,44,140,0.7)] backdrop-blur-[36px] rounded-[6px] w-[268px] lg:h-[85px]">
-              <div className="flex items-center gap-4 pl-5">
+              <div className="flex items-center gap-4 xl:pl-5">
                 <img
                   loading="lazy"
                   src={stat.icon}
@@ -83,7 +83,7 @@ const SalesStats = () => {
             {/* Updated divider with specified styles */}
             {index < statisticsData.length - 1 && (
               <div
-                className="hidden md:block mx-4"
+                className="hidden lg:block mx-4"
                 style={{
                   width: "0px",
                   height: "48px",

@@ -173,18 +173,6 @@
   .app_contact {
     height: 500px;
   }
-  .sales_hero1 {
-    background-image: url("/assets/salesHero11.png");
-    background-color: #005ddd;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    position: relative;
-    z-index: 1;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-  }
 }
 
 @media only screen and (max-width: 1023px) {
@@ -415,6 +403,10 @@
   .client_mySwiper {
     height: 100% !important;
   }
+  .sales_hero1 {
+    height: 850px;
+    width: 100%;
+  }
 }
 @media only screen and (max-width: 767px) {
   .combo_hero {
@@ -449,6 +441,11 @@
     z-index: 1;
     border-radius: 15px;
   } */
+
+  .sales_hero1 {
+    height: 100%;
+    width: 100%;
+  }
 }
 
 @media only screen and (max-width: 425px) {

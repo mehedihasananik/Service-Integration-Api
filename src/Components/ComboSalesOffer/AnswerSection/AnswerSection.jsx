@@ -5,7 +5,10 @@ const AnswerSection = () => {
   return (
     <div className="anserSection pt-[3%]">
       <div className="text-center text-[#000] lg:text-white">
-        <h3 className="text-[16px] md:text-[16px] lg:text-[18px] font-normal leading-[24px] text-[#fff] font-Jua pb-4">
+        <h3
+          style={{ fontWeight: "200" }}
+          className="text-[16px] md:text-[16px] lg:text-[18px] font-[200] leading-[24px] text-[#fff] font-Jua pb-4"
+        >
           More details
         </h3>
         <h2 className="font-Inter text-[30px] lg:text-[48px] font-bold leading-[24px] tracking-[0.96px]">
@@ -20,7 +23,7 @@ const AnswerSection = () => {
               background: "rgba(255, 255, 255, 0.74)",
               backdropFilter: "blur(36px)",
             }}
-            className="lg:w-[370px] py-[8%] shadow-2xl"
+            className="lg:w-[370px] py-[8%] shadow-2xl h-[516px]"
           >
             <div className="flex justify-center">
               <img
@@ -50,7 +53,7 @@ const AnswerSection = () => {
               background: "rgba(255, 255, 255, 0.74)",
               backdropFilter: "blur(36px)",
             }}
-            className="lg:w-[370px]  py-[8%] shadow-2xl"
+            className="lg:w-[370px]  py-[8%] shadow-2xl h-[516px]"
           >
             <div className="flex justify-center">
               <img
@@ -79,7 +82,7 @@ const AnswerSection = () => {
               background: "#0A2C8C",
               backdropFilter: "blur(36px)",
             }}
-            className="lg:w-[370px]  py-[8%] shadow-lg"
+            className="lg:w-[370px]  py-[8%] shadow-lg h-[516px]"
           >
             <div className="flex justify-center">
               <img

@@ -17,7 +17,7 @@ const SaleSubVideoSection = () => {
       <>
         <div className="sales_video">
           <Container>
-            <div className="flex flex-col items-center justify-center">
+            <div className="flex flex-col items-center justify-center pt-5 md:pt-10 xl:pt-0">
               <h3 className="text-[16px] md:text-[16px] lg:text-[16px] font-normal leading-[24px] text-[#001246] mt-[6%] md:mt-[0%] font-Jua ">
                 Check what is Envobyte
               </h3>
