@@ -159,7 +159,7 @@ const ComboPortfolioSlider2 = ({ portfolio: images }) => {
               <img
                 src={image_url}
                 alt={`Slide ${index + 1}`}
-                className="w-full h-full object-cover cursor-pointer"
+                className="w-full h-full  cursor-pointer"
                 draggable={false}
               />
 

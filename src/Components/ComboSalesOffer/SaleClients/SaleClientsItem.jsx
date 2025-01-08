@@ -78,7 +78,7 @@ const SaleClientsItem = ({ content }) => {
           </h2>
         </div>
 
-        <div className="w-full max-w-[1200px] relative">
+        <div className="w-full max-w-[1020px] relative">
           {/* Desktop View (2 rows x 3 columns) */}
           <div className="hidden lg:block">
             <Swiper
