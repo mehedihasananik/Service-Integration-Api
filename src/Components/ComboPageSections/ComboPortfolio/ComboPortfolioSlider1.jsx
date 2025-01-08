@@ -153,13 +153,13 @@ const ComboPortfolioSlider1 = ({ portfolio: images }) => {
               key={index}
               className={`relative flex-none group ${
                 isModalOpen ? "pointer-events-none" : ""
-              } w-[360px] h-[200px] lg:w-[730px] lg:h-[410px]`}
+              } w-[360px] h-[200px] lg:w-[730px] lg:h-[410px] border`}
               onClick={() => handleClick(image_url)}
             >
               <img
                 src={image_url}
                 alt={`Slide ${index + 1}`}
-                className="w-full h-full  cursor-pointer"
+                className="w-full h-full cursor-pointer object-cover object-[-0px_center]"
                 draggable={false}
               />
               <div
