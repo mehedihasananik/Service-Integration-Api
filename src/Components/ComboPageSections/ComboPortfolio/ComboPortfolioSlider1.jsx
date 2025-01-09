@@ -148,61 +148,63 @@ const ComboPortfolioSlider1 = ({ portfolio: images }) => {
           }}
           onAnimationComplete={() => setAnimationComplete(true)}
         >
-          {filteredImages.map(({ image_url, title, updated_at }, index) => (
-            <div
-              key={index}
-              className={`relative flex-none group ${
-                isModalOpen ? "pointer-events-none" : ""
-              } w-[360px] h-[200px] lg:w-[730px] lg:h-[410px] border`}
-              onClick={() => handleClick(image_url)}
-            >
-              <img
-                src={image_url}
-                alt={`Slide ${index + 1}`}
-                className="w-full h-full cursor-pointer object-cover object-[-0px_center]"
-                draggable={false}
-              />
+          {[...filteredImages]
+            .reverse()
+            .map(({ image_url, title, updated_at }, index) => (
               <div
-                className="absolute inset-0 bg-opacity-60 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                style={{
-                  background:
-                    "linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.90) 100%)",
-                }}
+                key={index}
+                className={`relative flex-none group ${
+                  isModalOpen ? "pointer-events-none" : ""
+                } w-[360px] h-[200px] lg:w-[730px] lg:h-[410px] border`}
+                onClick={() => handleClick(image_url)}
               >
-                <div className="absolute bottom-4 left-10">
-                  <p className="font-Inter text-[22px] font-medium leading-[20px] tracking-[0.44px] text-white mb-1">
-                    {title}
-                  </p>
-                  <p className="text-[14px] text-white/70 leading-[20px] font-inter font-normal not-italic tracking-normal">
-                    {updated_at}
-                  </p>
-                </div>
+                <img
+                  src={image_url}
+                  alt={`Slide ${index + 1}`}
+                  className="w-full h-full cursor-pointer object-cover object-[-0px_center]"
+                  draggable={false}
+                />
                 <div
-                  className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[#fff] font-Inter text-[16px] font-medium view_design flex items-center leading-[20px] tracking-[0.32px]"
-                  style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)" }}
+                  className="absolute inset-0 bg-opacity-60 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  style={{
+                    background:
+                      "linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.90) 100%)",
+                  }}
                 >
-                  View Design{" "}
-                  <span className="ml-2">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="15"
-                      height="15"
-                      viewBox="0 0 19 19"
-                      fill="none"
-                    >
-                      <path
-                        d="M17 17L13.5643 13.5643M13.5643 13.5643C14.7902 12.3384 15.5484 10.6448 15.5484 8.77419C15.5484 5.03291 12.5155 2 8.77419 2C5.03291 2 2 5.03291 2 8.77419C2 12.5155 5.03291 15.5484 8.77419 15.5484C10.6448 15.5484 12.3384 14.7902 13.5643 13.5643ZM8.77419 8.77419V5.87097M8.77419 8.77419V11.6774M8.77419 8.77419H11.6774M8.77419 8.77419H5.87097"
-                        stroke="white"
-                        strokeWidth="3"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </span>
+                  <div className="absolute bottom-4 left-10">
+                    <p className="font-Inter text-[22px] font-medium leading-[20px] tracking-[0.44px] text-white mb-1">
+                      {title}
+                    </p>
+                    <p className="text-[14px] text-white/70 leading-[20px] font-inter font-normal not-italic tracking-normal">
+                      {updated_at}
+                    </p>
+                  </div>
+                  <div
+                    className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[#fff] font-Inter text-[16px] font-medium view_design flex items-center leading-[20px] tracking-[0.32px]"
+                    style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)" }}
+                  >
+                    View Design{" "}
+                    <span className="ml-2">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="15"
+                        height="15"
+                        viewBox="0 0 19 19"
+                        fill="none"
+                      >
+                        <path
+                          d="M17 17L13.5643 13.5643M13.5643 13.5643C14.7902 12.3384 15.5484 10.6448 15.5484 8.77419C15.5484 5.03291 12.5155 2 8.77419 2C5.03291 2 2 5.03291 2 8.77419C2 12.5155 5.03291 15.5484 8.77419 15.5484C10.6448 15.5484 12.3384 14.7902 13.5643 13.5643ZM8.77419 8.77419V5.87097M8.77419 8.77419V11.6774M8.77419 8.77419H11.6774M8.77419 8.77419H5.87097"
+                          stroke="white"
+                          strokeWidth="3"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
         </motion.div>
       </div>
       {isModalOpen && (

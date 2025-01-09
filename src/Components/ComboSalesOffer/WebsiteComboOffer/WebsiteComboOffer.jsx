@@ -236,7 +236,7 @@ const WebsiteComboOffer = () => {
               </span>
               <button
                 className={`p-2 rounded-full transition-colors ${
-                  isEnd ? "text-gray-500" : "text-[#0A7AE8] hover:text-blue-400"
+                  isEnd ? "text-gray-500" : "text-[#fff] hover:text-blue-400"
                 }`}
                 onClick={() => desktopSwiperRef.current?.slideNext()}
                 disabled={isEnd}

@@ -12,19 +12,14 @@ import SalesHeader1 from "./SalesHeroSection/SalesHeader1";
 import SalesHeroSection1 from "./SalesHeroSection/SalesHeroSection1";
 import SalesHeroSection from "./SalesHeroSection/SalesHeroSection";
 import SalesStats from "./SalesHeroSection/SalesStats";
+import HeaderHeroSection from "./SalesHeroSection/HeaderHeroSection";
 
 const ComboSalesOffer = () => {
   return (
     <div>
       <div className="relative">
         <div className="sales_hero1 overflow-hidden">
-          <SalesHeader1 />
-          <div className="hidden xl:block">
-            <SalesHeroSection1 />
-          </div>
-          <div className="xl:hidden">
-            <SalesHeroSection />
-          </div>
+          <HeaderHeroSection />
         </div>
       </div>
       <div className="xl:hidden bg-[#0F3A9B]">
