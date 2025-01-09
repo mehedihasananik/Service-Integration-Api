@@ -83,7 +83,7 @@ const WebsiteScore = () => {
 
   return (
     <>
-      <div className="flex justify-center items-center px-4 pb-3">
+      <div className="flex justify-center items-center lg:px-4 pb-3">
         <a
           href="/website-combo-offer"
           className="relative cursor-pointer overflow-hidden group bg-gradient-to-r from-[#FF693B] via-[#FF8C39] to-[#FF693B] text-white font-bold  py-5 px-10 md:py-6 md:px-10 lg:py-8 lg:px-12 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 ease-out transform hover:-translate-y-1 hover:scale-105"
