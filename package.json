@@ -52,10 +52,6 @@
     "react-scroll-wheel-handler": "^2.2.0",
     "react-select": "^5.8.0",
     "react-select-country-list": "^2.2.3",
-    "react-slick": "^0.30.3",
-    "slick-carousel": "^1.8.1",
-    "smooth-scrollbar": "^8.8.4",
-    "smoothscroll-polyfill": "^0.4.4",
     "swiper": "^11.1.15",
     "yup": "^1.4.0"
   },

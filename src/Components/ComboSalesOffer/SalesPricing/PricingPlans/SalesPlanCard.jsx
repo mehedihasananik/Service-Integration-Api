@@ -235,11 +235,11 @@ const SalesPlanCard = ({ plan }) => {
           plan.title === "Custom Plan" && totalPrice > 0
             ? "bg-blue-900 hover:bg-[#0E2566] text-white border border-[#0E2566] active:bg-[#B3B8C8] active:text-[#001246]  active:border-[#001246]"
             : plan.title === "Custom Plan"
-            ? "bg-[#99A0B5] hover:bg-[#99a0b5d1] text-[#fff] transition-all  hover:outline hover:outline-[#0a98e4] hover:outline-[3px]   active:bg-[#B3B8C8] active:text-[#001246]  active:border-[#001246] duration-100"
+            ? "bg-[#99A0B5] hover:bg-[#99a0b5d1] text-[#fff] transition-all duration-300 border hover:border-[#ffffffc7]  active:bg-[#B3B8C8] active:text-[#001246]  active:border-[#001246]"
             : plan.isDark
-            ? "bg-[#fff] text-[#001B69] hover:bg-[#f6fcfff7] hover:outline hover:outline-[#001246] hover:outline-[3px]  hover:text-[#0F2870] hover:shadow-lg transition-all duration-100 active:bg-[#1559E3] active:outline-none active:text-[#fff] active:border-[#FFF] "
-            : "bg-[#001246] hover:bg-[#001246e5] text-white hover:outline hover:outline-[#0a98e4] hover:outline-[3px]  active:bg-[#B3B8C8] active:text-[#001246] active:border-[#001246] duration-100"
-        } transform transition-all  hover:shadow-lg`}
+            ? "bg-[#fff] text-[#001B69] hover:bg-[#ffffffc7] border border-[#fff] hover:text-[#0F2870] hover:shadow-lg transition-all duration-300 active:bg-[#1559E3] active:text-[#fff] active:border-[#FFF ]"
+            : "bg-[#001246] hover:bg-[#001246e5] text-white border border-[#0F2870] hover:border-[#0F2870]  active:bg-[#B3B8C8] active:text-[#001246] active:border-[#001246]"
+        } transform transition-all duration-300 hover:shadow-lg`}
       >
         <span>Place Order</span>{" "}
         <span>
