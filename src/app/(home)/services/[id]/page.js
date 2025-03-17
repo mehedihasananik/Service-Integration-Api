@@ -8,7 +8,7 @@ import {
 } from "@/config/apis";
 import { generateCommonMetadata } from "@/config/generateMetadata";
 import { Suspense } from "react";
-
+ 
 // This function will fetch all required data for the page
 async function getPageData(id) {
   try {

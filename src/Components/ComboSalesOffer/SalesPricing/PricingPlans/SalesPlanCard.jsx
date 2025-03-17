@@ -231,7 +231,7 @@ const SalesPlanCard = ({ plan }) => {
       />
       <button
         onClick={handleClick}
-        className={`mt-9 p-3 w-full rounded flex justify-center items-center text-[14px] font-semibold font-Inter h-[44px] ${
+        className={`mt-9 p-3 w-full rounded flex justify-center items-center text-[14px] font-semibold font-Inter h-[44px]  ${
           plan.title === "Custom Plan" && totalPrice > 0
             ? "bg-blue-900 hover:bg-[#0E2566] text-white border border-[#0E2566] active:bg-[#B3B8C8] active:text-[#001246]  active:border-[#001246]"
             : plan.title === "Custom Plan"

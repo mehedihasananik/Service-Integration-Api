@@ -947,3 +947,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .panda-animation {
   animation: slideIn 1.5s ease-in-out;
 }
+.clone {
+  position: absolute;
+}
